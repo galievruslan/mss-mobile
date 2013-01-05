@@ -1,0 +1,12 @@
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.Tests.dll
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.Tests.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\obj\Debug\MSS.WinMobile.Infrastructure.Server.Tests.dll
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\obj\Debug\MSS.WinMobile.Infrastructure.Server.Tests.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\Mss.WinMobile.Domain.Model.dll
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.dll
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\Mss.WinMobile.Domain.Model.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\Newtonsoft.Json.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.pdb

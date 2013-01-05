@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="797662af-f4a6-4c91-b3cc-125a3dcfcebe" name="Farid@MICROSOFT-PC 2013-01-05 15:51:12" runUser="MICROSOFT-PC\Farid" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestRunConfiguration name="Local Test Run" id="36ce4557-74e4-46ea-908d-eac4d95bdf41">
+    <Description>This is a default test run configuration for a local test run.</Description>
+    <Deployment runDeploymentRoot="C:\Projects\mss-mobile\MSS.WinMobile\TestResults\Farid_MICROSOFT-PC 2013-01-05 15_51_12">
+      <DeploymentItem filename="C:\Projects\mss-mobile\Vendor\JSON.NET\Bin\Net20\Newtonsoft.Json.dll" />
+      <DeploymentItem filename="C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\bin\Debug\Mss.WinMobile.Domain.Model.dll" />
+      <DeploymentItem filename="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server\bin\Debug\MSS.WinMobile.Infrastructure.Server.dll" />
+    </Deployment>
+    <TestTypeSpecific />
+  </TestRunConfiguration>
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <Times creation="2013-01-05T15:51:12.7558000+03:00" queuing="2013-01-05T15:51:13.7654000+03:00" start="2013-01-05T15:51:14.0154000+03:00" finish="2013-01-05T15:52:50.2798000+03:00" />
+  <TestDefinitions>
+    <UnitTest name="GetByIdTest" storage="c:\projects\mss-mobile\mss.winmobile\mss.winmobile.infrastructure.server.tests\bin\debug\mss.winmobile.infrastructure.server.tests.dll" id="5ee30771-3c4a-cdf2-43ba-917353244190">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="ba592586-8616-48af-b8ef-d452a92d3af4" />
+      <TestMethod codeBase="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSS.WinMobile.Infrastructure.Server.Tests.ManagerRepositoryTest, MSS.WinMobile.Infrastructure.Server.Tests" name="GetByIdTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="5ee30771-3c4a-cdf2-43ba-917353244190" executionId="ba592586-8616-48af-b8ef-d452a92d3af4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ba592586-8616-48af-b8ef-d452a92d3af4" testId="5ee30771-3c4a-cdf2-43ba-917353244190" testName="GetByIdTest" computerName="MICROSOFT-PC" duration="00:01:35.5246087" startTime="2013-01-05T15:51:14.1654000+03:00" endTime="2013-01-05T15:52:50.1862000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method MSS.WinMobile.Infrastructure.Server.Tests.ManagerRepositoryTest.GetByIdTest threw exception:  Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: &lt;. Path '', line 0, position 0..</Message>
+          <StackTrace>    в Newtonsoft.Json.JsonTextReader.ParseValue() в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonTextReader.cs:строка 1102
+   в Newtonsoft.Json.JsonTextReader.ReadInternal() в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonTextReader.cs:строка 476
+   в Newtonsoft.Json.JsonTextReader.Read() в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonTextReader.cs:строка 397
+   в Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\Serialization\JsonSerializerInternalReader.cs:строка 1471
+   в Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\Serialization\JsonSerializerInternalReader.cs:строка 161
+   в Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonSerializer.cs:строка 565
+   в Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonSerializer.cs:строка 531
+   в Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonConvert.cs:строка 953
+   в Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonConvert.cs:строка 913
+   в Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value) в c:\Temp\Json\Working\Newtonsoft.Json\Src\Newtonsoft.Json\JsonConvert.cs:строка 870
+   в MSS.WinMobile.Infrastructure.Server.ManagerRepository.GetById(Int32 id) в C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server\ManagerRepository.cs:строка 36
+   в MSS.WinMobile.Infrastructure.Server.Tests.ManagerRepositoryTest.GetByIdTest() в C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\ManagerRepositoryTest.cs:строка 91
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

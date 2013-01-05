@@ -7,3 +7,12 @@ C:\Users\Farid\Documents\Visual Studio 2008\Projects\MSS.WinMobile\MSS.WinMobile
 C:\Users\Farid\Documents\Visual Studio 2008\Projects\MSS.WinMobile\MSS.WinMobile\bin\Debug\MSS.WinMobile.Activities.pdb
 C:\Users\Farid\Documents\Visual Studio 2008\Projects\MSS.WinMobile\MSS.WinMobile\obj\Debug\MSS.WinMobile.exe
 C:\Users\Farid\Documents\Visual Studio 2008\Projects\MSS.WinMobile\MSS.WinMobile\obj\Debug\MSS.WinMobile.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\bin\Debug\MSS.WinMobile.exe
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\bin\Debug\MSS.WinMobile.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\bin\Debug\MSS.WinMobile.Activities.dll
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\bin\Debug\MSS.WinMobile.Activities.pdb
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\obj\Debug\MSS.WinMobile.Properties.Resources.resources
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\obj\Debug\MSS.WinMobile.csproj.GenerateResource.Cache
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\obj\Debug\MSS.WinMobile.exe
+C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile\obj\Debug\MSS.WinMobile.pdb
