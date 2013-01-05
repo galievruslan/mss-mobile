@@ -78,10 +78,42 @@ namespace MSS.WinMobile.Infrastructure.Server
         }
 
         public void Update(T entity)
-        { }
+        {
+            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
+                string.Format(@"http://{0}:{1}/{2}/{3}.json",
+                _mssServer.Address,
+                _mssServer.Port,
+                MssServerHelper.GetControllerName(typeof(T)),
+                entity.Id));
+
+            webRequest.Method = "PUT";
+            webRequest.ContentType = "application/json; charset=utf-8";
+            using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
+            {
+                var settings = new JsonSerializerSettings();
+                settings.ContractResolver = new LowercaseContractResolver();
+                string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            webRequest.GetResponse();
+        }
 
         public void Delete(T entity)
-        { }
+        {
+            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
+                string.Format(@"http://{0}:{1}/{2}/{3}.json",
+                _mssServer.Address,
+                _mssServer.Port,
+                MssServerHelper.GetControllerName(typeof(T)),
+                entity.Id));
+
+            webRequest.Method = "DELETE";
+            webRequest.ContentType = "application/json; charset=utf-8";
+            webRequest.GetResponse();
+        }
     }
 
     public class LowercaseContractResolver : DefaultContractResolver
