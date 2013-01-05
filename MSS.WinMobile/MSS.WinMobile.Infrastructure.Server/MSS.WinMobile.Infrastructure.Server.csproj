@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MssServerHelper.cs" />
     <Compile Include="GenericRepository.cs" />
-    <Compile Include="ManagerRepository.cs" />
     <Compile Include="MssServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

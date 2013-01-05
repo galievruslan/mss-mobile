@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="8edb865d-eca2-4cfa-9b2a-d54b7ff72910" name="Farid@MICROSOFT-PC 2013-01-05 16:59:15" runUser="MICROSOFT-PC\Farid" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestRunConfiguration name="Local Test Run" id="36ce4557-74e4-46ea-908d-eac4d95bdf41">
+    <Description>This is a default test run configuration for a local test run.</Description>
+    <Deployment runDeploymentRoot="C:\Projects\mss-mobile\MSS.WinMobile\TestResults\Farid_MICROSOFT-PC 2013-01-05 16_59_15">
+      <DeploymentItem filename="C:\Projects\mss-mobile\Vendor\JSON.NET\Bin\Net20\Newtonsoft.Json.dll" />
+      <DeploymentItem filename="C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\bin\Debug\Mss.WinMobile.Domain.Model.dll" />
+      <DeploymentItem filename="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server\bin\Debug\MSS.WinMobile.Infrastructure.Server.dll" />
+    </Deployment>
+    <TestTypeSpecific />
+  </TestRunConfiguration>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <Times creation="2013-01-05T16:59:15.6830000+03:00" queuing="2013-01-05T16:59:16.7454000+03:00" start="2013-01-05T16:59:16.9854000+03:00" finish="2013-01-05T16:59:17.8654000+03:00" />
+  <TestDefinitions>
+    <UnitTest name="AddTest" storage="c:\projects\mss-mobile\mss.winmobile\mss.winmobile.infrastructure.server.tests\bin\debug\mss.winmobile.infrastructure.server.tests.dll" id="ce73b693-d7b6-c5c2-8294-7d5fa6d9c811">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="f5d10e6e-3fdf-49e4-9b25-8de94c603f4a" />
+      <TestMethod codeBase="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSS.WinMobile.Infrastructure.Server.Tests.GenericRepositoryTest, MSS.WinMobile.Infrastructure.Server.Tests" name="AddTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="ce73b693-d7b6-c5c2-8294-7d5fa6d9c811" executionId="f5d10e6e-3fdf-49e4-9b25-8de94c603f4a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f5d10e6e-3fdf-49e4-9b25-8de94c603f4a" testId="ce73b693-d7b6-c5c2-8294-7d5fa6d9c811" testName="AddTest" computerName="MICROSOFT-PC" duration="00:00:00.3287766" startTime="2013-01-05T16:59:17.0754000+03:00" endTime="2013-01-05T16:59:17.7954000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

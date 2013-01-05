@@ -2,17 +2,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mss.WinMobile.Domain.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MSS.WinMobile.Infrastructure.Server.Tests
 {
     
     
     /// <summary>
-    ///This is a test class for ManagerRepositoryTest and is intended
-    ///to contain all ManagerRepositoryTest Unit Tests
+    ///This is a test class for GenericRepository<Manager>Test and is intended
+    ///to contain all GenericRepository<Manager>Test Unit Tests
     ///</summary>
     [TestClass()]
-    public class ManagerRepositoryTest
+    public class GenericRepositoryTest
     {
 
 
@@ -72,7 +73,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         public void UpdateTest()
         {
             MssServer server = null; // TODO: Initialize to an appropriate value
-            ManagerRepository target = new ManagerRepository(server); // TODO: Initialize to an appropriate value
+            GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
             Manager entity = null; // TODO: Initialize to an appropriate value
             target.Update(entity);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
@@ -85,7 +86,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         public void GetByIdTest()
         {
             MssServer server = new MssServer("192.168.0.102", 3000);
-            ManagerRepository target = new ManagerRepository(server);
+            GenericRepository<Manager> target = new GenericRepository<Manager>(server);
             int id = 1;
             Manager actual;
             actual = target.GetById(id);
@@ -98,13 +99,12 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void FindTest()
         {
-            MssServer server = null; // TODO: Initialize to an appropriate value
-            ManagerRepository target = new ManagerRepository(server); // TODO: Initialize to an appropriate value
-            IEnumerable<Manager> expected = null; // TODO: Initialize to an appropriate value
+            MssServer server = new MssServer("192.168.0.102", 3000);
+            GenericRepository<Manager> target = new GenericRepository<Manager>(server);            
             IEnumerable<Manager> actual;
+            int expectedCount = 2;
             actual = target.Find();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreEqual(expectedCount, actual.Count());
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         public void DeleteTest()
         {
             MssServer server = null; // TODO: Initialize to an appropriate value
-            ManagerRepository target = new ManagerRepository(server); // TODO: Initialize to an appropriate value
+            GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
             Manager entity = null; // TODO: Initialize to an appropriate value
             target.Delete(entity);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
@@ -126,22 +126,10 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void AddTest()
         {
-            MssServer server = null; // TODO: Initialize to an appropriate value
-            ManagerRepository target = new ManagerRepository(server); // TODO: Initialize to an appropriate value
-            Manager entity = null; // TODO: Initialize to an appropriate value
+            MssServer server = new MssServer("192.168.0.102", 3000);
+            GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
+            Manager entity = new Manager(0, "Some New Manager");
             target.Add(entity);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for ManagerRepository Constructor
-        ///</summary>
-        [TestMethod()]
-        public void ManagerRepositoryConstructorTest()
-        {
-            MssServer server = null; // TODO: Initialize to an appropriate value
-            ManagerRepository target = new ManagerRepository(server);
-            Assert.Inconclusive("TODO: Implement code to verify target");
         }
     }
 }

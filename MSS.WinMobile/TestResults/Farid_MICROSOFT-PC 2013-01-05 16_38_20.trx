@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="958ddc6a-10c2-496f-bf17-0a5dd600b2db" name="Farid@MICROSOFT-PC 2013-01-05 16:38:20" runUser="MICROSOFT-PC\Farid" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestRunConfiguration name="Local Test Run" id="36ce4557-74e4-46ea-908d-eac4d95bdf41">
+    <Description>This is a default test run configuration for a local test run.</Description>
+    <Deployment runDeploymentRoot="C:\Projects\mss-mobile\MSS.WinMobile\TestResults\Farid_MICROSOFT-PC 2013-01-05 16_38_20">
+      <DeploymentItem filename="C:\Projects\mss-mobile\Vendor\JSON.NET\Bin\Net20\Newtonsoft.Json.dll" />
+      <DeploymentItem filename="C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\bin\Debug\Mss.WinMobile.Domain.Model.dll" />
+      <DeploymentItem filename="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server\bin\Debug\MSS.WinMobile.Infrastructure.Server.dll" />
+    </Deployment>
+    <TestTypeSpecific />
+  </TestRunConfiguration>
+  <ResultSummary outcome="Inconclusive">
+    <Counters total="2" executed="2" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="1" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <Times creation="2013-01-05T16:38:20.2850000+03:00" queuing="2013-01-05T16:38:21.4130000+03:00" start="2013-01-05T16:38:21.6630000+03:00" finish="2013-01-05T16:38:35.6946000+03:00" />
+  <TestDefinitions>
+    <UnitTest name="FindTest" storage="c:\projects\mss-mobile\mss.winmobile\mss.winmobile.infrastructure.server.tests\bin\debug\mss.winmobile.infrastructure.server.tests.dll" id="35eecff8-a35b-04a8-214b-64292e1c2db2">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="921672ee-6bd9-4ebb-8101-bd84a7f7da1b" />
+      <TestMethod codeBase="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSS.WinMobile.Infrastructure.Server.Tests.ManagerRepositoryTest, MSS.WinMobile.Infrastructure.Server.Tests" name="FindTest" />
+    </UnitTest>
+    <UnitTest name="GetByIdTest" storage="c:\projects\mss-mobile\mss.winmobile\mss.winmobile.infrastructure.server.tests\bin\debug\mss.winmobile.infrastructure.server.tests.dll" id="5ee30771-3c4a-cdf2-43ba-917353244190">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="883678da-d56e-4f62-be71-2566a8e58625" />
+      <TestMethod codeBase="C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\bin\Debug\MSS.WinMobile.Infrastructure.Server.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MSS.WinMobile.Infrastructure.Server.Tests.ManagerRepositoryTest, MSS.WinMobile.Infrastructure.Server.Tests" name="GetByIdTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="5ee30771-3c4a-cdf2-43ba-917353244190" executionId="883678da-d56e-4f62-be71-2566a8e58625" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="35eecff8-a35b-04a8-214b-64292e1c2db2" executionId="921672ee-6bd9-4ebb-8101-bd84a7f7da1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="883678da-d56e-4f62-be71-2566a8e58625" testId="5ee30771-3c4a-cdf2-43ba-917353244190" testName="GetByIdTest" computerName="MICROSOFT-PC" duration="00:00:01.2401504" startTime="2013-01-05T16:38:21.8330000+03:00" endTime="2013-01-05T16:38:23.4430000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="921672ee-6bd9-4ebb-8101-bd84a7f7da1b" testId="35eecff8-a35b-04a8-214b-64292e1c2db2" testName="FindTest" computerName="MICROSOFT-PC" duration="00:00:12.1521376" startTime="2013-01-05T16:38:23.4430000+03:00" endTime="2013-01-05T16:38:35.6166000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Inconclusive" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Inconclusive failed. Verify the correctness of this test method.</Message>
+          <StackTrace>   в MSS.WinMobile.Infrastructure.Server.Tests.ManagerRepositoryTest.FindTest() в C:\Projects\mss-mobile\MSS.WinMobile\MSS.WinMobile.Infrastructure.Server.Tests\ManagerRepositoryTest.cs:строка 108
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
