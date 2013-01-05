@@ -1,5 +1,0 @@
-C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\bin\Debug\Mss.WinMobile.Domain.Model.dll
-C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\bin\Debug\Mss.WinMobile.Domain.Model.pdb
-C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\obj\Debug\ResolveAssemblyReference.cache
-C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\obj\Debug\Mss.WinMobile.Domain.Model.dll
-C:\Projects\mss-mobile\MSS.WinMobile\Mss.WinMobile.Domain.Model\obj\Debug\Mss.WinMobile.Domain.Model.pdb
