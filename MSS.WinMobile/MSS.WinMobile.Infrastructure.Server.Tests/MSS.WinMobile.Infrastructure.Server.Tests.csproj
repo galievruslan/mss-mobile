@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericRepositoryTest.cs" />
+    <Compile Include="LowercaseContractResolverTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,9 @@
       <Project>{FD7B9E32-1709-40BA-B87A-72B550694B4B}</Project>
       <Name>MSS.WinMobile.Infrastructure.Server</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\MSS.WinMobile.Infrastructure.Server.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

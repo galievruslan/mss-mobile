@@ -88,6 +88,20 @@ namespace MSS.WinMobile.Infrastructure.Server
     {
         protected override string ResolvePropertyName(string propertyName)
         {
+            // Get upper case characters positions
+            List<int> positions = new List<int>();
+
+            for (int i = 1; i < propertyName.Length; i++) {
+                if (Char.IsUpper(propertyName[i])) {
+                    positions.Add(i);
+                }
+            }
+
+            // insert _ character in all positions
+            for (int i = positions.Count - 1; i >= 0; i--) {
+                propertyName = propertyName.Insert(positions[i], "_");
+            }
+
             return propertyName.ToLower();
         }
     }
