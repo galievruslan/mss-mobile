@@ -5,13 +5,9 @@ using System.Text;
 
 namespace Mss.WinMobile.Domain.Model
 {
-    public class Route : Entity
+    public class Route : IEntity
     {
-        public Route(int id, DateTime date) 
-            :base (id)
-        {
-            Date = date;
-        }
+        public int Id { get; set; }
 
         public DateTime Date { get; set; }
     }

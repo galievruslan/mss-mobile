@@ -1,5 +1,6 @@
 ﻿using MSS.WinMobile.Infrastructure.Server;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MSS.WinMobile.Infrastructure.Remote.Data;
 namespace MSS.WinMobile.Infrastructure.Server.Tests
 {
     
@@ -64,7 +65,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         ///A test for ResolvePropertyName
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MSS.WinMobile.Infrastructure.Server.dll")]
+        [DeploymentItem("MSS.WinMobile.Infrastructure.Remote.Data.dll")]
         public void ResolvePropertyNameTest()
         {
             LowercaseContractResolver_Accessor target = new LowercaseContractResolver_Accessor(); // TODO: Initialize to an appropriate value

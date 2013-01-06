@@ -5,15 +5,9 @@ using System.Text;
 
 namespace Mss.WinMobile.Domain.Model
 {
-    public class Order : Entity
+    public class Order : IEntity
     {
-        public Order(int id, DateTime date, Customer customer, Manager manager) 
-            :base (id)
-        {
-            Date = date;
-            Customer = customer;
-            Manager = manager;
-        }
+        public int Id { get; set; }
 
         public DateTime Date { get; set; }
 

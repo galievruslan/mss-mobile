@@ -7,9 +7,9 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace MSS.WinMobile.Infrastructure.Server
+namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
-    public class GenericRepository<T> where T : Entity
+    public class GenericRepository<T> where T : IEntity
     {
         MssServer _mssServer;
 

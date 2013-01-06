@@ -5,15 +5,9 @@ using System.Text;
 
 namespace Mss.WinMobile.Domain.Model
 {
-    public class RoutePoint : Entity
+    public class RoutePoint : IEntity
     {
-        public RoutePoint(int id, Route route, Customer customer, Status status) 
-            :base (id)
-        {
-            Route = route;
-            Customer = customer;
-            Status = status;
-        }
+        public int Id { get; set; }
 
         public Route Route { get; set; }
 

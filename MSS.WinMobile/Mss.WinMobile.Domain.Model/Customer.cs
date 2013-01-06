@@ -5,13 +5,9 @@ using System.Text;
 
 namespace Mss.WinMobile.Domain.Model
 {
-    public class Customer : Entity
+    public class Customer : IEntity
     {
-        public Customer(int id, string name) 
-            :base (id)
-        {
-            Name = name;
-        }
+        public int Id { get; set; }
 
         public string Name { get; set; }
     }

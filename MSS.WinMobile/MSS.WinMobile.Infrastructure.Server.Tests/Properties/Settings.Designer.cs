@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MSS.WinMobile.Infrastructure.Server.Tests.Properties {
+namespace MSS.WinMobile.Infrastructure.Remote.Data.Tests.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

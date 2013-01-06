@@ -3,7 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mss.WinMobile.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
-using MSS.WinMobile.Infrastructure.Server.Tests.Properties;
+using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.Infrastructure.Remote.Data.Tests.Properties;
 
 namespace MSS.WinMobile.Infrastructure.Server.Tests
 {
@@ -129,7 +130,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         {
             MssServer server = new MssServer(Settings.Default.ServerIP, Settings.Default.Port);
             GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
-            Manager entity = new Manager(0, "Some New Manager");
+            Manager entity = new Manager { Name = "Some New Manager" };
             target.Add(entity);
         }
     }

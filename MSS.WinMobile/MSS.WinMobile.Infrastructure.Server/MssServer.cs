@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Mss.WinMobile.Domain.Model;
 
-namespace MSS.WinMobile.Infrastructure.Server
+namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
     public class MssServer
     {
@@ -24,7 +24,7 @@ namespace MSS.WinMobile.Infrastructure.Server
             private set;
         }
 
-        public GenericRepository<T> GetRepository<T>() where T : Entity {
+        public GenericRepository<T> GetRepository<T>() where T : IEntity {
             if (typeof(T) == typeof(Manager)) { 
 
             }
