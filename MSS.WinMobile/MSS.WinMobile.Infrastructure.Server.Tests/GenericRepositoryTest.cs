@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mss.WinMobile.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
+using MSS.WinMobile.Infrastructure.Server.Tests.Properties;
 
 namespace MSS.WinMobile.Infrastructure.Server.Tests
 {
@@ -72,7 +73,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void UpdateTest()
         {
-            MssServer server = null; // TODO: Initialize to an appropriate value
+            MssServer server = new MssServer(Settings.Default.ServerIP, Settings.Default.Port);
             GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
             Manager entity = null; // TODO: Initialize to an appropriate value
             target.Update(entity);
@@ -85,7 +86,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void GetByIdTest()
         {
-            MssServer server = new MssServer("192.168.0.102", 3000);
+            MssServer server = new MssServer(Settings.Default.ServerIP, Settings.Default.Port);
             GenericRepository<Manager> target = new GenericRepository<Manager>(server);
             int id = 1;
             Manager actual;
@@ -99,7 +100,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void FindTest()
         {
-            MssServer server = new MssServer("192.168.0.102", 3000);
+            MssServer server = new MssServer(Settings.Default.ServerIP, Settings.Default.Port);
             GenericRepository<Manager> target = new GenericRepository<Manager>(server);            
             IEnumerable<Manager> actual;
             int expectedCount = 2;
@@ -113,7 +114,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void DeleteTest()
         {
-            MssServer server = null; // TODO: Initialize to an appropriate value
+            MssServer server = new MssServer(Settings.Default.ServerIP, Settings.Default.Port);
             GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
             Manager entity = null; // TODO: Initialize to an appropriate value
             target.Delete(entity);
@@ -126,7 +127,7 @@ namespace MSS.WinMobile.Infrastructure.Server.Tests
         [TestMethod()]
         public void AddTest()
         {
-            MssServer server = new MssServer("192.168.0.102", 3000);
+            MssServer server = new MssServer(Settings.Default.ServerIP, Settings.Default.Port);
             GenericRepository<Manager> target = new GenericRepository<Manager>(server); // TODO: Initialize to an appropriate value
             Manager entity = new Manager(0, "Some New Manager");
             target.Add(entity);
