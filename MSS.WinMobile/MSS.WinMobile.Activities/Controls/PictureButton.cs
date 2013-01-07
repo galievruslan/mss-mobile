@@ -1,13 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace MSS.WinMobile.Activities.Controls
+namespace MSS.WinMobile.UI.Activities.Controls
 {
     public partial class PictureButton : UserControl
     {
@@ -16,19 +10,19 @@ namespace MSS.WinMobile.Activities.Controls
             InitializeComponent();
         }
 
-        Image backgroundImage, pressedImage;
-        bool pressed = false;
+        Image _backgroundImage, _pressedImage;
+        bool _pressed;
 
         // Property for the background image to be drawn behind the button text.
         public Image BackgroundImage
         {
             get
             {
-                return this.backgroundImage;
+                return _backgroundImage;
             }
             set
             {
-                this.backgroundImage = value;
+                _backgroundImage = value;
             }
         }
 
@@ -38,11 +32,11 @@ namespace MSS.WinMobile.Activities.Controls
         {
             get
             {
-                return this.pressedImage;
+                return _pressedImage;
             }
             set
             {
-                this.pressedImage = value;
+                _pressedImage = value;
             }
         }
 
@@ -51,8 +45,8 @@ namespace MSS.WinMobile.Activities.Controls
         // sets the mouse capture automatically.
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            this.pressed = true;
-            this.Invalidate();
+            _pressed = true;
+            Invalidate();
             base.OnMouseDown(e);
         }
 
@@ -60,30 +54,30 @@ namespace MSS.WinMobile.Activities.Controls
         // and invalidate to redraw the button in the unpressed state.
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            this.pressed = false;
-            this.Invalidate();
+            _pressed = false;
+            Invalidate();
             base.OnMouseUp(e);
         }
 
         // Override the OnPaint method to draw the background image and the text.
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (this.pressed && this.pressedImage != null)
-                e.Graphics.DrawImage(this.pressedImage, 0, 0);
-            else if (this.backgroundImage != null)
-                e.Graphics.DrawImage(this.backgroundImage, this.ClientRectangle, new Rectangle(0, 0, this.backgroundImage.Width, this.backgroundImage.Height), GraphicsUnit.Pixel);
+            if (_pressed && _pressedImage != null)
+                e.Graphics.DrawImage(_pressedImage, 0, 0);
+            else if (_backgroundImage != null)
+                e.Graphics.DrawImage(_backgroundImage, ClientRectangle, new Rectangle(0, 0, _backgroundImage.Width, _backgroundImage.Height), GraphicsUnit.Pixel);
 
             // Draw the text if there is any.
-            if (this.Text.Length > 0)
+            if (Text.Length > 0)
             {
-                SizeF size = e.Graphics.MeasureString(this.Text, this.Font);
+                SizeF size = e.Graphics.MeasureString(Text, Font);
 
                 // Center the text inside the client area of the PictureButton.
-                e.Graphics.DrawString(this.Text,
-                    this.Font,
-                    new SolidBrush(this.ForeColor),
-                    (this.ClientSize.Width - size.Width) / 2,
-                    (this.ClientSize.Height - size.Height) / 2);
+                e.Graphics.DrawString(Text,
+                    Font,
+                    new SolidBrush(ForeColor),
+                    (ClientSize.Width - size.Width) / 2,
+                    (ClientSize.Height - size.Height) / 2);
             }
 
             base.OnPaint(e);

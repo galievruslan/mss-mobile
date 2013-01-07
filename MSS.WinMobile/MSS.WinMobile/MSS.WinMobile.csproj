@@ -69,9 +69,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Activities\MSS.WinMobile.Activities.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Activities\MSS.WinMobile.UI.Activities.csproj">
       <Project>{7F683EE6-6911-46C3-A615-0CEF9878A1B6}</Project>
-      <Name>MSS.WinMobile.Activities</Name>
+      <Name>MSS.WinMobile.UI.Activities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using OpenNETCF.ORM;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
@@ -18,6 +19,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
         public abstract T GetById(int id);
 
         public abstract IEnumerable<T> Find();
+        public abstract IEnumerable<T> Find(ISpecification specification);
 
         public abstract void Add(T entity);
 

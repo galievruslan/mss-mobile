@@ -1,10 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
-namespace MSS.WinMobile.Activities
+namespace MSS.WinMobile.UI.Activities
 {
     public interface INavigator
     {

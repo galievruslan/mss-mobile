@@ -7,8 +7,8 @@
     <ProjectGuid>{7F683EE6-6911-46C3-A615-0CEF9878A1B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile.Activities</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Activities</AssemblyName>
+    <RootNamespace>MSS.WinMobile.UI.Activities</RootNamespace>
+    <AssemblyName>MSS.WinMobile.UI.Activities</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>

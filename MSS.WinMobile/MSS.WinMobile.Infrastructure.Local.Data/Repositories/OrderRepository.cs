@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using Mss.WinMobile.Domain.Model;
 using OpenNETCF.ORM;
 
@@ -17,6 +18,11 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
         public override IEnumerable<Order> Find()
         {
             return SqlCeDataStore.Select<Order>();
+        }
+
+        public override IEnumerable<Order> Find(ISpecification specification)
+        {
+            throw new System.NotImplementedException();
         }
 
         public override void Add(Order entity)

@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Activities.Controls
+﻿namespace MSS.WinMobile.UI.Activities.Controls
 {
     partial class PictureButton
     {

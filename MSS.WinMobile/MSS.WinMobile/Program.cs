@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using MSS.WinMobile.Activities;
+using MSS.WinMobile.UI.Activities;
 
 namespace MSS.WinMobile
 {

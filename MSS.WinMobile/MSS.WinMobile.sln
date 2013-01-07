@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile", "MSS.WinMob
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Activities", "Activities", "{ABA616F7-5DA2-4B73-A9A9-06F70D760265}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Activities", "MSS.WinMobile.Activities\MSS.WinMobile.Activities.csproj", "{7F683EE6-6911-46C3-A615-0CEF9878A1B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Activities", "MSS.WinMobile.Activities\MSS.WinMobile.UI.Activities.csproj", "{7F683EE6-6911-46C3-A615-0CEF9878A1B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mss.WinMobile.Domain.Model", "Mss.WinMobile.Domain.Model\Mss.WinMobile.Domain.Model.csproj", "{F216FA76-BB4C-437E-AD19-3E1E88A60055}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilites", "Utilites", "{31E095B4-9BD1-4D4D-BACC-DE9E3C4B6078}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E38189EE-8A46-436C-ADE1-1DA6C1A7C42A}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Data", "MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj", "{68836C79-26AD-4768-AF93-94522579705A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{2340E0F7-17F8-4DF8-B534-CD56C24167C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -84,5 +84,6 @@ Global
 		{FD7B9E32-1709-40BA-B87A-72B550694B4B} = {4A8112ED-DE2B-46A8-81DD-64492F064B40}
 		{F216FA76-BB4C-437E-AD19-3E1E88A60055} = {1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}
 		{B2C8D3AF-A6F2-4164-8FD2-65AFA4A06D54} = {AC21F6FE-1B1D-4820-80E8-936FA2C1ADB7}
+		{ABA616F7-5DA2-4B73-A9A9-06F70D760265} = {0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}
 	EndGlobalSection
 EndGlobal

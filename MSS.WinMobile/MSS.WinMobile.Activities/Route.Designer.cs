@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Activities
+﻿namespace MSS.WinMobile.UI.Activities
 {
     partial class Route
     {

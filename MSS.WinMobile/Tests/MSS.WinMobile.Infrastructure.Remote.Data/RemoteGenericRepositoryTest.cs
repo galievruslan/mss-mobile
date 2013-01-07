@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Remote.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mss.WinMobile.Domain.Model;

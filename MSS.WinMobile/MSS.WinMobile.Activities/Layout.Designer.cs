@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.Activities
+﻿using MSS.WinMobile.UI.Activities.Controls;
+
+namespace MSS.WinMobile.UI.Activities
 {
     partial class Layout
     {
@@ -33,7 +35,7 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this._pMenu = new System.Windows.Forms.Panel();
             this._pBody = new System.Windows.Forms.Panel();
-            this._pbHome = new MSS.WinMobile.Activities.Controls.PictureButton();
+            this._pbHome = new PictureButton();
             this._pMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +87,7 @@
 
         private System.Windows.Forms.Panel _pMenu;
         private System.Windows.Forms.Panel _pBody;
-        private MSS.WinMobile.Activities.Controls.PictureButton _pbHome;
+        private PictureButton _pbHome;
 
     }
 }

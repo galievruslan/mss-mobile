@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Infrastructure.Data.Repositories
@@ -8,6 +9,8 @@ namespace MSS.WinMobile.Infrastructure.Data.Repositories
         T GetById(int id);
 
         IEnumerable<T> Find();
+
+        IEnumerable<T> Find(ISpecification specification);
 
         void Add(T entity);
 

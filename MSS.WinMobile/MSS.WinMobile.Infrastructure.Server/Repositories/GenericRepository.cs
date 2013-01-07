@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using Mss.WinMobile.Domain.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -31,6 +32,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
                 string.Format(@"{0}.json", ResourceUriHelper.GetControllerName(typeof (T))), "GET");
 
             return JsonConvert.DeserializeObject<T[]>(json);
+        }
+
+        public IEnumerable<T> Find(ISpecification specification)
+        {
+            throw new NotImplementedException();
         }
 
         public void Add(T entity)

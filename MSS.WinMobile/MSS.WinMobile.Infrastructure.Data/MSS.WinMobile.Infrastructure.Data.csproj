@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\Specifications\ISpecification.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="ITransaction.cs" />
