@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ResourceUriHelper.cs" />
-    <Compile Include="GenericRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestDispatcher.cs" />
     <Compile Include="Transaction.cs" />

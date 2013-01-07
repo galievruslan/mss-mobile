@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
 using OpenNETCF.ORM;
 
-namespace MSS.WinMobile.Infrastructure.Local.Data
+namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : Mss.WinMobile.Domain.Model.IEntity
     {

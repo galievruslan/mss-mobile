@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Mss.WinMobile.Domain.Model;
 using OpenNETCF.ORM;
 
-namespace MSS.WinMobile.Infrastructure.Local.Data
+namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
 {
     public class RoutePointRepository : GenericRepository<RoutePoint>
     {

@@ -1,14 +1,19 @@
-﻿using System.IO;
-using MSS.WinMobile.Infrastructure.Local.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Remote.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mss.WinMobile.Domain.Model;
+using Tests.Properties;
 
-namespace Tests.MSS.WinMobile.Infrastructure.Local.Data
+namespace Tests.MSS.WinMobile.Infrastructure.Remote.Data
 {
     /// <summary>
-    /// Summary description for UnitOfWorkTests
+    /// Summary description for RemoteGenericRepositoryTest
     /// </summary>
     [TestClass]
-    public class UnitOfWorkTests
+    public class RemoteGenericRepositoryTest
     {
         /// <summary>
         ///Gets or sets the test context which provides
@@ -39,16 +44,15 @@ namespace Tests.MSS.WinMobile.Infrastructure.Local.Data
         #endregion
 
         [TestMethod]
-        public void UnitOfWorkConstructorTest()
+        public void FindManagersTest()
         {
-            const string testFileName = "testStorage.sdf";
-            var unitOfWork = new UnitOfWork(testFileName);
-
-            const bool expected = true;
-            bool actual = File.Exists(testFileName);
-            Assert.AreEqual(expected, actual);
-
-            File.Delete(testFileName);
+            IUnitOfWork unitOfWork = new UnitOfWork(Settings.Default.MssServerIp, Settings.Default.MssServerPort);
+            using (var transaction = unitOfWork.BeginTransaction())
+            {
+                var managerRepository = transaction.Resolve<Manager>();
+                var managers = managerRepository.Find();
+                Assert.AreEqual(3, managers.Count());
+            }
         }
     }
 }

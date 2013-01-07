@@ -1,11 +1,13 @@
-﻿using System;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Remote.Data.Repositories;
+using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
     public class Transaction : ITransaction
     {
-        private RequestDispatcher _requestDispatcher;
+        private readonly RequestDispatcher _requestDispatcher;
 
         public Transaction(RequestDispatcher requestDispatcher)
         {
@@ -14,12 +16,22 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
 
         public void Commit()
         {
-            throw new NotImplementedException();
+            _requestDispatcher.ExecuteRequestPool();
         }
 
         public void Rollback()
         {
-            throw new NotImplementedException();
+            _requestDispatcher.ClearRequestPool();
+        }
+
+        public IGenericRepository<T> Resolve<T>() where T : IEntity
+        {
+            return new GenericRepository<T>(_requestDispatcher);
+        }
+
+        public void Dispose()
+        {
+            _requestDispatcher.ClearRequestPool();
         }
     }
 }

@@ -39,12 +39,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MSS.WinMobile.Infrastructure.Local.Data\UnitOfWorkTests.cs" />
+    <Compile Include="MSS.WinMobile.Infrastructure.Remote.Data\RemoteGenericRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mss.WinMobile.Domain.Model\Mss.WinMobile.Domain.Model.csproj">
+      <Project>{F216FA76-BB4C-437E-AD19-3E1E88A60055}</Project>
+      <Name>Mss.WinMobile.Domain.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{68836C79-26AD-4768-AF93-94522579705A}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
@@ -53,6 +63,17 @@
       <Project>{B2C8D3AF-A6F2-4164-8FD2-65AFA4A06D54}</Project>
       <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Server\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
+      <Project>{FD7B9E32-1709-40BA-B87A-72B550694B4B}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

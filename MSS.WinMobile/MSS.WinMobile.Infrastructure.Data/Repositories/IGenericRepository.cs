@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Mss.WinMobile.Domain.Model;
 
-namespace MSS.WinMobile.Infrastructure.Data
+namespace MSS.WinMobile.Infrastructure.Data.Repositories
 {
     public interface IGenericRepository<T> where T : IEntity
     {

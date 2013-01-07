@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
 using Mss.WinMobile.Domain.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace MSS.WinMobile.Infrastructure.Remote.Data
+namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
 {
-    public class GenericRepository<T> where T : IEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : IEntity
     {
         private readonly RequestDispatcher _requestDispatcher;
 

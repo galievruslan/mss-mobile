@@ -6,23 +6,25 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        readonly SqlCeDataStore _store;
+        private readonly string _storageName;
 
         public UnitOfWork(string storageName)
         {
-            _store = new SqlCeDataStore(storageName);
-            if (!_store.StoreExists)
-            {
-                _store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof(Customer)));
-                _store.CreateStore();
-            }
+            _storageName = storageName;
         }
 
         #region IUnitOfWork Members
 
         public ITransaction BeginTransaction()
         {
-            return new Transaction(_store);
+            var store = new SqlCeDataStore(_storageName);
+            if (!store.StoreExists)
+            {
+                store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof(Customer)));
+                store.CreateStore();
+            }
+
+            return new Transaction(store);
         }
 
         #endregion
