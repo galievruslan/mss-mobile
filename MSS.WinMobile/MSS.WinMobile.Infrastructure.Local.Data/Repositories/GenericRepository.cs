@@ -19,7 +19,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
         public abstract T GetById(int id);
 
         public abstract IEnumerable<T> Find();
-        public abstract IEnumerable<T> Find(ISpecification specification);
+        public abstract IEnumerable<T> Find(Specification<T> specification);
 
         public abstract void Add(T entity);
 

@@ -10,7 +10,7 @@ namespace MSS.WinMobile.Infrastructure.Data.Repositories
 
         IEnumerable<T> Find();
 
-        IEnumerable<T> Find(ISpecification specification);
+        IEnumerable<T> Find(Specification<T> specification);
 
         void Add(T entity);
 

@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\Specifications\ISpecification.cs" />
+    <Compile Include="Repositories\Specifications\AndSpecification.cs" />
+    <Compile Include="Repositories\Specifications\CompositeSpecification.cs" />
+    <Compile Include="Repositories\Specifications\OrSpecification.cs" />
+    <Compile Include="Repositories\Specifications\Specification.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="ITransaction.cs" />

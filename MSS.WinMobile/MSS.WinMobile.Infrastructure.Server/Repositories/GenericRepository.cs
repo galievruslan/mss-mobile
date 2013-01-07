@@ -34,7 +34,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             return JsonConvert.DeserializeObject<T[]>(json);
         }
 
-        public IEnumerable<T> Find(ISpecification specification)
+        public IEnumerable<T> Find(Specification<T> specification)
         {
             throw new NotImplementedException();
         }

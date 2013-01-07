@@ -20,7 +20,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
             return SqlCeDataStore.Select<OrderItem>();
         }
 
-        public override IEnumerable<OrderItem> Find(ISpecification specification)
+        public override IEnumerable<OrderItem> Find(Specification<OrderItem> specification)
         {
             throw new System.NotImplementedException();
         }
