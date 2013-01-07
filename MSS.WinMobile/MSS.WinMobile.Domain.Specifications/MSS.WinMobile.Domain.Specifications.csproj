@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FD7B9E32-1709-40BA-B87A-72B550694B4B}</ProjectGuid>
+    <ProjectGuid>{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile.Infrastructure.Remote.Data</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Infrastructure.Remote.Data</AssemblyName>
+    <RootNamespace>MSS.WinMobile.Domain.Specifications</RootNamespace>
+    <AssemblyName>MSS.WinMobile.Domain.Specifications</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\Newtonsoft.Json\lib\net20\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -49,25 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\Specifications\AndConverter.cs" />
-    <Compile Include="Repositories\Specifications\Converter.cs" />
-    <Compile Include="Repositories\Specifications\RouteByDateConverter.cs" />
-    <Compile Include="Repositories\Specifications\SpecificationConverter.cs" />
-    <Compile Include="ResourceUriHelper.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestDispatcher.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="RouteByDateSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mss.WinMobile.Domain.Model\Mss.WinMobile.Domain.Model.csproj">
       <Project>{F216FA76-BB4C-437E-AD19-3E1E88A60055}</Project>
       <Name>Mss.WinMobile.Domain.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj">
-      <Project>{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}</Project>
-      <Name>MSS.WinMobile.Domain.Specifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{68836C79-26AD-4768-AF93-94522579705A}</Project>

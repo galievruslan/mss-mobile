@@ -2,8 +2,8 @@
 {
     public abstract class CompositeSpecification<T> : Specification<T>
     {
-        protected Specification<T> Left;
-        protected Specification<T> Right;
+        public Specification<T> Left { get; protected set; }
+        public Specification<T> Right { get; protected set; }
 
         protected CompositeSpecification(Specification<T> left, Specification<T> right)
         {

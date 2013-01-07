@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
+using MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications;
 using Mss.WinMobile.Domain.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -34,9 +35,13 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             return JsonConvert.DeserializeObject<T[]>(json);
         }
 
-        public IEnumerable<T> Find(Specification<T> specification)
-        {
-            throw new NotImplementedException();
+        public IEnumerable<T> Find(Specification<T> specification) {
+            string queryString = SpecificationConverter<T>.ToQueryString(specification);
+
+            string json = _requestDispatcher.Dispatch(
+                string.Format(@"{0}.json?{1}", ResourceUriHelper.GetControllerName(typeof(T)), queryString), "GET");
+
+            return JsonConvert.DeserializeObject<T[]>(json);
         }
 
         public void Add(T entity)
