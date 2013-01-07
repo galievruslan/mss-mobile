@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using MSS.WinMobile.Infrastructure.Data;
 using OpenNETCF.ORM;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
 {
     public class Transaction : ITransaction
     {
-        SqlCeDataStore _sqlCeDataStore;
+        readonly SqlCeDataStore _sqlCeDataStore;
 
         public Transaction(SqlCeDataStore sqlCeDataStore) {
             _sqlCeDataStore = sqlCeDataStore;

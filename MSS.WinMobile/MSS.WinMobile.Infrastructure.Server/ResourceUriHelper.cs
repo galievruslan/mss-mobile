@@ -1,37 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
-    public static class MssServerHelper
+    public static class ResourceUriHelper
     {
         public static string GetControllerName(Type type)
         {
-            string controllerName = string.Empty;
-            if (type.Equals(typeof(Manager)))
+            string controllerName;
+            if (type == typeof(Manager))
             {
                 controllerName = "managers";
-            } else if (type.Equals(typeof(Customer)))
+            } else if (type == typeof(Customer))
             {
                 controllerName = "customers";
-            } else if (type.Equals(typeof(Order)))
+            } else if (type == typeof(Order))
             {
                 controllerName = "orders";
-            } else if (type.Equals(typeof(OrderItem)))
+            } else if (type == typeof(OrderItem))
             {
                 controllerName = "order_items";
-            } else if (type.Equals(typeof(Product)))
+            } else if (type == typeof(Product))
             {
                 controllerName = "products";
-            } else if (type.Equals(typeof(Route)))
+            } else if (type == typeof(Route))
             {
                 controllerName = "routes";
-            } else if (type.Equals(typeof(RoutePoint)))
+            } else if (type == typeof(RoutePoint))
             {
                 controllerName = "route_points";
-            } else if (type.Equals(typeof(Status)))
+            } else if (type == typeof(Status))
             {
                 controllerName = "statuses";
             } 

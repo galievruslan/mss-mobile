@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Mss.WinMobile.Domain.Model;
-using System.Net;
-using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -11,108 +8,60 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
     public class GenericRepository<T> where T : IEntity
     {
-        MssServer _mssServer;
+        private readonly RequestDispatcher _requestDispatcher;
 
-        public GenericRepository(MssServer mssServer) {
-            _mssServer = mssServer;
+        public GenericRepository(RequestDispatcher requestDispatcher)
+        {
+            _requestDispatcher = requestDispatcher;
         }
 
-        public T GetById(int id) 
+        public T GetById(int id)
         {
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
-                string.Format(@"http://{0}:{1}/{2}/{3}.json",
-                _mssServer.Address,
-                _mssServer.Port,
-                MssServerHelper.GetControllerName(typeof(T)),
-                id));
+            string json = _requestDispatcher.Dispatch(string.Format(@"{0}/{1}.json",
+                                                                    ResourceUriHelper.GetControllerName(typeof (T)),
+                                                                    id), "GET");
 
-            webRequest.Method = "GET";
-            webRequest.ContentType = "application/json; charset=utf-8";
-            HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
-            using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
-            {
-                string json = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<T>(json);
-            }
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public IEnumerable<T> Find()
         {
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
-                string.Format(@"http://{0}:{1}/{2}.json",
-                _mssServer.Address,
-                _mssServer.Port,
-                MssServerHelper.GetControllerName(typeof(T))));
+            string json = _requestDispatcher.Dispatch(
+                string.Format(@"{0}.json", ResourceUriHelper.GetControllerName(typeof (T))), "GET");
 
-            webRequest.Method = "GET";
-            webRequest.ContentType = "application/json; charset=utf-8";
-            HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
-            using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
-            {
-                string json = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<T[]>(json);
-            }
+            return JsonConvert.DeserializeObject<T[]>(json);
         }
 
         public void Add(T entity)
         {
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
-                string.Format(@"http://{0}:{1}/{2}.json",
-                _mssServer.Address,
-                _mssServer.Port,
-                MssServerHelper.GetControllerName(typeof(T))));
+            string uri = string.Format(@"{0}.json",
+                ResourceUriHelper.GetControllerName(typeof(T)));
 
-            webRequest.Method = "POST";
-            webRequest.ContentType = "application/json; charset=utf-8";
-            using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
-            {
-                var settings = new JsonSerializerSettings();
-                settings.ContractResolver = new LowercaseContractResolver();
-                string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
+            var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
+            string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
 
-            webRequest.GetResponse();
+            _requestDispatcher.Dispatch(uri, "POST", json);
         }
 
         public void Update(T entity)
         {
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
-                string.Format(@"http://{0}:{1}/{2}/{3}.json",
-                _mssServer.Address,
-                _mssServer.Port,
-                MssServerHelper.GetControllerName(typeof(T)),
-                entity.Id));
+            string uri = string.Format(@"{0}/{1}.json",
+                ResourceUriHelper.GetControllerName(typeof(T)),
+                entity.Id);
 
-            webRequest.Method = "PUT";
-            webRequest.ContentType = "application/json; charset=utf-8";
-            using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
-            {
-                var settings = new JsonSerializerSettings();
-                settings.ContractResolver = new LowercaseContractResolver();
-                string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
+            var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
+            string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
 
-            webRequest.GetResponse();
+            _requestDispatcher.Dispatch(uri, "PUT", json);
         }
 
         public void Delete(T entity)
         {
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(
-                string.Format(@"http://{0}:{1}/{2}/{3}.json",
-                _mssServer.Address,
-                _mssServer.Port,
-                MssServerHelper.GetControllerName(typeof(T)),
-                entity.Id));
+            string uri = string.Format(@"{0}/{1}.json",
+                ResourceUriHelper.GetControllerName(typeof(T)),
+                entity.Id);
 
-            webRequest.Method = "DELETE";
-            webRequest.ContentType = "application/json; charset=utf-8";
-            webRequest.GetResponse();
+            _requestDispatcher.Dispatch(uri, "DELETE", string.Empty);
         }
     }
 
@@ -121,16 +70,16 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
         protected override string ResolvePropertyName(string propertyName)
         {
             // Get upper case characters positions
-            List<int> positions = new List<int>();
+            var positions = new List<int>();
 
-            for (int i = 1; i < propertyName.Length; i++) {
+            for (var i = 1; i < propertyName.Length; i++) {
                 if (Char.IsUpper(propertyName[i])) {
                     positions.Add(i);
                 }
             }
 
             // insert _ character in all positions
-            for (int i = positions.Count - 1; i >= 0; i--) {
+            for (var i = positions.Count - 1; i >= 0; i--) {
                 propertyName = propertyName.Insert(positions[i], "_");
             }
 

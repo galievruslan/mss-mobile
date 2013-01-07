@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using OpenNETCF.ORM;
 
 namespace Mss.WinMobile.Domain.Model
 {
+    [Entity]
     public class RoutePoint : IEntity
     {
+        [Field(IsPrimaryKey = true)]
         public int Id { get; set; }
 
-        public Route Route { get; set; }
+        [Field]
+        public int RouteId { get; set; }
 
-        public Customer Customer { get; set; }
+        [Field]
+        public int CustomerId { get; set; }
 
-        public Status Status { get; set; }
+        [Field]
+        public int StatusId { get; set; }
     }
 }

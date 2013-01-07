@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using OpenNETCF.ORM;
 
 namespace Mss.WinMobile.Domain.Model
 {
+    [Entity(NameInStore = "SaleOrderItems")]
     public class OrderItem : IEntity
     {
+        [Field(IsPrimaryKey = true)]
         public int Id { get; set; }
+        
+        [Field]
+        public int OrderId { get; set; }
 
-        public Order Order { get; set; }
+        [Field]
+        public int ProductId { get; set; }
 
-        public Product Product { get; set; }
-
+        [Field]
         public int Quantity { get; set; }
     }
 }

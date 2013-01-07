@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mss.WinMobile.Domain.Model;
+﻿using System.Collections.Generic;
 using MSS.WinMobile.Infrastructure.Data;
 using OpenNETCF.ORM;
 
@@ -12,7 +8,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
     {
         protected SqlCeDataStore SqlCeDataStore;
 
-        public GenericRepository(SqlCeDataStore sqlCeDataStore)
+        protected GenericRepository(SqlCeDataStore sqlCeDataStore)
         {
             SqlCeDataStore = sqlCeDataStore;
         }
