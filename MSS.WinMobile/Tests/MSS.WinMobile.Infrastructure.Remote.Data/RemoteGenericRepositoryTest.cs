@@ -44,7 +44,7 @@ namespace Tests.MSS.WinMobile.Infrastructure.Remote.Data
         [TestMethod]
         public void FindManagersTest()
         {
-            IUnitOfWork unitOfWork = new UnitOfWork(Settings.Default.MssServerIp, Settings.Default.MssServerPort);
+            ISession unitOfWork = new Session(Settings.Default.MssServerIp, Settings.Default.MssServerPort);
             using (var transaction = unitOfWork.BeginTransaction())
             {
                 var managerRepository = transaction.Resolve<Manager>();

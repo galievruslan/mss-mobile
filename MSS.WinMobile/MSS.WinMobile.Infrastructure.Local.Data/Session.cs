@@ -4,11 +4,11 @@ using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
 {
-    public class UnitOfWork : IUnitOfWork
+    public class Session : ISession
     {
         private readonly string _storageName;
 
-        public UnitOfWork(string storageName)
+        public Session(string storageName)
         {
             _storageName = storageName;
         }
@@ -18,10 +18,12 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
         public ITransaction BeginTransaction()
         {
             var store = new SqlCeDataStore(_storageName);
-            if (!store.StoreExists)
-            {
-                store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof(Customer)));
+            if (!store.StoreExists) {
+                store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof (Customer)));
                 store.CreateStore();
+            }
+            else {
+                store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof(Customer)));
             }
 
             return new Transaction(store);

@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0DE7B077-6E48-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Domain.Specifications", "MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj", "{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D01ABC51-225F-463F-B954-0F6B05C5F47B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Services.Synchronizer", "MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.Synchronizer.csproj", "{D066A2E3-C746-4865-86A9-9B34476FAC46}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = MSS.WinMobile.vsmdi
@@ -78,6 +82,10 @@ Global
 		{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D066A2E3-C746-4865-86A9-9B34476FAC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D066A2E3-C746-4865-86A9-9B34476FAC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D066A2E3-C746-4865-86A9-9B34476FAC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D066A2E3-C746-4865-86A9-9B34476FAC46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +100,6 @@ Global
 		{F216FA76-BB4C-437E-AD19-3E1E88A60055} = {1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}
 		{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461} = {1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}
 		{B2C8D3AF-A6F2-4164-8FD2-65AFA4A06D54} = {AC21F6FE-1B1D-4820-80E8-936FA2C1ADB7}
+		{D066A2E3-C746-4865-86A9-9B34476FAC46} = {D01ABC51-225F-463F-B954-0F6B05C5F47B}
 	EndGlobalSection
 EndGlobal

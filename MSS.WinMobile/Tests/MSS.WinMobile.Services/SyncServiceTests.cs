@@ -1,14 +1,16 @@
-﻿using System.IO;
-using MSS.WinMobile.Infrastructure.Local.Data;
+﻿using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Services.Synchronizer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mss.WinMobile.Domain.Model;
+using Tests.Properties;
 
-namespace Tests.MSS.WinMobile.Infrastructure.Local.Data
+namespace Tests.MSS.WinMobile.Services
 {
     /// <summary>
-    /// Summary description for UnitOfWorkTests
+    /// Summary description for SyncServiceTests
     /// </summary>
     [TestClass]
-    public class UnitOfWorkTests
+    public class SyncServiceTests
     {
         /// <summary>
         ///Gets or sets the test context which provides
@@ -39,16 +41,16 @@ namespace Tests.MSS.WinMobile.Infrastructure.Local.Data
         #endregion
 
         [TestMethod]
-        public void UnitOfWorkConstructorTest()
-        {
-            const string testFileName = "testStorage.sdf";
-            var unitOfWork = new Session(testFileName);
+        public void EntitySyncTest() {
+            ISession sourceSession =
+                new global::MSS.WinMobile.Infrastructure.Remote.Data.Session(Settings.Default.MssServerIp,
+                                                                             Settings.Default.MssServerPort);
+            ISession destinationSession = new global::MSS.WinMobile.Infrastructure.Local.Data.Session("tempStorage.sdf");
+            var syncService = new SyncService(sourceSession, destinationSession);
 
-            const bool expected = true;
-            bool actual = File.Exists(testFileName);
-            Assert.AreEqual(expected, actual);
-
-            File.Delete(testFileName);
+            syncService.SyncEntity<Customer>();
+            syncService.SyncEntity<Manager>();
+            syncService.SyncEntity<Status>();
         }
     }
 }

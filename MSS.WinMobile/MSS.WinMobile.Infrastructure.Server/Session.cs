@@ -2,12 +2,12 @@
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
-    public class UnitOfWork : IUnitOfWork
+    public class Session : ISession
     {
         private readonly string _address;
         private readonly int _port;
 
-        public UnitOfWork(string address, int port)
+        public Session(string address, int port)
         {
             _address = address;
             _port = port;

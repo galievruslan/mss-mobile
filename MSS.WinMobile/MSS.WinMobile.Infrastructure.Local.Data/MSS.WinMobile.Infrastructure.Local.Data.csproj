@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\Specifications\SpecificationConverter.cs" />
     <Compile Include="Repositories\StatusRepository.cs" />
     <Compile Include="Repositories\RoutePointRepository.cs" />
     <Compile Include="Repositories\RouteRepository.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Session.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mss.WinMobile.Domain.Model\Mss.WinMobile.Domain.Model.csproj">
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{68836C79-26AD-4768-AF93-94522579705A}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.Synchronizer.csproj">
+      <Project>{D066A2E3-C746-4865-86A9-9B34476FAC46}</Project>
+      <Name>MSS.WinMobile.Services.Synchronizer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

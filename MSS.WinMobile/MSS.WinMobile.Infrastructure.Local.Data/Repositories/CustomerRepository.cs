@@ -21,7 +21,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
         }
 
         public override IEnumerable<Customer> Find(Specification<Customer> specification)
-        {
+        {            
             throw new System.NotImplementedException();
         }
 

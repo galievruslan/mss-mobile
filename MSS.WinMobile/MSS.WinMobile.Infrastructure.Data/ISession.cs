@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface IUnitOfWork
+    public interface ISession
     {
         ITransaction BeginTransaction();
     }
