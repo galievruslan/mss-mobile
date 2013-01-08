@@ -73,6 +73,14 @@
       <Project>{7F683EE6-6911-46C3-A615-0CEF9878A1B6}</Project>
       <Name>MSS.WinMobile.UI.Activities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
+      <Project>{FF0A4B06-CC0E-4D51-B8C7-27A0ACF1C0C0}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
+      <Project>{61698636-08AD-43DC-B4C0-3E901E208DCB}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

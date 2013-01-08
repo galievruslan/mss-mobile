@@ -65,7 +65,7 @@ namespace MSS.WinMobile.UI.Activities
             this._pbHome.PressedImage = null;
             this._pbHome.Size = new System.Drawing.Size(30, 30);
             this._pbHome.TabIndex = 0;
-            this._pbHome.Click += new System.EventHandler(this._pbHome_Click);
+            this._pbHome.Click += new System.EventHandler(this.PbHomeClick);
             // 
             // Layout
             // 

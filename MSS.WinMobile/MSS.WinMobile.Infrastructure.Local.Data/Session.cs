@@ -18,12 +18,9 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
         public ITransaction BeginTransaction()
         {
             var store = new SqlCeDataStore(_storageName);
+            store.DiscoverTypes(System.Reflection.Assembly.LoadFrom("MSS.WinMobile.Domain.Models.dll"));
             if (!store.StoreExists) {
-                store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof (Customer)));
                 store.CreateStore();
-            }
-            else {
-                store.DiscoverTypes(System.Reflection.Assembly.GetAssembly(typeof(Customer)));
             }
 
             return new Transaction(store);

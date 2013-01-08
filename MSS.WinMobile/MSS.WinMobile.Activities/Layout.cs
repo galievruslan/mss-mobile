@@ -14,7 +14,7 @@ namespace MSS.WinMobile.UI.Activities
             _navigator.NavigateTo("Home");
         }
 
-        private void _pbHome_Click(object sender, EventArgs e)
+        private void PbHomeClick(object sender, EventArgs e)
         {
             _navigator.NavigateTo("Home");
         }

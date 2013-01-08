@@ -53,37 +53,37 @@
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mss.WinMobile.Domain.Model\Mss.WinMobile.Domain.Model.csproj">
-      <Project>{F216FA76-BB4C-437E-AD19-3E1E88A60055}</Project>
-      <Name>Mss.WinMobile.Domain.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj">
-      <Project>{CCD17D8E-E30E-4E57-8EC4-6B91CC51C461}</Project>
-      <Name>MSS.WinMobile.Domain.Specifications</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{68836C79-26AD-4768-AF93-94522579705A}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
-      <Project>{B2C8D3AF-A6F2-4164-8FD2-65AFA4A06D54}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Server\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
-      <Project>{FD7B9E32-1709-40BA-B87A-72B550694B4B}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.Synchronizer.csproj">
-      <Project>{D066A2E3-C746-4865-86A9-9B34476FAC46}</Project>
-      <Name>MSS.WinMobile.Services.Synchronizer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
+      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
+      <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj">
+      <Project>{D1899519-7B8E-4B1E-B6CC-B98B3C19AA2B}</Project>
+      <Name>MSS.WinMobile.Domain.Specifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+      <Project>{2D308127-5085-45C2-AF0A-2521FACF738A}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
+      <Project>{FF0A4B06-CC0E-4D51-B8C7-27A0ACF1C0C0}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
+      <Project>{61698636-08AD-43DC-B4C0-3E901E208DCB}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.Synchronizer.csproj">
+      <Project>{A235D68C-A14B-4FF8-9F01-57001569C46F}</Project>
+      <Name>MSS.WinMobile.Services.Synchronizer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

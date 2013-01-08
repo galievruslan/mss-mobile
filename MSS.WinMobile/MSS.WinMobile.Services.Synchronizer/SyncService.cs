@@ -15,6 +15,14 @@ namespace MSS.WinMobile.Services.Synchronizer
             _destinationSession = destinationSession;
         }
 
+        public void SyncAll() {
+            SyncEntity<Customer>();
+            SyncEntity<Manager>();
+            SyncEntity<Status>();
+            SyncEntity<Route>();
+            SyncEntity<RoutePoint>();
+        }
+
         public void SyncEntity<T>() where T : IEntity {
             var entities = new List<T>();
             using (ITransaction sourceTransaction = _sourceSession.BeginTransaction()) {

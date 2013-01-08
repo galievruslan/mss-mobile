@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using OpenNETCF.ORM;
 

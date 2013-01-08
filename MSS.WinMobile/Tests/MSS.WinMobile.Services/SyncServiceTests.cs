@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Infrastructure.Data;
+﻿using System.IO;
+using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Services.Synchronizer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mss.WinMobile.Domain.Model;
@@ -42,15 +43,18 @@ namespace Tests.MSS.WinMobile.Services
 
         [TestMethod]
         public void EntitySyncTest() {
+            const string fileName = "tempStorage.sdf";
             ISession sourceSession =
                 new global::MSS.WinMobile.Infrastructure.Remote.Data.Session(Settings.Default.MssServerIp,
                                                                              Settings.Default.MssServerPort);
-            ISession destinationSession = new global::MSS.WinMobile.Infrastructure.Local.Data.Session("tempStorage.sdf");
+            ISession destinationSession = new global::MSS.WinMobile.Infrastructure.Local.Data.Session(fileName);
             var syncService = new SyncService(sourceSession, destinationSession);
 
             syncService.SyncEntity<Customer>();
             syncService.SyncEntity<Manager>();
             syncService.SyncEntity<Status>();
+
+            File.Delete(fileName);
         }
     }
 }
