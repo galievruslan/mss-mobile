@@ -1,6 +1,5 @@
 ﻿using OpenNETCF.ORM;
 using MSS.WinMobile.Infrastructure.Data;
-using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
 {

@@ -1,9 +1,9 @@
-﻿using MSS.WinMobile.Infrastructure.Data;
+﻿using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Local.Data.Repositories;
-using Mss.WinMobile.Domain.Model;
 using OpenNETCF.ORM;
-using IEntity = Mss.WinMobile.Domain.Model.IEntity;
+using IEntity = MSS.WinMobile.Domain.Models.IEntity;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Specifications;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
-using Mss.WinMobile.Domain.Model;
 using Newtonsoft.Json;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications

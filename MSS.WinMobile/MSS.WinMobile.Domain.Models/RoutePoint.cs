@@ -1,6 +1,6 @@
 ﻿using OpenNETCF.ORM;
 
-namespace Mss.WinMobile.Domain.Model
+namespace MSS.WinMobile.Domain.Models
 {
     [Entity]
     public class RoutePoint : IEntity
@@ -12,7 +12,7 @@ namespace Mss.WinMobile.Domain.Model
         public int RouteId { get; set; }
 
         [Field]
-        public int CustomerId { get; set; }
+        public int ShippingAddressId { get; set; }
 
         [Field]
         public int StatusId { get; set; }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Mss.WinMobile.Domain.Model;
+using MSS.WinMobile.Domain.Models;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data
 {

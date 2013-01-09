@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using MSS.WinMobile.UI.Activities;
+using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.UI.Views;
 
 namespace MSS.WinMobile
 {
@@ -12,7 +13,16 @@ namespace MSS.WinMobile
         [MTAThread]
         static void Main()
         {
-            Application.Run(new Layout());
+            //var layout = new Layout();
+            //ISession localStorageSession =
+            //    new Infrastructure.Local.Data.Session(MobileConfiguration.Settings["LocalStorageFileName"]);
+            //ISession remoteStorageSession =
+            //    new Infrastructure.Remote.Data.Session(MobileConfiguration.Settings["RemoteStorageAddress"],
+            //                                           Int32.Parse(MobileConfiguration.Settings["RemoteStoragePort"]));
+            //IActivityFactory activityFactory = new ActivityFactory(localStorageSession, remoteStorageSession);
+            //INavigator navigator = new Navigator(layout);
+            //navigator.NavigateTo(activityFactory.GetActivity("Home"));
+            Application.Run(new LogonView());
         }
     }
 }

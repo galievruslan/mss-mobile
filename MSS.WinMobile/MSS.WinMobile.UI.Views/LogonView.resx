@@ -117,53 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="_ilHome.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mainMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="resource" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAOTSURBVHhe7dq7ixUxFAbwRUQQEcXCRgQLH4WIi4Uggmwh
-        WiyIjYWNiNpZWfg3iCyIjZ2IVoKVKBY2uo2NhY3YbLud2IhoqZ4PEjmEvM7OME5yv0DYx52byfnNSeaV
-        pSUWClCAAhSgAAUoQAEKUIACFKAABShAgXEEDkozj6WujtPcfFvZPULXbkkb36X+cfVjj3DbJKg7Un9J
-        fSP19BbgkFVvFZQH6w7uiAT5IRKoBS7MqhBL/91sxumsygWYgytlVTdwqayywOWyCkPzmNS7Ur9mhin2
-        N+tSyqp30vufhQCRcam5CpM9IHXZVYCbLVguq4B0w/V8v/xcq4ALsxGIGKKpkoKbLRjOgLEh90X+fyLS
-        61q4WFblEE4G/ZgtWAzrmfQWRz5XcnClrIq1e7xFMD0Ea4+whrNmld5Hk2Dna5USQzU3V5WabhIMnf5f
-        hWAif1TqPnUEcPlyLnFEFh4MJ41NqZ8cGrCeSP0t9UIEbeHBYIJrOAABDWdenJFfSt1BsPTMBzR/6fI6
-        gYVvd5lhlySwM4azgh+GHswPz1gTXYLhhvlFJZjGwtyFe0k/PPWJwDfXBdheiWZd6nUX1Vk3dGrMdrrv
-        Agt4KBie36Qu9zqHIRNwT3lbBbjHoZVunfAVbLM9wMFBiJUuMiwW2BX5J+aklZo0M2zTPNhNCfZ+JODD
-        LuMOGDBSbekmmgfD5I5JfoxS01bzYGNAWdroHuyyaFy1iBS27R7svQDgDDpWaRYML2sBcbEgcUg+xwkg
-        VV7JB08Nms2CLUuQ61JXDMHiRUq4PbAeGtpoFswQ479NH8lvQ98lLhTYKQHDBe2QslBgQ6D8dwlmVCRY
-        BAxPLXDthldzYSFYIKKXJOD951oA1w0YAsFlBlbc1DzSCTMnt9BFw3UBdk2i16t2cDNugatdPoV9PHeX
-        Jv5xtnEKnG5zvbbCv8hFJuFJaWpdWAmutHwqt96sOTCgfc5g6WBjcLmswntKPBvDWrIS2nQpY9yT7vi9
-        YAj6z34UAvRwfgFxDAPLzfF42xfcs+bgjGFMt3nuSOMtzwOpeKGxKhULd0uZEX6OrMrdyKfgphMw7ikF
-        sCHt4C1RWCxwYVbluhbCGcOYbvMQTGdVrhc5uFJW1cBNJ2DckwZLZZUFzpJVxq7OY3OA1WZVCa700HEe
-        EQ/sxVayauAu2/46zoAsFKAABShAAQpQgAIUoAAFKEABClCAAhSYq8Bfk7RJP50SPVEAAAAASUVORK5C
-        YII=
-</value>
-  </data>
-  <data name="resource1" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAMqSURBVHhe7ZrPyw5RFMffJJJYKEqidyElO4mkZGehbJA/
-        gJIfC9nIr5KSspCNnRXZvDsLYSNslAVRShJZ2NhJJAnnU3PrdrvzjnnuPNPcud9Tp3eeeeaee87nPXNm
-        nnvPzIxEBERABERABERABERABERABERABERABERABERABDIhsNb8PGJ61fRSdbw5E997dXOTzfbI9G+N
-        vrTz23v1aMCT7TXfvs8Dy0H8ZdccGHAcvbi2w2b58R+wfGg7e/FsgJMsNZ8+tIDloH2yMYwtTijudTWr
-        6Txji5O5BGCMLU7eJwB7URwtC/hLAjBgFydkSVOtqvv+WXG0LOAbCcAYW5zsTgDG2CLl7gTQHhZJqgp6
-        pf191wLaR7t2dcnAiB0AFPGmB8Abu2ZN6bBc/Avt4GgF7k8Aj6w6b7pEsOIEVtlpfpSzDsaxRAREYOoE
-        KPSnTK+b8hLaRhlzznTj1L0cwASLzIdrpj+Dwt70hIx9z8Phlulo18YIbL51+0mgMYbfpCsGkAydurDA
-        rN3vIKvqoD4127yajEbOThGWg3h5LLS2WCC/ewDGHOvHAO1eD7BcljFX1rK1R1gO2p6cidVl11sLio3Z
-        SZ+MX23s45rx2S7/zNYExFo+tWZSWIzDBktDn2vsMHd2cqEmmIN2fnkiMKAh+2vsMHd28joSzPMqCrIj
-        JcMYu7iyhc3QFmtnWQnBxICwbIOk3pLYBjqyLTIXP70c0CzA7YoE8cTznPam1Ayjl8zJg4i9rNqjjkcC
-        4JwTgkkFBnQnTfMNPstuR4D4AcYysC1AP4NiGXtz8JQ8Bym6PgBeA3yhia4toPB6oPvCu5l/TTaFP1bw
-        w619OglTgQHdl7D1IJvCH7vdwtvjUAfAwvbNWBnIovCzdEz/1jcPypkgG451AAwbvlzxbLIaS1Zn1YG9
-        zBwmC4C3LwgOgKm3JHsCvrh9Tc6vC77L/uPFDoBhoxjhwXDYNKVH7HQxtIJAZ+3zCdM7pq9MYztKrKbS
-        MkC3z0nTUaysdvUPZzODFoENldKAMqoNjq5AyY4IiIAIiIAIiIAIiIAIiIAIiIAIiIAIiEBrAv8AQcH3
-        Z/JwyocAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
+  </metadata>
+  <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>

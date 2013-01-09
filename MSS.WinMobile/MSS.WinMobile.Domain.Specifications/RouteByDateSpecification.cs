@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
-using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Domain.Specifications
 {

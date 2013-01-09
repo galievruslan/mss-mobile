@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenNETCF.ORM;
 
-namespace Mss.WinMobile.Domain.Model
+namespace MSS.WinMobile.Domain.Models
 {
     [Entity(NameInStore = "SaleOrders")]
     public class Order : IEntity
@@ -13,7 +13,7 @@ namespace Mss.WinMobile.Domain.Model
         public DateTime Date { get; set; }
 
         [Field]
-        public int CustomerId { get; set; }
+        public int ShippindAddressId { get; set; }
 
         [Field]
         public int ManagerId { get; set; }

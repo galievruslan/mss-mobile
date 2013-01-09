@@ -1,6 +1,6 @@
 ﻿using OpenNETCF.ORM;
 
-namespace Mss.WinMobile.Domain.Model
+namespace MSS.WinMobile.Domain.Models
 {
     [Entity]
     public class Manager : IEntity

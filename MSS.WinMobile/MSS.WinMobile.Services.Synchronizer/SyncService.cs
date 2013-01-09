@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
-using Mss.WinMobile.Domain.Model;
 
 namespace MSS.WinMobile.Services.Synchronizer
 {

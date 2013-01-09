@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSS.WinMobile.Domain.Specifications;
-using Mss.WinMobile.Domain.Model;
 
 namespace Tests.MSS.WinMobile.Infrastructure.Remote.Data
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications;
-using Mss.WinMobile.Domain.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 

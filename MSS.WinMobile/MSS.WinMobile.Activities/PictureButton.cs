@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace MSS.WinMobile.UI.Activities.Controls
+namespace MSS.WinMobile.UI.Controls
 {
     public partial class PictureButton : UserControl
     {

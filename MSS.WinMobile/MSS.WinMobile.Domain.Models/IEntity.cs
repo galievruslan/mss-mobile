@@ -1,4 +1,4 @@
-﻿namespace Mss.WinMobile.Domain.Model
+﻿namespace MSS.WinMobile.Domain.Models
 {
     public interface IEntity
     {

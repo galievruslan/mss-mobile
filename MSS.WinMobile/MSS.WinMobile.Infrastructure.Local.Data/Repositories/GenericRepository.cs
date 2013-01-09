@@ -2,10 +2,11 @@
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using OpenNETCF.ORM;
+using IEntity = MSS.WinMobile.Domain.Models.IEntity;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T> where T : Mss.WinMobile.Domain.Model.IEntity
+    public abstract class GenericRepository<T> : IGenericRepository<T> where T : IEntity
     {
         protected SqlCeDataStore SqlCeDataStore;
 

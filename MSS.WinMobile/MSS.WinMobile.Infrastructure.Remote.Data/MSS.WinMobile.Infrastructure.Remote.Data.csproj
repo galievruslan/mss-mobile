@@ -62,6 +62,7 @@
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\Specifications\AndConverter.cs" />
     <Compile Include="Repositories\Specifications\Converter.cs" />
+    <Compile Include="Repositories\Specifications\ManagerWithNameConverter.cs" />
     <Compile Include="Repositories\Specifications\RouteByDateConverter.cs" />
     <Compile Include="Repositories\Specifications\SpecificationConverter.cs" />
     <Compile Include="RequestDispatcher.cs" />

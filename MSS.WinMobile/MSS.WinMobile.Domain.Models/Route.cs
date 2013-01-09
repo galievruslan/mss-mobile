@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenNETCF.ORM;
 
-namespace Mss.WinMobile.Domain.Model
+namespace MSS.WinMobile.Domain.Models
 {
     [Entity]
     public class Route : IEntity
@@ -11,5 +11,8 @@ namespace Mss.WinMobile.Domain.Model
 
         [Field]
         public DateTime Date { get; set; }
+
+        [Field]
+        public int ManagerId { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.IO;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Services.Synchronizer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mss.WinMobile.Domain.Model;
 using Tests.Properties;
 
 namespace Tests.MSS.WinMobile.Services
