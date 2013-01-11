@@ -1,9 +1,10 @@
 ﻿using System;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications
 {
-    public class AndConverter<T> : Converter<T>
+    public class AndConverter<T> : Converter<T> where T : IEntity
     {
         public AndConverter(Specification<T> specification) : base(specification) {
             if (!(specification is CompositeSpecification<T>))

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MSS.WinMobile.Infrastructure.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Los Angeles")]
+[assembly: AssemblyCompany("MICROSOFT")]
 [assembly: AssemblyProduct("MSS.WinMobile.Infrastructure.Data")]
-[assembly: AssemblyCopyright("Copyright © Los Angeles 2013")]
+[assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d7526490-9eff-464e-9d6f-fe4fab255a51")]
+[assembly: Guid("b403d4a5-b98d-40df-ac57-4db1ff02af32")]
 
 // Version information for an assembly consists of the following four values:
 //

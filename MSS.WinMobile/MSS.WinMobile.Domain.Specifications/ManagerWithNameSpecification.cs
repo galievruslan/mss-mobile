@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 
@@ -19,9 +18,16 @@ namespace MSS.WinMobile.Domain.Specifications
             return entity.Name.Equals(Name);
         }
 
-        public override IEnumerable<Manager> GetSatisfied(IEnumerable<Manager> entities)
+        public override Manager[] GetSatisfied(Manager[] entities)
         {
-            return entities.Where(IsSatisfiedBy);
+            var satisfyed = new List<Manager>();
+            for (int i = 0; i < entities.Length; i++)
+            {
+                if (IsSatisfiedBy(entities[i]))
+                    satisfyed.Add(entities[i]);
+            }
+
+            return satisfyed.ToArray();
         }
     }
 }

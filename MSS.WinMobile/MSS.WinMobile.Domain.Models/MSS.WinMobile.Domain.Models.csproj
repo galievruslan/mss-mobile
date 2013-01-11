@@ -14,7 +14,7 @@
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
     <OSVersion>5.2</OSVersion>
     <DeployDirSuffix>MSS.WinMobile.Domain.Models</DeployDirSuffix>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
@@ -51,9 +51,6 @@
       <HintPath>..\Packages\OpenNETCF.ORM\CF\OpenNETCF.ORM.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

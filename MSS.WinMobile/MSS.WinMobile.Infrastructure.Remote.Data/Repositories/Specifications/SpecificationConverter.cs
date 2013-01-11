@@ -5,7 +5,7 @@ using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications
 {
-    public static class SpecificationConverter<T>
+    public static class SpecificationConverter<T> where T : IEntity
     {
         public static string ToQueryString(Specification<T> specification) {
             string queryString;
@@ -24,7 +24,8 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications
         }
     }
 
-    public class SpecificationConverterNotFoundException<T> : Exception {
+    public class SpecificationConverterNotFoundException<T> : Exception where T : IEntity
+    {
         public SpecificationConverterNotFoundException(Specification<T> specification)
             : base(string.Format(@"Converter for specification ""{0}"" not found!", specification.GetType())) {
         }

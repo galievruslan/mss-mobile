@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MSS.WinMobile.Services.Synchronizer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Los Angeles")]
+[assembly: AssemblyCompany("MICROSOFT")]
 [assembly: AssemblyProduct("MSS.WinMobile.Services.Synchronizer")]
-[assembly: AssemblyCopyright("Copyright © Los Angeles 2013")]
+[assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e26e0f94-f0c4-43f9-b7bb-44f0e4f0f5b1")]
+[assembly: Guid("3789306a-f651-432a-ac14-b015b5a1a155")]
 
 // Version information for an assembly consists of the following four values:
 //

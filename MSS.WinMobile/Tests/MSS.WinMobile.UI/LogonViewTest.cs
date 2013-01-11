@@ -1,19 +1,22 @@
-﻿using System;
-using System.Linq;
-using MSS.WinMobile.Config;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.Remote.Data;
+﻿using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Views;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.MSS.WinMobile.Infrastructure.Remote.Data
+namespace Tests.MSS.WinMobile.UI
 {
     /// <summary>
-    /// Summary description for RemoteGenericRepositoryTest
+    /// Summary description for LogonViewTest
     /// </summary>
     [TestClass]
-    public class RemoteGenericRepositoryTest
+    public class LogonViewTest
     {
+        public LogonViewTest()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
@@ -43,16 +46,10 @@ namespace Tests.MSS.WinMobile.Infrastructure.Remote.Data
         #endregion
 
         [TestMethod]
-        public void FindManagersTest()
+        public void LogonViewInitialization()
         {
-            ISession unitOfWork = new Session(Mobile.Settings["RemoteStorageAddress"],
-                                              Int32.Parse(Mobile.Settings["RemoteStoragePort"]));
-            using (var transaction = unitOfWork.BeginTransaction())
-            {
-                var managerRepository = transaction.Resolve<Manager>();
-                var managers = managerRepository.Find();
-                Assert.AreEqual(3, managers.Count());
-            }
+            ILogonView logonView = new LogonView();
+            
         }
     }
 }

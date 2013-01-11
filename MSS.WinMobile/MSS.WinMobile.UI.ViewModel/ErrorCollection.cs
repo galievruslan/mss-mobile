@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MSS.WinMobile.UI.ViewModel
@@ -26,7 +27,8 @@ namespace MSS.WinMobile.UI.ViewModel
             var stringBuilder = new StringBuilder();
             foreach (var error in _errors)
             {
-                stringBuilder.AppendLine(error);
+                stringBuilder.Append(error);
+                stringBuilder.Append('\n');
             }
 
             return stringBuilder.ToString();

@@ -33,56 +33,67 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MSS.WinMobile.Infrastructure.Local.Data\UnitOfWorkTests.cs" />
     <Compile Include="MSS.WinMobile.Infrastructure.Remote.Data\RemoteGenericRepositoryTest.cs" />
     <Compile Include="MSS.WinMobile.Infrastructure.Remote.Data\SpecificationConverterTest.cs" />
     <Compile Include="MSS.WinMobile.Services\SyncServiceTests.cs" />
+    <Compile Include="MSS.WinMobile.UI\LogonViewTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <Resource Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.Config.csproj">
+      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
+      <Name>MSS.WinMobile.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj">
-      <Project>{D1899519-7B8E-4B1E-B6CC-B98B3C19AA2B}</Project>
+      <Project>{CA068193-95D2-4426-96F9-B6E72B8BB0E9}</Project>
       <Name>MSS.WinMobile.Domain.Specifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{2D308127-5085-45C2-AF0A-2521FACF738A}</Project>
+      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
-      <Project>{FF0A4B06-CC0E-4D51-B8C7-27A0ACF1C0C0}</Project>
+      <Project>{CA136097-615C-45D6-93BF-F0A4435E84FA}</Project>
       <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
-      <Project>{61698636-08AD-43DC-B4C0-3E901E208DCB}</Project>
+      <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.Synchronizer.csproj">
-      <Project>{A235D68C-A14B-4FF8-9F01-57001569C46F}</Project>
+      <Project>{4D4039F4-3296-4FA8-8E73-743B476550AC}</Project>
       <Name>MSS.WinMobile.Services.Synchronizer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
+      <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
+      <Name>MSS.WinMobile.UI.Presenters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Views\MSS.WinMobile.UI.Views.csproj">
+      <Project>{59551DCE-C626-4BAA-8FAB-7E6977957B17}</Project>
+      <Name>MSS.WinMobile.UI.Views</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

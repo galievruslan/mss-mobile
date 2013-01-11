@@ -4,7 +4,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FF0A4B06-CC0E-4D51-B8C7-27A0ACF1C0C0}</ProjectGuid>
+    <ProjectGuid>{CA136097-615C-45D6-93BF-F0A4435E84FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MSS.WinMobile.Infrastructure.Local.Data</RootNamespace>
@@ -14,7 +14,7 @@
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
     <OSVersion>5.2</OSVersion>
     <DeployDirSuffix>MSS.WinMobile.Infrastructure.Local.Data</DeployDirSuffix>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
@@ -55,9 +55,10 @@
       <HintPath>..\Packages\OpenNETCF.ORM\CF\OpenNETCF.ORM.SqlCe.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE\System.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -82,7 +83,7 @@
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{2D308127-5085-45C2-AF0A-2521FACF738A}</Project>
+      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
     </ProjectReference>
   </ItemGroup>

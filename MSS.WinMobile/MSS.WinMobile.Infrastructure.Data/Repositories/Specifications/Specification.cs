@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using MSS.WinMobile.Domain.Models;
 
 namespace MSS.WinMobile.Infrastructure.Data.Repositories.Specifications
 {
-    public abstract class Specification<T>
+    public abstract class Specification<T> where T : IEntity
     {
         public abstract bool IsSatisfiedBy(T entity);
 
-        public abstract IEnumerable<T> GetSatisfied(IEnumerable<T> entities);
+        public abstract T[] GetSatisfied(T[] entities);
 
         public Specification<T> And(Specification<T> specification)
         {

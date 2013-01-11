@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MSS.WinMobile.Activities")]
+[assembly: AssemblyTitle("MSS.WinMobile.UI.Controls")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MICROSOFT")]
-[assembly: AssemblyProduct("MSS.WinMobile.Activities")]
+[assembly: AssemblyProduct("MSS.WinMobile.UI.Controls")]
 [assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("83ce53dd-32d4-4ab7-842a-146f42f1f433")]
+[assembly: Guid("8987d529-3951-4057-a265-727b053563a6")]
 
 // Version information for an assembly consists of the following four values:
 //

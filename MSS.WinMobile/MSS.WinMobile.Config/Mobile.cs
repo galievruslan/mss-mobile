@@ -11,8 +11,9 @@ namespace MSS.WinMobile.Config
 
         static Mobile()
         {
-            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-            string configFile = Path.Combine(appPath, "App.config");
+            //string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            //string configFile = Path.Combine(appPath, @"\App.config");
+            const string configFile = @"App.config";
 
             if (!File.Exists(configFile))
             {

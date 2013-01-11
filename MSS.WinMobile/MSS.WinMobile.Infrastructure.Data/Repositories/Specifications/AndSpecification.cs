@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using MSS.WinMobile.Domain.Models;
 
 namespace MSS.WinMobile.Infrastructure.Data.Repositories.Specifications
 {
-    public class AndSpecification<T> : CompositeSpecification<T>
+    public class AndSpecification<T> : CompositeSpecification<T> where T : IEntity
     {
         public AndSpecification(Specification<T> left, Specification<T> right) : base(left, right)
         {
@@ -14,12 +14,25 @@ namespace MSS.WinMobile.Infrastructure.Data.Repositories.Specifications
             return Left.IsSatisfiedBy(entity) && Right.IsSatisfiedBy(entity);
         }
 
-        public override IEnumerable<T> GetSatisfied(IEnumerable<T> entities)
+        public override T[] GetSatisfied(T[] entities)
         {
-            var entitiesToTest = entities.ToArray();
-            var leftSatisfied = Left.GetSatisfied(entitiesToTest);
-            var rightSatisfied = Right.GetSatisfied(entitiesToTest);
-            return leftSatisfied.Intersect(rightSatisfied);
+            var intersection = new List<T>();
+
+            var leftSatisfied = Left.GetSatisfied(entities);
+            var rightSatisfied = Right.GetSatisfied(entities);
+            for (int i = 0; i < leftSatisfied.Length; i++)
+            {
+                for (int j = 0; j < rightSatisfied.Length; j++)
+                {
+                    if (leftSatisfied[i].Id == rightSatisfied[j].Id)
+                    {
+                        intersection.Add(leftSatisfied[i]);
+                        break;
+                    }
+                }
+            }
+
+            return intersection.ToArray();
         }
     }
 }

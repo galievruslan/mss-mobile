@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
-using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.UI.Views;
 
-namespace MSS.WinMobile
+namespace MSS.WinMobile.Application
 {
     static class Program
     {
@@ -22,7 +20,7 @@ namespace MSS.WinMobile
             //IActivityFactory activityFactory = new ActivityFactory(localStorageSession, remoteStorageSession);
             //INavigator navigator = new Navigator(layout);
             //navigator.NavigateTo(activityFactory.GetActivity("Home"));
-            Application.Run(new LogonView());
+            System.Windows.Forms.Application.Run(new LogonView());
         }
     }
 }

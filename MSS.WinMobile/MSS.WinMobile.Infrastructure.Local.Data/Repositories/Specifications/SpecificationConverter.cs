@@ -4,7 +4,7 @@ using OpenNETCF.ORM;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories.Specifications
 {
-    public static class SpecificationConverter<T>
+    public static class SpecificationConverter<T> where T : Domain.Models.IEntity
     {
         public static FilterCondition ToExpression(Specification<T> specification) {
             
@@ -22,7 +22,8 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories.Specifications
         }
     }
 
-    public class SpecificationConverterNotFoundException<T> : Exception {
+    public class SpecificationConverterNotFoundException<T> : Exception where T : Domain.Models.IEntity
+    {
         public SpecificationConverterNotFoundException(Specification<T> specification)
             : base(string.Format(@"Converter for specification ""{0}"" not found!", specification.GetType())) {
         }

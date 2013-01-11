@@ -4,17 +4,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C425B784-A26C-41B7-A6AA-2D2A8735AC16}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile</RootNamespace>
-    <AssemblyName>MSS.WinMobile</AssemblyName>
+    <RootNamespace>MSS.WinMobile.UI.Controls</RootNamespace>
+    <AssemblyName>MSS.WinMobile.UI.Controls</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
     <OSVersion>5.2</OSVersion>
-    <DeployDirSuffix>MSS.WinMobile</DeployDirSuffix>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <DeployDirSuffix>MSS.WinMobile.UI.Controls</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
@@ -47,55 +47,34 @@
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="PictureButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PictureButton.Designer.cs">
+      <DependentUpon>PictureButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\appbar.home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Activities\MSS.WinMobile.UI.Controls.csproj">
-      <Project>{7F683EE6-6911-46C3-A615-0CEF9878A1B6}</Project>
-      <Name>MSS.WinMobile.UI.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{2D308127-5085-45C2-AF0A-2521FACF738A}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
-      <Project>{FF0A4B06-CC0E-4D51-B8C7-27A0ACF1C0C0}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
-      <Project>{61698636-08AD-43DC-B4C0-3E901E208DCB}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
-      <Project>{00E0AD71-6F17-4CD5-9C22-4712AE013D96}</Project>
-      <Name>MSS.WinMobile.UI.Presenters</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.UI.Views\MSS.WinMobile.UI.Views.csproj">
-      <Project>{DC0CBD8F-763E-48E6-8F99-85F7D5310630}</Project>
-      <Name>MSS.WinMobile.UI.Views</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
