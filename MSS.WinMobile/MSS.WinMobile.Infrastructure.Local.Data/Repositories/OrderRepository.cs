@@ -15,12 +15,12 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
             return SqlCeDataStore.Select<Order>(id);
         }
 
-        public override IEnumerable<Order> Find()
+        public override Order[] Find()
         {
             return SqlCeDataStore.Select<Order>();
         }
 
-        public override IEnumerable<Order> Find(Specification<Order> specification)
+        public override Order[] Find(Specification<Order> specification)
         {
             throw new System.NotImplementedException();
         }

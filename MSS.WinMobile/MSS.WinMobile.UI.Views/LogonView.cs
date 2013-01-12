@@ -40,5 +40,23 @@ namespace MSS.WinMobile.UI.Views
         {
             _presenter.Cancel();
         }
+
+        private void OkButtonClick(object sender, System.EventArgs e)
+        {
+            Logon();
+        }
+
+        private void CancelButtonClick(object sender, System.EventArgs e)
+        {
+            Cancel();
+        }
+
+        private void AccountTextBoxTextChanged(object sender, System.EventArgs e) {
+            Account = _accountTextBox.Text;
+        }
+
+        private void PasswordTextBoxTextChanged(object sender, System.EventArgs e) {
+            Password = _passwordTextBox.Text;
+        }
     }
 }

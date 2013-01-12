@@ -8,9 +8,9 @@ namespace MSS.WinMobile.Infrastructure.Data.Repositories
     {
         T GetById(int id);
 
-        IEnumerable<T> Find();
+        T[] Find();
 
-        IEnumerable<T> Find(Specification<T> specification);
+        T[] Find(Specification<T> specification);
 
         void Add(T entity);
 

@@ -15,12 +15,12 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
             return SqlCeDataStore.Select<RoutePoint>(id);
         }
 
-        public override IEnumerable<RoutePoint> Find()
+        public override RoutePoint[] Find()
         {
             return SqlCeDataStore.Select<RoutePoint>();
         }
 
-        public override IEnumerable<RoutePoint> Find(Specification<RoutePoint> specification)
+        public override RoutePoint[] Find(Specification<RoutePoint> specification)
         {
             throw new System.NotImplementedException();
         }

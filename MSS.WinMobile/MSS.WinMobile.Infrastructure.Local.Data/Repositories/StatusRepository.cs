@@ -15,12 +15,12 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
             return SqlCeDataStore.Select<Status>(id);
         }
 
-        public override IEnumerable<Status> Find()
+        public override Status[] Find()
         {
             return SqlCeDataStore.Select<Status>();
         }
 
-        public override IEnumerable<Status> Find(Specification<Status> specification)
+        public override Status[] Find(Specification<Status> specification)
         {
             throw new System.NotImplementedException();
         }

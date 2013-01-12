@@ -8,7 +8,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
 {
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : IEntity
     {
-        protected SqlCeDataStore SqlCeDataStore;
+        protected readonly SqlCeDataStore SqlCeDataStore;
 
         protected GenericRepository(SqlCeDataStore sqlCeDataStore)
         {
@@ -19,8 +19,8 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
 
         public abstract T GetById(int id);
 
-        public abstract IEnumerable<T> Find();
-        public abstract IEnumerable<T> Find(Specification<T> specification);
+        public abstract T[] Find();
+        public abstract T[] Find(Specification<T> specification);
 
         public abstract void Add(T entity);
 

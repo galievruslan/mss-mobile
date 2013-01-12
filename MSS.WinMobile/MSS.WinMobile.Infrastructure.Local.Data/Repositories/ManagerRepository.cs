@@ -15,12 +15,12 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
             return SqlCeDataStore.Select<Manager>(id);
         }
 
-        public override IEnumerable<Manager> Find()
+        public override Manager[] Find()
         {
             return SqlCeDataStore.Select<Manager>();
         }
 
-        public override IEnumerable<Manager> Find(Specification<Manager> specification)
+        public override Manager[] Find(Specification<Manager> specification)
         {
             throw new System.NotImplementedException();
         }

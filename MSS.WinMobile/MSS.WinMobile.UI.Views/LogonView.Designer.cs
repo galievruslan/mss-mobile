@@ -45,6 +45,7 @@
             this._passwordTextBox.PasswordChar = '*';
             this._passwordTextBox.Size = new System.Drawing.Size(100, 21);
             this._passwordTextBox.TabIndex = 0;
+            this._passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBoxTextChanged);
             // 
             // _accountTextBox
             // 
@@ -52,6 +53,7 @@
             this._accountTextBox.Name = "_accountTextBox";
             this._accountTextBox.Size = new System.Drawing.Size(100, 21);
             this._accountTextBox.TabIndex = 1;
+            this._accountTextBox.TextChanged += new System.EventHandler(this.AccountTextBoxTextChanged);
             // 
             // _accountLabel
             // 
@@ -74,6 +76,7 @@
             this._okButton.Size = new System.Drawing.Size(72, 20);
             this._okButton.TabIndex = 4;
             this._okButton.Text = "Ok";
+            this._okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // _cancelButton
             // 
@@ -82,6 +85,7 @@
             this._cancelButton.Size = new System.Drawing.Size(72, 20);
             this._cancelButton.TabIndex = 5;
             this._cancelButton.Text = "Cancel";
+            this._cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // LogonView
             // 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
+using CodeBetter.Json;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
 {
@@ -24,24 +24,24 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
                                                                     ResourceUriHelper.GetControllerName(typeof (T)),
                                                                     id), "GET");
 
-            return JsonConvert.DeserializeObject<T>(json);
+            return Converter.Deserialize<T>(json);
         }
 
-        public IEnumerable<T> Find()
+        public T[] Find()
         {
             string json = _requestDispatcher.Dispatch(
                 string.Format(@"{0}.json", ResourceUriHelper.GetControllerName(typeof (T))), "GET");
 
-            return JsonConvert.DeserializeObject<T[]>(json);
+            return Converter.Deserialize<T[]>(json);
         }
 
-        public IEnumerable<T> Find(Specification<T> specification) {
+        public T[] Find(Specification<T> specification) {
             string queryString = SpecificationConverter<T>.ToQueryString(specification);
 
             string json = _requestDispatcher.Dispatch(
                 string.Format(@"{0}.json?{1}", ResourceUriHelper.GetControllerName(typeof(T)), queryString), "GET");
 
-            return JsonConvert.DeserializeObject<T[]>(json);
+            return Converter.Deserialize<T[]>(json);
         }
 
         public void Add(T entity)
@@ -49,8 +49,9 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             string uri = string.Format(@"{0}.json",
                 ResourceUriHelper.GetControllerName(typeof(T)));
 
-            var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
-            string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
+            //var settings = Converter.Deserialize new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
+            
+            string json = Converter.Serialize(entity);
 
             _requestDispatcher.Dispatch(uri, "POST", json);
         }
@@ -61,8 +62,9 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
                 ResourceUriHelper.GetControllerName(typeof(T)),
                 entity.Id);
 
-            var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
-            string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
+            //var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
+            //string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
+            string json = Converter.Serialize(entity);
 
             _requestDispatcher.Dispatch(uri, "PUT", json);
         }
@@ -77,25 +79,25 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
         }
     }
 
-    public class LowercaseContractResolver : DefaultContractResolver
-    {
-        protected override string ResolvePropertyName(string propertyName)
-        {
-            // Get upper case characters positions
-            var positions = new List<int>();
+    //public class LowercaseContractResolver : DefaultContractResolver
+    //{
+    //    protected override string ResolvePropertyName(string propertyName)
+    //    {
+    //        // Get upper case characters positions
+    //        var positions = new List<int>();
 
-            for (var i = 1; i < propertyName.Length; i++) {
-                if (Char.IsUpper(propertyName[i])) {
-                    positions.Add(i);
-                }
-            }
+    //        for (var i = 1; i < propertyName.Length; i++) {
+    //            if (Char.IsUpper(propertyName[i])) {
+    //                positions.Add(i);
+    //            }
+    //        }
 
-            // insert _ character in all positions
-            for (var i = positions.Count - 1; i >= 0; i--) {
-                propertyName = propertyName.Insert(positions[i], "_");
-            }
+    //        // insert _ character in all positions
+    //        for (var i = positions.Count - 1; i >= 0; i--) {
+    //            propertyName = propertyName.Insert(positions[i], "_");
+    //        }
 
-            return propertyName.ToLower();
-        }
-    }
+    //        return propertyName.ToLower();
+    //    }
+    //}
 }

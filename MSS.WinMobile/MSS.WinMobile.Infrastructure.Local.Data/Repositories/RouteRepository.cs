@@ -15,12 +15,12 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
             return SqlCeDataStore.Select<Route>(id);
         }
 
-        public override IEnumerable<Route> Find()
+        public override Route[] Find()
         {
             return SqlCeDataStore.Select<Route>();
         }
 
-        public override IEnumerable<Route> Find(Specification<Route> specification)
+        public override Route[] Find(Specification<Route> specification)
         {
             throw new System.NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using MSS.WinMobile.Config;
 using MSS.WinMobile.Domain.Models;
@@ -17,8 +18,8 @@ namespace MSS.WinMobile.UI.Presenters
         public LogonPresenter(ILogonView logonView)
         {
             _logonView = logonView;
-            _remoteSession = new Session(Mobile.Settings["RemoteStorageAddress"],
-                                         Int32.Parse(Mobile.Settings["RemoteStoragePort"]));
+            _remoteSession = new Session("192.168.17.39",
+                                         3000);
         }
 
         public void Logon()
@@ -26,8 +27,10 @@ namespace MSS.WinMobile.UI.Presenters
             using (ITransaction transaction = _remoteSession.BeginTransaction())
             {
                 IGenericRepository<Manager> managerRepository = transaction.Resolve<Manager>();
-                var managers = new List<Manager>(managerRepository.Find(new ManagerWithNameSpecification(_logonView.Account)));
-                if (managers.Count > 0)
+                var specification = new ManagerWithNameSpecification(_logonView.Account);
+                Manager[] managers = managerRepository.Find(specification);
+
+                if (managers.Length > 0)
                 {
                     Manager manager = managers[0];
                     _logonView.ShowInformationDialog(manager != null ? "Manager was found!" : "Manager not found!");

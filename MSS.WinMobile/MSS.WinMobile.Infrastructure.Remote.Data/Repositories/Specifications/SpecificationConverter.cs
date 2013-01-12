@@ -16,6 +16,9 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications
             else if (specification is RouteByDateSpecification) {
                 queryString = new RouteByDateConverter(specification as Specification<Route>).Convert();
             }
+            else if (specification is ManagerWithNameSpecification) {
+                queryString = new ManagerWithNameConverter(specification as Specification<Manager>).Convert();
+            }
             else {
                 throw new SpecificationConverterNotFoundException<T>(specification);
             }
