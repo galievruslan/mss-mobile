@@ -18,7 +18,7 @@ namespace MSS.WinMobile.UI.Presenters
         public LogonPresenter(ILogonView logonView)
         {
             _logonView = logonView;
-            _remoteSession = new Session("192.168.17.39",
+            _remoteSession = new Session("192.168.0.102",
                                          3000);
         }
 

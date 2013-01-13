@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="LitJson">
+</Property><Property Name="Solution File" Value="C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\LitJson.sln">
+</Property><Property Name="Date" Value="13 января 2013 г.">
+</Property><Property Name="Time" Value="22:22:01">
+</Property></Properties><Event ErrorLevel="0" Project="LitJson" Source="LitJson.csproj" Description="Project file successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\LitJson.csproj">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="LitJson.csproj.user" Description="Project user file successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\LitJson.csproj.user">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="IJsonWrapper.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\IJsonWrapper.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="IOrderedDictionary.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\IOrderedDictionary.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="JsonData.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\JsonData.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="JsonException.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\JsonException.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="JsonMapper.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\JsonMapper.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="JsonReader.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\JsonReader.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="JsonWriter.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\JsonWriter.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="Lexer.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\Lexer.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="ParserToken.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\ParserToken.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Projects\mss-mobile\MSS.WinMobile\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="LitJson" Source="LitJson.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="LitJson" Source="LitJson.csproj" Description="Converted">
+</Event></UpgradeLog>

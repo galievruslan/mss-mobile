@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using CodeBetter.Json;
+using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
@@ -24,7 +22,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
                                                                     ResourceUriHelper.GetControllerName(typeof (T)),
                                                                     id), "GET");
 
-            return Converter.Deserialize<T>(json);
+            return Json.JsonDeserializer.Deserialize<T>(json);
         }
 
         public T[] Find()
@@ -32,7 +30,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             string json = _requestDispatcher.Dispatch(
                 string.Format(@"{0}.json", ResourceUriHelper.GetControllerName(typeof (T))), "GET");
 
-            return Converter.Deserialize<T[]>(json);
+            return Json.JsonDeserializer.Deserialize<T[]>(json);
         }
 
         public T[] Find(Specification<T> specification) {
@@ -41,7 +39,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             string json = _requestDispatcher.Dispatch(
                 string.Format(@"{0}.json?{1}", ResourceUriHelper.GetControllerName(typeof(T)), queryString), "GET");
 
-            return Converter.Deserialize<T[]>(json);
+            return Json.JsonDeserializer.Deserialize<T[]>(json);
         }
 
         public void Add(T entity)
@@ -51,9 +49,10 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
 
             //var settings = Converter.Deserialize new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
             
-            string json = Converter.Serialize(entity);
+            var jsonBuilder = new StringBuilder();
+            Json.JsonSerializer.Serialize(jsonBuilder, entity);
 
-            _requestDispatcher.Dispatch(uri, "POST", json);
+            _requestDispatcher.Dispatch(uri, "POST", jsonBuilder.ToString());
         }
 
         public void Update(T entity)
@@ -64,9 +63,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
 
             //var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
             //string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
-            string json = Converter.Serialize(entity);
 
-            _requestDispatcher.Dispatch(uri, "PUT", json);
+            var jsonBuilder = new StringBuilder();
+            Json.JsonSerializer.Serialize(jsonBuilder, entity);
+
+            _requestDispatcher.Dispatch(uri, "PUT", jsonBuilder.ToString());
         }
 
         public void Delete(T entity)

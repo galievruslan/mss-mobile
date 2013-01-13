@@ -2,22 +2,29 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{278A8A84-49D1-421D-A772-D6B742DF831F}</ProjectGuid>
+    <ProjectGuid>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile.Infrastructure.Remote.Data</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Infrastructure.Remote.Data</AssemblyName>
+    <RootNamespace>Json</RootNamespace>
+    <AssemblyName>JsonSerializer</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
-    <OSVersion>5.2</OSVersion>
-    <DeployDirSuffix>MSS.WinMobile.Infrastructure.Remote.Data</DeployDirSuffix>
+    <OSVersion>5.02</OSVersion>
+    <DeployDirSuffix>JsonSerializer</DeployDirSuffix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,47 +52,25 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JsonSerializer, Version=1.0.3123.33953, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\bin\Debug\JsonSerializer.dll</HintPath>
-    </Reference>
-    <Reference Include="LitJson, Version=1.0.3123.33952, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\bin\Debug\LitJson.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonDeserializer.cs" />
+    <Compile Include="JsonSerializer.cs" />
+    <Compile Include="JsonTypeJuggler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Specifications\AndConverter.cs" />
-    <Compile Include="Repositories\Specifications\Converter.cs" />
-    <Compile Include="Repositories\Specifications\ManagerWithNameConverter.cs" />
-    <Compile Include="Repositories\Specifications\RouteByDateConverter.cs" />
-    <Compile Include="Repositories\Specifications\SpecificationConverter.cs" />
-    <Compile Include="RequestDispatcher.cs" />
-    <Compile Include="ResourceUriHelper.cs" />
-    <Compile Include="Session.cs" />
-    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
-      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
-      <Name>MSS.WinMobile.Domain.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj">
-      <Project>{CA068193-95D2-4426-96F9-B6E72B8BB0E9}</Project>
-      <Name>MSS.WinMobile.Domain.Specifications</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    <ProjectReference Include="..\LitJson\LitJson.csproj">
+      <Project>{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}</Project>
+      <Name>LitJson</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
@@ -100,4 +85,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Condition="'$(TargetFrameworkVersion)' == 'v3.5'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
 </Project>
