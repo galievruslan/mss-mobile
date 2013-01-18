@@ -49,7 +49,10 @@ namespace Tests.MSS.WinMobile.UI
         public void LogonViewInitialization()
         {
             ILogonView logonView = new LogonView();
-            
+            logonView.Account = "test";
+            logonView.Password = "123";
+            logonView.Logon();
+
         }
     }
 }

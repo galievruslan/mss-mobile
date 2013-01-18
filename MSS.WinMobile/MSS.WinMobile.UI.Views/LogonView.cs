@@ -18,6 +18,11 @@ namespace MSS.WinMobile.UI.Views
             this.Navigate<T>();
         }
 
+        public void ShowErrorDialog(string message)
+        {
+            this.ShowErrDialog(message);
+        }
+
         public void ShowInformationDialog(string message)
         {
             this.ShowInfoDialog(message);
@@ -39,6 +44,12 @@ namespace MSS.WinMobile.UI.Views
         public void Cancel()
         {
             _presenter.Cancel();
+        }
+
+        public void Exit()
+        {
+            Close();
+            Dispose();
         }
 
         private void OkButtonClick(object sender, System.EventArgs e)

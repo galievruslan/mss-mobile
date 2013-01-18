@@ -1,6 +1,5 @@
 ﻿using System;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
-using OpenNETCF.ORM;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories.Specifications
 {

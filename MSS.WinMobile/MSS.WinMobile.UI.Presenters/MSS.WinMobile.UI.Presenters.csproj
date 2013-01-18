@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILogonView.cs" />
+    <Compile Include="IMenuView.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="LogonPresenter.cs" />
+    <Compile Include="MenuPresenter.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,9 +76,17 @@
       <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
+      <Project>{CA136097-615C-45D6-93BF-F0A4435E84FA}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.UI.ViewModel\MSS.WinMobile.UI.ViewModel.csproj">
+      <Project>{1D22538A-B171-4CC5-A4CD-586EEA8B815E}</Project>
+      <Name>MSS.WinMobile.UI.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

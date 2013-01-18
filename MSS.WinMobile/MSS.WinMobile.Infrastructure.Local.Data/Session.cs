@@ -1,30 +1,40 @@
-﻿using OpenNETCF.ORM;
+﻿using System.Data.SqlServerCe;
+using System.IO;
 using MSS.WinMobile.Infrastructure.Data;
+using SubSonic;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
 {
     public class Session : ISession
     {
-        private readonly string _storageName;
+        private readonly string _connectionString;
 
         public Session(string storageName)
         {
-            _storageName = storageName;
-        }
+            string fullFilePath = string.Format(@"{0}\{1}",
+                                                Path.GetDirectoryName(
+                                                    System.Reflection.Assembly.GetExecutingAssembly()
+                                                          .GetName()
+                                                          .CodeBase),
+                                                storageName);
+            _connectionString = string.Format(@"Data Source={0};Persist Security Info=False;", fullFilePath);
 
-        #region IUnitOfWork Members
+            if (!File.Exists(fullFilePath))
+            {
+                var sqlCeEngine = new SqlCeEngine(_connectionString);
+                sqlCeEngine.CreateDatabase();
+            }
+        }
 
         public ITransaction BeginTransaction()
         {
-            var store = new SqlCeDataStore(_storageName);
-            store.DiscoverTypes(System.Reflection.Assembly.LoadFrom("MSS.WinMobile.Domain.Models.dll"));
-            if (!store.StoreExists) {
-                store.CreateStore();
-            }
+            var provider = new SqlCEProvider();
 
-            return new Transaction(store);
+            provider.CreateConnection(_connectionString);
+            ISubSonicRepository subSonicRepository =
+                new SubSonicRepository(provider);
+
+            return new Transaction(subSonicRepository);
         }
-
-        #endregion
     }
 }

@@ -40,7 +40,7 @@
             // 
             // _passwordTextBox
             // 
-            this._passwordTextBox.Location = new System.Drawing.Point(119, 30);
+            this._passwordTextBox.Location = new System.Drawing.Point(123, 42);
             this._passwordTextBox.Name = "_passwordTextBox";
             this._passwordTextBox.PasswordChar = '*';
             this._passwordTextBox.Size = new System.Drawing.Size(100, 21);
@@ -49,7 +49,7 @@
             // 
             // _accountTextBox
             // 
-            this._accountTextBox.Location = new System.Drawing.Point(119, 3);
+            this._accountTextBox.Location = new System.Drawing.Point(123, 15);
             this._accountTextBox.Name = "_accountTextBox";
             this._accountTextBox.Size = new System.Drawing.Size(100, 21);
             this._accountTextBox.TabIndex = 1;
@@ -57,21 +57,21 @@
             // 
             // _accountLabel
             // 
-            this._accountLabel.Location = new System.Drawing.Point(13, 4);
+            this._accountLabel.Location = new System.Drawing.Point(17, 16);
             this._accountLabel.Name = "_accountLabel";
             this._accountLabel.Size = new System.Drawing.Size(100, 20);
-            this._accountLabel.Text = "Account:";
+            this._accountLabel.Text = "Account";
             // 
             // _passwordLabel
             // 
-            this._passwordLabel.Location = new System.Drawing.Point(13, 31);
+            this._passwordLabel.Location = new System.Drawing.Point(17, 43);
             this._passwordLabel.Name = "_passwordLabel";
             this._passwordLabel.Size = new System.Drawing.Size(100, 20);
             this._passwordLabel.Text = "Password";
             // 
             // _okButton
             // 
-            this._okButton.Location = new System.Drawing.Point(87, 245);
+            this._okButton.Location = new System.Drawing.Point(73, 236);
             this._okButton.Name = "_okButton";
             this._okButton.Size = new System.Drawing.Size(72, 20);
             this._okButton.TabIndex = 4;
@@ -80,7 +80,7 @@
             // 
             // _cancelButton
             // 
-            this._cancelButton.Location = new System.Drawing.Point(165, 245);
+            this._cancelButton.Location = new System.Drawing.Point(151, 236);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.Size = new System.Drawing.Size(72, 20);
             this._cancelButton.TabIndex = 5;

@@ -46,20 +46,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
-    <Reference Include="OpenNETCF.ORM, Version=1.0.12242.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\OpenNETCF.ORM\CF\OpenNETCF.ORM.dll</HintPath>
+      <HintPath>..\Packages\SubSonic2.2\SubSonic.dll</HintPath>
     </Reference>
-    <Reference Include="OpenNETCF.ORM.SqlCe, Version=1.0.12242.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SubSonic.Migrations, Version=2.1.1.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\OpenNETCF.ORM\CF\OpenNETCF.ORM.SqlCe.dll</HintPath>
+      <HintPath>..\Packages\SubSonic2.2\SubSonic.Migrations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\System.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE\System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3be235df1c8d2ad3, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

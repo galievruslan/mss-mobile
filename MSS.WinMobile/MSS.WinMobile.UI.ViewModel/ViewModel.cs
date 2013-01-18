@@ -2,7 +2,7 @@
 {
     public abstract class ViewModel : IValidatable
     {
-        protected ErrorCollection Errors;
+        public ErrorCollection Errors;
 
         protected ViewModel()
         {

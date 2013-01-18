@@ -11,6 +11,8 @@ namespace MSS.WinMobile.UI.Views
             Form to;
             if (typeof(T) == typeof(ILogonView))
                 to = new LogonView();
+            else if (typeof(T) == typeof(IMenuView))
+                to = new MenuView();
             else
                 throw new ViewNotFoundException();
 
@@ -22,6 +24,12 @@ namespace MSS.WinMobile.UI.Views
         public static void ShowInfoDialog(this Form form, string message)
         {
             MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
+                            MessageBoxDefaultButton.Button1);
+        }
+
+        public static void ShowErrDialog(this Form form, string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
         }
 

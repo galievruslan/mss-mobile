@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
-using OpenNETCF.ORM;
 using IEntity = MSS.WinMobile.Domain.Models.IEntity;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories

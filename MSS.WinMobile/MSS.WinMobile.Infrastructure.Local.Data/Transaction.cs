@@ -2,30 +2,30 @@
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Local.Data.Repositories;
-using OpenNETCF.ORM;
+using SubSonic;
 using IEntity = MSS.WinMobile.Domain.Models.IEntity;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
 {
     public class Transaction : ITransaction
     {
-        readonly SqlCeDataStore _sqlCeDataStore;
+        private readonly ISubSonicRepository _subSonicRepository;
 
-        public Transaction(SqlCeDataStore sqlCeDataStore) {
-            _sqlCeDataStore = sqlCeDataStore;
-            _sqlCeDataStore.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+        public Transaction(ISubSonicRepository subSonicRepository)
+        {
+            _subSonicRepository = subSonicRepository;
         }
 
         #region ITransaction Members
 
         public void Commit()
         {
-            _sqlCeDataStore.Commit();
+            //_subSonicRepository.
         }
 
         public void Rollback()
         {
-            _sqlCeDataStore.Rollback();
+            //_sqlCeDataStore.Rollback();
         }
 
         public IGenericRepository<T> Resolve<T>() where T : IEntity

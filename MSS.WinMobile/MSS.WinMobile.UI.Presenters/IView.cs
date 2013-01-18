@@ -4,6 +4,8 @@
     {
         void NavigateTo<T>() where T : IView;
 
+        void ShowErrorDialog(string message);
+
         void ShowInformationDialog(string message);
 
         bool ShowConfirmationDialog(string question);
