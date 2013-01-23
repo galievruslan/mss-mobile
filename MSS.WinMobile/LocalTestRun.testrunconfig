@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestRunConfiguration name="Local Test Run" id="36ce4557-74e4-46ea-908d-eac4d95bdf41" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
-  <Description>This is a default test run configuration for a local test run.</Description>
-  <Deployment>
-    <DeploymentItem filename="MSS.WinMobile.Application\bin\Debug\App.config" />
-  </Deployment>
-  <TestTypeSpecific />
-</TestRunConfiguration>

@@ -1,18 +1,19 @@
 ﻿using System;
-using OpenNETCF.ORM;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Local.Attributes;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    [Entity]
+    [Table("Routes")]
     public class Route : IEntity
     {
-        [Field(IsPrimaryKey = true)]
+        [Key("Id")]
         public int Id { get; set; }
 
-        [Field]
+        [Column("Date")]
         public DateTime Date { get; set; }
 
-        [Field]
+        [Reference("Manager_Id", typeof(Manager))]
         public int ManagerId { get; set; }
     }
 }

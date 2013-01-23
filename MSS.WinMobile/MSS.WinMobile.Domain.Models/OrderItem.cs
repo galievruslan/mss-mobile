@@ -1,20 +1,21 @@
-﻿using OpenNETCF.ORM;
+﻿using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Local.Attributes;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    [Entity(NameInStore = "SaleOrderItems")]
+    [Table("OrderItems")]
     public class OrderItem : IEntity
     {
-        [Field(IsPrimaryKey = true)]
+        [Key("Id")]
         public int Id { get; set; }
         
-        [Field]
+        [Reference("OrderId", typeof(Order))]
         public int OrderId { get; set; }
 
-        [Field]
+        [Reference("Product_Id", typeof(Product))]
         public int ProductId { get; set; }
 
-        [Field]
+        [Column("Quantity")]
         public int Quantity { get; set; }
     }
 }

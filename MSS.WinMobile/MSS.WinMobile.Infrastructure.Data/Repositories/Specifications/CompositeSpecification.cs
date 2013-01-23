@@ -1,6 +1,4 @@
-﻿using MSS.WinMobile.Domain.Models;
-
-namespace MSS.WinMobile.Infrastructure.Data.Repositories.Specifications
+﻿namespace MSS.WinMobile.Infrastructure.Data.Repositories.Specifications
 {
     public abstract class CompositeSpecification<T> : Specification<T> where T : IEntity
     {

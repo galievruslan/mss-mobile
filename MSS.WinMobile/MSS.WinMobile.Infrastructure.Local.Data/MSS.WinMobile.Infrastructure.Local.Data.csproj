@@ -45,40 +45,34 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\SubSonic2.2\SubSonic.dll</HintPath>
-    </Reference>
-    <Reference Include="SubSonic.Migrations, Version=2.1.1.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\SubSonic2.2\SubSonic.Migrations.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\System.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE\System.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3be235df1c8d2ad3, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\ManagerRepository.cs" />
-    <Compile Include="Repositories\OrderItemRepository.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\RoutePointRepository.cs" />
-    <Compile Include="Repositories\RouteRepository.cs" />
     <Compile Include="Repositories\Specifications\SpecificationConverter.cs" />
-    <Compile Include="Repositories\StatusRepository.cs" />
+    <Compile Include="Scripts\AlterTableScript.cs" />
+    <Compile Include="Scripts\AddColumnScript.cs" />
+    <Compile Include="Scripts\CreateColumnScriptExtensions.cs" />
+    <Compile Include="Scripts\CreateDatetimeColumnScript.cs" />
+    <Compile Include="Scripts\CreateDecimalColumnScript.cs" />
+    <Compile Include="Scripts\CreateReferenceColumnScript.cs" />
+    <Compile Include="Scripts\CreateStringColumnScript.cs" />
+    <Compile Include="Scripts\CreateColumnScript.cs" />
+    <Compile Include="Scripts\CreateIntegerColumnScript.cs" />
+    <Compile Include="Scripts\CreatePrimaryKeyScript.cs" />
+    <Compile Include="Scripts\CreateTableScript.cs" />
+    <Compile Include="Scripts\Script.cs" />
+    <Compile Include="ScriptExecuter.cs" />
+    <Compile Include="ScriptGenerators\ScriptGenerator.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Transaction.cs" />
   </ItemGroup>
@@ -90,6 +84,10 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Attributes\MSS.WinMobile.Infrastructure.Local.Attributes.csproj">
+      <Project>{98F9A834-5915-4288-817F-F96ADD72C3B7}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Local.Attributes</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

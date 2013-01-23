@@ -1,6 +1,6 @@
 ﻿using System;
-using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
+using IEntity = MSS.WinMobile.Infrastructure.Data.Repositories.IEntity;
 
 namespace MSS.WinMobile.Infrastructure.Data
 {

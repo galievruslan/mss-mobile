@@ -1,32 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Data.SqlServerCe;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
-using IEntity = MSS.WinMobile.Domain.Models.IEntity;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.Repositories
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T> where T : IEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : IEntity
     {
-        protected readonly SqlCeDataStore SqlCeDataStore;
+        private readonly SqlCeConnection _sqlCeConnection;
 
-        protected GenericRepository(SqlCeDataStore sqlCeDataStore)
+        public GenericRepository(SqlCeConnection sqlCeConnection)
         {
-            SqlCeDataStore = sqlCeDataStore;
+            _sqlCeConnection = sqlCeConnection;
         }
 
         #region IGenericRepository<T> Members
 
-        public abstract T GetById(int id);
+        public T GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract T[] Find();
-        public abstract T[] Find(Specification<T> specification);
+        public T[] Find()
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract void Add(T entity);
+        public T[] Find(Specification<T> specification)
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract void Update(T entity);
+        public void Add(T entity)
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract void Delete(T entity);
+        public void Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Delete(T entity)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

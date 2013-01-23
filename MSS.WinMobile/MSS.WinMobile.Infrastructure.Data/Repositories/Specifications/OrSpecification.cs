@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MSS.WinMobile.Domain.Models;
 
 namespace MSS.WinMobile.Infrastructure.Data.Repositories.Specifications
 {

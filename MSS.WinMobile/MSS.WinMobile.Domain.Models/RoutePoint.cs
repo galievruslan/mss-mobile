@@ -1,20 +1,21 @@
-﻿using OpenNETCF.ORM;
+﻿using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Local.Attributes;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    [Entity]
+    [Table("RoutePoints")]
     public class RoutePoint : IEntity
     {
-        [Field(IsPrimaryKey = true)]
+        [Key("Id")]
         public int Id { get; set; }
 
-        [Field]
+        [Reference("Route_Id", typeof(Route))]
         public int RouteId { get; set; }
 
-        [Field]
+        [Reference("ShippingAddress_Id", typeof(ShippingAddress))]
         public int ShippingAddressId { get; set; }
 
-        [Field]
+        [Reference("Status_Id", typeof(Status))]
         public int StatusId { get; set; }
     }
 }

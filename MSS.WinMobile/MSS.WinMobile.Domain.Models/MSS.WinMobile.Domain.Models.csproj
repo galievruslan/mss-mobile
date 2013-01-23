@@ -46,17 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
-    <Reference Include="OpenNETCF.ORM, Version=1.0.12242.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\OpenNETCF.ORM\CF\OpenNETCF.ORM.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
-    <Compile Include="IEntity.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
@@ -66,6 +61,16 @@
     <Compile Include="RoutePoint.cs" />
     <Compile Include="ShippingAddress.cs" />
     <Compile Include="Status.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Attributes\MSS.WinMobile.Infrastructure.Local.Attributes.csproj">
+      <Project>{98F9A834-5915-4288-817F-F96ADD72C3B7}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Local.Attributes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

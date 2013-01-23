@@ -1,6 +1,7 @@
 ﻿using System;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Specifications;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications

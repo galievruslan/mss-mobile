@@ -1,14 +1,16 @@
-﻿using OpenNETCF.ORM;
+﻿using System.Data;
+using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Local.Attributes;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    [Entity]
+    [Table("Customers")]
     public class Customer : IEntity
     {
-        [Field(IsPrimaryKey = true)]
+        [Key("Id")]
         public int Id { get; set; }
 
-        [Field]
+        [StringColumn("Name", 255)]
         public string Name { get; set; }
     }
 }

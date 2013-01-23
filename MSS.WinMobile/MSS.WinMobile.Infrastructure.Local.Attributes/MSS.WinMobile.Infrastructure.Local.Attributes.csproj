@@ -4,16 +4,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</ProjectGuid>
+    <ProjectGuid>{98F9A834-5915-4288-817F-F96ADD72C3B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile.Infrastructure.Data</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Infrastructure.Data</AssemblyName>
+    <RootNamespace>MSS.WinMobile.Infrastructure.Local.Attributes</RootNamespace>
+    <AssemblyName>MSS.WinMobile.Infrastructure.Local.Attributes</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
     <OSVersion>5.2</OSVersion>
-    <DeployDirSuffix>MSS.WinMobile.Infrastructure.Data</DeployDirSuffix>
+    <DeployDirSuffix>MSS.WinMobile.Infrastructure.Local.Attributes</DeployDirSuffix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
@@ -51,15 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISession.cs" />
-    <Compile Include="ITransaction.cs" />
+    <Compile Include="ColumnAttribute.cs" />
+    <Compile Include="ReferenceAttribute.cs" />
+    <Compile Include="DecimalColumnAttribute.cs" />
+    <Compile Include="StringColumnAttribute.cs" />
+    <Compile Include="KeyAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IEntity.cs" />
-    <Compile Include="Repositories\IGenericRepository.cs" />
-    <Compile Include="Repositories\Specifications\AndSpecification.cs" />
-    <Compile Include="Repositories\Specifications\CompositeSpecification.cs" />
-    <Compile Include="Repositories\Specifications\OrSpecification.cs" />
-    <Compile Include="Repositories\Specifications\Specification.cs" />
+    <Compile Include="TableAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
