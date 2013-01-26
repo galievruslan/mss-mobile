@@ -4,10 +4,11 @@ using System.Linq;
 using System.Reflection;
 using MSS.WinMobile.Infrastructure.Local.Attributes;
 using MSS.WinMobile.Infrastructure.Local.Data.Scripts;
+using MSS.WinMobile.Infrastructure.Local.Data.Scripts.System;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
 {
-    public static class ScriptGenerator
+    public static class SystemScriptGenerator
     { 
         public static Script GenearteCreateTableFor<T>()
         {
@@ -30,33 +31,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
                 createColumnScript
                     .ColumnName(attributes.First().Name);
 
-                if (propertyInfo.PropertyType == typeof(int))
-                {
-                    createColumnScript = createColumnScript.AsInteger();
-                }
-                else if (propertyInfo.PropertyType == typeof(DateTime))
-                {
-                    createColumnScript = createColumnScript.AsDatetime();
-                }
-                else if (propertyInfo.PropertyType == typeof(string))
-                {
-                    StringColumnAttribute stringColumnAttribute =
-                        attributes.OfType<StringColumnAttribute>().FirstOrDefault();
-                    if (stringColumnAttribute != null)
-                    {
-                        createColumnScript = createColumnScript.AsString(stringColumnAttribute.Lenght);
-                    }
-                }
-                else if (propertyInfo.PropertyType == typeof(decimal))
-                {
-                    DecimalColumnAttribute decimalColumnAttribute =
-                        attributes.OfType<DecimalColumnAttribute>().FirstOrDefault();
-                    if (decimalColumnAttribute != null)
-                    {
-                        createColumnScript = createColumnScript.AsDecimal(decimalColumnAttribute.Precision,
-                                                                          decimalColumnAttribute.Scale);
-                    }
-                }
+                createColumnScript.AsType(propertyInfo);
 
                 KeyAttribute keyAttribute =
                         attributes.OfType<KeyAttribute>().FirstOrDefault();
@@ -99,33 +74,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
                 createColumnScript
                     .ColumnName(referenceAttribute.Name);
 
-                if (propertyInfo.PropertyType == typeof (int))
-                {
-                    createColumnScript = createColumnScript.AsInteger();
-                }
-                else if (propertyInfo.PropertyType == typeof (DateTime))
-                {
-                    createColumnScript = createColumnScript.AsDatetime();
-                }
-                else if (propertyInfo.PropertyType == typeof (string))
-                {
-                    StringColumnAttribute stringColumnAttribute =
-                        propertyInfo.GetCustomAttributes(true).OfType<StringColumnAttribute>().FirstOrDefault();
-                    if (stringColumnAttribute != null)
-                    {
-                        createColumnScript = createColumnScript.AsString(stringColumnAttribute.Lenght);
-                    }
-                }
-                else if (propertyInfo.PropertyType == typeof (decimal))
-                {
-                    DecimalColumnAttribute decimalColumnAttribute =
-                        propertyInfo.GetCustomAttributes(true).OfType<DecimalColumnAttribute>().FirstOrDefault();
-                    if (decimalColumnAttribute != null)
-                    {
-                        createColumnScript = createColumnScript.AsDecimal(decimalColumnAttribute.Precision,
-                                                                          decimalColumnAttribute.Scale);
-                    }
-                }
+                createColumnScript.AsType(propertyInfo);
 
                 createColumnScript = createColumnScript.AsReference(referenceTableAttribute.Name);
                 alterTableScript.AddColumn(createColumnScript);
@@ -133,6 +82,39 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
             }
 
             return scripts.ToArray();
+        }
+
+        public static CreateColumnScript AsType(this CreateColumnScript createColumnScript, PropertyInfo propertyInfo)
+        {
+            if (propertyInfo.PropertyType == typeof(int))
+            {
+                createColumnScript = createColumnScript.AsInteger();
+            }
+            else if (propertyInfo.PropertyType == typeof(DateTime))
+            {
+                createColumnScript = createColumnScript.AsDatetime();
+            }
+            else if (propertyInfo.PropertyType == typeof(string))
+            {
+                StringColumnAttribute stringColumnAttribute =
+                    propertyInfo.GetCustomAttributes(true).OfType<StringColumnAttribute>().FirstOrDefault();
+                if (stringColumnAttribute != null)
+                {
+                    createColumnScript = createColumnScript.AsString(stringColumnAttribute.Lenght);
+                }
+            }
+            else if (propertyInfo.PropertyType == typeof(decimal))
+            {
+                DecimalColumnAttribute decimalColumnAttribute =
+                    propertyInfo.GetCustomAttributes(true).OfType<DecimalColumnAttribute>().FirstOrDefault();
+                if (decimalColumnAttribute != null)
+                {
+                    createColumnScript = createColumnScript.AsDecimal(decimalColumnAttribute.Precision,
+                                                                      decimalColumnAttribute.Scale);
+                }
+            }
+
+            return createColumnScript;
         }
     }
 

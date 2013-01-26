@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.Local.Data.Scripts
+﻿namespace MSS.WinMobile.Infrastructure.Local.Data.Scripts.System
 {
     public class CreateReferenceColumnScript : CreateColumnScript
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators;
 using MSS.WinMobile.Infrastructure.Local.Data.Scripts;
 
 namespace MSS.WinMobile.Infrastructure.Local.Data
@@ -30,6 +31,25 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
                     transaction.Commit();
                 }
                 catch (Exception)
+                {
+                    transaction.Rollback();
+                }
+            }
+        }
+
+        public void Insert<T>(T entity)
+        {
+            Script script = DataScriptGenerator.GenerateInsertFor(entity);
+            using (IDbTransaction transaction = _connection.BeginTransaction())
+            {
+                try
+                {
+                    IDbCommand command = _connection.CreateCommand();
+                    command.CommandText = script.Text;
+                    command.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                 }

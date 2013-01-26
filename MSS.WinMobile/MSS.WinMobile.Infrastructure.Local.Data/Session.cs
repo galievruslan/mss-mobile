@@ -32,28 +32,28 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
 
                 var scripts = new List<Script>
                     {
-                        ScriptGenerator.GenearteCreateTableFor<Customer>(),
-                        ScriptGenerator.GenearteCreateTableFor<Manager>(),
-                        ScriptGenerator.GenearteCreateTableFor<Order>(),
-                        ScriptGenerator.GenearteCreateTableFor<OrderItem>(),
-                        ScriptGenerator.GenearteCreateTableFor<Product>(),
-                        ScriptGenerator.GenearteCreateTableFor<Route>(),
-                        ScriptGenerator.GenearteCreateTableFor<RoutePoint>(),
-                        ScriptGenerator.GenearteCreateTableFor<ShippingAddress>(),
-                        ScriptGenerator.GenearteCreateTableFor<Status>()
+                        SystemScriptGenerator.GenearteCreateTableFor<Customer>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Manager>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Order>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<OrderItem>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Product>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Route>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<RoutePoint>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<ShippingAddress>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Status>()
                     };
-                scripts.AddRange(ScriptGenerator.GenerateAlterTableFor<Order>());
-                scripts.AddRange(ScriptGenerator.GenerateAlterTableFor<OrderItem>());
-                scripts.AddRange(ScriptGenerator.GenerateAlterTableFor<Route>());
-                scripts.AddRange(ScriptGenerator.GenerateAlterTableFor<RoutePoint>());
-                scripts.AddRange(ScriptGenerator.GenerateAlterTableFor<ShippingAddress>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<Order>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<OrderItem>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<Route>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<RoutePoint>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<ShippingAddress>());
 
                 var scriptExecuter = new ScriptExecuter(GetConnection());
                 scriptExecuter.ExecuteCreateScripts(scripts);
             }
         }
 
-        protected SqlCeConnection GetConnection()
+        public SqlCeConnection GetConnection()
         {
             if (_connection == null ||
                 _connection.State != ConnectionState.Open)

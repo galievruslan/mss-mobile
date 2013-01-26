@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace MSS.WinMobile.Infrastructure.Local.Data.Scripts
+namespace MSS.WinMobile.Infrastructure.Local.Data.Scripts.System
 {
     public class CreateTableScript : Script
     {
