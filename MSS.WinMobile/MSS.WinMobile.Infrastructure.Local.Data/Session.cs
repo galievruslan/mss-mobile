@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlServerCe;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.Local.Attributes;
 using MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators;
 using MSS.WinMobile.Infrastructure.Local.Data.Scripts;
 
@@ -34,6 +27,9 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
                     {
                         SystemScriptGenerator.GenearteCreateTableFor<Customer>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Manager>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Warehouse>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<UnitOfMeasure>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<PriceList>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Order>(),
                         SystemScriptGenerator.GenearteCreateTableFor<OrderItem>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Product>(),

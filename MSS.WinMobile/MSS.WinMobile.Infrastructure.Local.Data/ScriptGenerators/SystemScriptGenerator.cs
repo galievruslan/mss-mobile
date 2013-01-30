@@ -31,7 +31,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
                 createColumnScript
                     .ColumnName(attributes.First().Name);
 
-                createColumnScript.AsType(propertyInfo);
+                createColumnScript = createColumnScript.AsType(propertyInfo);
 
                 KeyAttribute keyAttribute =
                         attributes.OfType<KeyAttribute>().FirstOrDefault();
@@ -74,7 +74,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
                 createColumnScript
                     .ColumnName(referenceAttribute.Name);
 
-                createColumnScript.AsType(propertyInfo);
+                createColumnScript = createColumnScript.AsType(propertyInfo);
 
                 createColumnScript = createColumnScript.AsReference(referenceTableAttribute.Name);
                 alterTableScript.AddColumn(createColumnScript);

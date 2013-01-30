@@ -13,12 +13,14 @@ namespace MSS.WinMobile.UI.Views
                 to = new LogonView();
             else if (typeof(T) == typeof(IMenuView))
                 to = new MenuView();
+            else if (typeof(T) == typeof(ISynchronizationView))
+                to = new SynchronizationView();
             else
                 throw new ViewNotFoundException();
 
             to.Show();
-            form.Close();
-            form.Dispose();
+            //form.Close();
+            //form.Dispose();
         }
 
         public static void ShowInfoDialog(this Form form, string message)

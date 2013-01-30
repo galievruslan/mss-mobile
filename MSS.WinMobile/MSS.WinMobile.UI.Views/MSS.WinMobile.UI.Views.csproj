@@ -76,6 +76,12 @@
       <DependentUpon>MenuView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SynchronizationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SynchronizationView.Designer.cs">
+      <DependentUpon>SynchronizationView.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuView.resx">
       <DependentUpon>MenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SynchronizationView.resx">
+      <DependentUpon>SynchronizationView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

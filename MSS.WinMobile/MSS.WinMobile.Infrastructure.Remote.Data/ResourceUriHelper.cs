@@ -32,6 +32,18 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
             } else if (type == typeof(Status))
             {
                 controllerName = "statuses";
+            }
+            else if (type == typeof(Warehouse))
+            {
+                controllerName = "warehouses";
+            }
+            else if (type == typeof(UnitOfMeasure))
+            {
+                controllerName = "unit_of_measures";
+            }
+            else if (type == typeof(PriceList))
+            {
+                controllerName = "price_lists";
             } 
             else 
             {

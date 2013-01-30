@@ -6,6 +6,13 @@ namespace MSS.WinMobile.UI.Presenters
 {
     public class MenuPresenter : Presenter
     {
+        private readonly IMenuView _view;
+
+        public MenuPresenter(IMenuView view)
+        {
+            _view = view;
+        }
+
         public void Route()
         {
         }
@@ -16,6 +23,7 @@ namespace MSS.WinMobile.UI.Presenters
 
         public void Synchronization()
         {
+            _view.NavigateTo<ISynchronizationView>();
         }
 
         public void BaliBali()

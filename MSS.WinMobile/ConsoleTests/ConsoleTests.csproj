@@ -56,6 +56,10 @@
       <Project>{CA136097-615C-45D6-93BF-F0A4435E84FA}</Project>
       <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
+      <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

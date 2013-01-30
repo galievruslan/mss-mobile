@@ -4,14 +4,14 @@ using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class MenuView : Form, IMenuView
+    public partial class SynchronizationView : Form, ISynchronizationView
     {
-        private readonly MenuPresenter _menuPresenter;
+        private readonly SynchronizationPresenter _presenter;
 
-        public MenuView()
+        public SynchronizationView()
         {
             InitializeComponent();
-            _menuPresenter = new MenuPresenter(this);
+            _presenter = new SynchronizationPresenter(this);
         }
 
         public void NavigateTo<T>() where T : IView
@@ -34,24 +34,30 @@ namespace MSS.WinMobile.UI.Views
             return this.ShowConfirmDialog(question);
         }
 
-        private void _goRouteButton_Click(object sender, EventArgs e)
+        public void Start()
         {
-            _menuPresenter.Route();
+            _presenter.Synchronize();
         }
 
-        private void _goCustomersButton_Click(object sender, EventArgs e)
+        public void Cancel()
         {
-            _menuPresenter.Customers();
+            _presenter.Cancel();
         }
 
-        private void _goSynchronizationButton_Click(object sender, EventArgs e)
+        public void Exit()
         {
-            _menuPresenter.Synchronization();
+            Close();
+            Dispose();
         }
 
-        private void _goBaliBaliButton_Click(object sender, EventArgs e)
+        private void StartButtonClick(object sender, EventArgs e)
         {
-            _menuPresenter.BaliBali();
+            Start();
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+            Cancel();
         }
     }
 }

@@ -3,13 +3,13 @@ using MSS.WinMobile.Infrastructure.Local.Attributes;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    [Table("Products")]
-    public class Product : IEntity
+    [Table("Warehouses")]
+    public class Warehouse : IEntity
     {
         [Key("Id")]
         public int Id { get; set; }
 
-        [StringColumn("Name", 255)]
-        public string Name { get; set; }
+        [StringColumn("Address", 255)]
+        public string Address { get; set; }
     }
 }

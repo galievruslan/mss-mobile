@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using MSS.WinMobile.Domain.Models;
+﻿using System.Text;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
 using MSS.WinMobile.Infrastructure.Data.Repositories.Specifications;
 using MSS.WinMobile.Infrastructure.Remote.Data.Repositories.Specifications;
@@ -46,8 +44,6 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
         {
             string uri = string.Format(@"{0}.json",
                 ResourceUriHelper.GetControllerName(typeof(T)));
-
-            //var settings = Converter.Deserialize new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
             
             var jsonBuilder = new StringBuilder();
             Json.JsonSerializer.Serialize(jsonBuilder, entity);
@@ -60,9 +56,6 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             string uri = string.Format(@"{0}/{1}.json",
                 ResourceUriHelper.GetControllerName(typeof(T)),
                 entity.Id);
-
-            //var settings = new JsonSerializerSettings {ContractResolver = new LowercaseContractResolver()};
-            //string json = JsonConvert.SerializeObject(entity, Formatting.Indented, settings);
 
             var jsonBuilder = new StringBuilder();
             Json.JsonSerializer.Serialize(jsonBuilder, entity);
@@ -79,26 +72,4 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Repositories
             _requestDispatcher.Dispatch(uri, "DELETE", string.Empty);
         }
     }
-
-    //public class LowercaseContractResolver : DefaultContractResolver
-    //{
-    //    protected override string ResolvePropertyName(string propertyName)
-    //    {
-    //        // Get upper case characters positions
-    //        var positions = new List<int>();
-
-    //        for (var i = 1; i < propertyName.Length; i++) {
-    //            if (Char.IsUpper(propertyName[i])) {
-    //                positions.Add(i);
-    //            }
-    //        }
-
-    //        // insert _ character in all positions
-    //        for (var i = positions.Count - 1; i >= 0; i--) {
-    //            propertyName = propertyName.Insert(positions[i], "_");
-    //        }
-
-    //        return propertyName.ToLower();
-    //    }
-    //}
 }

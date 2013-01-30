@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PriceList.cs" />
+    <Compile Include="UnitOfMeasure.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Order.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="RoutePoint.cs" />
     <Compile Include="ShippingAddress.cs" />
     <Compile Include="Status.cs" />
+    <Compile Include="Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
