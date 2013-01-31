@@ -49,7 +49,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
             }
         }
 
-        public SqlCeConnection GetConnection()
+        private SqlCeConnection GetConnection()
         {
             if (_connection == null ||
                 _connection.State != ConnectionState.Open)

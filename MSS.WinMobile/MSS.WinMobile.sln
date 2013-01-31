@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Controls", "MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj", "{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Services.Synchronizer", "MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.Synchronizer.csproj", "{4D4039F4-3296-4FA8-8E73-743B476550AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Services", "MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.csproj", "{4D4039F4-3296-4FA8-8E73-743B476550AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Presenters", "MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj", "{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}"
 EndProject
@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.ViewModel"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Views", "MSS.WinMobile.UI.Views\MSS.WinMobile.UI.Views.csproj", "{59551DCE-C626-4BAA-8FAB-7E6977957B17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Config", "MSS.WinMobile.Config\MSS.WinMobile.Config.csproj", "{355E3AFE-670B-4DC5-9625-40D66232F9E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile", "MSS.WinMobile.Config\MSS.WinMobile.csproj", "{355E3AFE-670B-4DC5-9625-40D66232F9E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application", "MSS.WinMobile.Application\MSS.WinMobile.Application.csproj", "{13A9120E-F646-4A64-9303-5036B5C86613}"
 EndProject

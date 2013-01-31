@@ -1,26 +1,32 @@
 ﻿using System;
 using MSS.WinMobile.UI.Views;
+using log4net.Config;
 
 namespace MSS.WinMobile.Application
 {
     static class Program
     {
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Program));
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [MTAThread]
         static void Main()
         {
-            //var layout = new Layout();
-            //ISession localStorageSession =
-            //    new Infrastructure.Local.Data.Session(MobileConfiguration.Settings["LocalStorageFileName"]);
-            //ISession remoteStorageSession =
-            //    new Infrastructure.Remote.Data.Session(MobileConfiguration.Settings["RemoteStorageAddress"],
-            //                                           Int32.Parse(MobileConfiguration.Settings["RemoteStoragePort"]));
-            //IActivityFactory activityFactory = new ActivityFactory(localStorageSession, remoteStorageSession);
-            //INavigator navigator = new Navigator(layout);
-            //navigator.NavigateTo(activityFactory.GetActivity("Home"));
+            //Load Config.xml to setup log4net
+            string path = System.IO.Path.GetDirectoryName(
+                System.Reflection.Assembly.GetExecutingAssembly()
+               .GetModules()[0].FullyQualifiedName)
+               + "\\log4net.xml";
+            if (System.IO.File.Exists(path))
+            {
+                XmlConfigurator.Configure(new System.IO.FileInfo(path));
+            }
+
+            Log.Info("Application start");
             System.Windows.Forms.Application.Run(new LogonView());
+            Log.Info("Application finish");
         }
     }
 }

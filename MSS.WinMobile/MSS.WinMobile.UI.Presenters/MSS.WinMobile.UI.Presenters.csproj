@@ -66,9 +66,9 @@
     <Compile Include="SynchronizationPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.Config.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
       <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
-      <Name>MSS.WinMobile.Config</Name>
+      <Name>MSS.WinMobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
