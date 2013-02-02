@@ -39,6 +39,22 @@ namespace MSS.WinMobile.UI.Views
             _presenter.Synchronize();
         }
 
+        public delegate void UpdateStatusDelegate(string status);
+        public void UpdateStatus(string status)
+        {
+            if (_statusTextBox.InvokeRequired)
+            {
+                _statusTextBox.Invoke(new UpdateStatusDelegate(UpdateStatus), status);
+            }
+            else
+            {
+                if (_statusTextBox.Text != string.Empty)
+                    _statusTextBox.Text += "\n";
+
+                _statusTextBox.Text += status;
+            }
+        }
+
         public void Cancel()
         {
             _presenter.Cancel();

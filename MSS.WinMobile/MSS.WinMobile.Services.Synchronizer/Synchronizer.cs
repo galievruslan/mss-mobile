@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
+using log4net;
 
 namespace MSS.WinMobile.Services
 {
     public class Synchronizer : IObservable {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(Synchronizer));
+
         private readonly ISession _sourceSession;
         private readonly ISession _destinationSession;
 
@@ -39,7 +42,7 @@ namespace MSS.WinMobile.Services
         }
 
         private void SynchronizeEntity<T>() where T : IEntity {
-            NotifyObservers(new Notification("{0} syncronization started."));
+            NotifyObservers(new Notification(string.Format("{0} syncronization started.", typeof(T))));
 
             try
             {
@@ -61,11 +64,11 @@ namespace MSS.WinMobile.Services
                     destinationTransaction.Commit();
                 }
 
-                NotifyObservers(new Notification("{0} syncronization finished."));
+                NotifyObservers(new Notification(string.Format("{0} syncronization finished.", typeof(T))));
             }
             catch (Exception)
             {
-                NotifyObservers(new Notification("{0} syncronization failed."));
+                NotifyObservers(new Notification(string.Format("{0} syncronization failed.", typeof(T))));
             }
         }
 
@@ -81,9 +84,9 @@ namespace MSS.WinMobile.Services
                 {
                     observer.Notify(notification);
                 }
-                catch
+                catch(Exception exception)
                 {
-
+                    Log.Error("Observer notification failed", exception);
                 }
             }
         }
@@ -98,6 +101,14 @@ namespace MSS.WinMobile.Services
         {
             if (_observers.Contains(observer))
                 _observers.Remove(observer);
+        }
+
+        public void Dispose()
+        {
+            foreach (var observer in _observers)
+            {
+                Unsubscribe(observer);
+            }
         }
 
         #endregion

@@ -4,6 +4,8 @@
     {
         void Start();
 
+        void UpdateStatus(string status);
+
         void Cancel();
 
         void Exit();

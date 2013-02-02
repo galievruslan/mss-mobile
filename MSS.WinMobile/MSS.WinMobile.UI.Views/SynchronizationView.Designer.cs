@@ -32,8 +32,7 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this._startButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this._progressBar = new System.Windows.Forms.ProgressBar();
-            this._infoLabel = new System.Windows.Forms.Label();
+            this._statusTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // _startButton
@@ -54,17 +53,14 @@
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
-            // _progressBar
+            // _statusTextBox
             // 
-            this._progressBar.Location = new System.Drawing.Point(18, 36);
-            this._progressBar.Name = "_progressBar";
-            this._progressBar.Size = new System.Drawing.Size(205, 25);
-            // 
-            // _infoLabel
-            // 
-            this._infoLabel.Location = new System.Drawing.Point(18, 13);
-            this._infoLabel.Name = "_infoLabel";
-            this._infoLabel.Size = new System.Drawing.Size(100, 20);
+            this._statusTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._statusTextBox.Location = new System.Drawing.Point(15, 3);
+            this._statusTextBox.Multiline = true;
+            this._statusTextBox.Name = "_statusTextBox";
+            this._statusTextBox.Size = new System.Drawing.Size(208, 227);
+            this._statusTextBox.TabIndex = 2;
             // 
             // SynchronizationView
             // 
@@ -72,8 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Controls.Add(this._infoLabel);
-            this.Controls.Add(this._progressBar);
+            this.Controls.Add(this._statusTextBox);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._startButton);
             this.Menu = this.mainMenu1;
@@ -87,7 +82,6 @@
 
         private System.Windows.Forms.Button _startButton;
         private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.ProgressBar _progressBar;
-        private System.Windows.Forms.Label _infoLabel;
+        private System.Windows.Forms.TextBox _statusTextBox;
     }
 }

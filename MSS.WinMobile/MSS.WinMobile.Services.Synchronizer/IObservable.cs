@@ -1,6 +1,8 @@
-﻿namespace MSS.WinMobile.Services
+﻿using System;
+
+namespace MSS.WinMobile.Services
 {
-    public interface IObservable
+    public interface IObservable : IDisposable
     {
         void Subscribe(IObserver observer);
 

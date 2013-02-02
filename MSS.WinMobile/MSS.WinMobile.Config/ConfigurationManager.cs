@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 
 namespace MSS.WinMobile
@@ -31,9 +32,10 @@ namespace MSS.WinMobile
         {
             AppSettings.Clear();
 
-            // Determine the location of the config file
-            _configFile = String.Format("{0}.config",
-                                       System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            string applicationPath = Path.GetDirectoryName(
+            Assembly.GetExecutingAssembly().GetName().CodeBase);
+
+            if (applicationPath != null) _configFile = Path.Combine(applicationPath, "application.config");
 
             // Ensure configuration file exists
             if (!File.Exists(_configFile))
