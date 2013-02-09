@@ -105,9 +105,9 @@ namespace MSS.WinMobile.Services
 
         public void Dispose()
         {
-            foreach (var observer in _observers)
+            while (_observers.Count > 0)
             {
-                Unsubscribe(observer);
+                Unsubscribe(_observers[0]);
             }
         }
 

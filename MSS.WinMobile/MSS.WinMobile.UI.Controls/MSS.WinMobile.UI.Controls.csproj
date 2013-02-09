@@ -45,18 +45,50 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataGrid" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PictureButton.cs">
+    <Compile Include="CustomersListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PictureButton.Designer.cs">
+    <Compile Include="CustomersListBox.Designer.cs">
+      <DependentUpon>CustomersListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomersListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomersListBoxItem.Designer.cs">
+      <DependentUpon>CustomersListBoxItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListBox\IListBox.cs" />
+    <Compile Include="ListBox\IListBoxItem.cs" />
+    <Compile Include="ListBox\ListBoxConstants.cs" />
+    <Compile Include="ListBox\SearchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\SearchPanel.Designer.cs">
+      <DependentUpon>SearchPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListBox\VirtualListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\VirtualListBoxItem.Designer.cs">
+      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListBox\PictureButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\PictureButton.Designer.cs">
       <DependentUpon>PictureButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,16 +97,41 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ListBox\VirtualListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\VirtualListBox.Designer.cs">
+      <DependentUpon>VirtualListBox.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\appbar.home.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ListBox\SearchPanel.resx">
+      <DependentUpon>SearchPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBox\VirtualListBoxItem.resx">
+      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListBox\VirtualListBox.resx">
+      <DependentUpon>VirtualListBox.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
+      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
+      <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

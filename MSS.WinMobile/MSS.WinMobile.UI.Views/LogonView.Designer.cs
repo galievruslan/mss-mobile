@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.MainMenu mainMenu1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -29,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this._passwordTextBox = new System.Windows.Forms.TextBox();
             this._accountTextBox = new System.Windows.Forms.TextBox();
             this._accountLabel = new System.Windows.Forms.Label();
@@ -71,7 +69,7 @@
             // 
             // _okButton
             // 
-            this._okButton.Location = new System.Drawing.Point(73, 236);
+            this._okButton.Location = new System.Drawing.Point(71, 186);
             this._okButton.Name = "_okButton";
             this._okButton.Size = new System.Drawing.Size(72, 20);
             this._okButton.TabIndex = 4;
@@ -80,7 +78,7 @@
             // 
             // _cancelButton
             // 
-            this._cancelButton.Location = new System.Drawing.Point(151, 236);
+            this._cancelButton.Location = new System.Drawing.Point(149, 186);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.Size = new System.Drawing.Size(72, 20);
             this._cancelButton.TabIndex = 5;
@@ -92,16 +90,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 268);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._okButton);
             this.Controls.Add(this._passwordLabel);
             this.Controls.Add(this._accountLabel);
             this.Controls.Add(this._accountTextBox);
             this.Controls.Add(this._passwordTextBox);
-            this.Menu = this.mainMenu1;
             this.Name = "LogonView";
-            this.Text = "LogonView";
+            this.Size = new System.Drawing.Size(231, 216);
             this.ResumeLayout(false);
 
         }

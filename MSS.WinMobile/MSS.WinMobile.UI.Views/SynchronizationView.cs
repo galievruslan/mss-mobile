@@ -4,34 +4,20 @@ using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class SynchronizationView : Form, ISynchronizationView
+    public partial class SynchronizationView : UserControl, ISynchronizationView
     {
         private readonly SynchronizationPresenter _presenter;
 
-        public SynchronizationView()
+        // Designer only usage
+        internal SynchronizationView()
         {
             InitializeComponent();
-            _presenter = new SynchronizationPresenter(this);
         }
 
-        public void NavigateTo<T>() where T : IView
+        public SynchronizationView(ILayout layout)
         {
-            this.Navigate<T>();
-        }
-
-        public void ShowErrorDialog(string message)
-        {
-            this.ShowErrDialog(message);
-        }
-
-        public void ShowInformationDialog(string message)
-        {
-            this.ShowInfoDialog(message);
-        }
-
-        public bool ShowConfirmationDialog(string question)
-        {
-            return this.ShowConfirmDialog(question);
+            InitializeComponent();
+            _presenter = new SynchronizationPresenter(layout, this);
         }
 
         public void Start()
@@ -48,22 +34,14 @@ namespace MSS.WinMobile.UI.Views
             }
             else
             {
-                if (_statusTextBox.Text != string.Empty)
-                    _statusTextBox.Text += "\n";
-
                 _statusTextBox.Text += status;
+                _statusTextBox.ScrollToCaret();
             }
         }
 
         public void Cancel()
         {
             _presenter.Cancel();
-        }
-
-        public void Exit()
-        {
-            Close();
-            Dispose();
         }
 
         private void StartButtonClick(object sender, EventArgs e)

@@ -1,5 +1,5 @@
 ﻿using System;
-using MSS.WinMobile.Domain.Models;
+using System.Windows.Forms;
 
 namespace ConsoleTests
 {
@@ -132,7 +132,7 @@ namespace ConsoleTests
             //    lPriceListRepository.Add(priceList);
             //}
             
-            Console.Read();
+            Application.Run(new TestForm());
         }
     }
 }

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILayout.cs" />
     <Compile Include="ILogonView.cs" />
     <Compile Include="IMenuView.cs" />
     <Compile Include="ISynchronizationView.cs" />

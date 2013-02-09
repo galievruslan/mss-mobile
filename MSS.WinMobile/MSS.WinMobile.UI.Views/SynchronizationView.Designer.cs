@@ -71,7 +71,6 @@
             this.Controls.Add(this._statusTextBox);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._startButton);
-            this.Menu = this.mainMenu1;
             this.Name = "SynchronizationView";
             this.Text = "SynchronizationView";
             this.ResumeLayout(false);

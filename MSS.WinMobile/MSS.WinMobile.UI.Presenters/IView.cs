@@ -1,13 +1,8 @@
-﻿namespace MSS.WinMobile.UI.Presenters
+﻿using System;
+
+namespace MSS.WinMobile.UI.Presenters
 {
     public interface IView
     {
-        void NavigateTo<T>() where T : IView;
-
-        void ShowErrorDialog(string message);
-
-        void ShowInformationDialog(string message);
-
-        bool ShowConfirmationDialog(string question);
     }
 }

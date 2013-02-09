@@ -9,7 +9,8 @@ namespace MSS.WinMobile.UI.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(Synchronizer));
 
         private readonly ISynchronizationView _view;
-        public SynchronizationPresenter(ISynchronizationView view)
+        public SynchronizationPresenter(ILayout layout, ISynchronizationView view)
+            :base(layout)
         {
             _view = view;
         }
@@ -43,7 +44,7 @@ namespace MSS.WinMobile.UI.Presenters
                 Log.Error("Synchronization cancelation error", threadAbortException);
             }
 
-            _view.Exit();
+            Layout.Navigate<IMenuView>();
         }
 
         #region IObserver

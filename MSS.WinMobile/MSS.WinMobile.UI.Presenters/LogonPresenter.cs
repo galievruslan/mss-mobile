@@ -8,7 +8,8 @@ namespace MSS.WinMobile.UI.Presenters
         private readonly ISession _remoteSession;
         private readonly ISession _localSession;
 
-        public LogonPresenter(ILogonView view)
+        public LogonPresenter(ILayout layout, ILogonView view)
+            :base(layout)
         {
             _view = view;
             //_remoteSession = new Infrastructure.Remote.Data.Session("192.168.0.102",
@@ -35,7 +36,7 @@ namespace MSS.WinMobile.UI.Presenters
             //                IGenericRepository<Manager> managerLocalRepo = localTransaction.Resolve<Manager>();
             //                managerLocalRepo.Add(manager);
             //                localTransaction.Commit();
-                            _view.NavigateTo<IMenuView>();
+                            Layout.Navigate<IMenuView>();
             //            }
             //        }
             //    }
@@ -48,7 +49,7 @@ namespace MSS.WinMobile.UI.Presenters
 
         public void Cancel()
         {
-            _view.Exit();
+            Layout.Exit();
         }
     }
 }

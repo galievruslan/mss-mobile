@@ -1,5 +1,5 @@
 ﻿using System;
-using MSS.WinMobile.UI.Views;
+using MSS.WinMobile.UI.Views.Layouts;
 using log4net.Config;
 
 namespace MSS.WinMobile.Application
@@ -25,7 +25,7 @@ namespace MSS.WinMobile.Application
             }
 
             Log.Info("Application start");
-            System.Windows.Forms.Application.Run(new LogonView());
+            System.Windows.Forms.Application.Run(new Layout());
             Log.Info("Application finish");
         }
     }

@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.MainMenu mainMenu1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuView));
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this._goRouteButton = new MSS.WinMobile.UI.Controls.PictureButton();
             this._goCustomersButton = new MSS.WinMobile.UI.Controls.PictureButton();
             this._goBaliBaliButton = new MSS.WinMobile.UI.Controls.PictureButton();
@@ -86,14 +84,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 268);
             this.Controls.Add(this._goBaliBaliButton);
             this.Controls.Add(this._goSynchronizationButton);
             this.Controls.Add(this._goCustomersButton);
             this.Controls.Add(this._goRouteButton);
-            this.Menu = this.mainMenu1;
             this.Name = "MenuView";
-            this.Text = "MenuView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.ResumeLayout(false);
 
         }

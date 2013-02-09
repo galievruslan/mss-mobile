@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MSS.WinMobile.UI.Presenters
+﻿namespace MSS.WinMobile.UI.Presenters
 {
     public class MenuPresenter : Presenter
     {
         private readonly IMenuView _view;
 
-        public MenuPresenter(IMenuView view)
+        public MenuPresenter(ILayout layout, IMenuView view)
+            :base(layout)
         {
             _view = view;
         }
@@ -23,7 +20,7 @@ namespace MSS.WinMobile.UI.Presenters
 
         public void Synchronization()
         {
-            _view.NavigateTo<ISynchronizationView>();
+            Layout.Navigate<ISynchronizationView>();
         }
 
         public void BaliBali()

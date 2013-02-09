@@ -4,34 +4,20 @@ using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class MenuView : Form, IMenuView
+    public partial class MenuView : UserControl, IMenuView
     {
         private readonly MenuPresenter _menuPresenter;
 
-        public MenuView()
+        // Designer only usage
+        internal MenuView()
         {
             InitializeComponent();
-            _menuPresenter = new MenuPresenter(this);
         }
 
-        public void NavigateTo<T>() where T : IView
+        public MenuView(ILayout layout)
         {
-            this.Navigate<T>();
-        }
-
-        public void ShowErrorDialog(string message)
-        {
-            this.ShowErrDialog(message);
-        }
-
-        public void ShowInformationDialog(string message)
-        {
-            this.ShowInfoDialog(message);
-        }
-
-        public bool ShowConfirmationDialog(string question)
-        {
-            return this.ShowConfirmDialog(question);
+            InitializeComponent();
+            _menuPresenter = new MenuPresenter(layout, this);
         }
 
         private void _goRouteButton_Click(object sender, EventArgs e)

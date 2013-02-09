@@ -3,38 +3,31 @@ using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class LogonView : Form, ILogonView
+    public partial class LogonView : UserControl, ILogonView
     {
-        readonly LogonPresenter _presenter;
+        private readonly ILayout _layout;
+        private readonly LogonPresenter _presenter;
 
-        public LogonView()
+        // Designer only usage
+        internal LogonView()
         {
             InitializeComponent();
-            _presenter = new LogonPresenter(this);
         }
 
-        public void NavigateTo<T>() where T : IView
+        public LogonView(ILayout layout)
         {
-            this.Navigate<T>();
-        }
-
-        public void ShowErrorDialog(string message)
-        {
-            this.ShowErrDialog(message);
-        }
-
-        public void ShowInformationDialog(string message)
-        {
-            this.ShowInfoDialog(message);
-        }
-
-        public bool ShowConfirmationDialog(string question)
-        {
-            return this.ShowConfirmDialog(question);
+            InitializeComponent();
+            _layout = layout;
+            _presenter = new LogonPresenter(layout, this);
         }
 
         public string Account { get; set; }
         public string Password { get; set; }
+
+        public void NavigateToMainMenu()
+        {
+            _layout.Navigate<IMenuView>();
+        }
 
         public void Logon()
         {
@@ -48,8 +41,7 @@ namespace MSS.WinMobile.UI.Views
 
         public void Exit()
         {
-            Close();
-            Dispose();
+            _layout.Exit();
         }
 
         private void OkButtonClick(object sender, System.EventArgs e)

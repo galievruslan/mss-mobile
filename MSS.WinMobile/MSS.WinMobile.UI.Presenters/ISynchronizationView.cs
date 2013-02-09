@@ -7,7 +7,5 @@
         void UpdateStatus(string status);
 
         void Cancel();
-
-        void Exit();
     }
 }

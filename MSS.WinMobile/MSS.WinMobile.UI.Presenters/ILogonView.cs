@@ -9,7 +9,5 @@
         void Logon();
 
         void Cancel();
-
-        void Exit();
     }
 }
