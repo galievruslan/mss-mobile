@@ -50,6 +50,7 @@
       <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="MSS.WinMobile.UI.Controls, Version=1.0.4789.41030, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -58,37 +59,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomersListBox.cs">
+    <Compile Include="CustomerListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomersListBox.Designer.cs">
-      <DependentUpon>CustomersListBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomersListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomersListBoxItem.Designer.cs">
-      <DependentUpon>CustomersListBoxItem.cs</DependentUpon>
-    </Compile>
+    <Compile Include="CustomerListBoxItemFactory.cs" />
     <Compile Include="ListBox\IListBox.cs" />
     <Compile Include="ListBox\IListBoxItem.cs" />
-    <Compile Include="ListBox\ListBoxConstants.cs" />
-    <Compile Include="ListBox\SearchPanel.cs">
+    <Compile Include="SearchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListBox\SearchPanel.Designer.cs">
+    <Compile Include="SearchPanel.Designer.cs">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListBox\VirtualListBoxItem.cs">
+    <Compile Include="PictureButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListBox\VirtualListBoxItem.Designer.cs">
-      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListBox\PictureButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\PictureButton.Designer.cs">
+    <Compile Include="PictureButton.Designer.cs">
       <DependentUpon>PictureButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,17 +89,18 @@
     <Compile Include="ListBox\VirtualListBox.Designer.cs">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListBox\VirtualListBoxItemFactory.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\appbar.home.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ListBox\SearchPanel.resx">
-      <DependentUpon>SearchPanel.cs</DependentUpon>
+    <EmbeddedResource Include="CustomerListBoxItem.resx">
+      <DependentUpon>CustomerListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListBox\VirtualListBoxItem.resx">
-      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
+    <EmbeddedResource Include="SearchPanel.resx">
+      <DependentUpon>SearchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

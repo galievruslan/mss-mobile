@@ -5,13 +5,15 @@ using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public partial class VirtualListBox<T> : UserControl, IListBox<T> where T : class 
+    public partial class VirtualListBox<T> : UserControl, IListBox<T>
     {
         // Designer only
         public VirtualListBox()
         {
             InitializeComponent();
         }
+
+        public VirtualListBoxItemFactory<T> ItemFactory { private get; set; }
 
         public event OnItemDataNeeded<T> ItemDataNeeded;
 
@@ -33,6 +35,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             }
         }
 
+        public int SelectedIndex { get; set; }
+
         private void FillItemPanel()
         {
             int itemsHeight = _listBoxItems.Sum(item =>
@@ -45,9 +49,9 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             if (itemsHeight != 0)
                 itemAvgHeight = ((float)itemsHeight) / _listBoxItems.Count;
 
-            while (itemAvgHeight < _dataPanel.Height - itemsHeight)
+            while (_dataPanel.Height - itemsHeight > 0)
             {
-                IListBoxItem<T> listBoxItem = GetNewListItem();
+                IListBoxItem<T> listBoxItem = ItemFactory.CreateNewListBoxItem();
                 AddListBoxItem(listBoxItem);
 
                 var control = listBoxItem as Control;
@@ -55,7 +59,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 itemAvgHeight = ((float)itemsHeight) / _listBoxItems.Count;
             }
 
-            while (_dataPanel.Height - itemsHeight < 0)
+            while (_dataPanel.Height - itemsHeight + itemAvgHeight < 0)
             {
                 RemoveListBoxItem();
 
@@ -91,14 +95,27 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 }
 
                 listBoxItem.DataNeeded += ListBoxItemDataNeeded;
-                _dataPanel.Controls.Add(listBoxItem as Control);
+                listBoxItem.SelectNeeded += ListBoxItemSelectNeeded;
+                var control = listBoxItem as Control;
+                control.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
+                _dataPanel.Controls.Add(control);
                 _listBoxItems.Add(listBoxItem);
             }
         }
 
-        protected virtual IListBoxItem<T> GetNewListItem()
+        void ListBoxItemSelectNeeded(object sender)
         {
-            return new VirtualListBoxItem<T>();
+            foreach (var item in _listBoxItems)
+            {
+                item.UnSelect();
+            }
+
+            var listBoxItem = sender as IListBoxItem<T>;
+            if (listBoxItem != null)
+            {
+                SelectedIndex = listBoxItem.Index;
+                listBoxItem.Select();
+            }
         }
 
         private void RemoveListBoxItem()
@@ -108,6 +125,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 _dataPanel.Controls.Remove(listBoxItem as Control);
 
             listBoxItem.DataNeeded -= ListBoxItemDataNeeded;
+            listBoxItem.SelectNeeded -= ListBoxItemSelectNeeded;
             _listBoxItems.Remove(listBoxItem);
         }
 
@@ -121,25 +139,18 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         {
             for (int i = 0; i < _listBoxItems.Count; i++)
             {
-                _listBoxItems[i].Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
+                var item = _listBoxItems[i];
+                item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
+                if (item.Index == SelectedIndex)
+                    item.Select();
+                else
+                    item.UnSelect();
             }
         }
 
         #endregion
 
         #region Event Handlers
-
-        private void ListBoxResize(object sender, EventArgs e)
-        {
-            FillItemPanel();
-
-            if (_itemCount > _listBoxItems.Count)
-                _vScrollBar.Show();
-            else
-                _vScrollBar.Hide();
-
-            _vScrollBar.Maximum = _itemCount - _listBoxItems.Count;
-        }
 
         private void VScrollBarValueChanged(object sender, EventArgs e)
         {

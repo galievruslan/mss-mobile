@@ -24,6 +24,8 @@ namespace MSS.WinMobile.UI.Views.Layouts
                 to = new MenuView(this);
             else if (typeof(T) == typeof(ISynchronizationView))
                 to = new SynchronizationView(this);
+            else if (typeof(T) == typeof(ICustomersView))
+                to = new CustomersView(this);
             else
                 throw new ViewNotFoundException();
 
@@ -70,6 +72,11 @@ namespace MSS.WinMobile.UI.Views.Layouts
 
         public class ViewNotFoundException : Exception
         {
+        }
+
+        private void Layout_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

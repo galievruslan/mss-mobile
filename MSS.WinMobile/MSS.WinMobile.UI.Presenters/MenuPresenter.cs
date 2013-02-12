@@ -16,6 +16,7 @@
 
         public void Customers()
         {
+            Layout.Navigate<ICustomersView>();
         }
 
         public void Synchronization()

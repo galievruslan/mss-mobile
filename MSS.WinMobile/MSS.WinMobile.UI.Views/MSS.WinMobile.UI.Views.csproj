@@ -45,6 +45,10 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
     <Reference Include="MSS.WinMobile.UI.Controls, Version=1.0.4761.42415, Culture=neutral, processorArchitecture=MSIL">
@@ -63,11 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlExtensions.cs" />
-    <Compile Include="Customers.cs">
+    <Compile Include="CustomersView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="CustomersView.Designer.cs">
+      <DependentUpon>CustomersView.cs</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Layout.cs">
       <SubType>Form</SubType>
@@ -97,8 +101,8 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="CustomersView.resx">
+      <DependentUpon>CustomersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Layouts\Layout.resx">
       <DependentUpon>Layout.cs</DependentUpon>
@@ -114,6 +118,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
+      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
+      <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.csproj">
       <Project>{4D4039F4-3296-4FA8-8E73-743B476550AC}</Project>
       <Name>MSS.WinMobile.Services</Name>
