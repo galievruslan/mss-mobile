@@ -30,9 +30,11 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
                         SystemScriptGenerator.GenearteCreateTableFor<Warehouse>(),
                         SystemScriptGenerator.GenearteCreateTableFor<UnitOfMeasure>(),
                         SystemScriptGenerator.GenearteCreateTableFor<PriceList>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<PriceListLine>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Order>(),
                         SystemScriptGenerator.GenearteCreateTableFor<OrderItem>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Product>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<ProductsUnitOfMeasure>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Route>(),
                         SystemScriptGenerator.GenearteCreateTableFor<RoutePoint>(),
                         SystemScriptGenerator.GenearteCreateTableFor<ShippingAddress>(),
@@ -43,6 +45,8 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<Route>());
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<RoutePoint>());
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<ShippingAddress>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<ProductsUnitOfMeasure>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<PriceListLine>());
 
                 var scriptExecuter = new ScriptExecuter(GetConnection());
                 scriptExecuter.ExecuteCreateScripts(scripts);

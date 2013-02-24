@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using MSS.WinMobile.Infrastructure.Remote.Data.Dtos;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 {
@@ -15,16 +16,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public Profile GetProfile()
+        public ProfileDto GetProfile()
         {
             HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, ProfilePath);
             string json = _requestDispatcher.Dispatch(httpWebRequest);
-            return Json.JsonDeserializer.Deserialize<Profile>(json);
+            return Json.JsonDeserializer.Deserialize<ProfileDto>(json);
         }
-    }
-
-    public class Profile
-    {
-        public int ManagerId { get; set; }
     }
 }

@@ -65,11 +65,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CookieContainer.cs" />
+    <Compile Include="Dtos\PriceListLineDto.cs" />
+    <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\ManagerDto.cs" />
+    <Compile Include="Dtos\OrderDto.cs" />
+    <Compile Include="Dtos\OrderItemDto.cs" />
+    <Compile Include="Dtos\PriceListDto.cs" />
+    <Compile Include="Dtos\ProductDto.cs" />
+    <Compile Include="Dtos\ProfileDto.cs" />
+    <Compile Include="Dtos\RouteDto.cs" />
+    <Compile Include="Dtos\RoutePointDto.cs" />
+    <Compile Include="Dtos\ShippingAddressDto.cs" />
+    <Compile Include="Dtos\StatusDto.cs" />
+    <Compile Include="Dtos\UnitOfMeasureDto.cs" />
+    <Compile Include="Dtos\WarehouseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestDispatcher.cs" />
-    <Compile Include="RequestDispatcher1.cs" />
     <Compile Include="RequestFactory.cs" />
-    <Compile Include="ResourceUriHelper.cs" />
     <Compile Include="CsrfTokenContainer.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Services\UnitOfMeasureService.cs" />

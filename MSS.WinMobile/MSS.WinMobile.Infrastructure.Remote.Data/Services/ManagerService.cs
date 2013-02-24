@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Remote.Data.Dtos;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 {
@@ -17,11 +17,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public IEnumerable<Manager> GetManagers()
+        public ManagerDto[] GetManagers()
         {
             HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, ManagersPath);
             string json = _requestDispatcher.Dispatch(httpWebRequest);
-            return Json.JsonDeserializer.Deserialize<IEnumerable<Manager>>(json);
+            return Json.JsonDeserializer.Deserialize<ManagerDto[]>(json);
         }
     }
 }

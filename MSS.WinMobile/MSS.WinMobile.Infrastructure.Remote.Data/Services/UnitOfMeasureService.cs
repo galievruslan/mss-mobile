@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Remote.Data.Dtos;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 {
     public class UnitOfMeasureService
     {
-        private const string UnitsOfMeasuresPath = "unitsofmeasures.json";
+        private const string UnitsOfMeasuresPath = "unit_of_measures.json";
 
         private readonly RequestFactory _requestFactory;
         private readonly RequestDispatcher _requestDispatcher;
@@ -17,11 +17,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public IEnumerable<UnitOfMeasure> GetUnitsOfMeasures()
+        public UnitOfMeasureDto[] GetUnitsOfMeasures()
         {
             HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, UnitsOfMeasuresPath);
             string json = _requestDispatcher.Dispatch(httpWebRequest);
-            return Json.JsonDeserializer.Deserialize<IEnumerable<UnitOfMeasure>>(json);
+            return Json.JsonDeserializer.Deserialize<UnitOfMeasureDto[]>(json);
         }
     }
 }
