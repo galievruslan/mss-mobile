@@ -43,10 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Local.Attributes", "MSS.WinMobile.Infrastructure.Local.Attributes\MSS.WinMobile.Infrastructure.Local.Attributes.csproj", "{98F9A834-5915-4288-817F-F96ADD72C3B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTests", "ConsoleTests\ConsoleTests.csproj", "{1C081833-A87E-454D-9EAA-49B6DF34461A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D70106EF-2D1B-4AE6-87F4-D147FCFBFF5B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,10 +105,6 @@ Global
 		{98F9A834-5915-4288-817F-F96ADD72C3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98F9A834-5915-4288-817F-F96ADD72C3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98F9A834-5915-4288-817F-F96ADD72C3B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C081833-A87E-454D-9EAA-49B6DF34461A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C081833-A87E-454D-9EAA-49B6DF34461A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C081833-A87E-454D-9EAA-49B6DF34461A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C081833-A87E-454D-9EAA-49B6DF34461A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +124,5 @@ Global
 		{59551DCE-C626-4BAA-8FAB-7E6977957B17} = {0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}
 		{4D4039F4-3296-4FA8-8E73-743B476550AC} = {D01ABC51-225F-463F-B954-0F6B05C5F47B}
 		{FEE1839A-4868-43D2-88FB-905FB8C6DC58} = {69F1D575-9408-4C17-94BF-B6E4140411C6}
-		{1C081833-A87E-454D-9EAA-49B6DF34461A} = {D70106EF-2D1B-4AE6-87F4-D147FCFBFF5B}
 	EndGlobalSection
 EndGlobal

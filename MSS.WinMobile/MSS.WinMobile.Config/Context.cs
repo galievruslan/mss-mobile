@@ -2,10 +2,12 @@
 
 using System.Collections.Generic;
 using System.Text;
+using MSS.WinMobile.Domain.Models;
 
 namespace MSS.WinMobile
 {
-    class Context
+    public static class Context
     {
+        public static int ManagerId { get; set; }
     }
 }

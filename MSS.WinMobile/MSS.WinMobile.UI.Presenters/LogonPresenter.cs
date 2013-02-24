@@ -1,50 +1,50 @@
-﻿using MSS.WinMobile.Infrastructure.Data;
+﻿using System;
+using System.Globalization;
+using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.UI.ViewModel;
 
 namespace MSS.WinMobile.UI.Presenters
 {
     public class LogonPresenter : Presenter
     {
+        private readonly Uri _serverUri;
+
+        private readonly ILayout _layout;
         private readonly ILogonView _view;
-        private readonly ISession _remoteSession;
-        private readonly ISession _localSession;
 
         public LogonPresenter(ILayout layout, ILogonView view)
             :base(layout)
         {
+            _layout = layout;
             _view = view;
-            //_remoteSession = new Infrastructure.Remote.Data.Session("192.168.0.102",
-            //                             3000, string.Empty, string.Empty);
-            //_localSession = new Infrastructure.Local.Data.Session(Path.GetDirectoryName (Assembly.GetExecutingAssembly ().GetName ().CodeBase) + @"/Storage.sdf");
+
+            _serverUri = new Uri(string.Format("http://{0}:{1}/",
+                                               ConfigurationManager.AppSettings["ServerAddress"],
+                                               ConfigurationManager.AppSettings["ServerPort"]));
         }
 
         public void Logon()
         {
-            //var logonModel = new LogonModel {Account = _view.Account, Password = _view.Password};
-            //if (logonModel.Validate())
-            //{
-            //    using (ITransaction remoteTransaction = _remoteSession.BeginTransaction())
-            //    {
-            //        IGenericRepository<Manager> managerRemoteRepo = remoteTransaction.Resolve<Manager>();
-            //        var specification = new ManagerWithNameSpecification(_view.Account);
-            //        Manager[] managers = managerRemoteRepo.Find(specification);
+            var logonModel = new LogonModel { Username = _view.Account, Password = _view.Password };
+            if (logonModel.Validate())
+            {
+                using (Server server = Server.Logon(_serverUri, logonModel.Username, logonModel.Password))
+                {
+                    var profile = server.UserService.GetProfile();
+                    Context.ManagerId = profile.ManagerId;
 
-            //        if (managers.Length > 0)
-            //        {
-            //            Manager manager = managers[0];
-            //            using (ITransaction localTransaction = _localSession.BeginTransaction())
-            //            {
-            //                IGenericRepository<Manager> managerLocalRepo = localTransaction.Resolve<Manager>();
-            //                managerLocalRepo.Add(manager);
-            //                localTransaction.Commit();
-                            Layout.Navigate<IMenuView>();
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    _view.ShowErrorDialog(logonModel.Errors.ToString());
-            //}
+                    ConfigurationManager.AppSettings.Add("ServerUsername", logonModel.Username);
+                    ConfigurationManager.AppSettings.Add("ServerPassword", logonModel.Password);
+                    ConfigurationManager.AppSettings.Add("ContextManagerId",
+                                                         Context.ManagerId.ToString(CultureInfo.InvariantCulture));
+                    ConfigurationManager.Save();
+                    _layout.Navigate<IMenuView>();
+                }
+            }
+            else
+            {
+                _layout.ShowErrorDialog(logonModel.Errors.ToString());
+            }
         }
 
         public void Cancel()

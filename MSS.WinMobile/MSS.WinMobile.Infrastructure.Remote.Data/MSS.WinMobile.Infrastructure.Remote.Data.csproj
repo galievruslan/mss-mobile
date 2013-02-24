@@ -49,6 +49,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\bin\Debug\JsonSerializer.dll</HintPath>
     </Reference>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="LitJson, Version=1.0.3123.33952, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\bin\Debug\LitJson.dll</HintPath>
@@ -60,17 +64,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Specifications\AndConverter.cs" />
-    <Compile Include="Repositories\Specifications\Converter.cs" />
-    <Compile Include="Repositories\Specifications\ManagerWithNameConverter.cs" />
-    <Compile Include="Repositories\Specifications\RouteByDateConverter.cs" />
-    <Compile Include="Repositories\Specifications\SpecificationConverter.cs" />
     <Compile Include="RequestDispatcher.cs" />
+    <Compile Include="RequestDispatcher1.cs" />
+    <Compile Include="RequestFactory.cs" />
     <Compile Include="ResourceUriHelper.cs" />
-    <Compile Include="Session.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="CsrfTokenContainer.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="Services\UnitOfMeasureService.cs" />
+    <Compile Include="Services\PriceListService.cs" />
+    <Compile Include="Services\RouteService.cs" />
+    <Compile Include="Services\WarehouseService.cs" />
+    <Compile Include="Services\StatusService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ManagerService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">

@@ -2,12 +2,12 @@
 {
     public class LogonModel : ViewModel
     {
-        private string _account;
+        private string _username;
 
-        public string Account
+        public string Username
         {
-            get { return _account; }
-            set { _account = value;
+            get { return _username; }
+            set { _username = value;
                 IsDirty = true;
             }
         }
@@ -24,8 +24,8 @@
 
         public override bool Validate()
         {
-            if (string.IsNullOrEmpty(Account))
-                Errors.AddError("Account is mandatory");
+            if (string.IsNullOrEmpty(Username))
+                Errors.AddError("Username is mandatory");
             if (string.IsNullOrEmpty(Password))
                 Errors.AddError("Password is mandatory");
 

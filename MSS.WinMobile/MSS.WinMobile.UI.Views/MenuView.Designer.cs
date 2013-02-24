@@ -42,7 +42,7 @@
             this._goRouteButton.Location = new System.Drawing.Point(3, 3);
             this._goRouteButton.Name = "_goRouteButton";
             this._goRouteButton.PressedImage = null;
-            this._goRouteButton.Size = new System.Drawing.Size(110, 110);
+            this._goRouteButton.Size = new System.Drawing.Size(109, 109);
             this._goRouteButton.TabIndex = 0;
             this._goRouteButton.Click += new System.EventHandler(this._goRouteButton_Click);
             // 
@@ -53,7 +53,7 @@
             this._goCustomersButton.Location = new System.Drawing.Point(127, 3);
             this._goCustomersButton.Name = "_goCustomersButton";
             this._goCustomersButton.PressedImage = null;
-            this._goCustomersButton.Size = new System.Drawing.Size(110, 110);
+            this._goCustomersButton.Size = new System.Drawing.Size(110, 109);
             this._goCustomersButton.TabIndex = 1;
             this._goCustomersButton.Click += new System.EventHandler(this._goCustomersButton_Click);
             // 
@@ -64,7 +64,7 @@
             this._goBaliBaliButton.Location = new System.Drawing.Point(127, 128);
             this._goBaliBaliButton.Name = "_goBaliBaliButton";
             this._goBaliBaliButton.PressedImage = null;
-            this._goBaliBaliButton.Size = new System.Drawing.Size(110, 110);
+            this._goBaliBaliButton.Size = new System.Drawing.Size(110, 109);
             this._goBaliBaliButton.TabIndex = 3;
             this._goBaliBaliButton.Click += new System.EventHandler(this._goBaliBaliButton_Click);
             // 
@@ -75,7 +75,7 @@
             this._goSynchronizationButton.Location = new System.Drawing.Point(3, 128);
             this._goSynchronizationButton.Name = "_goSynchronizationButton";
             this._goSynchronizationButton.PressedImage = null;
-            this._goSynchronizationButton.Size = new System.Drawing.Size(110, 110);
+            this._goSynchronizationButton.Size = new System.Drawing.Size(109, 110);
             this._goSynchronizationButton.TabIndex = 2;
             this._goSynchronizationButton.Click += new System.EventHandler(this._goSynchronizationButton_Click);
             // 
@@ -89,7 +89,7 @@
             this.Controls.Add(this._goCustomersButton);
             this.Controls.Add(this._goRouteButton);
             this.Name = "MenuView";
-            this.Size = new System.Drawing.Size(240, 268);
+            this.Size = new System.Drawing.Size(240, 267);
             this.ResumeLayout(false);
 
         }

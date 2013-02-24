@@ -6,7 +6,7 @@
 
         void ShowInfoDialog(string message);
 
-        void ShowErrDialog(string message);
+        void ShowErrorDialog(string message);
 
         bool ShowConfirmDialog(string question);
 

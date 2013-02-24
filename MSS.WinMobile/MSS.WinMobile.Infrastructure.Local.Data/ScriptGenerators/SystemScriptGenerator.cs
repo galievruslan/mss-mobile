@@ -84,7 +84,7 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
             return scripts.ToArray();
         }
 
-        public static CreateColumnScript AsType(this CreateColumnScript createColumnScript, PropertyInfo propertyInfo)
+        private static CreateColumnScript AsType(this CreateColumnScript createColumnScript, PropertyInfo propertyInfo)
         {
             if (propertyInfo.PropertyType == typeof(int))
             {

@@ -50,7 +50,7 @@ namespace MSS.WinMobile.UI.Views.Layouts
                             MessageBoxDefaultButton.Button1);
         }
 
-        public void ShowErrDialog(string message)
+        public void ShowErrorDialog(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);

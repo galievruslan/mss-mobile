@@ -2,42 +2,44 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Xml;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data
 {
     public class RequestDispatcher
     {
-        private const string RequestheaderSessioncookie = "Cookie";
-        private const string ResponseheaderSessioncookie = "Set-Cookie";
+        private readonly CookieContainer _cookieContainer;
+        private readonly CsrfTokenContainer _scrfTokenContainer;
 
-        private readonly Session _session;
-
-        public RequestDispatcher(Session session)
+        public RequestDispatcher(CookieContainer cookieContainer, CsrfTokenContainer scrfTokenContainer)
         {
-            _session = session;
-            _requestPool = new List<HttpWebRequest>();
+            _cookieContainer = cookieContainer;
+            _scrfTokenContainer = scrfTokenContainer;
         }
 
-        public string Dispatch(string uri, string method)
+        public string Dispatch(HttpWebRequest httpWebRequest)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(_session.BaseUri + uri);
-            webRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-            webRequest.Method = method;
-            webRequest.ContentType = Session.CONTENT_TYPE;
-            webRequest.AllowAutoRedirect = false;
-            if (!string.IsNullOrEmpty(_session.Cookie))
-            {
-                webRequest.Headers.Add(RequestheaderSessioncookie, _session.Cookie);
-            }
-            HttpWebResponse webResponse = null;
             try
             {
-                webResponse = (HttpWebResponse) webRequest.GetResponse();
-                if (webResponse.Headers.Get(ResponseheaderSessioncookie) != null)
+                var httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse();
+                string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
+                if (!string.IsNullOrEmpty(cookie))
                 {
-                    _session.Cookie = webResponse.Headers.Get(ResponseheaderSessioncookie);
+                    _cookieContainer.SetCookie(cookie);
                 }
+
+                string[] responseStrings = GetResponseStrings(httpWebResponse);
+                httpWebResponse.Close();
+                _scrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseStrings));
+
+                var responseStringBuilder = new StringBuilder();
+                foreach (var responseString in responseStrings)
+                {
+                    responseStringBuilder.Append(responseString);
+                }
+
+                return responseStringBuilder.ToString();
             }
             catch (WebException webException)
             {
@@ -46,125 +48,18 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
                     var response = webException.Response as HttpWebResponse;
                     if (response.StatusCode == HttpStatusCode.Unauthorized)
                     {
-                        if (Login())
-                            return Dispatch(uri, method);
+                        throw new NeedLogonException();
                     }
                 }
 
-            }
-            if (webResponse != null)
-            {
-                var stream = webResponse.GetResponseStream();
-                if (stream != null)
-                {
-                    using (var reader = new StreamReader(stream))
-                    {
-                        return reader.ReadToEnd();
-                    }
-                }
-
-                webResponse.Close();
-            }
-
-            throw new WebException(string.Format(@"Uri: {0}, Method: {1}", uri, method));
-        }
-
-        private readonly IList<HttpWebRequest> _requestPool;
-
-        public void Dispatch(string uri, string method, string json)
-        {
-            var webRequest = (HttpWebRequest) WebRequest.Create(_session.BaseUri + uri);
-
-            webRequest.Method = method;
-            webRequest.ContentType = Session.CONTENT_TYPE;
-            webRequest.KeepAlive = true;
-            using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
-            {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
-            _requestPool.Add(webRequest);
-        }
-
-        public void ExecuteRequestPool()
-        {
-            for (int i = 0; i < _requestPool.Count; i++)
-            {
-                if (!string.IsNullOrEmpty(_session.Cookie))
-                {
-                    _requestPool[i].Headers.Add(RequestheaderSessioncookie, _session.Cookie);
-                }
-                var webResponse = (HttpWebResponse)_requestPool[i].GetResponse();
-                if (webResponse.Headers.Get(ResponseheaderSessioncookie) != null)
-                {
-                    _session.Cookie = webResponse.Headers.Get(ResponseheaderSessioncookie);
-                }
+                throw;
             }
         }
 
-        public void ClearRequestPool()
+        private string[] GetResponseStrings(HttpWebResponse httpWebResponse)
         {
-            _requestPool.Clear();
-        }
-
-        public bool Login()
-        {
-            try
-            {
-                var webRequest = (HttpWebRequest) WebRequest.Create(_session.BaseUri + "users/sign_in");
-                if (!string.IsNullOrEmpty(_session.Cookie))
-                {
-                    webRequest.Headers.Add(RequestheaderSessioncookie, _session.Cookie);
-                }
-                webRequest.Method = "GET";
-                webRequest.ContentType = Session.CONTENT_TYPE;
-                webRequest.AllowAutoRedirect = false;
-                var webResponse = (HttpWebResponse) webRequest.GetResponse();
-                if (webResponse.Headers.Get(ResponseheaderSessioncookie) != null)
-                {
-                    _session.Cookie = webResponse.Headers.Get(ResponseheaderSessioncookie);
-                }
-                
-                _session.CsrfToken = GetCsrfToken(webResponse);
-                webResponse.Close();
-                string queryString = "?authenticity_token=" + Uri.EscapeDataString(_session.CsrfToken) +
-                                     "&user[username]=" + _session.Username +
-                                     "&user[password]=" + _session.Password;
-
-                webRequest = (HttpWebRequest) WebRequest.Create(_session.BaseUri + "users/sign_in" + queryString);
-                if (!string.IsNullOrEmpty(_session.Cookie))
-                {
-                    webRequest.Headers.Add(RequestheaderSessioncookie, _session.Cookie);
-                }
-                webRequest.AllowWriteStreamBuffering = true;
-                //webRequest.ConnectionGroupName = "mygroup";
-                webRequest.ContentLength = 0;
-                webRequest.AllowAutoRedirect = false;
-                webRequest.KeepAlive = true;
-                webRequest.Method = "POST";
-                //webRequest.ContentType = Session.CONTENT_TYPE;
-                Stream requestStream = webRequest.GetRequestStream();
-                requestStream.Close();
-
-                webResponse = (HttpWebResponse) webRequest.GetResponse();
-                if (webResponse.Headers.Get(ResponseheaderSessioncookie) != null)
-                {
-                    _session.Cookie = webResponse.Headers.Get(ResponseheaderSessioncookie);
-                }
-                webResponse.Close();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private string GetCsrfToken(HttpWebResponse response)
-        {
-            using (var stream = response.GetResponseStream())
+            var responseStrings = new List<string>();
+            using (var stream = httpWebResponse.GetResponseStream())
             {
                 if (stream != null)
                 {
@@ -172,24 +67,40 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
                     {
                         while (!reader.EndOfStream)
                         {
-                            string line = reader.ReadLine();
-                            if (!string.IsNullOrEmpty(line) &&
-                                line.IndexOf("csrf-token", StringComparison.InvariantCultureIgnoreCase) >= 0)
-                            {
-                                var xmlDocument = new XmlDocument();
-                                xmlDocument.LoadXml(line);
-                                var xmlElement = xmlDocument.DocumentElement;
-                                if (xmlElement != null)
-                                {
-                                    return xmlElement.Attributes["content"].Value;
-                                }
-                            }
+                            responseStrings.Add(reader.ReadLine());   
                         }
                     }
                 }
             }
-
-            return string.Empty;
+            return responseStrings.ToArray();
         }
+
+        private string ExtractCsrfToken(IEnumerable<string> responseStrings)
+        {
+            string csrfToken = string.Empty;
+
+            foreach (var responseString in responseStrings)
+            {
+                if (
+                    responseString.IndexOf(CsrfTokenContainer.CSRF_TOKEN_TAG_NAME,
+                                           StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    var xmlDocument = new XmlDocument();
+                    xmlDocument.LoadXml(responseString);
+                    var xmlElement = xmlDocument.DocumentElement;
+                    if (xmlElement != null)
+                    {
+                        csrfToken = xmlElement.Attributes[CsrfTokenContainer.CSRF_TOKEN_VALUE_ATTRIBUTE].Value;
+                        break;
+                    }
+                }
+            }
+
+            return csrfToken;
+        }
+    }
+
+    public class NeedLogonException : Exception
+    {
     }
 }

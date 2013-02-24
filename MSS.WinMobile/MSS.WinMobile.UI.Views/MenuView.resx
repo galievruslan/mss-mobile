@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mainMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="_goRouteButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAasSURBVHhe7ZxLqG9THMdPkkfCTR4ZqDMgA3mkLgPSf0Dy
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAasSURBVHhe7ZxLqG9THMdPkkfCTR4ZqDMgA3mkLgPSf0Dy
         SDfPhDrJCIObugNlcCaSR/JIIoMjmciAgQHJvdKNJI90S5KUPDLwSG6S8Ptor/q1+v1+e+3H/3/2Ou1V
         q//Zj/X6rO9a+7d+e+2ztjaHmcBMYCbwP4GjJJ4n8Q6Jj0l8duZiE7hZTn8q8S+J/6p4aAZmE9jMQCVo
         MzBHMcsEdrSUeavEFyTesFMUuyxglwigLzP1Ao65surQBdhx0tJHC1p7tTEnpqH+mVw7uyCPyd7SBdg+
@@ -159,7 +156,7 @@
   <data name="_goCustomersButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAQoSURBVHhe7ZpNqE1RFIBfEgPJTX4GIklKUpKf5GdgYiBm
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAQoSURBVHhe7ZpNqE1RFIBfEgPJTX4GIklKUpKf5GdgYiBm
         ZoxkgDJQiKRXkpTegEwMdMtAGaGkZKD08pMBSRmZSEoiiSRhfbV3nW777LPXvfedu7fWrtV975y111nr
         u+vss/a6Z2zMhhEwAkbACBgBI2AEjIARMAJGwAgYASNgBIyAETACRmDEBDpy/T0i50QuipwU2Skysw+/
         psmcjc7GhLN5QD4X92EryykHxauvIn8D8laObVB4vVp0X9TY+inHTytsZanKNx8CVT32UXSWJHiPzocE
@@ -183,7 +180,7 @@
   <data name="_goBaliBaliButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAPuSURBVHhe7ZpNyExRGMffJLLAmwULqTdhI3qzkZTeRBYk
+        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAPuSURBVHhe7ZpNyExRGMffJLLAmwULqTdhI3qzkZTeRBYk
         iRVJSZKSCElpspGPRLIQi4kVWYiUbJAkFkIpSSRJWZAFScL/V+fU43TvnQ/zzsydeZ76N3fO3I/z/OY5
         z/m6AwNuTsAJOAEn4AScgBNwAk7ACTgBJ+AEnIATcAJOwAl0G4EJqtBq6Zh0VjopLem2SnZDfQZViYr0
         Rfpj9FHHVWlWN1SyHXWYpoeMSJulHUEb9LlUmifNlNZKnwyk3zq+Jq2UxrSjkp1+xkJV4FICwUZNI8ff
@@ -206,7 +203,7 @@
   <data name="_goSynchronizationButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAMuSURBVHhe7ZgxaBVBEIaDCCIWPkQDFloFmyCChZImvEKw
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAMuSURBVHhe7ZgxaBVBEIaDCCIWPkQDFloFmyCChZImvEKw
         EEQCFoLFg2ijIKK9PIQUWqQLIY0IYmMnYpEqDyRIIG26oIWIYq+IhTo/7MJ63O3d3s3uvTv/heEe8/bt
         zH5vZ252ZmY4SIAESIAESIAESIAESIAESIAESIAESIAESIAESIAESOC/JnBAdv9M5E+B/BL9tS4QGoiT
         d5VlLrPx3sDCvh54/vWi0+DT4xQBkB29goVN7SkC6z2sIWGFZc0XSsB6f7KA9ZjITwVgobCQ/z6KvKoo
@@ -225,8 +222,5 @@
   </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
-  </metadata>
-  <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </metadata>
 </root>

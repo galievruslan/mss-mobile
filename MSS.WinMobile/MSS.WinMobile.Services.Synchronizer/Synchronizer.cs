@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.Data.Repositories;
+using MSS.WinMobile.Infrastructure.Remote.Data;
 using log4net;
 
 namespace MSS.WinMobile.Services
@@ -10,18 +11,19 @@ namespace MSS.WinMobile.Services
     public class Synchronizer : IObservable {
         private static readonly ILog Log = LogManager.GetLogger(typeof(Synchronizer));
 
-        private readonly ISession _sourceSession;
+        private readonly Uri _serverUri;
+        private readonly string _userName;
+        private readonly string _password;
+
         private readonly ISession _destinationSession;
 
         public Synchronizer()
         {
-            string serverAddress = ConfigurationManager.AppSettings["ServerAddress"];
-            int serverPort = Int32.Parse(ConfigurationManager.AppSettings["ServerPort"]);
-            string userName = ConfigurationManager.AppSettings["ServerUserName"];
-            string userPassword = ConfigurationManager.AppSettings["ServerUserPassword"];
-
-            _sourceSession = new Infrastructure.Remote.Data.Session(serverAddress, serverPort,
-                                                                    userName, userPassword);
+            _serverUri = new Uri(string.Format("http://{0}:{1}/",
+                                               ConfigurationManager.AppSettings["ServerAddress"],
+                                               ConfigurationManager.AppSettings["ServerPort"]));
+            _userName = ConfigurationManager.AppSettings["ServerUsername"];
+            _password = ConfigurationManager.AppSettings["ServerPassword"];
 
             string databaseName = ConfigurationManager.AppSettings["DatabaseName"];
             _destinationSession = new Infrastructure.Local.Data.Session(databaseName);
@@ -29,30 +31,30 @@ namespace MSS.WinMobile.Services
 
         public void Start()
         {
-            SynchronizeEntity<Customer>();
-            SynchronizeEntity<ShippingAddress>();
-            SynchronizeEntity<Manager>();
-            SynchronizeEntity<Product>();
-            SynchronizeEntity<UnitOfMeasure>();
-            SynchronizeEntity<Status>();
-            SynchronizeEntity<Warehouse>();
-            SynchronizeEntity<Route>();
-            SynchronizeEntity<RoutePoint>();
-            SynchronizeEntity<PriceList>();
+            using (var server = Server.Logon(_serverUri, _userName, _password))
+            {
+                var customers = new List<Customer>(server.CustomerService.GetCustomers());
+                SynchronizeEntity(customers);
+                foreach (var customer in customers)
+                {
+                    SynchronizeEntity(customer.);
+                }
+
+                SynchronizeEntity(server.ManagerService.GetManagers());
+                SynchronizeEntity(server.UnitOfMeasureService.GetUnitsOfMeasures());
+                SynchronizeEntity(server.ProductService.GetProducts());
+                SynchronizeEntity(server.StatusService.GetStatuses());
+                SynchronizeEntity(server.WarehouseService.GetWarehouses());
+                SynchronizeEntity(new[] {server.RouteService.GetToday()});
+                SynchronizeEntity(server.PriceListService.GetPriceLists());   
+            }
         }
 
-        private void SynchronizeEntity<T>() where T : IEntity {
+        private void SynchronizeEntity<T>(IEnumerable<T> entities) where T : IEntity {
             NotifyObservers(new Notification(string.Format("{0} syncronization started.", typeof(T))));
 
             try
             {
-                var entities = new List<T>();
-                using (ITransaction sourceTransaction = _sourceSession.BeginTransaction())
-                {
-                    IGenericRepository<T> repository = sourceTransaction.Resolve<T>();
-                    entities.AddRange(repository.Find());
-                }
-
                 using (ITransaction destinationTransaction = _destinationSession.BeginTransaction())
                 {
                     IGenericRepository<T> repository = destinationTransaction.Resolve<T>();
