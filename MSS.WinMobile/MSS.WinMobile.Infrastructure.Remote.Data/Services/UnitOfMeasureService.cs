@@ -17,9 +17,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public UnitOfMeasureDto[] GetUnitsOfMeasures()
+        public UnitOfMeasureDto[] GetUnitsOfMeasures(int page, int pageSize)
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, UnitsOfMeasuresPath);
+            var parametersBuilder = new ParametersBuilder();
+            parametersBuilder.PageNumber(page).ItemsPerPage(pageSize);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(UnitsOfMeasuresPath, parametersBuilder.Build());
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<UnitOfMeasureDto[]>(json);
         }

@@ -1,8 +1,8 @@
 ﻿namespace MSS.WinMobile.Services
 {
-    public class Notification
+    public class TextNotification : INotification
     {
-        public Notification(string text)
+        public TextNotification(string text)
         {
             Text = text;
         }

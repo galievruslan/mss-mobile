@@ -5,7 +5,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 {
     public class UserService
     {
-        private const string ProfilePath = "profile.json";
+        private const string ProfilePath = "profile/show.json";
 
         private readonly RequestFactory _requestFactory;
         private readonly RequestDispatcher _requestDispatcher;
@@ -18,7 +18,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 
         public ProfileDto GetProfile()
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, ProfilePath);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(ProfilePath);
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<ProfileDto>(json);
         }

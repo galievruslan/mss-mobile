@@ -17,9 +17,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public ProductDto[] GetProducts()
+        public ProductDto[] GetProducts(int page, int pageSize)
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, ProductsPath);
+            var parametersBuilder = new ParametersBuilder();
+            parametersBuilder.PageNumber(page).ItemsPerPage(pageSize);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(ProductsPath, parametersBuilder.Build());
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<ProductDto[]>(json);
         }

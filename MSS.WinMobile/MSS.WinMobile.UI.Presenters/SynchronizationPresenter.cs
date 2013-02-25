@@ -49,9 +49,18 @@ namespace MSS.WinMobile.UI.Presenters
 
         #region IObserver
 
-        public void Notify(Notification notification)
+        public void Notify(INotification notification)
         {
-            _view.UpdateStatus(notification.Text);
+            if (notification is TextNotification)
+            {
+                var textNotification = notification as TextNotification;
+                _view.UpdateStatus(textNotification.Text);
+            }
+            else if (notification is ProgressNotification)
+            {
+                var progressNotification = notification as ProgressNotification;
+                _view.UpdateProgress(progressNotification.Progress);
+            }
         }
 
         #endregion

@@ -18,7 +18,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 
         public RouteDto GetToday()
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, RoutesPath);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(RoutesPath);
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<RouteDto>(json);
         }

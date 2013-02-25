@@ -55,9 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INotification.cs" />
     <Compile Include="IObservable.cs" />
     <Compile Include="IObserver.cs" />
-    <Compile Include="Notification.cs" />
+    <Compile Include="TextNotification.cs" />
+    <Compile Include="ProgressNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Synchronizer.cs" />
   </ItemGroup>

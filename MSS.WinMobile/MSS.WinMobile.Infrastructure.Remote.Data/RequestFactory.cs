@@ -23,41 +23,60 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
             _uri = uri;
         }
 
-        public HttpWebRequest CreateRequest(string method, string path, IDictionary<string, object> parameters)
+        public HttpWebRequest CreateGetRequest(string path, IDictionary<string, object> parameters)
+        {
+            var queryStringBuilder = new StringBuilder();
+            queryStringBuilder.Append('?');
+            foreach (var parameter in parameters)
+            {
+                queryStringBuilder.Append(string.Format("{0}={1}&", parameter.Key, parameter.Value));
+            }
+
+            // Remove last &
+            queryStringBuilder.Remove(queryStringBuilder.Length - 1, 1);
+            string queryString = Uri.EscapeUriString(queryStringBuilder.ToString());
+
+            return CreateGetRequest(string.Concat(path, queryString));
+        }
+
+        public HttpWebRequest CreateGetRequest(string path)
         {
             var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(_uri, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, _cookieContainer.Cookie);
-            webRequest.Method = method;
+            webRequest.Method = WebMethod.GET;
+            webRequest.UserAgent = UserAgent;
+            webRequest.ContentType = ContentType;
+            webRequest.AllowAutoRedirect = false;
+            return webRequest;
+        }
+
+        public HttpWebRequest CreatePostRequest(string path, IDictionary<string, object> parameters)
+        {
+            var webRequest = (HttpWebRequest) WebRequest.Create(string.Concat(_uri, path));
+            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, _cookieContainer.Cookie);
+            webRequest.Method = WebMethod.POST;
             webRequest.UserAgent = UserAgent;
             webRequest.ContentType = ContentType;
             webRequest.AllowAutoRedirect = false;
 
-            if (method == WebMethod.POST)
-            {
-                parameters.Add(CsrfTokenParamName, _csrfTokenContainer.CsrfToken);
-                string postData = ParseParametersToJson(parameters);
+            parameters.Add(CsrfTokenParamName, _csrfTokenContainer.CsrfToken);
+            string postData = ParseParametersToJson(parameters);
 
-                webRequest.AllowWriteStreamBuffering = true;
-                Stream requestStream = webRequest.GetRequestStream();
-                var encoding = new UTF8Encoding();
-                byte[] bytes = encoding.GetBytes(postData);
-                if (bytes.Length > 0)
-                    requestStream.Write(bytes, 0, bytes.Length);
-                else
-                    webRequest.ContentLength = 0;
+            webRequest.AllowWriteStreamBuffering = true;
+            Stream requestStream = webRequest.GetRequestStream();
+            var encoding = new UTF8Encoding();
+            byte[] bytes = encoding.GetBytes(postData);
+            if (bytes.Length > 0)
+                requestStream.Write(bytes, 0, bytes.Length);
+            else
+                webRequest.ContentLength = 0;
 
-                requestStream.Close();
-            }
+            requestStream.Close();
 
             return webRequest;
         }
 
-        public HttpWebRequest CreateRequest(string method, string path)
-        {
-            return CreateRequest(method, path, new Dictionary<string, object>());
-        }
-
-        private string ParseParametersToJson(IDictionary<string, object> parameters)
+        private string ParseParametersToJson(IEnumerable<KeyValuePair<string, object>> parameters)
         {
             var postDataBuilder = new StringBuilder();
             postDataBuilder.Append('{');
@@ -78,7 +97,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
         }
     }
 
-    public static class WebMethod
+    static class WebMethod
     {
         public const string GET = "GET";
         public const string POST = "POST";

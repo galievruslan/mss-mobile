@@ -16,9 +16,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public PriceListDto[] GetPriceLists()
+        public PriceListDto[] GetPriceLists(int page, int pageSize)
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, PriceListsPath);
+            var parametersBuilder = new ParametersBuilder();
+            parametersBuilder.PageNumber(page).ItemsPerPage(pageSize);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(PriceListsPath, parametersBuilder.Build());
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<PriceListDto[]>(json);
         }

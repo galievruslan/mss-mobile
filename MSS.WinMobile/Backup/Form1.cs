@@ -23,7 +23,7 @@ namespace TestJson
             test.a.sss[1] = new C();
 
             StringBuilder sb = new StringBuilder();
-            JsonSerializer.Serialize(sb, test);
+            JsonSerializer.serialize(sb, test);
 
             string text = sb.ToString();
 

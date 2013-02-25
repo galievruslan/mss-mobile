@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using MSS.WinMobile.Infrastructure.Remote.Data.Dtos;
 
 namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
@@ -17,9 +16,12 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public CustomerDto[] GetCustomers()
+        public CustomerDto[] GetCustomers(int page, int pageSize)
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, CustomersPath);
+            var parametersBuilder = new ParametersBuilder();
+            parametersBuilder.PageNumber(page).ItemsPerPage(pageSize);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(CustomersPath,
+                                                                             parametersBuilder.Build());
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<CustomerDto[]>(json);
         }

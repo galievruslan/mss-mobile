@@ -6,6 +6,8 @@
 
         void UpdateStatus(string status);
 
+        void UpdateProgress(int percents);
+
         void Cancel();
     }
 }

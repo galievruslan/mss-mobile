@@ -28,14 +28,26 @@ namespace MSS.WinMobile.UI.Views
         public delegate void UpdateStatusDelegate(string status);
         public void UpdateStatus(string status)
         {
-            if (_statusTextBox.InvokeRequired)
+            if (_statusLabel.InvokeRequired)
             {
-                _statusTextBox.Invoke(new UpdateStatusDelegate(UpdateStatus), status);
+                _statusLabel.Invoke(new UpdateStatusDelegate(UpdateStatus), status);
             }
             else
             {
-                _statusTextBox.Text += status;
-                _statusTextBox.ScrollToCaret();
+                _statusLabel.Text = status;
+            }
+        }
+
+        public delegate void UpdateProgressDelegate(int percents);
+        public void UpdateProgress(int percents)
+        {
+            if (_progressBar.InvokeRequired)
+            {
+                _progressBar.Invoke(new UpdateProgressDelegate(UpdateProgress), percents);
+            }
+            else
+            {
+                _progressBar.Value = percents;
             }
         }
 

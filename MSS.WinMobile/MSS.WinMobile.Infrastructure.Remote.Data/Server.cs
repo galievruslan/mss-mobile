@@ -34,7 +34,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
             _requestFactory = new RequestFactory(_uri, _cookieContainer, _csrfTokenContainer);
             _requestDispatcher = new RequestDispatcher(_cookieContainer, _csrfTokenContainer);
 
-            _requestDispatcher.Dispatch(_requestFactory.CreateRequest(WebMethod.GET, LogonPath));
+            _requestDispatcher.Dispatch(_requestFactory.CreateGetRequest(LogonPath));
 
             var logonParams = new Dictionary<string, object>
                 {
@@ -46,7 +46,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
                             }
                     }
                 };
-            _requestDispatcher.Dispatch(_requestFactory.CreateRequest(WebMethod.POST, LogonPath, logonParams));
+            _requestDispatcher.Dispatch(_requestFactory.CreatePostRequest(LogonPath, logonParams));
         }
 
         public static Server Logon(Uri uri, string username, string password)
@@ -101,7 +101,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
 
         public void Dispose()
         {
-            _requestDispatcher.Dispatch(_requestFactory.CreateRequest(WebMethod.GET, LogoutPath));
+            _requestDispatcher.Dispatch(_requestFactory.CreateGetRequest(LogoutPath));
         }
     }
 }

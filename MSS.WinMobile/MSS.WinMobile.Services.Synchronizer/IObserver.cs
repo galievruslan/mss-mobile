@@ -2,6 +2,6 @@
 {
     public interface IObserver
     {
-        void Notify(Notification notification);
+        void Notify(INotification notification);
     }
 }

@@ -32,12 +32,19 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this._startButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this._statusTextBox = new System.Windows.Forms.TextBox();
+            this._actionPanel = new System.Windows.Forms.Panel();
+            this._statusPanel = new System.Windows.Forms.Panel();
+            this._statusLabel = new System.Windows.Forms.Label();
+            this._progressBar = new System.Windows.Forms.ProgressBar();
+            this._actionPanel.SuspendLayout();
+            this._statusPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _startButton
             // 
-            this._startButton.Location = new System.Drawing.Point(73, 236);
+            this._startButton.BackColor = System.Drawing.Color.White;
+            this._startButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular);
+            this._startButton.Location = new System.Drawing.Point(87, 7);
             this._startButton.Name = "_startButton";
             this._startButton.Size = new System.Drawing.Size(72, 20);
             this._startButton.TabIndex = 0;
@@ -46,33 +53,61 @@
             // 
             // _cancelButton
             // 
-            this._cancelButton.Location = new System.Drawing.Point(151, 236);
+            this._cancelButton.BackColor = System.Drawing.Color.White;
+            this._cancelButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular);
+            this._cancelButton.Location = new System.Drawing.Point(165, 7);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.Size = new System.Drawing.Size(72, 20);
             this._cancelButton.TabIndex = 1;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
-            // _statusTextBox
+            // _actionPanel
             // 
-            this._statusTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._statusTextBox.Location = new System.Drawing.Point(15, 3);
-            this._statusTextBox.Multiline = true;
-            this._statusTextBox.Name = "_statusTextBox";
-            this._statusTextBox.Size = new System.Drawing.Size(208, 227);
-            this._statusTextBox.TabIndex = 2;
+            this._actionPanel.Controls.Add(this._cancelButton);
+            this._actionPanel.Controls.Add(this._startButton);
+            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
+            this._actionPanel.Name = "_actionPanel";
+            this._actionPanel.Size = new System.Drawing.Size(240, 30);
+            // 
+            // _statusPanel
+            // 
+            this._statusPanel.Controls.Add(this._progressBar);
+            this._statusPanel.Controls.Add(this._statusLabel);
+            this._statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._statusPanel.Location = new System.Drawing.Point(0, 0);
+            this._statusPanel.Name = "_statusPanel";
+            this._statusPanel.Size = new System.Drawing.Size(240, 238);
+            // 
+            // _statusLabel
+            // 
+            this._statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._statusLabel.Location = new System.Drawing.Point(3, 12);
+            this._statusLabel.Name = "_statusLabel";
+            this._statusLabel.Size = new System.Drawing.Size(234, 20);
+            this._statusLabel.Text = "Status...";
+            // 
+            // _progressBar
+            // 
+            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._progressBar.Location = new System.Drawing.Point(3, 35);
+            this._progressBar.Name = "_progressBar";
+            this._progressBar.Size = new System.Drawing.Size(234, 20);
             // 
             // SynchronizationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Controls.Add(this._statusTextBox);
-            this.Controls.Add(this._cancelButton);
-            this.Controls.Add(this._startButton);
+            this.Controls.Add(this._statusPanel);
+            this.Controls.Add(this._actionPanel);
             this.Name = "SynchronizationView";
-            this.Text = "SynchronizationView";
+            this.Size = new System.Drawing.Size(240, 268);
+            this._actionPanel.ResumeLayout(false);
+            this._statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -81,6 +116,9 @@
 
         private System.Windows.Forms.Button _startButton;
         private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.TextBox _statusTextBox;
+        private System.Windows.Forms.Panel _actionPanel;
+        private System.Windows.Forms.Panel _statusPanel;
+        private System.Windows.Forms.ProgressBar _progressBar;
+        private System.Windows.Forms.Label _statusLabel;
     }
 }

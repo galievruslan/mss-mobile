@@ -17,9 +17,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
             _requestDispatcher = requestDispatcher;
         }
 
-        public StatusDto[] GetStatuses()
+        public StatusDto[] GetStatuses(int page, int pageSize)
         {
-            HttpWebRequest httpWebRequest = _requestFactory.CreateRequest(WebMethod.GET, StatusesPath);
+            var parametersBuilder = new ParametersBuilder();
+            parametersBuilder.PageNumber(page).ItemsPerPage(pageSize);
+            HttpWebRequest httpWebRequest = _requestFactory.CreateGetRequest(StatusesPath, parametersBuilder.Build());
             string json = _requestDispatcher.Dispatch(httpWebRequest);
             return Json.JsonDeserializer.Deserialize<StatusDto[]>(json);
         }

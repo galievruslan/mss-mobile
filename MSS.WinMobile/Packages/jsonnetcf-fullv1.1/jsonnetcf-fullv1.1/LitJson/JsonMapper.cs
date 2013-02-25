@@ -315,6 +315,14 @@ namespace LitJson
                 if (jsonType == typeof(string) && instType == typeof(long))
                     return long.Parse((string)(reader.Value));
 
+                // juggle between decimal and string
+                if (jsonType == typeof(string) && instType == typeof(float))
+                    return float.Parse((string)(reader.Value), NumberStyles.Any);
+
+                // juggle between decimal and string
+                if (jsonType == typeof(string) && instType == typeof(decimal))
+                    return decimal.Parse((string)(reader.Value), NumberStyles.Any);
+
                 if (instType.IsAssignableFrom (jsonType))
                     return reader.Value;
 

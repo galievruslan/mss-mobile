@@ -33,29 +33,54 @@ namespace MSS.WinMobile.Services
         {
             using (var server = Server.Logon(_serverUri, _userName, _password))
             {
-                #region Customers synchronization
-                var customers = new List<Customer>();
-                var shippingAddresses = new List<ShippingAddress>();
+                NotifyObservers(new ProgressNotification(0));
+                SynchronizeCustomers(server);
+                NotifyObservers(new ProgressNotification(10));
+                SynchronizeManagers(server);
+                NotifyObservers(new ProgressNotification(20));
+                SynchronizeStatuses(server);
+                NotifyObservers(new ProgressNotification(30));
+                SynchronizeWarehouses(server);
+                NotifyObservers(new ProgressNotification(40));
+                SynchronizeUnitsOfMeasure(server);
+                NotifyObservers(new ProgressNotification(50));
+                SynchronizeProducts(server);
+                NotifyObservers(new ProgressNotification(80));
+                SynchronizePriceLists(server);
+                NotifyObservers(new ProgressNotification(90));
+                SynchronizeRoutes(server);
+                NotifyObservers(new ProgressNotification(100));
+            }
+        }
 
-                var customersDtos = server.CustomerService.GetCustomers();
+        private void SynchronizeCustomers(Server server)
+        {
+            var customers = new List<Customer>();
+            var shippingAddresses = new List<ShippingAddress>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var customersDtos = server.CustomerService.GetCustomers(pageNumber, itemsPerPage);
+            while (customersDtos.Length > 0)
+            {
                 foreach (var customerDto in customersDtos)
                 {
-                    var customer  = new Customer
-                        {
-                            Id = customerDto.Id,
-                            Name = customerDto.Name
-                        };
+                    var customer = new Customer
+                    {
+                        Id = customerDto.Id,
+                        Name = customerDto.Name
+                    };
                     customers.Add(customer);
 
                     foreach (var shippingAddressDto in customerDto.ShippingAddresses)
                     {
                         var shippingAddress = new ShippingAddress
-                            {
-                                Id = shippingAddressDto.Id,
-                                Name = shippingAddressDto.Name,
-                                Address = shippingAddressDto.Address,
-                                CustomerId = customerDto.Id
-                            };
+                        {
+                            Id = shippingAddressDto.Id,
+                            Name = shippingAddressDto.Name,
+                            Address = shippingAddressDto.Address,
+                            CustomerId = customerDto.Id
+                        };
                         shippingAddresses.Add(shippingAddress);
                     }
                 }
@@ -64,29 +89,47 @@ namespace MSS.WinMobile.Services
                 SynchronizeEntity(shippingAddresses);
                 customers.Clear();
                 shippingAddresses.Clear();
-                #endregion
 
-                #region Managers synchronization
-                var managers = new List<Manager>();
+                pageNumber++;
+                customersDtos = server.CustomerService.GetCustomers(pageNumber, itemsPerPage);
+            }
+        }
 
-                var managersDtos = server.ManagerService.GetManagers();
+        private void SynchronizeManagers(Server server)
+        {
+            var managers = new List<Manager>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var managersDtos = server.ManagerService.GetManagers(pageNumber, itemsPerPage);
+            while (managersDtos.Length > 0)
+            {
                 foreach (var managerDto in managersDtos)
                 {
                     var manager = new Manager
-                        {
-                            Id = managerDto.Id,
-                            Name = managerDto.Name
-                        };
+                    {
+                        Id = managerDto.Id,
+                        Name = managerDto.Name
+                    };
                     managers.Add(manager);
                 }
                 SynchronizeEntity(managers);
                 managers.Clear();
-                #endregion
 
-                #region Statuses synchronization
-                var statuses = new List<Status>();
+                pageNumber++;
+                managersDtos = server.ManagerService.GetManagers(pageNumber, itemsPerPage);
+            }
+        }
 
-                var statusesDtos = server.StatusService.GetStatuses();
+        private void SynchronizeStatuses(Server server)
+        {
+            var statuses = new List<Status>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var statusesDtos = server.StatusService.GetStatuses(pageNumber, itemsPerPage);
+            while (statusesDtos.Length > 0)
+            {
                 foreach (var statusDto in statusesDtos)
                 {
                     var status = new Status
@@ -98,12 +141,21 @@ namespace MSS.WinMobile.Services
                 }
                 SynchronizeEntity(statuses);
                 statuses.Clear();
-                #endregion
 
-                #region Warehouses synchronization
-                var warehouses = new List<Warehouse>();
+                pageNumber++;
+                statusesDtos = server.StatusService.GetStatuses(pageNumber, itemsPerPage);
+            }
+        }
 
-                var warehousesDtos = server.WarehouseService.GetWarehouses();
+        private void SynchronizeWarehouses(Server server)
+        {
+            var warehouses = new List<Warehouse>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var warehousesDtos = server.WarehouseService.GetWarehouses(pageNumber, itemsPerPage);
+            while (warehousesDtos.Length > 0)
+            {
                 foreach (var warehouseDto in warehousesDtos)
                 {
                     var warehouse = new Warehouse
@@ -115,47 +167,65 @@ namespace MSS.WinMobile.Services
                 }
                 SynchronizeEntity(warehouses);
                 warehouses.Clear();
-                #endregion
 
-                #region UnitOfMeasures synchronization
-                var uoms = new List<UnitOfMeasure>();
+                pageNumber++;
+                warehousesDtos = server.WarehouseService.GetWarehouses(pageNumber, itemsPerPage);
+            }
+        }
 
-                var uomsDtos = server.UnitOfMeasureService.GetUnitsOfMeasures();
+        private void SynchronizeUnitsOfMeasure(Server server)
+        {
+            var uoms = new List<UnitOfMeasure>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var uomsDtos = server.UnitOfMeasureService.GetUnitsOfMeasures(pageNumber, itemsPerPage);
+            while (uomsDtos.Length > 0)
+            {
                 foreach (var uomDto in uomsDtos)
                 {
                     var uom = new UnitOfMeasure
-                        {
-                            Id = uomDto.Id,
-                            Name = uomDto.Name
-                        };
+                    {
+                        Id = uomDto.Id,
+                        Name = uomDto.Name
+                    };
                     uoms.Add(uom);
                 }
                 SynchronizeEntity(uoms);
                 uoms.Clear();
-                #endregion
 
-                #region Products synchronization
-                var products = new List<Product>();
-                var productsUoms = new List<ProductsUnitOfMeasure>();
+                pageNumber++;
+                uomsDtos = server.UnitOfMeasureService.GetUnitsOfMeasures(pageNumber, itemsPerPage);
+            }
+        }
 
-                var productsDtos = server.ProductService.GetProducts();
+        private void SynchronizeProducts(Server server)
+        {
+            var products = new List<Product>();
+            var productsUoms = new List<ProductsUnitOfMeasure>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var productsDtos = server.ProductService.GetProducts(pageNumber, itemsPerPage);
+            while (productsDtos.Length > 0)
+            {
                 foreach (var productDto in productsDtos)
                 {
                     var product = new Product
-                        {
-                            Id = productDto.Id,
-                            Name = productDto.Name,
-                        };
+                    {
+                        Id = productDto.Id,
+                        Name = productDto.Name,
+                    };
                     products.Add(product);
 
                     foreach (var productUomDto in productDto.ProductUnitOfMeasures)
                     {
                         var productUom = new ProductsUnitOfMeasure
-                            {
-                                Id = productUomDto.Id,
-                                ProductId = productDto.Id,
-                                UnitOfMeasureId = productUomDto.Id
-                            };
+                        {
+                            Id = productUomDto.Id,
+                            ProductId = productDto.Id,
+                            UnitOfMeasureId = productUomDto.Id
+                        };
                         productsUoms.Add(productUom);
                     }
                 }
@@ -164,20 +234,29 @@ namespace MSS.WinMobile.Services
                 SynchronizeEntity(productsUoms);
                 products.Clear();
                 productsUoms.Clear();
-                #endregion
 
-                #region PriceLists synchronization
-                var priceLists = new List<PriceList>();
-                var priceListsLines = new List<PriceListLine>();
+                pageNumber++;
+                productsDtos = server.ProductService.GetProducts(pageNumber, itemsPerPage);
+            }
+        }
 
-                var priceListsDtos = server.PriceListService.GetPriceLists();
+        private void SynchronizePriceLists(Server server)
+        {
+            var priceLists = new List<PriceList>();
+            var priceListsLines = new List<PriceListLine>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 1;
+            var priceListsDtos = server.PriceListService.GetPriceLists(pageNumber, itemsPerPage);
+            while (priceListsDtos.Length > 0)
+            {
                 foreach (var priceListDto in priceListsDtos)
                 {
                     var priceList = new PriceList
-                        {
-                            Id = priceListDto.Id,
-                            Name = priceListDto.Name
-                        };
+                    {
+                        Id = priceListDto.Id,
+                        Name = priceListDto.Name
+                    };
                     priceLists.Add(priceList);
 
                     foreach (var priceListLineDto in priceListDto.PriceListLines)
@@ -197,43 +276,47 @@ namespace MSS.WinMobile.Services
                 SynchronizeEntity(priceListsLines);
                 priceLists.Clear();
                 priceListsLines.Clear();
-                #endregion
 
-                #region Routes synchronization
-                var routes = new List<Route>();
-                var routesPoints = new List<RoutePoint>();
-
-                var routeDto = server.RouteService.GetToday();
-                var route = new Route()
-                    {
-                        Id = routeDto.Id,
-                        Date = routeDto.Date,
-                        ManagerId = routeDto.ManagerId
-                    };
-                routes.Add(route);
-
-                foreach (var routePointDto in routeDto.RoutePoints)
-                {
-                    var routePoint = new RoutePoint
-                        {
-                            Id = routePointDto.Id,
-                            RouteId = routeDto.Id,
-                            ShippingAddressId = routePointDto.ShippingAddressId,
-                            StatusId = routePointDto.StatusId
-                        };
-                    routesPoints.Add(routePoint);
-                }
-
-                SynchronizeEntity(routes);
-                SynchronizeEntity(routesPoints);
-                routes.Clear();
-                routesPoints.Clear();
-                #endregion
+                pageNumber++;
+                priceListsDtos = server.PriceListService.GetPriceLists(pageNumber, itemsPerPage);
             }
         }
 
+        private void SynchronizeRoutes(Server server)
+        {
+            var routes = new List<Route>();
+            var routesPoints = new List<RoutePoint>();
+
+            var routeDto = server.RouteService.GetToday();
+
+            var route = new Route
+                {
+                    Id = routeDto.Id,
+                    Date = routeDto.Date,
+                    ManagerId = routeDto.ManagerId
+                };
+            routes.Add(route);
+
+            foreach (var routePointDto in routeDto.RoutePoints)
+            {
+                var routePoint = new RoutePoint
+                    {
+                        Id = routePointDto.Id,
+                        RouteId = routeDto.Id,
+                        ShippingAddressId = routePointDto.ShippingAddressId,
+                        StatusId = routePointDto.StatusId
+                    };
+                routesPoints.Add(routePoint);
+            }
+
+            SynchronizeEntity(routes);
+            SynchronizeEntity(routesPoints);
+            routes.Clear();
+            routesPoints.Clear();
+        }
+
         private void SynchronizeEntity<T>(IEnumerable<T> entities) where T : IEntity {
-            NotifyObservers(new Notification(string.Format("{0} syncronization started.", typeof(T))));
+            NotifyObservers(new TextNotification(string.Format("{0} syncronization started.", typeof(T))));
 
             try
             {
@@ -251,11 +334,11 @@ namespace MSS.WinMobile.Services
                     destinationTransaction.Commit();
                 }
 
-                NotifyObservers(new Notification(string.Format("{0} syncronization finished.", typeof(T))));
+                NotifyObservers(new TextNotification(string.Format("{0} syncronization finished.", typeof(T))));
             }
             catch (Exception)
             {
-                NotifyObservers(new Notification(string.Format("{0} syncronization failed.", typeof(T))));
+                NotifyObservers(new TextNotification(string.Format("{0} syncronization failed.", typeof(T))));
             }
         }
 
@@ -263,7 +346,7 @@ namespace MSS.WinMobile.Services
 
         readonly IList<IObserver> _observers = new List<IObserver>();
 
-        private void NotifyObservers(Notification notification)
+        private void NotifyObservers(INotification notification)
         {
             foreach (var observer in _observers)
             {
