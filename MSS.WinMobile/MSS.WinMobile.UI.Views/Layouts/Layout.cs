@@ -15,33 +15,41 @@ namespace MSS.WinMobile.UI.Views.Layouts
 
         private UserControl _currentView;
 
+        public delegate void NavigateDelegate<T>();
         public void Navigate<T>()
         {
-            UserControl to;
-            if (typeof(T) == typeof(ILogonView))
-                to = new LogonView(this);
-            else if (typeof(T) == typeof(IMenuView))
-                to = new MenuView(this);
-            else if (typeof(T) == typeof(ISynchronizationView))
-                to = new SynchronizationView(this);
-            else if (typeof(T) == typeof(ICustomersView))
-                to = new CustomersView(this);
-            else
-                throw new ViewNotFoundException();
-
-            if (_currentView != null)
+            if (_bodyPanel.InvokeRequired)
             {
-                if (_bodyPanel.Controls.Contains(_currentView))
-                    _bodyPanel.Controls.Remove(_currentView);
-
-                _currentView.Dispose();
+                _bodyPanel.Invoke(new NavigateDelegate<T>(Navigate<T>));
             }
+            else
+            {
+                UserControl to;
+                if (typeof (T) == typeof (ILogonView))
+                    to = new LogonView(this);
+                else if (typeof (T) == typeof (IMenuView))
+                    to = new MenuView(this);
+                else if (typeof (T) == typeof (ISynchronizationView))
+                    to = new SynchronizationView(this);
+                else if (typeof (T) == typeof (ICustomersView))
+                    to = new CustomersView(this);
+                else
+                    throw new ViewNotFoundException();
 
-            _currentView = to;
-            _currentView.Dock = DockStyle.Fill;
-            _bodyPanel.Controls.Add(_currentView);
+                if (_currentView != null)
+                {
+                    if (_bodyPanel.Controls.Contains(_currentView))
+                        _bodyPanel.Controls.Remove(_currentView);
 
-            _bodyPanel.Refresh();
+                    _currentView.Dispose();
+                }
+
+                _currentView = to;
+                _currentView.Dock = DockStyle.Fill;
+                _bodyPanel.Controls.Add(_currentView);
+
+                _bodyPanel.Refresh();
+            }
         }
 
         public void ShowInfoDialog(string message)
@@ -72,11 +80,6 @@ namespace MSS.WinMobile.UI.Views.Layouts
 
         public class ViewNotFoundException : Exception
         {
-        }
-
-        private void Layout_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
     }
 }

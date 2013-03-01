@@ -99,6 +99,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
             get { return new UnitOfMeasureService(_requestFactory, _requestDispatcher); }
         }
 
+        public CategoryService CategoryServiceService
+        {
+            get { return new CategoryService(_requestFactory, _requestDispatcher); }
+        }
+
         public void Dispose()
         {
             _requestDispatcher.Dispatch(_requestFactory.CreateGetRequest(LogoutPath));

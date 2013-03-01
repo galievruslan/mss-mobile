@@ -2,6 +2,11 @@
 {
     public class CustomerDto
     {
+        public CustomerDto()
+        {
+            ShippingAddresses = new ShippingAddressDto[0];
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }

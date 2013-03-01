@@ -60,7 +60,6 @@
             this.Menu = _mainMenu;
             this.Name = "Layout";
             this.Text = "SimpleLayout";
-            this.Closing += new System.ComponentModel.CancelEventHandler(this.Layout_Closing);
             this.ResumeLayout(false);
 
         }

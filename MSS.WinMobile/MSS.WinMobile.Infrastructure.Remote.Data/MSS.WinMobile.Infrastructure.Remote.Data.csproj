@@ -57,7 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CookieContainer.cs" />
-    <Compile Include="Dtos\PriceListLineDto.cs" />
+    <Compile Include="Dtos\CategoryDto.cs" />
+    <Compile Include="Dtos\ProductPriceDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\ManagerDto.cs" />
     <Compile Include="Dtos\OrderDto.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="CsrfTokenContainer.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Services\Constants.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ParametersBuilder.cs" />
     <Compile Include="Services\UnitOfMeasureService.cs" />
     <Compile Include="Services\PriceListService.cs" />

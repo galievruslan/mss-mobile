@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -21,28 +23,39 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data
         {
             try
             {
-                var httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse();
-                string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
-                if (!string.IsNullOrEmpty(cookie))
-                {
-                    _cookieContainer.SetCookie(cookie);
-                }
-
                 string responseText = string.Empty;
-                using (Stream stream = httpWebResponse.GetResponseStream())
+                using (var httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse())
                 {
-                    if (stream != null)
+                    string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
+                    if (!string.IsNullOrEmpty(cookie))
                     {
-                        using (var reader = new StreamReader(stream, true))
+                        _cookieContainer.SetCookie(cookie);
+                    }
+                    
+                    using (Stream stream = httpWebResponse.GetResponseStream())
+                    {
+                        if (stream != null)
                         {
-                            responseText = reader.ReadToEnd();
+                            using (var reader = new StreamReader(stream, true))
+                            {
+                                var responseTextBuilder = new StringBuilder((int)httpWebResponse.ContentLength);
+                                while (!reader.EndOfStream)
+                                {
+                                    var buffer = new char[1024];
+                                    reader.Read(buffer, 0, buffer.Length);
+
+                                    var cleanBuffer = buffer.Where(c => c != '\0').ToArray();
+                                    
+                                    if (cleanBuffer.Length > 0)
+                                        responseTextBuilder.Append(cleanBuffer);
+                                }
+                                responseText = responseTextBuilder.ToString();
+                            }
                         }
                     }
                 }
 
-                httpWebResponse.Close();
                 _scrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
-
                 return responseText;
             }
             catch (WebException webException)

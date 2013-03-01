@@ -44,9 +44,11 @@ namespace MSS.WinMobile.Services
                 NotifyObservers(new ProgressNotification(40));
                 SynchronizeUnitsOfMeasure(server);
                 NotifyObservers(new ProgressNotification(50));
-                SynchronizeProducts(server);
-                NotifyObservers(new ProgressNotification(80));
+                SynchronizeCategories(server);
+                NotifyObservers(new ProgressNotification(60));
                 SynchronizePriceLists(server);
+                NotifyObservers(new ProgressNotification(70));
+                SynchronizeProducts(server);
                 NotifyObservers(new ProgressNotification(90));
                 SynchronizeRoutes(server);
                 NotifyObservers(new ProgressNotification(100));
@@ -199,10 +201,42 @@ namespace MSS.WinMobile.Services
             }
         }
 
+        private void SynchronizeCategories(Server server)
+        {
+            var categories = new List<Category>();
+
+            int pageNumber = 1;
+            const int itemsPerPage = 100;
+            var categoriesDtos = server.CategoryServiceService.GetCategories(pageNumber, itemsPerPage);
+            while (categoriesDtos.Length > 0)
+            {
+                foreach (var categoryDto in categoriesDtos)
+                {
+                    var category = new Category
+                    {
+                        Id = categoryDto.Id,
+                        Name = categoryDto.Name,
+                    };
+
+                    if (categoryDto.CategoryId != 0)
+                        category.ParentId = categoryDto.CategoryId;
+
+
+                    categories.Add(category);
+                }
+                SynchronizeEntity(categories);
+                categories.Clear();
+
+                pageNumber++;
+                categoriesDtos = server.CategoryServiceService.GetCategories(pageNumber, itemsPerPage);
+            }
+        }
+
         private void SynchronizeProducts(Server server)
         {
             var products = new List<Product>();
             var productsUoms = new List<ProductsUnitOfMeasure>();
+            var productsPrices = new List<ProductsPrice>();
 
             int pageNumber = 1;
             const int itemsPerPage = 100;
@@ -216,6 +250,9 @@ namespace MSS.WinMobile.Services
                         Id = productDto.Id,
                         Name = productDto.Name,
                     };
+                    if (productDto.CategoryId != 0)
+                        product.CategoryId = productDto.CategoryId;
+
                     products.Add(product);
 
                     foreach (var productUomDto in productDto.ProductUnitOfMeasures)
@@ -228,12 +265,26 @@ namespace MSS.WinMobile.Services
                         };
                         productsUoms.Add(productUom);
                     }
+
+                    foreach (var productPriceDto in productDto.ProductPrices)
+                    {
+                        var productPrice = new ProductsPrice
+                        {
+                            Id = productPriceDto.Id,
+                            ProductId = productDto.Id,
+                            PriceListId = productPriceDto.PriceListId,
+                            Price = productPriceDto.Price
+                        };
+                        productsPrices.Add(productPrice);
+                    }
                 }
 
                 SynchronizeEntity(products);
                 SynchronizeEntity(productsUoms);
+                SynchronizeEntity(productsPrices);
                 products.Clear();
                 productsUoms.Clear();
+                productsPrices.Clear();
 
                 pageNumber++;
                 productsDtos = server.ProductService.GetProducts(pageNumber, itemsPerPage);
@@ -243,7 +294,6 @@ namespace MSS.WinMobile.Services
         private void SynchronizePriceLists(Server server)
         {
             var priceLists = new List<PriceList>();
-            var priceListsLines = new List<PriceListLine>();
 
             int pageNumber = 1;
             const int itemsPerPage = 1;
@@ -258,24 +308,10 @@ namespace MSS.WinMobile.Services
                         Name = priceListDto.Name
                     };
                     priceLists.Add(priceList);
-
-                    foreach (var priceListLineDto in priceListDto.PriceListLines)
-                    {
-                        var priceListLine = new PriceListLine
-                        {
-                            Id = priceListLineDto.Id,
-                            ProductId = priceListLineDto.Id,
-                            PriceListId = priceListDto.Id,
-                            Price = priceListLineDto.Price
-                        };
-                        priceListsLines.Add(priceListLine);
-                    }
                 }
 
                 SynchronizeEntity(priceLists);
-                SynchronizeEntity(priceListsLines);
                 priceLists.Clear();
-                priceListsLines.Clear();
 
                 pageNumber++;
                 priceListsDtos = server.PriceListService.GetPriceLists(pageNumber, itemsPerPage);

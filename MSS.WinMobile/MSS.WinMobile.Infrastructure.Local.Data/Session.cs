@@ -30,15 +30,16 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
                         SystemScriptGenerator.GenearteCreateTableFor<Warehouse>(),
                         SystemScriptGenerator.GenearteCreateTableFor<UnitOfMeasure>(),
                         SystemScriptGenerator.GenearteCreateTableFor<PriceList>(),
-                        SystemScriptGenerator.GenearteCreateTableFor<PriceListLine>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Order>(),
                         SystemScriptGenerator.GenearteCreateTableFor<OrderItem>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Product>(),
                         SystemScriptGenerator.GenearteCreateTableFor<ProductsUnitOfMeasure>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<ProductsPrice>(),
                         SystemScriptGenerator.GenearteCreateTableFor<Route>(),
                         SystemScriptGenerator.GenearteCreateTableFor<RoutePoint>(),
                         SystemScriptGenerator.GenearteCreateTableFor<ShippingAddress>(),
-                        SystemScriptGenerator.GenearteCreateTableFor<Status>()
+                        SystemScriptGenerator.GenearteCreateTableFor<Status>(),
+                        SystemScriptGenerator.GenearteCreateTableFor<Category>()
                     };
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<Order>());
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<OrderItem>());
@@ -46,7 +47,9 @@ namespace MSS.WinMobile.Infrastructure.Local.Data
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<RoutePoint>());
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<ShippingAddress>());
                 scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<ProductsUnitOfMeasure>());
-                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<PriceListLine>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<ProductsPrice>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<Category>());
+                scripts.AddRange(SystemScriptGenerator.GenerateAlterTableFor<Product>());
 
                 var scriptExecuter = new ScriptExecuter(GetConnection());
                 scriptExecuter.ExecuteCreateScripts(scripts);

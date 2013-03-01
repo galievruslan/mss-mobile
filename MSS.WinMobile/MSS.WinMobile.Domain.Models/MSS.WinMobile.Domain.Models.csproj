@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PriceListLine.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="ProductsPrice.cs" />
     <Compile Include="PriceList.cs" />
     <Compile Include="ProductsUnitOfMeasure.cs" />
     <Compile Include="UnitOfMeasure.cs" />

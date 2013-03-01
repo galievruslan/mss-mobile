@@ -17,6 +17,8 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.Scripts.Data.Expressions
 
         public override string AsSql()
         {
+            if (_value == null)
+                return "NULL";
             if (_value is string)
                 return string.Format(StringPattern, _value);
             if (_value is DateTime)

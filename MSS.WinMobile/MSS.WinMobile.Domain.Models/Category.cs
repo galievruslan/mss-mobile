@@ -3,8 +3,8 @@ using MSS.WinMobile.Infrastructure.Local.Attributes;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    [Table("Products")]
-    public class Product : IEntity
+    [Table("Categories")]
+    public class Category : IEntity
     {
         [Key("Id")]
         public int Id { get; set; }
@@ -12,7 +12,7 @@ namespace MSS.WinMobile.Domain.Models
         [StringColumn("Name", 255)]
         public string Name { get; set; }
 
-        [Reference("Categoty_Id", typeof(Category))]
-        public int? CategoryId { get; set; }
+        [Reference("Parent_Id", typeof(Category))]
+        public int? ParentId { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
 {
     public class RouteService
     {
-        private const string RoutesPath = "routes/create_use_template.json";
+        private const string RoutesPath = "routes/current.json";
 
         private readonly RequestFactory _requestFactory;
         private readonly RequestDispatcher _requestDispatcher;

@@ -4,6 +4,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Dtos
 {
     public class RouteDto
     {
+        public RouteDto()
+        {
+            RoutePoints = new RoutePointDto[0];
+        }
+
         public int Id { get; set; }
 
         public DateTime Date { get; set; }

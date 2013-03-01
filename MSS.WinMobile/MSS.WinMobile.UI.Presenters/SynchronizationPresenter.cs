@@ -30,6 +30,7 @@ namespace MSS.WinMobile.UI.Presenters
                 synchronizer.Subscribe(this);
                 synchronizer.Start();
             }
+            Layout.Navigate<IMenuView>();
         }
 
         public void Cancel()

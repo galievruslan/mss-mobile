@@ -14,5 +14,8 @@ namespace MSS.WinMobile.Domain.Models
 
         [Reference("UnitOfMeasure_Id", typeof(UnitOfMeasure))]
         public int UnitOfMeasureId { get; set; }
+
+        [Column("Base")]
+        public bool Base { get; set; }
     }
 }

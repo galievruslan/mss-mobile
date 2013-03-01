@@ -4,6 +4,11 @@ namespace MSS.WinMobile.Infrastructure.Remote.Data.Dtos
 {
     public class OrderDto
     {
+        public OrderDto()
+        {
+            Items = new OrderItemDto[0];
+        }
+
         public int Id { get; set; }
 
         public DateTime Date { get; set; }
