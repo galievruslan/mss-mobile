@@ -4,18 +4,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4D4039F4-3296-4FA8-8E73-743B476550AC}</ProjectGuid>
+    <ProjectGuid>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile.Services</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Services</AssemblyName>
+    <RootNamespace>MSS.WinMobile.Common</RootNamespace>
+    <AssemblyName>MSS.WinMobile.Common</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
-    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
-    <OSVersion>5.1</OSVersion>
-    <DeployDirSuffix>MSS.WinMobile.Services.Synchronizer</DeployDirSuffix>
+    <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
+    <OSVersion>5.2</OSVersion>
+    <DeployDirSuffix>MSS.WinMobile.Common</DeployDirSuffix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <NativePlatformName>Windows Mobile 5.0 Pocket PC SDK</NativePlatformName>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
   </PropertyGroup>
@@ -45,49 +45,18 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INotification.cs" />
-    <Compile Include="IObservable.cs" />
-    <Compile Include="IObserver.cs" />
-    <Compile Include="TextNotification.cs" />
-    <Compile Include="ProgressNotification.cs" />
+    <Compile Include="Observable\INotification.cs" />
+    <Compile Include="Observable\IObservable.cs" />
+    <Compile Include="Observable\IObserver.cs" />
+    <Compile Include="Observable\ProgressNotification.cs" />
+    <Compile Include="Observable\TextNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Synchronizer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Commands\MSS.WinMobile.Commands.csproj">
-      <Project>{5CB36071-60FE-4063-AE50-3F62D51D69C8}</Project>
-      <Name>MSS.WinMobile.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
-      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
-      <Name>MSS.WinMobile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
-      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
-      <Name>MSS.WinMobile.Domain.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
-      <Project>{CA136097-615C-45D6-93BF-F0A4435E84FA}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
-      <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

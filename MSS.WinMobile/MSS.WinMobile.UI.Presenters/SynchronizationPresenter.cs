@@ -1,12 +1,16 @@
-﻿using System.Threading;
-using MSS.WinMobile.Services;
+﻿using System;
+using System.Threading;
+using MSS.WinMobile.Commands.FaultHandling;
+using MSS.WinMobile.Commands.Synchronization;
+using MSS.WinMobile.Common.Observable;
+using MSS.WinMobile.Infrastructure.Remote.Data;
 using log4net;
 
 namespace MSS.WinMobile.UI.Presenters
 {
     public class SynchronizationPresenter : Presenter, IObserver
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Synchronizer));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(SynchronizationPresenter));
 
         private readonly ISynchronizationView _view;
         public SynchronizationPresenter(ILayout layout, ISynchronizationView view)
@@ -23,13 +27,23 @@ namespace MSS.WinMobile.UI.Presenters
             _thread.Start();
         }
 
-        private void RunSynchronizationInBackground()
-        {
-            using (var synchronizer = new Synchronizer())
-            {
-                synchronizer.Subscribe(this);
-                synchronizer.Start();
+        private void RunSynchronizationInBackground() {
+            var serverUri = new Uri(string.Format("http://{0}:{1}/",
+                                                  ConfigurationManager.AppSettings["ServerAddress"],
+                                                  ConfigurationManager.AppSettings["ServerPort"]));
+
+            var userName = ConfigurationManager.AppSettings["ServerUsername"];
+            var password = ConfigurationManager.AppSettings["ServerPassword"];
+
+            string databaseName = ConfigurationManager.AppSettings["DatabaseName"];
+            var session = new Infrastructure.Local.Data.Session(databaseName);
+
+            using (var server = Server.Logon(serverUri, userName, password)) {
+                var command = new SynchronizeAll(server, session).IgnoreOnError(false);
+                command.Do();
+
             }
+
             Layout.Navigate<IMenuView>();
         }
 

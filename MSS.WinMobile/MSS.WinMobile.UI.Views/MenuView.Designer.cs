@@ -72,7 +72,7 @@
             // 
             this._goSynchronizationButton.BackColor = System.Drawing.Color.White;
             this._goSynchronizationButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_goSynchronizationButton.BackgroundImage")));
-            this._goSynchronizationButton.Location = new System.Drawing.Point(3, 128);
+            this._goSynchronizationButton.Location = new System.Drawing.Point(3, 127);
             this._goSynchronizationButton.Name = "_goSynchronizationButton";
             this._goSynchronizationButton.PressedImage = null;
             this._goSynchronizationButton.Size = new System.Drawing.Size(109, 110);

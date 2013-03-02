@@ -72,6 +72,14 @@
     <Compile Include="SynchronizationPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Commands\MSS.WinMobile.Commands.csproj">
+      <Project>{5CB36071-60FE-4063-AE50-3F62D51D69C8}</Project>
+      <Name>MSS.WinMobile.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
+      <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
+      <Name>MSS.WinMobile.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
       <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
       <Name>MSS.WinMobile</Name>
@@ -95,10 +103,6 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Services.Synchronizer\MSS.WinMobile.Services.csproj">
-      <Project>{4D4039F4-3296-4FA8-8E73-743B476550AC}</Project>
-      <Name>MSS.WinMobile.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.ViewModel\MSS.WinMobile.UI.ViewModel.csproj">
       <Project>{1D22538A-B171-4CC5-A4CD-586EEA8B815E}</Project>
