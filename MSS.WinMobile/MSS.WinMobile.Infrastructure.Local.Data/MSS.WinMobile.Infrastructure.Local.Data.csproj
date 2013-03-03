@@ -75,6 +75,7 @@
     <Compile Include="Scripts\Data\SelectScript.cs" />
     <Compile Include="Scripts\System\AlterTableScript.cs" />
     <Compile Include="Scripts\System\AddColumnScript.cs" />
+    <Compile Include="Scripts\System\CreateBooleanColumnScript.cs" />
     <Compile Include="Scripts\System\CreateColumnScriptExtensions.cs" />
     <Compile Include="Scripts\System\CreateDatetimeColumnScript.cs" />
     <Compile Include="Scripts\System\CreateDecimalColumnScript.cs" />

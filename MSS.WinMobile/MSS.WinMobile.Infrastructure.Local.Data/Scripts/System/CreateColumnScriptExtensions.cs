@@ -12,6 +12,11 @@
             return new CreateDatetimeColumnScript(createColumnScript);
         }
 
+        public static CreateBooleanColumnScript AsBoolean(this CreateColumnScript createColumnScript)
+        {
+            return new CreateBooleanColumnScript(createColumnScript);
+        }
+
         public static CreateDecimalColumnScript AsDecimal(this CreateColumnScript createColumnScript, int precision, int scale)
         {
             return new CreateDecimalColumnScript(createColumnScript, precision, scale);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using MSS.WinMobile.Common.Observable;
 
 namespace MSS.WinMobile.Commands.FaultHandling
 {
@@ -13,6 +14,7 @@ namespace MSS.WinMobile.Commands.FaultHandling
 
         public RepeatOnErrorCommand(Command<T> command, int repeatCount, int repeatDelay) {
             _command = command;
+            _command.Subscribe(this);
             _repeatCount = repeatCount;
             _repeatDelay = repeatDelay;
         }
@@ -36,6 +38,12 @@ namespace MSS.WinMobile.Commands.FaultHandling
                     Thread.Sleep(_repeatDelay);
                 }
             }
+        }
+
+        public override void Notify(INotification notification)
+        {
+            base.Notify(notification);
+            Notificate(notification);
         }
     }
 }

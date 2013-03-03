@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="CookieContainer.cs" />
     <Compile Include="Dtos\CategoryDto.cs" />
+    <Compile Include="Dtos\ProductUnitOfMeasureDto.cs" />
     <Compile Include="Dtos\ProductPriceDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\ManagerDto.cs" />

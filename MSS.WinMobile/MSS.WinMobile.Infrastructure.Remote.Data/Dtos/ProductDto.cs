@@ -4,7 +4,7 @@
     {
         public ProductDto()
         {
-            ProductUnitOfMeasures = new UnitOfMeasureDto[0];
+            ProductUnitOfMeasures = new ProductUnitOfMeasure[0];
             ProductPrices = new ProductPriceDto[0];
         }
 
@@ -14,7 +14,7 @@
 
         public int CategoryId { get; set; }
 
-        public UnitOfMeasureDto[] ProductUnitOfMeasures { get; set; }
+        public ProductUnitOfMeasure[] ProductUnitOfMeasures { get; set; }
 
         public ProductPriceDto[] ProductPrices { get; set; }
     }

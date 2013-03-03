@@ -40,8 +40,8 @@ namespace MSS.WinMobile.UI.Presenters
 
             using (var server = Server.Logon(serverUri, userName, password)) {
                 var command = new SynchronizeAll(server, session).IgnoreOnError(false);
+                command.Subscribe(this);
                 command.Do();
-
             }
 
             Layout.Navigate<IMenuView>();

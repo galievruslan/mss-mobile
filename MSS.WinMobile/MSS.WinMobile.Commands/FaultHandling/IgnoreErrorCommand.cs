@@ -1,7 +1,5 @@
 ﻿using System;
-
-using System.Collections.Generic;
-using System.Text;
+using MSS.WinMobile.Common.Observable;
 
 namespace MSS.WinMobile.Commands.FaultHandling
 {
@@ -14,6 +12,7 @@ namespace MSS.WinMobile.Commands.FaultHandling
 
         public IgnoreErrorCommand(Command<T> command, T defaultReturn) {
             _command = command;
+            _command.Subscribe(this);
             _defaultReturn = defaultReturn;
         }
 
@@ -26,6 +25,12 @@ namespace MSS.WinMobile.Commands.FaultHandling
             }
 
             return _defaultReturn;
+        }
+
+        public override void Notify(INotification notification)
+        {
+            base.Notify(notification);
+            Notificate(notification);
         }
     }
 }

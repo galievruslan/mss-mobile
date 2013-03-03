@@ -44,7 +44,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                         {
                             Id = productUomDto.Id,
                             ProductId = productDto.Id,
-                            UnitOfMeasureId = productUomDto.Id
+                            UnitOfMeasureId = productUomDto.UnitOfMeasureId,
+                            Base = productUomDto.Base
                         };
                         productsUoms.Add(productUom);
                     }

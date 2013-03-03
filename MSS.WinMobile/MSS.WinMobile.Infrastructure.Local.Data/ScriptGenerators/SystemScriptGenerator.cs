@@ -95,6 +95,10 @@ namespace MSS.WinMobile.Infrastructure.Local.Data.ScriptGenerators
             {
                 createColumnScript = createColumnScript.AsDatetime();
             }
+            else if (propertyInfo.PropertyType == typeof(bool))
+            {
+                createColumnScript = createColumnScript.AsBoolean();
+            }
             else if (propertyInfo.PropertyType == typeof(string))
             {
                 StringColumnAttribute stringColumnAttribute =

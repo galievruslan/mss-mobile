@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnAttribute.cs" />
+    <Compile Include="BooleanColumnAttribute.cs" />
     <Compile Include="ReferenceAttribute.cs" />
     <Compile Include="DecimalColumnAttribute.cs" />
     <Compile Include="StringColumnAttribute.cs" />

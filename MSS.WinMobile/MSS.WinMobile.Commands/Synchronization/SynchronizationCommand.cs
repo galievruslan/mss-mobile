@@ -28,5 +28,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                 destinationTransaction.Commit();
             }
         }
+
+        
     }
 }

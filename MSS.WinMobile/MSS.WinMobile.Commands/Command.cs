@@ -4,7 +4,7 @@ using MSS.WinMobile.Common.Observable;
 
 namespace MSS.WinMobile.Commands
 {
-    public abstract class Command<T> : IObservable {
+    public abstract class Command<T> : IObservable, IObserver {
 
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Command<T>));
 
@@ -59,6 +59,11 @@ namespace MSS.WinMobile.Commands
                     Log.Error(string.Format("Notify observer {0} failed!", observer), exception);
                 }
             }
+        }
+
+        public virtual void Notify(INotification notification)
+        {
+            Log.DebugFormat("notification received {0}", notification);
         }
     }
 }
