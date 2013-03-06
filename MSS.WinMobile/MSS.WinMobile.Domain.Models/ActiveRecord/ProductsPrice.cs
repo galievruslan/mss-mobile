@@ -34,7 +34,7 @@ namespace MSS.WinMobile.Domain.Models
         protected override string UpdateCommand {
             get
             {
-                return string.Format("MODIFY [{0}] SET [{1}] = {2}, " +
+                return string.Format("UPDATE [{0}] SET [{1}] = {2}, " +
                                      "[{3}] = {4}, " +
                                      "[{5}] = {6}" +
                                      "WHERE [{7}] = {8}",

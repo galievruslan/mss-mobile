@@ -129,7 +129,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             TransactionContext.Clear();
         }
 
-        public static void Initialize()
+        public static void Initialize(bool recreate)
         {
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
             string fileName = string.Empty;
@@ -139,6 +139,11 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                 string[] parameterKv = parameter.Split('=');
                 if (parameterKv[0] == "Data Source")
                     fileName = parameterKv[1];
+            }
+
+            if (recreate && File.Exists(fileName))
+            {
+                File.Delete(fileName);
             }
 
             if (!File.Exists(fileName))

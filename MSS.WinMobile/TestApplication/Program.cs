@@ -10,7 +10,7 @@ namespace TestApplication
     {
         static void Main(string[] args)
         {
-            ActiveRecordBase.Initialize();
+            ActiveRecordBase.Initialize(true);
 
             var customer = new Customer
                 {
@@ -28,7 +28,12 @@ namespace TestApplication
             customer.Create();
 
             customer = Customer.GetById(1);
-            Console.WriteLine(customer.Name);
+            customer.Name = "Changed Name";
+            customer.Update();
+
+            var c2 = Customer.GetById(1);
+
+            Console.WriteLine(c2.Name);
         }
     }
 }

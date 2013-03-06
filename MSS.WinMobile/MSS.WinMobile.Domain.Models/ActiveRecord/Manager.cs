@@ -30,7 +30,7 @@ namespace MSS.WinMobile.Domain.Models
         protected override string UpdateCommand {
             get
             {
-                return string.Format("MODIFY [{0}] SET [{1}] = '{2}' " +
+                return string.Format("UPDATE [{0}] SET [{1}] = '{2}' " +
                                             "WHERE [{3}] = {4}",
                                             Table.NAME, Table.Fields.MANAGER_NAME, Name, Table.Fields.MANAGER_ID, Id);
             }
