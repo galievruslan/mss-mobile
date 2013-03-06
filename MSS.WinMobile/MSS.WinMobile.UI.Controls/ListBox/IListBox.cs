@@ -1,10 +1,10 @@
 ﻿namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public delegate void OnItemDataNeeded<T>(object sender, IListBoxItem<T> item);
+    public delegate void OnItemDataNeeded(object sender, IListBoxItem item);
 
-    public interface IListBox<T>
+    public interface IListBox
     {
-        event OnItemDataNeeded<T> ItemDataNeeded;
+        event OnItemDataNeeded ItemDataNeeded;
         int ItemCount { get; set; }
         int SelectedIndex { get; set; }
     }

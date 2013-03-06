@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
+﻿namespace MSS.WinMobile.Infrastructure.Server.Services
 {
     public class Constants
     {

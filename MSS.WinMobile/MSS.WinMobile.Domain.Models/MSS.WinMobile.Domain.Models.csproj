@@ -45,12 +45,34 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3be235df1c8d2ad3, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveRecord\ActiveRecordBase.cs" />
+    <Compile Include="ActiveRecord\Category.cs" />
+    <Compile Include="ActiveRecord\ShippingAddress.cs" />
+    <Compile Include="ActiveRecord\RoutePoint.cs" />
+    <Compile Include="ActiveRecord\Route.cs" />
+    <Compile Include="ActiveRecord\ProductsUnitOfMeasure.cs" />
+    <Compile Include="ActiveRecord\ProductsPrice.cs" />
+    <Compile Include="ActiveRecord\Product.cs" />
+    <Compile Include="ActiveRecord\PriceList.cs" />
+    <Compile Include="ActiveRecord\OrderItem.cs" />
+    <Compile Include="ActiveRecord\Order.cs" />
+    <Compile Include="ActiveRecord\Status.cs" />
+    <Compile Include="ActiveRecord\UnitOfMeasure.cs" />
+    <Compile Include="ActiveRecord\Warehouse.cs" />
+    <Compile Include="ActiveRecord\Manager.cs" />
+    <Compile Include="ActiveRecord\TransactionContext.cs" />
+    <Compile Include="ActiveRecord\Customer.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="ProductsPrice.cs" />
     <Compile Include="PriceList.cs" />
@@ -69,13 +91,9 @@
     <Compile Include="Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Attributes\MSS.WinMobile.Infrastructure.Local.Attributes.csproj">
-      <Project>{98F9A834-5915-4288-817F-F96ADD72C3B7}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Local.Attributes</Name>
+    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
+      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
+      <Name>MSS.WinMobile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

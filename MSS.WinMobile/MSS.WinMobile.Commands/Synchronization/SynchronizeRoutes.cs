@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
 {
-    public class SynchronizeRoutes : SynchronizationCommand {
+    public class SynchronizeRoutes : Command<bool> {
 
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(SynchronizeRoutes));
 
         private readonly Server _server;
 
-        public SynchronizeRoutes(Server server, ISession session)
-            :base(session) {
+        public SynchronizeRoutes(Server server)
+        {
             _server = server;
         }
 
@@ -42,8 +41,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                 routesPoints.Add(routePoint);
             }
 
-            SynchronizeEntity(routes);
-            SynchronizeEntity(routesPoints);
+            //SynchronizeEntity(routes);
+            //SynchronizeEntity(routesPoints);
             routes.Clear();
             routesPoints.Clear();
 

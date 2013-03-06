@@ -4,13 +4,14 @@
 
     public delegate void OnSelectNeeded(object sender);
 
-    public interface IListBoxItem<T>
+    public interface IListBoxItem
     {
         event OnDataNeeded DataNeeded;
         event OnSelectNeeded SelectNeeded;
-
+        
         int Index { get; set; }
-        T Data { get; set; }
+        string Label { get; set; }
+        int Id { get; set; }
 
         void Select();
         void UnSelect();

@@ -1,9 +1,4 @@
-﻿using System;
-
-using System.Collections.Generic;
-using System.Text;
-
-namespace MSS.WinMobile.Infrastructure.Remote.Data
+﻿namespace MSS.WinMobile.Infrastructure.Server
 {
     public class CookieContainer
     {

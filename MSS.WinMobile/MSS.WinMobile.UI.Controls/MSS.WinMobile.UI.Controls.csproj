@@ -59,10 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerListBoxItem.cs">
+    <Compile Include="ListBox\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomerListBoxItemFactory.cs" />
+    <Compile Include="ListBox\VirtualListBoxItem.Designer.cs">
+      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListBox\IListBox.cs" />
     <Compile Include="ListBox\IListBoxItem.cs" />
     <Compile Include="SearchPanel.cs">
@@ -89,15 +91,14 @@
     <Compile Include="ListBox\VirtualListBox.Designer.cs">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListBox\VirtualListBoxItemFactory.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\appbar.home.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CustomerListBoxItem.resx">
-      <DependentUpon>CustomerListBoxItem.cs</DependentUpon>
+    <EmbeddedResource Include="ListBox\VirtualListBoxItem.resx">
+      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>
@@ -114,10 +115,6 @@
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

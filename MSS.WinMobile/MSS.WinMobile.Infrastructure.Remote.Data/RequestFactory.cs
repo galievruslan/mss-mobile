@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace MSS.WinMobile.Infrastructure.Remote.Data
+namespace MSS.WinMobile.Infrastructure.Server
 {
     public class RequestFactory
     {

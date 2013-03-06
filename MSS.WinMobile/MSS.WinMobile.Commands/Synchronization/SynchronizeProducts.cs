@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
 {
-    public class SynchronizeProducts : SynchronizationCommand {
+    public class SynchronizeProducts : Command<bool> {
 
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(SynchronizeProducts));
 
         private readonly Server _server;
 
-        public SynchronizeProducts(Server server, ISession session)
-            :base(session) {
+        public SynchronizeProducts(Server server)
+        {
             _server = server;
         }
 
@@ -63,9 +62,9 @@ namespace MSS.WinMobile.Commands.Synchronization
                     }
                 }
 
-                SynchronizeEntity(products);
-                SynchronizeEntity(productsUoms);
-                SynchronizeEntity(productsPrices);
+                //SynchronizeEntity(products);
+                //SynchronizeEntity(productsUoms);
+                //SynchronizeEntity(productsPrices);
                 products.Clear();
                 productsUoms.Clear();
                 productsPrices.Clear();

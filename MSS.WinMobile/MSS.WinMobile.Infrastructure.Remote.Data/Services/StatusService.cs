@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using MSS.WinMobile.Infrastructure.Remote.Data.Dtos;
+﻿using System.Net;
+using MSS.WinMobile.Infrastructure.Server.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.Remote.Data.Services
+namespace MSS.WinMobile.Infrastructure.Server.Services
 {
     public class StatusService
     {

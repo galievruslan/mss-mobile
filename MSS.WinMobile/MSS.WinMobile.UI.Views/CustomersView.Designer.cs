@@ -31,7 +31,7 @@ namespace MSS.WinMobile.UI.Views
         private void InitializeComponent()
         {
             this._viewActionsPanel = new System.Windows.Forms.Panel();
-            this._customersListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<Customer>();
+            this._customersListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox();
             this.SuspendLayout();
             // 
             // _viewActionsPanel
@@ -67,6 +67,6 @@ namespace MSS.WinMobile.UI.Views
         #endregion
 
         private System.Windows.Forms.Panel _viewActionsPanel;
-        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<Customer> _customersListBox;
+        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox _customersListBox;
     }
 }

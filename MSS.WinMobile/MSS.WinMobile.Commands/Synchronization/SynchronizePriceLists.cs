@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
 {
-    public class SynchronizePriceLists : SynchronizationCommand {
+    public class SynchronizePriceLists : Command<bool> {
 
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(SynchronizePriceLists));
 
         private readonly Server _server;
 
-        public SynchronizePriceLists(Server server, ISession session)
-            :base(session) {
+        public SynchronizePriceLists(Server server)
+        {
             _server = server;
         }
 
@@ -34,7 +33,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     priceLists.Add(priceList);
                 }
 
-                SynchronizeEntity(priceLists);
+                //SynchronizeEntity(priceLists);
                 priceLists.Clear();
 
                 pageNumber++;

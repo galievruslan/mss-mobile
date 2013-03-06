@@ -3,7 +3,7 @@ using System.Threading;
 using MSS.WinMobile.Commands.FaultHandling;
 using MSS.WinMobile.Commands.Synchronization;
 using MSS.WinMobile.Common.Observable;
-using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.Infrastructure.Server;
 using log4net;
 
 namespace MSS.WinMobile.UI.Presenters
@@ -35,11 +35,8 @@ namespace MSS.WinMobile.UI.Presenters
             var userName = ConfigurationManager.AppSettings["ServerUsername"];
             var password = ConfigurationManager.AppSettings["ServerPassword"];
 
-            string databaseName = ConfigurationManager.AppSettings["DatabaseName"];
-            var session = new Infrastructure.Local.Data.Session(databaseName);
-
             using (var server = Server.Logon(serverUri, userName, password)) {
-                var command = new SynchronizeAll(server, session).IgnoreOnError(false);
+                var command = new SynchronizeAll(server).IgnoreOnError(false);
                 command.Subscribe(this);
                 command.Do();
             }

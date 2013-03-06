@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.Remote.Data
+﻿namespace MSS.WinMobile.Infrastructure.Server
 {
     public class CsrfTokenContainer
     {

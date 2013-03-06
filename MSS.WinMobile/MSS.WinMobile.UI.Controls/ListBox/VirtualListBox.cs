@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public partial class VirtualListBox<T> : UserControl, IListBox<T>
+    public partial class VirtualListBox : UserControl, IListBox
     {
         // Designer only
         public VirtualListBox()
@@ -13,9 +13,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             InitializeComponent();
         }
 
-        public VirtualListBoxItemFactory<T> ItemFactory { private get; set; }
-
-        public event OnItemDataNeeded<T> ItemDataNeeded;
+        public event OnItemDataNeeded ItemDataNeeded;
 
         private int _itemCount;
         public int ItemCount {
@@ -51,11 +49,11 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
             while (_dataPanel.Height - itemsHeight > 0)
             {
-                IListBoxItem<T> listBoxItem = ItemFactory.CreateNewListBoxItem();
+                IListBoxItem listBoxItem = new VirtualListBoxItem();
                 AddListBoxItem(listBoxItem);
 
                 var control = listBoxItem as Control;
-                if (control != null) itemsHeight += control.Height;
+                itemsHeight += control.Height;
                 itemAvgHeight = ((float)itemsHeight) / _listBoxItems.Count;
             }
 
@@ -81,8 +79,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         #region Items Handling
 
-        readonly List<IListBoxItem<T>> _listBoxItems = new List<IListBoxItem<T>>();
-        private void AddListBoxItem(IListBoxItem<T> listBoxItem)
+        readonly List<IListBoxItem> _listBoxItems = new List<IListBoxItem>();
+        private void AddListBoxItem(IListBoxItem listBoxItem)
         {
             if (listBoxItem is Control)
             {
@@ -110,7 +108,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 item.UnSelect();
             }
 
-            var listBoxItem = sender as IListBoxItem<T>;
+            var listBoxItem = sender as IListBoxItem;
             if (listBoxItem != null)
             {
                 SelectedIndex = listBoxItem.Index;
@@ -132,7 +130,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         void ListBoxItemDataNeeded(object sender)
         {
             if (ItemDataNeeded != null)
-                ItemDataNeeded.Invoke(this, sender as IListBoxItem<T>);
+                ItemDataNeeded.Invoke(this, sender as IListBoxItem);
         }
 
         private void ReindexItems()

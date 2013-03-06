@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSS.WinMobile.Infrastructure.Remote.Data.Services;
+using MSS.WinMobile.Infrastructure.Server.Services;
 
-namespace MSS.WinMobile.Infrastructure.Remote.Data
+namespace MSS.WinMobile.Infrastructure.Server
 {
     public class Server : IDisposable
     {

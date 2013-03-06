@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace MSS.WinMobile.Infrastructure.Remote.Data
+namespace MSS.WinMobile.Infrastructure.Server
 {
     public class RequestDispatcher
     {

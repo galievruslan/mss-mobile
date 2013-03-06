@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.Remote.Data.Dtos
+﻿namespace MSS.WinMobile.Infrastructure.Server.Dtos
 {
     public class ProductUnitOfMeasure
     {

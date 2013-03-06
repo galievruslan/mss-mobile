@@ -45,6 +45,10 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
@@ -63,12 +67,14 @@
     <Compile Include="ILayout.cs" />
     <Compile Include="ILogonView.cs" />
     <Compile Include="IMenuView.cs" />
+    <Compile Include="IRouteView.cs" />
     <Compile Include="ISynchronizationView.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="LogonPresenter.cs" />
     <Compile Include="MenuPresenter.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoutePresenter.cs" />
     <Compile Include="SynchronizationPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,21 +94,9 @@
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Specifications\MSS.WinMobile.Domain.Specifications.csproj">
-      <Project>{CA068193-95D2-4426-96F9-B6E72B8BB0E9}</Project>
-      <Name>MSS.WinMobile.Domain.Specifications</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
-      <Project>{18749E18-BCD2-4C5F-95FB-09178F4B0FBC}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Local.Data\MSS.WinMobile.Infrastructure.Local.Data.csproj">
-      <Project>{CA136097-615C-45D6-93BF-F0A4435E84FA}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Local.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Remote.Data.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Server.csproj">
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Remote.Data</Name>
+      <Name>MSS.WinMobile.Infrastructure.Server</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.ViewModel\MSS.WinMobile.UI.ViewModel.csproj">
       <Project>{1D22538A-B171-4CC5-A4CD-586EEA8B815E}</Project>

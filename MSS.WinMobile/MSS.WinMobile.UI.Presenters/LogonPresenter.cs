@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using MSS.WinMobile.Infrastructure.Remote.Data;
+using MSS.WinMobile.Infrastructure.Server;
 using MSS.WinMobile.UI.ViewModel;
 
 namespace MSS.WinMobile.UI.Presenters

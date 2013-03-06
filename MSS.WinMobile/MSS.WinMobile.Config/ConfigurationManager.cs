@@ -40,7 +40,9 @@ namespace MSS.WinMobile
             // Ensure configuration file exists
             if (!File.Exists(_configFile))
             {
-                throw new FileNotFoundException(String.Format("Configuration file ({0}) could not be found.", _configFile));
+                _configFile = "application.config";
+                if (!File.Exists(_configFile))
+                 throw new FileNotFoundException(String.Format("Configuration file ({0}) could not be found.", _configFile));
             }
 
             // Load config file as an XmlDocument
