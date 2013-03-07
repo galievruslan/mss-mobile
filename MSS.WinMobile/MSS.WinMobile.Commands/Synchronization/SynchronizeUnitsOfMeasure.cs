@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -32,7 +35,27 @@ namespace MSS.WinMobile.Commands.Synchronization
                     };
                     uoms.Add(uom);
                 }
-                //SynchronizeEntity(uoms);
+
+                if (uoms.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var unitOfMeasure in uoms)
+                        {
+                            if (UnitOfMeasure.GetById(unitOfMeasure.Id) != null)
+                                unitOfMeasure.Update();
+                            else
+                                unitOfMeasure.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 uoms.Clear();
 
                 pageNumber++;

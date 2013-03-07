@@ -57,14 +57,15 @@ namespace MSS.WinMobile.Domain.Models
         public static Route GetById(int id)
         {
             var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}] " +
-                                             "FROM ({3}) AS [{4}]" +
+                                             "FROM ({3}) AS [{4}] " +
                                              "WHERE [{4}].[{0}] = {5}", Table.Fields.ROUTE_ID,
                                              Table.Fields.ROUTE_DATE,
                                              Table.Fields.ORDER_MANAGER_ID, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection())
+            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
             {
+                connection.Open();
                 using (connection.BeginTransaction())
                 {
                     using (IDbCommand command = connection.CreateCommand())

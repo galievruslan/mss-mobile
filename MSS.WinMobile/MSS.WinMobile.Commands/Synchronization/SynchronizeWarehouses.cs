@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -30,7 +33,27 @@ namespace MSS.WinMobile.Commands.Synchronization
                         };
                     warehouses.Add(warehouse);
                 }
-                //SynchronizeEntity(warehouses);
+
+                if (warehouses.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var warehouse in warehouses)
+                        {
+                            if (Warehouse.GetById(warehouse.Id) != null)
+                                warehouse.Update();
+                            else
+                                warehouse.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 warehouses.Clear();
 
                 pageNumber++;

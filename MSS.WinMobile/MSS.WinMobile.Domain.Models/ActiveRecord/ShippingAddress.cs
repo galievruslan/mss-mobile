@@ -61,14 +61,15 @@ namespace MSS.WinMobile.Domain.Models
         public static ShippingAddress GetById(int id)
         {
             var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}], [{3}] AS [{3}] " +
-                                             "FROM ({4}) AS [{5}]" +
+                                             "FROM ({4}) AS [{5}] " +
                                              "WHERE [{5}].[{0}] = {6}", Table.Fields.ID,
                                              Table.Fields.SHIPPING_ADDRESS_NAME, Table.Fields.SHIPPING_ADDRESS_VALUE,
                                              Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection())
+            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
             {
+                connection.Open();
                 using (connection.BeginTransaction())
                 {
                     using (IDbCommand command = connection.CreateCommand())

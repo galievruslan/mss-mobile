@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 using Customer = MSS.WinMobile.Domain.Models.Customer;
 
@@ -47,8 +50,46 @@ namespace MSS.WinMobile.Commands.Synchronization
                     }
                 }
 
-                //SynchronizeEntity(customers);
-                //SynchronizeEntity(shippingAddresses);
+                if (customers.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var customer in customers)
+                        {
+                            if (Customer.GetById(customer.Id) != null)
+                                customer.Update();
+                            else
+                                customer.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
+                if (shippingAddresses.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var shippingAddress in shippingAddresses)
+                        {
+                            if (ShippingAddress.GetById(shippingAddress.Id) != null)
+                                shippingAddress.Update();
+                            else
+                                shippingAddress.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 customers.Clear();
                 shippingAddresses.Clear();
 

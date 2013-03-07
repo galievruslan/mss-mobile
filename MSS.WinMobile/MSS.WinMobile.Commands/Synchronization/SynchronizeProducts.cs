@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -62,9 +65,66 @@ namespace MSS.WinMobile.Commands.Synchronization
                     }
                 }
 
-                //SynchronizeEntity(products);
-                //SynchronizeEntity(productsUoms);
-                //SynchronizeEntity(productsPrices);
+                if (products.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var product in products)
+                        {
+                            if (Product.GetById(product.Id) != null)
+                                product.Update();
+                            else
+                                product.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
+                if (productsUoms.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var unitOfMeasure in productsUoms)
+                        {
+                            if (ProductsUnitOfMeasure.GetById(unitOfMeasure.Id) != null)
+                                unitOfMeasure.Update();
+                            else
+                                unitOfMeasure.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
+                if (productsPrices.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var productsPrice in productsPrices)
+                        {
+                            if (ProductsPrice.GetById(productsPrice.Id) != null)
+                                productsPrice.Update();
+                            else
+                                productsPrice.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 products.Clear();
                 productsUoms.Clear();
                 productsPrices.Clear();

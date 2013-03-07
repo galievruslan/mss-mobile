@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -32,6 +35,27 @@ namespace MSS.WinMobile.Commands.Synchronization
                     };
                     managers.Add(manager);
                 }
+
+                if (managers.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var manager in managers)
+                        {
+                            if (Manager.GetById(manager.Id) != null)
+                                manager.Update();
+                            else
+                                manager.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 //SynchronizeEntity(managers);
                 managers.Clear();
 

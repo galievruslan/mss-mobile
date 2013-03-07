@@ -25,7 +25,9 @@ namespace MSS.WinMobile.Domain.Models
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}]) VALUES ({4}, '{5}', {6})",
                                      Table.NAME, Table.Fields.CATEGORY_ID, Table.Fields.CATEGORY_NAME,
-                                     Table.Fields.CATEGORY_PARENT_ID, Id, Name, ParentId);
+                                     Table.Fields.CATEGORY_PARENT_ID, Id, Name, ParentId != null
+                                                                                    ? ParentId.ToString()
+                                                                                    : "NULL");
             }
         }
 
@@ -36,7 +38,9 @@ namespace MSS.WinMobile.Domain.Models
                                      "[{3}] = {4} " +
                                      "WHERE [{5}] = {6}",
                                      Table.NAME, Table.Fields.CATEGORY_NAME, Name,
-                                     Table.Fields.CATEGORY_PARENT_ID, ParentId, Table.Fields.CATEGORY_ID, Id);
+                                     Table.Fields.CATEGORY_PARENT_ID, ParentId != null
+                                                                          ? ParentId.ToString()
+                                                                          : "NULL", Table.Fields.CATEGORY_ID, Id);
             }
         }
 
@@ -61,8 +65,9 @@ namespace MSS.WinMobile.Domain.Models
                                              Table.Fields.CATEGORY_NAME, Table.Fields.CATEGORY_PARENT_ID, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection())
+            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
             {
+                connection.Open();
                 using (connection.BeginTransaction())
                 {
                     using (IDbCommand command = connection.CreateCommand())

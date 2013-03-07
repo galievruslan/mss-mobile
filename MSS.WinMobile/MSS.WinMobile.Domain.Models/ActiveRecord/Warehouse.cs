@@ -50,8 +50,8 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Warehouse GetById(int id)
         {
-            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}]" +
-                                             "FROM ({2}) AS [{3}]" +
+            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}] " +
+                                             "FROM ({2}) AS [{3}] " +
                                              "WHERE [{3}].[{0}] = {4}", Table.Fields.WAREHOUSE_ID, Table.Fields.WAREHOUSE_ADDRESS, BaseSelect,
                                              Table.NAME, id);
 

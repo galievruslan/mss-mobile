@@ -50,8 +50,8 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Status GetById(int id)
         {
-            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}]" +
-                                             "FROM ({2}) AS [{3}]" +
+            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}] " +
+                                             "FROM ({2}) AS [{3}] " +
                                              "WHERE [{3}].[{0}] = {4}", Table.Fields.STATUS_ID, Table.Fields.STATUS_NAME, BaseSelect,
                                              Table.NAME, id);
 

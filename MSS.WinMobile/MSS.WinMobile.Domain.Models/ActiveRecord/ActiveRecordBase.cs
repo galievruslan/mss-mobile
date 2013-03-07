@@ -18,7 +18,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         public void Create()
         {
-            if (TransactionContext.Count > 0)
+            if (_inTransaction)
                 TransactionContext.Enqueue(InsertCommand);
             else
             {
@@ -43,7 +43,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         public void Update()
         {
-            if (TransactionContext.Count > 0)
+            if (_inTransaction)
                 TransactionContext.Enqueue(UpdateCommand);
             else
             {
@@ -68,7 +68,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         public void Delete()
         {
-            if (TransactionContext.Count > 0)
+            if (_inTransaction)
                 TransactionContext.Enqueue(DeleteCommand);
             else
             {
@@ -89,44 +89,64 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             }
         }
 
-        public void BeginTransaction()
+        private static bool _inTransaction;
+
+        public static void BeginTransaction()
         {
-            if (TransactionContext.Count > 0)
+            if (_inTransaction)
                 throw new AlreadyInTransactionException();
+
+            _inTransaction = true;
         }
 
         public static void Commit()
         {
-            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
+            try
             {
-                connection.Open();
-                using (IDbTransaction transaction = connection.BeginTransaction())
+                using (
+                    IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"])
+                    )
                 {
-                    try
+                    connection.Open();
+                    using (IDbTransaction transaction = connection.BeginTransaction())
                     {
-                        while (TransactionContext.Count > 0)
+                        try
                         {
-                            using (IDbCommand command = connection.CreateCommand())
+                            while (TransactionContext.Count > 0)
                             {
-                                command.CommandText = TransactionContext.Dequeue();
-                                command.ExecuteNonQuery();
+                                using (IDbCommand command = connection.CreateCommand())
+                                {
+                                    command.CommandText = TransactionContext.Dequeue();
+                                    command.ExecuteNonQuery();
+                                }
                             }
-                        }
 
-                        transaction.Commit();
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                        }
                     }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                    }
+                    connection.Close();
                 }
-                connection.Close();
+            }
+            finally
+            {
+                _inTransaction = false;
             }
         }
 
         public static void Rollback()
         {
-            TransactionContext.Clear();
+            try
+            {
+                TransactionContext.Clear();
+            }
+            finally
+            {
+                _inTransaction = false;
+            }
         }
 
         public static void Initialize(bool recreate)
@@ -151,8 +171,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                 var sqlCeEngine = new SqlCeEngine(connectionString);
                 sqlCeEngine.CreateDatabase();
 
-                string schemaScript = string.Empty;
-                using (StreamReader reader = File.OpenText(@"Resources\Database\Schema.sqlce"))
+                string schemaScript;
+                using (StreamReader reader = File.OpenText(Context.GetAppPath() + @"\Resources\Database\Schema.sqlce"))
                 {
                     schemaScript = reader.ReadToEnd();
                 }

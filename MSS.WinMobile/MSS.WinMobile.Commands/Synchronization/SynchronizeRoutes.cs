@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -41,8 +44,46 @@ namespace MSS.WinMobile.Commands.Synchronization
                 routesPoints.Add(routePoint);
             }
 
-            //SynchronizeEntity(routes);
-            //SynchronizeEntity(routesPoints);
+            if (routes.Any())
+            {
+                ActiveRecordBase.BeginTransaction();
+                try
+                {
+                    foreach (var price in routes)
+                    {
+                        if (Route.GetById(price.Id) != null)
+                            price.Update();
+                        else
+                            price.Create();
+                    }
+                    ActiveRecordBase.Commit();
+                }
+                catch (Exception)
+                {
+                    ActiveRecordBase.Rollback();
+                }
+            }
+
+            if (routesPoints.Any())
+            {
+                ActiveRecordBase.BeginTransaction();
+                try
+                {
+                    foreach (var routePoint in routesPoints)
+                    {
+                        if (RoutePoint.GetById(routePoint.Id) != null)
+                            routePoint.Update();
+                        else
+                            routePoint.Create();
+                    }
+                    ActiveRecordBase.Commit();
+                }
+                catch (Exception)
+                {
+                    ActiveRecordBase.Rollback();
+                }
+            }
+
             routes.Clear();
             routesPoints.Clear();
 

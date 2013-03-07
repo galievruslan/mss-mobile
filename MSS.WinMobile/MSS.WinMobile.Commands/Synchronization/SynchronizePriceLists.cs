@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -33,7 +36,26 @@ namespace MSS.WinMobile.Commands.Synchronization
                     priceLists.Add(priceList);
                 }
 
-                //SynchronizeEntity(priceLists);
+                if (priceLists.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var priceList in priceLists)
+                        {
+                            if (PriceList.GetById(priceList.Id) != null)
+                                priceList.Update();
+                            else
+                                priceList.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 priceLists.Clear();
 
                 pageNumber++;

@@ -62,14 +62,15 @@ namespace MSS.WinMobile.Domain.Models
         public static Order GetById(int id)
         {
             var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}], [{3}] AS [{3}] " +
-                                             "FROM ({4}) AS [{5}]" +
+                                             "FROM ({4}) AS [{5}] " +
                                              "WHERE [{5}].[{0}] = {6}", Table.Fields.ORDER_ID,
                                              Table.Fields.ORDER_DATE, Table.Fields.ORDER_SHIPPING_ADDRESS_ID,
                                              Table.Fields.ORDER_MANAGER_ID, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection())
+            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
             {
+                connection.Open();
                 using (connection.BeginTransaction())
                 {
                     using (IDbCommand command = connection.CreateCommand())

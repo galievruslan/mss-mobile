@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 
 namespace MSS.WinMobile.Commands.Synchronization
@@ -37,7 +40,26 @@ namespace MSS.WinMobile.Commands.Synchronization
                     categories.Add(category);
                 }
 
-                //SynchronizeEntity(categories);
+                if (categories.Any())
+                {
+                    ActiveRecordBase.BeginTransaction();
+                    try
+                    {
+                        foreach (var category in categories)
+                        {
+                            if (Category.GetById(category.Id) != null)
+                                category.Update();
+                            else
+                                category.Create();
+                        }
+                        ActiveRecordBase.Commit();
+                    }
+                    catch (Exception exception)
+                    {
+                        ActiveRecordBase.Rollback();
+                    }
+                }
+
                 categories.Clear();
 
                 pageNumber++;

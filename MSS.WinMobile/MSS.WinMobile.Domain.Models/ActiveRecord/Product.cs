@@ -56,13 +56,14 @@ namespace MSS.WinMobile.Domain.Models
         public static Product GetById(int id)
         {
             var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}] " +
-                                             "FROM ({3}) AS [{4}]" +
+                                             "FROM ({3}) AS [{4}] " +
                                              "WHERE [{4}].[{0}] = {5}", Table.Fields.PRODUCT_ID,
                                              Table.Fields.PRODUCT_NAME, Table.Fields.PRODUCT_CATEGORY_ID, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection())
+            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
             {
+                connection.Open();
                 using (connection.BeginTransaction())
                 {
                     using (IDbCommand command = connection.CreateCommand())
