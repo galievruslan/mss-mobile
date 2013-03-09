@@ -63,18 +63,15 @@ namespace MSS.WinMobile.Domain.Models
                                              Table.Fields.ORDER_MANAGER_ID, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
-            {
+            IDbConnection connection = GetConnection();
+            if (connection.State != ConnectionState.Open)
                 connection.Open();
-                using (connection.BeginTransaction())
-                {
-                    using (IDbCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = selectString;
-                        using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
-                        {
-                            return Materialize(reader).FirstOrDefault();
-                        }
+
+            using (connection.BeginTransaction()) {
+                using (IDbCommand command = connection.CreateCommand()) {
+                    command.CommandText = selectString;
+                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
+                        return Materialize(reader).FirstOrDefault();
                     }
                 }
             }

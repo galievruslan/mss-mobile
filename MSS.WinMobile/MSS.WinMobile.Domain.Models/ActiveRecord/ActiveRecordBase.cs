@@ -5,36 +5,25 @@ using System.IO;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
 {
-    public abstract class ActiveRecordBase
+    public abstract class ActiveRecordBase : IDisposable
     {
-        protected string ConnectionString;
-
-        protected ActiveRecordBase()
-        {
-            ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-        }
-
         protected abstract string InsertCommand { get; }
 
         public void Create()
         {
             if (_inTransaction)
                 TransactionContext.Enqueue(InsertCommand);
-            else
-            {
-                using (IDbConnection connection = new SqlCeConnection(ConnectionString))
-                {
+            else {
+                IDbConnection connection = GetConnection();
+                if (connection.State != ConnectionState.Open)
                     connection.Open();
-                    using (IDbTransaction transaction = connection.BeginTransaction())
-                    {
-                        using (IDbCommand command = connection.CreateCommand())
-                        {
-                            command.CommandText = InsertCommand;
-                            command.ExecuteNonQuery();
-                            transaction.Commit();
-                        }
+
+                using (IDbTransaction transaction = connection.BeginTransaction()) {
+                    using (IDbCommand command = connection.CreateCommand()) {
+                        command.CommandText = InsertCommand;
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
-                    connection.Close();
                 }
             }
         }
@@ -45,21 +34,17 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         {
             if (_inTransaction)
                 TransactionContext.Enqueue(UpdateCommand);
-            else
-            {
-                using (IDbConnection connection = new SqlCeConnection(ConnectionString))
-                {
+            else {
+                IDbConnection connection = GetConnection();
+                if (connection.State != ConnectionState.Open)
                     connection.Open();
-                    using (IDbTransaction transaction = connection.BeginTransaction())
-                    {
-                        using (IDbCommand command = connection.CreateCommand())
-                        {
-                            command.CommandText = UpdateCommand;
-                            command.ExecuteNonQuery();
-                            transaction.Commit();
-                        }
+
+                using (IDbTransaction transaction = connection.BeginTransaction()) {
+                    using (IDbCommand command = connection.CreateCommand()) {
+                        command.CommandText = UpdateCommand;
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
-                    connection.Close();
                 }
             }
         }
@@ -72,21 +57,29 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                 TransactionContext.Enqueue(DeleteCommand);
             else
             {
-                using (IDbConnection connection = new SqlCeConnection(ConnectionString))
-                {
+                IDbConnection connection = GetConnection();
+                if (connection.State != ConnectionState.Open)
                     connection.Open();
-                    using (IDbTransaction transaction = connection.BeginTransaction())
-                    {
-                        using (IDbCommand command = connection.CreateCommand())
-                        {
-                            command.CommandText = DeleteCommand;
-                            command.ExecuteNonQuery();
-                            transaction.Commit();
-                        }
+
+                using (IDbTransaction transaction = connection.BeginTransaction()) {
+                    using (IDbCommand command = connection.CreateCommand()) {
+                        command.CommandText = DeleteCommand;
+                        command.ExecuteNonQuery();
+                        transaction.Commit();
                     }
-                    connection.Close();
                 }
             }
+        }
+
+        private static readonly string ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+        private static IDbConnection _connection;
+
+        protected static IDbConnection GetConnection() {
+            if (_connection != null) {
+                return _connection;
+            }
+
+            return _connection = new SqlCeConnection(ConnectionString);
         }
 
         private static bool _inTransaction;
@@ -101,34 +94,25 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         public static void Commit()
         {
-            try
-            {
-                using (
-                    IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"])
-                    )
-                {
+            try {
+                IDbConnection connection = GetConnection();
+                if (connection.State != ConnectionState.Open)
                     connection.Open();
-                    using (IDbTransaction transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            while (TransactionContext.Count > 0)
-                            {
-                                using (IDbCommand command = connection.CreateCommand())
-                                {
-                                    command.CommandText = TransactionContext.Dequeue();
-                                    command.ExecuteNonQuery();
-                                }
-                            }
 
-                            transaction.Commit();
+                using (IDbTransaction transaction = connection.BeginTransaction()) {
+                    try {
+                        while (TransactionContext.Count > 0) {
+                            using (IDbCommand command = connection.CreateCommand()) {
+                                command.CommandText = TransactionContext.Dequeue();
+                                command.ExecuteNonQuery();
+                            }
                         }
-                        catch (Exception)
-                        {
-                            transaction.Rollback();
-                        }
+
+                        transaction.Commit();
                     }
-                    connection.Close();
+                    catch (Exception) {
+                        transaction.Rollback();
+                    }
                 }
             }
             finally
@@ -148,7 +132,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                 _inTransaction = false;
             }
         }
-
+        
         public static void Initialize(bool recreate)
         {
             string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
@@ -177,26 +161,28 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                     schemaScript = reader.ReadToEnd();
                 }
 
-                using (IDbConnection connection = new SqlCeConnection(connectionString))
-                {
+                IDbConnection connection = GetConnection();
+                if (connection.State != ConnectionState.Open)
                     connection.Open();
-                    using (IDbTransaction transaction = connection.BeginTransaction())
-                    {
-                        using (IDbCommand command = connection.CreateCommand())
-                        {
-                            string[] schemaStatements = schemaScript.Split(';');
-                            foreach (var schemaStatement in schemaStatements)
-                            {
-                                command.CommandText = schemaStatement;
-                                command.ExecuteNonQuery();        
-                            }
-                            
-                            transaction.Commit();
+
+                using (IDbTransaction transaction = connection.BeginTransaction()) {
+                    using (IDbCommand command = connection.CreateCommand()) {
+                        string[] schemaStatements = schemaScript.Split(';');
+                        foreach (var schemaStatement in schemaStatements) {
+                            command.CommandText = schemaStatement;
+                            command.ExecuteNonQuery();
                         }
+
+                        transaction.Commit();
                     }
-                    connection.Close();
                 }
+
             }
+        }
+
+        public void Dispose() {
+            if (_connection != null)
+                _connection.Dispose();
         }
     }
 }

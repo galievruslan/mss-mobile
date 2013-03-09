@@ -67,18 +67,15 @@ namespace MSS.WinMobile.Domain.Models
                                              Table.Fields.PRODUCT_PRICE_VALUE, BaseSelect,
                                              Table.NAME, id);
 
-            using (IDbConnection connection = new SqlCeConnection(ConfigurationManager.AppSettings["ConnectionString"]))
-            {
+            IDbConnection connection = GetConnection();
+            if (connection.State != ConnectionState.Open)
                 connection.Open();
-                using (connection.BeginTransaction())
-                {
-                    using (IDbCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = selectString;
-                        using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
-                        {
-                            return Materialize(reader).FirstOrDefault();
-                        }
+
+            using (connection.BeginTransaction()) {
+                using (IDbCommand command = connection.CreateCommand()) {
+                    command.CommandText = selectString;
+                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
+                        return Materialize(reader).FirstOrDefault();
                     }
                 }
             }
