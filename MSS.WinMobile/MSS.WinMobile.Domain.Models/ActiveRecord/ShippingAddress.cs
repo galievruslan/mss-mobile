@@ -84,16 +84,19 @@ namespace MSS.WinMobile.Domain.Models
         private static ShippingAddress[] Materialize(IDataReader reader)
         {
             var shippingAddresses = new List<ShippingAddress>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var shippingAddress = new ShippingAddress
-                    {
-                        Id = (int) reader[Table.Fields.ID],
-                        Name = reader[Table.Fields.SHIPPING_ADDRESS_NAME].ToString(),
-                        Address = reader[Table.Fields.SHIPPING_ADDRESS_VALUE].ToString(),
-                        CustomerId = (int)reader[Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID]
-                    };
-                shippingAddresses.Add(shippingAddress);
+                while (reader.Read())
+                {
+                    var shippingAddress = new ShippingAddress
+                        {
+                            Id = (int) reader[Table.Fields.ID],
+                            Name = reader[Table.Fields.SHIPPING_ADDRESS_NAME].ToString(),
+                            Address = reader[Table.Fields.SHIPPING_ADDRESS_VALUE].ToString(),
+                            CustomerId = (int) reader[Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID]
+                        };
+                    shippingAddresses.Add(shippingAddress);
+                }
             }
 
             return shippingAddresses.ToArray();

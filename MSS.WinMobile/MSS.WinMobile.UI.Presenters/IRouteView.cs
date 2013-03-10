@@ -2,5 +2,6 @@
 {
     public interface IRouteView : IView
     {
+        void SetRoutePointCount(int count);
     }
 }

@@ -1,31 +1,17 @@
 ﻿namespace MSS.WinMobile.UI.Presenters
 {
-    public class MenuPresenter : Presenter
+    public class MenuPresenter : IPresenter
     {
         private readonly IMenuView _view;
 
-        public MenuPresenter(ILayout layout, IMenuView view)
-            :base(layout)
+        public MenuPresenter(IMenuView view)
         {
             _view = view;
         }
 
-        public void Route()
+        public void InitializeView()
         {
-        }
-
-        public void Customers()
-        {
-            Layout.Navigate<ICustomersView>();
-        }
-
-        public void Synchronization()
-        {
-            Layout.Navigate<ISynchronizationView>();
-        }
-
-        public void BaliBali()
-        {
+            
         }
     }
 }

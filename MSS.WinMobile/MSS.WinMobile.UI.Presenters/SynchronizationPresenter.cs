@@ -8,13 +8,12 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters
 {
-    public class SynchronizationPresenter : Presenter, IObserver
+    public class SynchronizationPresenter : IPresenter, IObserver
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SynchronizationPresenter));
 
         private readonly ISynchronizationView _view;
-        public SynchronizationPresenter(ILayout layout, ISynchronizationView view)
-            :base(layout)
+        public SynchronizationPresenter(ISynchronizationView view)
         {
             _view = view;
         }
@@ -40,8 +39,6 @@ namespace MSS.WinMobile.UI.Presenters
                 command.Subscribe(this);
                 command.Do();
             }
-
-            Layout.Navigate<IMenuView>();
         }
 
         public void Cancel()
@@ -55,8 +52,6 @@ namespace MSS.WinMobile.UI.Presenters
             {
                 Log.Error("Synchronization cancelation error", threadAbortException);
             }
-
-            Layout.Navigate<IMenuView>();
         }
 
         #region IObserver
@@ -76,5 +71,10 @@ namespace MSS.WinMobile.UI.Presenters
         }
 
         #endregion
+
+        public void InitializeView()
+        {
+            
+        }
     }
 }

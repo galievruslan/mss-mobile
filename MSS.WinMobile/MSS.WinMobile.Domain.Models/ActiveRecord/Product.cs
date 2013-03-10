@@ -78,15 +78,18 @@ namespace MSS.WinMobile.Domain.Models
         private static Product[] Materialize(IDataReader reader)
         {
             var products = new List<Product>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var product = new Product
-                    {
-                        Id = (int) reader[Table.Fields.PRODUCT_ID],
-                        Name = reader[Table.Fields.PRODUCT_NAME].ToString(),
-                        CategoryId = (int?)reader[Table.Fields.PRODUCT_CATEGORY_ID]
-                    };
-                products.Add(product);
+                while (reader.Read())
+                {
+                    var product = new Product
+                        {
+                            Id = (int) reader[Table.Fields.PRODUCT_ID],
+                            Name = reader[Table.Fields.PRODUCT_NAME].ToString(),
+                            CategoryId = (int?) reader[Table.Fields.PRODUCT_CATEGORY_ID]
+                        };
+                    products.Add(product);
+                }
             }
 
             return products.ToArray();

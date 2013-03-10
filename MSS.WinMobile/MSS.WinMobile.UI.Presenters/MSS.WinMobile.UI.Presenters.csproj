@@ -63,16 +63,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataRetrievers\Cache.cs" />
+    <Compile Include="DataRetrievers\IDataRetriever.cs" />
+    <Compile Include="DataRetrievers\RoutePointRetriever.cs" />
     <Compile Include="ICustomersView.cs" />
     <Compile Include="ILayout.cs" />
     <Compile Include="ILogonView.cs" />
     <Compile Include="IMenuView.cs" />
+    <Compile Include="IOrderView.cs" />
     <Compile Include="IRouteView.cs" />
     <Compile Include="ISynchronizationView.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="LogonPresenter.cs" />
     <Compile Include="MenuPresenter.cs" />
-    <Compile Include="Presenter.cs" />
+    <Compile Include="IPresenter.cs" />
+    <Compile Include="OrderPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutePresenter.cs" />
     <Compile Include="SynchronizationPresenter.cs" />
@@ -98,9 +103,9 @@
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Server</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.UI.ViewModel\MSS.WinMobile.UI.ViewModel.csproj">
-      <Project>{1D22538A-B171-4CC5-A4CD-586EEA8B815E}</Project>
-      <Name>MSS.WinMobile.UI.ViewModel</Name>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
+      <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>
+      <Name>MSS.WinMobile.UI.Controls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

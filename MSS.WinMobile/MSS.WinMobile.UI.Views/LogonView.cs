@@ -3,31 +3,17 @@ using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class LogonView : UserControl, ILogonView
+    public partial class LogonView : Form, ILogonView
     {
-        private readonly ILayout _layout;
-        private readonly LogonPresenter _presenter;
+        private LogonPresenter _presenter;
 
-        // Designer only usage
-        internal LogonView()
+        public LogonView()
         {
             InitializeComponent();
-        }
-
-        public LogonView(ILayout layout)
-        {
-            InitializeComponent();
-            _layout = layout;
-            _presenter = new LogonPresenter(layout, this);
         }
 
         public string Account { get; set; }
         public string Password { get; set; }
-
-        public void NavigateToMainMenu()
-        {
-            _layout.Navigate<IMenuView>();
-        }
 
         public void Logon()
         {
@@ -37,11 +23,6 @@ namespace MSS.WinMobile.UI.Views
         public void Cancel()
         {
             _presenter.Cancel();
-        }
-
-        public void Exit()
-        {
-            _layout.Exit();
         }
 
         private void OkButtonClick(object sender, System.EventArgs e)
@@ -60,6 +41,28 @@ namespace MSS.WinMobile.UI.Views
 
         private void PasswordTextBoxTextChanged(object sender, System.EventArgs e) {
             Password = _passwordTextBox.Text;
+        }
+
+        private void LogonView_Load(object sender, System.EventArgs e)
+        {
+            if (_presenter == null)
+            {
+                _presenter = new LogonPresenter(this);
+                _presenter.InitializeView();
+            }
+        }
+
+        public delegate void DisplayErrorsDelegate(string error);
+        public void DisplayErrors(string error)
+        {
+            if (_errorsLabel.InvokeRequired)
+            {
+                _errorsLabel.Invoke(new DisplayErrorsDelegate(DisplayErrors), error);
+            }
+            else
+            {
+                _errorsLabel.Text = error;
+            }
         }
     }
 }

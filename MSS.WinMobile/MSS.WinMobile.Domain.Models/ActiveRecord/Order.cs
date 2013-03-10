@@ -85,16 +85,19 @@ namespace MSS.WinMobile.Domain.Models
         private static Order[] Materialize(IDataReader reader)
         {
             var orders = new List<Order>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var order = new Order
-                    {
-                        Id = (int) reader[Table.Fields.ORDER_ID],
-                        Date = DateTime.Parse(reader[Table.Fields.ORDER_DATE].ToString()),
-                        ShippindAddressId = (int)reader[Table.Fields.ORDER_SHIPPING_ADDRESS_ID],
-                        ManagerId = (int)reader[Table.Fields.ORDER_MANAGER_ID]
-                    };
-                orders.Add(order);
+                while (reader.Read())
+                {
+                    var order = new Order
+                        {
+                            Id = (int) reader[Table.Fields.ORDER_ID],
+                            Date = DateTime.Parse(reader[Table.Fields.ORDER_DATE].ToString()),
+                            ShippindAddressId = (int) reader[Table.Fields.ORDER_SHIPPING_ADDRESS_ID],
+                            ManagerId = (int) reader[Table.Fields.ORDER_MANAGER_ID]
+                        };
+                    orders.Add(order);
+                }
             }
 
             return orders.ToArray();

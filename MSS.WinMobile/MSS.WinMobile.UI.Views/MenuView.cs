@@ -1,43 +1,59 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class MenuView : UserControl, IMenuView
+    public partial class MenuView : Form, IMenuView
     {
-        private readonly MenuPresenter _menuPresenter;
-
-        // Designer only usage
-        internal MenuView()
+        private MenuPresenter _presenter;
+        
+        public MenuView()
         {
             InitializeComponent();
         }
 
-        public MenuView(ILayout layout)
+        private void MenuView_Load(object sender, System.EventArgs e)
         {
-            InitializeComponent();
-            _menuPresenter = new MenuPresenter(layout, this);
+            if (_presenter == null)
+            {
+                _presenter = new MenuPresenter(this);
+                _presenter.InitializeView();
+            }
         }
 
-        private void _goRouteButton_Click(object sender, EventArgs e)
+        public void DisplayErrors(string error)
         {
-            _menuPresenter.Route();
+            
         }
 
-        private void _goCustomersButton_Click(object sender, EventArgs e)
+        private SynchronizationView _synchronizationView;
+
+        private void _synchronizationLabel_Click(object sender, System.EventArgs e)
         {
-            _menuPresenter.Customers();
+            if (_synchronizationView == null)
+                _synchronizationView = new SynchronizationView();
+
+            _synchronizationView.Show();
         }
 
-        private void _goSynchronizationButton_Click(object sender, EventArgs e)
+        private CustomersView _customersView;
+
+        private void _customersLabel_Click(object sender, System.EventArgs e)
         {
-            _menuPresenter.Synchronization();
+            if (_customersView == null)
+                _customersView = new CustomersView();
+
+            _customersView.Show();
         }
 
-        private void _goBaliBaliButton_Click(object sender, EventArgs e)
+        private RouteView _routeView;
+
+        private void _routeLabel_Click(object sender, System.EventArgs e)
         {
-            _menuPresenter.BaliBali();
+            if (_routeView == null)
+                _routeView = new RouteView();
+
+            _routeView.Show();
         }
     }
 }

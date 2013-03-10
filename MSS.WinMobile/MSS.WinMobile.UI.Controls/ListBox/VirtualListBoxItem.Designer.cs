@@ -36,6 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Name = "VirtualListBoxItem";
             this.Size = new System.Drawing.Size(200, 30);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.VirtualListBoxItem_Paint);
             this.Click += new System.EventHandler(this.VirtualListBoxItem_Click);
             this.ResumeLayout(false);
 

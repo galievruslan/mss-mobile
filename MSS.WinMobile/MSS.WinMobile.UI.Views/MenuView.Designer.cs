@@ -29,77 +29,99 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuView));
-            this._goRouteButton = new MSS.WinMobile.UI.Controls.PictureButton();
-            this._goCustomersButton = new MSS.WinMobile.UI.Controls.PictureButton();
-            this._goBaliBaliButton = new MSS.WinMobile.UI.Controls.PictureButton();
-            this._goSynchronizationButton = new MSS.WinMobile.UI.Controls.PictureButton();
+            this._routeIcon = new System.Windows.Forms.PictureBox();
+            this._routeLabel = new System.Windows.Forms.LinkLabel();
+            this._customersIcon = new System.Windows.Forms.PictureBox();
+            this._customersLabel = new System.Windows.Forms.LinkLabel();
+            this._synchronizationIcon = new System.Windows.Forms.PictureBox();
+            this._synchronizationLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
-            // _goRouteButton
+            // _routeIcon
             // 
-            this._goRouteButton.BackColor = System.Drawing.Color.White;
-            this._goRouteButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_goRouteButton.BackgroundImage")));
-            this._goRouteButton.Location = new System.Drawing.Point(3, 3);
-            this._goRouteButton.Name = "_goRouteButton";
-            this._goRouteButton.PressedImage = null;
-            this._goRouteButton.Size = new System.Drawing.Size(109, 109);
-            this._goRouteButton.TabIndex = 0;
-            this._goRouteButton.Click += new System.EventHandler(this._goRouteButton_Click);
+            this._routeIcon.Image = ((System.Drawing.Image)(resources.GetObject("_routeIcon.Image")));
+            this._routeIcon.Location = new System.Drawing.Point(3, 3);
+            this._routeIcon.Name = "_routeIcon";
+            this._routeIcon.Size = new System.Drawing.Size(30, 30);
+            this._routeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
-            // _goCustomersButton
+            // _routeLabel
             // 
-            this._goCustomersButton.BackColor = System.Drawing.Color.White;
-            this._goCustomersButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_goCustomersButton.BackgroundImage")));
-            this._goCustomersButton.Location = new System.Drawing.Point(127, 3);
-            this._goCustomersButton.Name = "_goCustomersButton";
-            this._goCustomersButton.PressedImage = null;
-            this._goCustomersButton.Size = new System.Drawing.Size(110, 109);
-            this._goCustomersButton.TabIndex = 1;
-            this._goCustomersButton.Click += new System.EventHandler(this._goCustomersButton_Click);
+            this._routeLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._routeLabel.ForeColor = System.Drawing.Color.Black;
+            this._routeLabel.Location = new System.Drawing.Point(39, 9);
+            this._routeLabel.Name = "_routeLabel";
+            this._routeLabel.Size = new System.Drawing.Size(201, 20);
+            this._routeLabel.TabIndex = 1;
+            this._routeLabel.Text = "Route";
+            this._routeLabel.Click += new System.EventHandler(this._routeLabel_Click);
             // 
-            // _goBaliBaliButton
+            // _customersIcon
             // 
-            this._goBaliBaliButton.BackColor = System.Drawing.Color.White;
-            this._goBaliBaliButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_goBaliBaliButton.BackgroundImage")));
-            this._goBaliBaliButton.Location = new System.Drawing.Point(127, 128);
-            this._goBaliBaliButton.Name = "_goBaliBaliButton";
-            this._goBaliBaliButton.PressedImage = null;
-            this._goBaliBaliButton.Size = new System.Drawing.Size(110, 109);
-            this._goBaliBaliButton.TabIndex = 3;
-            this._goBaliBaliButton.Click += new System.EventHandler(this._goBaliBaliButton_Click);
+            this._customersIcon.Image = ((System.Drawing.Image)(resources.GetObject("_customersIcon.Image")));
+            this._customersIcon.Location = new System.Drawing.Point(3, 39);
+            this._customersIcon.Name = "_customersIcon";
+            this._customersIcon.Size = new System.Drawing.Size(30, 30);
+            this._customersIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
-            // _goSynchronizationButton
+            // _customersLabel
             // 
-            this._goSynchronizationButton.BackColor = System.Drawing.Color.White;
-            this._goSynchronizationButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_goSynchronizationButton.BackgroundImage")));
-            this._goSynchronizationButton.Location = new System.Drawing.Point(3, 127);
-            this._goSynchronizationButton.Name = "_goSynchronizationButton";
-            this._goSynchronizationButton.PressedImage = null;
-            this._goSynchronizationButton.Size = new System.Drawing.Size(109, 110);
-            this._goSynchronizationButton.TabIndex = 2;
-            this._goSynchronizationButton.Click += new System.EventHandler(this._goSynchronizationButton_Click);
+            this._customersLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._customersLabel.ForeColor = System.Drawing.Color.Black;
+            this._customersLabel.Location = new System.Drawing.Point(39, 45);
+            this._customersLabel.Name = "_customersLabel";
+            this._customersLabel.Size = new System.Drawing.Size(201, 20);
+            this._customersLabel.TabIndex = 4;
+            this._customersLabel.Text = "Customers";
+            this._customersLabel.Click += new System.EventHandler(this._customersLabel_Click);
+            // 
+            // _synchronizationIcon
+            // 
+            this._synchronizationIcon.Image = ((System.Drawing.Image)(resources.GetObject("_synchronizationIcon.Image")));
+            this._synchronizationIcon.Location = new System.Drawing.Point(3, 75);
+            this._synchronizationIcon.Name = "_synchronizationIcon";
+            this._synchronizationIcon.Size = new System.Drawing.Size(30, 30);
+            this._synchronizationIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            // 
+            // _synchronizationLabel
+            // 
+            this._synchronizationLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._synchronizationLabel.ForeColor = System.Drawing.Color.Black;
+            this._synchronizationLabel.Location = new System.Drawing.Point(39, 81);
+            this._synchronizationLabel.Name = "_synchronizationLabel";
+            this._synchronizationLabel.Size = new System.Drawing.Size(201, 20);
+            this._synchronizationLabel.TabIndex = 7;
+            this._synchronizationLabel.Text = "Synchronization";
+            this._synchronizationLabel.Click += new System.EventHandler(this._synchronizationLabel_Click);
             // 
             // MenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.Controls.Add(this._goBaliBaliButton);
-            this.Controls.Add(this._goSynchronizationButton);
-            this.Controls.Add(this._goCustomersButton);
-            this.Controls.Add(this._goRouteButton);
+            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.Controls.Add(this._synchronizationLabel);
+            this.Controls.Add(this._synchronizationIcon);
+            this.Controls.Add(this._customersLabel);
+            this.Controls.Add(this._customersIcon);
+            this.Controls.Add(this._routeLabel);
+            this.Controls.Add(this._routeIcon);
             this.Name = "MenuView";
-            this.Size = new System.Drawing.Size(240, 267);
+            this.Load += new System.EventHandler(this.MenuView_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MSS.WinMobile.UI.Controls.PictureButton _goRouteButton;
-        private MSS.WinMobile.UI.Controls.PictureButton _goCustomersButton;
-        private MSS.WinMobile.UI.Controls.PictureButton _goBaliBaliButton;
-        private MSS.WinMobile.UI.Controls.PictureButton _goSynchronizationButton;
+        private System.Windows.Forms.PictureBox _routeIcon;
+        private System.Windows.Forms.LinkLabel _routeLabel;
+        private System.Windows.Forms.PictureBox _customersIcon;
+        private System.Windows.Forms.LinkLabel _customersLabel;
+        private System.Windows.Forms.PictureBox _synchronizationIcon;
+        private System.Windows.Forms.LinkLabel _synchronizationLabel;
+
+
 
     }
 }

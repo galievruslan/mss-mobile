@@ -28,28 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._mainPanel = new System.Windows.Forms.Panel();
             this._dataPanel = new System.Windows.Forms.Panel();
             this._vScrollBar = new System.Windows.Forms.VScrollBar();
-            this._mainPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // _mainPanel
-            // 
-            this._mainPanel.BackColor = System.Drawing.Color.White;
-            this._mainPanel.Controls.Add(this._dataPanel);
-            this._mainPanel.Controls.Add(this._vScrollBar);
-            this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._mainPanel.Location = new System.Drawing.Point(0, 0);
-            this._mainPanel.Name = "_mainPanel";
-            this._mainPanel.Size = new System.Drawing.Size(226, 297);
             // 
             // _dataPanel
             // 
             this._dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataPanel.Location = new System.Drawing.Point(0, 0);
             this._dataPanel.Name = "_dataPanel";
-            this._dataPanel.Size = new System.Drawing.Size(213, 297);
+            this._dataPanel.Size = new System.Drawing.Size(226, 297);
             // 
             // _vScrollBar
             // 
@@ -65,17 +53,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this._mainPanel);
+            this.Controls.Add(this._vScrollBar);
+            this.Controls.Add(this._dataPanel);
             this.Name = "VirtualListBox";
             this.Size = new System.Drawing.Size(226, 297);
-            this._mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel _mainPanel;
         private System.Windows.Forms.VScrollBar _vScrollBar;
         private System.Windows.Forms.Panel _dataPanel;
     }

@@ -72,14 +72,17 @@ namespace MSS.WinMobile.Domain.Models
         private static Status[] Materialize(IDataReader reader)
         {
             var statuses = new List<Status>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var status = new Status
-                    {
-                        Id = (int) reader[Table.Fields.STATUS_ID],
-                        Name = reader[Table.Fields.STATUS_NAME].ToString()
-                    };
-                statuses.Add(status);
+                while (reader.Read())
+                {
+                    var status = new Status
+                        {
+                            Id = (int) reader[Table.Fields.STATUS_ID],
+                            Name = reader[Table.Fields.STATUS_NAME].ToString()
+                        };
+                    statuses.Add(status);
+                }
             }
 
             return statuses.ToArray();

@@ -9,5 +9,10 @@ namespace MSS.WinMobile.Domain.Models
         public DateTime Date { get; set; }
 
         public int ManagerId { get; set; }
+
+        public RoutePoint[] GetPoints()
+        {
+            return RoutePoint.GetByRoute(this);
+        }
     }
 }

@@ -82,15 +82,18 @@ namespace MSS.WinMobile.Domain.Models
         private static Category[] Materialize(IDataReader reader)
         {
             var categories = new List<Category>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var category = new Category
-                    {
-                        Id = (int) reader[Table.Fields.CATEGORY_ID],
-                        Name = reader[Table.Fields.CATEGORY_NAME].ToString(),
-                        ParentId = (int?)reader[Table.Fields.CATEGORY_PARENT_ID]
-                    };
-                categories.Add(category);
+                while (reader.Read())
+                {
+                    var category = new Category
+                        {
+                            Id = (int) reader[Table.Fields.CATEGORY_ID],
+                            Name = reader[Table.Fields.CATEGORY_NAME].ToString(),
+                            ParentId = (int?) reader[Table.Fields.CATEGORY_PARENT_ID]
+                        };
+                    categories.Add(category);
+                }
             }
 
             return categories.ToArray();

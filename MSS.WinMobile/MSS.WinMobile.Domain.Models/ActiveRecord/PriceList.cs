@@ -72,14 +72,17 @@ namespace MSS.WinMobile.Domain.Models
         private static PriceList[] Materialize(IDataReader reader)
         {
             var priceLists = new List<PriceList>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var priceList = new PriceList
-                    {
-                        Id = (int) reader[Table.Fields.PRICE_LIST_ID],
-                        Name = reader[Table.Fields.PRICE_LIST_NAME].ToString()
-                    };
-                priceLists.Add(priceList);
+                while (reader.Read())
+                {
+                    var priceList = new PriceList
+                        {
+                            Id = (int) reader[Table.Fields.PRICE_LIST_ID],
+                            Name = reader[Table.Fields.PRICE_LIST_NAME].ToString()
+                        };
+                    priceLists.Add(priceList);
+                }
             }
 
             return priceLists.ToArray();

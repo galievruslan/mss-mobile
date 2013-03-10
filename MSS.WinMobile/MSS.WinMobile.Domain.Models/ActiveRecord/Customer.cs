@@ -72,14 +72,17 @@ namespace MSS.WinMobile.Domain.Models
         private static Customer[] Materialize(IDataReader reader)
         {
             var customers = new List<Customer>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var customer = new Customer
-                    {
-                        Id = (int) reader[Table.Fields.CUSTOMER_ID],
-                        Name = reader[Table.Fields.CUSTOMER_NAME].ToString()
-                    };
-                customers.Add(customer);
+                while (reader.Read())
+                {
+                    var customer = new Customer
+                        {
+                            Id = (int) reader[Table.Fields.CUSTOMER_ID],
+                            Name = reader[Table.Fields.CUSTOMER_NAME].ToString()
+                        };
+                    customers.Add(customer);
+                }
             }
 
             return customers.ToArray();

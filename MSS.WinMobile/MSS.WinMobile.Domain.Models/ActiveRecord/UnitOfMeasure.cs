@@ -72,14 +72,17 @@ namespace MSS.WinMobile.Domain.Models
         private static UnitOfMeasure[] Materialize(IDataReader reader)
         {
             var unitsOfMeasure = new List<UnitOfMeasure>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var unitOfMeasure = new UnitOfMeasure
-                    {
-                        Id = (int) reader[Table.Fields.UOM_ID],
-                        Name = reader[Table.Fields.UOM_NAME].ToString()
-                    };
-                unitsOfMeasure.Add(unitOfMeasure);
+                while (reader.Read())
+                {
+                    var unitOfMeasure = new UnitOfMeasure
+                        {
+                            Id = (int) reader[Table.Fields.UOM_ID],
+                            Name = reader[Table.Fields.UOM_NAME].ToString()
+                        };
+                    unitsOfMeasure.Add(unitOfMeasure);
+                }
             }
 
             return unitsOfMeasure.ToArray();

@@ -9,5 +9,11 @@
         public int ShippingAddressId { get; set; }
 
         public int StatusId { get; set; }
+
+        private ShippingAddress _shippingAddress;
+        public ShippingAddress ShippingAddress
+        {
+            get { return _shippingAddress ?? (_shippingAddress = ShippingAddress.GetById(ShippingAddressId)); }
+        }
     }
 }

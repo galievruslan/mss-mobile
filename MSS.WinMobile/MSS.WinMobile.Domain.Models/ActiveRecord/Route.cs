@@ -77,18 +77,47 @@ namespace MSS.WinMobile.Domain.Models
             }
         }
 
+        public static Route GetByDate(DateTime date)
+        {
+            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}] " +
+                                             "FROM ({3}) AS [{4}] " +
+                                             "WHERE [{4}].[{1}] = '{5}'", Table.Fields.ROUTE_ID,
+                                             Table.Fields.ROUTE_DATE,
+                                             Table.Fields.ORDER_MANAGER_ID, BaseSelect,
+                                             Table.NAME, date.Date);
+
+            IDbConnection connection = GetConnection();
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
+
+            using (connection.BeginTransaction())
+            {
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = selectString;
+                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                    {
+                        return Materialize(reader).FirstOrDefault();
+                    }
+                }
+            }
+        }
+
         private static Route[] Materialize(IDataReader reader)
         {
             var routes = new List<Route>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var route = new Route
-                    {
-                        Id = (int) reader[Table.Fields.ROUTE_ID],
-                        Date = DateTime.Parse(reader[Table.Fields.ROUTE_DATE].ToString()),
-                        ManagerId = (int)reader[Table.Fields.ORDER_MANAGER_ID]
-                    };
-                routes.Add(route);
+                while (reader.Read())
+                {
+                    var route = new Route
+                        {
+                            Id = (int) reader[Table.Fields.ROUTE_ID],
+                            Date = DateTime.Parse(reader[Table.Fields.ROUTE_DATE].ToString()),
+                            ManagerId = (int) reader[Table.Fields.ORDER_MANAGER_ID]
+                        };
+                    routes.Add(route);
+                }
             }
 
             return routes.ToArray();

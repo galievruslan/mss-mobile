@@ -1,19 +1,18 @@
 ﻿using System.Windows.Forms;
-using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class CustomersView : UserControl, ICustomersView
+    public partial class CustomersView : Form, ICustomersView
     {
         public CustomersView()
         {
             InitializeComponent();
         }
 
-        public CustomersView(ILayout layout)
+        public void DisplayErrors(string error)
         {
-            InitializeComponent();
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,51 +1,40 @@
-﻿using System.Linq;
+﻿using System;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.UI.Controls.ListBox;
+using MSS.WinMobile.UI.Presenters.DataRetrievers;
 using log4net;
 
 namespace MSS.WinMobile.UI.Presenters
 {
-    public class RoutePresenter : Presenter
+    public class RoutePresenter : IPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
-        private IRouteView _view;
+        private readonly IRouteView _view;
+        private readonly Route _route;
+        private readonly IDataPageRetriever<RoutePoint> _routePointRetriever;
+        private readonly Cache<RoutePoint> _cache; 
 
-        public RoutePresenter(ILayout layout, IRouteView view) : base(layout)
+        public RoutePresenter(IRouteView view)
         {
+            _route = Route.GetByDate(DateTime.Today);
+            _routePointRetriever = new RoutePointRetriever(_route);
+            _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
             _view = view;
-
-            // TODO Get route for current day (not last like now)
         }
 
-        public int GetRoutePointsCount()
+        public Data GetRoutePointData(int index)
         {
-            //using (ITransaction transaction = _session.BeginTransaction())
-            //{
-            //    IGenericRepository<Route> routeRepository = transaction.Resolve<Route>();
-            //    Route route = routeRepository.Find().Last();
-            //    if (route != null)
-            //    {
-            //        var routePointRepository =
-            //            transaction.Resolve<RoutePoint>() as RoutePointRepository;
+            if (index >= _routePointRetriever.Count)
+                return Data.Empty;
 
-            //        if (routePointRepository != null)
-            //        {
-            //            return routePointRepository.FindByRoute(route).Length;
-            //        }
-            //    }
-            //}
-
-            return 0;
+            RoutePoint routePoint = _cache.RetrieveElement(index);
+            return new Data(routePoint.Id, routePoint.ShippingAddress.Name);
         }
 
-        public int GetRoutePointId(int index)
+        public void InitializeView()
         {
-            return 0;
-        }
-
-        public string GetRoutePointLabel(int index)
-        {
-            return string.Empty;
+            _view.SetRoutePointCount(_routePointRetriever.Count);
         }
     }
 }

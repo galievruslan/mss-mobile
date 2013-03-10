@@ -14,6 +14,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         }
 
         public event OnItemDataNeeded ItemDataNeeded;
+        public event OnItemSelected ItemSelected;
 
         private int _itemCount;
         public int ItemCount {
@@ -29,11 +30,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 else
                     _vScrollBar.Hide();
 
-                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount;
+                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount - 1;
             }
         }
 
-        public int SelectedIndex { get; set; }
+        private int _selecteIndex = -1;
+        public int SelectedIndex {
+            get { return _selecteIndex; }
+            set { _selecteIndex = value; }
+        }
 
         private void FillItemPanel()
         {
@@ -93,7 +98,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 }
 
                 listBoxItem.DataNeeded += ListBoxItemDataNeeded;
-                listBoxItem.SelectNeeded += ListBoxItemSelectNeeded;
+                listBoxItem.Selected += ListBoxItemSelected;
                 var control = listBoxItem as Control;
                 control.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
                 _dataPanel.Controls.Add(control);
@@ -101,18 +106,30 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             }
         }
 
-        void ListBoxItemSelectNeeded(object sender)
+        void ListBoxItemSelected(object sender)
         {
             foreach (var item in _listBoxItems)
             {
-                item.UnSelect();
+                if (item.IsSelected)
+                {
+                    item.IsSelected = false;
+                    var control = item as Control;
+                    if (control != null)
+                        control.Refresh();
+                }
             }
 
             var listBoxItem = sender as IListBoxItem;
             if (listBoxItem != null)
             {
                 SelectedIndex = listBoxItem.Index;
-                listBoxItem.Select();
+                listBoxItem.IsSelected = true;
+                if (ItemSelected != null)
+                    ItemSelected.Invoke(this, listBoxItem);
+
+                var control = listBoxItem as Control;
+                if (control != null)
+                    control.Refresh();
             }
         }
 
@@ -123,7 +140,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 _dataPanel.Controls.Remove(listBoxItem as Control);
 
             listBoxItem.DataNeeded -= ListBoxItemDataNeeded;
-            listBoxItem.SelectNeeded -= ListBoxItemSelectNeeded;
+            listBoxItem.Selected -= ListBoxItemSelected;
             _listBoxItems.Remove(listBoxItem);
         }
 
@@ -139,10 +156,11 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             {
                 var item = _listBoxItems[i];
                 item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
-                if (item.Index == SelectedIndex)
-                    item.Select();
-                else
-                    item.UnSelect();
+                item.IsSelected = item.Index == SelectedIndex;
+
+                var control = item as Control;
+                if (control != null)
+                    control.Refresh();
             }
         }
 

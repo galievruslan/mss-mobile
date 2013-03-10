@@ -4,20 +4,14 @@ using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class SynchronizationView : UserControl, ISynchronizationView
+    public partial class SynchronizationView : Form, ISynchronizationView
     {
-        private readonly SynchronizationPresenter _presenter;
+        private SynchronizationPresenter _presenter;
 
         // Designer only usage
-        internal SynchronizationView()
+        public SynchronizationView()
         {
             InitializeComponent();
-        }
-
-        public SynchronizationView(ILayout layout)
-        {
-            InitializeComponent();
-            _presenter = new SynchronizationPresenter(layout, this);
         }
 
         public void Start()
@@ -64,6 +58,28 @@ namespace MSS.WinMobile.UI.Views
         private void CancelButtonClick(object sender, EventArgs e)
         {
             Cancel();
+        }
+
+        private void SynchronizationView_Load(object sender, EventArgs e)
+        {
+            if (_presenter == null)
+            {
+                _presenter = new SynchronizationPresenter(this);
+                _presenter.InitializeView();
+            }
+        }
+
+        public delegate void DisplayErrorsDelegate(string error);
+        public void DisplayErrors(string error)
+        {
+            if (_errorsLabel.InvokeRequired)
+            {
+                _errorsLabel.Invoke(new DisplayErrorsDelegate(DisplayErrors), error);
+            }
+            else
+            {
+                _errorsLabel.Text = error;
+            }
         }
     }
 }

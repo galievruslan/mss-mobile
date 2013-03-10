@@ -18,44 +18,47 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         }
 
         public event OnDataNeeded DataNeeded;
-        public event OnSelectNeeded SelectNeeded;
-        public int Index { get; set; }
-        public string Label { get; set; }
-        public int Id { get; set; }
+        public event OnSelected Selected;
 
-        private bool _selected;
-        public void Select()
-        {
-            _selected = true;
+        private int _index = -1;
+        public int Index {
+            get { return _index; }
+            set {
+                if (_index == value)
+                    return;
+
+                _index = value;
+                if (DataNeeded != null)
+                    DataNeeded.Invoke(this);
+            }
         }
 
-        public void UnSelect()
-        {
-            _selected = false;
-        }
+        public Data Data { get; set; }
 
+        public bool IsSelected { get; set; }
         private void VirtualListBoxItem_Click(object sender, EventArgs e)
         {
-            if (_selected)
-                UnSelect();
-            else
-                Select();
+            IsSelected = true;
+            if (Selected != null)
+                Selected.Invoke(this);
         }
 
-        protected override void OnPaintBackground(PaintEventArgs e)
+        private void VirtualListBoxItem_Paint(object sender, PaintEventArgs e)
         {
-            base.OnPaintBackground(e);
+            if (Data.Equals(Data.Empty))
+                return;
+
             e.Graphics.FillRectangle(
-                _selected ? new SolidBrush(_selectedBackgroundColor) : new SolidBrush(_unselectedBackgroundColor),
+                IsSelected ? new SolidBrush(_selectedBackgroundColor) : new SolidBrush(_unselectedBackgroundColor),
                 e.ClipRectangle);
-        }
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            e.Graphics.DrawString(Label, _font,
-                                  _selected ? new SolidBrush(_selectedFontColor) : new SolidBrush(_unselectedFontColor),
-                                  e.ClipRectangle);
+            e.Graphics.DrawString(Data.Label, _font,
+                                  IsSelected ? new SolidBrush(_selectedFontColor) : new SolidBrush(_unselectedFontColor),
+                                  new Rectangle(e.ClipRectangle.X + 3, e.ClipRectangle.Y + 3, e.ClipRectangle.Width - 6,
+                                                e.ClipRectangle.Height - 6));
+
+            e.Graphics.DrawLine(new Pen(Color.DarkGray), e.ClipRectangle.X + 3, e.ClipRectangle.Height - 2,
+                                e.ClipRectangle.Width - 6, e.ClipRectangle.Height - 2);
         }
     }
 }

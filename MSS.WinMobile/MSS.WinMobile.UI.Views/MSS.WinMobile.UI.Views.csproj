@@ -51,10 +51,6 @@
     </Reference>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
-    <Reference Include="MSS.WinMobile.UI.Controls, Version=1.0.4761.42415, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MSS.WinMobile.UI.Controls\obj\Debug\MSS.WinMobile.UI.Controls.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,34 +62,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlExtensions.cs" />
     <Compile Include="CustomersView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomersView.Designer.cs">
       <DependentUpon>CustomersView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Layouts\Layout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Layouts\Layout.Designer.cs">
-      <DependentUpon>Layout.cs</DependentUpon>
-    </Compile>
     <Compile Include="LogonView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="LogonView.designer.cs">
       <DependentUpon>LogonView.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MenuView.Designer.cs">
       <DependentUpon>MenuView.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderView.Designer.cs">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RouteView.Designer.cs">
+      <DependentUpon>RouteView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SynchronizationView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SynchronizationView.Designer.cs">
       <DependentUpon>SynchronizationView.cs</DependentUpon>
@@ -104,14 +105,17 @@
     <EmbeddedResource Include="CustomersView.resx">
       <DependentUpon>CustomersView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Layouts\Layout.resx">
-      <DependentUpon>Layout.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LogonView.resx">
       <DependentUpon>LogonView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuView.resx">
       <DependentUpon>MenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderView.resx">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RouteView.resx">
+      <DependentUpon>RouteView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SynchronizationView.resx">
       <DependentUpon>SynchronizationView.cs</DependentUpon>
@@ -122,9 +126,17 @@
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
+      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
+      <Name>MSS.WinMobile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
+      <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>
+      <Name>MSS.WinMobile.UI.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
       <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>

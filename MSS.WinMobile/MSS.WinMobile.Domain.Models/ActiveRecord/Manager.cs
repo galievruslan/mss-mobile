@@ -72,14 +72,17 @@ namespace MSS.WinMobile.Domain.Models
         private static Manager[] Materialize(IDataReader reader)
         {
             var managers = new List<Manager>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var manager = new Manager
-                    {
-                        Id = (int) reader[Table.Fields.MANAGER_ID],
-                        Name = reader[Table.Fields.MANAGER_NAME].ToString()
-                    };
-                managers.Add(manager);
+                while (reader.Read())
+                {
+                    var manager = new Manager
+                        {
+                            Id = (int) reader[Table.Fields.MANAGER_ID],
+                            Name = reader[Table.Fields.MANAGER_NAME].ToString()
+                        };
+                    managers.Add(manager);
+                }
             }
 
             return managers.ToArray();

@@ -72,14 +72,17 @@ namespace MSS.WinMobile.Domain.Models
         private static Warehouse[] Materialize(IDataReader reader)
         {
             var warehouses = new List<Warehouse>();
-            if (reader != null && reader.Read())
+            if (reader != null)
             {
-                var warehouse = new Warehouse
-                    {
-                        Id = (int) reader[Table.Fields.WAREHOUSE_ID],
-                        Address = reader[Table.Fields.WAREHOUSE_ADDRESS].ToString()
-                    };
-                warehouses.Add(warehouse);
+                while (reader.Read())
+                {
+                    var warehouse = new Warehouse
+                        {
+                            Id = (int) reader[Table.Fields.WAREHOUSE_ID],
+                            Address = reader[Table.Fields.WAREHOUSE_ADDRESS].ToString()
+                        };
+                    warehouses.Add(warehouse);
+                }
             }
 
             return warehouses.ToArray();

@@ -1,6 +1,6 @@
 ﻿using System;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
-using MSS.WinMobile.UI.Views.Layouts;
+using MSS.WinMobile.UI.Views;
 using log4net.Config;
 
 namespace MSS.WinMobile.Application
@@ -27,7 +27,7 @@ namespace MSS.WinMobile.Application
 
             Log.Info("Application start");
             ActiveRecordBase.Initialize(false);
-            System.Windows.Forms.Application.Run(new Layout());
+            System.Windows.Forms.Application.Run(new MenuView());
             Log.Info("Application finish");
         }
     }
