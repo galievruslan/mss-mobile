@@ -17,6 +17,7 @@ CREATE TABLE [Orders] ([Id] int  NOT NULL
 , [Date] datetime  NULL  
 , [ShippingAddress_Id] int  NULL  
 , [Manager_Id] int  NULL  
+, [Note] nvarchar(1024) NULL  
 );
 CREATE TABLE [PriceLists] ([Id] int  NOT NULL  
 , [Name] nvarchar(255) NULL  
@@ -38,6 +39,7 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] int  NOT NULL
 CREATE TABLE [RoutePoints] ([Id] int  NOT NULL  
 , [Route_Id] int  NULL  
 , [ShippingAddress_Id] int  NULL  
+, [Order_Id] int  NULL 
 , [Status_Id] int  NULL  
 );
 CREATE TABLE [Routes] ([Id] int  NOT NULL  

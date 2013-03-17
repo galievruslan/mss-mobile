@@ -17,6 +17,7 @@ namespace MSS.WinMobile.Domain.Models
                 public const string ID = "Id";
                 public const string ROUTE_ID = "Route_Id";
                 public const string SHIPPING_ADDRESS_ID = "ShippingAddress_Id";
+                public const string ORDER_ID = "Order_Id";
                 public const string STATUS_ID = "Status_Id";
             }    
         }
@@ -24,10 +25,14 @@ namespace MSS.WinMobile.Domain.Models
         protected override string InsertCommand {
             get
             {
-                return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}]) VALUES ({5}, {6}, {7}, {8})",
-                                     Table.NAME, Table.Fields.ID, Table.Fields.ROUTE_ID,
-                                     Table.Fields.SHIPPING_ADDRESS_ID, Table.Fields.STATUS_ID, Id, RouteId,
-                                     ShippingAddressId, StatusId);
+                return
+                    string.Format(
+                        "INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}], [{5}]) VALUES ({6}, {7}, {8}, {9}, {10})",
+                        Table.NAME, Table.Fields.ID, Table.Fields.ROUTE_ID,
+                        Table.Fields.SHIPPING_ADDRESS_ID, Table.Fields.STATUS_ID, Table.Fields.ORDER_ID, Id, RouteId,
+                        ShippingAddressId, StatusId, OrderId != null
+                                                         ? OrderId.ToString()
+                                                         : "NULL");
             }
         }
 
@@ -36,11 +41,15 @@ namespace MSS.WinMobile.Domain.Models
             {
                 return string.Format("UPDATE [{0}] SET [{1}] = {2}, " +
                                      "[{3}] = {4}, " +
-                                     "[{5}] = {6}" +
-                                     "WHERE [{7}] = {8}",
+                                     "[{5}] = {6}," +
+                                     "[{7}] = {8} " +
+                                     "WHERE [{9}] = {10}",
                                      Table.NAME, Table.Fields.ROUTE_ID, RouteId,
                                      Table.Fields.SHIPPING_ADDRESS_ID, ShippingAddressId,
-                                     Table.Fields.STATUS_ID, StatusId, Table.Fields.ID, Id);
+                                     Table.Fields.STATUS_ID, StatusId, Table.Fields.ORDER_ID, OrderId != null
+                                                                                                  ? OrderId.ToString()
+                                                                                                  : "NULL",
+                                     Table.Fields.ID, Id);
             }
         }
 
@@ -159,6 +168,7 @@ namespace MSS.WinMobile.Domain.Models
                             Id = (int) reader[Table.Fields.ID],
                             RouteId = (int) reader[Table.Fields.ROUTE_ID],
                             ShippingAddressId = (int) reader[Table.Fields.SHIPPING_ADDRESS_ID],
+                            OrderId = (int)reader[Table.Fields.SHIPPING_ADDRESS_ID],
                             StatusId = (int) reader[Table.Fields.STATUS_ID]
                         };
                     routePoints.Add(routePoint);

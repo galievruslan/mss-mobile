@@ -11,5 +11,7 @@ namespace MSS.WinMobile.Domain.Models
         public int ShippindAddressId { get; set; }
 
         public int ManagerId { get; set; }
+
+        public string Note { get; set; }
     }
 }

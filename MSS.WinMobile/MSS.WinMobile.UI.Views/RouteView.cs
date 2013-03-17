@@ -40,7 +40,8 @@ namespace MSS.WinMobile.UI.Views
 
         private void _createOrderIcon_Click(object sender, EventArgs e)
         {
-
+            var orderView = new OrderView(_presenter.GetRoutePointData(_routeVirtualListBox.SelectedIndex).Id);
+            orderView.Show();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters;
 
@@ -35,14 +36,49 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        private void PasswordTextBoxTextChanged(object sender, EventArgs e)
+        private void OkButtonClick(object sender, EventArgs e)
         {
 
         }
 
-        private void AccountTextBoxTextChanged(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
 
+        }
+
+        public void SetNumber(int number)
+        {
+            _noTextBox.Text = number.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public void SetDate(DateTime date)
+        {
+            _dateTextBox.Text = date.ToShortDateString();
+        }
+
+        public void SetCustomer(string customer)
+        {
+            _customerComboBox.Text = customer;
+        }
+
+        public void SetShipmentAddress(string address)
+        {
+            _addressComboBox.Text = address;
+        }
+
+        public void SetPrice(string price)
+        {
+            _priceComboBox.Text = price;
+        }
+
+        public void SetWarehouse(string warehouse)
+        {
+            _warehouseComboBox.Text = warehouse;
+        }
+
+        public void SetNote(string note)
+        {
+            _notesTextBox.Text = note;
         }
     }
 }
