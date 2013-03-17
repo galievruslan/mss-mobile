@@ -4,14 +4,17 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class Order
     {
-        public int Id { get; set; }
+        public Order()
+        {
+            Date = DateTime.Now;
+        }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
 
-        public int ShippindAddressId { get; set; }
+        public int ShippindAddressId { get; private set; }
 
-        public int ManagerId { get; set; }
+        public int ManagerId { get; private set; }
 
-        public string Note { get; set; }
+        public string Note { get; private set; }
     }
 }

@@ -17,7 +17,7 @@ namespace MSS.WinMobile.UI.Presenters
 
         public OrderPresenter(IOrderView view, int shippingAddressId)
         {
-            _order = new Order {ShippindAddressId = shippingAddressId, ManagerId = Context.ManagerId, Date = DateTime.Now};
+            _order = new Order();
             _view = view;
         }
 

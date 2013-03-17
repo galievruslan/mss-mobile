@@ -27,14 +27,9 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var categoryDto in categoriesDtos)
                 {
-                    var category = new Category
-                    {
-                        Id = categoryDto.Id,
-                        Name = categoryDto.Name,
-                    };
-
-                    if (categoryDto.CategoryId != 0)
-                        category.ParentId = categoryDto.CategoryId;
+                    var category = categoryDto.CategoryId == 0
+                                       ? new Category(categoryDto.Id, categoryDto.Name)
+                                       : new Category(categoryDto.Id, categoryDto.Name, categoryDto.CategoryId);
 
 
                     categories.Add(category);

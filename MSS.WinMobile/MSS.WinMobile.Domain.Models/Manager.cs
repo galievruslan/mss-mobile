@@ -2,8 +2,12 @@
 {
     public partial class Manager
     {
-        public int Id { get; set; }
+        public Manager(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
     }
 }

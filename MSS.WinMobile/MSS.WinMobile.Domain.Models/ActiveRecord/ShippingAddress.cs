@@ -1,23 +1,38 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlServerCe;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
     public partial class ShippingAddress : ActiveRecordBase
     {
+        internal ShippingAddress(IDictionary<string, object> dictionary)
+        {
+            if (dictionary.ContainsKey(Table.Fields.ID))
+                Id = (int)dictionary[Table.Fields.ID];
+
+            if (dictionary.ContainsKey(Table.Fields.NAME))
+                Name = dictionary[Table.Fields.NAME].ToString();
+
+            if (dictionary.ContainsKey(Table.Fields.ADDRESS))
+                Address = dictionary[Table.Fields.ADDRESS].ToString();
+
+            if (dictionary.ContainsKey(Table.Fields.CUSTOMER_ID))
+                CustomerId = (int)dictionary[Table.Fields.CUSTOMER_ID];
+        }
+
         public static class Table
         {
-            public const string NAME = "ShippingAddresses";
+            public const string TABLE_NAME = "ShippingAddresses";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string SHIPPING_ADDRESS_NAME = "Name";
-                public const string SHIPPING_ADDRESS_VALUE = "Address";
-                public const string SHIPPING_ADDRESS_CUSTOMER_ID = "Customer_Id";
+                public const string NAME = "Name";
+                public const string ADDRESS = "Address";
+                public const string CUSTOMER_ID = "Customer_Id";
             }    
         }
 
@@ -25,8 +40,8 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}]) VALUES ({5}, '{6}', '{7}', {8})",
-                                     Table.NAME, Table.Fields.ID, Table.Fields.SHIPPING_ADDRESS_NAME,
-                                     Table.Fields.SHIPPING_ADDRESS_VALUE, Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID, Id, Name,
+                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.NAME,
+                                     Table.Fields.ADDRESS, Table.Fields.CUSTOMER_ID, Id, Name,
                                      Address, CustomerId);
             }
         }
@@ -38,9 +53,9 @@ namespace MSS.WinMobile.Domain.Models
                                      "[{3}] = '{4}', " +
                                      "[{5}] = {6}" +
                                      "WHERE [{7}] = {8}",
-                                     Table.NAME, Table.Fields.SHIPPING_ADDRESS_NAME, Name,
-                                     Table.Fields.SHIPPING_ADDRESS_VALUE, Address,
-                                     Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID, CustomerId, Table.Fields.ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.NAME, Name,
+                                     Table.Fields.ADDRESS, Address,
+                                     Table.Fields.CUSTOMER_ID, CustomerId, Table.Fields.ID, Id);
             }
         }
 
@@ -48,58 +63,15 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("DELETE FROM [{0}] WHERE [{1}] = {2}",
-                                     Table.NAME, Table.Fields.ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ID, Id);
             }
         }
-
-        private static readonly string BaseSelect =
-            string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}], [{3}] AS [{3}] FROM [{4}] AS [{4}]",
-                          Table.Fields.ID, Table.Fields.SHIPPING_ADDRESS_NAME, Table.Fields.SHIPPING_ADDRESS_VALUE,
-                          Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID,
-                          Table.NAME);
 
         public static ShippingAddress GetById(int id)
         {
-            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}], [{3}] AS [{3}] " +
-                                             "FROM ({4}) AS [{5}] " +
-                                             "WHERE [{5}].[{0}] = {6}", Table.Fields.ID,
-                                             Table.Fields.SHIPPING_ADDRESS_NAME, Table.Fields.SHIPPING_ADDRESS_VALUE,
-                                             Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID, BaseSelect,
-                                             Table.NAME, id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction()) {
-                using (IDbCommand command = connection.CreateCommand()) {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
-                        return Materialize(reader).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private static ShippingAddress[] Materialize(IDataReader reader)
-        {
-            var shippingAddresses = new List<ShippingAddress>();
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    var shippingAddress = new ShippingAddress
-                        {
-                            Id = (int) reader[Table.Fields.ID],
-                            Name = reader[Table.Fields.SHIPPING_ADDRESS_NAME].ToString(),
-                            Address = reader[Table.Fields.SHIPPING_ADDRESS_VALUE].ToString(),
-                            CustomerId = (int) reader[Table.Fields.SHIPPING_ADDRESS_CUSTOMER_ID]
-                        };
-                    shippingAddresses.Add(shippingAddress);
-                }
-            }
-
-            return shippingAddresses.ToArray();
+            var queryObject = QueryObjectFactory.CreateQueryObject<ShippingAddress>();
+            queryObject.Where(Table.Fields.ID, new Equals(id));
+            return queryObject.FirstOrDefault();
         }
     }
 }

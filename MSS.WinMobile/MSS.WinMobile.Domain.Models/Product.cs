@@ -2,10 +2,20 @@
 {
     public partial class Product
     {
-        public int Id { get; set; }
+        public Product(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public string Name { get; set; }
+        public Product(int id, string name, int categoryId)
+            :this(id, name)
+        {
+            CategoryId = categoryId;
+        }
 
-        public int? CategoryId { get; set; }
+        public string Name { get; private set; }
+
+        public int? CategoryId { get; private set; }
     }
 }

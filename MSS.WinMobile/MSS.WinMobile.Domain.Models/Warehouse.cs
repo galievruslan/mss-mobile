@@ -2,8 +2,12 @@
 {
     public partial class Warehouse
     {
-        public int Id { get; set; }
+        public Warehouse(int id, string address)
+        {
+            Id = id;
+            Address = address;
+        }
 
-        public string Address { get; set; }
+        public string Address { get; private set; }
     }
 }

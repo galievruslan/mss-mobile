@@ -28,11 +28,7 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var priceListDto in priceListsDtos)
                 {
-                    var priceList = new PriceList
-                    {
-                        Id = priceListDto.Id,
-                        Name = priceListDto.Name
-                    };
+                    var priceList = new PriceList(priceListDto.Id, priceListDto.Name);
                     priceLists.Add(priceList);
                 }
 

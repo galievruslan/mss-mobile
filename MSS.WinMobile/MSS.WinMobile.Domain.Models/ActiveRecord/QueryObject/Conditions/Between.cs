@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions
+﻿namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions
 {
     public class Contains : Condition
     {

@@ -2,10 +2,20 @@
 {
     public partial class Category
     {
-        public int Id { get; set; }
+        public Category(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public string Name { get; set; }
+        public Category(int id, string name, int parentId)
+            :this(id, name)
+        {
+            ParentId = parentId;
+        }
 
-        public int? ParentId { get; set; }
+        public string Name { get; private set; }
+
+        public int? ParentId { get; private set; }
     }
 }

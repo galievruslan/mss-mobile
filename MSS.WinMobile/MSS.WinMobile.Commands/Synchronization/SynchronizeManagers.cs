@@ -28,11 +28,7 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var managerDto in managersDtos)
                 {
-                    var manager = new Manager
-                    {
-                        Id = managerDto.Id,
-                        Name = managerDto.Name
-                    };
+                    var manager = new Manager(managerDto.Id, managerDto.Name);
                     managers.Add(manager);
                 }
 

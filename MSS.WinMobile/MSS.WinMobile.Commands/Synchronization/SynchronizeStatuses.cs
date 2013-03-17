@@ -28,11 +28,7 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var statusDto in statusesDtos)
                 {
-                    var status = new Status
-                    {
-                        Id = statusDto.Id,
-                        Name = statusDto.Name
-                    };
+                    var status = new Status(statusDto.Id, statusDto.Name);
                     statuses.Add(status);
                 }
 

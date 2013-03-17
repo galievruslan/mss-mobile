@@ -2,8 +2,12 @@
 {
     public partial class Status
     {
-        public int Id { get; set; }
+        public Status(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
     }
 }

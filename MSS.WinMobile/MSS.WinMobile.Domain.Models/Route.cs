@@ -4,11 +4,16 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class Route
     {
-        public int Id { get; set; }
+        public Route(int id, int managerId, DateTime date)
+        {
+            Id = id;
+            ManagerId = managerId;
+            Date = date;
+        }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
 
-        public int ManagerId { get; set; }
+        public int ManagerId { get; private set; }
 
         public RoutePoint[] GetPoints()
         {

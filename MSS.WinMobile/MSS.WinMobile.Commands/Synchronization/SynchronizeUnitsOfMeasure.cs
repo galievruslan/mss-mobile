@@ -28,11 +28,7 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var uomDto in uomsDtos)
                 {
-                    var uom = new UnitOfMeasure
-                    {
-                        Id = uomDto.Id,
-                        Name = uomDto.Name
-                    };
+                    var uom = new UnitOfMeasure(uomDto.Id, uomDto.Name);
                     uoms.Add(uom);
                 }
 

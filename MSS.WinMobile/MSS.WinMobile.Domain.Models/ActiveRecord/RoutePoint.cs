@@ -1,16 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlServerCe;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
     public partial class RoutePoint : ActiveRecordBase
     {
+        internal RoutePoint(IDictionary<string, object> dictionary)
+        {
+            if (dictionary.ContainsKey(Table.Fields.ID))
+                Id = (int)dictionary[Table.Fields.ID];
+
+            if (dictionary.ContainsKey(Table.Fields.ROUTE_ID))
+                RouteId = (int)dictionary[Table.Fields.ROUTE_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
+                ShippingAddressId = (int)dictionary[Table.Fields.SHIPPING_ADDRESS_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
+                OrderId = (int)dictionary[Table.Fields.ORDER_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
+                StatusId = (int)dictionary[Table.Fields.STATUS_ID];
+        }
+
+
         public static class Table
         {
-            public const string NAME = "RoutePoints";
+            public const string TABLE_NAME = "RoutePoints";
 
             public static class Fields
             {
@@ -28,7 +48,7 @@ namespace MSS.WinMobile.Domain.Models
                 return
                     string.Format(
                         "INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}], [{5}]) VALUES ({6}, {7}, {8}, {9}, {10})",
-                        Table.NAME, Table.Fields.ID, Table.Fields.ROUTE_ID,
+                        Table.TABLE_NAME, Table.Fields.ID, Table.Fields.ROUTE_ID,
                         Table.Fields.SHIPPING_ADDRESS_ID, Table.Fields.STATUS_ID, Table.Fields.ORDER_ID, Id, RouteId,
                         ShippingAddressId, StatusId, OrderId != null
                                                          ? OrderId.ToString()
@@ -44,7 +64,7 @@ namespace MSS.WinMobile.Domain.Models
                                      "[{5}] = {6}," +
                                      "[{7}] = {8} " +
                                      "WHERE [{9}] = {10}",
-                                     Table.NAME, Table.Fields.ROUTE_ID, RouteId,
+                                     Table.TABLE_NAME, Table.Fields.ROUTE_ID, RouteId,
                                      Table.Fields.SHIPPING_ADDRESS_ID, ShippingAddressId,
                                      Table.Fields.STATUS_ID, StatusId, Table.Fields.ORDER_ID, OrderId != null
                                                                                                   ? OrderId.ToString()
@@ -57,125 +77,34 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("DELETE FROM [{0}] WHERE [{1}] = {2}",
-                                     Table.NAME, Table.Fields.ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ID, Id);
             }
         }
 
         public static RoutePoint GetById(int id)
         {
-            var selectString = string.Format("SELECT * " +
-                                             "FROM [{0}] AS [{0}] " +
-                                             "WHERE [{0}].[{1}] = {2}", Table.NAME, Table.Fields.ROUTE_ID, id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction()) {
-                using (IDbCommand command = connection.CreateCommand()) {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
-                        return Materialize(reader).FirstOrDefault();
-                    }
-                }
-            }
+            var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
+            queryObject.Where(Table.Fields.ID, new Equals(id));
+            return queryObject.FirstOrDefault();
         }
 
         public static RoutePoint[] GetByRoute(Route route)
         {
-            var selectString = string.Format("SELECT * " +
-                                             "FROM [{0}] AS [{0}] " +
-                                             "WHERE [{0}].[{1}] = {2}", Table.NAME, Table.Fields.ROUTE_ID, route.Id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction())
-            {
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
-                    {
-                        return Materialize(reader);
-                    }
-                }
-            }
+            var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
+            queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
+            return queryObject.ToArray();
         }
 
         public static int GetCountByRoute(Route route)
         {
-            const string selectCountString = "SELECT Count([{0}]) From [{1}]";
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction())
-            {
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = string.Format(selectCountString, Table.Fields.ID, Table.NAME);
-                    return (int)command.ExecuteScalar();
-                }
-            }
+            var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
+            queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
+            return (queryObject as IQueryObject<RoutePoint>).Count();
         }
 
         public static RoutePoint[] GetByRoute(Route route, int from, int count)
         {
-            const string selectCountString = "SELECT Count([{0}]) From [{1}]";
-            const string selectString = "SELECT TOP({0}) * " +
-                                        "FROM (SELECT TOP({1}) * " +
-                                        "FROM [{2}] AS [{2}] " +
-                                        "WHERE [{2}].[{3}] = {4} " +
-                                        "ORDER BY [{2}].[{5}] DESC) AS [{2}] " +
-                                        "ORDER BY [{2}].[{5}] ASC ";
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction())
-            {
-                int totalCount;
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = string.Format(selectCountString, Table.Fields.ID, Table.NAME);
-                    totalCount = (int)command.ExecuteScalar();
-                }
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = string.Format(selectString, count, totalCount - from, Table.NAME,
-                                                        Table.Fields.ROUTE_ID, route.Id, Table.Fields.ID);
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
-                    {
-                        return Materialize(reader);
-                    }
-                }
-            }
-        }
-
-        private static RoutePoint[] Materialize(IDataReader reader)
-        {
-            var routePoints = new List<RoutePoint>();
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    var routePoint = new RoutePoint
-                        {
-                            Id = (int) reader[Table.Fields.ID],
-                            RouteId = (int) reader[Table.Fields.ROUTE_ID],
-                            ShippingAddressId = (int) reader[Table.Fields.SHIPPING_ADDRESS_ID],
-                            OrderId = (int)reader[Table.Fields.SHIPPING_ADDRESS_ID],
-                            StatusId = (int) reader[Table.Fields.STATUS_ID]
-                        };
-                    routePoints.Add(routePoint);
-                }
-            }
-
-            return routePoints.ToArray();
+            throw new NotImplementedException();
         }
     }
 }

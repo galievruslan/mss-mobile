@@ -1,23 +1,39 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlServerCe;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
     public partial class OrderItem : ActiveRecordBase
     {
+        internal OrderItem(IDictionary<string, object> dictionary)
+        {
+            if (dictionary.ContainsKey(Table.Fields.ID))
+                Id = (int)dictionary[Table.Fields.ID];
+
+            if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
+                OrderId = (int)dictionary[Table.Fields.ORDER_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.PRODUCT_ID))
+                ProductId = (int)dictionary[Table.Fields.PRODUCT_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.QUANTITY))
+                Quantity = (int)dictionary[Table.Fields.QUANTITY];
+        }
+
         public static class Table
         {
-            public const string NAME = "OrderItems";
+            public const string TABLE_NAME = "OrderItems";
 
             public static class Fields
             {
-                public const string ORDER_ITEM_ID = "Id";
+                public const string ID = "Id";
                 public const string ORDER_ID = "OrderId";
-                public const string ORDER_ITEM_PRODUCT_ID = "Product_Id";
-                public const string ORDER_ITEM_QUANTITY = "Quantity";
+                public const string PRODUCT_ID = "Product_Id";
+                public const string QUANTITY = "Quantity";
             }    
         }
 
@@ -25,8 +41,8 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}]) VALUES ({5}, {6}, {7}, {8})",
-                                     Table.NAME, Table.Fields.ORDER_ITEM_ID, Table.Fields.ORDER_ID,
-                                     Table.Fields.ORDER_ITEM_PRODUCT_ID, Table.Fields.ORDER_ITEM_QUANTITY, Id, OrderId,
+                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.ORDER_ID,
+                                     Table.Fields.PRODUCT_ID, Table.Fields.QUANTITY, Id, OrderId,
                                      ProductId, Quantity);
             }
         }
@@ -38,9 +54,9 @@ namespace MSS.WinMobile.Domain.Models
                                      "[{3}] = {4}, " +
                                      "[{5}] = {6}" +
                                      "WHERE [{7}] = {8}",
-                                     Table.NAME, Table.Fields.ORDER_ID, OrderId,
-                                     Table.Fields.ORDER_ITEM_PRODUCT_ID, ProductId,
-                                     Table.Fields.ORDER_ITEM_QUANTITY, Quantity, Table.Fields.ORDER_ITEM_ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ORDER_ID, OrderId,
+                                     Table.Fields.PRODUCT_ID, ProductId,
+                                     Table.Fields.QUANTITY, Quantity, Table.Fields.ID, Id);
             }
         }
 
@@ -48,58 +64,15 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("DELETE FROM [{0}] WHERE [{1}] = {2}",
-                                     Table.NAME, Table.Fields.ORDER_ITEM_ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ID, Id);
             }
         }
-
-        private static readonly string BaseSelect =
-            string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}], [{3}] AS [{3}] FROM [{4}] AS [{4}]",
-                          Table.Fields.ORDER_ITEM_ID, Table.Fields.ORDER_ID, Table.Fields.ORDER_ITEM_PRODUCT_ID,
-                          Table.Fields.ORDER_ITEM_QUANTITY,
-                          Table.NAME);
 
         public static OrderItem GetById(int id)
         {
-            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}], [{3}] AS [{3}] " +
-                                             "FROM ({4}) AS [{5}] " +
-                                             "WHERE [{5}].[{0}] = {6}", Table.Fields.ORDER_ITEM_ID,
-                                             Table.Fields.ORDER_ID, Table.Fields.ORDER_ITEM_PRODUCT_ID,
-                                             Table.Fields.ORDER_ITEM_QUANTITY, BaseSelect,
-                                             Table.NAME, id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction()) {
-                using (IDbCommand command = connection.CreateCommand()) {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
-                        return Materialize(reader).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private static OrderItem[] Materialize(IDataReader reader)
-        {
-            var orderItems = new List<OrderItem>();
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    var orderItem = new OrderItem
-                        {
-                            Id = (int) reader[Table.Fields.ORDER_ITEM_ID],
-                            OrderId = (int) reader[Table.Fields.ORDER_ID],
-                            ProductId = (int) reader[Table.Fields.ORDER_ITEM_PRODUCT_ID],
-                            Quantity = (int) reader[Table.Fields.ORDER_ITEM_QUANTITY]
-                        };
-                    orderItems.Add(orderItem);
-                }
-            }
-
-            return orderItems.ToArray();
+            var queryObject = QueryObjectFactory.CreateQueryObject<OrderItem>();
+            queryObject.Where(Table.Fields.ID, new Equals(id));
+            return queryObject.FirstOrDefault();
         }
     }
 }

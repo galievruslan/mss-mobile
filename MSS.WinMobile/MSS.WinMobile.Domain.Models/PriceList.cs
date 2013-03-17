@@ -2,8 +2,12 @@
 {
     public partial class PriceList
     {
-        public int Id { get; set; }
+        public PriceList(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
     }
 }

@@ -2,12 +2,18 @@
 {
     public partial class ProductsPrice
     {
-        public int Id { get; set; }
+        public ProductsPrice(int id, int productId, int priceListId, decimal price)
+        {
+            Id = id;
+            ProductId = productId;
+            PriceListId = priceListId;
+            Price = price;
+        }
 
-        public int ProductId { get; set; }
+        public int ProductId { get; private set; }
 
-        public int PriceListId { get; set; }
+        public int PriceListId { get; private set; }
 
-        public decimal Price { get; set; }
+        public decimal Price { get; private set; }
     }
 }

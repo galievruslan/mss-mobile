@@ -2,15 +2,30 @@
 {
     public partial class RoutePoint
     {
-        public int Id { get; set; }
+        public RoutePoint(int id, int routeId, int shippingAddressId, int statusId)
+        {
+            Id = id;
+            RouteId = routeId;
+            ShippingAddressId = shippingAddressId;
+            StatusId = statusId;
+        }
 
-        public int RouteId { get; set; }
+        public RoutePoint(int id, int routeId, int shippingAddressId, int statusId, int orderId)
+        {
+            Id = id;
+            RouteId = routeId;
+            ShippingAddressId = shippingAddressId;
+            StatusId = statusId;
+            OrderId = orderId;
+        }
 
-        public int ShippingAddressId { get; set; }
+        public int RouteId { get; private set; }
 
-        public int StatusId { get; set; }
+        public int ShippingAddressId { get; private set; }
 
-        public int? OrderId { get; set; }
+        public int StatusId { get; private set; }
+
+        public int? OrderId { get; private set; }
 
         private Order _order;
         public Order Order

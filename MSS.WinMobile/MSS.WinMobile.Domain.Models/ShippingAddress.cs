@@ -2,12 +2,18 @@
 {
     public partial class ShippingAddress
     {
-        public int Id { get; set; }
+        public ShippingAddress(int id, int customerId, string name, string address)
+        {
+            Id = id;
+            CustomerId = customerId;
+            Name = name;
+            Address = address;
+        }
 
-        public string Address { get; set; }
+        public string Address { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public int CustomerId { get; set; }
+        public int CustomerId { get; private set; }
     }
 }

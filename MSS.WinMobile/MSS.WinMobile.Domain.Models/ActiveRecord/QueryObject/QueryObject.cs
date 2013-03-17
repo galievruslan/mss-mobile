@@ -1,30 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
-    public abstract class QueryObject<T> : IEnumerable<T>, IQueryObject<T>
+    public class QueryObject<T> : IEnumerable<T>, IQueryObject<T> where T : ActiveRecordBase
     {
         public string TableName { get; protected set; }
         public string[] FieldsNames { get; protected set; }
 
-        protected QueryObject(string tableName, string[] fieldsNames)
+        public QueryObject(string tableName, string[] fieldsNames)
         {
             TableName = tableName;
             FieldsNames = fieldsNames;
         }
 
-        private readonly IQueryObject<T> _innerQuery; 
+        protected readonly IQueryObject<T> InnerQuery; 
 
         protected QueryObject(IQueryObject<T> queryObject)
             :this(queryObject.TableName, queryObject.FieldsNames)
         {
-            _innerQuery = queryObject;
+            InnerQuery = queryObject;
         }
 
-        public string BuildQuery()
+        public override string ToString()
         {
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append("SELECT ");
@@ -36,14 +37,44 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                 queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}]", TableName, FieldsNames[i]));
             }
 
-            queryStringBuilder.Append(_innerQuery == null
+            queryStringBuilder.Append(InnerQuery == null
                                           ? string.Format(" FROM [{0}] AS [{0}]", TableName)
-                                          : string.Format(" FROM ({0}) AS [{1}]", _innerQuery.BuildQuery(), TableName));
+                                          : string.Format(" FROM ({0}) AS [{1}]", InnerQuery, TableName));
 
             return queryStringBuilder.ToString();
         }
 
-        public abstract IEnumerator<T> GetEnumerator();
+        private T[] Execute()
+        {
+            IDbConnection connection = ConnectionFactory.GetConnection();
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
+
+            using (connection.BeginTransaction())
+            {
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    var result = new List<T>();
+
+                    command.CommandText = ToString();
+                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        var dictionary = new Dictionary<string, object>();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                        }
+                        result.Add(ActiveRecordFactory.Create<T>(dictionary));
+                    }
+                    return result.ToArray();
+                }
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new ObjectEnumerator<T>(Execute());
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {

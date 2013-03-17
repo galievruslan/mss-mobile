@@ -57,13 +57,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveRecord\ActiveRecordBase.cs" />
+    <Compile Include="ActiveRecord\ActiveRecordFactory.cs" />
     <Compile Include="ActiveRecord\Category.cs" />
+    <Compile Include="ActiveRecord\ConnectionFactory.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Condition.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Contains.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Between.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Less.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Greather.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Equals.cs" />
+    <Compile Include="ActiveRecord\QueryObject\FiltredQueryObject.cs" />
+    <Compile Include="ActiveRecord\QueryObject\IFiltredQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\IOrderedQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\IQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\OrderedQueryObject.cs" />

@@ -1,17 +1,18 @@
 ﻿using System.Text;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
-    public class OrderedQueryObject<T> : QueryObject<T>, IOrderedQueryObject<T> where T : ActiveRecordBase
+    public class FiltredQueryObject<T> : QueryObject<T>, IFiltredQueryObject<T> where T : ActiveRecordBase
     {
-        public string OrderByField { get; protected set; }
-        public OrderDirection OrderDirection { get; protected set; }
+        public string FilterByField { get; protected set; }
+        public Condition Condition { get; protected set; }
 
-        public OrderedQueryObject(IQueryObject<T> queryObject, string orderByField, OrderDirection orderDirection)
+        public FiltredQueryObject(IQueryObject<T> queryObject, string filterByField, Condition condition)
             :base(queryObject)
         {
-            OrderByField = orderByField;
-            OrderDirection = orderDirection;
+            FilterByField = filterByField;
+            Condition = condition;
         }
 
         public override string ToString()
@@ -26,15 +27,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                 queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}]", TableName, FieldsNames[i]));
             }
             queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", InnerQuery, TableName));
-            queryStringBuilder.Append(string.Format(" ORDER BY [{0}].[{1}] ", TableName, OrderByField));
-            queryStringBuilder.Append(OrderDirection == OrderDirection.Asceding ? "ASC" : "DESC");
+            queryStringBuilder.Append(string.Format(" WHERE [{0}].[{1}] {2}", TableName, FilterByField, Condition));
             return queryStringBuilder.ToString();
         }
-    }
-
-    public enum OrderDirection
-    {
-        Asceding,
-        Desceding
     }
 }

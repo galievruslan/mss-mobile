@@ -24,23 +24,13 @@ namespace MSS.WinMobile.Commands.Synchronization
 
             var routeDto = _server.RouteService.GetToday();
 
-            var route = new Route
-            {
-                Id = routeDto.Id,
-                Date = routeDto.Date,
-                ManagerId = routeDto.ManagerId
-            };
+            var route = new Route(routeDto.Id, routeDto.ManagerId, routeDto.Date);
             routes.Add(route);
 
             foreach (var routePointDto in routeDto.RoutePoints)
             {
-                var routePoint = new RoutePoint
-                {
-                    Id = routePointDto.Id,
-                    RouteId = routeDto.Id,
-                    ShippingAddressId = routePointDto.ShippingAddressId,
-                    StatusId = routePointDto.StatusId
-                };
+                var routePoint = new RoutePoint(routePointDto.Id, routeDto.Id, routePointDto.ShippingAddressId,
+                                                routePointDto.StatusId);
                 routesPoints.Add(routePoint);
             }
 

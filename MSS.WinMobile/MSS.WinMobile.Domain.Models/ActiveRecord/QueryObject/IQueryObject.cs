@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
-    public interface IQueryObject<T>
+    public interface IQueryObject<T> where T : ActiveRecordBase
     {
         string TableName { get; }
         string[] FieldsNames { get; }
-        string BuildQuery();
+
         IEnumerator<T> GetEnumerator();
     }
 }

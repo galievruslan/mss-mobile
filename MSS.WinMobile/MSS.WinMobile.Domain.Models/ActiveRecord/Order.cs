@@ -1,16 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
     public partial class Order : ActiveRecordBase
     {
+        internal Order(IDictionary<string, object> dictionary)
+        {
+            if (dictionary.ContainsKey(Table.Fields.ID))
+                Id = (int)dictionary[Table.Fields.ID];
+
+            if (dictionary.ContainsKey(Table.Fields.DATE))
+                Date = DateTime.Parse(dictionary[Table.Fields.DATE].ToString());
+
+            if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
+                ShippindAddressId = (int)dictionary[Table.Fields.SHIPPING_ADDRESS_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.MANAGER_ID))
+                ManagerId = (int)dictionary[Table.Fields.MANAGER_ID];
+
+            if (dictionary.ContainsKey(Table.Fields.NOTE))
+                Note = dictionary[Table.Fields.NOTE].ToString();
+        }
+
         public static class Table
         {
-            public const string NAME = "Orders";
+            public const string TABLE_NAME = "Orders";
 
             public static class Fields
             {
@@ -26,7 +45,7 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}], [{5}]) VALUES ({6}, '{7}', {8}, {9}, '{10}')",
-                                     Table.NAME, Table.Fields.ID, Table.Fields.DATE,
+                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.DATE,
                                      Table.Fields.SHIPPING_ADDRESS_ID, Table.Fields.MANAGER_ID, Table.Fields.NOTE, Id, Date,
                                      ShippindAddressId, ManagerId, Note);
             }
@@ -40,7 +59,7 @@ namespace MSS.WinMobile.Domain.Models
                                      "[{5}] = {6}," +
                                      "[{7}] = '{8}' " +
                                      "WHERE [{9}] = {10}",
-                                     Table.NAME, Table.Fields.DATE, Date,
+                                     Table.TABLE_NAME, Table.Fields.DATE, Date,
                                      Table.Fields.SHIPPING_ADDRESS_ID, ShippindAddressId,
                                      Table.Fields.MANAGER_ID, ManagerId, Table.Fields.NOTE, Note, Table.Fields.ID, Id);
             }
@@ -50,55 +69,15 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("DELETE FROM [{0}] WHERE [{1}] = {2}",
-                                     Table.NAME, Table.Fields.ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ID, Id);
             }
         }
-
-        private static readonly string BaseSelect =
-            string.Format("SELECT * FROM [{0}] AS [{0}]",
-                          Table.NAME);
 
         public static Order GetById(int id)
         {
-            var selectString = string.Format("SELECT * " +
-                                             "FROM ({0}) AS [{1}] " +
-                                             "WHERE [{1}].[{2}] = {3}", BaseSelect,
-                                             Table.NAME, Table.Fields.ID, id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction()) {
-                using (IDbCommand command = connection.CreateCommand()) {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
-                        return Materialize(reader).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private static Order[] Materialize(IDataReader reader)
-        {
-            var orders = new List<Order>();
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    var order = new Order
-                        {
-                            Id = (int) reader[Table.Fields.ID],
-                            Date = DateTime.Parse(reader[Table.Fields.DATE].ToString()),
-                            ShippindAddressId = (int) reader[Table.Fields.SHIPPING_ADDRESS_ID],                            
-                            ManagerId = (int) reader[Table.Fields.MANAGER_ID],
-                            Note = reader[Table.Fields.NOTE].ToString()
-                        };
-                    orders.Add(order);
-                }
-            }
-
-            return orders.ToArray();
+            var queryObject = QueryObjectFactory.CreateQueryObject<Order>();
+            queryObject.Where(Table.Fields.ID, new Equals(id));
+            return queryObject.FirstOrDefault();
         }
     }
 }

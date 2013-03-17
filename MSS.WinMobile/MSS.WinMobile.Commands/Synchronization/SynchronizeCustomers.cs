@@ -30,22 +30,13 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var customerDto in customersDtos)
                 {
-                    var customer = new Customer
-                    {
-                        Id = customerDto.Id,
-                        Name = customerDto.Name
-                    };
+                    var customer = new Customer(customerDto.Id, customerDto.Name);
                     customers.Add(customer);
 
                     foreach (var shippingAddressDto in customerDto.ShippingAddresses)
                     {
-                        var shippingAddress = new ShippingAddress
-                        {
-                            Id = shippingAddressDto.Id,
-                            Name = shippingAddressDto.Name,
-                            Address = shippingAddressDto.Address,
-                            CustomerId = customerDto.Id
-                        };
+                        var shippingAddress = new ShippingAddress(shippingAddressDto.Id, customerDto.Id,
+                                                                  shippingAddressDto.Name, shippingAddressDto.Address);
                         shippingAddresses.Add(shippingAddress);
                     }
                 }

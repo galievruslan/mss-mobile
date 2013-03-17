@@ -25,12 +25,9 @@ namespace MSS.WinMobile.Commands.Synchronization
             const int itemsPerPage = 100;
             var warehousesDtos = _server.WarehouseService.GetWarehouses(pageNumber, itemsPerPage);
             while (warehousesDtos.Length > 0) {
-                foreach (var warehouseDto in warehousesDtos) {
-                    var warehouse = new Warehouse
-                        {
-                            Id = warehouseDto.Id,
-                            Address = warehouseDto.Address
-                        };
+                foreach (var warehouseDto in warehousesDtos)
+                {
+                    var warehouse = new Warehouse(warehouseDto.Id, warehouseDto.Address);
                     warehouses.Add(warehouse);
                 }
 

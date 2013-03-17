@@ -1,102 +1,85 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlServerCe;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
     public partial class Category : ActiveRecordBase
     {
+        internal Category(IDictionary<string, object> dictionary)
+        {
+            if (dictionary.ContainsKey(Table.Fields.ID))
+                Id = (int)dictionary[Table.Fields.ID];
+
+            if (dictionary.ContainsKey(Table.Fields.NAME))
+                Name = dictionary[Table.Fields.NAME].ToString();
+
+            if (dictionary.ContainsKey(Table.Fields.PARENT_ID))
+            {
+                try
+                {
+                    ParentId = int.Parse(dictionary[Table.Fields.PARENT_ID].ToString());
+                }
+                catch
+                {
+                }
+            }
+        }
+
         public static class Table
         {
-            public const string NAME = "Categories";
+            public const string TABLE_NAME = "Categories";
 
             public static class Fields
             {
-                public const string CATEGORY_ID = "Id";
-                public const string CATEGORY_NAME = "Name";
-                public const string CATEGORY_PARENT_ID = "Parent_Id";
-            }    
+                public const string ID = "Id";
+                public const string NAME = "Name";
+                public const string PARENT_ID = "Parent_Id";
+            }
         }
 
-        protected override string InsertCommand {
+        protected override string InsertCommand
+        {
             get
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}]) VALUES ({4}, '{5}', {6})",
-                                     Table.NAME, Table.Fields.CATEGORY_ID, Table.Fields.CATEGORY_NAME,
-                                     Table.Fields.CATEGORY_PARENT_ID, Id, Name, ParentId != null
+                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.NAME,
+                                     Table.Fields.PARENT_ID, Id, Name, ParentId != null
                                                                                     ? ParentId.ToString()
                                                                                     : "NULL");
             }
         }
 
-        protected override string UpdateCommand {
+        protected override string UpdateCommand
+        {
             get
             {
                 return string.Format("UPDATE [{0}] SET [{1}] = '{2}', " +
                                      "[{3}] = {4} " +
                                      "WHERE [{5}] = {6}",
-                                     Table.NAME, Table.Fields.CATEGORY_NAME, Name,
-                                     Table.Fields.CATEGORY_PARENT_ID, ParentId != null
+                                     Table.TABLE_NAME, Table.Fields.NAME, Name,
+                                     Table.Fields.PARENT_ID, ParentId != null
                                                                           ? ParentId.ToString()
-                                                                          : "NULL", Table.Fields.CATEGORY_ID, Id);
+                                                                          : "NULL", Table.Fields.ID, Id);
             }
         }
 
-        protected override string DeleteCommand {
+        protected override string DeleteCommand
+        {
             get
             {
                 return string.Format("DELETE FROM [{0}] WHERE [{1}] = {2}",
-                                     Table.NAME, Table.Fields.CATEGORY_ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ID, Id);
             }
         }
-
-        private static readonly string BaseSelect =
-            string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}] FROM [{3}] AS [{3}]",
-                          Table.Fields.CATEGORY_ID, Table.Fields.CATEGORY_NAME, Table.Fields.CATEGORY_PARENT_ID,
-                          Table.NAME);
 
         public static Category GetById(int id)
         {
-            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}], [{2}] AS [{2}] " +
-                                             "FROM ({3}) AS [{4}]" +
-                                             "WHERE [{4}].[{0}] = {5}", Table.Fields.CATEGORY_ID,
-                                             Table.Fields.CATEGORY_NAME, Table.Fields.CATEGORY_PARENT_ID, BaseSelect,
-                                             Table.NAME, id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction()) {
-                using (IDbCommand command = connection.CreateCommand()) {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
-                        return Materialize(reader).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private static Category[] Materialize(IDataReader reader)
-        {
-            var categories = new List<Category>();
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    var category = new Category
-                        {
-                            Id = (int) reader[Table.Fields.CATEGORY_ID],
-                            Name = reader[Table.Fields.CATEGORY_NAME].ToString(),
-                            ParentId = (int?) reader[Table.Fields.CATEGORY_PARENT_ID]
-                        };
-                    categories.Add(category);
-                }
-            }
-
-            return categories.ToArray();
+            var queryObject = QueryObjectFactory.CreateQueryObject<Category>();
+            queryObject.Where(Table.Fields.ID, new Equals(id));
+            return queryObject.FirstOrDefault();
         }
     }
 }

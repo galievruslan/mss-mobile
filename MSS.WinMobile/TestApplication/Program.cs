@@ -12,23 +12,13 @@ namespace TestApplication
         {
             ActiveRecordBase.Initialize(true);
 
-            var customer = new Customer
-                {
-                    Id = 1,
-                    Name = "Some custoner"
-                };
-
+            var customer = new Customer(1, "Some custoner");
             customer.Create();
 
-            customer = new Customer
-            {
-                Id = 2,
-                Name = "Another custoner"
-            };
+            customer = new Customer(2, "Another custoner");
             customer.Create();
 
             customer = Customer.GetById(1);
-            customer.Name = "Changed Name";
             customer.Update();
 
             var c2 = Customer.GetById(1);

@@ -1,21 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlServerCe;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
     public partial class Status : ActiveRecordBase
     {
+        internal Status(IDictionary<string, object> dictionary)
+        {
+            if (dictionary.ContainsKey(Table.Fields.ID))
+                Id = (int)dictionary[Table.Fields.ID];
+
+            if (dictionary.ContainsKey(Table.Fields.NAME))
+                Name = dictionary[Table.Fields.NAME].ToString();
+        }
+
         public static class Table
         {
-            public const string NAME = "Statuses";
+            public const string TABLE_NAME = "Statuses";
 
             public static class Fields
             {
-                public const string STATUS_ID = "Id";
-                public const string STATUS_NAME = "Name";
+                public const string ID = "Id";
+                public const string NAME = "Name";
             }    
         }
 
@@ -23,7 +33,7 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}]) VALUES ({3}, '{4}')",
-                                     Table.NAME, Table.Fields.STATUS_ID, Table.Fields.STATUS_NAME, Id, Name);
+                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.NAME, Id, Name);
             }
         }
 
@@ -32,7 +42,7 @@ namespace MSS.WinMobile.Domain.Models
             {
                 return string.Format("UPDATE [{0}] SET [{1}] = '{2}' " +
                                             "WHERE [{3}] = {4}",
-                                            Table.NAME, Table.Fields.STATUS_NAME, Name, Table.Fields.STATUS_ID, Id);
+                                            Table.TABLE_NAME, Table.Fields.NAME, Name, Table.Fields.ID, Id);
             }
         }
 
@@ -40,52 +50,15 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("DELETE FROM [{0}] WHERE [{1}] = {2}",
-                                     Table.NAME, Table.Fields.STATUS_ID, Id);
+                                     Table.TABLE_NAME, Table.Fields.ID, Id);
             }
         }
-
-        private static readonly string BaseSelect =
-            string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}] FROM [{2}] AS [{2}]",
-                          Table.Fields.STATUS_ID, Table.Fields.STATUS_NAME, Table.NAME);
 
         public static Status GetById(int id)
         {
-            var selectString = string.Format("SELECT [{0}] AS [{0}], [{1}] AS [{1}] " +
-                                             "FROM ({2}) AS [{3}] " +
-                                             "WHERE [{3}].[{0}] = {4}", Table.Fields.STATUS_ID, Table.Fields.STATUS_NAME, BaseSelect,
-                                             Table.NAME, id);
-
-            IDbConnection connection = GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction()) {
-                using (IDbCommand command = connection.CreateCommand()) {
-                    command.CommandText = selectString;
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow)) {
-                        return Materialize(reader).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private static Status[] Materialize(IDataReader reader)
-        {
-            var statuses = new List<Status>();
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    var status = new Status
-                        {
-                            Id = (int) reader[Table.Fields.STATUS_ID],
-                            Name = reader[Table.Fields.STATUS_NAME].ToString()
-                        };
-                    statuses.Add(status);
-                }
-            }
-
-            return statuses.ToArray();
+            var queryObject = QueryObjectFactory.CreateQueryObject<Status>();
+            queryObject.Where(Table.Fields.ID, new Equals(id));
+            return queryObject.FirstOrDefault();
         }
     }
 }

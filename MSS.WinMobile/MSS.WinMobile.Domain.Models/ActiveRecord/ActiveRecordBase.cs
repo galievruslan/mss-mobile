@@ -5,8 +5,10 @@ using System.IO;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
 {
-    public abstract class ActiveRecordBase : IDisposable
+    public abstract class ActiveRecordBase
     {
+        public int Id { get; protected set; }
+
         protected abstract string InsertCommand { get; }
 
         public void Create()
@@ -14,7 +16,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             if (_inTransaction)
                 TransactionContext.Enqueue(InsertCommand);
             else {
-                IDbConnection connection = GetConnection();
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
 
@@ -35,7 +37,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             if (_inTransaction)
                 TransactionContext.Enqueue(UpdateCommand);
             else {
-                IDbConnection connection = GetConnection();
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
 
@@ -57,7 +59,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                 TransactionContext.Enqueue(DeleteCommand);
             else
             {
-                IDbConnection connection = GetConnection();
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
 
@@ -69,17 +71,6 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                     }
                 }
             }
-        }
-
-        private static readonly string ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-        private static IDbConnection _connection;
-
-        protected static IDbConnection GetConnection() {
-            if (_connection != null) {
-                return _connection;
-            }
-
-            return _connection = new SqlCeConnection(ConnectionString);
         }
 
         private static bool _inTransaction;
@@ -95,7 +86,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         public static void Commit()
         {
             try {
-                IDbConnection connection = GetConnection();
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
 
@@ -161,7 +152,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                     schemaScript = reader.ReadToEnd();
                 }
 
-                IDbConnection connection = GetConnection();
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
 
@@ -176,13 +167,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                         transaction.Commit();
                     }
                 }
-
             }
-        }
-
-        public void Dispose() {
-            if (_connection != null)
-                _connection.Dispose();
         }
     }
 }

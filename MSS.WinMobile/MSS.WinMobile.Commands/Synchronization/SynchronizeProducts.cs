@@ -30,37 +30,20 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var productDto in productsDtos)
                 {
-                    var product = new Product
-                    {
-                        Id = productDto.Id,
-                        Name = productDto.Name,
-                    };
-                    if (productDto.CategoryId != 0)
-                        product.CategoryId = productDto.CategoryId;
-
+                    var product = productDto.CategoryId == 0 ? new Product(productDto.Id, productDto.Name) : new Product(productDto.Id, productDto.Name, productDto.CategoryId);
                     products.Add(product);
 
                     foreach (var productUomDto in productDto.ProductUnitOfMeasures)
                     {
-                        var productUom = new ProductsUnitOfMeasure
-                        {
-                            Id = productUomDto.Id,
-                            ProductId = productDto.Id,
-                            UnitOfMeasureId = productUomDto.UnitOfMeasureId,
-                            Base = productUomDto.Base
-                        };
+                        var productUom = new ProductsUnitOfMeasure(productUomDto.Id, productDto.Id,
+                                                                   productUomDto.UnitOfMeasureId, productUomDto.Base);
                         productsUoms.Add(productUom);
                     }
 
                     foreach (var productPriceDto in productDto.ProductPrices)
                     {
-                        var productPrice = new ProductsPrice
-                        {
-                            Id = productPriceDto.Id,
-                            ProductId = productDto.Id,
-                            PriceListId = productPriceDto.PriceListId,
-                            Price = productPriceDto.Price
-                        };
+                        var productPrice = new ProductsPrice(productPriceDto.Id, productDto.Id,
+                                                             productPriceDto.PriceListId, productPriceDto.Price);
                         productsPrices.Add(productPrice);
                     }
                 }
