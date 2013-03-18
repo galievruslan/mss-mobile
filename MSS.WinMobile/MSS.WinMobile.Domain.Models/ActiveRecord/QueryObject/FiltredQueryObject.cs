@@ -3,12 +3,12 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
-    public class FiltredQueryObject<T> : QueryObject<T>, IFiltredQueryObject<T> where T : ActiveRecordBase
+    public class FiltredQueryObject<T> : QueryObject<T> where T : ActiveRecordBase
     {
         public string FilterByField { get; protected set; }
         public Condition Condition { get; protected set; }
 
-        public FiltredQueryObject(IQueryObject<T> queryObject, string filterByField, Condition condition)
+        public FiltredQueryObject(QueryObject<T> queryObject, string filterByField, Condition condition)
             :base(queryObject)
         {
             FilterByField = filterByField;

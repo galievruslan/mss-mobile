@@ -57,8 +57,13 @@ namespace MSS.WinMobile.Domain.Models
         public static Customer GetById(int id)
         {
             var queryObject = QueryObjectFactory.CreateQueryObject<Customer>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return queryObject.Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+        }
+
+        public static QueryObject<Customer> GetAll()
+        {
+            var queryObject = QueryObjectFactory.CreateQueryObject<Customer>();
+            return queryObject;
         }
     }
 }

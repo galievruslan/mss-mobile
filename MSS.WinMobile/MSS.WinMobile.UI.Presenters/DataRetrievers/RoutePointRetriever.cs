@@ -1,4 +1,6 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Linq;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 
 namespace MSS.WinMobile.UI.Presenters.DataRetrievers
 {
@@ -12,12 +14,12 @@ namespace MSS.WinMobile.UI.Presenters.DataRetrievers
         }
 
         public int Count {
-            get { return RoutePoint.GetCountByRoute(_route); }
+            get { return _route.GetPoints().Count(); }
         }
 
         public RoutePoint[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
         {
-            return RoutePoint.GetByRoute(_route, lowerPageBoundary, rowsPerPage);
+            return _route.GetPoints().OrderBy(Route.Table.Fields.ID, OrderDirection.Asceding).Skip(lowerPageBoundary).Take(rowsPerPage).ToArray();
         }
     }
 }

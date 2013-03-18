@@ -7,8 +7,9 @@ namespace MSS.WinMobile
     {
         public static string GetAppPath()
         {
-            return Path.GetDirectoryName(
-                Assembly.GetExecutingAssembly().GetName().CodeBase);
+            //return Path.GetDirectoryName(
+            //    Assembly.GetExecutingAssembly().GetName().CodeBase);
+            return System.IO.Directory.GetCurrentDirectory();
         }
 
         public static int ManagerId { get; set; }

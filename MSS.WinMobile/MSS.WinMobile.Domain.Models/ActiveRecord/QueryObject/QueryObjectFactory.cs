@@ -1,8 +1,5 @@
 ﻿using System;
 
-using System.Collections.Generic;
-using System.Text;
-
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
     public static class QueryObjectFactory

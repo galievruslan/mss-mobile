@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 
 namespace MSS.WinMobile.Domain.Models
 {
@@ -15,7 +16,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public int ManagerId { get; private set; }
 
-        public RoutePoint[] GetPoints()
+        public QueryObject<RoutePoint> GetPoints()
         {
             return RoutePoint.GetByRoute(this);
         }

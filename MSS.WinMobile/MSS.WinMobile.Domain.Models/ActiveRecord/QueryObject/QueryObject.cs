@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
-    public class QueryObject<T> : IEnumerable<T>, IQueryObject<T> where T : ActiveRecordBase
+    public class QueryObject<T> : IEnumerable<T> where T : ActiveRecordBase
     {
         public string TableName { get; protected set; }
         public string[] FieldsNames { get; protected set; }
@@ -17,9 +17,12 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             FieldsNames = fieldsNames;
         }
 
-        protected readonly IQueryObject<T> InnerQuery; 
+        public QueryObject<T> InnerQuery { get; protected set; }
+        public virtual bool CanBeInner {
+            get { return true; }
+        }
 
-        protected QueryObject(IQueryObject<T> queryObject)
+        protected QueryObject(QueryObject<T> queryObject)
             :this(queryObject.TableName, queryObject.FieldsNames)
         {
             InnerQuery = queryObject;
@@ -59,12 +62,15 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                     command.CommandText = ToString();
                     using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
                     {
-                        var dictionary = new Dictionary<string, object>();
-                        for (int i = 0; i < reader.FieldCount; i++)
+                        while (reader.Read())
                         {
-                            dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                            var dictionary = new Dictionary<string, object>();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                            }
+                            result.Add(ActiveRecordFactory.Create<T>(dictionary));
                         }
-                        result.Add(ActiveRecordFactory.Create<T>(dictionary));
                     }
                     return result.ToArray();
                 }

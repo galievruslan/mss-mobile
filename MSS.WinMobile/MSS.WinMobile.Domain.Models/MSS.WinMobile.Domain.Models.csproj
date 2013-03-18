@@ -66,10 +66,9 @@
     <Compile Include="ActiveRecord\QueryObject\Conditions\Less.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Greather.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Equals.cs" />
+    <Compile Include="ActiveRecord\QueryObject\TakeQueryObject.cs" />
+    <Compile Include="ActiveRecord\QueryObject\SkipQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\FiltredQueryObject.cs" />
-    <Compile Include="ActiveRecord\QueryObject\IFiltredQueryObject.cs" />
-    <Compile Include="ActiveRecord\QueryObject\IOrderedQueryObject.cs" />
-    <Compile Include="ActiveRecord\QueryObject\IQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\OrderedQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\QueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\QueryObjectExtensions.cs" />

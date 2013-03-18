@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -88,23 +87,11 @@ namespace MSS.WinMobile.Domain.Models
             return queryObject.FirstOrDefault();
         }
 
-        public static RoutePoint[] GetByRoute(Route route)
+        public static QueryObject<RoutePoint> GetByRoute(Route route)
         {
             var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
             queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
-            return queryObject.ToArray();
-        }
-
-        public static int GetCountByRoute(Route route)
-        {
-            var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
-            queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
-            return (queryObject as IQueryObject<RoutePoint>).Count();
-        }
-
-        public static RoutePoint[] GetByRoute(Route route, int from, int count)
-        {
-            throw new NotImplementedException();
+            return queryObject;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
     public static class QueryObjectExtensions
     {
-        public static IQueryObject<T> Where<T>(this IQueryObject<T> queryObject, string fieldName, Condition condition) where T : ActiveRecordBase
+        public static QueryObject<T> Where<T>(this QueryObject<T> queryObject, string fieldName, Condition condition) where T : ActiveRecordBase
         {
             if (!queryObject.FieldsNames.Contains(fieldName))
                 throw new FieldNotExistException(queryObject.TableName, fieldName);
@@ -15,7 +15,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             return new FiltredQueryObject<T>(queryObject, fieldName, condition);
         }
 
-        public static IOrderedQueryObject<T> OrderBy<T>(this IQueryObject<T> queryObject, string fieldName, OrderDirection orderDirection) where T : ActiveRecordBase
+        public static OrderedQueryObject<T> OrderBy<T>(this QueryObject<T> queryObject, string fieldName, OrderDirection orderDirection) where T : ActiveRecordBase
         {
             if (!queryObject.FieldsNames.Contains(fieldName))
                 throw new FieldNotExistException(queryObject.TableName, fieldName);
@@ -23,11 +23,37 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             return new OrderedQueryObject<T>(queryObject, fieldName, orderDirection);
         }
 
-        public static int Count<T>(this IQueryObject<T> queryObject) where T : ActiveRecordBase
+        public static OrderedQueryObject<T> Skip<T>(this OrderedQueryObject<T> queryObject, int count) where T : ActiveRecordBase
         {
+            QueryObject<T> baseQueryObject = queryObject;
+            while (!baseQueryObject.CanBeInner)
+            {
+                baseQueryObject = queryObject.InnerQuery;
+            }
+            return new SkipQueryObject<T>(baseQueryObject, queryObject.OrderByField, queryObject.OrderDirection,  count);
+        }
+
+        public static OrderedQueryObject<T> Take<T>(this OrderedQueryObject<T> queryObject, int count) where T : ActiveRecordBase
+        {
+            QueryObject<T> baseQueryObject = queryObject;
+            while (!baseQueryObject.CanBeInner)
+            {
+                baseQueryObject = queryObject.InnerQuery;
+            }
+            return new TakeQueryObject<T>(baseQueryObject, queryObject.OrderByField, queryObject.OrderDirection, count);
+        }
+
+        public static int Count<T>(this QueryObject<T> queryObject) where T : ActiveRecordBase
+        {
+            QueryObject<T> baseQueryObject = queryObject;
+            while (!baseQueryObject.CanBeInner)
+            {
+                baseQueryObject = queryObject.InnerQuery;
+            }
+
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append("SELECT COUNT(*)");
-            queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", queryObject.TableName, queryObject.TableName));
+            queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", baseQueryObject, baseQueryObject.TableName));
 
             IDbConnection connection = ConnectionFactory.GetConnection();
             if (connection.State != ConnectionState.Open)
