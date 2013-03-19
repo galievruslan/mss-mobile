@@ -37,7 +37,7 @@ namespace MSS.WinMobile.Domain.Models
             get
             {
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}]) VALUES ({4}, '{5}', {6})",
-                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.DATE, Table.Fields.MANAGER_ID, Id, Date, ManagerId);
+                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.DATE, Table.Fields.MANAGER_ID, Id, Date.ToString("yyyy-MM-dd HH:mm:ss"), ManagerId);
             }
         }
 
@@ -63,15 +63,13 @@ namespace MSS.WinMobile.Domain.Models
         public static Route GetById(int id)
         {
             var queryObject = QueryObjectFactory.CreateQueryObject<Route>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return queryObject.Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
 
         public static Route GetByDate(DateTime date)
         {
             var queryObject = QueryObjectFactory.CreateQueryObject<Route>();
-            queryObject.Where(Table.Fields.DATE, new Equals(date));
-            return queryObject.FirstOrDefault();
+            return queryObject.Where(Table.Fields.DATE, new Equals(date)).FirstOrDefault();
         }
     }
 }

@@ -36,7 +36,8 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] int  NOT NULL
 , [UnitOfMeasure_Id] int  NULL  
 );
 CREATE TABLE [RoutePoints] ([Id] int  NOT NULL  
-, [Route_Id] int  NULL  
+, [Route_Id] int  NULL 
+, [Order_Id] int  NULL  
 , [ShippingAddress_Id] int  NULL  
 , [Status_Id] int  NULL  
 );

@@ -43,6 +43,7 @@
         public ShippingAddress ShippingAddress
         {
             get { return _shippingAddress ?? (_shippingAddress = ShippingAddress.GetById(ShippingAddressId)); }
+            private set { _shippingAddress = value; }
         }
     }
 }

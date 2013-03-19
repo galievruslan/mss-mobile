@@ -47,7 +47,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             return queryStringBuilder.ToString();
         }
 
-        private T[] Execute()
+        protected virtual T[] Execute()
         {
             IDbConnection connection = ConnectionFactory.GetConnection();
             if (connection.State != ConnectionState.Open)

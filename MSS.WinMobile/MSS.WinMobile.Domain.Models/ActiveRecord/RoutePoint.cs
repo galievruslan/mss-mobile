@@ -10,20 +10,69 @@ namespace MSS.WinMobile.Domain.Models
     {
         internal RoutePoint(IDictionary<string, object> dictionary)
         {
+            var shippingAddressDictionary = new Dictionary<string, object>();
+
+            // Fill RoutePoint object's fields
             if (dictionary.ContainsKey(Table.Fields.ID))
                 Id = (int)dictionary[Table.Fields.ID];
-
-            if (dictionary.ContainsKey(Table.Fields.ROUTE_ID))
+            else if (dictionary.ContainsKey(Table.Fields.ROUTE_ID))
                 RouteId = (int)dictionary[Table.Fields.ROUTE_ID];
-
-            if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
+            else if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
                 ShippingAddressId = (int)dictionary[Table.Fields.SHIPPING_ADDRESS_ID];
-
-            if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
-                OrderId = (int)dictionary[Table.Fields.ORDER_ID];
-
-            if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
+            else if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
+                OrderId = (int?)dictionary[Table.Fields.ORDER_ID];
+            else if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
                 StatusId = (int)dictionary[Table.Fields.STATUS_ID];
+            else if (
+                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                     ShippingAddress.Table.Fields.ID)))
+            {
+                object shippingAddressId = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                                    ShippingAddress.Table.Fields.ID)];
+                if (shippingAddressId != null)
+                {
+                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.ID, shippingAddressId);
+                }
+            }
+            else if (
+                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                     ShippingAddress.Table.Fields.CUSTOMER_ID)))
+            {
+                object customerId = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                                    ShippingAddress.Table.Fields.CUSTOMER_ID)];
+                if (customerId != null)
+                {
+                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.CUSTOMER_ID, customerId);
+                }
+            }
+            else if (
+                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                     ShippingAddress.Table.Fields.NAME)))
+            {
+                object shippingAddressName = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                                    ShippingAddress.Table.Fields.NAME)];
+                if (shippingAddressName != null)
+                {
+                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.NAME, shippingAddressName);
+                }
+            }
+            else if (
+                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                     ShippingAddress.Table.Fields.ADDRESS)))
+            {
+                object shippingAddressAddress = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
+                                                                    ShippingAddress.Table.Fields.ADDRESS)];
+                if (shippingAddressAddress != null)
+                {
+                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.ADDRESS, shippingAddressAddress);
+                }
+            }
+
+            // Fill RoutePoint's ShippingAddress object if exist
+            if (shippingAddressDictionary.Any())
+            {
+                ShippingAddress = new ShippingAddress(dictionary);
+            }
         }
 
 
@@ -89,9 +138,8 @@ namespace MSS.WinMobile.Domain.Models
 
         public static QueryObject<RoutePoint> GetByRoute(Route route)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
-            queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
-            return queryObject;
+            var queryObject = new RoutePointQueryObject();
+            return queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
         }
     }
 }
