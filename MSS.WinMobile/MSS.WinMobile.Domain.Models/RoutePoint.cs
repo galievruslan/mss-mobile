@@ -45,5 +45,11 @@
             get { return _shippingAddress ?? (_shippingAddress = ShippingAddress.GetById(ShippingAddressId)); }
             private set { _shippingAddress = value; }
         }
+
+        private Route _route;
+        public Route Route {
+            get { return _route ?? (_route = Route.GetById(RouteId)); }
+            private set { _route = value; }
+        }
     }
 }

@@ -15,15 +15,19 @@ namespace MSS.WinMobile.Domain.Models
             // Fill RoutePoint object's fields
             if (dictionary.ContainsKey(Table.Fields.ID))
                 Id = (int)dictionary[Table.Fields.ID];
-            else if (dictionary.ContainsKey(Table.Fields.ROUTE_ID))
+            if (dictionary.ContainsKey(Table.Fields.ROUTE_ID))
                 RouteId = (int)dictionary[Table.Fields.ROUTE_ID];
-            else if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
+            if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
                 ShippingAddressId = (int)dictionary[Table.Fields.SHIPPING_ADDRESS_ID];
-            else if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
-                OrderId = (int?)dictionary[Table.Fields.ORDER_ID];
-            else if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
+            if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
+            {
+                object orderId = dictionary[Table.Fields.ORDER_ID];
+                if (orderId != null)
+                    OrderId = (int) dictionary[Table.Fields.ORDER_ID];
+            }
+            if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
                 StatusId = (int)dictionary[Table.Fields.STATUS_ID];
-            else if (
+            if (
                 dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
                                                      ShippingAddress.Table.Fields.ID)))
             {
@@ -34,7 +38,7 @@ namespace MSS.WinMobile.Domain.Models
                     shippingAddressDictionary.Add(ShippingAddress.Table.Fields.ID, shippingAddressId);
                 }
             }
-            else if (
+            if (
                 dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
                                                      ShippingAddress.Table.Fields.CUSTOMER_ID)))
             {
@@ -45,7 +49,7 @@ namespace MSS.WinMobile.Domain.Models
                     shippingAddressDictionary.Add(ShippingAddress.Table.Fields.CUSTOMER_ID, customerId);
                 }
             }
-            else if (
+            if (
                 dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
                                                      ShippingAddress.Table.Fields.NAME)))
             {
@@ -56,7 +60,7 @@ namespace MSS.WinMobile.Domain.Models
                     shippingAddressDictionary.Add(ShippingAddress.Table.Fields.NAME, shippingAddressName);
                 }
             }
-            else if (
+            if (
                 dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
                                                      ShippingAddress.Table.Fields.ADDRESS)))
             {
@@ -71,7 +75,7 @@ namespace MSS.WinMobile.Domain.Models
             // Fill RoutePoint's ShippingAddress object if exist
             if (shippingAddressDictionary.Any())
             {
-                ShippingAddress = new ShippingAddress(dictionary);
+                ShippingAddress = new ShippingAddress(shippingAddressDictionary);
             }
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.UI.Controls.ListBox;
 using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
@@ -14,9 +16,9 @@ namespace MSS.WinMobile.UI.Views
             _routeVirtualListBox.ItemDataNeeded += _routeVirtualListBox_ItemDataNeeded;
         }
 
-        void _routeVirtualListBox_ItemDataNeeded(object sender, Controls.ListBox.IListBoxItem item)
+        void _routeVirtualListBox_ItemDataNeeded(object sender, VirtualListBoxItem<RoutePoint> item)
         {
-            item.Data = _presenter.GetRoutePointData(item.Index);
+            item.Data = _presenter.GetRoutePoint(item.Index);
         }
 
         public void SetRoutePointCount(int count)
@@ -40,7 +42,7 @@ namespace MSS.WinMobile.UI.Views
 
         private void _createOrderIcon_Click(object sender, EventArgs e)
         {
-            var orderView = new OrderView(_presenter.GetRoutePointData(_routeVirtualListBox.SelectedIndex).Id);
+            var orderView = new OrderView(_presenter.GetRoutePoint(_routeVirtualListBox.SelectedIndex).Id);
             orderView.Show();
         }
     }

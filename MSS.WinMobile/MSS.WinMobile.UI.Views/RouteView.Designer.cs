@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views
+﻿using MSS.WinMobile.Domain.Models;
+
+namespace MSS.WinMobile.UI.Views
 {
     partial class RouteView
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
-            this._routeVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox();
+            this._routeVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<RoutePoint>();
             this._actionPanel = new System.Windows.Forms.Panel();
             this._createOrderIcon = new MSS.WinMobile.UI.Controls.PictureButton();
             this._actionPanel.SuspendLayout();
@@ -82,7 +84,7 @@
 
         #endregion
 
-        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox _routeVirtualListBox;
+        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<RoutePoint> _routeVirtualListBox;
         private System.Windows.Forms.Panel _actionPanel;
         private MSS.WinMobile.UI.Controls.PictureButton _createOrderIcon;
     }

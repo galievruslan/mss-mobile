@@ -4,15 +4,12 @@ using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public partial class VirtualListBoxItem : UserControl, IListBoxItem
+    public abstract partial class VirtualListBoxItem<T> : UserControl where T : class 
     {
-        private readonly Color _unselectedBackgroundColor = Color.White;
-        private readonly Color _selectedBackgroundColor = Color.SteelBlue;
-        private readonly Color _unselectedFontColor = Color.Black;
-        private readonly Color _selectedFontColor = Color.White;
-        private readonly Font _font = new Font("Tahoma", 8, FontStyle.Regular);
+        public delegate void OnDataNeeded(VirtualListBoxItem<T> sender);
+        public delegate void OnSelected(VirtualListBoxItem<T> sender);
 
-        public VirtualListBoxItem()
+        protected VirtualListBoxItem()
         {
             InitializeComponent();
         }
@@ -33,7 +30,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             }
         }
 
-        public Data Data { get; set; }
+        public T Data { get; set; }
 
         public bool IsSelected { get; set; }
         private void VirtualListBoxItem_Click(object sender, EventArgs e)
@@ -43,22 +40,14 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 Selected.Invoke(this);
         }
 
+        protected abstract void DrawItem(Graphics graphics, Rectangle rectangle);
+
         private void VirtualListBoxItem_Paint(object sender, PaintEventArgs e)
         {
-            if (Data.Equals(Data.Empty))
+            if (Data == null)
                 return;
 
-            e.Graphics.FillRectangle(
-                IsSelected ? new SolidBrush(_selectedBackgroundColor) : new SolidBrush(_unselectedBackgroundColor),
-                e.ClipRectangle);
-
-            e.Graphics.DrawString(Data.Label, _font,
-                                  IsSelected ? new SolidBrush(_selectedFontColor) : new SolidBrush(_unselectedFontColor),
-                                  new Rectangle(e.ClipRectangle.X + 3, e.ClipRectangle.Y + 3, e.ClipRectangle.Width - 6,
-                                                e.ClipRectangle.Height - 6));
-
-            e.Graphics.DrawLine(new Pen(Color.DarkGray), e.ClipRectangle.X + 3, e.ClipRectangle.Height - 2,
-                                e.ClipRectangle.Width - 6, e.ClipRectangle.Height - 2);
+            DrawItem(e.Graphics, e.ClipRectangle);
         }
     }
 }

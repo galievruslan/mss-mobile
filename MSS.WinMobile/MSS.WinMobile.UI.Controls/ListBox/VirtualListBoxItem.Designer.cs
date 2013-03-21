@@ -1,6 +1,6 @@
 ﻿namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    partial class VirtualListBoxItem
+    partial class VirtualListBoxItem<T>
     {
         /// <summary> 
         /// Required designer variable.

@@ -67,7 +67,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                             var dictionary = new Dictionary<string, object>();
                             for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                                if (!reader.IsDBNull(i))
+                                    dictionary.Add(reader.GetName(i), reader.GetValue(i));
                             }
                             result.Add(ActiveRecordFactory.Create<T>(dictionary));
                         }

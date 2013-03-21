@@ -5,8 +5,11 @@ using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public partial class VirtualListBox : UserControl, IListBox
+    public partial class VirtualListBox<T> : UserControl where T : class 
     {
+        public delegate void OnItemDataNeeded(object sender, VirtualListBoxItem<T> item);
+        public delegate void OnItemSelected(object sender, VirtualListBoxItem<T> item);
+
         // Designer only
         public VirtualListBox()
         {
@@ -42,11 +45,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         private void FillItemPanel()
         {
-            int itemsHeight = _listBoxItems.Sum(item =>
-            {
-                var control = item as Control;
-                return control != null ? control.Height : 0;
-            });
+            int itemsHeight = _listBoxItems.Sum(item => item.Height);
 
             float itemAvgHeight = 0;
             if (itemsHeight != 0)
@@ -54,11 +53,10 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
             while (_dataPanel.Height - itemsHeight > 0)
             {
-                IListBoxItem listBoxItem = new VirtualListBoxItem();
+                VirtualListBoxItem<T> listBoxItem = ListBoxItemFactory.Create<T>();
                 AddListBoxItem(listBoxItem);
 
-                var control = listBoxItem as Control;
-                itemsHeight += control.Height;
+                itemsHeight += listBoxItem.Height;
                 itemAvgHeight = ((float)itemsHeight) / _listBoxItems.Count;
             }
 
@@ -84,60 +82,51 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         #region Items Handling
 
-        readonly List<IListBoxItem> _listBoxItems = new List<IListBoxItem>();
-        private void AddListBoxItem(IListBoxItem listBoxItem)
-        {
-            if (listBoxItem is Control)
-            {
-                var listBoxItemControl = listBoxItem as Control;
-                if (_listBoxItems.Count > 0)
-                {
-                    var lastListBoxItem = _listBoxItems[_listBoxItems.Count - 1] as Control;
-                    if (lastListBoxItem != null)
-                        listBoxItemControl.Top = lastListBoxItem.Top + lastListBoxItem.Height;
-                }
+        readonly List<VirtualListBoxItem<T>> _listBoxItems = new List<VirtualListBoxItem<T>>();
 
-                listBoxItem.DataNeeded += ListBoxItemDataNeeded;
-                listBoxItem.Selected += ListBoxItemSelected;
-                var control = listBoxItem as Control;
-                control.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
-                _dataPanel.Controls.Add(control);
-                _listBoxItems.Add(listBoxItem);
+        private void AddListBoxItem(VirtualListBoxItem<T> listBoxItem)
+        {
+            var listBoxItemControl = listBoxItem as Control;
+            if (_listBoxItems.Count > 0)
+            {
+                var lastListBoxItem = _listBoxItems[_listBoxItems.Count - 1] as Control;
+                if (lastListBoxItem != null)
+                    listBoxItemControl.Top = lastListBoxItem.Top + lastListBoxItem.Height;
             }
+
+            listBoxItem.DataNeeded += ListBoxItemDataNeeded;
+            listBoxItem.Selected += ListBoxItemSelected;
+            var control = listBoxItem as Control;
+            control.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
+            _dataPanel.Controls.Add(control);
+            _listBoxItems.Add(listBoxItem);
         }
 
-        void ListBoxItemSelected(object sender)
+        private void ListBoxItemSelected(VirtualListBoxItem<T> sender)
         {
             foreach (var item in _listBoxItems)
             {
                 if (item.IsSelected)
                 {
                     item.IsSelected = false;
-                    var control = item as Control;
-                    if (control != null)
-                        control.Refresh();
+                    item.Refresh();
                 }
             }
 
-            var listBoxItem = sender as IListBoxItem;
-            if (listBoxItem != null)
-            {
-                SelectedIndex = listBoxItem.Index;
-                listBoxItem.IsSelected = true;
-                if (ItemSelected != null)
-                    ItemSelected.Invoke(this, listBoxItem);
+            SelectedIndex = sender.Index;
+            sender.IsSelected = true;
 
-                var control = listBoxItem as Control;
-                if (control != null)
-                    control.Refresh();
-            }
+            if (ItemSelected != null)
+                ItemSelected.Invoke(this, sender);
+
+            sender.Refresh();
         }
 
         private void RemoveListBoxItem()
         {
             var listBoxItem = _listBoxItems[_listBoxItems.Count - 1];
-            if (_dataPanel.Controls.Contains(listBoxItem as Control))
-                _dataPanel.Controls.Remove(listBoxItem as Control);
+            if (_dataPanel.Controls.Contains(listBoxItem))
+                _dataPanel.Controls.Remove(listBoxItem);
 
             listBoxItem.DataNeeded -= ListBoxItemDataNeeded;
             listBoxItem.Selected -= ListBoxItemSelected;
@@ -147,7 +136,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         void ListBoxItemDataNeeded(object sender)
         {
             if (ItemDataNeeded != null)
-                ItemDataNeeded.Invoke(this, sender as IListBoxItem);
+                ItemDataNeeded.Invoke(this, sender as VirtualListBoxItem<T>);
         }
 
         private void ReindexItems()

@@ -1,6 +1,5 @@
 ﻿using System;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.UI.Controls.ListBox;
 using MSS.WinMobile.UI.Presenters.DataRetrievers;
 using log4net;
 
@@ -23,13 +22,12 @@ namespace MSS.WinMobile.UI.Presenters
             _view = view;
         }
 
-        public Data GetRoutePointData(int index)
+        public RoutePoint GetRoutePoint(int index)
         {
             if (index >= _routePointRetriever.Count)
-                return Data.Empty;
+                return null;
 
-            RoutePoint routePoint = _cache.RetrieveElement(index);
-            return new Data(routePoint.Id, routePoint.ShippingAddress.Name);
+            return _cache.RetrieveElement(index);
         }
 
         public void InitializeView()

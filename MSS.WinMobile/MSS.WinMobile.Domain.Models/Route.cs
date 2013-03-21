@@ -16,6 +16,13 @@ namespace MSS.WinMobile.Domain.Models
 
         public int ManagerId { get; private set; }
 
+        private Manager _manager;
+        public Manager Manager
+        {
+            get { return _manager ?? (_manager = Manager.GetById(ManagerId)); }
+            private set { _manager = value; }
+        }
+
         public QueryObject<RoutePoint> GetPoints()
         {
             return RoutePoint.GetByRoute(this);

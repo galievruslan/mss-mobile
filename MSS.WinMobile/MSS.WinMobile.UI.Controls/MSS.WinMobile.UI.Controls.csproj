@@ -59,15 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListBox\Data.cs" />
+    <Compile Include="ListBox\ListBoxItemFactory.cs" />
+    <Compile Include="ListBox\ListBoxItems\RoutePointListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\ListBoxItems\CustomerListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBox\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ListBox\VirtualListBoxItem.Designer.cs">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListBox\IListBox.cs" />
-    <Compile Include="ListBox\IListBoxItem.cs" />
     <Compile Include="SearchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

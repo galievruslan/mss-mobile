@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters;
 
 namespace MSS.WinMobile.UI.Views
@@ -14,12 +15,10 @@ namespace MSS.WinMobile.UI.Views
             InitializeComponent();
         }
 
-        private readonly int _shippingAddressId;
-
+        private Order _order;
         public OrderView(int shippinAddressId)
         {
             InitializeComponent();
-            _shippingAddressId = shippinAddressId;
         }
 
         public void DisplayErrors(string error)
@@ -31,8 +30,8 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                _presenter = new OrderPresenter(this, _shippingAddressId);
-                _presenter.InitializeView();
+                //_presenter = new OrderPresenter(this, _shippingAddressId);
+                //_presenter.InitializeView();
             }
         }
 

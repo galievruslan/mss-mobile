@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views
+﻿using MSS.WinMobile.Domain.Models;
+
+namespace MSS.WinMobile.UI.Views
 {
     partial class OrderView
     {
@@ -30,7 +32,7 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this._detailsTab = new System.Windows.Forms.TabPage();
-            this._itemsVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox();
+            this._itemsVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<OrderItem>();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
             this._generalTab = new System.Windows.Forms.TabPage();
@@ -283,7 +285,7 @@
         private System.Windows.Forms.Label _priceLabel;
         private System.Windows.Forms.Label _addressLabel;
         private System.Windows.Forms.Label _customerLabel;
-        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox _itemsVirtualListBox;
+        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<OrderItem> _itemsVirtualListBox;
         private System.Windows.Forms.TextBox _notesTextBox;
         private System.Windows.Forms.ComboBox _warehouseComboBox;
         private System.Windows.Forms.ComboBox _priceComboBox;
