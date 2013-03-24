@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Text;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
@@ -70,36 +68,6 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                 ShippingAddress.Table.Fields.ID));
 
             return queryStringBuilder.ToString();
-        }
-
-        protected override RoutePoint[] Execute()
-        {
-            IDbConnection connection = ConnectionFactory.GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction())
-            {
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    var result = new List<RoutePoint>();
-
-                    command.CommandText = ToString();
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
-                    {
-                        while (reader.Read())
-                        {
-                            var dictionary = new Dictionary<string, object>();
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                dictionary.Add(reader.GetName(i), reader.GetValue(i));
-                            }
-                            result.Add(ActiveRecordFactory.Create<RoutePoint>(dictionary));
-                        }
-                    }
-                    return result.ToArray();
-                }
-            }
         }
     }
 }

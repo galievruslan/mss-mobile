@@ -14,10 +14,5 @@
         {
             return new Order(routePoint);
         }
-
-        public Order NewOrder(ShippingAddress shippingAddress)
-        {
-            return new Order(this, shippingAddress);
-        }
     }
 }

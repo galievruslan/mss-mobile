@@ -17,6 +17,9 @@ CREATE TABLE [Orders] ([Id] int  NOT NULL
 , [Date] datetime  NULL  
 , [ShippingAddress_Id] int  NULL  
 , [Manager_Id] int  NULL  
+, [PriceList_Id] int  NULL  
+, [Warehouse_Id] int  NULL  
+, [Note] nvarchar(1024) NULL  
 );
 CREATE TABLE [PriceLists] ([Id] int  NOT NULL  
 , [Name] nvarchar(255) NULL  
@@ -36,9 +39,9 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] int  NOT NULL
 , [UnitOfMeasure_Id] int  NULL  
 );
 CREATE TABLE [RoutePoints] ([Id] int  NOT NULL  
-, [Route_Id] int  NULL 
-, [Order_Id] int  NULL  
+, [Route_Id] int  NULL  
 , [ShippingAddress_Id] int  NULL  
+, [Order_Id] int  NULL 
 , [Status_Id] int  NULL  
 );
 CREATE TABLE [Routes] ([Id] int  NOT NULL  
@@ -79,6 +82,8 @@ ALTER TABLE [OrderItems] ADD CONSTRAINT [FK__OrderItems__00000000000000A5] FOREI
 ALTER TABLE [OrderItems] ADD CONSTRAINT [FK__OrderItems__00000000000000AB] FOREIGN KEY ([Product_Id]) REFERENCES [Products] ([Id]);
 ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__0000000000000099] FOREIGN KEY ([ShippingAddress_Id]) REFERENCES [ShippingAddresses] ([Id]);
 ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__000000000000009F] FOREIGN KEY ([Manager_Id]) REFERENCES [Managers] ([Id]);
+ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__000000000000009A] FOREIGN KEY ([PriceList_Id]) REFERENCES [PriceLists] ([Id]);
+ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__000000000000009B] FOREIGN KEY ([Warehouse_Id]) REFERENCES [Warehouses] ([Id]);
 ALTER TABLE [Products] ADD CONSTRAINT [FK__Products__00000000000000EC] FOREIGN KEY ([Category_Id]) REFERENCES [Categories] ([Id]);
 ALTER TABLE [ProductsPrices] ADD CONSTRAINT [FK__ProductsPrices__00000000000000DB] FOREIGN KEY ([Product_Id]) REFERENCES [Products] ([Id]);
 ALTER TABLE [ProductsPrices] ADD CONSTRAINT [FK__ProductsPrices__00000000000000E1] FOREIGN KEY ([PriceList_Id]) REFERENCES [PriceLists] ([Id]);

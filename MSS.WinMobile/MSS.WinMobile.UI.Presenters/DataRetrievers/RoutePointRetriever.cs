@@ -19,7 +19,12 @@ namespace MSS.WinMobile.UI.Presenters.DataRetrievers
 
         public RoutePoint[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
         {
-            return _route.GetPoints().OrderBy(Route.Table.Fields.ID, OrderDirection.Asceding).Skip(lowerPageBoundary).Take(rowsPerPage).ToArray();
+            return
+                _route.GetPoints()
+                      .OrderBy(Route.Table.Fields.ID, OrderDirection.Asceding)
+                      .Skip(lowerPageBoundary)
+                      .Take(rowsPerPage)
+                      .ToArray();
         }
     }
 }

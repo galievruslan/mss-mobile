@@ -31,7 +31,7 @@ namespace MSS.WinMobile.UI.Views
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
-            this._routeVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<RoutePoint>();
+            this._routeVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.RoutePointListBox();
             this._actionPanel = new System.Windows.Forms.Panel();
             this._createOrderIcon = new MSS.WinMobile.UI.Controls.PictureButton();
             this._actionPanel.SuspendLayout();
@@ -41,7 +41,6 @@ namespace MSS.WinMobile.UI.Views
             // 
             this._routeVirtualListBox.BackColor = System.Drawing.Color.White;
             this._routeVirtualListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._routeVirtualListBox.ItemCount = 0;
             this._routeVirtualListBox.Location = new System.Drawing.Point(0, 30);
             this._routeVirtualListBox.Name = "_routeVirtualListBox";
             this._routeVirtualListBox.SelectedIndex = 0;
@@ -84,7 +83,7 @@ namespace MSS.WinMobile.UI.Views
 
         #endregion
 
-        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<RoutePoint> _routeVirtualListBox;
+        private MSS.WinMobile.UI.Controls.ListBox.RoutePointListBox _routeVirtualListBox;
         private System.Windows.Forms.Panel _actionPanel;
         private MSS.WinMobile.UI.Controls.PictureButton _createOrderIcon;
     }

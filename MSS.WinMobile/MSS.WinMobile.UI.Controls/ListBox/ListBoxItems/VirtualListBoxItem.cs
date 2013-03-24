@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MSS.WinMobile.UI.Controls.ListBox
+namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 {
     public abstract partial class VirtualListBoxItem<T> : UserControl where T : class 
     {

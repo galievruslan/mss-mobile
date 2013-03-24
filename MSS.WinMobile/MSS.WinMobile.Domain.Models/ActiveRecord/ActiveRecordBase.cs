@@ -140,6 +140,10 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             {
                 File.Delete(fileName);
             }
+            
+            IDbConnection connection = ConnectionFactory.GetConnection();
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
 
             if (!File.Exists(fileName))
             {
@@ -151,10 +155,6 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                 {
                     schemaScript = reader.ReadToEnd();
                 }
-
-                IDbConnection connection = ConnectionFactory.GetConnection();
-                if (connection.State != ConnectionState.Open)
-                    connection.Open();
 
                 using (IDbTransaction transaction = connection.BeginTransaction()) {
                     using (IDbCommand command = connection.CreateCommand()) {

@@ -50,7 +50,6 @@
       <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="MSS.WinMobile.UI.Controls, Version=1.0.4789.41030, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -59,18 +58,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListBox\ListBoxItemFactory.cs" />
+    <Compile Include="ListBox\ListBoxItems\ShippingAddressListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\ShippingAddressListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\CustomerListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\ListBoxItems\OrderItemListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBox\ListBoxItems\RoutePointListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ListBox\ListBoxItems\CustomerListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListBox\VirtualListBoxItem.cs">
+    <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListBox\VirtualListBoxItem.Designer.cs">
+    <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.Designer.cs">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListBox\OrderItemListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\RoutePointListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LookUpBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LookUpBox.Designer.cs">
+      <DependentUpon>LookUpBox.cs</DependentUpon>
     </Compile>
     <Compile Include="SearchPanel.cs">
       <SubType>UserControl</SubType>
@@ -102,8 +124,11 @@
     <None Include="Resources\appbar.home.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ListBox\VirtualListBoxItem.resx">
+    <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookUpBox.resx">
+      <DependentUpon>LookUpBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>

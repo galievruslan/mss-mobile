@@ -24,6 +24,11 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
         {
             var queryStringBuilder = new StringBuilder();
             int remainder = InnerQuery.Count() - CountToSkip;
+
+            // We can't skip value less than zero
+            if (remainder < 0)
+                remainder = 0;
+
             queryStringBuilder.Append(string.Format("SELECT TOP({0}) ", remainder));
             for (int i = 0; i < FieldsNames.Length; i++)
             {

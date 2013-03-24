@@ -7,7 +7,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
     {
         private readonly Color _colorSelected = Color.CornflowerBlue;
         private readonly Color _colorUnSelected = Color.White;
-        private readonly Font _font = new Font(FontFamily.GenericSerif, 8.0f, FontStyle.Regular);
+        private readonly Font _font = new Font(FontFamily.GenericSerif, 7.0f, FontStyle.Regular);
         private readonly Color _colorFontSelected = Color.White;
         private readonly Color _colorFontUnSelected = Color.Black;
 

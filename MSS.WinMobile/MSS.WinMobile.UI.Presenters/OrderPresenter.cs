@@ -15,13 +15,23 @@ namespace MSS.WinMobile.UI.Presenters
         private readonly IOrderView _view;
         private readonly Order _order;
 
-        public OrderPresenter(IOrderView view, int shippingAddressId)
+        public OrderPresenter(IOrderView view, RoutePoint routePoint)
         {
-            
             _view = view;
+            _order = new Order(routePoint);
         }
 
         public void InitializeView()
+        {
+            _view.SetOrder(_order);
+        }
+
+        public bool Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Cancel()
         {
             throw new NotImplementedException();
         }

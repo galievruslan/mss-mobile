@@ -63,11 +63,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IShippingAddressLookUpView.cs" />
+    <Compile Include="ShippingAddressLookUpPresenter.cs" />
+    <Compile Include="CustomerLookUpPresenter.cs" />
     <Compile Include="DataRetrievers\Cache.cs" />
+    <Compile Include="DataRetrievers\ShippingAddressRetriever.cs" />
+    <Compile Include="DataRetrievers\CustomerRetriever.cs" />
     <Compile Include="DataRetrievers\IDataRetriever.cs" />
     <Compile Include="DataRetrievers\RoutePointRetriever.cs" />
+    <Compile Include="ICustomerLookUpView.cs" />
     <Compile Include="ICustomersView.cs" />
-    <Compile Include="ILayout.cs" />
     <Compile Include="ILogonView.cs" />
     <Compile Include="IMenuView.cs" />
     <Compile Include="IOrderView.cs" />

@@ -10,8 +10,6 @@ namespace MSS.WinMobile.Domain.Models
     {
         internal RoutePoint(IDictionary<string, object> dictionary)
         {
-            var shippingAddressDictionary = new Dictionary<string, object>();
-
             // Fill RoutePoint object's fields
             if (dictionary.ContainsKey(Table.Fields.ID))
                 Id = (int)dictionary[Table.Fields.ID];
@@ -20,59 +18,17 @@ namespace MSS.WinMobile.Domain.Models
             if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
                 ShippingAddressId = (int)dictionary[Table.Fields.SHIPPING_ADDRESS_ID];
             if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
-            {
-                object orderId = dictionary[Table.Fields.ORDER_ID];
-                if (orderId != null)
-                    OrderId = (int) dictionary[Table.Fields.ORDER_ID];
-            }
+                OrderId = (int) dictionary[Table.Fields.ORDER_ID];
             if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
                 StatusId = (int)dictionary[Table.Fields.STATUS_ID];
-            if (
-                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                     ShippingAddress.Table.Fields.ID)))
-            {
-                object shippingAddressId = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                                    ShippingAddress.Table.Fields.ID)];
-                if (shippingAddressId != null)
-                {
-                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.ID, shippingAddressId);
-                }
-            }
-            if (
-                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                     ShippingAddress.Table.Fields.CUSTOMER_ID)))
-            {
-                object customerId = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                                    ShippingAddress.Table.Fields.CUSTOMER_ID)];
-                if (customerId != null)
-                {
-                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.CUSTOMER_ID, customerId);
-                }
-            }
-            if (
-                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                     ShippingAddress.Table.Fields.NAME)))
-            {
-                object shippingAddressName = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                                    ShippingAddress.Table.Fields.NAME)];
-                if (shippingAddressName != null)
-                {
-                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.NAME, shippingAddressName);
-                }
-            }
-            if (
-                dictionary.ContainsKey(string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                     ShippingAddress.Table.Fields.ADDRESS)))
-            {
-                object shippingAddressAddress = dictionary[string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
-                                                                    ShippingAddress.Table.Fields.ADDRESS)];
-                if (shippingAddressAddress != null)
-                {
-                    shippingAddressDictionary.Add(ShippingAddress.Table.Fields.ADDRESS, shippingAddressAddress);
-                }
-            }
 
             // Fill RoutePoint's ShippingAddress object if exist
+            string shippingAddressKeyPrefix = string.Format("{0}_", ShippingAddress.Table.TABLE_NAME);
+            var shippingAddressDictionary =
+                dictionary.Where(pair => pair.Key.StartsWith(shippingAddressKeyPrefix))
+                          .ToArray()
+                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(shippingAddressKeyPrefix, ""),
+                                        keyValuePair => keyValuePair.Value);
             if (shippingAddressDictionary.Any())
             {
                 ShippingAddress = new ShippingAddress(shippingAddressDictionary);

@@ -31,7 +31,7 @@ namespace MSS.WinMobile.UI.Views
         private void InitializeComponent()
         {
             this._viewActionsPanel = new System.Windows.Forms.Panel();
-            this._customersListBox = new MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<Customer>();
+            this._customersListBox = new MSS.WinMobile.UI.Controls.ListBox.CustomerListBox();
             this.SuspendLayout();
             // 
             // _viewActionsPanel
@@ -45,7 +45,6 @@ namespace MSS.WinMobile.UI.Views
             // 
             this._customersListBox.BackColor = System.Drawing.Color.White;
             this._customersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._customersListBox.ItemCount = 0;
             this._customersListBox.Location = new System.Drawing.Point(0, 24);
             this._customersListBox.Name = "_customersListBox";
             this._customersListBox.SelectedIndex = 0;
@@ -67,6 +66,6 @@ namespace MSS.WinMobile.UI.Views
         #endregion
 
         private System.Windows.Forms.Panel _viewActionsPanel;
-        private MSS.WinMobile.UI.Controls.ListBox.VirtualListBox<Customer> _customersListBox;
+        private MSS.WinMobile.UI.Controls.ListBox.CustomerListBox _customersListBox;
     }
 }

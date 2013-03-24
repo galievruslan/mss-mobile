@@ -62,8 +62,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static QueryObject<Customer> GetAll()
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Customer>();
-            return queryObject;
+           return QueryObjectFactory.CreateQueryObject<Customer>();
         }
     }
 }

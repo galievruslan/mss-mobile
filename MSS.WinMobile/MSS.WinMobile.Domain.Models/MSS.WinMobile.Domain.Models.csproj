@@ -66,6 +66,7 @@
     <Compile Include="ActiveRecord\QueryObject\Conditions\Less.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Greather.cs" />
     <Compile Include="ActiveRecord\QueryObject\Conditions\Equals.cs" />
+    <Compile Include="ActiveRecord\QueryObject\OrderQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\RoutePointQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\TakeQueryObject.cs" />
     <Compile Include="ActiveRecord\QueryObject\SkipQueryObject.cs" />

@@ -3,7 +3,7 @@ using MSS.WinMobile.Domain.Models;
 
 namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 {
-    public class RoutePointListBoxItem : VirtualListBoxItem<RoutePoint>
+    public class ShippingAddressListBoxItem : VirtualListBoxItem<ShippingAddress>
     {
         private readonly Color _colorSelected = Color.CornflowerBlue;
         private readonly Color _colorUnSelected = Color.White;
@@ -20,7 +20,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
                 IsSelected ? new SolidBrush(_colorSelected) : new SolidBrush(_colorUnSelected),
                 rectangle);
 
-            graphics.DrawString(Data.ShippingAddress.Name, _font,
+            graphics.DrawString(Data.Address, _font,
                                 IsSelected ? new SolidBrush(_colorFontSelected) : new SolidBrush(_colorFontUnSelected),
                                 new Rectangle(rectangle.X + Margin, rectangle.Y + Margin, rectangle.Width - 2*Margin,
                                               rectangle.Height - 2*Margin));

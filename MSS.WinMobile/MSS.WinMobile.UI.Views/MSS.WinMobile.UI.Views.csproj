@@ -62,6 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShippingAddressLookUpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShippingAddressLookUpView.Designer.cs">
+      <DependentUpon>ShippingAddressLookUpView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLookUpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerLookUpView.Designer.cs">
+      <DependentUpon>CustomerLookUpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomersView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ShippingAddressLookUpView.resx">
+      <DependentUpon>ShippingAddressLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerLookUpView.resx">
+      <DependentUpon>CustomerLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomersView.resx">
       <DependentUpon>CustomersView.cs</DependentUpon>
     </EmbeddedResource>
