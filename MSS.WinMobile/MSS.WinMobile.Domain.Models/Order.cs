@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 
 namespace MSS.WinMobile.Domain.Models
 {
@@ -48,8 +49,23 @@ namespace MSS.WinMobile.Domain.Models
 
         public PriceList PriceList { get; private set; }
 
+        public void SetPriceList(PriceList priceList)
+        {
+            PriceList = priceList;
+        }
+
         public Warehouse Warehouse { get; private set; }
 
+        public void SetWarehouse(Warehouse warehouse)
+        {
+            Warehouse = warehouse;
+        }
+
         public string Note { get; set; }
+
+        public QueryObject<OrderItem> Items()
+        {
+            return OrderItem.GetByOrder(this);
+        }
     }
 }

@@ -6,10 +6,10 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public abstract partial class VirtualListBox<T> : UserControl where T : class 
+    public abstract partial class VirtualListBox : UserControl
     {
-        public delegate void OnItemDataNeeded(object sender, VirtualListBoxItem<T> item);
-        public delegate void OnItemSelected(object sender, VirtualListBoxItem<T> item);
+        public delegate void OnItemDataNeeded(object sender, VirtualListBoxItem item);
+        public delegate void OnItemSelected(object sender, VirtualListBoxItem item);
 
         // Designer only
         protected VirtualListBox()
@@ -28,7 +28,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             _itemCount = size;
 
             FillItemPanel();
-            if (_itemCount > _listBoxItems.Count)
+            if (_itemCount > Items.Count)
                 _vScrollBar.Show();
             else
                 _vScrollBar.Hide();
@@ -44,33 +44,33 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         private void FillItemPanel()
         {
-            int itemsHeight = _listBoxItems.Sum(item => item.Height);
+            int itemsHeight = Items.Sum(item => item.Height);
 
             float itemAvgHeight = 0;
             if (itemsHeight != 0)
-                itemAvgHeight = ((float)itemsHeight) / _listBoxItems.Count;
+                itemAvgHeight = ((float)itemsHeight) / Items.Count;
 
             while (_dataPanel.Height - itemsHeight > 0)
             {
-                VirtualListBoxItem<T> listBoxItem = NewItem();
+                VirtualListBoxItem listBoxItem = NewItem();
                 AddListBoxItem(listBoxItem);
 
                 itemsHeight += listBoxItem.Height;
-                itemAvgHeight = ((float)itemsHeight) / _listBoxItems.Count;
+                itemAvgHeight = ((float)itemsHeight) / Items.Count;
             }
 
             while (_dataPanel.Height - itemsHeight + itemAvgHeight < 0)
             {
                 RemoveListBoxItem();
 
-                itemsHeight = _listBoxItems.Sum(item =>
+                itemsHeight = Items.Sum(item =>
                 {
                     var control = item as Control;
                     return control != null ? control.Height : 0;
                 });
             }
 
-            foreach (var listBoxItem in _listBoxItems)
+            foreach (var listBoxItem in Items)
             {
                 var control = listBoxItem as Control;
                 if (control != null) control.Width = _dataPanel.Width;
@@ -81,33 +81,33 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         #region Items Handling
 
-        readonly List<VirtualListBoxItem<T>> _listBoxItems = new List<VirtualListBoxItem<T>>();
+        public readonly List<VirtualListBoxItem> Items = new List<VirtualListBoxItem>();
 
-        private void AddListBoxItem(VirtualListBoxItem<T> listBoxItem)
+        private void AddListBoxItem(VirtualListBoxItem item)
         {
-            var listBoxItemControl = listBoxItem as Control;
-            if (_listBoxItems.Count > 0)
+            var listBoxItemControl = item as Control;
+            if (Items.Count > 0)
             {
-                var lastListBoxItem = _listBoxItems[_listBoxItems.Count - 1] as Control;
+                var lastListBoxItem = Items[Items.Count - 1] as Control;
                 if (lastListBoxItem != null)
                     listBoxItemControl.Top = lastListBoxItem.Top + lastListBoxItem.Height;
             }
 
-            listBoxItem.DataNeeded += ListBoxItemDataNeeded;
-            listBoxItem.Selected += ListBoxItemSelected;
-            var control = listBoxItem as Control;
+            item.DataNeeded += ListBoxItemDataNeeded;
+            item.Selected += ListBoxItemSelected;
+            var control = item as Control;
             control.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             _dataPanel.Controls.Add(control);
-            _listBoxItems.Add(listBoxItem);
+            Items.Add(item);
         }
 
-        private void ListBoxItemSelected(VirtualListBoxItem<T> sender)
+        private void ListBoxItemSelected(VirtualListBoxItem sender)
         {
             // return if listbox doesn't contains data
-            if (sender.Data == null)
+            if (sender.Empty || sender.Index >= _itemCount)
                 return;
 
-            foreach (var item in _listBoxItems)
+            foreach (var item in Items)
             {
                 if (item.IsSelected)
                 {
@@ -127,26 +127,26 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         private void RemoveListBoxItem()
         {
-            var listBoxItem = _listBoxItems[_listBoxItems.Count - 1];
+            var listBoxItem = Items[Items.Count - 1];
             if (_dataPanel.Controls.Contains(listBoxItem))
                 _dataPanel.Controls.Remove(listBoxItem);
 
             listBoxItem.DataNeeded -= ListBoxItemDataNeeded;
             listBoxItem.Selected -= ListBoxItemSelected;
-            _listBoxItems.Remove(listBoxItem);
+            Items.Remove(listBoxItem);
         }
 
-        void ListBoxItemDataNeeded(object sender)
+        void ListBoxItemDataNeeded(VirtualListBoxItem sender)
         {
-            if (ItemDataNeeded != null)
-                ItemDataNeeded.Invoke(this, sender as VirtualListBoxItem<T>);
+            if (ItemDataNeeded != null && sender.Index < _itemCount)
+                ItemDataNeeded.Invoke(this, sender);
         }
 
         private void ReindexItems()
         {
-            for (int i = 0; i < _listBoxItems.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                var item = _listBoxItems[i];
+                var item = Items[i];
                 item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
                 item.IsSelected = item.Index == SelectedIndex;
 
@@ -167,6 +167,6 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         #endregion
 
-        protected abstract VirtualListBoxItem<T> NewItem();
+        protected abstract VirtualListBoxItem NewItem();
     }
 }

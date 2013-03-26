@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -25,25 +26,18 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        private Customer _selectedCustomer;
-        public Customer GetSelectedCustomer()
+        void customerListBox_ItemSelected(object sender, VirtualListBoxItem item)
         {
-            return _selectedCustomer;
+            _presenter.SelectItem(item.Index);
         }
 
-        void customerListBox_ItemSelected(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem<Customer> item)
+        void customerListBox_ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            _selectedCustomer = item.Data;
-        }
-
-        void customerListBox_ItemDataNeeded(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem<Customer> item)
-        {
-            item.Data = _presenter.GetCustomer(item.Index);
-        }
-
-        public void SetCustomerCount(int count)
-        {
-            customerListBox.SetListSize(count);
+            var customerListBoxItem = item as CustomerListBoxItem;
+            if (customerListBoxItem != null)
+            {
+                customerListBoxItem.SetName(_presenter.GetItemName(item.Index));
+            }
         }
 
         private void _cancelButton_Click(object sender, EventArgs e)
@@ -56,6 +50,21 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        public void DisplayErrors(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetItemCount(int count)
+        {
+            customerListBox.SetListSize(count);
+        }
+
+        public int GetSelectedId()
+        {
+            return _presenter.GetSelectedItemId();
         }
     }
 }

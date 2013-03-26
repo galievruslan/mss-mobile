@@ -1,4 +1,4 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -32,10 +32,10 @@ namespace MSS.WinMobile.UI.Views
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
+            this._shippingAddressTextBox = new System.Windows.Forms.TextBox();
+            this._customerTextBox = new System.Windows.Forms.TextBox();
             this._warehouseLookUpBox = new MSS.WinMobile.UI.Controls.LookUpBox();
             this._priceLookUpBox = new MSS.WinMobile.UI.Controls.LookUpBox();
-            this._shippingAddressLookUpBox = new MSS.WinMobile.UI.Controls.LookUpBox();
-            this._customerLookUpBox = new MSS.WinMobile.UI.Controls.LookUpBox();
             this._warehouseLabel = new System.Windows.Forms.Label();
             this._priceLabel = new System.Windows.Forms.Label();
             this._addressLabel = new System.Windows.Forms.Label();
@@ -51,7 +51,6 @@ namespace MSS.WinMobile.UI.Views
             this._actionPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this.notification = new Microsoft.WindowsCE.Forms.Notification();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
             this._detailsTab.SuspendLayout();
@@ -73,10 +72,10 @@ namespace MSS.WinMobile.UI.Views
             // 
             // _generalTab
             // 
+            this._generalTab.Controls.Add(this._shippingAddressTextBox);
+            this._generalTab.Controls.Add(this._customerTextBox);
             this._generalTab.Controls.Add(this._warehouseLookUpBox);
             this._generalTab.Controls.Add(this._priceLookUpBox);
-            this._generalTab.Controls.Add(this._shippingAddressLookUpBox);
-            this._generalTab.Controls.Add(this._customerLookUpBox);
             this._generalTab.Controls.Add(this._warehouseLabel);
             this._generalTab.Controls.Add(this._priceLabel);
             this._generalTab.Controls.Add(this._addressLabel);
@@ -90,6 +89,26 @@ namespace MSS.WinMobile.UI.Views
             this._generalTab.Size = new System.Drawing.Size(240, 241);
             this._generalTab.Text = "General";
             // 
+            // _shippingAddressTextBox
+            // 
+            this._shippingAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._shippingAddressTextBox.Location = new System.Drawing.Point(82, 87);
+            this._shippingAddressTextBox.Name = "_shippingAddressTextBox";
+            this._shippingAddressTextBox.ReadOnly = true;
+            this._shippingAddressTextBox.Size = new System.Drawing.Size(155, 21);
+            this._shippingAddressTextBox.TabIndex = 41;
+            // 
+            // _customerTextBox
+            // 
+            this._customerTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._customerTextBox.Location = new System.Drawing.Point(82, 61);
+            this._customerTextBox.Name = "_customerTextBox";
+            this._customerTextBox.ReadOnly = true;
+            this._customerTextBox.Size = new System.Drawing.Size(155, 21);
+            this._customerTextBox.TabIndex = 40;
+            // 
             // _warehouseLookUpBox
             // 
             this._warehouseLookUpBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -99,7 +118,7 @@ namespace MSS.WinMobile.UI.Views
             this._warehouseLookUpBox.Size = new System.Drawing.Size(155, 22);
             this._warehouseLookUpBox.TabIndex = 33;
             this._warehouseLookUpBox.Value = null;
-            this._warehouseLookUpBox.LookUp += new MSS.WinMobile.UI.Controls.LookUpBox.OnLookUp(this._warehouseLookUpBox_LookUp);
+            this._warehouseLookUpBox.LookUp += new MSS.WinMobile.UI.Controls.LookUpBox.OnLookUp(this.WarehouseLookUp);
             // 
             // _priceLookUpBox
             // 
@@ -110,29 +129,7 @@ namespace MSS.WinMobile.UI.Views
             this._priceLookUpBox.Size = new System.Drawing.Size(155, 22);
             this._priceLookUpBox.TabIndex = 32;
             this._priceLookUpBox.Value = null;
-            this._priceLookUpBox.LookUp += new MSS.WinMobile.UI.Controls.LookUpBox.OnLookUp(this._priceLookUpBox_LookUp);
-            // 
-            // _shippingAddressLookUpBox
-            // 
-            this._shippingAddressLookUpBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._shippingAddressLookUpBox.Label = "- none -";
-            this._shippingAddressLookUpBox.Location = new System.Drawing.Point(82, 87);
-            this._shippingAddressLookUpBox.Name = "_shippingAddressLookUpBox";
-            this._shippingAddressLookUpBox.Size = new System.Drawing.Size(155, 22);
-            this._shippingAddressLookUpBox.TabIndex = 31;
-            this._shippingAddressLookUpBox.Value = null;
-            this._shippingAddressLookUpBox.LookUp += new MSS.WinMobile.UI.Controls.LookUpBox.OnLookUp(this._addressLookUpBox_LookUp);
-            // 
-            // _customerLookUpBox
-            // 
-            this._customerLookUpBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._customerLookUpBox.Label = "- none -";
-            this._customerLookUpBox.Location = new System.Drawing.Point(82, 59);
-            this._customerLookUpBox.Name = "_customerLookUpBox";
-            this._customerLookUpBox.Size = new System.Drawing.Size(155, 22);
-            this._customerLookUpBox.TabIndex = 30;
-            this._customerLookUpBox.Value = null;
-            this._customerLookUpBox.LookUp += new MSS.WinMobile.UI.Controls.LookUpBox.OnLookUp(this._customerLookUpBox_LookUp);
+            this._priceLookUpBox.LookUp += new MSS.WinMobile.UI.Controls.LookUpBox.OnLookUp(this.PriceListLookUp);
             // 
             // _warehouseLabel
             // 
@@ -164,7 +161,6 @@ namespace MSS.WinMobile.UI.Views
             // 
             // _dateTextBox
             // 
-            this._dateTextBox.AcceptsReturn = true;
             this._dateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._dateTextBox.Location = new System.Drawing.Point(82, 34);
@@ -202,7 +198,7 @@ namespace MSS.WinMobile.UI.Views
             this._detailsTab.Controls.Add(this._itemsVirtualListBox);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(232, 238);
+            this._detailsTab.Size = new System.Drawing.Size(240, 241);
             this._detailsTab.Text = "Details";
             // 
             // _itemsVirtualListBox
@@ -212,7 +208,7 @@ namespace MSS.WinMobile.UI.Views
             this._itemsVirtualListBox.Location = new System.Drawing.Point(0, 0);
             this._itemsVirtualListBox.Name = "_itemsVirtualListBox";
             this._itemsVirtualListBox.SelectedIndex = -1;
-            this._itemsVirtualListBox.Size = new System.Drawing.Size(232, 238);
+            this._itemsVirtualListBox.Size = new System.Drawing.Size(240, 241);
             this._itemsVirtualListBox.TabIndex = 0;
             // 
             // _notesTab
@@ -264,10 +260,6 @@ namespace MSS.WinMobile.UI.Views
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
             // 
-            // notification
-            // 
-            this.notification.Text = "notification";
-            // 
             // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -307,11 +299,9 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Label _customerLabel;
         private MSS.WinMobile.UI.Controls.ListBox.OrderItemListBox _itemsVirtualListBox;
         private System.Windows.Forms.TextBox _notesTextBox;
-        private MSS.WinMobile.UI.Controls.LookUpBox _customerLookUpBox;
         private MSS.WinMobile.UI.Controls.LookUpBox _warehouseLookUpBox;
         private MSS.WinMobile.UI.Controls.LookUpBox _priceLookUpBox;
-        private MSS.WinMobile.UI.Controls.LookUpBox _shippingAddressLookUpBox;
-        private Microsoft.WindowsCE.Forms.Notification notification;
-
+        private System.Windows.Forms.TextBox _shippingAddressTextBox;
+        private System.Windows.Forms.TextBox _customerTextBox;
     }
 }

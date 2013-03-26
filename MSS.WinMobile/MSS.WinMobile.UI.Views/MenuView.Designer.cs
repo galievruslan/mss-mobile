@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuView));
             this._routeIcon = new System.Windows.Forms.PictureBox();
             this._routeLabel = new System.Windows.Forms.LinkLabel();
-            this._customersIcon = new System.Windows.Forms.PictureBox();
-            this._customersLabel = new System.Windows.Forms.LinkLabel();
             this._synchronizationIcon = new System.Windows.Forms.PictureBox();
             this._synchronizationLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
@@ -56,29 +54,10 @@
             this._routeLabel.Text = "Route";
             this._routeLabel.Click += new System.EventHandler(this._routeLabel_Click);
             // 
-            // _customersIcon
-            // 
-            this._customersIcon.Image = ((System.Drawing.Image)(resources.GetObject("_customersIcon.Image")));
-            this._customersIcon.Location = new System.Drawing.Point(3, 39);
-            this._customersIcon.Name = "_customersIcon";
-            this._customersIcon.Size = new System.Drawing.Size(30, 30);
-            this._customersIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            // 
-            // _customersLabel
-            // 
-            this._customersLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
-            this._customersLabel.ForeColor = System.Drawing.Color.Black;
-            this._customersLabel.Location = new System.Drawing.Point(39, 45);
-            this._customersLabel.Name = "_customersLabel";
-            this._customersLabel.Size = new System.Drawing.Size(201, 20);
-            this._customersLabel.TabIndex = 4;
-            this._customersLabel.Text = "Customers";
-            this._customersLabel.Click += new System.EventHandler(this._customersLabel_Click);
-            // 
             // _synchronizationIcon
             // 
             this._synchronizationIcon.Image = ((System.Drawing.Image)(resources.GetObject("_synchronizationIcon.Image")));
-            this._synchronizationIcon.Location = new System.Drawing.Point(3, 75);
+            this._synchronizationIcon.Location = new System.Drawing.Point(3, 38);
             this._synchronizationIcon.Name = "_synchronizationIcon";
             this._synchronizationIcon.Size = new System.Drawing.Size(30, 30);
             this._synchronizationIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -87,7 +66,7 @@
             // 
             this._synchronizationLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
             this._synchronizationLabel.ForeColor = System.Drawing.Color.Black;
-            this._synchronizationLabel.Location = new System.Drawing.Point(39, 81);
+            this._synchronizationLabel.Location = new System.Drawing.Point(39, 44);
             this._synchronizationLabel.Name = "_synchronizationLabel";
             this._synchronizationLabel.Size = new System.Drawing.Size(201, 20);
             this._synchronizationLabel.TabIndex = 7;
@@ -102,8 +81,6 @@
             this.ClientSize = new System.Drawing.Size(240, 294);
             this.Controls.Add(this._synchronizationLabel);
             this.Controls.Add(this._synchronizationIcon);
-            this.Controls.Add(this._customersLabel);
-            this.Controls.Add(this._customersIcon);
             this.Controls.Add(this._routeLabel);
             this.Controls.Add(this._routeIcon);
             this.Name = "MenuView";
@@ -116,8 +93,6 @@
 
         private System.Windows.Forms.PictureBox _routeIcon;
         private System.Windows.Forms.LinkLabel _routeLabel;
-        private System.Windows.Forms.PictureBox _customersIcon;
-        private System.Windows.Forms.LinkLabel _customersLabel;
         private System.Windows.Forms.PictureBox _synchronizationIcon;
         private System.Windows.Forms.LinkLabel _synchronizationLabel;
 

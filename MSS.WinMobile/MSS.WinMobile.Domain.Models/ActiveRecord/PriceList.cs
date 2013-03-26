@@ -55,9 +55,15 @@ namespace MSS.WinMobile.Domain.Models
 
         public static PriceList GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<PriceList>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return
+                QueryObjectFactory.CreateQueryObject<PriceList>()
+                                  .Where(Table.Fields.ID, new Equals(id))
+                                  .FirstOrDefault();
+        }
+
+        public static QueryObject<PriceList> GetAll()
+        {
+            return QueryObjectFactory.CreateQueryObject<PriceList>();
         }
     }
 }

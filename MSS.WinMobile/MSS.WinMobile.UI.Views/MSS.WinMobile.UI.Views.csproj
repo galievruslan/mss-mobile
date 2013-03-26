@@ -45,11 +45,6 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
@@ -62,6 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WarehouseLookUpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseLookUpView.Designer.cs">
+      <DependentUpon>WarehouseLookUpView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PriceListLookUpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PriceListLookUpView.Designer.cs">
+      <DependentUpon>PriceListLookUpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShippingAddressLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,12 +80,6 @@
     </Compile>
     <Compile Include="CustomerLookUpView.Designer.cs">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomersView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomersView.Designer.cs">
-      <DependentUpon>CustomersView.cs</DependentUpon>
     </Compile>
     <Compile Include="LogonView.cs">
       <SubType>Form</SubType>
@@ -114,14 +115,17 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WarehouseLookUpView.resx">
+      <DependentUpon>WarehouseLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PriceListLookUpView.resx">
+      <DependentUpon>PriceListLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShippingAddressLookUpView.resx">
       <DependentUpon>ShippingAddressLookUpView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerLookUpView.resx">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomersView.resx">
-      <DependentUpon>CustomersView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogonView.resx">
       <DependentUpon>LogonView.cs</DependentUpon>
@@ -143,14 +147,6 @@
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
-      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
-      <Name>MSS.WinMobile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
-      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
-      <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
       <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>

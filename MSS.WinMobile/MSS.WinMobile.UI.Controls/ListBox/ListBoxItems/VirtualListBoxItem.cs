@@ -4,14 +4,15 @@ using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 {
-    public abstract partial class VirtualListBoxItem<T> : UserControl where T : class 
+    public partial class VirtualListBoxItem : UserControl
     {
-        public delegate void OnDataNeeded(VirtualListBoxItem<T> sender);
-        public delegate void OnSelected(VirtualListBoxItem<T> sender);
+        public delegate void OnDataNeeded(VirtualListBoxItem sender);
+        public delegate void OnSelected(VirtualListBoxItem sender);
 
         protected VirtualListBoxItem()
         {
             InitializeComponent();
+            Empty = true;
         }
 
         public event OnDataNeeded DataNeeded;
@@ -30,7 +31,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
             }
         }
 
-        public T Data { get; set; }
+        public bool Empty { get; protected set; }
 
         public bool IsSelected { get; set; }
         private void VirtualListBoxItem_Click(object sender, EventArgs e)
@@ -40,12 +41,23 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
                 Selected.Invoke(this);
         }
 
-        protected abstract void DrawItem(Graphics graphics, Rectangle rectangle);
+        protected virtual void DrawItem(Graphics graphics, Rectangle rectangle)
+        {
+        }
 
         private void VirtualListBoxItem_Paint(object sender, PaintEventArgs e)
         {
-            if (Data == null)
+            if (Empty)
                 return;
+
+            e.Graphics.FillRectangle(
+                IsSelected ? new SolidBrush(Constants.ColorSelected) : new SolidBrush(Constants.ColorUnSelected),
+                e.ClipRectangle);
+
+            e.Graphics.DrawLine(new Pen(Color.DarkGray), e.ClipRectangle.X + Constants.MARGIN,
+                                e.ClipRectangle.Height - 2,
+                                e.ClipRectangle.Width - Constants.DIVISOR_LINE*Constants.MARGIN,
+                                e.ClipRectangle.Height - Constants.DIVISOR_LINE);
 
             DrawItem(e.Graphics, e.ClipRectangle);
         }

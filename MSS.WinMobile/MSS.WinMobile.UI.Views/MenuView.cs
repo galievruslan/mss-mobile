@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -34,16 +36,6 @@ namespace MSS.WinMobile.UI.Views
                 _synchronizationView = new SynchronizationView();
 
             _synchronizationView.Show();
-        }
-
-        private CustomersView _customersView;
-
-        private void _customersLabel_Click(object sender, System.EventArgs e)
-        {
-            if (_customersView == null)
-                _customersView = new CustomersView();
-
-            _customersView.Show();
         }
 
         private RouteView _routeView;

@@ -1,6 +1,4 @@
-﻿using MSS.WinMobile.Domain.Models;
-
-namespace MSS.WinMobile.UI.Views
+﻿namespace MSS.WinMobile.UI.Views
 {
     partial class RouteView
     {
@@ -65,7 +63,7 @@ namespace MSS.WinMobile.UI.Views
             this._createOrderIcon.PressedImage = null;
             this._createOrderIcon.Size = new System.Drawing.Size(24, 24);
             this._createOrderIcon.TabIndex = 0;
-            this._createOrderIcon.Click += new System.EventHandler(this._createOrderIcon_Click);
+            this._createOrderIcon.Click += new System.EventHandler(this.CreateOrderClick);
             // 
             // RouteView
             // 
@@ -75,7 +73,7 @@ namespace MSS.WinMobile.UI.Views
             this.Controls.Add(this._routeVirtualListBox);
             this.Controls.Add(this._actionPanel);
             this.Name = "RouteView";
-            this.Load += new System.EventHandler(this.RouteView_Load);
+            this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -1,105 +1,63 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
     public partial class OrderView : Form, IOrderView
     {
         private OrderPresenter _presenter;
-        private readonly RoutePoint _routePoint;
-        private Order _order;
+        private readonly int _routePointId;
 
         public OrderView()
         {
             InitializeComponent();
         }
 
-        public OrderView(RoutePoint routePoint)
+        public OrderView(int routePointId)
             :this()
         {
-            _routePoint = routePoint;
+            _routePointId = routePointId;
         }
 
         public void DisplayErrors(string error)
         {
-            notification.Critical = true;
-            notification.Text = error;
-            notification.Visible = true;
-        }
-
-        public void SetOrder(Order order)
-        {
-            _order = order;
-            _noTextBox.Text = _order.Id.ToString(CultureInfo.InvariantCulture);
-            _dateTextBox.Text = _order.Date.ToString(CultureInfo.InvariantCulture);
-            if (_order.Customer != null)
-                _customerLookUpBox.Label = _order.Customer.Name;
-            if (_order.ShippingAddress != null)
-                _shippingAddressLookUpBox.Label = _order.ShippingAddress.Address;
-            if (_order.PriceList != null)
-                _priceLookUpBox.Label = _order.PriceList.Name;
-            if (_order.Warehouse != null)
-                _warehouseLookUpBox.Label = _order.Warehouse.Address;
+            throw new NotImplementedException();
         }
 
         private void OrderView_Load(object sender, EventArgs e)
         {
             if (_presenter == null)
             {
-                _presenter = new OrderPresenter(this, _routePoint);
+                _presenter = new OrderPresenter(this, _routePointId);
                 _presenter.InitializeView();
             }
         }
 
-        private void _customerLookUpBox_LookUp(Controls.LookUpBox sender)
+        private void PriceListLookUp(Controls.LookUpBox sender)
         {
-            using (var customerLookUpView = new CustomerLookUpView())
+            using (var priceListLookUpView = new PriceListLookUpView())
             {
-                if (DialogResult.OK == customerLookUpView.ShowDialog())
+                if (DialogResult.OK == priceListLookUpView.ShowDialog())
                 {
-                    Customer customer = customerLookUpView.GetSelectedCustomer();
-                    _order.SetCustomer(customer);
-
-                    _customerLookUpBox.Label = customer.Name;
-                    _shippingAddressLookUpBox.Label = string.Empty;
+                    int priceListId = priceListLookUpView.GetSelectedId();
+                    _presenter.SetPriceList(priceListId);
                 }
             }
         }
 
-        private void _addressLookUpBox_LookUp(Controls.LookUpBox sender)
+        private void WarehouseLookUp(Controls.LookUpBox sender)
         {
-            if (_order.Customer != null)
+            using (var warehouseLookUpView = new WarehouseLookUpView())
             {
-                using (
-                    var shippingAddressLookUpView =
-                        new ShippingAddressLookUpView(_order.Customer))
+                if (DialogResult.OK == warehouseLookUpView.ShowDialog())
                 {
-                    if (DialogResult.OK == shippingAddressLookUpView.ShowDialog())
-                    {
-                        ShippingAddress shippingAddress = shippingAddressLookUpView.GetSelectedShippingAddress();
-                        _order.SetShippingAddress(shippingAddress);
-                        _shippingAddressLookUpBox.Label = shippingAddress.Address;
-                    }
+                    int warehouseListId = warehouseLookUpView.GetSelectedId();
+                    _presenter.SetWarehouse(warehouseListId);
                 }
             }
-            else
-            {
-                notification.Text = "In first you should select a customer";
-                notification.Visible = true;
-            }
-        }
-
-        private void _priceLookUpBox_LookUp(Controls.LookUpBox sender)
-        {
-
-        }
-
-        private void _warehouseLookUpBox_LookUp(Controls.LookUpBox sender)
-        {
-
         }
 
         private void _okButton_Click(object sender, EventArgs e)
@@ -118,6 +76,46 @@ namespace MSS.WinMobile.UI.Views
                 Close();
                 Dispose();
             }
+        }
+
+        public void SetNumber(string number)
+        {
+            _noTextBox.Text = number;
+        }
+
+        public void SetDate(DateTime date)
+        {
+            _dateTextBox.Text = date.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public void SetCustomer(string name)
+        {
+            _customerTextBox.Text = name;
+        }
+
+        public void SetShippingAddress(string address)
+        {
+            _shippingAddressTextBox.Text = address;
+        }
+
+        public void SetPriceList(string name)
+        {
+            _priceLookUpBox.Label = name;
+        }
+
+        public void SetWarehouse(string address)
+        {
+            _warehouseLookUpBox.Label = address;
+        }
+
+        public void SetItemCount(int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetSelectedId()
+        {
+            throw new NotImplementedException();
         }
     }
 }

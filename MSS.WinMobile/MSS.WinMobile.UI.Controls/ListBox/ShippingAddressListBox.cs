@@ -1,11 +1,10 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+﻿using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public class ShippingAddressListBox : VirtualListBox<ShippingAddress>
+    public class ShippingAddressListBox : VirtualListBox
     {
-        protected override VirtualListBoxItem<ShippingAddress> NewItem()
+        protected override VirtualListBoxItem NewItem()
         {
             return new ShippingAddressListBoxItem();
         }

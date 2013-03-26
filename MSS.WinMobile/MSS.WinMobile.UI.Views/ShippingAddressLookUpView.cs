@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -9,10 +10,10 @@ namespace MSS.WinMobile.UI.Views
     {
         private ShippingAddressLookUpPresenter _presenter;
 
-        private readonly Customer _customer;
-        public ShippingAddressLookUpView(Customer customer)
+        private readonly int _customerId;
+        public ShippingAddressLookUpView(int customerId)
         {
-            _customer = customer;
+            _customerId = customerId;
             InitializeComponent();
         }
 
@@ -25,44 +26,52 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                shippingAddressListBox.ItemDataNeeded += shippingAddressListBox_ItemDataNeeded;
-                shippingAddressListBox.ItemSelected += shippingAddressListBox_ItemSelected;
-                _presenter = new ShippingAddressLookUpPresenter(this, _customer);
+                shippingAddressListBox.ItemDataNeeded += ItemDataNeeded;
+                shippingAddressListBox.ItemSelected += ItemSelected;
+                _presenter = new ShippingAddressLookUpPresenter(this, _customerId);
                 _presenter.InitializeView();
             }
         }
 
-        private ShippingAddress _selectedShippingAddress;
-        public ShippingAddress GetSelectedShippingAddress()
+        void ItemSelected(object sender, VirtualListBoxItem item)
         {
-            return _selectedShippingAddress;
+            _presenter.SelectItem(item.Index);
         }
 
-        void shippingAddressListBox_ItemSelected(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem<ShippingAddress> item)
+        void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            _selectedShippingAddress = item.Data;
+            var shippingAddressListBoxItem = item as ShippingAddressListBoxItem;
+            if (shippingAddressListBoxItem != null)
+            {
+                shippingAddressListBoxItem.SetAddress(_presenter.GetItemName(item.Index));
+            }
         }
 
-        void shippingAddressListBox_ItemDataNeeded(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem<ShippingAddress> item)
-        {
-            item.Data = _presenter.GetShippingAddress(item.Index);
-        }
-
-        private void _cancelButton_Click(object sender, EventArgs e)
+        private void CancelClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void _okButton_Click(object sender, EventArgs e)
+        private void OkClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        public void SetShippingAddressCount(int count)
+        public void DisplayErrors(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetItemCount(int count)
         {
             shippingAddressListBox.SetListSize(count);
+        }
+
+        public int GetSelectedId()
+        {
+            return _presenter.GetSelectedItemId();
         }
     }
 }

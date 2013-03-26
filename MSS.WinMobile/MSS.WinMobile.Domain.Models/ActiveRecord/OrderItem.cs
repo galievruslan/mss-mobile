@@ -74,5 +74,12 @@ namespace MSS.WinMobile.Domain.Models
             queryObject.Where(Table.Fields.ID, new Equals(id));
             return queryObject.FirstOrDefault();
         }
+
+        public static QueryObject<OrderItem> GetByOrder(Order order)
+        {
+            return
+                QueryObjectFactory.CreateQueryObject<OrderItem>()
+                                  .Where(Table.Fields.ORDER_ID, new Equals(order.Id));
+        }
     }
 }

@@ -55,9 +55,15 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Warehouse GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Warehouse>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return
+                QueryObjectFactory.CreateQueryObject<Warehouse>()
+                                  .Where(Table.Fields.ID, new Equals(id))
+                                  .FirstOrDefault();
+        }
+
+        public static QueryObject<Warehouse> GetAll()
+        {
+            return QueryObjectFactory.CreateQueryObject<Warehouse>();
         }
     }
 }

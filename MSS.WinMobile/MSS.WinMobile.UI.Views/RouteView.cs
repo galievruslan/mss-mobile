@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
-using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -15,24 +15,29 @@ namespace MSS.WinMobile.UI.Views
             InitializeComponent();
         }
 
-        void _routeVirtualListBox_ItemDataNeeded(object sender, VirtualListBoxItem<RoutePoint> item)
+        void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            item.Data = _presenter.GetRoutePoint(item.Index);
+            var pointListBoxItem = item as RoutePointListBoxItem;
+            if (pointListBoxItem != null)
+            {
+                pointListBoxItem.SetName(_presenter.GetItemName(item.Index));
+            }
         }
 
-        public void SetRoutePointCount(int count)
-        {
-            _routeVirtualListBox.SetListSize(count);
-        }
-
-        private void RouteView_Load(object sender, EventArgs e)
+        private void ViewLoad(object sender, EventArgs e)
         {
             if (_presenter == null)
             {
-                _routeVirtualListBox.ItemDataNeeded += _routeVirtualListBox_ItemDataNeeded;
+                _routeVirtualListBox.ItemSelected += ItemSelected;
+                _routeVirtualListBox.ItemDataNeeded += ItemDataNeeded;
                 _presenter = new RoutePresenter(this);
                 _presenter.InitializeView();
             }
+        }
+
+        void ItemSelected(object sender, VirtualListBoxItem item)
+        {
+            _presenter.SelectItem(item.Index);
         }
 
         public void DisplayErrors(string error)
@@ -40,10 +45,20 @@ namespace MSS.WinMobile.UI.Views
             
         }
 
-        private void _createOrderIcon_Click(object sender, EventArgs e)
+        private void CreateOrderClick(object sender, EventArgs e)
         {
-            var orderView = new OrderView(_presenter.GetRoutePoint(_routeVirtualListBox.SelectedIndex));
+            var orderView = new OrderView(_presenter.GetSelectedItemId());
             orderView.Show();
+        }
+
+        public void SetItemCount(int count)
+        {
+            _routeVirtualListBox.SetListSize(count);
+        }
+
+        public int GetSelectedId()
+        {
+            return _presenter.GetSelectedItemId();
         }
     }
 }

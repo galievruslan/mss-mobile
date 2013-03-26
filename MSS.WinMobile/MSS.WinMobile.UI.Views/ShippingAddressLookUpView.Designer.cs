@@ -55,7 +55,7 @@
             this._okButton.Size = new System.Drawing.Size(72, 20);
             this._okButton.TabIndex = 2;
             this._okButton.Text = "Ok";
-            this._okButton.Click += new System.EventHandler(this._okButton_Click);
+            this._okButton.Click += new System.EventHandler(this.OkClick);
             // 
             // _cancelButton
             // 
@@ -67,7 +67,7 @@
             this._cancelButton.Size = new System.Drawing.Size(72, 20);
             this._cancelButton.TabIndex = 3;
             this._cancelButton.Text = "Cancel";
-            this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
+            this._cancelButton.Click += new System.EventHandler(this.CancelClick);
             // 
             // searchPanel
             // 
@@ -112,6 +112,5 @@
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
         private MSS.WinMobile.UI.Controls.ListBox.ShippingAddressListBox shippingAddressListBox;
-
     }
 }

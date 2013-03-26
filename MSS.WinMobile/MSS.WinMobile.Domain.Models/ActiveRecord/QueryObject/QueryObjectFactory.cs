@@ -133,7 +133,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             }
             else if (typeof(T) == typeof(Warehouse))
             {
-                tableName = Category.Table.TABLE_NAME;
+                tableName = Warehouse.Table.TABLE_NAME;
                 fieldsNames = new[]
                     {
                         Warehouse.Table.Fields.ID, Warehouse.Table.Fields.ADDRESS

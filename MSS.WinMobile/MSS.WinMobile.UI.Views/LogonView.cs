@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {

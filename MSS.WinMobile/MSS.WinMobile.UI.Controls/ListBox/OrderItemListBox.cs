@@ -1,11 +1,10 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+﻿using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public class OrderItemListBox : VirtualListBox<OrderItem>
+    public class OrderItemListBox : VirtualListBox
     {
-        protected override VirtualListBoxItem<OrderItem> NewItem()
+        protected override VirtualListBoxItem NewItem()
         {
             return new OrderItemListBoxItem();
         }
