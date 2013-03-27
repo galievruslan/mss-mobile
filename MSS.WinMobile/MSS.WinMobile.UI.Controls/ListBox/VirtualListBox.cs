@@ -104,7 +104,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         private void ListBoxItemSelected(VirtualListBoxItem sender)
         {
             // return if listbox doesn't contains data
-            if (sender.Empty || sender.Index >= _itemCount)
+            if (sender.Index >= _itemCount)
                 return;
 
             foreach (var item in Items)

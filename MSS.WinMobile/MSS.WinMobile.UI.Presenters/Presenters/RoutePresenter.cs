@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
@@ -36,9 +37,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _selectedRoutePoint = _cache.RetrieveElement(index);
         }
 
-        public string GetItemName(int index)
+        public IDictionary<string, string> GetItemData(int index)
         {
-            return _cache.RetrieveElement(index).ShippingAddress.Name;
+            RoutePoint item = _cache.RetrieveElement(index);
+            return new Dictionary<string, string> { { "Name", item.ShippingAddress.Name } };
         }
 
         public int GetSelectedItemId()

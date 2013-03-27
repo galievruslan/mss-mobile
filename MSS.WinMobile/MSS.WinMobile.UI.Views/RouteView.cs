@@ -20,7 +20,7 @@ namespace MSS.WinMobile.UI.Views
             var pointListBoxItem = item as RoutePointListBoxItem;
             if (pointListBoxItem != null)
             {
-                pointListBoxItem.SetName(_presenter.GetItemName(item.Index));
+                pointListBoxItem.SetData(_presenter.GetItemData(item.Index));
             }
         }
 

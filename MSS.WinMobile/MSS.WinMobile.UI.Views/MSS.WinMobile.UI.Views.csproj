@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PickUpProductView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PickUpProductView.Designer.cs">
+      <DependentUpon>PickUpProductView.cs</DependentUpon>
+    </Compile>
     <Compile Include="WarehouseLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PickUpProductView.resx">
+      <DependentUpon>PickUpProductView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WarehouseLookUpView.resx">
       <DependentUpon>WarehouseLookUpView.cs</DependentUpon>
     </EmbeddedResource>

@@ -4,16 +4,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 {
     public class WarehouseListBoxItem : VirtualListBoxItem
     {
-        private string _address;
-        public void SetAddress(string address)
-        {
-            _address = address;
-            Empty = false;
-        }
+        private const string AddressKey = "Address";
 
         protected override void DrawItem(Graphics graphics, Rectangle rectangle)
         {
-            graphics.DrawString(_address, Constants.Font,
+            string address = AddressKey;
+            if (Data.ContainsKey(AddressKey))
+                address = Data[AddressKey];
+
+            graphics.DrawString(address, Constants.Font,
                                 IsSelected
                                     ? new SolidBrush(Constants.ColorFontSelected)
                                     : new SolidBrush(Constants.ColorFontUnSelected),

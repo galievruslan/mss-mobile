@@ -37,7 +37,7 @@ namespace MSS.WinMobile.Domain.Models
             {
                 public const string ID = "Id";
                 public const string NAME = "Name";
-                public const string CATEGORY_ID = "Category_Id";
+                public const string CATEGORY_ID = "Categoty_Id";
             }    
         }
 

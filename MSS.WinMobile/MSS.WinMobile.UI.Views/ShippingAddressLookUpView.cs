@@ -43,7 +43,7 @@ namespace MSS.WinMobile.UI.Views
             var shippingAddressListBoxItem = item as ShippingAddressListBoxItem;
             if (shippingAddressListBoxItem != null)
             {
-                shippingAddressListBoxItem.SetAddress(_presenter.GetItemName(item.Index));
+                shippingAddressListBoxItem.SetData(_presenter.GetItemData(item.Index));
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -59,6 +60,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _view.SetWarehouse(_order.Warehouse != null ? _order.Warehouse.Address : string.Empty);
         }
 
+        public int GetPriceListId()
+        {
+            if (_order.PriceList != null)
+                return _order.PriceList.Id;
+
+            throw new PriceListEmptyException();
+        }
+
+        public IDictionary<string, string> GetItemData(int index)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Save()
         {
             throw new NotImplementedException();
@@ -68,5 +82,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class PriceListEmptyException : Exception
+    {
     }
 }

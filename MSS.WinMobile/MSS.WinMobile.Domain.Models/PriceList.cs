@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.Domain.Models
+﻿using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+
+namespace MSS.WinMobile.Domain.Models
 {
     public partial class PriceList
     {
@@ -9,6 +11,11 @@
         }
 
         public string Name { get; private set; }
+
+        public QueryObject<ProductsPrice> GetProductsPrices()
+        {
+            return ProductsPrice.GetByPriceList(this);
+        }
 
         public override int GetHashCode()
         {

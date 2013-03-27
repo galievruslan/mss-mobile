@@ -10,17 +10,27 @@ namespace MSS.WinMobile.Domain.Models
     {
         internal ProductsPrice(IDictionary<string, object> dictionary)
         {
+            // Fill RoutePoint object's fields
             if (dictionary.ContainsKey(Table.Fields.ID))
                 Id = (int)dictionary[Table.Fields.ID];
-
             if (dictionary.ContainsKey(Table.Fields.PRODUCT_ID))
                 ProductId = (int) dictionary[Table.Fields.PRODUCT_ID];
-
             if (dictionary.ContainsKey(Table.Fields.PRICE_LIST_ID))
                 PriceListId = (int)dictionary[Table.Fields.PRICE_LIST_ID];
-
             if (dictionary.ContainsKey(Table.Fields.VALUE))
                 Price = (decimal)dictionary[Table.Fields.VALUE];
+
+            // Fill ProductPrice's Product object if exist
+            string productKeyPrefix = string.Format("{0}_", Product.Table.TABLE_NAME);
+            var productDictionary =
+                dictionary.Where(pair => pair.Key.StartsWith(productKeyPrefix))
+                          .ToArray()
+                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(productKeyPrefix, ""),
+                                        keyValuePair => keyValuePair.Value);
+            if (productDictionary.Any())
+            {
+                Product = new Product(productDictionary);
+            }
         }
 
         public static class Table
@@ -69,9 +79,15 @@ namespace MSS.WinMobile.Domain.Models
 
         public static ProductsPrice GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<ProductsPrice>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return 
+                QueryObjectFactory.CreateQueryObject<ProductsPrice>()
+                                  .Where(Table.Fields.ID, new Equals(id))
+                                  .FirstOrDefault();
+        }
+
+        public static QueryObject<ProductsPrice> GetByPriceList(PriceList priceList)
+        {
+            return new ProductPriceQueryObject().Where(Table.Fields.PRICE_LIST_ID, new Equals(priceList.Id));
         }
     }
 }

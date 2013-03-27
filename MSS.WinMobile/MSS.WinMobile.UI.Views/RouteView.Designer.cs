@@ -39,10 +39,10 @@
             // 
             this._routeVirtualListBox.BackColor = System.Drawing.Color.White;
             this._routeVirtualListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._routeVirtualListBox.Location = new System.Drawing.Point(0, 30);
+            this._routeVirtualListBox.Location = new System.Drawing.Point(0, 24);
             this._routeVirtualListBox.Name = "_routeVirtualListBox";
             this._routeVirtualListBox.SelectedIndex = 0;
-            this._routeVirtualListBox.Size = new System.Drawing.Size(240, 264);
+            this._routeVirtualListBox.Size = new System.Drawing.Size(240, 270);
             this._routeVirtualListBox.TabIndex = 0;
             // 
             // _actionPanel
@@ -51,17 +51,17 @@
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._actionPanel.Location = new System.Drawing.Point(0, 0);
             this._actionPanel.Name = "_actionPanel";
-            this._actionPanel.Size = new System.Drawing.Size(240, 30);
+            this._actionPanel.Size = new System.Drawing.Size(240, 24);
             // 
             // _createOrderIcon
             // 
             this._createOrderIcon.BackColor = System.Drawing.Color.White;
             this._createOrderIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_createOrderIcon.BackgroundImage")));
             this._createOrderIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._createOrderIcon.Location = new System.Drawing.Point(3, 3);
+            this._createOrderIcon.Location = new System.Drawing.Point(2, 2);
             this._createOrderIcon.Name = "_createOrderIcon";
             this._createOrderIcon.PressedImage = null;
-            this._createOrderIcon.Size = new System.Drawing.Size(24, 24);
+            this._createOrderIcon.Size = new System.Drawing.Size(20, 20);
             this._createOrderIcon.TabIndex = 0;
             this._createOrderIcon.Click += new System.EventHandler(this.CreateOrderClick);
             // 

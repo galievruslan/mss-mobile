@@ -110,12 +110,22 @@ namespace MSS.WinMobile.UI.Views
 
         public void SetItemCount(int count)
         {
-            throw new NotImplementedException();
+            itemsVirtualListBox.SetListSize(count);
         }
 
         public int GetSelectedId()
         {
             throw new NotImplementedException();
+        }
+
+        private void AddClick(object sender, EventArgs e)
+        {
+            using (var pickUpProductView = new PickUpProductView(_presenter.GetPriceListId()))
+            {
+                if (DialogResult.OK == pickUpProductView.ShowDialog())
+                {
+                }
+            }
         }
     }
 }

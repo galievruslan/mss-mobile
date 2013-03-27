@@ -63,11 +63,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\PickUpProductPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
+    <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
     <Compile Include="Presenters\Exceptions\NoSelectedItemsException.cs" />
     <Compile Include="Presenters\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\PriceListLookUpPresenter.cs" />
     <Compile Include="Views\IListView.cs" />
+    <Compile Include="Views\IPickUpProductView.cs" />
     <Compile Include="Views\IWarehouseLookUpView.cs" />
     <Compile Include="Views\IPriceListLookUpView.cs" />
     <Compile Include="Presenters\DataRetrievers\WarehouseRetriever.cs" />

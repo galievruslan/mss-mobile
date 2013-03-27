@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Collections.Generic;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -33,9 +34,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _selectedShippingAddress = _cache.RetrieveElement(index);
         }
 
-        public string GetItemName(int index)
+        public IDictionary<string, string> GetItemData(int index)
         {
-            return _cache.RetrieveElement(index).Name;
+            ShippingAddress item = _cache.RetrieveElement(index);
+            return new Dictionary<string, string> { { "Address", item.Address } };
         }
 
         public int GetSelectedItemId()

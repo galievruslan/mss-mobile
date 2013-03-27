@@ -33,7 +33,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         protected OrderQueryObject(QueryObject<Order> queryObject) : base(queryObject)
         {
-            throw new NotSupportedException("OrderQueryObject can't wrap another QuetyObjects");
+            throw new NotSupportedException("OrderQueryObject can't wrap another QueryObjects");
         }
 
         public override string ToString()

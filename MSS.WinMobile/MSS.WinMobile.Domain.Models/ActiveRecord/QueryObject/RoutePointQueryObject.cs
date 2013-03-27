@@ -25,7 +25,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         protected RoutePointQueryObject(QueryObject<RoutePoint> queryObject) : base(queryObject)
         {
-            throw new NotSupportedException("RoutePointQueryObject can't wrap another QuetyObjects");
+            throw new NotSupportedException("RoutePointQueryObject can't wrap another QueryObjects");
         }
 
         public override string ToString()

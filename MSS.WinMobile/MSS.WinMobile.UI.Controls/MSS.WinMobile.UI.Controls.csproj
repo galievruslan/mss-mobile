@@ -57,7 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListBox\ListBoxItems\ProductPriceListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBox\PriceListListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBox\ProductPriceListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ListBox\WarehouseListBox.cs">

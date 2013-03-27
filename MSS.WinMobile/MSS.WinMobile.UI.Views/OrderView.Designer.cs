@@ -30,6 +30,7 @@ namespace MSS.WinMobile.UI.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderView));
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
             this._shippingAddressTextBox = new System.Windows.Forms.TextBox();
@@ -45,7 +46,9 @@ namespace MSS.WinMobile.UI.Views
             this._noLabel = new System.Windows.Forms.Label();
             this._dateLabel = new System.Windows.Forms.Label();
             this._detailsTab = new System.Windows.Forms.TabPage();
-            this._itemsVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.OrderItemListBox();
+            this.itemsVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.OrderItemListBox();
+            this.itemsActionPanel = new System.Windows.Forms.Panel();
+            this.addButton = new MSS.WinMobile.UI.Controls.PictureButton();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
             this._actionPanel = new System.Windows.Forms.Panel();
@@ -54,6 +57,7 @@ namespace MSS.WinMobile.UI.Views
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
             this._detailsTab.SuspendLayout();
+            this.itemsActionPanel.SuspendLayout();
             this._notesTab.SuspendLayout();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
@@ -195,21 +199,42 @@ namespace MSS.WinMobile.UI.Views
             // 
             // _detailsTab
             // 
-            this._detailsTab.Controls.Add(this._itemsVirtualListBox);
+            this._detailsTab.Controls.Add(this.itemsVirtualListBox);
+            this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
             this._detailsTab.Size = new System.Drawing.Size(240, 241);
             this._detailsTab.Text = "Details";
             // 
-            // _itemsVirtualListBox
+            // itemsVirtualListBox
             // 
-            this._itemsVirtualListBox.BackColor = System.Drawing.Color.White;
-            this._itemsVirtualListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._itemsVirtualListBox.Location = new System.Drawing.Point(0, 0);
-            this._itemsVirtualListBox.Name = "_itemsVirtualListBox";
-            this._itemsVirtualListBox.SelectedIndex = -1;
-            this._itemsVirtualListBox.Size = new System.Drawing.Size(240, 241);
-            this._itemsVirtualListBox.TabIndex = 0;
+            this.itemsVirtualListBox.BackColor = System.Drawing.Color.White;
+            this.itemsVirtualListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemsVirtualListBox.Location = new System.Drawing.Point(0, 24);
+            this.itemsVirtualListBox.Name = "itemsVirtualListBox";
+            this.itemsVirtualListBox.SelectedIndex = -1;
+            this.itemsVirtualListBox.Size = new System.Drawing.Size(240, 217);
+            this.itemsVirtualListBox.TabIndex = 0;
+            // 
+            // itemsActionPanel
+            // 
+            this.itemsActionPanel.Controls.Add(this.addButton);
+            this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
+            this.itemsActionPanel.Name = "itemsActionPanel";
+            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // addButton
+            // 
+            this.addButton.BackColor = System.Drawing.Color.White;
+            this.addButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("addButton.BackgroundImage")));
+            this.addButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.addButton.Location = new System.Drawing.Point(2, 2);
+            this.addButton.Name = "addButton";
+            this.addButton.PressedImage = null;
+            this.addButton.Size = new System.Drawing.Size(20, 20);
+            this.addButton.TabIndex = 0;
+            this.addButton.Click += new System.EventHandler(this.AddClick);
             // 
             // _notesTab
             // 
@@ -274,6 +299,7 @@ namespace MSS.WinMobile.UI.Views
             this.tabControl.ResumeLayout(false);
             this._generalTab.ResumeLayout(false);
             this._detailsTab.ResumeLayout(false);
+            this.itemsActionPanel.ResumeLayout(false);
             this._notesTab.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -297,11 +323,13 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Label _priceLabel;
         private System.Windows.Forms.Label _addressLabel;
         private System.Windows.Forms.Label _customerLabel;
-        private MSS.WinMobile.UI.Controls.ListBox.OrderItemListBox _itemsVirtualListBox;
+        private MSS.WinMobile.UI.Controls.ListBox.OrderItemListBox itemsVirtualListBox;
         private System.Windows.Forms.TextBox _notesTextBox;
         private MSS.WinMobile.UI.Controls.LookUpBox _warehouseLookUpBox;
         private MSS.WinMobile.UI.Controls.LookUpBox _priceLookUpBox;
         private System.Windows.Forms.TextBox _shippingAddressTextBox;
         private System.Windows.Forms.TextBox _customerTextBox;
+        private System.Windows.Forms.Panel itemsActionPanel;
+        private MSS.WinMobile.UI.Controls.PictureButton addButton;
     }
 }

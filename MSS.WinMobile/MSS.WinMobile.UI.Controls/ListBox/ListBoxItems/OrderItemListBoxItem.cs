@@ -4,16 +4,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 {
     public class OrderItemListBoxItem : VirtualListBoxItem
     {
-        private string _name;
-        public void SetName(string name)
-        {
-            _name = name;
-            Empty = false;
-        }
+        private const string NameKey = "Name";
 
         protected override void DrawItem(Graphics graphics, Rectangle rectangle)
         {
-            graphics.DrawString(_name, Constants.Font,
+            string name = NameKey;
+            if (Data.ContainsKey(NameKey))
+                name = Data[NameKey];
+
+            graphics.DrawString(name, Constants.Font,
                                 IsSelected
                                     ? new SolidBrush(Constants.ColorFontSelected)
                                     : new SolidBrush(Constants.ColorFontUnSelected),

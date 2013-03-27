@@ -36,7 +36,7 @@ namespace MSS.WinMobile.UI.Views
             var priceListListBoxItem = item as WarehouseListBoxItem;
             if (priceListListBoxItem != null)
             {
-                priceListListBoxItem.SetAddress(_presenter.GetItemAddress(item.Index));
+                priceListListBoxItem.SetData(_presenter.GetItemData(item.Index));
             }
         }
 

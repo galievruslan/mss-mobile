@@ -36,7 +36,7 @@ namespace MSS.WinMobile.UI.Views
             var customerListBoxItem = item as CustomerListBoxItem;
             if (customerListBoxItem != null)
             {
-                customerListBoxItem.SetName(_presenter.GetItemName(item.Index));
+                customerListBoxItem.SetData(_presenter.GetItemData(item.Index));
             }
         }
 

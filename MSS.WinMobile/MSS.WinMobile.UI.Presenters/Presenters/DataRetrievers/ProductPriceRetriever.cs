@@ -1,0 +1,42 @@
+﻿using System;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+
+namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
+{
+    public class ProductsPriceRetriever : IDataPageRetriever<ProductsPrice>
+    {
+        private readonly PriceList _priceList;
+        public ProductsPriceRetriever(PriceList priceList)
+        {
+            _priceList = priceList;
+        }
+
+        private int _cachedCount;
+        public int Count
+        {
+            get
+            {
+                if (_cachedCount == 0)
+                    _cachedCount = _priceList.GetProductsPrices().Count();
+                return _cachedCount;
+            }
+        }
+
+        public ProductsPrice[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
+        {
+            return
+                _priceList.GetProductsPrices()
+                          .OrderBy(
+                              string.Format("{0}_{1}", Product.Table.TABLE_NAME, Product.Table.Fields.NAME),
+                              OrderDirection.Asceding)
+                          .Skip(lowerPageBoundary)
+                          .Take(rowsPerPage)
+                          .ToArray();
+        }
+    }
+}

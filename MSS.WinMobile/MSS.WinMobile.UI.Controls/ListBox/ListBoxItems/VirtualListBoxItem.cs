@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
@@ -41,13 +43,19 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
                 Selected.Invoke(this);
         }
 
+        protected IDictionary<string, string> Data; 
+        public void SetData(IDictionary<string, string> data)
+        {
+            Data = data;
+        }
+
         protected virtual void DrawItem(Graphics graphics, Rectangle rectangle)
         {
         }
 
         private void VirtualListBoxItem_Paint(object sender, PaintEventArgs e)
         {
-            if (Empty)
+            if (Data == null || !Data.Any())
                 return;
 
             e.Graphics.FillRectangle(
