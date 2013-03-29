@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using log4net;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
     public class QueryObject<T> : IEnumerable<T> where T : ActiveRecordBase
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(QueryObject<T>));
+
         public string TableName { get; protected set; }
         public string[] FieldsNames { get; protected set; }
 
@@ -49,33 +52,43 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         protected virtual T[] Execute()
         {
-            IDbConnection connection = ConnectionFactory.GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
-
-            using (connection.BeginTransaction())
+            try
             {
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    var result = new List<T>();
+                IDbConnection connection = ConnectionFactory.GetConnection();
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
 
-                    command.CommandText = ToString();
-                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
+
+                using (connection.BeginTransaction())
+                {
+                    using (IDbCommand command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        var result = new List<T>();
+
+                        command.CommandText = ToString();
+                        using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
                         {
-                            var dictionary = new Dictionary<string, object>();
-                            for (int i = 0; i < reader.FieldCount; i++)
+                            while (reader.Read())
                             {
-                                if (!reader.IsDBNull(i))
-                                    dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                                var dictionary = new Dictionary<string, object>();
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    if (!reader.IsDBNull(i))
+                                        dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                                }
+                                result.Add(ActiveRecordFactory.Create<T>(dictionary));
                             }
-                            result.Add(ActiveRecordFactory.Create<T>(dictionary));
                         }
+                        return result.ToArray();
                     }
-                    return result.ToArray();
                 }
             }
+            catch (Exception exception)
+            {
+                Log.Error(string.Format("Query: {0}", ToString()), exception);
+            }
+
+            return new T[0];
         }
 
         public IEnumerator<T> GetEnumerator()

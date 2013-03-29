@@ -33,7 +33,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions
 
         public Equals(DateTime value)
         {
-            _queryCondition = string.Format(" = '{0}'", value);
+            _queryCondition = string.Format(" = '{0}'", value.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 
         public override string ToString()

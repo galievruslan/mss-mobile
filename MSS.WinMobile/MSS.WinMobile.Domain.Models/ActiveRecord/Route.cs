@@ -68,8 +68,10 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Route GetByDate(DateTime date)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Route>();
-            return queryObject.Where(Table.Fields.DATE, new Equals(date)).FirstOrDefault();
+            return 
+                QueryObjectFactory.CreateQueryObject<Route>()
+                                  .Where(Table.Fields.DATE, new Equals(date))
+                                  .FirstOrDefault();
         }
     }
 }
