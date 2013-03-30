@@ -6,14 +6,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class PriceListRetriever : IDataPageRetriever<PriceList>
     {
-        private int _cachedCount;
         public int Count
         {
             get
             {
-                if (_cachedCount == 0)
-                    _cachedCount = PriceList.GetAll().Count();
-                return _cachedCount;
+                return PriceList.GetAll().Count();
             }
         }
 

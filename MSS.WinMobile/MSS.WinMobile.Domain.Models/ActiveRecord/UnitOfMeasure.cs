@@ -55,9 +55,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static UnitOfMeasure GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<UnitOfMeasure>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<UnitOfMeasure>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

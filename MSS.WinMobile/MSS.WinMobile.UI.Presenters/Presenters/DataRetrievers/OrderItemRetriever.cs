@@ -12,14 +12,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _order = order;
         }
 
-        private int _cachedCount;
         public int Count
         {
             get
             {
-                if (_cachedCount == 0)
-                    _cachedCount = _order.Items().Count();
-                return _cachedCount;
+                return _order.Items().Count();
             }
         }
 

@@ -16,14 +16,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _priceList = priceList;
         }
 
-        private int _cachedCount;
         public int Count
         {
-            get
-            {
-                if (_cachedCount == 0)
-                    _cachedCount = _priceList.GetProductsPrices().Count();
-                return _cachedCount;
+            get {
+                return _priceList.GetProductsPrices().Count();
             }
         }
 

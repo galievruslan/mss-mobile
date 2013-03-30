@@ -161,9 +161,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Order GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Order>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Order>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

@@ -56,9 +56,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Status GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Status>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Status>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

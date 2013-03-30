@@ -13,15 +13,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _route = route;
         }
 
-        private int _cachedCount;
         public int Count
         {
-            get
-            {
-                if (_cachedCount == 0)
-                    _cachedCount = _route.GetPoints().Count();
-                return _cachedCount;
-            }
+            get { return _route.GetPoints().Count(); }
         }
 
         public RoutePoint[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)

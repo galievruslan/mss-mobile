@@ -2,11 +2,14 @@
 using System.Linq;
 using System.Text;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
+using log4net;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 {
     public static class QueryObjectExtensions
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(QueryObjectExtensions));
+
         public static QueryObject<T> Where<T>(this QueryObject<T> queryObject, string fieldName, Condition condition) where T : ActiveRecordBase
         {
             if (!queryObject.FieldsNames.Contains(fieldName))
@@ -55,20 +58,31 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             queryStringBuilder.Append("SELECT COUNT(*)");
             queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", baseQueryObject, baseQueryObject.TableName));
 
-            IDbConnection connection = ConnectionFactory.GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
+            string commandText = queryStringBuilder.ToString();
+            Log.DebugFormat("Query execution requested ({0})", commandText);
 
-            using (connection.BeginTransaction())
+            int count;
+            if (!Cache.Contains(commandText))
             {
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 using (IDbCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = queryStringBuilder.ToString();
-                    object count = command.ExecuteScalar();
+                    command.CommandText = commandText;
 
-                    return (int) count;
+                    Log.DebugFormat("Query execution command prepared");
+                    object result = command.ExecuteScalar();
+                    Log.DebugFormat("Query execution command executed");
+
+                    count = (int) result;
+                    Cache.Add(commandText, count);
                 }
             }
+            else
+            {
+                count = Cache.Get<int>(commandText);
+            }
+
+            return count;
         }
     }
 }

@@ -69,9 +69,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static ShippingAddress GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<ShippingAddress>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<ShippingAddress>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
 
         public static QueryObject<ShippingAddress> GetByCustomer(Customer customer)

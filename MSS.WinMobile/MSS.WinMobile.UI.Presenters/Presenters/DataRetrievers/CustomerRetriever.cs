@@ -6,13 +6,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class CustomerRetriever : IDataPageRetriever<Customer>
     {
-        private int _cachedCount;
         public int Count {
             get
             {
-                if (_cachedCount == 0)
-                    _cachedCount = Customer.GetAll().Count();
-                return _cachedCount;
+                return Customer.GetAll().Count();
             }
         }
 

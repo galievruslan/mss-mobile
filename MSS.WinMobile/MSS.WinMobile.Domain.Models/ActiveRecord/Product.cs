@@ -71,9 +71,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Product GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Product>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Product>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

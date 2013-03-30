@@ -12,15 +12,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _customer = customer;
         }
 
-        private int _cachedCount;
         public int Count
         {
-            get
-            {
-                if (_cachedCount == 0)
-                    _cachedCount = _customer.ShippingAddresses().Count();
-                return _cachedCount;
-            }
+            get { return _customer.ShippingAddresses().Count(); }
         }
 
         public ShippingAddress[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)

@@ -52,35 +52,36 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         protected virtual T[] Execute()
         {
+            string commandText = ToString();
+            Log.DebugFormat("Query execution requested ({0})", commandText);
+
             try
             {
                 IDbConnection connection = ConnectionFactory.GetConnection();
-                if (connection.State != ConnectionState.Open)
-                    connection.Open();
-
-
-                using (connection.BeginTransaction())
+                using (IDbCommand command = connection.CreateCommand())
                 {
-                    using (IDbCommand command = connection.CreateCommand())
-                    {
-                        var result = new List<T>();
+                    var result = new List<T>();
+                    
+                    command.CommandText = commandText;
 
-                        command.CommandText = ToString();
-                        using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
+                    Log.DebugFormat("Query execution command prepared");
+                    using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
+                    {
+                        Log.DebugFormat("Query execution command executed");
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            Log.DebugFormat("Result row materialization started");
+                            var dictionary = new Dictionary<string, object>();
+                            for (int i = 0; i < reader.FieldCount; i++)
                             {
-                                var dictionary = new Dictionary<string, object>();
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    if (!reader.IsDBNull(i))
-                                        dictionary.Add(reader.GetName(i), reader.GetValue(i));
-                                }
-                                result.Add(ActiveRecordFactory.Create<T>(dictionary));
+                                if (!reader.IsDBNull(i))
+                                    dictionary.Add(reader.GetName(i), reader.GetValue(i));
                             }
+                            result.Add(ActiveRecordFactory.Create<T>(dictionary));
+                            Log.DebugFormat("Result row materialization finished");
                         }
-                        return result.ToArray();
                     }
+                    return result.ToArray();
                 }
             }
             catch (Exception exception)

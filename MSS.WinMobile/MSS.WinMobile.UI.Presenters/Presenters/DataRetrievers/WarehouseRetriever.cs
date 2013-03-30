@@ -6,14 +6,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class WarehouseRetriever : IDataPageRetriever<Warehouse>
     {
-        private int _cachedCount;
         public int Count
         {
             get
             {
-                if (_cachedCount == 0)
-                    _cachedCount = Warehouse.GetAll().Count();
-                return _cachedCount;
+                return Warehouse.GetAll().Count();
             }
         }
 

@@ -55,9 +55,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static Manager GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<Manager>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Manager>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

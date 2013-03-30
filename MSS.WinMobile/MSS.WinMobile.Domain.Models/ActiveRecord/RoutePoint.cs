@@ -91,15 +91,15 @@ namespace MSS.WinMobile.Domain.Models
 
         public static RoutePoint GetById(int id)
         {
-            var queryObject = QueryObjectFactory.CreateQueryObject<RoutePoint>();
-            queryObject.Where(Table.Fields.ID, new Equals(id));
-            return queryObject.FirstOrDefault();
+            return
+                QueryObjectFactory.CreateQueryObject<RoutePoint>()
+                                  .Where(Table.Fields.ID, new Equals(id))
+                                  .FirstOrDefault();
         }
 
         public static QueryObject<RoutePoint> GetByRoute(Route route)
         {
-            var queryObject = new RoutePointQueryObject();
-            return queryObject.Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
+            return new RoutePointQueryObject().Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
         }
     }
 }
