@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -8,28 +9,36 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class ProductsPrice : ActiveRecordBase
     {
-        internal ProductsPrice(IDictionary<string, object> dictionary)
+        internal ProductsPrice(IDataRecord record, string fieldPrefix)
         {
-            // Fill RoutePoint object's fields
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
-            if (dictionary.ContainsKey(Table.Fields.PRODUCT_ID))
-                ProductId = (int) dictionary[Table.Fields.PRODUCT_ID];
-            if (dictionary.ContainsKey(Table.Fields.PRICE_LIST_ID))
-                PriceListId = (int)dictionary[Table.Fields.PRICE_LIST_ID];
-            if (dictionary.ContainsKey(Table.Fields.VALUE))
-                Price = (decimal)dictionary[Table.Fields.VALUE];
-
-            // Fill ProductPrice's Product object if exist
-            string productKeyPrefix = string.Format("{0}_", Product.Table.TABLE_NAME);
-            var productDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(productKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(productKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (productDictionary.Any())
+            for (int i = 0; i < record.FieldCount; i++)
             {
-                Product = new Product(productDictionary);
+                if (record.IsDBNull(i))
+                    continue;
+
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
+
+                switch (fieldName)
+                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.PRICE_LIST_ID:
+                        {
+                            PriceListId = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.PRODUCT_ID:
+                        {
+                            ProductId = record.GetInt32(i);
+                            Product = new Product(record, Product.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                }
             }
         }
 

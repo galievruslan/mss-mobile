@@ -25,8 +25,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             return
                 _order.Items()
                          .OrderBy(Order.Table.Fields.ID, OrderDirection.Asceding)
-                         .Skip(lowerPageBoundary)
-                         .Take(rowsPerPage)
+                         .Page(lowerPageBoundary, rowsPerPage)
                          .ToArray();
         }
     }

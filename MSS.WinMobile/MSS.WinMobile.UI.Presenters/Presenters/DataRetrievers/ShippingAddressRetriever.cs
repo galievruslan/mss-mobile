@@ -22,8 +22,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             return
                 _customer.ShippingAddresses()
                          .OrderBy(ShippingAddress.Table.Fields.ADDRESS, OrderDirection.Asceding)
-                         .Skip(lowerPageBoundary)
-                         .Take(rowsPerPage)
+                         .Page(lowerPageBoundary, rowsPerPage)
                          .ToArray();
         }
     }

@@ -1,72 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
 {
     public static class ActiveRecordFactory
     {
-        public static T Create<T>(IDictionary<string, object> dictionary) where T : ActiveRecordBase
+        public static T Create<T>(IDataRecord dataRecord) where T : ActiveRecordBase
         {
             T activeRecord;
             if (typeof (T) == typeof(Category))
             {
-                activeRecord = new Category(dictionary) as T;
+                activeRecord = new Category(dataRecord, string.Empty) as T;
             }
             else if (typeof (T) == typeof (Customer))
             {
-                activeRecord = new Customer(dictionary) as T;
+                activeRecord = new Customer(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(Manager))
             {
-                activeRecord = new Manager(dictionary) as T;
+                activeRecord = new Manager(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(Order))
             {
-                activeRecord = new Order(dictionary) as T;
+                activeRecord = new Order(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(OrderItem))
             {
-                activeRecord = new OrderItem(dictionary) as T;
+                activeRecord = new OrderItem(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(PriceList))
             {
-                activeRecord = new PriceList(dictionary) as T;
+                activeRecord = new PriceList(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(Product))
             {
-                activeRecord = new Product(dictionary) as T;
+                activeRecord = new Product(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(ProductsPrice))
             {
-                activeRecord = new ProductsPrice(dictionary) as T;
+                activeRecord = new ProductsPrice(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(ProductsUnitOfMeasure))
             {
-                activeRecord = new ProductsUnitOfMeasure(dictionary) as T;
+                activeRecord = new ProductsUnitOfMeasure(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(Route))
             {
-                activeRecord = new Route(dictionary) as T;
+                activeRecord = new Route(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(RoutePoint))
             {
-                activeRecord = new RoutePoint(dictionary) as T;
+                activeRecord = new RoutePoint(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(ShippingAddress))
             {
-                activeRecord = new ShippingAddress(dictionary) as T;
+                activeRecord = new ShippingAddress(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(Status))
             {
-                activeRecord = new Status(dictionary) as T;
+                activeRecord = new Status(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(UnitOfMeasure))
             {
-                activeRecord = new UnitOfMeasure(dictionary) as T;
+                activeRecord = new UnitOfMeasure(dataRecord, string.Empty) as T;
             }
             else if (typeof(T) == typeof(Warehouse))
             {
-                activeRecord = new Warehouse(dictionary) as T;
+                activeRecord = new Warehouse(dataRecord, string.Empty) as T;
             }
             else
             {

@@ -30,8 +30,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                           .OrderBy(
                               string.Format("{0}_{1}", Product.Table.TABLE_NAME, Product.Table.Fields.NAME),
                               OrderDirection.Asceding)
-                          .Skip(lowerPageBoundary)
-                          .Take(rowsPerPage)
+                          .Page(lowerPageBoundary, rowsPerPage)
                           .ToArray();
         }
     }

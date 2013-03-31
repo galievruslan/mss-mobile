@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlServerCe;
-using System.IO;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
 {
@@ -126,48 +124,48 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         
         public static void Initialize(bool recreate)
         {
-            string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
-            string fileName = string.Empty;
-            string[] parameters = connectionString.Split(';');
-            foreach (var parameter in parameters)
-            {
-                string[] parameterKv = parameter.Split('=');
-                if (parameterKv[0] == "Data Source")
-                    fileName = parameterKv[1];
-            }
+            //string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            //string fileName = string.Empty;
+            //string[] parameters = connectionString.Split(';');
+            //foreach (var parameter in parameters)
+            //{
+            //    string[] parameterKv = parameter.Split('=');
+            //    if (parameterKv[0] == "Data Source")
+            //        fileName = parameterKv[1];
+            //}
 
-            if (recreate && File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-            
+            //if (recreate && File.Exists(fileName))
+            //{
+            //    File.Delete(fileName);
+            //}
+
             IDbConnection connection = ConnectionFactory.GetConnection();
-            if (connection.State != ConnectionState.Open)
-                connection.Open();
+            //if (connection.State != ConnectionState.Open)
+            //    connection.Open();
 
-            if (!File.Exists(fileName))
-            {
-                var sqlCeEngine = new SqlCeEngine(connectionString);
-                sqlCeEngine.CreateDatabase();
+            //if (!File.Exists(fileName))
+            //{
+            //    var sqlCeEngine = new System.Data.SQLite. SqlCeEngine(connectionString);
+            //    sqlCeEngine.CreateDatabase();
 
-                string schemaScript;
-                using (StreamReader reader = File.OpenText(Context.GetAppPath() + @"\Resources\Database\Schema.sqlce"))
-                {
-                    schemaScript = reader.ReadToEnd();
-                }
+            //    string schemaScript;
+            //    using (StreamReader reader = File.OpenText(Context.GetAppPath() + @"\Resources\Database\Schema.sqlce"))
+            //    {
+            //        schemaScript = reader.ReadToEnd();
+            //    }
 
-                using (IDbTransaction transaction = connection.BeginTransaction()) {
-                    using (IDbCommand command = connection.CreateCommand()) {
-                        string[] schemaStatements = schemaScript.Split(';');
-                        foreach (var schemaStatement in schemaStatements) {
-                            command.CommandText = schemaStatement;
-                            command.ExecuteNonQuery();
-                        }
+            //    using (IDbTransaction transaction = connection.BeginTransaction()) {
+            //        using (IDbCommand command = connection.CreateCommand()) {
+            //            string[] schemaStatements = schemaScript.Split(';');
+            //            foreach (var schemaStatement in schemaStatements) {
+            //                command.CommandText = schemaStatement;
+            //                command.ExecuteNonQuery();
+            //            }
 
-                        transaction.Commit();
-                    }
-                }
-            }
+            //            transaction.Commit();
+            //        }
+            //    }
+            //}
         }
     }
 }

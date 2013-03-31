@@ -11,11 +11,8 @@
         }
 
         public RoutePoint(int id, int routeId, int shippingAddressId, int statusId, int orderId)
+            :this(id, routeId, shippingAddressId, statusId)
         {
-            Id = id;
-            RouteId = routeId;
-            ShippingAddressId = shippingAddressId;
-            StatusId = statusId;
             OrderId = orderId;
         }
 
@@ -28,16 +25,7 @@
         public int? OrderId { get; private set; }
 
         private Order _order;
-        public Order Order
-        {
-            get
-            {
-                if (_order == null && OrderId != null)
-                    _order = Order.GetById((int)OrderId);
-
-                return _order;
-            }
-        }
+        public Order Order { get; private set; }
 
         private ShippingAddress _shippingAddress;
         public ShippingAddress ShippingAddress

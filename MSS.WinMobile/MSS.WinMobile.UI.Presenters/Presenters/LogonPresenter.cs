@@ -19,7 +19,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                ConfigurationManager.AppSettings["ServerPort"]));
         }
 
-        public void Logon()
+        public bool Logon()
         {
             bool errors = false;
             if (string.IsNullOrEmpty(_view.Account))
@@ -35,7 +35,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
 
             if (errors)
-                return;
+                return false;
 
             using (Server server = Server.Logon(_serverUri, _view.Account, _view.Password))
             {
@@ -48,6 +48,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                      Context.ManagerId.ToString(CultureInfo.InvariantCulture));
                 ConfigurationManager.Save();
             }
+
+            return true;
         }
 
         public void Cancel()

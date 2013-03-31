@@ -19,8 +19,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             return
                 PriceList.GetAll()
                         .OrderBy(PriceList.Table.Fields.NAME, OrderDirection.Asceding)
-                        .Skip(lowerPageBoundary)
-                        .Take(rowsPerPage)
+                        .Page(lowerPageBoundary, rowsPerPage)
                         .ToArray();
         }
     }

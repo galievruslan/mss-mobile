@@ -1,96 +1,80 @@
-CREATE TABLE [Categories] ([Id] int  NOT NULL  
+CREATE TABLE [Categories] ([Id] int  NOT NULL PRIMARY KEY 
 , [Name] nvarchar(255) NULL  
 , [Parent_Id] int  NULL  
+, FOREIGN KEY(Parent_Id) REFERENCES Categories(Id)
 );
-CREATE TABLE [Customers] ([Id] int  NOT NULL  
+CREATE TABLE [Customers] ([Id] int  NOT NULL PRIMARY KEY
 , [Name] nvarchar(255) NULL  
 );
-CREATE TABLE [Managers] ([Id] int  NOT NULL  
+CREATE TABLE [ShippingAddresses] ([Id] int  NOT NULL PRIMARY KEY
+, [Address] nvarchar(255) NULL  
+, [Name] nvarchar(255) NULL  
+, [Customer_Id] int  NULL  
+, FOREIGN KEY(Customer_Id) REFERENCES Customers(Id) 
+);
+CREATE TABLE [Managers] ([Id] int  NOT NULL PRIMARY KEY
 , [Name] nvarchar(255) NULL  
 );
-CREATE TABLE [OrderItems] ([Id] int  NOT NULL  
-, [Quantity] int  NULL  
-, [OrderId] int  NULL  
-, [Product_Id] int  NULL  
+CREATE TABLE [Products] ([Id] int  NOT NULL PRIMARY KEY
+, [Name] nvarchar(255) NULL  
+, [Category_Id] int  NULL  
 );
-CREATE TABLE [Orders] ([Id] int  NOT NULL  
+CREATE TABLE [UnitsOfMeasure] ([Id] int  NOT NULL PRIMARY KEY
+, [Name] nvarchar(255) NULL  
+);
+CREATE TABLE [PriceLists] ([Id] int  NOT NULL PRIMARY KEY
+, [Name] nvarchar(255) NULL  
+);
+CREATE TABLE [Warehouses] ([Id] int  NOT NULL PRIMARY KEY
+, [Address] nvarchar(255) NULL  
+);
+CREATE TABLE [Statuses] ([Id] int  NOT NULL PRIMARY KEY
+, [Name] nvarchar(255) NULL  
+);
+CREATE TABLE [Orders] ([Id] int  NOT NULL PRIMARY KEY
 , [Date] datetime  NULL  
 , [ShippingAddress_Id] int  NULL  
 , [Manager_Id] int  NULL  
 , [PriceList_Id] int  NULL  
 , [Warehouse_Id] int  NULL  
 , [Note] nvarchar(1024) NULL  
+, FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
+, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
+, FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
+, FOREIGN KEY(Warehouse_Id) REFERENCES Warehouses(Id)
 );
-CREATE TABLE [PriceLists] ([Id] int  NOT NULL  
-, [Name] nvarchar(255) NULL  
+CREATE TABLE [OrderItems] ([Id] int  NOT NULL PRIMARY KEY
+, [Quantity] int  NULL  
+, [OrderId] int  NULL  
+, [Product_Id] int  NULL  
+, FOREIGN KEY(OrderId) REFERENCES Orders(Id)
+, FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 );
-CREATE TABLE [Products] ([Id] int  NOT NULL  
-, [Name] nvarchar(255) NULL  
-, [Category_Id] int  NULL  
-);
-CREATE TABLE [ProductsPrices] ([Id] int  NOT NULL  
+CREATE TABLE [ProductsPrices] ([Id] int  NOT NULL PRIMARY KEY
 , [Price] numeric(8,2) NULL  
 , [Product_Id] int  NULL  
-, [PriceList_Id] int  NULL  
+, [PriceList_Id] int  NULL 
+, FOREIGN KEY(Product_Id) REFERENCES Products(Id)
+, FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id) 
 );
-CREATE TABLE [ProductsUnitOfMeasures] ([Id] int  NOT NULL  
+CREATE TABLE [ProductsUnitOfMeasures] ([Id] int  NOT NULL PRIMARY KEY
 , [Base] bit  NULL  
 , [Product_Id] int  NULL  
 , [UnitOfMeasure_Id] int  NULL  
+, FOREIGN KEY(Product_Id) REFERENCES Products(Id) 
+, FOREIGN KEY(UnitOfMeasure_Id) REFERENCES UnitsOfMeasure(Id) 
 );
-CREATE TABLE [RoutePoints] ([Id] int  NOT NULL  
+CREATE TABLE [Routes] ([Id] int  NOT NULL PRIMARY KEY
+, [Date] datetime  NULL  
+, [Manager_Id] int  NULL  
+, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id) 
+);
+CREATE TABLE [RoutePoints] ([Id] int  NOT NULL PRIMARY KEY
 , [Route_Id] int  NULL  
 , [ShippingAddress_Id] int  NULL  
 , [Order_Id] int  NULL 
 , [Status_Id] int  NULL  
+, FOREIGN KEY(Route_Id) REFERENCES Routes(Id) 
+, FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id) 
+, FOREIGN KEY(Status_Id) REFERENCES Statuses(Id) 
 );
-CREATE TABLE [Routes] ([Id] int  NOT NULL  
-, [Date] datetime  NULL  
-, [Manager_Id] int  NULL  
-);
-CREATE TABLE [ShippingAddresses] ([Id] int  NOT NULL  
-, [Address] nvarchar(255) NULL  
-, [Name] nvarchar(255) NULL  
-, [Customer_Id] int  NULL  
-);
-CREATE TABLE [Statuses] ([Id] int  NOT NULL  
-, [Name] nvarchar(255) NULL  
-);
-CREATE TABLE [UnitsOfMeasure] ([Id] int  NOT NULL  
-, [Name] nvarchar(255) NULL  
-);
-CREATE TABLE [Warehouses] ([Id] int  NOT NULL  
-, [Address] nvarchar(255) NULL  
-);
-ALTER TABLE [Categories] ADD CONSTRAINT [PK__Categories__0000000000000092] PRIMARY KEY ([Id]);
-ALTER TABLE [Customers] ADD CONSTRAINT [PK__Customers__0000000000000006] PRIMARY KEY ([Id]);
-ALTER TABLE [Managers] ADD CONSTRAINT [PK__Managers__0000000000000010] PRIMARY KEY ([Id]);
-ALTER TABLE [OrderItems] ADD CONSTRAINT [PK__OrderItems__0000000000000042] PRIMARY KEY ([Id]);
-ALTER TABLE [Orders] ADD CONSTRAINT [PK__Orders__0000000000000038] PRIMARY KEY ([Id]);
-ALTER TABLE [PriceLists] ADD CONSTRAINT [PK__PriceLists__000000000000002E] PRIMARY KEY ([Id]);
-ALTER TABLE [Products] ADD CONSTRAINT [PK__Products__000000000000004C] PRIMARY KEY ([Id]);
-ALTER TABLE [ProductsPrices] ADD CONSTRAINT [PK__ProductsPrices__0000000000000060] PRIMARY KEY ([Id]);
-ALTER TABLE [ProductsUnitOfMeasures] ADD CONSTRAINT [PK__ProductsUnitOfMeasures__0000000000000056] PRIMARY KEY ([Id]);
-ALTER TABLE [RoutePoints] ADD CONSTRAINT [PK__RoutePoints__0000000000000072] PRIMARY KEY ([Id]);
-ALTER TABLE [Routes] ADD CONSTRAINT [PK__Routes__000000000000006A] PRIMARY KEY ([Id]);
-ALTER TABLE [ShippingAddresses] ADD CONSTRAINT [PK__ShippingAddresses__000000000000007E] PRIMARY KEY ([Id]);
-ALTER TABLE [Statuses] ADD CONSTRAINT [PK__Statuses__0000000000000088] PRIMARY KEY ([Id]);
-ALTER TABLE [UnitsOfMeasure] ADD CONSTRAINT [PK__UnitsOfMeasure__0000000000000024] PRIMARY KEY ([Id]);
-ALTER TABLE [Warehouses] ADD CONSTRAINT [PK__Warehouses__000000000000001A] PRIMARY KEY ([Id]);
-ALTER TABLE [Categories] ADD CONSTRAINT [FK__Categories__00000000000000E7] FOREIGN KEY ([Parent_Id]) REFERENCES [Categories] ([Id]);
-ALTER TABLE [OrderItems] ADD CONSTRAINT [FK__OrderItems__00000000000000A5] FOREIGN KEY ([OrderId]) REFERENCES [Orders] ([Id]);
-ALTER TABLE [OrderItems] ADD CONSTRAINT [FK__OrderItems__00000000000000AB] FOREIGN KEY ([Product_Id]) REFERENCES [Products] ([Id]);
-ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__0000000000000099] FOREIGN KEY ([ShippingAddress_Id]) REFERENCES [ShippingAddresses] ([Id]);
-ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__000000000000009F] FOREIGN KEY ([Manager_Id]) REFERENCES [Managers] ([Id]);
-ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__000000000000009A] FOREIGN KEY ([PriceList_Id]) REFERENCES [PriceLists] ([Id]);
-ALTER TABLE [Orders] ADD CONSTRAINT [FK__Orders__000000000000009B] FOREIGN KEY ([Warehouse_Id]) REFERENCES [Warehouses] ([Id]);
-ALTER TABLE [Products] ADD CONSTRAINT [FK__Products__00000000000000EC] FOREIGN KEY ([Category_Id]) REFERENCES [Categories] ([Id]);
-ALTER TABLE [ProductsPrices] ADD CONSTRAINT [FK__ProductsPrices__00000000000000DB] FOREIGN KEY ([Product_Id]) REFERENCES [Products] ([Id]);
-ALTER TABLE [ProductsPrices] ADD CONSTRAINT [FK__ProductsPrices__00000000000000E1] FOREIGN KEY ([PriceList_Id]) REFERENCES [PriceLists] ([Id]);
-ALTER TABLE [ProductsUnitOfMeasures] ADD CONSTRAINT [FK__ProductsUnitOfMeasures__00000000000000CF] FOREIGN KEY ([Product_Id]) REFERENCES [Products] ([Id]);
-ALTER TABLE [ProductsUnitOfMeasures] ADD CONSTRAINT [FK__ProductsUnitOfMeasures__00000000000000D5] FOREIGN KEY ([UnitOfMeasure_Id]) REFERENCES [UnitsOfMeasure] ([Id]);
-ALTER TABLE [RoutePoints] ADD CONSTRAINT [FK__RoutePoints__00000000000000B7] FOREIGN KEY ([Route_Id]) REFERENCES [Routes] ([Id]);
-ALTER TABLE [RoutePoints] ADD CONSTRAINT [FK__RoutePoints__00000000000000BD] FOREIGN KEY ([ShippingAddress_Id]) REFERENCES [ShippingAddresses] ([Id]);
-ALTER TABLE [RoutePoints] ADD CONSTRAINT [FK__RoutePoints__00000000000000C3] FOREIGN KEY ([Status_Id]) REFERENCES [Statuses] ([Id]);
-ALTER TABLE [Routes] ADD CONSTRAINT [FK__Routes__00000000000000B1] FOREIGN KEY ([Manager_Id]) REFERENCES [Managers] ([Id]);
-ALTER TABLE [ShippingAddresses] ADD CONSTRAINT [FK__ShippingAddresses__00000000000000C9] FOREIGN KEY ([Customer_Id]) REFERENCES [Customers] ([Id])

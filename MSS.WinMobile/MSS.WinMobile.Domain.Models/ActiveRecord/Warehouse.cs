@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -8,13 +9,31 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class Warehouse : ActiveRecordBase
     {
-        internal Warehouse(IDictionary<string, object> dictionary)
+        internal Warehouse(IDataRecord record, string fieldPrefix)
         {
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
+            for (int i = 0; i < record.FieldCount; i++)
+            {
+                if (record.IsDBNull(i))
+                    continue;
 
-            if (dictionary.ContainsKey(Table.Fields.ADDRESS))
-                Address = dictionary[Table.Fields.ADDRESS].ToString();
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
+
+                switch (fieldName)
+                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.ADDRESS:
+                        {
+                            Address = record.GetString(i);
+                            break;
+                        }
+                }
+            }
         }
 
         public static class Table

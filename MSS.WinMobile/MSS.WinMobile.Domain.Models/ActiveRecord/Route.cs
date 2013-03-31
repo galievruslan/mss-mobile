@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -9,16 +9,36 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class Route : ActiveRecordBase
     {
-        internal Route(IDictionary<string, object> dictionary)
+        internal Route(IDataRecord record, string fieldPrefix)
         {
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
+            for (int i = 0; i < record.FieldCount; i++)
+            {
+                if (record.IsDBNull(i))
+                    continue;
 
-            if (dictionary.ContainsKey(Table.Fields.DATE))
-                Date = DateTime.Parse(dictionary[Table.Fields.DATE].ToString());
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
 
-            if (dictionary.ContainsKey(Table.Fields.MANAGER_ID))
-                ManagerId = (int)dictionary[Table.Fields.MANAGER_ID];
+                switch (fieldName)
+                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.DATE:
+                        {
+                            Date = record.GetDateTime(i);
+                            break;
+                        }
+                    case Table.Fields.MANAGER_ID:
+                        {
+                            ManagerId = record.GetInt32(i);
+                            break;
+                        }
+                }
+            }
         }
 
         public static class Table

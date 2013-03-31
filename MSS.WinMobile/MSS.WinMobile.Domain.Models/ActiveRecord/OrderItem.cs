@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -9,19 +8,41 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class OrderItem : ActiveRecordBase
     {
-        internal OrderItem(IDictionary<string, object> dictionary)
+        internal OrderItem(IDataRecord record, string fieldPrefix)
         {
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
+            for (int i = 0; i < record.FieldCount; i++)
+            {
+                if (record.IsDBNull(i))
+                    continue;
 
-            if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
-                OrderId = (int)dictionary[Table.Fields.ORDER_ID];
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
 
-            if (dictionary.ContainsKey(Table.Fields.PRODUCT_ID))
-                ProductId = (int)dictionary[Table.Fields.PRODUCT_ID];
-
-            if (dictionary.ContainsKey(Table.Fields.QUANTITY))
-                Quantity = (int)dictionary[Table.Fields.QUANTITY];
+                switch (fieldName)
+                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.ORDER_ID:
+                        {
+                            OrderId = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.PRODUCT_ID:
+                        {
+                            Product = new Product(record, Product.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.QUANTITY:
+                        {
+                            Quantity = record.GetInt32(i);
+                            break;
+                        }
+                }
+            }
         }
 
         public static class Table
@@ -43,7 +64,7 @@ namespace MSS.WinMobile.Domain.Models
                 return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}]) VALUES ({5}, {6}, {7}, {8})",
                                      Table.TABLE_NAME, Table.Fields.ID, Table.Fields.ORDER_ID,
                                      Table.Fields.PRODUCT_ID, Table.Fields.QUANTITY, Id, OrderId,
-                                     ProductId, Quantity);
+                                     Product.Id, Quantity);
             }
         }
 
@@ -55,7 +76,7 @@ namespace MSS.WinMobile.Domain.Models
                                      "[{5}] = {6}" +
                                      "WHERE [{7}] = {8}",
                                      Table.TABLE_NAME, Table.Fields.ORDER_ID, OrderId,
-                                     Table.Fields.PRODUCT_ID, ProductId,
+                                     Table.Fields.PRODUCT_ID, Product.Id,
                                      Table.Fields.QUANTITY, Quantity, Table.Fields.ID, Id);
             }
         }

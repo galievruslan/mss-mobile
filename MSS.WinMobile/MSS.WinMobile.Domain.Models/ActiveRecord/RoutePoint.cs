@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -8,33 +9,49 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class RoutePoint : ActiveRecordBase
     {
-        internal RoutePoint(IDictionary<string, object> dictionary)
+        internal RoutePoint(IDataRecord record, string fieldPrefix)
         {
-            // Fill RoutePoint object's fields
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
-            if (dictionary.ContainsKey(Table.Fields.ROUTE_ID))
-                RouteId = (int)dictionary[Table.Fields.ROUTE_ID];
-            if (dictionary.ContainsKey(Table.Fields.SHIPPING_ADDRESS_ID))
-                ShippingAddressId = (int)dictionary[Table.Fields.SHIPPING_ADDRESS_ID];
-            if (dictionary.ContainsKey(Table.Fields.ORDER_ID))
-                OrderId = (int) dictionary[Table.Fields.ORDER_ID];
-            if (dictionary.ContainsKey(Table.Fields.STATUS_ID))
-                StatusId = (int)dictionary[Table.Fields.STATUS_ID];
-
-            // Fill RoutePoint's ShippingAddress object if exist
-            string shippingAddressKeyPrefix = string.Format("{0}_", ShippingAddress.Table.TABLE_NAME);
-            var shippingAddressDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(shippingAddressKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(shippingAddressKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (shippingAddressDictionary.Any())
+            for (int i = 0; i < record.FieldCount; i++)
             {
-                ShippingAddress = new ShippingAddress(shippingAddressDictionary);
+                if (record.IsDBNull(i))
+                    continue;
+
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
+
+                switch (fieldName)
+                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.ROUTE_ID:
+                        {
+                            RouteId = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.ORDER_ID:
+                        {
+                            OrderId = record.GetInt32(i);
+                            Order = new Order(record, Order.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.SHIPPING_ADDRESS_ID:
+                        {
+                            ShippingAddressId = record.GetInt32(i);
+                            ShippingAddress = new ShippingAddress(record, ShippingAddress.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.STATUS_ID:
+                        {
+                            StatusId = record.GetInt32(i);
+                            break;
+                        }
+                }
             }
         }
-
 
         public static class Table
         {

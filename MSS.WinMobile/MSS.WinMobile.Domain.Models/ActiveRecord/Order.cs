@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -11,73 +12,55 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class Order : ActiveRecordBase
     {
-        internal Order(IDictionary<string, object> dictionary)
+        internal Order(IDataRecord record, string fieldPrefix)
         {
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
-            if (dictionary.ContainsKey(Table.Fields.DATE))
-                Date = DateTime.Parse(dictionary[Table.Fields.DATE].ToString());
-            if (dictionary.ContainsKey(Table.Fields.NOTE))
-                Note = dictionary[Table.Fields.NOTE].ToString();
-
-            // Fill Order's ShippingAddress object if exist
-            string shippingAddressKeyPrefix = string.Format("{0}_", ShippingAddress.Table.TABLE_NAME);
-            var shippingAddressDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(shippingAddressKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(shippingAddressKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (shippingAddressDictionary.Any())
+            for (int i = 0; i < record.FieldCount; i++)
             {
-                ShippingAddress = new ShippingAddress(shippingAddressDictionary);
-            }
+                if (record.IsDBNull(i))
+                    continue;
 
-            // Fill Order's Customer object if exist
-            string customerKeyPrefix = string.Format("{0}_", Customer.Table.TABLE_NAME);
-            var customerDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(customerKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(customerKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (customerDictionary.Any())
-            {
-                Customer = new Customer(customerDictionary);
-            }
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
 
-            // Fill Order's Manager object if exist
-            string managerKeyPrefix = string.Format("{0}_", Manager.Table.TABLE_NAME);
-            var managerDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(managerKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(managerKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (managerDictionary.Any())
-            {
-                Manager = new Manager(managerDictionary);
-            }
-
-            // Fill Order's PriceList object if exist
-            string priceListKeyPrefix = string.Format("{0}_", PriceList.Table.TABLE_NAME);
-            var priceListDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(priceListKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(priceListKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (priceListDictionary.Any())
-            {
-                PriceList = new PriceList(priceListDictionary);
-            }
-
-            // Fill Order's Warehouse object if exist
-            string warehouseKeyPrefix = string.Format("{0}_", Warehouse.Table.TABLE_NAME);
-            var warehouseDictionary =
-                dictionary.Where(pair => pair.Key.StartsWith(warehouseKeyPrefix))
-                          .ToArray()
-                          .ToDictionary(keyValuePair => keyValuePair.Key.Replace(warehouseKeyPrefix, ""),
-                                        keyValuePair => keyValuePair.Value);
-            if (warehouseDictionary.Any())
-            {
-                Warehouse = new Warehouse(warehouseDictionary);
+                switch (fieldName)
+                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.DATE:
+                        {
+                            Date = record.GetDateTime(i);
+                            break;
+                        }
+                    case Table.Fields.MANAGER_ID:
+                        {
+                            Manager = new Manager(record, Manager.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.NOTE:
+                        {
+                            Note = record.GetString(i);
+                            break;
+                        }
+                    case Table.Fields.PRICE_LIST_ID:
+                        {
+                            PriceList = new PriceList(record, PriceList.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.SHIPPING_ADDRESS_ID:
+                        {
+                            ShippingAddress = new ShippingAddress(record, ShippingAddress.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.WAREHOUSE_ID:
+                        {
+                            Warehouse = new Warehouse(record, Warehouse.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                }
             }
         }
 

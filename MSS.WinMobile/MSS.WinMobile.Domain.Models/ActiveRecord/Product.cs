@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -9,22 +8,34 @@ namespace MSS.WinMobile.Domain.Models
 {
     public partial class Product : ActiveRecordBase
     {
-        internal Product(IDictionary<string, object> dictionary)
+        internal Product(IDataRecord record, string fieldPrefix)
         {
-            if (dictionary.ContainsKey(Table.Fields.ID))
-                Id = (int)dictionary[Table.Fields.ID];
-
-            if (dictionary.ContainsKey(Table.Fields.NAME))
-                Name = dictionary[Table.Fields.NAME].ToString();
-
-            if (dictionary.ContainsKey(Table.Fields.CATEGORY_ID))
+            for (int i = 0; i < record.FieldCount; i++)
             {
-                try
+                if (record.IsDBNull(i))
+                    continue;
+
+                string fieldName = record.GetName(i);
+                if (fieldPrefix != string.Empty)
+                    fieldName = fieldName.Replace(fieldPrefix, string.Empty);
+
+                switch (fieldName)
                 {
-                    CategoryId = int.Parse(dictionary[Table.Fields.CATEGORY_ID].ToString());
-                }
-                catch
-                {
+                    case Table.Fields.ID:
+                        {
+                            Id = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.NAME:
+                        {
+                            Name = record.GetString(i);
+                            break;
+                        }
+                    case Table.Fields.CATEGORY_ID:
+                        {
+                            CategoryId = record.GetInt32(i);
+                            break;
+                        }
                 }
             }
         }
@@ -37,7 +48,7 @@ namespace MSS.WinMobile.Domain.Models
             {
                 public const string ID = "Id";
                 public const string NAME = "Name";
-                public const string CATEGORY_ID = "Categoty_Id";
+                public const string CATEGORY_ID = "Category_Id";
             }    
         }
 

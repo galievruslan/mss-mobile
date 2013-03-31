@@ -19,7 +19,11 @@ namespace MSS.WinMobile.UI.Views
 
         public void Logon()
         {
-            _presenter.Logon();
+            if (_presenter.Logon())
+            {
+                var menuView = new MenuView();
+                menuView.Show();
+            }
         }
 
         public void Cancel()

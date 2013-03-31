@@ -71,13 +71,13 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                         while (reader.Read())
                         {
                             Log.DebugFormat("Result row materialization started");
-                            var dictionary = new Dictionary<string, object>();
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                if (!reader.IsDBNull(i))
-                                    dictionary.Add(reader.GetName(i), reader.GetValue(i));
-                            }
-                            result.Add(ActiveRecordFactory.Create<T>(dictionary));
+                            //var dictionary = new Dictionary<string, object>();
+                            //for (int i = 0; i < reader.FieldCount; i++)
+                            //{
+                            //    if (!reader.IsDBNull(i))
+                            //        dictionary.Add(reader.GetName(i), reader.GetValue(i));
+                            //}
+                            result.Add(ActiveRecordFactory.Create<T>(reader));
                             Log.DebugFormat("Result row materialization finished");
                         }
                     }

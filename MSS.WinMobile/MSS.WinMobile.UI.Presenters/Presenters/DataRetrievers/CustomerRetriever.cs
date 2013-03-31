@@ -18,8 +18,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             return
                 Customer.GetAll()
                         .OrderBy(Customer.Table.Fields.NAME, OrderDirection.Asceding)
-                        .Skip(lowerPageBoundary)
-                        .Take(rowsPerPage)
+                        .Page(lowerPageBoundary, rowsPerPage)
                         .ToArray();
         }
     }

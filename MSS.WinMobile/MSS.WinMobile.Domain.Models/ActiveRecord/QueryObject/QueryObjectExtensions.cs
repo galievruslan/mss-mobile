@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Linq;
 using System.Text;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
@@ -26,24 +27,14 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             return new OrderedQueryObject<T>(queryObject, fieldName, orderDirection);
         }
 
-        public static OrderedQueryObject<T> Skip<T>(this OrderedQueryObject<T> queryObject, int count) where T : ActiveRecordBase
+        public static OrderedQueryObject<T> Page<T>(this OrderedQueryObject<T> queryObject, int countToSkip, int countToTake) where T : ActiveRecordBase
         {
             QueryObject<T> baseQueryObject = queryObject;
             while (!baseQueryObject.CanBeInner)
             {
                 baseQueryObject = queryObject.InnerQuery;
             }
-            return new SkipQueryObject<T>(baseQueryObject, queryObject.OrderByField, queryObject.OrderDirection,  count);
-        }
-
-        public static OrderedQueryObject<T> Take<T>(this OrderedQueryObject<T> queryObject, int count) where T : ActiveRecordBase
-        {
-            QueryObject<T> baseQueryObject = queryObject;
-            while (!baseQueryObject.CanBeInner)
-            {
-                baseQueryObject = queryObject.InnerQuery;
-            }
-            return new TakeQueryObject<T>(baseQueryObject, queryObject.OrderByField, queryObject.OrderDirection, count);
+            return new PagedQueryObject<T>(baseQueryObject, queryObject.OrderByField, queryObject.OrderDirection,  countToSkip, countToTake);
         }
 
         public static int Count<T>(this QueryObject<T> queryObject) where T : ActiveRecordBase
@@ -73,7 +64,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                     object result = command.ExecuteScalar();
                     Log.DebugFormat("Query execution command executed");
 
-                    count = (int) result;
+                    count = Convert.ToInt32(result);
                     Cache.Add(commandText, count);
                 }
             }

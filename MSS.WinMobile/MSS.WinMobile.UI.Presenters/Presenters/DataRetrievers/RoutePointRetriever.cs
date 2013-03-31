@@ -23,8 +23,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             return
                 _route.GetPoints()
                       .OrderBy(Route.Table.Fields.ID, OrderDirection.Asceding)
-                      .Skip(lowerPageBoundary)
-                      .Take(rowsPerPage)
+                      .Page(lowerPageBoundary, rowsPerPage)
                       .ToArray();
         }
     }
