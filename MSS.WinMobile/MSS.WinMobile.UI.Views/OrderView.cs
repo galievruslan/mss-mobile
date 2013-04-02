@@ -22,11 +22,6 @@ namespace MSS.WinMobile.UI.Views
             _routePointId = routePointId;
         }
 
-        public void DisplayErrors(string error)
-        {
-            throw new NotImplementedException();
-        }
-
         private void OrderView_Load(object sender, EventArgs e)
         {
             if (_presenter == null)
@@ -127,5 +122,33 @@ namespace MSS.WinMobile.UI.Views
                 }
             }
         }
+
+        #region IView
+
+        public void ShowView()
+        {
+            Show();
+        }
+
+        public DialogViewResult ShowDialogView()
+        {
+            DialogResult dialogResult = ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                return DialogViewResult.OK;
+
+            return DialogViewResult.Cancel;
+        }
+
+        public void CloseView()
+        {
+            Close();
+        }
+
+        public void DisplayErrors(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

@@ -52,7 +52,7 @@
             this._routeLabel.Size = new System.Drawing.Size(201, 20);
             this._routeLabel.TabIndex = 1;
             this._routeLabel.Text = "Route";
-            this._routeLabel.Click += new System.EventHandler(this._routeLabel_Click);
+            this._routeLabel.Click += new System.EventHandler(this.RouteClick);
             // 
             // _synchronizationIcon
             // 

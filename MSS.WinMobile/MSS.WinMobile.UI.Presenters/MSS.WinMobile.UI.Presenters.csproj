@@ -59,13 +59,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NavigationContext.cs" />
+    <Compile Include="Presenters\DataRetrievers\RetrieversCache.cs" />
+    <Compile Include="Presenters\InitializationPresenter.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Presenters\PickUpProductPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
     <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
     <Compile Include="Presenters\Exceptions\NoSelectedItemsException.cs" />
     <Compile Include="Presenters\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\PriceListLookUpPresenter.cs" />
+    <Compile Include="Views\IInitializationView.cs" />
     <Compile Include="Views\IListView.cs" />
+    <Compile Include="Views\IMainView.cs" />
+    <Compile Include="INavigator.cs" />
     <Compile Include="Views\IPickUpProductView.cs" />
     <Compile Include="Views\IWarehouseLookUpView.cs" />
     <Compile Include="Views\IPriceListLookUpView.cs" />
@@ -114,10 +121,6 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Server.csproj">
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
-      <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>
-      <Name>MSS.WinMobile.UI.Controls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

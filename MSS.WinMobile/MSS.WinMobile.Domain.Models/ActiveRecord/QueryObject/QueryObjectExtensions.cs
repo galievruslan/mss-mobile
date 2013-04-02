@@ -29,25 +29,14 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         public static OrderedQueryObject<T> Page<T>(this OrderedQueryObject<T> queryObject, int countToSkip, int countToTake) where T : ActiveRecordBase
         {
-            QueryObject<T> baseQueryObject = queryObject;
-            while (!baseQueryObject.CanBeInner)
-            {
-                baseQueryObject = queryObject.InnerQuery;
-            }
-            return new PagedQueryObject<T>(baseQueryObject, queryObject.OrderByField, queryObject.OrderDirection,  countToSkip, countToTake);
+            return new PagedQueryObject<T>(queryObject, queryObject.OrderByField, queryObject.OrderDirection, countToSkip, countToTake);
         }
 
         public static int Count<T>(this QueryObject<T> queryObject) where T : ActiveRecordBase
         {
-            QueryObject<T> baseQueryObject = queryObject;
-            while (!baseQueryObject.CanBeInner)
-            {
-                baseQueryObject = queryObject.InnerQuery;
-            }
-
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append("SELECT COUNT(*)");
-            queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", baseQueryObject, baseQueryObject.TableName));
+            queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", queryObject, queryObject.TableName));
 
             string commandText = queryStringBuilder.ToString();
             Log.DebugFormat("Query execution requested ({0})", commandText);

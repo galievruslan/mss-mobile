@@ -16,12 +16,6 @@
 
         public int CustomerId { get; private set; }
 
-        private Customer _customer;
-        public Customer Customer
-        {
-            get { return _customer ?? (_customer = Customer.GetById(CustomerId)); }
-        }
-
         public override int GetHashCode()
         {
             return Id;

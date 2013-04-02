@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
 
@@ -17,28 +16,15 @@ namespace MSS.WinMobile.UI.Views
         public string Account { get; set; }
         public string Password { get; set; }
 
-        public void Logon()
-        {
-            if (_presenter.Logon())
-            {
-                var menuView = new MenuView();
-                menuView.Show();
-            }
-        }
-
-        public void Cancel()
-        {
-            _presenter.Cancel();
-        }
 
         private void OkButtonClick(object sender, System.EventArgs e)
         {
-            Logon();
+            _presenter.Logon();
         }
 
         private void CancelButtonClick(object sender, System.EventArgs e)
         {
-            Cancel();
+            _presenter.Cancel();
         }
 
         private void AccountTextBoxTextChanged(object sender, System.EventArgs e) {
@@ -49,13 +35,34 @@ namespace MSS.WinMobile.UI.Views
             Password = _passwordTextBox.Text;
         }
 
-        private void LogonView_Load(object sender, System.EventArgs e)
+        private void ViewLoad(object sender, System.EventArgs e)
         {
             if (_presenter == null)
             {
                 _presenter = new LogonPresenter(this);
                 _presenter.InitializeView();
             }
+        }
+
+        #region IView
+
+        public void ShowView()
+        {
+            Show();
+        }
+
+        public DialogViewResult ShowDialogView()
+        {
+            DialogResult dialogResult = ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                return DialogViewResult.OK;
+
+            return DialogViewResult.Cancel;
+        }
+
+        public void CloseView()
+        {
+            Close();
         }
 
         public delegate void DisplayErrorsDelegate(string error);
@@ -70,5 +77,7 @@ namespace MSS.WinMobile.UI.Views
                 _errorsLabel.Text = error;
             }
         }
+
+        #endregion
     }
 }

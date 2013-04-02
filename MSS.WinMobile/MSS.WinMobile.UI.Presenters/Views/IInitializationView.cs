@@ -1,6 +1,6 @@
 ﻿namespace MSS.WinMobile.UI.Presenters.Views
 {
-    public interface ISynchronizationView : IView
+    public interface IInitializationView : IView
     {
         void UpdateStatus(string status);
 

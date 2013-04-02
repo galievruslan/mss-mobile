@@ -21,9 +21,6 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
         }
 
         public QueryObject<T> InnerQuery { get; protected set; }
-        public virtual bool CanBeInner {
-            get { return true; }
-        }
 
         protected QueryObject(QueryObject<T> queryObject)
             :this(queryObject.TableName, queryObject.FieldsNames)

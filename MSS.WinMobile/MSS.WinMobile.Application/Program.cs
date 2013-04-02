@@ -1,5 +1,6 @@
 ﻿using System;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Views;
 using log4net.Config;
 
@@ -15,7 +16,7 @@ namespace MSS.WinMobile.Application
         [MTAThread]
         static void Main()
         {
-            //Load Config.xml to setup log4net
+            // Load Config.xml to setup log4net
             string path = System.IO.Path.GetDirectoryName(
                 System.Reflection.Assembly.GetExecutingAssembly()
                .GetModules()[0].FullyQualifiedName)
@@ -25,9 +26,12 @@ namespace MSS.WinMobile.Application
                 XmlConfigurator.Configure(new System.IO.FileInfo(path));
             }
 
+            // Register navigator for presenters
+            NavigationContext.RegisterNavigator(new Navigator());
+
             Log.Info("Application start");
             ActiveRecordBase.Initialize(false);
-            System.Windows.Forms.Application.Run(new MenuView());
+            System.Windows.Forms.Application.Run(new MainView());
             Log.Info("Application finish");
         }
     }

@@ -61,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InitializationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InitializationView.Designer.cs">
+      <DependentUpon>InitializationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PickUpProductView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +137,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InitializationView.resx">
+      <DependentUpon>InitializationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PickUpProductView.resx">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +178,10 @@
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
+      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
+      <Name>MSS.WinMobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
       <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>

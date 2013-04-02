@@ -109,9 +109,9 @@ namespace MSS.WinMobile.Domain.Models
         public static RoutePoint GetById(int id)
         {
             return
-                QueryObjectFactory.CreateQueryObject<RoutePoint>()
-                                  .Where(Table.Fields.ID, new Equals(id))
-                                  .FirstOrDefault();
+                new RoutePointQueryObject()
+                    .Where(Table.Fields.ID, new Equals(id))
+                    .FirstOrDefault();
         }
 
         public static QueryObject<RoutePoint> GetByRoute(Route route)

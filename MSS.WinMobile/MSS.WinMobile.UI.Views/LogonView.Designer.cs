@@ -80,6 +80,7 @@
             // 
             this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._okButton.BackColor = System.Drawing.Color.White;
+            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular);
             this._okButton.Location = new System.Drawing.Point(82, 7);
             this._okButton.Name = "_okButton";
@@ -92,6 +93,7 @@
             // 
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.BackColor = System.Drawing.Color.White;
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular);
             this._cancelButton.Location = new System.Drawing.Point(165, 7);
             this._cancelButton.Name = "_cancelButton";
@@ -140,7 +142,7 @@
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._inputPanel);
             this.Name = "LogonView";
-            this.Load += new System.EventHandler(this.LogonView_Load);
+            this.Load += new System.EventHandler(this.ViewLoad);
             this._inputPanel.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);

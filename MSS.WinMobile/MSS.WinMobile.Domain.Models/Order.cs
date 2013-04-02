@@ -11,7 +11,6 @@ namespace MSS.WinMobile.Domain.Models
             Date = DateTime.Now;
             Manager = routePoint.Route.Manager;
             ShippingAddress = routePoint.ShippingAddress;
-            Customer = ShippingAddress.Customer;
         }
 
         public DateTime Date { get; private set; }
@@ -19,7 +18,7 @@ namespace MSS.WinMobile.Domain.Models
         private Customer _customer;
         public Customer Customer
         {
-            get { return _customer ?? (_customer = ShippingAddress.Customer); }
+            get { return _customer ?? (_customer = Customer.GetById(ShippingAddress.CustomerId)); }
             private set { _customer = value; }
         }
 
@@ -27,7 +26,7 @@ namespace MSS.WinMobile.Domain.Models
         {
             if (!Customer.Equals(customer))
             {
-                _customer = customer;
+                Customer = customer;
                 if (ShippingAddress != null)
                 {
                     if (_customer.ShippingAddresses().All(address => !address.Equals(ShippingAddress)))

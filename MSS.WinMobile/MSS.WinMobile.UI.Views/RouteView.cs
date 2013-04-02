@@ -40,11 +40,6 @@ namespace MSS.WinMobile.UI.Views
             _presenter.SelectItem(item.Index);
         }
 
-        public void DisplayErrors(string error)
-        {
-            
-        }
-
         private void CreateOrderClick(object sender, EventArgs e)
         {
             var orderView = new OrderView(_presenter.GetSelectedItemId());
@@ -60,5 +55,33 @@ namespace MSS.WinMobile.UI.Views
         {
             return _presenter.GetSelectedItemId();
         }
+
+        #region IView
+
+        public void ShowView()
+        {
+            Show();
+        }
+
+        public DialogViewResult ShowDialogView()
+        {
+            DialogResult dialogResult = ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                return DialogViewResult.OK;
+
+            return DialogViewResult.Cancel;
+        }
+
+        public void CloseView()
+        {
+            Close();
+        }
+
+        public void DisplayErrors(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

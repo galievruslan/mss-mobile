@@ -28,9 +28,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         private void RunSynchronizationInBackground() {
-            var serverUri = new Uri(string.Format("http://{0}:{1}/",
-                                                  ConfigurationManager.AppSettings["ServerAddress"],
-                                                  ConfigurationManager.AppSettings["ServerPort"]));
+            var serverUri = new Uri(ConfigurationManager.AppSettings["ServerAddress"]);
 
             var userName = ConfigurationManager.AppSettings["ServerUsername"];
             var password = ConfigurationManager.AppSettings["ServerPassword"];

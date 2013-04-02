@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -25,11 +26,6 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        public void DisplayErrors(string error)
-        {
-            
-        }
-
         private SynchronizationView _synchronizationView;
 
         private void _synchronizationLabel_Click(object sender, System.EventArgs e)
@@ -42,7 +38,7 @@ namespace MSS.WinMobile.UI.Views
 
         private RouteView _routeView;
 
-        private void _routeLabel_Click(object sender, System.EventArgs e)
+        private void RouteClick(object sender, System.EventArgs e)
         {
             Log.Debug("Redirect to RouteView begin.");
             if (_routeView == null)
@@ -57,5 +53,33 @@ namespace MSS.WinMobile.UI.Views
             Log.Debug("Show RouteView finish.");
             Log.Debug("Redirect to RouteView finish.");
         }
+
+        #region IView
+
+        public void ShowView()
+        {
+            Show();
+        }
+
+        public DialogViewResult ShowDialogView()
+        {
+            DialogResult dialogResult = ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                return DialogViewResult.OK;
+
+            return DialogViewResult.Cancel;
+        }
+
+        public void CloseView()
+        {
+            Close();
+        }
+
+        public void DisplayErrors(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

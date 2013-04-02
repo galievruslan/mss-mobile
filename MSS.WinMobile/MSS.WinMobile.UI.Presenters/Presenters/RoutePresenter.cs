@@ -19,8 +19,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public RoutePresenter(IRouteView view)
         {
-            _route = Route.GetByDate(DateTime.Today);
-            _routePointRetriever = new RoutePointRetriever(_route);
+            //_route = Route.GetByDate(DateTime.Today);
+            //_routePointRetriever = new RoutePointRetriever(_route);
+            _routePointRetriever = RetrieversCache.GetCurrentRoutePointRetriever();
             _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
             _view = view;
         }

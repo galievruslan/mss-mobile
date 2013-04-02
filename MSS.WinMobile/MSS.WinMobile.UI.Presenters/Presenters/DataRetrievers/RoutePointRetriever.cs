@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 
@@ -8,9 +9,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
     {
         private readonly Route _route;
 
-        public RoutePointRetriever(Route route)
+        public RoutePointRetriever()
         {
-            _route = route;
+            _route = Route.GetByDate(DateTime.Today);
         }
 
         public int Count

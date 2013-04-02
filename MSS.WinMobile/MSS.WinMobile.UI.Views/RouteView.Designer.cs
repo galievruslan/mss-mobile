@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views
+﻿using MSS.WinMobile.UI.Presenters.Views;
+
+namespace MSS.WinMobile.UI.Views
 {
     partial class RouteView
     {

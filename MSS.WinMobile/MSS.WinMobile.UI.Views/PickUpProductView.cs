@@ -59,11 +59,6 @@ namespace MSS.WinMobile.UI.Views
             Close();
         }
 
-        public void DisplayErrors(string error)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetItemCount(int count)
         {
             productsPriceListBox.SetListSize(count);
@@ -73,5 +68,33 @@ namespace MSS.WinMobile.UI.Views
         {
             throw new NotImplementedException();
         }
+
+        #region IView
+
+        public void ShowView()
+        {
+            Show();
+        }
+
+        public DialogViewResult ShowDialogView()
+        {
+            DialogResult dialogResult = ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                return DialogViewResult.OK;
+
+            return DialogViewResult.Cancel;
+        }
+
+        public void CloseView()
+        {
+            Close();
+        }
+
+        public void DisplayErrors(string error)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

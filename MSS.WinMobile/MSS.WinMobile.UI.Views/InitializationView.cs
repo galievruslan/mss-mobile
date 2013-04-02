@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
-using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class SynchronizationView : Form, ISynchronizationView
+    public partial class InitializationView : Form, IInitializationView
     {
-        private SynchronizationPresenter _presenter;
+        private InitializationPresenter _presenter;
 
-        // Designer only usage
-        public SynchronizationView()
+        public InitializationView()
         {
             InitializeComponent();
         }
@@ -42,21 +40,11 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        private void StartButtonClick(object sender, EventArgs e)
-        {
-            _presenter.Synchronize();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-            _presenter.Cancel();
-        }
-
         private void SynchronizationView_Load(object sender, EventArgs e)
         {
             if (_presenter == null)
             {
-                _presenter = new SynchronizationPresenter(this);
+                _presenter = new InitializationPresenter(this);
                 _presenter.InitializeView();
             }
         }
@@ -77,9 +65,17 @@ namespace MSS.WinMobile.UI.Views
             return DialogViewResult.Cancel;
         }
 
+        public delegate void CloseViewDelegate();
         public void CloseView()
         {
-            Close();
+            if (InvokeRequired)
+            {
+                Invoke(new CloseViewDelegate(CloseView));
+            }
+            else
+            {
+                Close();
+            }
         }
 
         public delegate void DisplayErrorsDelegate(string error);
