@@ -45,6 +45,10 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BackgroundWorker, Version=1.0.0.2, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\BackgroundWorker.dll</HintPath>
+    </Reference>
     <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>

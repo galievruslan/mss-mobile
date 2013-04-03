@@ -10,7 +10,7 @@
 
         public static RoutePointRetriever GetCurrentRoutePointRetriever()
         {
-            if (_currentRoutePointRetriever != null)
+            if (_currentRoutePointRetriever == null)
                 _currentRoutePointRetriever = new RoutePointRetriever();
 
             return _currentRoutePointRetriever;

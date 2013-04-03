@@ -18,41 +18,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 ConfigurationManager.AppSettings["ServerPassword"] == string.Empty ||
                 ConfigurationManager.AppSettings["ContextManagerId"] == string.Empty)
             {
-                bool loggedIn = false;
-
-                using (var view = NavigationContext.NavigateTo<ILogonView>())
-                {
-                    if (DialogViewResult.OK == view.ShowDialogView())
-                        loggedIn = true;
-                }
-
-                if (loggedIn)
-                {
-                    using (var view = NavigationContext.NavigateTo<IInitializationView>())
-                    {
-                        view.ShowDialogView();
-                    }
-
-                    using (var view = NavigationContext.NavigateTo<IMenuView>())
-                    {
-                        view.ShowDialogView();
-                    }
-                }
+                var view = NavigationContext.NavigateTo<ILogonView>();
+                view.ShowView();
             }
             else
             {
-                using (var view = NavigationContext.NavigateTo<IInitializationView>())
-                {
-                    view.ShowDialogView();
-                }
-
-                using (var view = NavigationContext.NavigateTo<IMenuView>())
-                {
-                    view.ShowDialogView();
-                }
+                var initView = NavigationContext.NavigateTo<IInitializationView>();
+                initView.ShowView();
             }
-
-            _view.CloseView();
         }
     }
 }

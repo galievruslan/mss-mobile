@@ -12,6 +12,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
         public RoutePointRetriever()
         {
             _route = Route.GetByDate(DateTime.Today);
+            _route.GetPoints().Count();
         }
 
         public int Count

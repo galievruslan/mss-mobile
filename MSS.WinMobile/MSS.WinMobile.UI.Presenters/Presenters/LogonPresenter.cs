@@ -20,23 +20,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _serverUri = new Uri(ConfigurationManager.AppSettings["ServerAddress"]);
         }
 
-        public bool Logon()
+        public void Logon()
         {
-            bool errors = false;
             if (string.IsNullOrEmpty(_view.Account))
             {
                 _view.DisplayErrors("Account can't be empty!");
-                errors = true;
+                return;
             }
 
             if (string.IsNullOrEmpty(_view.Password))
             {
                 _view.DisplayErrors("Password can't be empty!");
-                errors = true;
+                return;
             }
-
-            if (errors)
-                return false;
 
             try
             {
@@ -50,7 +46,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     ConfigurationManager.AppSettings.Set("ContextManagerId",
                                                          Context.ManagerId.ToString(CultureInfo.InvariantCulture));
                     ConfigurationManager.Save();
-                    return true;
+
+                    var initializationView = NavigationContext.NavigateTo<IInitializationView>();
+                    initializationView.ShowView();
+                    _view.CloseView();
                 }
             }
             catch (WebException webException)
@@ -58,8 +57,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 Log.Error(webException);
                 _view.DisplayErrors("Can't connect to the server!");
             }
-
-            return false;
         }
 
         public void Cancel()

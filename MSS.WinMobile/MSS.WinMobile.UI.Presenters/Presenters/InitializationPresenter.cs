@@ -1,4 +1,4 @@
-﻿using System.Threading;
+﻿using System.ComponentModel;
 using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -14,35 +14,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public InitializationPresenter(IInitializationView view)
         {
             _view = view;
-        }
-
-        private Thread _thread;
-
-        public void Initialize()
-        {
-            _thread = new Thread(RunInitializationInBackground);
-            _thread.Start();
-        }
-
-        private void RunInitializationInBackground()
-        {
-            Notify(new ProgressNotification(0));
-            RetrieversCache.InitializeCurrentRoutePointRetriever();
-            Notify(new ProgressNotification(100));
-            _view.CloseView();
-        }
-
-        public void Cancel()
-        {
-            try
-            {
-                if (_thread != null)
-                    _thread.Abort();
-            }
-            catch (ThreadAbortException threadAbortException)
-            {
-                Log.Error("Initialization cancelation error", threadAbortException);
-            }
         }
 
         #region IObserver
@@ -65,7 +36,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void InitializeView()
         {
-            Initialize();
+            var backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += backgroundWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var menuView = NavigationContext.NavigateTo<IMenuView>();
+            menuView.ShowView();
+            _view.CloseView();
+        }
+
+        void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Notify(new ProgressNotification(0));
+            RetrieversCache.InitializeCurrentRoutePointRetriever();
+            Notify(new ProgressNotification(100));
         }
     }
 }
