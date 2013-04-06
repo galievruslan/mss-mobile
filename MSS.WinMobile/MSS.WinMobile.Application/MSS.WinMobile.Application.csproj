@@ -96,7 +96,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Database\schema.sqlce">
+    <Content Include="Resources\Database\schema.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLite.Interop.084.dll">

@@ -37,12 +37,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var manager in managers)
-                        {
-                            if (Manager.GetById(manager.Id) != null)
-                                manager.Update();
-                            else
-                                manager.Create();
+                        foreach (var manager in managers) {
+                            manager.Create();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -52,7 +48,6 @@ namespace MSS.WinMobile.Commands.Synchronization
                     }
                 }
 
-                //SynchronizeEntity(managers);
                 managers.Clear();
 
                 pageNumber++;

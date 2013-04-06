@@ -53,12 +53,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var product in products)
-                        {
-                            if (Product.GetById(product.Id) != null)
-                                product.Update();
-                            else
-                                product.Create();
+                        foreach (var product in products) {
+                            product.Create();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -73,12 +69,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var unitOfMeasure in productsUoms)
-                        {
-                            if (ProductsUnitOfMeasure.GetById(unitOfMeasure.Id) != null)
-                                unitOfMeasure.Update();
-                            else
-                                unitOfMeasure.Create();
+                        foreach (var unitOfMeasure in productsUoms) {
+                            unitOfMeasure.Create();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -93,12 +85,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var productsPrice in productsPrices)
-                        {
-                            if (ProductsPrice.GetById(productsPrice.Id) != null)
-                                productsPrice.Update();
-                            else
-                                productsPrice.Create();
+                        foreach (var productsPrice in productsPrices) {
+                            productsPrice.Create();
                         }
                         ActiveRecordBase.Commit();
                     }

@@ -46,12 +46,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var customer in customers)
-                        {
-                            if (Customer.GetById(customer.Id) != null)
-                                customer.Update();
-                            else
-                                customer.Create();
+                        foreach (var customer in customers) {
+                            customer.Create();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -66,12 +62,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var shippingAddress in shippingAddresses)
-                        {
-                            if (ShippingAddress.GetById(shippingAddress.Id) != null)
-                                shippingAddress.Update();
-                            else
-                                shippingAddress.Create();
+                        foreach (var shippingAddress in shippingAddresses) {
+                            shippingAddress.Create();
                         }
                         ActiveRecordBase.Commit();
                     }

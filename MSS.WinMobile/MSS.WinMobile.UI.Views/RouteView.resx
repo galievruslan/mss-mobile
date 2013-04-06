@@ -121,15 +121,16 @@
   <data name="_createOrderIcon.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAHcSURBVHhe7ds9TsMwFMDxCrFwASSE2BALGwdAbAwsLOyd
-        OQITK2JhYeUAXAI4QSdmJhYGRoYu7XtSKyzLseskNuTlb8lSP+I4+dXPefnoZEJBAAEEEEAAAQQQQAAB
-        BBBAAAEEEEAAAQQqCpxKX4+F6o2sd6vivlTp6lp6WRSsT9bQSoPpj2EKzQX77Biab5GRagbNBXvpOAm4
-        6/qQdX17gCbQSoEp/olFtJJgOmDNoZUGM4dWA8wUWi0wM2g1wUyg1QYbPNpfgDWhTTvmgVWalwKby9Z/
-        JeqPl9jqtvz7UgqszQk9YJlXQUYHti9AZ5l15qCODqzN/KPnnOvwBWwDQcA2QHIXAWzsYLeBI51O7H0V
-        cyMMMG9opBJXwADrNpswwjL9AMsEO5Tlr1Y1dPRjDvNAd+T9bqTeB9KKy0Sb7YwfbdBpRZtLMqE2x4Dl
-        PbACWCAsY6MRMMB+J5lzefkcqe8BrNdEmwPLc1hq30grPCFNEXTEaH0I6AHmoZDpp2IMsEyhCJj7yObd
-        armmkNyT7/t4+lr7HOxNEDe30rvWWprANNfq68wAsJaYg7jN1vTHhnVIXgRC70g+6ysk3bDWbaEggAAC
-        CCCAAAIIIIAAAggggAACCCCAAAJ1BJbddmX86Wj0rgAAAABJRU5ErkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwQAA
+        DsEBuJFr7QAAAdxJREFUeF7t2z1OwzAUwPEKsXABJITYEAsbB0BsDCws7J05AhMrYmFh5QBcAjhBJ2Ym
+        FgZGhi7te1IrLMux6yQ25OVvyVI/4jj51c95+ehkQkEAAQQQQAABBBBAAAEEEEAAAQQQQAABBCoKnEpf
+        j4Xqjax3q+K+VOnqWnpZFKxP1tBKg+mPYQrNBfvsGJpvkZFqBs0Fe+k4Cbjr+pB1fXuAJtBKgSn+iUW0
+        kmA6YM2hlQYzh1YDzBRaLTAzaDXBTKDVBhs82l+ANaFNO+aBVZqXApvL1n8l6o+X2Oq2/PtSCqzNCT1g
+        mVdBRge2L0BnmXXmoI4OrM38o+ec6/AFbANBwDZAchcBbOxgt4EjnU7sfRVzIwwwb2ikElfAAOs2mzDC
+        Mv0AywQ7lOWvVjV09GMO80B35P1upN4H0orLRJvtjB9t0GlFm0syoTbHgOU9sAJYICxjoxEwwH4nmXN5
+        +Ryp7wGs10SbA8tzWGrfSCs8IU0RdMRofQjoAeahkOmnYgywTKEImPvI5t1quaaQ3JPv+3j6Wvsc7E0Q
+        N7fSu9ZamsA01+rrzACwlpiDuM3W9MeGdUheBELvSD7rKyTdsNZtoSCAAAIIIIAAAggggAACCCCAAAII
+        IIAAAnUElt12ZfzpaPSuAAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
@@ -137,5 +138,8 @@
   </metadata>
   <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </metadata>
 </root>

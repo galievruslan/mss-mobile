@@ -39,12 +39,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                 ActiveRecordBase.BeginTransaction();
                 try
                 {
-                    foreach (var price in routes)
-                    {
-                        if (Route.GetById(price.Id) != null)
-                            price.Update();
-                        else
-                            price.Create();
+                    foreach (var price in routes) {
+                        price.Create();
                     }
                     ActiveRecordBase.Commit();
                 }
@@ -59,12 +55,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                 ActiveRecordBase.BeginTransaction();
                 try
                 {
-                    foreach (var routePoint in routesPoints)
-                    {
-                        if (RoutePoint.GetById(routePoint.Id) != null)
-                            routePoint.Update();
-                        else
-                            routePoint.Create();
+                    foreach (var routePoint in routesPoints) {
+                        routePoint.Create();
                     }
                     ActiveRecordBase.Commit();
                 }

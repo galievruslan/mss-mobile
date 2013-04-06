@@ -36,12 +36,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var warehouse in warehouses)
-                        {
-                            if (Warehouse.GetById(warehouse.Id) != null)
-                                warehouse.Update();
-                            else
-                                warehouse.Create();
+                        foreach (var warehouse in warehouses) {
+                            warehouse.Create();
                         }
                         ActiveRecordBase.Commit();
                     }

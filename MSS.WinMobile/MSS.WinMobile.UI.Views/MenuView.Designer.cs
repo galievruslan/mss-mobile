@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuView));
             this._routeIcon = new System.Windows.Forms.PictureBox();
             this._routeLabel = new System.Windows.Forms.LinkLabel();
             this._synchronizationIcon = new System.Windows.Forms.PictureBox();
@@ -37,7 +36,7 @@
             // 
             // _routeIcon
             // 
-            this._routeIcon.Image = ((System.Drawing.Image)(resources.GetObject("_routeIcon.Image")));
+            this._routeIcon.BackColor = System.Drawing.Color.DarkOrange;
             this._routeIcon.Location = new System.Drawing.Point(3, 3);
             this._routeIcon.Name = "_routeIcon";
             this._routeIcon.Size = new System.Drawing.Size(30, 30);
@@ -56,7 +55,7 @@
             // 
             // _synchronizationIcon
             // 
-            this._synchronizationIcon.Image = ((System.Drawing.Image)(resources.GetObject("_synchronizationIcon.Image")));
+            this._synchronizationIcon.BackColor = System.Drawing.Color.GreenYellow;
             this._synchronizationIcon.Location = new System.Drawing.Point(3, 38);
             this._synchronizationIcon.Name = "_synchronizationIcon";
             this._synchronizationIcon.Size = new System.Drawing.Size(30, 30);

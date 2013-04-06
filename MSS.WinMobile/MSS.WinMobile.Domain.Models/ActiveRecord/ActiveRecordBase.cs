@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Data;
+using System.IO;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using log4net;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
 {
     public abstract class ActiveRecordBase
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ActiveRecordBase));
+
         public int Id { get; protected set; }
 
         protected abstract string InsertCommand { get; }
@@ -99,8 +104,9 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
                         transaction.Commit();
                     }
-                    catch (Exception) {
+                    catch (Exception exception) {
                         transaction.Rollback();
+                        Log.ErrorFormat("Transaction failed", exception);
                     }
                 }
             }
@@ -124,48 +130,33 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         
         public static void Initialize(bool recreate)
         {
-            //string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
-            //string fileName = string.Empty;
-            //string[] parameters = connectionString.Split(';');
-            //foreach (var parameter in parameters)
-            //{
-            //    string[] parameterKv = parameter.Split('=');
-            //    if (parameterKv[0] == "Data Source")
-            //        fileName = parameterKv[1];
-            //}
+            string fileName = ConfigurationManager.AppSettings["DbFileName"];
+            string fullFileName = string.Format("{0}\\{1}", Context.GetAppPath(), fileName);
 
-            //if (recreate && File.Exists(fileName))
-            //{
-            //    File.Delete(fileName);
-            //}
+            if (recreate || !File.Exists(fullFileName))
+            {
+                if (File.Exists(fullFileName))
+                    File.Delete(fullFileName);
 
-            IDbConnection connection = ConnectionFactory.GetConnection();
-            //if (connection.State != ConnectionState.Open)
-            //    connection.Open();
+                System.Data.SQLite.SQLiteConnection.CreateFile(fullFileName);
+                IDbConnection connection = ConnectionFactory.GetConnection();
 
-            //if (!File.Exists(fileName))
-            //{
-            //    var sqlCeEngine = new System.Data.SQLite. SqlCeEngine(connectionString);
-            //    sqlCeEngine.CreateDatabase();
+                string schemaScript;
+                using (StreamReader reader = File.OpenText(Context.GetAppPath() + @"\Resources\Database\Schema.sql"))
+                {
+                    schemaScript = reader.ReadToEnd();
+                }
 
-            //    string schemaScript;
-            //    using (StreamReader reader = File.OpenText(Context.GetAppPath() + @"\Resources\Database\Schema.sqlce"))
-            //    {
-            //        schemaScript = reader.ReadToEnd();
-            //    }
+                using (IDbTransaction transaction = connection.BeginTransaction()) {
+                    using (IDbCommand command = connection.CreateCommand()) {
 
-            //    using (IDbTransaction transaction = connection.BeginTransaction()) {
-            //        using (IDbCommand command = connection.CreateCommand()) {
-            //            string[] schemaStatements = schemaScript.Split(';');
-            //            foreach (var schemaStatement in schemaStatements) {
-            //                command.CommandText = schemaStatement;
-            //                command.ExecuteNonQuery();
-            //            }
+                        command.CommandText = schemaScript;
+                        command.ExecuteNonQuery();
 
-            //            transaction.Commit();
-            //        }
-            //    }
-            //}
+                        transaction.Commit();
+                    }
+                }
+            }
         }
     }
 }

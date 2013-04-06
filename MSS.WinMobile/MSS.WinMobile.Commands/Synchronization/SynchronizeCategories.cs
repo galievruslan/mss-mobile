@@ -40,12 +40,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var category in categories)
-                        {
-                            if (Category.GetById(category.Id) != null)
-                                category.Update();
-                            else
-                                category.Create();
+                        foreach (var category in categories) {
+                            category.Create();
                         }
                         ActiveRecordBase.Commit();
                     }

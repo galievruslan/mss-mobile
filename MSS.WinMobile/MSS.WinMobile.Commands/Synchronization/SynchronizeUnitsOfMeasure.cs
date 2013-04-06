@@ -37,12 +37,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var unitOfMeasure in uoms)
-                        {
-                            if (UnitOfMeasure.GetById(unitOfMeasure.Id) != null)
-                                unitOfMeasure.Update();
-                            else
-                                unitOfMeasure.Create();
+                        foreach (var unitOfMeasure in uoms) {
+                            unitOfMeasure.Create();
                         }
                         ActiveRecordBase.Commit();
                     }

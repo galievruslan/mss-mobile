@@ -37,12 +37,8 @@ namespace MSS.WinMobile.Commands.Synchronization
                     ActiveRecordBase.BeginTransaction();
                     try
                     {
-                        foreach (var priceList in priceLists)
-                        {
-                            if (PriceList.GetById(priceList.Id) != null)
-                                priceList.Update();
-                            else
-                                priceList.Create();
+                        foreach (var priceList in priceLists) {
+                            priceList.Create();
                         }
                         ActiveRecordBase.Commit();
                     }
