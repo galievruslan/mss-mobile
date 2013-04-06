@@ -5,6 +5,7 @@ using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
 using Customer = MSS.WinMobile.Domain.Models.Customer;
+using MSS.WinMobile.Common.Observable;
 
 namespace MSS.WinMobile.Commands.Synchronization
 {
@@ -28,6 +29,11 @@ namespace MSS.WinMobile.Commands.Synchronization
             var customersDtos = _server.CustomerService.GetCustomers(pageNumber, itemsPerPage);
             while (customersDtos.Length > 0)
             {
+                Notificate(
+                    new TextNotification(string.Format("Synchronize Customers from {0} to {1}.",
+                                       (pageNumber - 1) * itemsPerPage,
+                                       (pageNumber - 1) * itemsPerPage + itemsPerPage)));
+
                 foreach (var customerDto in customersDtos)
                 {
                     var customer = new Customer(customerDto.Id, customerDto.Name);

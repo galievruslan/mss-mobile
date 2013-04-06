@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
@@ -30,6 +31,11 @@ namespace MSS.WinMobile.Commands.Synchronization
             {
                 foreach (var productDto in productsDtos)
                 {
+                    Notificate(
+    new TextNotification(string.Format("Synchronize Products from {0} to {1}.",
+                                       (pageNumber - 1) * itemsPerPage,
+                                       (pageNumber - 1) * itemsPerPage + itemsPerPage)));
+
                     var product = productDto.CategoryId == 0 ? new Product(productDto.Id, productDto.Name) : new Product(productDto.Id, productDto.Name, productDto.CategoryId);
                     products.Add(product);
 

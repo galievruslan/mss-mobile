@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
@@ -26,6 +27,11 @@ namespace MSS.WinMobile.Commands.Synchronization
             var priceListsDtos = _server.PriceListService.GetPriceLists(pageNumber, itemsPerPage);
             while (priceListsDtos.Length > 0)
             {
+                Notificate(
+    new TextNotification(string.Format("Synchronize PriceLists from {0} to {1}.",
+                                       (pageNumber - 1) * itemsPerPage,
+                                       (pageNumber - 1) * itemsPerPage + itemsPerPage)));
+
                 foreach (var priceListDto in priceListsDtos)
                 {
                     var priceList = new PriceList(priceListDto.Id, priceListDto.Name);

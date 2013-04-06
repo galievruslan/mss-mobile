@@ -85,7 +85,6 @@ namespace MSS.WinMobile.Domain.Models
             {
                 var insertBuilder = new StringBuilder();
                 insertBuilder.Append(string.Format("INSERT INTO [{0}] (", Table.TABLE_NAME));
-                insertBuilder.Append(string.Format("[{0}], ", Table.Fields.ID));
                 insertBuilder.Append(string.Format("[{0}], ", Table.Fields.DATE));
                 insertBuilder.Append(string.Format("[{0}], ", Table.Fields.MANAGER_ID));
                 insertBuilder.Append(string.Format("[{0}], ", Table.Fields.SHIPPING_ADDRESS_ID));
@@ -93,7 +92,6 @@ namespace MSS.WinMobile.Domain.Models
                 insertBuilder.Append(string.Format("[{0}], ", Table.Fields.WAREHOUSE_ID));
                 insertBuilder.Append(string.Format("[{0}]", Table.Fields.NOTE));
                 insertBuilder.Append(") VALUES (");
-                insertBuilder.Append(string.Format("{0}, ", Id));
                 insertBuilder.Append(string.Format("'{0}', ", Date.ToString("yyyy-MM-dd HH:mm:ss")));
                 insertBuilder.Append(Manager != null ? string.Format("{0}, ", Manager.Id) : "NULL, ");
                 insertBuilder.Append(ShippingAddress != null ? string.Format("{0}, ", ShippingAddress.Id) : "NULL, ");

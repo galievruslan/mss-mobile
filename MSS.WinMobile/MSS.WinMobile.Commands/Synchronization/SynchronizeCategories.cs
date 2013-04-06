@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
@@ -25,6 +26,11 @@ namespace MSS.WinMobile.Commands.Synchronization
             var categoriesDtos = _server.CategoryServiceService.GetCategories(pageNumber, itemsPerPage);
             while (categoriesDtos.Length > 0)
             {
+                Notificate(
+                    new TextNotification(string.Format("Synchronize Categories from {0} to {1}.",
+                                                       (pageNumber - 1)*itemsPerPage,
+                                                       (pageNumber - 1)*itemsPerPage + itemsPerPage)));
+
                 foreach (var categoryDto in categoriesDtos)
                 {
                     var category = categoryDto.CategoryId == 0

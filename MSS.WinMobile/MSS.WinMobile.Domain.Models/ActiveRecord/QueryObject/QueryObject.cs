@@ -49,8 +49,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         protected virtual T[] Execute()
         {
+            Log.DebugFormat("Select from database.");
             string commandText = ToString();
-            Log.DebugFormat("Query execution requested ({0})", commandText);
 
             try
             {
@@ -60,22 +60,11 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                     var result = new List<T>();
                     
                     command.CommandText = commandText;
-
-                    Log.DebugFormat("Query execution command prepared");
                     using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
                     {
-                        Log.DebugFormat("Query execution command executed");
                         while (reader.Read())
                         {
-                            Log.DebugFormat("Result row materialization started");
-                            //var dictionary = new Dictionary<string, object>();
-                            //for (int i = 0; i < reader.FieldCount; i++)
-                            //{
-                            //    if (!reader.IsDBNull(i))
-                            //        dictionary.Add(reader.GetName(i), reader.GetValue(i));
-                            //}
                             result.Add(ActiveRecordFactory.Create<T>(reader));
-                            Log.DebugFormat("Result row materialization finished");
                         }
                     }
                     return result.ToArray();
@@ -83,7 +72,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             }
             catch (Exception exception)
             {
-                Log.Error(string.Format("Query: {0}", ToString()), exception);
+                Log.Error(string.Format("Query: {0}", commandText), exception);
             }
 
             return new T[0];

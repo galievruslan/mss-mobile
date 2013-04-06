@@ -61,9 +61,9 @@ namespace MSS.WinMobile.Domain.Models
         protected override string InsertCommand {
             get
             {
-                return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}], [{4}]) VALUES ({5}, {6}, {7}, {8})",
-                                     Table.TABLE_NAME, Table.Fields.ID, Table.Fields.ORDER_ID,
-                                     Table.Fields.PRODUCT_ID, Table.Fields.QUANTITY, Id, OrderId,
+                return string.Format("INSERT INTO [{0}] ([{1}], [{2}], [{3}]) VALUES ({4}, {5}, {6})",
+                                     Table.TABLE_NAME, Table.Fields.ORDER_ID,
+                                     Table.Fields.PRODUCT_ID, Table.Fields.QUANTITY, OrderId,
                                      Product.Id, Quantity);
             }
         }

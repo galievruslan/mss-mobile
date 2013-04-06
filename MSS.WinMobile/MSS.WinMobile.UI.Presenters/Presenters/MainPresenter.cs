@@ -26,6 +26,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 var initView = NavigationContext.NavigateTo<IInitializationView>();
                 initView.ShowView();
             }
+
+            _view.HideView();
         }
     }
 }

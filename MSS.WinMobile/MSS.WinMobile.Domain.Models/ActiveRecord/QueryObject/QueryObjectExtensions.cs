@@ -34,12 +34,12 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
 
         public static int Count<T>(this QueryObject<T> queryObject) where T : ActiveRecordBase
         {
+            Log.DebugFormat("Select count from database.");
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append("SELECT COUNT(*)");
             queryStringBuilder.Append(string.Format(" FROM ({0}) AS [{1}]", queryObject, queryObject.TableName));
 
             string commandText = queryStringBuilder.ToString();
-            Log.DebugFormat("Query execution requested ({0})", commandText);
 
             int count;
             if (!Cache.Contains(commandText))
@@ -49,10 +49,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                 {
                     command.CommandText = commandText;
 
-                    Log.DebugFormat("Query execution command prepared");
                     object result = command.ExecuteScalar();
-                    Log.DebugFormat("Query execution command executed");
-
+                    
                     count = Convert.ToInt32(result);
                     Cache.Add(commandText, count);
                 }

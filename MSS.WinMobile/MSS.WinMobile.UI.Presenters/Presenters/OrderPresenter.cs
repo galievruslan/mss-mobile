@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -20,7 +21,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public OrderPresenter(IOrderView view, int routePointId)
         {
             _view = view;
-            _order = new Order(RoutePoint.GetById(routePointId));
+            RoutePoint routePoint = RoutePoint.GetById(routePointId);
+            _order = routePoint.Order;
+            if (_order == null)
+            {
+                _order = new Order(RoutePoint.GetById(routePointId));
+                _order.Create();
+            }
 
             _orderItemRetriever = new OrderItemRetriever(_order);
             _cache = new Cache<OrderItem>(_orderItemRetriever, 10);
@@ -28,9 +35,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void InitializeView()
         {
-            if (_order.Id == 0)
-                _view.SetNumber("Not set yet.");
-
+            _view.SetNumber(_order.Id.ToString(CultureInfo.InvariantCulture));
             _view.SetDate(_order.Date);
             _view.SetCustomer(_order.Customer.Name);
             _view.SetShippingAddress(_order.ShippingAddress.Address);

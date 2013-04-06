@@ -46,6 +46,11 @@ namespace MSS.WinMobile.UI.Views
             throw new NotImplementedException();
         }
 
+        public void HideView()
+        {
+            Hide();
+        }
+
         #endregion
     }
 }

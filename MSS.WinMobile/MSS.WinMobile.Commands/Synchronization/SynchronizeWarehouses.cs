@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
@@ -24,7 +25,13 @@ namespace MSS.WinMobile.Commands.Synchronization
             int pageNumber = 1;
             const int itemsPerPage = 100;
             var warehousesDtos = _server.WarehouseService.GetWarehouses(pageNumber, itemsPerPage);
-            while (warehousesDtos.Length > 0) {
+            while (warehousesDtos.Length > 0)
+            {
+                Notificate(
+                    new TextNotification(string.Format("Synchronize Warehouses from {0} to {1}.",
+                                                       (pageNumber - 1)*itemsPerPage,
+                                                       (pageNumber - 1)*itemsPerPage + itemsPerPage)));
+
                 foreach (var warehouseDto in warehousesDtos)
                 {
                     var warehouse = new Warehouse(warehouseDto.Id, warehouseDto.Address);

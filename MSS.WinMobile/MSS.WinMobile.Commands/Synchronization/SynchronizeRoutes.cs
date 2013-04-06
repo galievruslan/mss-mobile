@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Infrastructure.Server;
@@ -26,6 +27,9 @@ namespace MSS.WinMobile.Commands.Synchronization
 
             var route = new Route(routeDto.Id, routeDto.ManagerId, routeDto.Date);
             routes.Add(route);
+
+            Notificate(
+                new TextNotification(string.Format("Synchronize Route")));
 
             foreach (var routePointDto in routeDto.RoutePoints)
             {
