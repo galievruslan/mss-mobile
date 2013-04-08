@@ -65,6 +65,7 @@
     <Compile Include="FaultHandling\IgnoreErrorCommand.cs" />
     <Compile Include="FaultHandling\RepeatOnErrorCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Synchronization\SynchronizeRouteTemplates.cs" />
     <Compile Include="Synchronization\SynchronizeAll.cs" />
     <Compile Include="Synchronization\SynchronizeRoutes.cs" />
     <Compile Include="Synchronization\SynchronizePriceLists.cs" />
@@ -80,6 +81,10 @@
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
+      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
+      <Name>MSS.WinMobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>

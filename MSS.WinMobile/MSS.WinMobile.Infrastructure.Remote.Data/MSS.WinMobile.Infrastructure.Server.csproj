@@ -68,6 +68,8 @@
     <Compile Include="Dtos\ProfileDto.cs" />
     <Compile Include="Dtos\RouteDto.cs" />
     <Compile Include="Dtos\RoutePointDto.cs" />
+    <Compile Include="Dtos\RoutePointTemplateDto.cs" />
+    <Compile Include="Dtos\RouteTamplateDto.cs" />
     <Compile Include="Dtos\ShippingAddressDto.cs" />
     <Compile Include="Dtos\StatusDto.cs" />
     <Compile Include="Dtos\UnitOfMeasureDto.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Server.cs" />
     <Compile Include="Services\Constants.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\RouteTemplateService.cs" />
     <Compile Include="Services\ParametersBuilder.cs" />
     <Compile Include="Services\UnitOfMeasureService.cs" />
     <Compile Include="Services\PriceListService.cs" />

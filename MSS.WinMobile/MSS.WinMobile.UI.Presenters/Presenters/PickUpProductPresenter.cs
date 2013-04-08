@@ -14,12 +14,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IPickUpProductView _view;
         private readonly IDataPageRetriever<ProductsPrice> _productsPriceRetriever;
         private readonly Cache<ProductsPrice> _cache;
-        private readonly PriceList _priceList;
+        private readonly Order _order; 
 
-        public PickUpProductPresenter(IPickUpProductView view, int priceListId)
+        public PickUpProductPresenter(IPickUpProductView view, int orderId)
         {
-            _priceList = PriceList.GetById(priceListId);
-            _productsPriceRetriever = new ProductsPriceRetriever(_priceList);
+            _order = Order.GetById(orderId);
+            _productsPriceRetriever = new ProductsPriceRetriever(_order.PriceList);
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 10);
             _view = view;
         }
@@ -32,6 +32,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public IDictionary<string, string> GetItemData(int index)
         {
             ProductsPrice item = _cache.RetrieveElement(index);
+
             return new Dictionary<string, string>
                 {
                     {"Name", item.Product.Name},

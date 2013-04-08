@@ -13,6 +13,12 @@ namespace MSS.WinMobile.UI.Views
         public PriceListLookUpView()
         {
             InitializeComponent();
+            searchPanel.SearchNeeded += searchPanel_SearchNeeded;
+        }
+
+        void searchPanel_SearchNeeded(object sender, string criteria)
+        {
+            _presenter.Search(criteria);
         }
 
         private void ViewLoad(object sender, EventArgs e)

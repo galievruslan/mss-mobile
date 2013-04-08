@@ -44,8 +44,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            var menuView = NavigationContext.NavigateTo<IMenuView>();
-            menuView.ShowView();
             _view.CloseView();
         }
 

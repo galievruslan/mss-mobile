@@ -31,7 +31,7 @@ namespace MSS.WinMobile.Application
 
             Log.Info("Application start");
             ActiveRecordBase.Initialize(false);
-            System.Windows.Forms.Application.Run(new MainView());
+            System.Windows.Forms.Application.Run(new MenuView());
             Log.Info("Application finish");
         }
     }

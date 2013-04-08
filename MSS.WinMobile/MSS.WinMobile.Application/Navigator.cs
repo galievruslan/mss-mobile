@@ -22,6 +22,14 @@ namespace MSS.WinMobile.Application
             {
                 view = (new InitializationView()) as T;
             }
+            else if (typeof(T) == typeof(ISynchronizationView))
+            {
+                view = (new SynchronizationView()) as T;
+            }
+            else if (typeof(T) == typeof(IRouteView))
+            {
+                view = (new RouteView()) as T;
+            }
 
             return view;
         }

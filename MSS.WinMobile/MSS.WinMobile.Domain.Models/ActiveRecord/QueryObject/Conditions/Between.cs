@@ -1,12 +1,14 @@
-﻿namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions
+﻿using System;
+
+namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions
 {
-    public class Contains : Condition
+    public class Between : Condition
     {
         private readonly string _queryCondition;
 
-        public Contains(string value)
+        public Between(DateTime from, DateTime to)
         {
-            _queryCondition = string.Format(" LIKE '%{0}%'", value);
+            _queryCondition = string.Format(" BETWEEN '{0}' AND '{1}'", from, to);
         }
 
         public override string ToString()

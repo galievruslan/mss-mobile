@@ -84,6 +84,11 @@ namespace MSS.WinMobile.Infrastructure.Server
             get { return new RouteService(_requestFactory, _requestDispatcher); }
         }
 
+        public RouteTemplateService RouteTemplateService
+        {
+            get { return new RouteTemplateService(_requestFactory, _requestDispatcher); }
+        }
+
         public StatusService StatusService
         {
             get { return new StatusService(_requestFactory, _requestDispatcher); }

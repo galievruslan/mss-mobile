@@ -78,3 +78,14 @@ CREATE TABLE [RoutePoints] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
 , FOREIGN KEY(Status_Id) REFERENCES Statuses(Id)
 );
+CREATE TABLE [RouteTemplates] ([Id] INTEGER  NOT NULL PRIMARY KEY
+, [DayOfWeek] INTEGER  NULL
+, [Manager_Id] INTEGER  NULL
+, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
+);
+CREATE TABLE [RoutePointTemplates] ([Id] INTEGER  NOT NULL PRIMARY KEY
+, [RouteTemplate_Id] INTEGER  NULL
+, [ShippingAddress_Id] INTEGER  NULL
+, FOREIGN KEY(RouteTemplate_Id) REFERENCES RouteTemplates(Id)
+, FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
+);

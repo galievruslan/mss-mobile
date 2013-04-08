@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views
+﻿using MSS.WinMobile.UI.Controls;
+
+namespace MSS.WinMobile.UI.Views
 {
     partial class PickUpProductView
     {
@@ -32,7 +34,8 @@
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
             this.productsPriceListBox = new MSS.WinMobile.UI.Controls.ListBox.ProductPriceListBox();
-            this.searchPanel = new MSS.WinMobile.UI.Controls.ListBox.SearchPanel();
+            this.searchPanel = new SearchPanel();
+            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +91,7 @@
             this.searchPanel.Size = new System.Drawing.Size(240, 24);
             this.searchPanel.TabIndex = 0;
             // 
-            // CustomerLookUpView
+            // PickUpProductView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -97,7 +100,7 @@
             this.Controls.Add(this.productsPriceListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
-            this.Name = "CustomerLookUpView";
+            this.Name = "PickUpProductView";
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
@@ -107,11 +110,12 @@
 
         #endregion
 
-        private MSS.WinMobile.UI.Controls.ListBox.SearchPanel searchPanel;
+        private SearchPanel searchPanel;
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
         private MSS.WinMobile.UI.Controls.ListBox.ProductPriceListBox productsPriceListBox;
+        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
 
     }
 }

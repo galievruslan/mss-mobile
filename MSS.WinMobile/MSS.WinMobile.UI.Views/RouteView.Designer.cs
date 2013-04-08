@@ -57,7 +57,8 @@ namespace MSS.WinMobile.UI.Views
             // 
             // _createOrderIcon
             // 
-            this._createOrderIcon.BackColor = System.Drawing.Color.Gold;
+            this._createOrderIcon.BackColor = System.Drawing.Color.White;
+            this._createOrderIcon.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_createOrderIcon.BackgroundImage")));
             this._createOrderIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._createOrderIcon.Location = new System.Drawing.Point(2, 2);
             this._createOrderIcon.Name = "_createOrderIcon";

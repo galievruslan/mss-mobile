@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views
+﻿using MSS.WinMobile.UI.Controls;
+
+namespace MSS.WinMobile.UI.Views
 {
     partial class ShippingAddressLookUpView
     {
@@ -31,7 +33,7 @@
             this._actionPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this.searchPanel = new MSS.WinMobile.UI.Controls.ListBox.SearchPanel();
+            this.searchPanel = new SearchPanel();
             this.shippingAddressListBox = new MSS.WinMobile.UI.Controls.ListBox.ShippingAddressListBox();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +109,7 @@
 
         #endregion
 
-        private MSS.WinMobile.UI.Controls.ListBox.SearchPanel searchPanel;
+        private SearchPanel searchPanel;
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;

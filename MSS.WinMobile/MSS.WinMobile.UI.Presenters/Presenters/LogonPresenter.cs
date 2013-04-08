@@ -46,9 +46,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     ConfigurationManager.AppSettings.Set("ContextManagerId",
                                                          Context.ManagerId.ToString(CultureInfo.InvariantCulture));
                     ConfigurationManager.Save();
-
-                    var initializationView = NavigationContext.NavigateTo<IInitializationView>();
-                    initializationView.ShowView();
+                    NavigationContext.NavigateTo<IInitializationView>().ShowView();
                     _view.CloseView();
                 }
             }

@@ -6,7 +6,6 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.MainMenu mainMenu1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -29,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this._statusPanel = new System.Windows.Forms.Panel();
             this._errorsLabel = new System.Windows.Forms.Label();
             this._progressBar = new System.Windows.Forms.ProgressBar();
@@ -79,8 +77,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ControlBox = false;
             this.Controls.Add(this._statusPanel);
             this.Name = "InitializationView";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.SynchronizationView_Load);
             this._statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);

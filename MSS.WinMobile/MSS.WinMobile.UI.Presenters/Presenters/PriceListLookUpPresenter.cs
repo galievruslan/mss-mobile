@@ -12,8 +12,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPriceListLookUpView _view;
-        private readonly IDataPageRetriever<PriceList> _priceListRetriever;
-        private readonly Cache<PriceList> _cache;
+        private PriceListRetriever _priceListRetriever;
+        private Cache<PriceList> _cache;
 
         public PriceListLookUpPresenter(IPriceListLookUpView view)
         {
@@ -46,6 +46,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 return _selectedPriceList.Id;
 
             throw new NoSelectedItemsException();
+        }
+
+        public void Search(string criteria)
+        {
+            _priceListRetriever = new PriceListRetriever {SearchCriteria = criteria};
+            _cache = new Cache<PriceList>(_priceListRetriever, 10);
+            _view.SetItemCount(_priceListRetriever.Count);
         }
     }
 }

@@ -139,9 +139,11 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ControlBox = false;
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._inputPanel);
             this.Name = "LogonView";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.ViewLoad);
             this._inputPanel.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);

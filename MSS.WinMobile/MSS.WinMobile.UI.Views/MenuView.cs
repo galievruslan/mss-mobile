@@ -26,32 +26,14 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        private SynchronizationView _synchronizationView;
-
         private void _synchronizationLabel_Click(object sender, System.EventArgs e)
         {
-            if (_synchronizationView == null)
-                _synchronizationView = new SynchronizationView();
-
-            _synchronizationView.Show();
+            _presenter.ShowSyncView();
         }
-
-        private RouteView _routeView;
 
         private void RouteClick(object sender, System.EventArgs e)
         {
-            Log.Debug("Redirect to RouteView begin.");
-            if (_routeView == null)
-            {
-                Log.Debug("Construct RouteView begin.");
-                _routeView = new RouteView();
-                Log.Debug("Construct RouteView finish.");
-            }
-
-            Log.Debug("Show RouteView begin.");
-            _routeView.Show();
-            Log.Debug("Show RouteView finish.");
-            Log.Debug("Redirect to RouteView finish.");
+            _presenter.ShowRouteView();
         }
 
         #region IView

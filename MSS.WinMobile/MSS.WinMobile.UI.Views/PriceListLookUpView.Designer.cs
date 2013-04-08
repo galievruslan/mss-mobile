@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views
+﻿using MSS.WinMobile.UI.Controls;
+
+namespace MSS.WinMobile.UI.Views
 {
     partial class PriceListLookUpView
     {
@@ -32,7 +34,9 @@
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
             this.priceListListBox = new MSS.WinMobile.UI.Controls.ListBox.PriceListListBox();
-            this.searchPanel = new MSS.WinMobile.UI.Controls.ListBox.SearchPanel();
+            this.searchPanel = new SearchPanel();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
+            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +45,7 @@
             this._actionPanel.Controls.Add(this._okButton);
             this._actionPanel.Controls.Add(this._cancelButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 264);
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
@@ -76,7 +80,7 @@
             this.priceListListBox.Location = new System.Drawing.Point(0, 24);
             this.priceListListBox.Name = "priceListListBox";
             this.priceListListBox.SelectedIndex = -1;
-            this.priceListListBox.Size = new System.Drawing.Size(240, 240);
+            this.priceListListBox.Size = new System.Drawing.Size(240, 214);
             this.priceListListBox.TabIndex = 3;
             // 
             // searchPanel
@@ -93,10 +97,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(240, 268);
             this.Controls.Add(this.priceListListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
+            this.Menu = this.mainMenu;
             this.Name = "PriceListLookUpView";
             this.Text = "PriceListLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
@@ -107,11 +112,13 @@
 
         #endregion
 
-        private MSS.WinMobile.UI.Controls.ListBox.SearchPanel searchPanel;
+        private SearchPanel searchPanel;
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
         private MSS.WinMobile.UI.Controls.ListBox.PriceListListBox priceListListBox;
+        private System.Windows.Forms.MainMenu mainMenu;
+        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
 
     }
 }

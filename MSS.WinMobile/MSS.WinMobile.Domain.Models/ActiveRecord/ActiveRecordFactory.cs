@@ -52,6 +52,14 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             {
                 activeRecord = new RoutePoint(dataRecord, string.Empty) as T;
             }
+            else if (typeof(T) == typeof(RouteTemplate))
+            {
+                activeRecord = new RouteTemplate(dataRecord, string.Empty) as T;
+            }
+            else if (typeof(T) == typeof(RoutePointTemplate))
+            {
+                activeRecord = new RoutePointTemplate(dataRecord, string.Empty) as T;
+            }
             else if (typeof(T) == typeof(ShippingAddress))
             {
                 activeRecord = new ShippingAddress(dataRecord, string.Empty) as T;

@@ -106,6 +106,24 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                         RoutePoint.Table.Fields.STATUS_ID
                     };
             }
+            else if (typeof(T) == typeof(RouteTemplate))
+            {
+                tableName = RouteTemplate.Table.TABLE_NAME;
+                fieldsNames = new[]
+                    {
+                        RouteTemplate.Table.Fields.ID, RouteTemplate.Table.Fields.DAY_OF_WEEK,
+                        RouteTemplate.Table.Fields.MANAGER_ID
+                    };
+            }
+            else if (typeof(T) == typeof(RoutePointTemplate))
+            {
+                tableName = RoutePointTemplate.Table.TABLE_NAME;
+                fieldsNames = new[]
+                    {
+                        RoutePointTemplate.Table.Fields.ID, RoutePointTemplate.Table.Fields.ROUTE_TEMPLATE_ID,
+                        RoutePointTemplate.Table.Fields.SHIPPING_ADDRESS_ID
+                    };
+            }
             else if (typeof(T) == typeof(ShippingAddress))
             {
                 tableName = ShippingAddress.Table.TABLE_NAME;
