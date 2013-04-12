@@ -44,7 +44,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var price in statuses) {
-                            price.Create();
+                            price.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

@@ -9,7 +9,7 @@ namespace MSS.WinMobile.Domain.Models
         public Order(RoutePoint routePoint)
         {
             Date = DateTime.Now;
-            Manager = routePoint.Route.Manager;
+            Manager = Manager.GetById(Context.ManagerId);
             ShippingAddress = routePoint.ShippingAddress;
         }
 

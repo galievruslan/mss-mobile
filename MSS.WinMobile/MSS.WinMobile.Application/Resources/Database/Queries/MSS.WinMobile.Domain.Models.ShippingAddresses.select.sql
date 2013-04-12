@@ -1,0 +1,1 @@
+SELECT Id, Name, Address, Customer_Id FROM ShippingAddresses

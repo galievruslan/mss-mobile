@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO Products (Id, Name, Category_Id) VALUES ({0}, '{1}', {2})

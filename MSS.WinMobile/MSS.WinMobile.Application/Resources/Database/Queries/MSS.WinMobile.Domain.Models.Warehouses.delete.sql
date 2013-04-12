@@ -1,0 +1,1 @@
+DELETE FROM Warehouses WHERE Id = {0}

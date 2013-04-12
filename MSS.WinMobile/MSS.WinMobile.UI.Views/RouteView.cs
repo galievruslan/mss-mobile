@@ -51,11 +51,6 @@ namespace MSS.WinMobile.UI.Views
             _routeVirtualListBox.SetListSize(count);
         }
 
-        public int GetSelectedId()
-        {
-            return _presenter.GetSelectedItemId();
-        }
-
         #region IView
 
         public void ShowView()

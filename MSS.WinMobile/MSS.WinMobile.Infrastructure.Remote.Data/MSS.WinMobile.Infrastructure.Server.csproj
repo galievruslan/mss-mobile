@@ -69,7 +69,7 @@
     <Compile Include="Dtos\RouteDto.cs" />
     <Compile Include="Dtos\RoutePointDto.cs" />
     <Compile Include="Dtos\RoutePointTemplateDto.cs" />
-    <Compile Include="Dtos\RouteTamplateDto.cs" />
+    <Compile Include="Dtos\RouteTemplateDto.cs" />
     <Compile Include="Dtos\ShippingAddressDto.cs" />
     <Compile Include="Dtos\StatusDto.cs" />
     <Compile Include="Dtos\UnitOfMeasureDto.cs" />

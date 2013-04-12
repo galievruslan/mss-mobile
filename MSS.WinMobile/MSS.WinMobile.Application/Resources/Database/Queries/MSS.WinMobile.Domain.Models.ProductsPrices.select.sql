@@ -1,0 +1,1 @@
+SELECT Id, Product_Id, PriceList_Id, Price FROM ProductsPrices

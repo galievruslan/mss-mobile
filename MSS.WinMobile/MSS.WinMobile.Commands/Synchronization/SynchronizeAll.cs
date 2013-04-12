@@ -55,7 +55,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                 command.Do();
                 command.Unsubscribe(this);
                 Notificate(new ProgressNotification(90));
-                command = new SynchronizeRoutes(_server).RepeatOnError();
+                command = new SynchronizeRouteTemplates(_server).RepeatOnError();
                 command.Subscribe(this);
                 command.Do();
                 command.Unsubscribe(this);

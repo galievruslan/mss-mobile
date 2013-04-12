@@ -1,0 +1,1 @@
+DELETE FROM Statuses WHERE Id = {0}

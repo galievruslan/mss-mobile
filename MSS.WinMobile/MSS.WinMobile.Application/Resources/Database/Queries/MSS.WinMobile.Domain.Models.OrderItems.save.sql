@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO OrderItems (Id, Order_Id, Product_Id, Quantity) VALUES ({0}, {1}, {2}, {3})

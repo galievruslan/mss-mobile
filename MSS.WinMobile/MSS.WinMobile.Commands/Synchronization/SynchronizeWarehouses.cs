@@ -44,7 +44,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var warehouse in warehouses) {
-                            warehouse.Create();
+                            warehouse.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

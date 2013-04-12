@@ -47,7 +47,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var category in categories) {
-                            category.Create();
+                            category.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

@@ -1,0 +1,1 @@
+DELETE FROM Managers WHERE Id = {0}

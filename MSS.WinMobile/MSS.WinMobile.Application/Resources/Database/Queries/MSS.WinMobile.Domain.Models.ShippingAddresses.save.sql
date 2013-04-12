@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO ShippingAddresses (Id, Name, Address, Customer_Id) VALUES ({0}, '{1}', '{2}', {3})

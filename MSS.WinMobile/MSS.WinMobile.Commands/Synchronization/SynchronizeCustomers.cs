@@ -53,7 +53,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var customer in customers) {
-                            customer.Create();
+                            customer.Save();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -69,7 +69,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var shippingAddress in shippingAddresses) {
-                            shippingAddress.Create();
+                            shippingAddress.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

@@ -1,0 +1,1 @@
+DELETE FROM PriceLists WHERE Id = {0}

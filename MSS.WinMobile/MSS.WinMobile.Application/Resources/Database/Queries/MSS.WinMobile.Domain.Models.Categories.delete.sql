@@ -1,0 +1,1 @@
+DELETE FROM Categories WHERE Id = {0}

@@ -44,7 +44,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var manager in managers) {
-                            manager.Create();
+                            manager.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

@@ -1,0 +1,1 @@
+DELETE FROM UnitsOfMeasure WHERE Id = {0}

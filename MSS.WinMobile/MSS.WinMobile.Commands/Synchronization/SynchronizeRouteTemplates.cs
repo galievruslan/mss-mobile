@@ -34,7 +34,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                 var routeTemplate = new RouteTemplate(routeTemplateDto.Id, routeTemplateDto.ManagerId, (DayOfWeek)routeTemplateDto.DatyOfWeek);
                 routeTemplates.Add(routeTemplate);
 
-                foreach (var routePointTemplateDto in routeTemplateDto.RoutePointTemplates)
+                foreach (var routePointTemplateDto in routeTemplateDto.TemplateRoutePoints)
                 {
                     var routePointTemplate = new RoutePointTemplate(routePointTemplateDto.Id, routeTemplateDto.Id,
                                                                     routePointTemplateDto.ShippingAddressId);
@@ -49,7 +49,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                 {
                     foreach (var routeTemplate in routeTemplates)
                     {
-                        routeTemplate.Create();
+                        routeTemplate.Save();
                     }
                     ActiveRecordBase.Commit();
                 }
@@ -66,7 +66,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                 {
                     foreach (var routePointTemplate in routePointTemplates)
                     {
-                        routePointTemplate.Create();
+                        routePointTemplate.Save();
                     }
                     ActiveRecordBase.Commit();
                 }

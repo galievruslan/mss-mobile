@@ -9,7 +9,7 @@
         }
 
         public Category(int id, string name, int parentId)
-            :this(id, name)
+            : this(id, name)
         {
             ParentId = parentId;
         }

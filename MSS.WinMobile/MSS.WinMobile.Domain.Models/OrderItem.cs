@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.Domain.Models
+﻿using System;
+
+namespace MSS.WinMobile.Domain.Models
 {
     public partial class OrderItem
     {

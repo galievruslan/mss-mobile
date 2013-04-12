@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO Statuses (Id, Name) VALUES ({0}, '{1}')

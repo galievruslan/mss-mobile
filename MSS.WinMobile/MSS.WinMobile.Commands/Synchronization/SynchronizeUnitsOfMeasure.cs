@@ -44,7 +44,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var unitOfMeasure in uoms) {
-                            unitOfMeasure.Create();
+                            unitOfMeasure.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

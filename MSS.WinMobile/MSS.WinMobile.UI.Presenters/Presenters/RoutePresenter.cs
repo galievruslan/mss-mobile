@@ -13,14 +13,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IRouteView _view;
-        private readonly Route _route;
         private readonly IDataPageRetriever<RoutePoint> _routePointRetriever;
         private readonly Cache<RoutePoint> _cache; 
 
         public RoutePresenter(IRouteView view)
         {
-            //_route = Route.GetByDate(DateTime.Today);
-            //_routePointRetriever = new RoutePointRetriever(_route);
             _routePointRetriever = RetrieversCache.GetCurrentRoutePointRetriever();
             _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
             _view = view;

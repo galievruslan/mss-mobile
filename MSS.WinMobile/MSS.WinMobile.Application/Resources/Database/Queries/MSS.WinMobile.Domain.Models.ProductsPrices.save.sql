@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO ProductsPrices (Id, Product_Id, PriceList_Id, Price) VALUES ({0}, {1}, {2}, {3})

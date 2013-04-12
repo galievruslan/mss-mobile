@@ -29,13 +29,12 @@ namespace MSS.WinMobile.Commands.Synchronization
             var productsDtos = _server.ProductService.GetProducts(pageNumber, itemsPerPage);
             while (productsDtos.Length > 0)
             {
-                foreach (var productDto in productsDtos)
-                {
-                    Notificate(
-    new TextNotification(string.Format("Synchronize Products from {0} to {1}.",
+                Notificate(new TextNotification(string.Format("Synchronize Products from {0} to {1}.",
                                        (pageNumber - 1) * itemsPerPage,
                                        (pageNumber - 1) * itemsPerPage + itemsPerPage)));
 
+                foreach (var productDto in productsDtos)
+                {
                     var product = productDto.CategoryId == 0 ? new Product(productDto.Id, productDto.Name) : new Product(productDto.Id, productDto.Name, productDto.CategoryId);
                     products.Add(product);
 
@@ -60,7 +59,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var product in products) {
-                            product.Create();
+                            product.Save();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -76,7 +75,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var unitOfMeasure in productsUoms) {
-                            unitOfMeasure.Create();
+                            unitOfMeasure.Save();
                         }
                         ActiveRecordBase.Commit();
                     }
@@ -92,7 +91,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var productsPrice in productsPrices) {
-                            productsPrice.Create();
+                            productsPrice.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

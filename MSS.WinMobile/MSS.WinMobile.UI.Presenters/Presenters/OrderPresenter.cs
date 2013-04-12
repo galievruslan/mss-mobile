@@ -26,7 +26,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             if (_order == null)
             {
                 _order = new Order(RoutePoint.GetById(routePointId));
-                _order.Create();
+                _order.Save();
             }
 
             _orderItemRetriever = new OrderItemRetriever(_order);
@@ -35,7 +35,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void InitializeView()
         {
-            _view.SetNumber(_order.Id.ToString(CultureInfo.InvariantCulture));
+            _view.SetNumber(_order.Id.ToString());
             _view.SetDate(_order.Date);
             _view.SetCustomer(_order.Customer.Name);
             _view.SetShippingAddress(_order.ShippingAddress.Address);

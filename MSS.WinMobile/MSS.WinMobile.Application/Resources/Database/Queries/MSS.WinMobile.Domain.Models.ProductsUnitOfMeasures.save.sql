@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO ProductsUnitOfMeasures (Id, Product_Id, UnitOfMeasure_Id, Base) VALUES ({0}, {1}, {2}, {3})

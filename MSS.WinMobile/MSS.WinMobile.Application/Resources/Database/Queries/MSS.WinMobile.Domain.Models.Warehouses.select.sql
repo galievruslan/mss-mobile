@@ -1,0 +1,1 @@
+SELECT Id, Address FROM Warehouses

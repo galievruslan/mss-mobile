@@ -1,0 +1,1 @@
+DELETE FROM OrderItems WHERE Id = {0}

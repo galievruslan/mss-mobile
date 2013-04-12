@@ -23,7 +23,7 @@ namespace MSS.WinMobile.Commands.Synchronization
             var priceLists = new List<PriceList>();
 
             int pageNumber = 1;
-            const int itemsPerPage = 1;
+            const int itemsPerPage = 100;
             var priceListsDtos = _server.PriceListService.GetPriceLists(pageNumber, itemsPerPage);
             while (priceListsDtos.Length > 0)
             {
@@ -44,7 +44,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                     try
                     {
                         foreach (var priceList in priceLists) {
-                            priceList.Create();
+                            priceList.Save();
                         }
                         ActiveRecordBase.Commit();
                     }

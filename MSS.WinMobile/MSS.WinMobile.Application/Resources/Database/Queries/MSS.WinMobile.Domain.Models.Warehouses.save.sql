@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO Warehouses (Id, Address) VALUES ({0}, '{1}')

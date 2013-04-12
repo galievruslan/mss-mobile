@@ -27,5 +27,17 @@ namespace MSS.WinMobile.Domain.Models
         {
             return RoutePointTemplate.GetByRouteTemplate(this);
         }
+
+        public Route CreateRoute()
+        {
+            var route = new Route(Manager);
+            route.Save();
+            foreach (var routePointTemplate in GetPoints())
+            {
+                route.AddPoint(routePointTemplate.ShippingAddress);
+            }
+
+            return route;
+        }
     }
 }
