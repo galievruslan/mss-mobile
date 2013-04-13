@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Customer : ActiveRecordBase
+    public partial class Status : ActiveRecordBase
     {
-        internal Customer(IDataRecord record, string fieldPrefix)
+        internal Status(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -37,7 +37,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "Customers";
+            public const string TABLE_NAME = "Statuses";
 
             public static class Fields
             {
@@ -46,14 +46,9 @@ namespace MSS.WinMobile.Domain.Models
             }    
         }
 
-        public static Customer GetById(int id)
+        public static Status GetById(int id)
         {
-            return QueryObjectFactory.CreateQueryObject<Customer>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
-        }
-
-        public static QueryObject<Customer> GetAll()
-        {
-           return QueryObjectFactory.CreateQueryObject<Customer>();
+            return QueryObjectFactory.CreateQueryObject<Status>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System.Data;
+using System.Data;
+using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class OrderItem : ActiveRecordBase
+    public partial class Category : ActiveRecordBase
     {
-        internal OrderItem(IDataRecord record, string fieldPrefix)
+        internal Category(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -17,6 +18,7 @@ namespace MSS.WinMobile.Domain.Models
                 string fieldName = record.GetName(i);
                 if (fieldPrefix != string.Empty)
                     fieldName = fieldName.Replace(fieldPrefix, string.Empty);
+                              
 
                 switch (fieldName)
                 {
@@ -25,19 +27,14 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.ORDER_ID:
+                    case Table.Fields.NAME:
                         {
-                            OrderId = record.GetInt32(i);
+                            Name = record.GetString(i);
                             break;
                         }
-                    case Table.Fields.PRODUCT_ID:
+                    case Table.Fields.PARENT_ID:
                         {
-                            Product = new Product(record, Product.Table.TABLE_NAME + "_");
-                            break;
-                        }
-                    case Table.Fields.QUANTITY:
-                        {
-                            Quantity = record.GetInt32(i);
+                            ParentId = record.GetInt32(i);
                             break;
                         }
                 }
@@ -46,22 +43,22 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "OrderItems";
+            public const string TABLE_NAME = "Products";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string ORDER_ID = "OrderId";
-                public const string PRODUCT_ID = "Product_Id";
-                public const string QUANTITY = "Quantity";
-            }    
+                public const string NAME = "Name";
+                public const string PARENT_ID = "Parent_Id";
+            }
         }
 
-        public static QueryObject<OrderItem> GetByOrder(Order order)
+        public static Category GetById(int id)
         {
             return
-                QueryObjectFactory.CreateQueryObject<OrderItem>()
-                                  .Where(Table.Fields.ORDER_ID, new Equals(order.Id));
+                QueryObjectFactory.CreateQueryObject<Category>()
+                                  .Where(Table.Fields.ID, new Equals(id))
+                                  .FirstOrDefault();
         }
     }
 }

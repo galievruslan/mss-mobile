@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Category : ActiveRecordBase
+    public partial class Product : ActiveRecordBase
     {
-        internal Category(IDataRecord record, string fieldPrefix)
+        internal Product(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -18,7 +18,6 @@ namespace MSS.WinMobile.Domain.Models
                 string fieldName = record.GetName(i);
                 if (fieldPrefix != string.Empty)
                     fieldName = fieldName.Replace(fieldPrefix, string.Empty);
-                              
 
                 switch (fieldName)
                 {
@@ -32,9 +31,9 @@ namespace MSS.WinMobile.Domain.Models
                             Name = record.GetString(i);
                             break;
                         }
-                    case Table.Fields.PARENT_ID:
+                    case Table.Fields.CATEGORY_ID:
                         {
-                            ParentId = record.GetInt32(i);
+                            CategoryId = record.GetInt32(i);
                             break;
                         }
                 }
@@ -49,16 +48,13 @@ namespace MSS.WinMobile.Domain.Models
             {
                 public const string ID = "Id";
                 public const string NAME = "Name";
-                public const string PARENT_ID = "Parent_Id";
-            }
+                public const string CATEGORY_ID = "Category_Id";
+            }    
         }
 
-        public static Category GetById(int id)
+        public static Product GetById(int id)
         {
-            return
-                QueryObjectFactory.CreateQueryObject<Category>()
-                                  .Where(Table.Fields.ID, new Equals(id))
-                                  .FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Product>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class RoutePointTemplate : ActiveRecordBase
+    public partial class RoutePoint : ActiveRecordBase
     {
-        internal RoutePointTemplate(IDataRecord record, string fieldPrefix)
+        internal RoutePoint(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -26,9 +26,15 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.ROUTE_TEMPLATE_ID:
+                    case Table.Fields.ROUTE_ID:
                         {
-                            RouteTemplateId = record.GetInt32(i);
+                            RouteId = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.ORDER_ID:
+                        {
+                            OrderId = record.GetInt32(i);
+                            Order = new Order(record, Order.Table.TABLE_NAME + "_");
                             break;
                         }
                     case Table.Fields.SHIPPING_ADDRESS_ID:
@@ -37,34 +43,40 @@ namespace MSS.WinMobile.Domain.Models
                             ShippingAddress = new ShippingAddress(record, ShippingAddress.Table.TABLE_NAME + "_");
                             break;
                         }
+                    case Table.Fields.STATUS_ID:
+                        {
+                            StatusId = record.GetInt32(i);
+                            break;
+                        }
                 }
             }
         }
 
         public static class Table
         {
-            public const string TABLE_NAME = "RoutePointTemplates";
+            public const string TABLE_NAME = "RoutePoints";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string ROUTE_TEMPLATE_ID = "RouteTemplate_Id";
+                public const string ROUTE_ID = "Route_Id";
                 public const string SHIPPING_ADDRESS_ID = "ShippingAddress_Id";
+                public const string ORDER_ID = "Order_Id";
+                public const string STATUS_ID = "Status_Id";
             }    
         }
 
-        public static RoutePointTemplate GetById(int id)
+        public static RoutePoint GetById(int id)
         {
             return
-                QueryObjectFactory.CreateQueryObject<RoutePointTemplate>()
+                new RoutePointQueryObject()
                     .Where(Table.Fields.ID, new Equals(id))
                     .FirstOrDefault();
         }
 
-        public static QueryObject<RoutePointTemplate> GetByRouteTemplate(RouteTemplate routeTemplate)
+        public static QueryObject<RoutePoint> GetByRoute(Route route)
         {
-            return QueryObjectFactory.CreateQueryObject<RoutePointTemplate>()
-                                     .Where(Table.Fields.ROUTE_TEMPLATE_ID, new Equals(routeTemplate.Id));
+            return new RoutePointQueryObject().Where(Table.Fields.ROUTE_ID, new Equals(route.Id));
         }
     }
 }

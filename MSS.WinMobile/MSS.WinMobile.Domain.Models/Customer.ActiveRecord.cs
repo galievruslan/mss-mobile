@@ -1,4 +1,3 @@
-﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
@@ -7,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class ProductsUnitOfMeasure : ActiveRecordBase
+    public partial class Customer : ActiveRecordBase
     {
-        internal ProductsUnitOfMeasure(IDataRecord record, string fieldPrefix)
+        internal Customer(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -27,14 +26,9 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.UOM_ID:
+                    case Table.Fields.NAME:
                         {
-                            UnitOfMeasureId = record.GetInt32(i);
-                            break;
-                        }
-                    case Table.Fields.PRODUCT_ID:
-                        {
-                            ProductId = record.GetInt32(i);
+                            Name = record.GetString(i);
                             break;
                         }
                 }
@@ -43,20 +37,23 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "ProductsUnitOfMeasures";
+            public const string TABLE_NAME = "Customers";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string PRODUCT_ID = "Product_Id";
-                public const string UOM_ID = "UnitOfMeasure_Id";
-                public const string BASE = "Base";
+                public const string NAME = "Name";
             }    
         }
 
-        public static ProductsUnitOfMeasure GetById(int id)
+        public static Customer GetById(int id)
         {
-            return QueryObjectFactory.CreateQueryObject<ProductsUnitOfMeasure>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Customer>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+        }
+
+        public static QueryObject<Customer> GetAll()
+        {
+           return QueryObjectFactory.CreateQueryObject<Customer>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Status : ActiveRecordBase
+    public partial class UnitOfMeasure : ActiveRecordBase
     {
-        internal Status(IDataRecord record, string fieldPrefix)
+        internal UnitOfMeasure(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -37,7 +37,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "Statuses";
+            public const string TABLE_NAME = "UnitsOfMeasure";
 
             public static class Fields
             {
@@ -46,9 +46,9 @@ namespace MSS.WinMobile.Domain.Models
             }    
         }
 
-        public static Status GetById(int id)
+        public static UnitOfMeasure GetById(int id)
         {
-            return QueryObjectFactory.CreateQueryObject<Status>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<UnitOfMeasure>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

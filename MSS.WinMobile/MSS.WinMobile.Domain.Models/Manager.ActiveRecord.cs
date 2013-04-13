@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Product : ActiveRecordBase
+    public partial class Manager : ActiveRecordBase
     {
-        internal Product(IDataRecord record, string fieldPrefix)
+        internal Manager(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -31,30 +31,24 @@ namespace MSS.WinMobile.Domain.Models
                             Name = record.GetString(i);
                             break;
                         }
-                    case Table.Fields.CATEGORY_ID:
-                        {
-                            CategoryId = record.GetInt32(i);
-                            break;
-                        }
                 }
             }
         }
 
         public static class Table
         {
-            public const string TABLE_NAME = "Products";
+            public const string TABLE_NAME = "Managers";
 
             public static class Fields
             {
                 public const string ID = "Id";
                 public const string NAME = "Name";
-                public const string CATEGORY_ID = "Category_Id";
             }    
         }
 
-        public static Product GetById(int id)
+        public static Manager GetById(int id)
         {
-            return QueryObjectFactory.CreateQueryObject<Product>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<Manager>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
     }
 }

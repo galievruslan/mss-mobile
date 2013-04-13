@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class UnitOfMeasure : ActiveRecordBase
+    public partial class OrderItem : ActiveRecordBase
     {
-        internal UnitOfMeasure(IDataRecord record, string fieldPrefix)
+        internal OrderItem(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -27,9 +25,19 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.NAME:
+                    case Table.Fields.ORDER_ID:
                         {
-                            Name = record.GetString(i);
+                            OrderId = record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.PRODUCT_ID:
+                        {
+                            Product = new Product(record, Product.Table.TABLE_NAME + "_");
+                            break;
+                        }
+                    case Table.Fields.QUANTITY:
+                        {
+                            Quantity = record.GetInt32(i);
                             break;
                         }
                 }
@@ -38,18 +46,22 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "UnitsOfMeasure";
+            public const string TABLE_NAME = "OrderItems";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string NAME = "Name";
+                public const string ORDER_ID = "OrderId";
+                public const string PRODUCT_ID = "Product_Id";
+                public const string QUANTITY = "Quantity";
             }    
         }
 
-        public static UnitOfMeasure GetById(int id)
+        public static QueryObject<OrderItem> GetByOrder(Order order)
         {
-            return QueryObjectFactory.CreateQueryObject<UnitOfMeasure>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+            return
+                QueryObjectFactory.CreateQueryObject<OrderItem>()
+                                  .Where(Table.Fields.ORDER_ID, new Equals(order.Id));
         }
     }
 }

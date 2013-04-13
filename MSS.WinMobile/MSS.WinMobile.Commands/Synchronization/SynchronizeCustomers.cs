@@ -73,7 +73,7 @@ namespace MSS.WinMobile.Commands.Synchronization
                         }
                         ActiveRecordBase.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception exception)
                     {
                         ActiveRecordBase.Rollback();
                     }

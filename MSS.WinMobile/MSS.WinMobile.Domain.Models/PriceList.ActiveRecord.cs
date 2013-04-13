@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Warehouse : ActiveRecordBase
+    public partial class PriceList : ActiveRecordBase
     {
-        internal Warehouse(IDataRecord record, string fieldPrefix)
+        internal PriceList(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -26,9 +26,9 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.ADDRESS:
+                    case Table.Fields.NAME:
                         {
-                            Address = record.GetString(i);
+                            Name = record.GetString(i);
                             break;
                         }
                 }
@@ -37,26 +37,26 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "Warehouses";
+            public const string TABLE_NAME = "PriceLists";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string ADDRESS = "Address";
+                public const string NAME = "Name";
             }    
         }
 
-        public static Warehouse GetById(int id)
+        public static PriceList GetById(int id)
         {
             return
-                QueryObjectFactory.CreateQueryObject<Warehouse>()
+                QueryObjectFactory.CreateQueryObject<PriceList>()
                                   .Where(Table.Fields.ID, new Equals(id))
                                   .FirstOrDefault();
         }
 
-        public static QueryObject<Warehouse> GetAll()
+        public static QueryObject<PriceList> GetAll()
         {
-            return QueryObjectFactory.CreateQueryObject<Warehouse>();
+            return QueryObjectFactory.CreateQueryObject<PriceList>();
         }
     }
 }

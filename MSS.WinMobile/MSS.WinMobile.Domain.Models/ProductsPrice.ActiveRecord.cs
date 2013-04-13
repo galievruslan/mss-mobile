@@ -1,4 +1,3 @@
-﻿using System;
 using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
@@ -7,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class RouteTemplate : ActiveRecordBase
+    public partial class ProductsPrice : ActiveRecordBase
     {
-        internal RouteTemplate(IDataRecord record, string fieldPrefix)
+        internal ProductsPrice(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -27,14 +26,15 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.DAY_OF_WEEK:
+                    case Table.Fields.PRICE_LIST_ID:
                         {
-                            DayOfWeek = (DayOfWeek)record.GetInt32(i);
+                            PriceListId = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.MANAGER_ID:
+                    case Table.Fields.PRODUCT_ID:
                         {
-                            ManagerId = record.GetInt32(i);
+                            ProductId = record.GetInt32(i);
+                            Product = new Product(record, Product.Table.TABLE_NAME + "_");
                             break;
                         }
                 }
@@ -43,27 +43,28 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "RouteTemplates";
+            public const string TABLE_NAME = "ProductsPrices";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string DAY_OF_WEEK = "DayOfWeek";
-                public const string MANAGER_ID = "Manager_Id";
+                public const string PRODUCT_ID = "Product_Id";
+                public const string PRICE_LIST_ID = "PriceList_Id";
+                public const string VALUE = "Price";
             }    
         }
 
-        public static RouteTemplate GetById(int id)
-        {
-            return QueryObjectFactory.CreateQueryObject<RouteTemplate>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
-        }
-
-        public static RouteTemplate GetByDayOfWeek(DayOfWeek dayOfWeek)
+        public static ProductsPrice GetById(int id)
         {
             return 
-                QueryObjectFactory.CreateQueryObject<RouteTemplate>()
-                                  .Where(Table.Fields.DAY_OF_WEEK, new Equals((int)dayOfWeek))
+                QueryObjectFactory.CreateQueryObject<ProductsPrice>()
+                                  .Where(Table.Fields.ID, new Equals(id))
                                   .FirstOrDefault();
+        }
+
+        public static QueryObject<ProductsPrice> GetByPriceList(PriceList priceList)
+        {
+            return new ProductPriceQueryObject().Where(Table.Fields.PRICE_LIST_ID, new Equals(priceList.Id));
         }
     }
 }

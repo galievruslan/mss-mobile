@@ -1,4 +1,5 @@
-﻿using System.Data;
+using System;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +7,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class PriceList : ActiveRecordBase
+    public partial class RouteTemplate : ActiveRecordBase
     {
-        internal PriceList(IDataRecord record, string fieldPrefix)
+        internal RouteTemplate(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -26,9 +27,14 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.NAME:
+                    case Table.Fields.DAY_OF_WEEK:
                         {
-                            Name = record.GetString(i);
+                            DayOfWeek = (DayOfWeek)record.GetInt32(i);
+                            break;
+                        }
+                    case Table.Fields.MANAGER_ID:
+                        {
+                            ManagerId = record.GetInt32(i);
                             break;
                         }
                 }
@@ -37,26 +43,27 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "PriceLists";
+            public const string TABLE_NAME = "RouteTemplates";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string NAME = "Name";
+                public const string DAY_OF_WEEK = "DayOfWeek";
+                public const string MANAGER_ID = "Manager_Id";
             }    
         }
 
-        public static PriceList GetById(int id)
+        public static RouteTemplate GetById(int id)
         {
-            return
-                QueryObjectFactory.CreateQueryObject<PriceList>()
-                                  .Where(Table.Fields.ID, new Equals(id))
-                                  .FirstOrDefault();
+            return QueryObjectFactory.CreateQueryObject<RouteTemplate>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
         }
 
-        public static QueryObject<PriceList> GetAll()
+        public static RouteTemplate GetByDayOfWeek(DayOfWeek dayOfWeek)
         {
-            return QueryObjectFactory.CreateQueryObject<PriceList>();
+            return 
+                QueryObjectFactory.CreateQueryObject<RouteTemplate>()
+                                  .Where(Table.Fields.DAY_OF_WEEK, new Equals((int)dayOfWeek))
+                                  .FirstOrDefault();
         }
     }
 }

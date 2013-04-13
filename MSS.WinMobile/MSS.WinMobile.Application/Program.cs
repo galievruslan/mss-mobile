@@ -1,5 +1,6 @@
 ﻿using System;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
+using MSS.WinMobile.Domain.Models.ActiveRecord.QueryBinders;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Views;
 using log4net.Config;
@@ -31,6 +32,24 @@ namespace MSS.WinMobile.Application
 
             Log.Info("Application start");
             ActiveRecordBase.Initialize(false);
+            ActiveRecordBase.Register(new CategoryBinder());
+            ActiveRecordBase.Register(new CustomerBinder());
+            ActiveRecordBase.Register(new ManagerBinder());
+            ActiveRecordBase.Register(new OrderBinder());
+            ActiveRecordBase.Register(new OrderItemBinder());
+            ActiveRecordBase.Register(new PriceListBinder());
+            ActiveRecordBase.Register(new ProductBinder());
+            ActiveRecordBase.Register(new ProductsPriceBinder());
+            ActiveRecordBase.Register(new ProductsUnitOfMeasureBinder());
+            ActiveRecordBase.Register(new RouteBinder());
+            ActiveRecordBase.Register(new RoutePointBinder());
+            ActiveRecordBase.Register(new RouteTemplateBinder());
+            ActiveRecordBase.Register(new RoutePointTemplateBinder());
+            ActiveRecordBase.Register(new ShippingAddressBinder());
+            ActiveRecordBase.Register(new StatusBinder());
+            ActiveRecordBase.Register(new UnitOfMeasureBinder());
+            ActiveRecordBase.Register(new WarehouseBinder());
+
             System.Windows.Forms.Application.Run(new MenuView());
             Log.Info("Application finish");
         }

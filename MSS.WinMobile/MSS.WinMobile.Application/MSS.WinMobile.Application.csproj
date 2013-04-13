@@ -96,6 +96,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.UnitsOfMeasure.delete.sql" />
+    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.UnitsOfMeasure.save.sql" />
+    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.UnitsOfMeasure.select.sql" />
     <Content Include="Resources\Database\schema.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -104,159 +107,54 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Categories.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Categories.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Categories.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Customers.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Customers.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Customers.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Managers.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Managers.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Managers.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.OrderItems.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.OrderItems.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.OrderItems.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Orders.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Orders.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Orders.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.PriceLists.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.PriceLists.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.PriceLists.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Products.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Products.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Products.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsPrices.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsPrices.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsPrices.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsUnitOfMeasures.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsUnitOfMeasures.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsUnitOfMeasures.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePoints.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePoints.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePoints.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePointTemplates.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePointTemplates.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePointTemplates.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Routes.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Routes.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Routes.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RouteTemplates.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RouteTemplates.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RouteTemplates.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ShippingAddresses.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ShippingAddresses.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ShippingAddresses.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Statuses.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Statuses.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Statuses.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.UnitsOfMeasure.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.UnitsOfMeasure.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.UnitsOfMeasure.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Warehouses.delete.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Warehouses.save.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Warehouses.select.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Category.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Category.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Category.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Customer.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Customer.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Customer.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Manager.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Manager.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Manager.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Order.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Order.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Order.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.OrderItem.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.OrderItem.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.OrderItem.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.PriceList.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.PriceList.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.PriceList.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Product.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Product.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Product.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsPrice.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsPrice.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsPrice.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsUnitOfMeasure.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsUnitOfMeasure.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ProductsUnitOfMeasure.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Route.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Route.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Route.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePoint.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePoint.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePoint.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePointTemplate.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePointTemplate.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RoutePointTemplate.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RouteTemplate.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RouteTemplate.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.RouteTemplate.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ShippingAddress.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ShippingAddress.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.ShippingAddress.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Status.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Status.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Status.select.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Warehouse.delete.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Warehouse.save.sql" />
+    <None Include="Resources\Database\Queries\MSS.WinMobile.Domain.Models.Warehouse.select.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\" />

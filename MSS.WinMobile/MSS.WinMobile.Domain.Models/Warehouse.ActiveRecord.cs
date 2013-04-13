@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using System.Linq;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
@@ -6,9 +6,9 @@ using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Manager : ActiveRecordBase
+    public partial class Warehouse : ActiveRecordBase
     {
-        internal Manager(IDataRecord record, string fieldPrefix)
+        internal Warehouse(IDataRecord record, string fieldPrefix)
         {
             for (int i = 0; i < record.FieldCount; i++)
             {
@@ -26,9 +26,9 @@ namespace MSS.WinMobile.Domain.Models
                             Id = record.GetInt32(i);
                             break;
                         }
-                    case Table.Fields.NAME:
+                    case Table.Fields.ADDRESS:
                         {
-                            Name = record.GetString(i);
+                            Address = record.GetString(i);
                             break;
                         }
                 }
@@ -37,18 +37,26 @@ namespace MSS.WinMobile.Domain.Models
 
         public static class Table
         {
-            public const string TABLE_NAME = "Managers";
+            public const string TABLE_NAME = "Warehouses";
 
             public static class Fields
             {
                 public const string ID = "Id";
-                public const string NAME = "Name";
+                public const string ADDRESS = "Address";
             }    
         }
 
-        public static Manager GetById(int id)
+        public static Warehouse GetById(int id)
         {
-            return QueryObjectFactory.CreateQueryObject<Manager>().Where(Table.Fields.ID, new Equals(id)).FirstOrDefault();
+            return
+                QueryObjectFactory.CreateQueryObject<Warehouse>()
+                                  .Where(Table.Fields.ID, new Equals(id))
+                                  .FirstOrDefault();
+        }
+
+        public static QueryObject<Warehouse> GetAll()
+        {
+            return QueryObjectFactory.CreateQueryObject<Warehouse>();
         }
     }
 }

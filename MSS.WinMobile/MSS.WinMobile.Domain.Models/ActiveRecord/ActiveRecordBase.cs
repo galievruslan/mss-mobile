@@ -15,8 +15,9 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         public void Save()
         {
-            QueryBinder<ActiveRecordBase> queryBinder = QueryBinders[GetType()];
-            string saveFor = RegistredTypes[SavePostfix][GetType()];
+            Type type = GetType();
+            QueryBinder<ActiveRecordBase> queryBinder = QueryBinders[type];
+            string saveFor = RegistredTypes[SavePostfix][type];
             string saveCommand = queryBinder.SaveBinder(saveFor, this);
 
             if (InTransaction)
@@ -177,30 +178,31 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         public static void Register<T>(QueryBinder<T> queryBinder) where T : ActiveRecordBase
         {
             Type typeToRegister = typeof (T);
-            string scriptPath = string.Format("{0}\\{1}", Context.GetAppPath(), typeToRegister);
+            string scriptPath = string.Format("{0}\\Resources\\Database\\Queries\\{1}", Context.GetAppPath(), typeToRegister);
             string selectScriptPath = string.Format("{0}{1}", scriptPath, SelectPostfix);
             string saveScriptPath = string.Format("{0}{1}", scriptPath, SavePostfix);
             string deleteScriptPath = string.Format("{0}{1}", scriptPath, DeletePostfix);
 
             try
             {
-                using (StreamReader reader = File.OpenText(selectScriptPath))
+                using (var reader = new StreamReader(selectScriptPath))
                 {
                     string script = reader.ReadToEnd();
                     RegistredTypes[SelectPostfix].Add(typeToRegister, script);
                 }
 
-                using (StreamReader reader = File.OpenText(saveScriptPath))
+                using (var reader = new StreamReader(saveScriptPath))
                 {
                     string script = reader.ReadToEnd();
                     RegistredTypes[SavePostfix].Add(typeToRegister, script);
                 }
 
-                using (StreamReader reader = File.OpenText(deleteScriptPath))
+                using (var reader = new StreamReader(deleteScriptPath))
                 {
                     string script = reader.ReadToEnd();
                     RegistredTypes[DeletePostfix].Add(typeToRegister, script);
                 }
+
 
                 QueryBinders.Add(typeToRegister, queryBinder as QueryBinder<ActiveRecordBase>);
             }
