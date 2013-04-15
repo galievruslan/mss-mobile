@@ -26,9 +26,21 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
+                itemsVirtualListBox.ItemDataNeeded += itemsVirtualListBox_ItemDataNeeded;
+                itemsVirtualListBox.ItemSelected += itemsVirtualListBox_ItemSelected;
                 _presenter = new OrderPresenter(this, _routePointId);
                 _presenter.InitializeView();
             }
+        }
+
+        void itemsVirtualListBox_ItemSelected(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem item)
+        {
+            //throw new NotImplementedException();
+        }
+
+        void itemsVirtualListBox_ItemDataNeeded(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem item)
+        {
+            _presenter.GetItemData(item.Index);
         }
 
         private void PriceListLookUp(Controls.LookUpBox sender)
@@ -108,19 +120,9 @@ namespace MSS.WinMobile.UI.Views
             itemsVirtualListBox.SetListSize(count);
         }
 
-        public int GetSelectedId()
-        {
-            throw new NotImplementedException();
-        }
-
         private void AddClick(object sender, EventArgs e)
         {
-            using (var pickUpProductView = new PickUpProductView(_presenter.GetPriceListId()))
-            {
-                if (DialogResult.OK == pickUpProductView.ShowDialog())
-                {
-                }
-            }
+            _presenter.PickUpProducts();
         }
 
         #region IView

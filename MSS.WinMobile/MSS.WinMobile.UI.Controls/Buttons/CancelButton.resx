@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
+    <value>Pocket_PC</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="resetButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
         dr+2CXmRIg4kjv3QItN2t+OFAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAwJoCp7TZYYEN9ynm
         eYG4m4bMWI807mK0jHVL45nGddMKhZsXrFxUHiq0MVaJ3TzaFEuF9g6rebTjcBqWQqbv0SPtG1bZ4yI8
         Q1YLZSnMi7ZEzNVALBspC1TGsuS+2RxFoYoYmwFENp5T8Jy1kVyrWRMpPLKmmoIViXgAPHMVuVUbwwpR
@@ -131,21 +134,4 @@
         4AXAKdDahICZHwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lookUpButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAHLSURBVHhe7dqvSkRBFMfxDTbLJg0GQURMNqtYLWIzaBJ8
-        BJvNJ/BNfAe7bYvFIILYRCwG9fzgDl7GubtzRjDc8x0Y9g8zF+bDb84My04mNAQQQAABBBBAAAEEEEAA
-        AQQQQAABBBBAAAEEEGgUWLV5R9bPrK80PiPMtENb6av1r66/2Ot+mNU7F6pUffSwEto7aL8lh7BAK6Tu
-        YCBZCauPtudM7SiHr9mq7gtbMQfT52fr01EqVCzq2MYIS82DpoMhXNOV4bNLlhftNJpWwkpbTtuxFu3N
-        xq5HAsuxPGhK5AlYP5fUeUkTlrDDtKFk5SdhCQ2sBVeIHE2naZhWm6x5SQNrQcIS3nkYqa5Aq/aUbus1
-        312AVY8HliNpYIFVLi6tp2GqZySLZJGsPx/cbEMHIVhgOQQcQ5dt7KOjoOe3+lCnYXLdsjdPDWghsVrR
-        wmJt9LZvbdLCYu12W1FQtUkLiyWgq65uqX7VoIXGEtisV+gXoYXH2i6cikNo4bGULiGUfikV2mavpk0d
-        d7pRD73NwB7s87V1/ZtmadQrb1zcjc27s35pfafxGUxDAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAAB
-        BBD4L4FvtlqZZi/Rdf8AAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
-    <value>Pocket_PC</value>
-  </metadata>
 </root>

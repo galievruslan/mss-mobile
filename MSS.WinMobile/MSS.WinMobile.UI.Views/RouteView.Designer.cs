@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.UI.Presenters.Views;
+﻿using MSS.WinMobile.UI.Controls.Buttons;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -33,7 +34,7 @@ namespace MSS.WinMobile.UI.Views
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             this._routeVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.RoutePointListBox();
             this._actionPanel = new System.Windows.Forms.Panel();
-            this._createOrderIcon = new MSS.WinMobile.UI.Controls.PictureButton();
+            this._createOrderIcon = new PictureButton();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +86,6 @@ namespace MSS.WinMobile.UI.Views
 
         private MSS.WinMobile.UI.Controls.ListBox.RoutePointListBox _routeVirtualListBox;
         private System.Windows.Forms.Panel _actionPanel;
-        private MSS.WinMobile.UI.Controls.PictureButton _createOrderIcon;
+        private PictureButton _createOrderIcon;
     }
 }

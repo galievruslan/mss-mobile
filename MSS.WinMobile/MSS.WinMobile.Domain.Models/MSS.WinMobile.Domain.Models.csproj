@@ -67,24 +67,6 @@
   <ItemGroup>
     <Compile Include="ActiveRecord\ActiveRecordBase.cs" />
     <Compile Include="ActiveRecord\ActiveRecordFactory.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\CategoryBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\CustomerBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\ManagerBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\OrderBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\OrderItemBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\PriceListBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\ProductBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\ProductsUnitOfMeasureBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\QueryBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\RouteBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\RoutePointBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\RoutePointTemplateBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\RouteTemplateBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\ShippingAddressBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\StatusBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\UnitOfMeasureBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\WarehouseBinder.cs" />
-    <Compile Include="ActiveRecord\QueryBinders\ProductsPriceBinder.cs" />
     <Compile Include="Category.ActiveRecord.cs" />
     <Compile Include="ActiveRecord\ConnectionFactory.cs" />
     <Compile Include="Customer.ActiveRecord.cs" />

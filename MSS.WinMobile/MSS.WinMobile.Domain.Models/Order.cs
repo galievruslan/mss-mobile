@@ -66,5 +66,19 @@ namespace MSS.WinMobile.Domain.Models
         {
             return OrderItem.GetByOrder(this);
         }
+
+        public void AddItem(Product product, int quantity)
+        {
+            var orderItem = new OrderItem(this, product) {Quantity = quantity};
+            orderItem.Save();
+        }
+
+        public void RemoveItem(OrderItem item)
+        {
+            if (Id == item.OrderId)
+            {
+                item.Delete();
+            }
+        }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using System.IO;
-using MSS.WinMobile.Domain.Models.ActiveRecord.QueryBinders;
 using log4net;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
@@ -13,47 +12,38 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         public int Id { get; protected set; }
 
+        protected abstract string SaveCommand { get; }
+
         public void Save()
         {
-            Type type = GetType();
-            QueryBinder<ActiveRecordBase> queryBinder = QueryBinders[type];
-            string saveFor = RegistredTypes[SavePostfix][type];
-            string saveCommand = queryBinder.SaveBinder(saveFor, this);
-
             if (InTransaction)
-                TransactionContext.Enqueue(saveCommand);
+                TransactionContext.Enqueue(SaveCommand);
             else {
-                IDbConnection connection = ConnectionFactory.GetConnection();
+                SQLiteConnection connection = ConnectionFactory.GetConnection();
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
                 
                 using (IDbTransaction transaction = connection.BeginTransaction()) {
                     using (IDbCommand command = connection.CreateCommand()) {
-                        command.CommandText = saveCommand;
+                        command.CommandText = SaveCommand;
                         command.ExecuteNonQuery();
-                        transaction.Commit();
                     }
+                    transaction.Commit();
 
                     if (Id == 0)
                     {
-                        using (IDbCommand command = connection.CreateCommand())
-                        {
-                            command.CommandText = @"select last_insert_rowid()";
-                            Id = (int) command.ExecuteScalar();
-                        }
+                        Id = (int)connection.LastInsertRowId;
                     }
                 }
             }
         }
 
+        protected abstract string DeleteCommand { get; }
+
         public void Delete()
         {
-            QueryBinder<ActiveRecordBase> queryBinder = QueryBinders[GetType()];
-            string deleteFor = RegistredTypes[SavePostfix][GetType()];
-            string deleteCommand = queryBinder.DeleteBinder(deleteFor, this);
-
             if (InTransaction)
-                TransactionContext.Enqueue(deleteCommand);
+                TransactionContext.Enqueue(DeleteCommand);
             else
             {
                 IDbConnection connection = ConnectionFactory.GetConnection();
@@ -62,7 +52,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
                 using (IDbTransaction transaction = connection.BeginTransaction()) {
                     using (IDbCommand command = connection.CreateCommand()) {
-                        command.CommandText = deleteCommand;
+                        command.CommandText = DeleteCommand;
                         command.ExecuteNonQuery();
                         transaction.Commit();
                     }
@@ -100,6 +90,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
                     }
                     catch (Exception exception) {
                         transaction.Rollback();
+                        Rollback();
                         Log.Error("Transaction failed", exception);
                     }
                 }
@@ -160,57 +151,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             }
         }
 
-        private const string SelectPostfix = ".select.sql";
-        private const string SavePostfix = ".save.sql";
-        private const string DeletePostfix = ".delete.sql";
-
-        private static readonly Dictionary<string, Dictionary<Type, string>> RegistredTypes =
-            new Dictionary<string, Dictionary<Type, string>>
-                {
-                    {SelectPostfix, new Dictionary<Type, string>()},
-                    {SavePostfix, new Dictionary<Type, string>()},
-                    {DeletePostfix, new Dictionary<Type, string>()}
-                };
-
-        private static readonly Dictionary<Type, QueryBinder<ActiveRecordBase>> QueryBinders =
-            new Dictionary<Type, QueryBinder<ActiveRecordBase>>();
-
-        public static void Register<T>(QueryBinder<T> queryBinder) where T : ActiveRecordBase
-        {
-            Type typeToRegister = typeof (T);
-            string scriptPath = string.Format("{0}\\Resources\\Database\\Queries\\{1}", Context.GetAppPath(), typeToRegister);
-            string selectScriptPath = string.Format("{0}{1}", scriptPath, SelectPostfix);
-            string saveScriptPath = string.Format("{0}{1}", scriptPath, SavePostfix);
-            string deleteScriptPath = string.Format("{0}{1}", scriptPath, DeletePostfix);
-
-            try
-            {
-                using (var reader = new StreamReader(selectScriptPath))
-                {
-                    string script = reader.ReadToEnd();
-                    RegistredTypes[SelectPostfix].Add(typeToRegister, script);
-                }
-
-                using (var reader = new StreamReader(saveScriptPath))
-                {
-                    string script = reader.ReadToEnd();
-                    RegistredTypes[SavePostfix].Add(typeToRegister, script);
-                }
-
-                using (var reader = new StreamReader(deleteScriptPath))
-                {
-                    string script = reader.ReadToEnd();
-                    RegistredTypes[DeletePostfix].Add(typeToRegister, script);
-                }
-
-
-                QueryBinders.Add(typeToRegister, queryBinder as QueryBinder<ActiveRecordBase>);
-            }
-            catch (Exception exception)
-            {
-                Log.ErrorFormat("Type {0} registration failed!", typeof(T));
-                Log.Fatal(exception);
-            }
-        }
+        protected const string SELECT_POSTFIX = ".select.sql";
+        protected const string SAVE_POSTFIX = ".save.sql";
+        protected const string DELETE_POSTFIX = ".delete.sql";
     }
 }

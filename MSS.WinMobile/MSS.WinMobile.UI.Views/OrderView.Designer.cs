@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.UI.Presenters.Views;
+﻿using MSS.WinMobile.UI.Controls.Buttons;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
@@ -48,7 +49,7 @@ namespace MSS.WinMobile.UI.Views
             this._detailsTab = new System.Windows.Forms.TabPage();
             this.itemsVirtualListBox = new MSS.WinMobile.UI.Controls.ListBox.OrderItemListBox();
             this.itemsActionPanel = new System.Windows.Forms.Panel();
-            this.addButton = new MSS.WinMobile.UI.Controls.PictureButton();
+            this.addButton = new PictureButton();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
             this._actionPanel = new System.Windows.Forms.Panel();
@@ -330,6 +331,6 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.TextBox _shippingAddressTextBox;
         private System.Windows.Forms.TextBox _customerTextBox;
         private System.Windows.Forms.Panel itemsActionPanel;
-        private MSS.WinMobile.UI.Controls.PictureButton addButton;
+        private PictureButton addButton;
     }
 }

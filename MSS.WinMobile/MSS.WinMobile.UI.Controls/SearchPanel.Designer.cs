@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Controls
+﻿using MSS.WinMobile.UI.Controls.Buttons;
+
+namespace MSS.WinMobile.UI.Controls
 {
     partial class SearchPanel
     {
@@ -30,7 +32,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchPanel));
             this._buttonPanel = new System.Windows.Forms.Panel();
-            this._searchButton = new MSS.WinMobile.UI.Controls.PictureButton();
+            this._searchButton = new PictureButton();
             this._inputPanel = new System.Windows.Forms.Panel();
             this._searchTextBox = new System.Windows.Forms.TextBox();
             this._buttonPanel.SuspendLayout();

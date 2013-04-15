@@ -81,6 +81,7 @@ namespace MSS.WinMobile.UI.Views
         public void CloseView()
         {
             Close();
+            Dispose();
         }
 
         public void DisplayErrors(string error)

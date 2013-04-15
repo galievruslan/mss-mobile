@@ -38,6 +38,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 command.Subscribe(this);
                 command.Do();
             }
+
+            _view.CloseView();
         }
 
         public void Cancel()

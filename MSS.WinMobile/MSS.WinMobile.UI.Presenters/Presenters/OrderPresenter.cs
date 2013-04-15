@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -15,8 +16,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IOrderView _view;
         private readonly Order _order;
 
-        private readonly IDataPageRetriever<OrderItem> _orderItemRetriever;
-        private readonly Cache<OrderItem> _cache;
+        private IDataPageRetriever<OrderItem> _orderItemRetriever;
+        private Cache<OrderItem> _cache;
 
         public OrderPresenter(IOrderView view, int routePointId)
         {
@@ -35,7 +36,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void InitializeView()
         {
-            _view.SetNumber(_order.Id.ToString());
+            _view.SetNumber(_order.Id.ToString(CultureInfo.InvariantCulture));
             _view.SetDate(_order.Date);
             _view.SetCustomer(_order.Customer.Name);
             _view.SetShippingAddress(_order.ShippingAddress.Address);
@@ -53,6 +54,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
             PriceList priceList = PriceList.GetById(priceListId);
             _order.SetPriceList(priceList);
+            _order.Save();
 
             _view.SetPriceList(_order.PriceList != null ? _order.PriceList.Name : string.Empty);
         }
@@ -61,6 +63,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
             Warehouse warehouse = Warehouse.GetById(warehouseId);
             _order.SetWarehouse(warehouse);
+            _order.Save();
 
             _view.SetWarehouse(_order.Warehouse != null ? _order.Warehouse.Address : string.Empty);
         }
@@ -86,6 +89,51 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public bool Cancel()
         {
             throw new NotImplementedException();
+        }
+
+        public void PickUpProducts()
+        {
+            using (
+                var pickUpProductView =
+                    NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object>
+                        {
+                            {"OrderId", _order.Id}
+                        }))
+            {
+                if (DialogViewResult.OK == pickUpProductView.ShowDialogView())
+                {
+                    IDictionary<int, int> collectedValues = pickUpProductView.GetValues();
+                    IList<OrderItem> orderItems = _order.Items().ToArray();
+                    foreach (var collectedValue in collectedValues)
+                    {
+                        KeyValuePair<int, int> value = collectedValue;
+                        OrderItem orderItem = orderItems.FirstOrDefault(item => item.Id == value.Key);
+                        if (orderItem != null)
+                        {
+                            if (orderItem.Quantity != value.Value)
+                            {
+                                orderItem.Quantity = value.Value;
+                                orderItem.Save();
+                            }
+                        }
+                        else
+                        {
+                            _order.AddItem(Product.GetById(value.Key), value.Value);
+                        }
+                    }
+
+                    foreach (var orderItem in _order.Items())
+                    {
+                        OrderItem item = orderItem;
+                        if (collectedValues.All(pair => pair.Key != item.Id))
+                            _order.RemoveItem(orderItem);
+                    }
+
+                    _orderItemRetriever = new OrderItemRetriever(_order);
+                    _cache = new Cache<OrderItem>(_orderItemRetriever, 10);
+                    _view.SetItemCount(_orderItemRetriever.Count);
+                }
+            }
         }
     }
 

@@ -22,6 +22,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _productsPriceRetriever = new ProductsPriceRetriever(_order.PriceList);
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 10);
             _view = view;
+
+            foreach (var orderItem in _order.Items())
+            {
+                _values.Add(orderItem.Id, orderItem.Quantity);
+            }
         }
 
         public void InitializeView()
@@ -31,14 +36,61 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public IDictionary<string, string> GetItemData(int index)
         {
-            ProductsPrice item = _cache.RetrieveElement(index);
-
+            ProductsPrice productsPrice = _cache.RetrieveElement(index);
             return new Dictionary<string, string>
                 {
-                    {"Name", item.Product.Name},
-                    {"Price", item.Price.ToString(CultureInfo.InvariantCulture)},
-                    {"Count", "0"}
+                    {"Name", productsPrice.Product.Name},
+                    {"Price", productsPrice.Price.ToString(CultureInfo.InvariantCulture)},
+                    {"Count", CurrentItemCount(productsPrice.ProductId).ToString(CultureInfo.InvariantCulture)}
                 };
+        }
+
+        readonly Dictionary<int, int> _values = new Dictionary<int, int>();
+
+        private const int MaxValue = 999;
+        public void AddDigit(int index, int count)
+        {
+            ProductsPrice selectedProductPrice = _cache.RetrieveElement(index);
+            if (selectedProductPrice != null)
+            {
+                if (_values.ContainsKey(selectedProductPrice.ProductId))
+                {
+                    if (_values[selectedProductPrice.ProductId] * 10 + count < MaxValue)
+                        _values[selectedProductPrice.ProductId] = _values[selectedProductPrice.ProductId]*10 + count;
+                }
+                else
+                {
+                    _values.Add(selectedProductPrice.ProductId, count);
+                }
+            }
+        }
+
+        public void RemoveDigit(int index)
+        {
+            ProductsPrice selectedProductPrice = _cache.RetrieveElement(index);
+            if (selectedProductPrice != null)
+            {
+                if (_values.ContainsKey(selectedProductPrice.ProductId))
+                {
+                    _values[selectedProductPrice.ProductId] = _values[selectedProductPrice.ProductId] / 10;
+                    if (_values[selectedProductPrice.ProductId] == 0)
+                        _values.Remove(selectedProductPrice.ProductId);
+                }
+            }
+        }
+
+        private int CurrentItemCount(int productId)
+        {
+            var count = 0;
+            if (_values.ContainsKey(productId))
+                count = _values[productId];
+
+            return count;
+        }
+
+        public IDictionary<int, int> GetValues()
+        {
+            return _values;
         }
     }
 }

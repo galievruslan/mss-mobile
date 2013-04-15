@@ -22,12 +22,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
             if (Data.ContainsKey(CountKey))
                 count = Data[CountKey];
 
+            if (count != "0")
+                graphics.FillRectangle(new SolidBrush(Color.ForestGreen), rectangle);
+
             graphics.DrawString(name, Constants.Font,
                                 IsSelected
                                     ? new SolidBrush(Constants.ColorFontSelected)
                                     : new SolidBrush(Constants.ColorFontUnSelected),
                                 new Rectangle(rectangle.X + Constants.MARGIN, rectangle.Y + Constants.MARGIN,
-                                              rectangle.Width - 2 * Constants.MARGIN - 50,
+                                              rectangle.Width - 2 * Constants.MARGIN - 30,
                                               rectangle.Height / 2 - 2 * Constants.MARGIN));
 
             graphics.DrawString(price, Constants.Font,
@@ -35,15 +38,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
                                     ? new SolidBrush(Constants.ColorFontSelected)
                                     : new SolidBrush(Constants.ColorFontUnSelected),
                                 new Rectangle(rectangle.X + Constants.MARGIN, rectangle.Y + Constants.MARGIN + rectangle.Height / 2,
-                                              rectangle.Width - 2 * Constants.MARGIN - 50,
+                                              rectangle.Width - 2 * Constants.MARGIN - 30,
                                               rectangle.Height / 2 - 2 * Constants.MARGIN));
 
             graphics.DrawString(count, Constants.Font,
                                 IsSelected
                                     ? new SolidBrush(Constants.ColorFontSelected)
                                     : new SolidBrush(Constants.ColorFontUnSelected),
-                                new Rectangle(rectangle.Width - 2 * Constants.MARGIN - 50, rectangle.Y + Constants.MARGIN,
-                                              50,
+                                new Rectangle(rectangle.Width - 2 * Constants.MARGIN - 30, rectangle.Y + Constants.MARGIN,
+                                              30,
                                               rectangle.Height - 2 * Constants.MARGIN));
         }
     }

@@ -30,6 +30,10 @@ namespace MSS.WinMobile.Application
             {
                 view = (new RouteView()) as T;
             }
+            else if (typeof(T) == typeof(IPickUpProductView))
+            {
+                view = (new PickUpProductView(args)) as T;
+            }
 
             return view;
         }

@@ -20,7 +20,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         public event OnItemDataNeeded ItemDataNeeded;
         public event OnItemSelected ItemSelected;
 
-        private int _itemCount;
+        private int _itemCount = -1;
 
         public void SetListSize(int size)
         {

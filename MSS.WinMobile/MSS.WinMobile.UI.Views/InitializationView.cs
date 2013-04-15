@@ -76,6 +76,7 @@ namespace MSS.WinMobile.UI.Views
             else
             {
                 Close();
+                Dispose();
             }
         }
 

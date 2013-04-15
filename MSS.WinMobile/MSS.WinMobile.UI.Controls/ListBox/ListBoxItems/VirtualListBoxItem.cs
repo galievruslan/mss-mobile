@@ -28,8 +28,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
                     return;
 
                 _index = value;
-                if (DataNeeded != null)
-                    DataNeeded.Invoke(this);
+                RefreshData();
             }
         }
 
@@ -68,6 +67,12 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
                                 e.ClipRectangle.Height - Constants.DIVISOR_LINE);
 
             DrawItem(e.Graphics, e.ClipRectangle);
+        }
+
+        public void RefreshData()
+        {
+            if (DataNeeded != null)
+                DataNeeded.Invoke(this);
         }
     }
 }

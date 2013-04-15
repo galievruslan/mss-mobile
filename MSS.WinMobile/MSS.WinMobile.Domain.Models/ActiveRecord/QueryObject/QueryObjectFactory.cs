@@ -35,13 +35,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             }
             else if (typeof(T) == typeof(Order))
             {
-                tableName = Order.Table.TABLE_NAME;
-                fieldsNames = new[]
-                    {
-                        Order.Table.Fields.ID, Order.Table.Fields.DATE,
-                        Order.Table.Fields.MANAGER_ID, Order.Table.Fields.NOTE,
-                        Order.Table.Fields.SHIPPING_ADDRESS_ID
-                    };
+                return new OrderQueryObject() as QueryObject<T>;
             }
             else if (typeof(T) == typeof(OrderItem))
             {

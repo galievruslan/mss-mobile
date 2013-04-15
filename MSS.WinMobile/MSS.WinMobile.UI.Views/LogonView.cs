@@ -16,17 +16,6 @@ namespace MSS.WinMobile.UI.Views
         public string Account { get; set; }
         public string Password { get; set; }
 
-
-        private void OkButtonClick(object sender, System.EventArgs e)
-        {
-            _presenter.Logon();
-        }
-
-        private void CancelButtonClick(object sender, System.EventArgs e)
-        {
-            _presenter.Cancel();
-        }
-
         private void AccountTextBoxTextChanged(object sender, System.EventArgs e) {
             Account = _accountTextBox.Text;
         }
@@ -63,21 +52,26 @@ namespace MSS.WinMobile.UI.Views
         public void CloseView()
         {
             Close();
+            Dispose();
         }
 
-        public delegate void DisplayErrorsDelegate(string error);
         public void DisplayErrors(string error)
         {
-            if (_errorsLabel.InvokeRequired)
-            {
-                _errorsLabel.Invoke(new DisplayErrorsDelegate(DisplayErrors), error);
-            }
-            else
-            {
-                _errorsLabel.Text = error;
-            }
+            notification.Text = error;
+            notification.Critical = true;
+            notification.Visible = true;
         }
 
         #endregion
+
+        private void okButton_Click(object sender, System.EventArgs e)
+        {
+            _presenter.Logon();
+        }
+
+        private void cancelButton_Click(object sender, System.EventArgs e)
+        {
+            _presenter.Cancel();
+        }
     }
 }

@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buttons\CancelButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Buttons\CancelButton.Designer.cs">
+      <DependentUpon>CancelButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListBox\ListBoxItems\ProductPriceListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,16 +119,22 @@
     <Compile Include="LookUpBox.Designer.cs">
       <DependentUpon>LookUpBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Buttons\OkButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Buttons\OkButton.Designer.cs">
+      <DependentUpon>OkButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SearchPanel.Designer.cs">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="PictureButton.cs">
+    <Compile Include="Buttons\PictureButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PictureButton.Designer.cs">
+    <Compile Include="Buttons\PictureButton.Designer.cs">
       <DependentUpon>PictureButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +155,12 @@
     <None Include="Resources\appbar.home.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Buttons\CancelButton.resx">
+      <DependentUpon>CancelButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buttons\OkButton.resx">
+      <DependentUpon>OkButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
     </EmbeddedResource>

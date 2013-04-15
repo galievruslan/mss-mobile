@@ -1,1 +1,1 @@
-INSERT OR REPLACE INTO Orders (Id, [Date], ShippingAddress_Id, Manager_Id, PriceList_Id, Warehouse_Id, Note) VALUES ({0}, '{1}', {2}, {3}, {4}, '{5}')
+INSERT OR REPLACE INTO Orders (Id, [Date], ShippingAddress_Id, Manager_Id, PriceList_Id, Warehouse_Id, Note) VALUES ({0}, '{1}', {2}, {3}, {4}, {5}, '{6}')

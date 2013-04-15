@@ -13,6 +13,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                         string.Format(@"{0}", Order.Table.Fields.ID), 
                         string.Format(@"{0}", Order.Table.Fields.DATE), 
                         string.Format(@"{0}", Order.Table.Fields.MANAGER_ID),
+                        string.Format(@"{0}", Order.Table.Fields.PRICE_LIST_ID), 
+                        string.Format(@"{0}", Order.Table.Fields.WAREHOUSE_ID), 
                         string.Format(@"{0}", Order.Table.Fields.SHIPPING_ADDRESS_ID), 
                         string.Format(@"{0}", Order.Table.Fields.MANAGER_ID),
                         string.Format(@"{0}_{1}", Manager.Table.TABLE_NAME, Manager.Table.Fields.ID),
@@ -47,6 +49,10 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}], ", Order.Table.TABLE_NAME,
                                                     Order.Table.Fields.DATE));
             queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}], ", Order.Table.TABLE_NAME,
+                                                    Order.Table.Fields.PRICE_LIST_ID));
+            queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}], ", Order.Table.TABLE_NAME,
+                                                    Order.Table.Fields.WAREHOUSE_ID));
+            queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}], ", Order.Table.TABLE_NAME,
                                                     Order.Table.Fields.SHIPPING_ADDRESS_ID));
             queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}], ", Order.Table.TABLE_NAME,
                                                     Order.Table.Fields.NOTE));
@@ -62,7 +68,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                                                     ShippingAddress.Table.Fields.NAME,
                                                     string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
                                                                   ShippingAddress.Table.Fields.NAME)));
-            queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{2}] ", ShippingAddress.Table.TABLE_NAME,
+            queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{2}], ", ShippingAddress.Table.TABLE_NAME,
                                                     ShippingAddress.Table.Fields.ADDRESS,
                                                     string.Format(@"{0}_{1}", ShippingAddress.Table.TABLE_NAME,
                                                                   ShippingAddress.Table.Fields.ADDRESS)));
@@ -94,7 +100,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                                                     Warehouse.Table.Fields.ID,
                                                     string.Format(@"{0}_{1}", Warehouse.Table.TABLE_NAME,
                                                                   Warehouse.Table.Fields.ID)));
-            queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{2}], ", Warehouse.Table.TABLE_NAME,
+            queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{2}] ", Warehouse.Table.TABLE_NAME,
                                                     Warehouse.Table.Fields.ADDRESS,
                                                     string.Format(@"{0}_{1}", Warehouse.Table.TABLE_NAME,
                                                                   Warehouse.Table.Fields.ADDRESS)));

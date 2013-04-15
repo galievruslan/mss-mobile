@@ -8,8 +8,10 @@ namespace MSS.WinMobile.UI.Controls
         private const string DefaultLabel = "- none -";
 
         public delegate void OnLookUp(LookUpBox sender);
+        public delegate void OnReset(LookUpBox sender);
 
         public event OnLookUp LookUp;
+        public event OnReset Reset;
 
         public LookUpBox()
         {
@@ -30,6 +32,12 @@ namespace MSS.WinMobile.UI.Controls
             set {
                 _valueLabel.Text = value == string.Empty ? DefaultLabel : value;
             }
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            if (Reset != null)
+                Reset.Invoke(this);
         }
     }
 }

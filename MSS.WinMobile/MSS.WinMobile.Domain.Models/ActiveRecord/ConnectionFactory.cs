@@ -10,9 +10,9 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
 
         private static readonly string FileName = ConfigurationManager.AppSettings["DbFileName"];
         private static readonly string FileVersion = ConfigurationManager.AppSettings["DbFileVersion"];
-        private static IDbConnection _connection;
+        private static SQLiteConnection _connection;
 
-        public static IDbConnection GetConnection()
+        public static SQLiteConnection GetConnection()
         {
             if (_connection == null)
             {

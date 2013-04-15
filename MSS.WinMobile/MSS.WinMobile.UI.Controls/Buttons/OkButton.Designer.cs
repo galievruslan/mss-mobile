@@ -1,6 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Controls
+﻿namespace MSS.WinMobile.UI.Controls.Buttons
 {
-    partial class PictureButton
+    partial class OkButton
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CancelButton));
+            this.SuspendLayout();
+            // 
+            // OkButton
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Name = "OkButton";
+            this.Size = new System.Drawing.Size(22, 22);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
