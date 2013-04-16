@@ -66,8 +66,8 @@ namespace MSS.WinMobile.Domain.Models
         public static QueryObject<OrderItem> GetByOrder(Order order)
         {
             return
-                QueryObjectFactory.CreateQueryObject<OrderItem>()
-                                  .Where(Table.Fields.ORDER_ID, new Equals(order.Id));
+                new OrderItemQueryObject()
+                    .Where(Table.Fields.ORDER_ID, new Equals(order.Id));
         }
 
         private static string _saveCommandTemplate;

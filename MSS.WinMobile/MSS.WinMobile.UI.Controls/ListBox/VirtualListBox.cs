@@ -24,16 +24,19 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         public void SetListSize(int size)
         {
-            if (_itemCount == size) return;
-            _itemCount = size;
+            if (_itemCount != size)
+            {
+                _itemCount = size;
 
-            FillItemPanel();
-            if (_itemCount > Items.Count)
-                _vScrollBar.Show();
-            else
-                _vScrollBar.Hide();
+                FillItemPanel();
+                if (_itemCount > Items.Count)
+                    _vScrollBar.Show();
+                else
+                    _vScrollBar.Hide();
 
-            _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount - 1;
+                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount - 1;
+            }
+            ReindexItems();
         }
 
         private int _selecteIndex = -1;
@@ -75,8 +78,6 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 var control = listBoxItem as Control;
                 if (control != null) control.Width = _dataPanel.Width;
             }
-
-            ReindexItems();
         }
 
         #region Items Handling
@@ -150,9 +151,11 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
                 item.IsSelected = item.Index == SelectedIndex;
 
+                item.RefreshData();
                 var control = item as Control;
-                if (control != null)
+                if (control != null) {
                     control.Refresh();
+                }
             }
         }
 

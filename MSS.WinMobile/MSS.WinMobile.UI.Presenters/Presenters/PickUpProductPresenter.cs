@@ -25,7 +25,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
             foreach (var orderItem in _order.Items())
             {
-                _values.Add(orderItem.Id, orderItem.Quantity);
+                _values.Add(orderItem.Product.Id, orderItem.Quantity);
             }
         }
 

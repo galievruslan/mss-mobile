@@ -42,8 +42,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
             string commandText = queryStringBuilder.ToString();
 
             int count;
-            if (!Cache.Contains(commandText))
-            {
+            //if (!Cache.Contains(commandText))
+            //{
                 IDbConnection connection = ConnectionFactory.GetConnection();
                 using (IDbCommand command = connection.CreateCommand())
                 {
@@ -54,11 +54,11 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                     count = Convert.ToInt32(result);
                     Cache.Add(commandText, count);
                 }
-            }
-            else
-            {
-                count = Cache.Get<int>(commandText);
-            }
+            //}
+            //else
+            //{
+            //    count = Cache.Get<int>(commandText);
+            //}
 
             return count;
         }

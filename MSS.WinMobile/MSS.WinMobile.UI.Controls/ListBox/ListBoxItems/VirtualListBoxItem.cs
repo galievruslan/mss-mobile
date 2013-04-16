@@ -13,6 +13,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 
         protected VirtualListBoxItem()
         {
+            Index = -1;
             InitializeComponent();
             Empty = true;
         }
@@ -20,17 +21,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
         public event OnDataNeeded DataNeeded;
         public event OnSelected Selected;
 
-        private int _index = -1;
-        public int Index {
-            get { return _index; }
-            set {
-                if (_index == value)
-                    return;
-
-                _index = value;
-                RefreshData();
-            }
-        }
+        public int Index { get; set; }
 
         public bool Empty { get; protected set; }
 
@@ -71,6 +62,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 
         public void RefreshData()
         {
+            Data = null;
             if (DataNeeded != null)
                 DataNeeded.Invoke(this);
         }

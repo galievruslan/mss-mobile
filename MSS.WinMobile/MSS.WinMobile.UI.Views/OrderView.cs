@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
 
@@ -33,14 +34,19 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        void itemsVirtualListBox_ItemSelected(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem item)
+        void itemsVirtualListBox_ItemSelected(object sender, VirtualListBoxItem item)
         {
             //throw new NotImplementedException();
         }
 
-        void itemsVirtualListBox_ItemDataNeeded(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem item)
+        void itemsVirtualListBox_ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
             _presenter.GetItemData(item.Index);
+            var orderItemListBoxItem = item as OrderItemListBoxItem;
+            if (orderItemListBoxItem != null)
+            {
+                orderItemListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            }
         }
 
         private void PriceListLookUp(Controls.LookUpBox sender)

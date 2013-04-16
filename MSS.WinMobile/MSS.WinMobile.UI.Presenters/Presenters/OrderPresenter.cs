@@ -78,7 +78,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public IDictionary<string, string> GetItemData(int index)
         {
-            throw new NotImplementedException();
+            OrderItem item = _cache.RetrieveElement(index);
+            return new Dictionary<string, string>
+                {
+                    {"Name", item.Product.Name},
+                    {"Count", item.Quantity.ToString(CultureInfo.InvariantCulture)}
+                };
         }
 
         public bool Save()
@@ -107,7 +112,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     foreach (var collectedValue in collectedValues)
                     {
                         KeyValuePair<int, int> value = collectedValue;
-                        OrderItem orderItem = orderItems.FirstOrDefault(item => item.Id == value.Key);
+                        OrderItem orderItem = orderItems.FirstOrDefault(item => item.Product.Id == value.Key);
                         if (orderItem != null)
                         {
                             if (orderItem.Quantity != value.Value)
@@ -125,7 +130,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     foreach (var orderItem in _order.Items())
                     {
                         OrderItem item = orderItem;
-                        if (collectedValues.All(pair => pair.Key != item.Id))
+                        if (collectedValues.All(pair => pair.Key != item.Product.Id))
                             _order.RemoveItem(orderItem);
                     }
 
