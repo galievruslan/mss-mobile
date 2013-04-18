@@ -8,18 +8,9 @@ using System.Xml;
 
 namespace MSS.WinMobile.Infrastructure.Server
 {
-    public class RequestDispatcher
+    public static class RequestDispatcher
     {
-        private readonly CookieContainer _cookieContainer;
-        private readonly CsrfTokenContainer _scrfTokenContainer;
-
-        public RequestDispatcher(CookieContainer cookieContainer, CsrfTokenContainer scrfTokenContainer)
-        {
-            _cookieContainer = cookieContainer;
-            _scrfTokenContainer = scrfTokenContainer;
-        }
-
-        public string Dispatch(HttpWebRequest httpWebRequest)
+        public static string Dispatch(Session session, HttpWebRequest httpWebRequest)
         {
             try
             {
@@ -29,7 +20,7 @@ namespace MSS.WinMobile.Infrastructure.Server
                     string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
                     if (!string.IsNullOrEmpty(cookie))
                     {
-                        _cookieContainer.SetCookie(cookie);
+                        session.CookieContainer.SetCookie(cookie);
                     }
                     
                     using (Stream stream = httpWebResponse.GetResponseStream())
@@ -55,7 +46,7 @@ namespace MSS.WinMobile.Infrastructure.Server
                     }
                 }
 
-                _scrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
+                session.CsrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
                 return responseText;
             }
             catch (WebException webException)
@@ -74,7 +65,7 @@ namespace MSS.WinMobile.Infrastructure.Server
         }
 
         // TODO search attribute by name!!!
-        private string ExtractCsrfToken(string response)
+        private static string ExtractCsrfToken(string response)
         {
             string csrfToken = string.Empty;
 

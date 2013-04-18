@@ -124,6 +124,14 @@
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
+      <Project>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</Project>
+      <Name>JsonSerializer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\LitJson.csproj">
+      <Project>{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}</Project>
+      <Name>LitJson</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

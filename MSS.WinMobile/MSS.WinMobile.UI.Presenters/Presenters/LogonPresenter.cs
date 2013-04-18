@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
+using Json;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Server;
+using MSS.WinMobile.Infrastructure.Server.Dtos;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
@@ -38,8 +42,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             {
                 using (Server server = Server.Logon(_serverUri, _view.Account, _view.Password))
                 {
-                    var profile = server.UserService.GetProfile();
-                    Context.ManagerId = profile.ManagerId;
+                    var profile = server.Get(@"/profile/show.json", new Dictionary<string, object>());
+                    Context.ManagerId = JsonDeserializer.Deserialize<ProfileDto>(profile).ManagerId;
 
                     ConfigurationManager.AppSettings.Set("ServerUsername", _view.Account);
                     ConfigurationManager.AppSettings.Set("ServerPassword", _view.Password);

@@ -6,24 +6,9 @@ using System.Text;
 
 namespace MSS.WinMobile.Infrastructure.Server
 {
-    public class RequestFactory
+    public static class RequestFactory
     {
-        private const string UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-        private const string ContentType = "application/json; charset=utf-8";
-        private const string CsrfTokenParamName = "authenticity_token";
-
-        private readonly Uri _uri;
-        private readonly CookieContainer _cookieContainer;
-        private readonly CsrfTokenContainer _csrfTokenContainer;
-
-        public RequestFactory(Uri uri, CookieContainer cookieContainer, CsrfTokenContainer csrfTokenContainer)
-        {
-            _cookieContainer = cookieContainer;
-            _csrfTokenContainer = csrfTokenContainer;
-            _uri = uri;
-        }
-
-        public HttpWebRequest CreateGetRequest(string path, IDictionary<string, object> parameters)
+        public static HttpWebRequest CreateGetRequest(Session session, string path, IDictionary<string, object> parameters)
         {
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append('?');
@@ -36,30 +21,30 @@ namespace MSS.WinMobile.Infrastructure.Server
             queryStringBuilder.Remove(queryStringBuilder.Length - 1, 1);
             string queryString = Uri.EscapeUriString(queryStringBuilder.ToString());
 
-            return CreateGetRequest(string.Concat(path, queryString));
+            return CreateGetRequest(session, string.Concat(path, queryString));
         }
 
-        public HttpWebRequest CreateGetRequest(string path)
+        public static HttpWebRequest CreateGetRequest(Session session, string path)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(_uri, path));
-            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, _cookieContainer.Cookie);
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(session.Uri, path));
+            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, session.CookieContainer.Cookie);
             webRequest.Method = WebMethod.GET;
-            webRequest.UserAgent = UserAgent;
-            webRequest.ContentType = ContentType;
+            webRequest.UserAgent = Session.USER_AGENT;
+            webRequest.ContentType = Session.CONTENT_TYPE;
             webRequest.AllowAutoRedirect = false;
             return webRequest;
         }
 
-        public HttpWebRequest CreatePostRequest(string path, IDictionary<string, object> parameters)
+        public static HttpWebRequest CreatePostRequest(Session session, string path, IDictionary<string, object> parameters)
         {
-            var webRequest = (HttpWebRequest) WebRequest.Create(string.Concat(_uri, path));
-            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, _cookieContainer.Cookie);
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(session.Uri, path));
+            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, session.CookieContainer.Cookie);
             webRequest.Method = WebMethod.POST;
-            webRequest.UserAgent = UserAgent;
-            webRequest.ContentType = ContentType;
+            webRequest.UserAgent = Session.USER_AGENT;
+            webRequest.ContentType = Session.CONTENT_TYPE;
             webRequest.AllowAutoRedirect = false;
 
-            parameters.Add(CsrfTokenParamName, _csrfTokenContainer.CsrfToken);
+            parameters.Add(Session.CSRF_TOKEN_PARAM_NAME, session.CsrfTokenContainer.CsrfToken);
             string postData = ParseParametersToJson(parameters);
 
             webRequest.AllowWriteStreamBuffering = true;
@@ -76,7 +61,7 @@ namespace MSS.WinMobile.Infrastructure.Server
             return webRequest;
         }
 
-        private string ParseParametersToJson(IEnumerable<KeyValuePair<string, object>> parameters)
+        private static string ParseParametersToJson(IEnumerable<KeyValuePair<string, object>> parameters)
         {
             var postDataBuilder = new StringBuilder();
             postDataBuilder.Append('{');

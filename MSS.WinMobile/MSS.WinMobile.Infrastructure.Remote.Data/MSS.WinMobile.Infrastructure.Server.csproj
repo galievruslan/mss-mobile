@@ -80,18 +80,8 @@
     <Compile Include="CsrfTokenContainer.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Services\Constants.cs" />
-    <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\RouteTemplateService.cs" />
     <Compile Include="Services\ParametersBuilder.cs" />
-    <Compile Include="Services\UnitOfMeasureService.cs" />
-    <Compile Include="Services\PriceListService.cs" />
-    <Compile Include="Services\RouteService.cs" />
-    <Compile Include="Services\WarehouseService.cs" />
-    <Compile Include="Services\StatusService.cs" />
-    <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Services\ManagerService.cs" />
-    <Compile Include="Services\CustomerService.cs" />
-    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Session.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">

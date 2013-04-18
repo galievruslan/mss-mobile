@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MSS.WinMobile.Infrastructure.Server.Services
 {
     public class ParametersBuilder
     {
-        private readonly IDictionary<string, object> _parameters;
+        private readonly Dictionary<string, object> _parameters;
 
         public ParametersBuilder()
         {
@@ -37,7 +38,20 @@ namespace MSS.WinMobile.Infrastructure.Server.Services
             return this;
         }
 
-        public IDictionary<string, object> Build()
+        public ParametersBuilder UpdatedAfter(DateTime dateTime)
+        {
+            if (!_parameters.ContainsKey(Constants.UPDATED_AFTER))
+            {
+                _parameters.Add(Constants.UPDATED_AFTER, dateTime.ToUniversalTime());
+            }
+            else
+            {
+                _parameters[Constants.UPDATED_AFTER] = dateTime.ToUniversalTime();
+            }
+            return this;
+        }
+
+        public Dictionary<string, object> Build()
         {
             return _parameters;
         }
