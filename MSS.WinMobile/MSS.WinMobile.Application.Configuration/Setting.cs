@@ -13,8 +13,8 @@ namespace MSS.WinMobile.Application.Configuration
 
         public string Value
         {
-            get { return Value = _xmlNode.InnerText; }
-            set { _xmlNode.InnerText = value; }
+            get { return Value = _xmlNode.InnerXml; }
+            set { _xmlNode.InnerXml = value; }
         }
     }
 }

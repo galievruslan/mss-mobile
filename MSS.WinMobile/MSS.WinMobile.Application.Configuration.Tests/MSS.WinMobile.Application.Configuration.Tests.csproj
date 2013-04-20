@@ -46,6 +46,10 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
@@ -63,6 +67,7 @@
     <Compile Include="ManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectionTest.cs" />
+    <Compile Include="SettingExtensionsTest.cs" />
     <Compile Include="SettingTest.cs" />
   </ItemGroup>
   <ItemGroup>

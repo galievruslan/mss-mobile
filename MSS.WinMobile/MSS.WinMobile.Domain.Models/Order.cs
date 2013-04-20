@@ -13,7 +13,7 @@ namespace MSS.WinMobile.Domain.Models
             var configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
 
             Date = DateTime.Now;
-            Manager = Manager.GetById(configurationManager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").AsInt());
+            Manager = Manager.GetById(configurationManager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").As<int>());
             ShippingAddress = routePoint.ShippingAddress;
         }
 

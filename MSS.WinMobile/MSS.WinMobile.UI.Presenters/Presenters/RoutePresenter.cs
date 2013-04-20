@@ -29,7 +29,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _configurationManager.GetConfig("Common")
                                          .GetSection("ExecutionContext")
                                          .GetSetting("ManagerId")
-                                         .AsInt());
+                                         .As<int>());
             _routePointRetriever = new RoutePointRetriever(manager);
             _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
             _view = view;
