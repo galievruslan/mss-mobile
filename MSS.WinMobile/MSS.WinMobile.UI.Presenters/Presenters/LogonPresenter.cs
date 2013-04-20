@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using Json;
-using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Server;
 using MSS.WinMobile.Infrastructure.Server.Dtos;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -15,17 +14,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(LogonPresenter));
 
-        private readonly Uri _serverUri;
+        private readonly Application.Configuration.Manager _configurationManager;
         private readonly ILogonView _view;
 
         public LogonPresenter(ILogonView view)
         {
+            _configurationManager = new Application.Configuration.Manager(Context.GetAppPath());
             _view = view;
-            _serverUri = new Uri(ConfigurationManager.AppSettings["ServerAddress"]);
         }
 
         public void Logon()
         {
+
+            string serverAddress = _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Address").Value;
+
             if (string.IsNullOrEmpty(_view.Account))
             {
                 _view.DisplayErrors("Account can't be empty!");
@@ -40,16 +42,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
             try
             {
-                using (Server server = Server.Logon(_serverUri, _view.Account, _view.Password))
+                using (Server server = Server.Logon(new Uri(serverAddress), _view.Account, _view.Password))
                 {
                     var profile = server.Get(@"/profile/show.json", new Dictionary<string, object>());
                     Context.ManagerId = JsonDeserializer.Deserialize<ProfileDto>(profile).ManagerId;
 
-                    ConfigurationManager.AppSettings.Set("ServerUsername", _view.Account);
-                    ConfigurationManager.AppSettings.Set("ServerPassword", _view.Password);
-                    ConfigurationManager.AppSettings.Set("ContextManagerId",
-                                                         Context.ManagerId.ToString(CultureInfo.InvariantCulture));
-                    ConfigurationManager.Save();
+                    _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value = _view.Account;
+                    _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value = _view.Password;
+                    _configurationManager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").Value =
+                                                         Context.ManagerId.ToString(CultureInfo.InvariantCulture);
+                    _configurationManager.GetConfig("Common").Save();
                     NavigationContext.NavigateTo<IInitializationView>().ShowView();
                     _view.CloseView();
                 }

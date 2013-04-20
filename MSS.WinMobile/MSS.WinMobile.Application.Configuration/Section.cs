@@ -64,6 +64,7 @@ namespace MSS.WinMobile.Application.Configuration
 
                         _xmlNode.AppendChild(xmlElement);
                         _settings.Add(name.ToLower(), new Setting(xmlElement));
+                        return;
                     }
                 }
             }

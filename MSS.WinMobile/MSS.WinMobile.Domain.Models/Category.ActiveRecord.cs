@@ -97,8 +97,8 @@ namespace MSS.WinMobile.Domain.Models
         private void LoadScriptsTemplates()
         {
             string scriptPath = string.Format("{0}\\Resources\\Database\\Queries\\{1}", Context.GetAppPath(), GetType());
-            string saveScriptPath = string.Format("{0}{1}", scriptPath, SAVE_POSTFIX);
-            string deleteScriptPath = string.Format("{0}{1}", scriptPath, DELETE_POSTFIX);
+            string saveScriptPath = string.Format("{0}{1}", scriptPath, SavePostfix);
+            string deleteScriptPath = string.Format("{0}{1}", scriptPath, DeletePostfix);
 
             try
             {

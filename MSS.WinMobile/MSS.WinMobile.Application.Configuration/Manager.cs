@@ -46,13 +46,13 @@ namespace MSS.WinMobile.Application.Configuration
 
             throw new ConfigNotFoundException(name);
         }
+    }
 
-        public class ConfigNotFoundException : Exception
+    public class ConfigNotFoundException : Exception
+    {
+        public ConfigNotFoundException(string name) :
+            base(string.Format("Config with name \"{0}\" not found", name))
         {
-            public ConfigNotFoundException(string name) :
-                base(string.Format("Config with name \"{0}\" not found", name))
-            {
-            }
         }
     }
 }

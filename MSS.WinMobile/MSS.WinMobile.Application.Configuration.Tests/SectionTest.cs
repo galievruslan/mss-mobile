@@ -1,4 +1,7 @@
-﻿using MSS.WinMobile.Application.Configuration;
+﻿using System;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml;
 
@@ -10,28 +13,12 @@ namespace MSS.WinMobile.Application.Configuration.Tests
     ///This is a test class for SectionTest and is intended
     ///to contain all SectionTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestClass]
     public class SectionTest
     {
-
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
+        private string _applicationPath;
+        private string _configDirectory;
+        private string _configPath;
 
         #region Additional test attributes
         // 
@@ -50,17 +37,55 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         //}
         //
         //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
+        [TestInitialize]
+        public void MyTestInitialize()
+        {
+            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            if (directoryName != null)
+            {
+                _applicationPath = directoryName.Replace("file:\\", "");
+            }
+
+            _configDirectory = _applicationPath + @"\Config";
+            Directory.CreateDirectory(_configDirectory);
+            _configPath = _configDirectory + @"\" + "Common.config";
+
+            var xmlDocument = new XmlDocument();
+            XmlElement sections = xmlDocument.CreateElement("Sections");
+            xmlDocument.AppendChild(sections);
+            for (int i = 0; i < 5; i++)
+            {
+                XmlElement section = xmlDocument.CreateElement("Section");
+                XmlAttribute sectionAttribute = xmlDocument.CreateAttribute("name");
+                sectionAttribute.Value = string.Format("section {0}", i);
+                section.Attributes.Append(sectionAttribute);
+                sections.AppendChild(section);
+
+                for (int j = 0; j < 5; j++)
+                {
+                    XmlElement setting = xmlDocument.CreateElement("Setting");
+                    XmlAttribute settingAttribute = xmlDocument.CreateAttribute("name");
+                    settingAttribute.Value = string.Format("setting {0}", j);
+                    setting.Attributes.Append(settingAttribute);
+                    setting.InnerText = j.ToString(CultureInfo.InvariantCulture);
+                    section.AppendChild(setting);
+                }
+            }
+            xmlDocument.Save(_configPath);
+        }
+
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
+        [TestCleanup]
+        public void MyTestCleanup()
+        {
+            try
+            {
+                Directory.Delete(_configDirectory, true);
+            }
+            catch (Exception)
+            {
+            }
+        }
         #endregion
 
 
@@ -70,14 +95,10 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestMethod()]
         public void GetSettingTest()
         {
-            XmlNode xmlNode = null; // TODO: Initialize to an appropriate value
-            Section target = new Section(xmlNode); // TODO: Initialize to an appropriate value
-            string name = string.Empty; // TODO: Initialize to an appropriate value
-            Setting expected = null; // TODO: Initialize to an appropriate value
-            Setting actual;
-            actual = target.GetSetting(name);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            var config = new Config(_configPath);
+            Section target = config.GetSection("Section 2");
+            Setting actual = target.GetSetting("Setting 3");
+            Assert.IsNotNull(actual);
         }
 
         /// <summary>
@@ -86,22 +107,12 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestMethod()]
         public void AddSettingTest()
         {
-            XmlNode xmlNode = null; // TODO: Initialize to an appropriate value
-            Section target = new Section(xmlNode); // TODO: Initialize to an appropriate value
-            string name = string.Empty; // TODO: Initialize to an appropriate value
-            target.AddSetting(name);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
+            var config = new Config(_configPath);
+            Section target = config.GetSection("Section 2");
+            target.AddSetting("New Setting");
 
-        /// <summary>
-        ///A test for Section Constructor
-        ///</summary>
-        [TestMethod()]
-        public void SectionConstructorTest()
-        {
-            XmlNode xmlNode = null; // TODO: Initialize to an appropriate value
-            Section target = new Section(xmlNode);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Setting actual = target.GetSetting("New Setting");
+            Assert.IsNotNull(actual);
         }
     }
 }

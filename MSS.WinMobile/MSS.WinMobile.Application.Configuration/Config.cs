@@ -7,11 +7,13 @@ namespace MSS.WinMobile.Application.Configuration
 {
     public class Config
     {
+        private const string RootTagName = "Sections";
         private const string SectionTagName = "Section";
         private const string SectionNameAttribute = "name";
 
         private readonly string _configPath;
         private readonly XmlDocument _xmlDocument;
+        private readonly XmlElement _xmlRoot;
         
         public Config(string configPath)
         {
@@ -20,6 +22,7 @@ namespace MSS.WinMobile.Application.Configuration
 
             _xmlDocument = new XmlDocument();
             _xmlDocument.Load(_configPath);
+            _xmlRoot = _xmlDocument.FirstChild as XmlElement;
 
             XmlNodeList xmlNodeList = _xmlDocument.GetElementsByTagName(SectionTagName);
             for (int i = 0; i < xmlNodeList.Count; i++)
@@ -64,8 +67,9 @@ namespace MSS.WinMobile.Application.Configuration
                     xmlAttribute.Value = name;
                     xmlElement.Attributes.Append(xmlAttribute);
 
-                    _xmlDocument.AppendChild(xmlElement);
+                    _xmlRoot.AppendChild(xmlElement);
                     _sections.Add(name.ToLower(), new Section(xmlElement));
+                    return;
                 }
             }
 

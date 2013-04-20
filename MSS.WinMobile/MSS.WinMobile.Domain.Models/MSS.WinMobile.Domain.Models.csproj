@@ -122,6 +122,10 @@
     <Compile Include="Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
+      <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
+      <Name>MSS.WinMobile.Application.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
       <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
       <Name>MSS.WinMobile</Name>

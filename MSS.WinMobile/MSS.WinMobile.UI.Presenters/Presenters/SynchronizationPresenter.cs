@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
-using MSS.WinMobile.Commands.FaultHandling;
-using MSS.WinMobile.Commands.Synchronization;
+//using MSS.WinMobile.Commands.FaultHandling;
+//using MSS.WinMobile.Commands.Synchronization;
 using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Infrastructure.Server;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -28,16 +28,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         private void RunSynchronizationInBackground() {
-            var serverUri = new Uri(ConfigurationManager.AppSettings["ServerAddress"]);
+            //var serverUri = new Uri(ConfigurationManager.AppSettings["ServerAddress"]);
 
-            var userName = ConfigurationManager.AppSettings["ServerUsername"];
-            var password = ConfigurationManager.AppSettings["ServerPassword"];
+            //var userName = ConfigurationManager.AppSettings["ServerUsername"];
+            //var password = ConfigurationManager.AppSettings["ServerPassword"];
 
-            using (var server = Server.Logon(serverUri, userName, password)) {
-                var command = new SynchronizeAll(server).IgnoreOnError(false);
-                command.Subscribe(this);
-                command.Do();
-            }
+            //using (var server = Server.Logon(serverUri, userName, password)) {
+            //    var command = new SynchronizeAll(server).IgnoreOnError(false);
+            //    command.Subscribe(this);
+            //    command.Do();
+            //}
 
             _view.CloseView();
         }

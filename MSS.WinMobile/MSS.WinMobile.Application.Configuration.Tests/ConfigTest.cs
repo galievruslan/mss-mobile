@@ -1,4 +1,8 @@
-﻿using MSS.WinMobile.Application.Configuration;
+﻿using System;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MSS.WinMobile.Application.Configuration.Tests
 {
@@ -11,25 +15,9 @@ namespace MSS.WinMobile.Application.Configuration.Tests
     [TestClass()]
     public class ConfigTest
     {
-
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
+        private string _applicationPath;
+        private string _configDirectory;
+        private string _configPath;
 
         #region Additional test attributes
         // 
@@ -48,17 +36,53 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         //}
         //
         //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
+        [TestInitialize]
+        public void MyTestInitialize()
+        {
+            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            if (directoryName != null)
+            {
+                _applicationPath = directoryName.Replace("file:\\", "");
+            }
+
+            _configDirectory = _applicationPath + @"\Config";
+            Directory.CreateDirectory(_configDirectory);
+            _configPath = _configDirectory + @"\" + "Common.config";
+
+            var xmlDocument = new XmlDocument();
+            XmlElement sections = xmlDocument.CreateElement("Sections");
+            xmlDocument.AppendChild(sections);
+            for (int i = 0; i < 5; i++)
+            {
+                XmlElement section = xmlDocument.CreateElement("Section");
+                XmlAttribute sectionAttribute = xmlDocument.CreateAttribute("name");
+                sectionAttribute.Value = string.Format("section {0}", i);
+                section.Attributes.Append(sectionAttribute);
+                sections.AppendChild(section);
+
+                for (int j = 0; j < 5; j++)
+                {
+                    XmlElement setting = xmlDocument.CreateElement("Setting");
+                    XmlAttribute settingAttribute = xmlDocument.CreateAttribute("name");
+                    settingAttribute.Value = string.Format("setting {0}", j);
+                    setting.Attributes.Append(settingAttribute);
+                    setting.InnerText = j.ToString(CultureInfo.InvariantCulture);
+                    section.AppendChild(setting);
+                }
+            }
+            xmlDocument.Save(_configPath);
+        }
+
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
+        [TestCleanup]
+        public void MyTestCleanup()
+        {
+            try {
+                Directory.Delete(_configDirectory, true);
+            }
+            catch (Exception) {
+            }
+        }
         #endregion
 
 
@@ -68,50 +92,36 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestMethod()]
         public void SaveTest()
         {
-            string configPath = string.Empty; // TODO: Initialize to an appropriate value
-            Config target = new Config(configPath); // TODO: Initialize to an appropriate value
+            var target = new Config(_configPath);
+            target.AddSection("New section");
             target.Save();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+
+            target = new Config(_configPath);
+            Section actual = target.GetSection("New section");
+            Assert.IsNotNull(actual);
         }
 
         /// <summary>
         ///A test for GetSection
         ///</summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetSectionTest()
         {
-            string configPath = string.Empty; // TODO: Initialize to an appropriate value
-            Config target = new Config(configPath); // TODO: Initialize to an appropriate value
-            string name = string.Empty; // TODO: Initialize to an appropriate value
-            Section expected = null; // TODO: Initialize to an appropriate value
-            Section actual;
-            actual = target.GetSection(name);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            var target = new Config(_configPath);
+            Section actual = target.GetSection("Section 1");
+            Assert.IsNotNull(actual);
         }
 
         /// <summary>
         ///A test for AddSection
         ///</summary>
-        [TestMethod()]
+        [TestMethod]
         public void AddSectionTest()
         {
-            string configPath = string.Empty; // TODO: Initialize to an appropriate value
-            Config target = new Config(configPath); // TODO: Initialize to an appropriate value
-            string name = string.Empty; // TODO: Initialize to an appropriate value
-            target.AddSection(name);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for Config Constructor
-        ///</summary>
-        [TestMethod()]
-        public void ConfigConstructorTest()
-        {
-            string configPath = string.Empty; // TODO: Initialize to an appropriate value
-            Config target = new Config(configPath);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            var target = new Config(_configPath);
+            target.AddSection("New section");
+            Section actual = target.GetSection("New section");
+            Assert.IsNotNull(actual);
         }
     }
 }

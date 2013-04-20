@@ -104,6 +104,10 @@
     <Compile Include="Presenters\SynchronizationPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
+      <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
+      <Name>MSS.WinMobile.Application.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Commands\MSS.WinMobile.Commands.csproj">
       <Project>{5CB36071-60FE-4063-AE50-3F62D51D69C8}</Project>
       <Name>MSS.WinMobile.Commands</Name>

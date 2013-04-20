@@ -80,15 +80,12 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestCleanup]
         public void MyTestCleanup()
         {
-            foreach (var config in _configs)
+            try
             {
-                try
-                {
-                    File.Delete(config);
-                }
-                catch
-                {
-                }
+                Directory.Delete(_configPath, true);
+            }
+            catch (Exception)
+            {
             }
         }
         
@@ -106,14 +103,18 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         }
 
         /// <summary>
-        ///A test for Manager Constructor
+        ///A test for GetConfig
         ///</summary>
-        [TestMethod]
-        public void ManagerConstructorTest()
+        [TestMethod, ExpectedException(typeof(ConfigNotFoundException))]
+        public void GetNotExistingConfigTest()
         {
-            string applicationPath = string.Empty; // TODO: Initialize to an appropriate value
-            Manager target = new Manager(applicationPath);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            var target = new Manager(_applicationPath);
+            try {
+                var actual = target.GetConfig(@"NotExisted");
+                Assert.Fail("Expected exception wasn't thrown.");
+            }
+            catch (ConfigNotFoundException) {
+            }
         }
     }
 }

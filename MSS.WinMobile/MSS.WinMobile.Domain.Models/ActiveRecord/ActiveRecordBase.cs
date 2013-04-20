@@ -115,7 +115,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         
         public static void Initialize(bool recreate)
         {
-            string fileName = ConfigurationManager.AppSettings["DbFileName"];
+            var manager = new Application.Configuration.Manager(Context.GetAppPath());
+            string fileName = manager.GetConfig("Commom").GetSection("Database").GetSetting("FileName").Value; 
             string fullFileName = string.Format("{0}\\{1}", Context.GetAppPath(), fileName);
 
             if (recreate || !File.Exists(fullFileName))
@@ -129,7 +130,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             if (File.Exists(databaseFilePath))
                 File.Delete(databaseFilePath);
 
-            System.Data.SQLite.SQLiteConnection.CreateFile(databaseFilePath);
+            SQLiteConnection.CreateFile(databaseFilePath);
             IDbConnection connection = ConnectionFactory.GetConnection();
 
             string schemaScript;
@@ -151,8 +152,8 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             }
         }
 
-        protected const string SELECT_POSTFIX = ".select.sql";
-        protected const string SAVE_POSTFIX = ".save.sql";
-        protected const string DELETE_POSTFIX = ".delete.sql";
+        protected const string SelectPostfix = ".select.sql";
+        protected const string SavePostfix = ".save.sql";
+        protected const string DeletePostfix = ".delete.sql";
     }
 }

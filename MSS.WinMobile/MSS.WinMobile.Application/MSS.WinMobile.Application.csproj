@@ -91,11 +91,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="application.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="SQLite.Interop.084.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

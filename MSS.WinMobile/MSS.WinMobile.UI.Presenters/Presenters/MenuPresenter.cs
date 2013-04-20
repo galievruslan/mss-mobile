@@ -13,9 +13,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void InitializeView()
         {
-            if (ConfigurationManager.AppSettings["ServerUsername"] == string.Empty ||
-                ConfigurationManager.AppSettings["ServerPassword"] == string.Empty ||
-                ConfigurationManager.AppSettings["ContextManagerId"] == string.Empty)
+            var manager = new Application.Configuration.Manager(Context.GetAppPath());
+            string userName = manager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
+            string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
+            string managerId = manager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").Value;
+
+            if (string.IsNullOrEmpty(userName) ||
+                string.IsNullOrEmpty(password) ||
+                string.IsNullOrEmpty(managerId))
             {
                 NavigationContext.NavigateTo<ILogonView>().ShowView();
             }
