@@ -6,11 +6,11 @@ namespace MSS.WinMobile.Application.Configuration
 {
     public static class SettingExtensions
     {
-        public static T As<T>(this Setting setting) where T : struct {
+        public static T As<T>(this Setting setting) {
             return To<T>(setting.Value);
         }
 
-        public static T[] AsArray<T>(this Setting setting) where T : struct {
+        public static T[] AsArray<T>(this Setting setting) {
             var xmlDocument = new XmlDocument();
             var xmlElement = xmlDocument.CreateElement("root");
             xmlElement.InnerXml = setting.Value;
@@ -25,27 +25,27 @@ namespace MSS.WinMobile.Application.Configuration
             return items.ToArray();
         }
 
-        public static Dictionary<K, V> AsDictionary<K, V>(this Setting setting) where K : struct where V : struct
+        public static Dictionary<TK, TV> AsDictionary<TK, TV>(this Setting setting)
         {
             var xmlDocument = new XmlDocument();
             var xmlElement = xmlDocument.CreateElement("root");
             xmlElement.InnerXml = setting.Value;
             xmlDocument.AppendChild(xmlElement);
 
-            var items = new Dictionary<K, V>();
+            var items = new Dictionary<TK, TV>();
             for (int i = 0; i < xmlElement.ChildNodes.Count; i++) {
-                var keyElement = xmlElement.ChildNodes[i].SelectSingleNode(@"\Key");
-                var valueElement = xmlElement.ChildNodes[i].SelectSingleNode(@"\Value");
+                var keyElement = xmlElement.ChildNodes[i].SelectSingleNode(@"Key");
+                var valueElement = xmlElement.ChildNodes[i].SelectSingleNode(@"Value");
                 if (keyElement != null && valueElement != null) {
-                    items.Add(To<K>(keyElement.InnerXml), To<V>(valueElement.InnerXml));
+                    items.Add(To<TK>(keyElement.InnerXml), To<TV>(valueElement.InnerXml));
                 }
             }
 
             return items;
         }
 
-        private static T To<T>(string value) where T : struct {
-            object result = default(T);
+        private static T To<T>(string value) {
+            object result;
             if (typeof (T) == typeof(int)) {
                 result = Int32.Parse(value);
             }

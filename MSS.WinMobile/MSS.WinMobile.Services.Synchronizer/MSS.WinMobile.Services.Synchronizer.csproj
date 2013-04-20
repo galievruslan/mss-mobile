@@ -72,6 +72,9 @@
       <Name>MSS.WinMobile.Infrastructure.Server</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="strig placeholder.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

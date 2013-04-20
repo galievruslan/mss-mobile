@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -72,6 +73,24 @@ namespace MSS.WinMobile.Application.Configuration.Tests
                 item.InnerText = i.ToString(CultureInfo.InvariantCulture);
                 setting.AppendChild(item);
             }
+            // Create setting
+            setting = xmlDocument.CreateElement("Setting");
+            settingAttribute = xmlDocument.CreateAttribute("name");
+            settingAttribute.Value = string.Format("setting {0}", 1);
+            setting.Attributes.Append(settingAttribute);
+            section.AppendChild(setting);
+            // Create setting items (Dictionary)
+            for (int i = 0; i < 5; i++)
+            {
+                XmlElement item = xmlDocument.CreateElement("Item");
+                XmlElement key = xmlDocument.CreateElement("Key");
+                XmlElement value = xmlDocument.CreateElement("Value");
+                key.InnerText = i.ToString(CultureInfo.InvariantCulture);
+                value.InnerText = string.Format("value {0}", i);
+                item.AppendChild(key);
+                item.AppendChild(value);
+                setting.AppendChild(item);
+            }
 
             xmlDocument.Save(_configPath);
         }
@@ -95,13 +114,23 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         ///A test for AsStringArray
         ///</summary>
         [TestMethod()]
-        public void AsStringArrayTest()
+        public void AsArrayTest()
         {
             var config = new Config(_configPath);
             Section section = config.GetSection("Section 0");
             Setting setting = section.GetSetting("Setting 0");
-            int[] actual = setting.AsArray<int>();
+            string[] actual = setting.AsArray<string>();
             Assert.AreEqual(5, actual.Length);
+        }
+
+        [TestMethod()]
+        public void AsDictionaryTest()
+        {
+            var config = new Config(_configPath);
+            Section section = config.GetSection("Section 0");
+            Setting setting = section.GetSetting("Setting 1");
+            Dictionary<int, string> actual = setting.AsDictionary<int, string>();
+            Assert.AreEqual(5, actual.Count);
         }
     }
 }
