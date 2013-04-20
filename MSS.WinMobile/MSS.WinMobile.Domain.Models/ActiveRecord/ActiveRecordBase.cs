@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using MSS.WinMobile.Application.Environment;
 using log4net;
 
 namespace MSS.WinMobile.Domain.Models.ActiveRecord
@@ -115,9 +116,9 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
         
         public static void Initialize(bool recreate)
         {
-            var manager = new Application.Configuration.Manager(Context.GetAppPath());
-            string fileName = manager.GetConfig("Commom").GetSection("Database").GetSetting("FileName").Value; 
-            string fullFileName = string.Format("{0}\\{1}", Context.GetAppPath(), fileName);
+            var manager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
+            string fileName = manager.GetConfig("Commom").GetSection("Database").GetSetting("FileName").Value;
+            string fullFileName = string.Format("{0}\\{1}", Environments.AppPath, fileName);
 
             if (recreate || !File.Exists(fullFileName))
             {
@@ -134,7 +135,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord
             IDbConnection connection = ConnectionFactory.GetConnection();
 
             string schemaScript;
-            using (StreamReader reader = File.OpenText(Context.GetAppPath() + @"\Resources\Database\Schema.sql"))
+            using (StreamReader reader = File.OpenText(Environments.AppPath + @"\Resources\Database\Schema.sql"))
             {
                 schemaScript = reader.ReadToEnd();
             }

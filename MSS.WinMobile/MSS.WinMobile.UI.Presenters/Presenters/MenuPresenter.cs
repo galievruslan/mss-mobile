@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.UI.Presenters.Views;
+﻿using MSS.WinMobile.Application.Environment;
+using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
@@ -13,7 +14,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void InitializeView()
         {
-            var manager = new Application.Configuration.Manager(Context.GetAppPath());
+            var manager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
             string userName = manager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
             string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
             string managerId = manager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").Value;

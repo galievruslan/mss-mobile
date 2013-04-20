@@ -52,7 +52,7 @@ namespace MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject
                     object result = command.ExecuteScalar();
                     
                     count = Convert.ToInt32(result);
-                    Cache.Add(commandText, count);
+                    //Cache.Add(commandText, count);
                 }
             //}
             //else

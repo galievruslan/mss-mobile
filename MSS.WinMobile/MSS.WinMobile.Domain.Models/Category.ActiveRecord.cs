@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Linq;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models.ActiveRecord;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject.Conditions;
@@ -96,7 +97,7 @@ namespace MSS.WinMobile.Domain.Models
 
         private void LoadScriptsTemplates()
         {
-            string scriptPath = string.Format("{0}\\Resources\\Database\\Queries\\{1}", Context.GetAppPath(), GetType());
+            string scriptPath = string.Format("{0}\\Resources\\Database\\Queries\\{1}", Environments.AppPath, GetType());
             string saveScriptPath = string.Format("{0}{1}", scriptPath, SavePostfix);
             string deleteScriptPath = string.Format("{0}{1}", scriptPath, DeletePostfix);
 

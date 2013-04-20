@@ -9,9 +9,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
     {
         private readonly Route _route;
 
-        public RoutePointRetriever()
+        public RoutePointRetriever(Manager manager)
         {
-            _route = Route.GetByDate(DateTime.Today);
+            _route = Route.GetByDate(manager, DateTime.Today);
             _route.GetPoints().Count();
         }
 

@@ -67,10 +67,6 @@
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
-      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
-      <Name>MSS.WinMobile</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Server.csproj">
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Server</Name>

@@ -6,13 +6,13 @@ using log4net;
 
 namespace MSS.WinMobile.Application.Configuration
 {
-    public class Manager
+    public class ConfigurationManager
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Manager));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ConfigurationManager));
         private const string ConfigurationFolder = @"\Config";
 
         private readonly string _configurationPath;
-        public Manager(string applicationPath)
+        public ConfigurationManager(string applicationPath)
         {
             _configurationPath = applicationPath + ConfigurationFolder;
             _configs = new Dictionary<string, Config>();

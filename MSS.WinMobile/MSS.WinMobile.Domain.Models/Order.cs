@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 
 namespace MSS.WinMobile.Domain.Models
@@ -8,8 +10,10 @@ namespace MSS.WinMobile.Domain.Models
     {
         public Order(RoutePoint routePoint)
         {
+            var configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
+
             Date = DateTime.Now;
-            Manager = Manager.GetById(Context.ManagerId);
+            Manager = Manager.GetById(configurationManager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").AsInt());
             ShippingAddress = routePoint.ShippingAddress;
         }
 

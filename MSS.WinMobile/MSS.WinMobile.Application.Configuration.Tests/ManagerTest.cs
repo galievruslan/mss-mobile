@@ -97,7 +97,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestMethod]
         public void GetConfigTest()
         {
-            var target = new Manager(_applicationPath);
+            var target = new ConfigurationManager(_applicationPath);
             var actual = target.GetConfig(@"Common");
             Assert.IsNotNull(actual);
         }
@@ -108,7 +108,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestMethod, ExpectedException(typeof(ConfigNotFoundException))]
         public void GetNotExistingConfigTest()
         {
-            var target = new Manager(_applicationPath);
+            var target = new ConfigurationManager(_applicationPath);
             try {
                 var actual = target.GetConfig(@"NotExisted");
                 Assert.Fail("Expected exception wasn't thrown.");

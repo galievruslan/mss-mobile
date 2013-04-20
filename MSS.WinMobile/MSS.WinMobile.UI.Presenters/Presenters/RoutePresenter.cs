@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MSS.WinMobile.Application.Environment;
+using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
+using Manager = MSS.WinMobile.Domain.Models.Manager;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
@@ -12,13 +14,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
+        private readonly Application.Configuration.ConfigurationManager _configurationManager;
+
         private readonly IRouteView _view;
         private readonly IDataPageRetriever<RoutePoint> _routePointRetriever;
         private readonly Cache<RoutePoint> _cache; 
 
         public RoutePresenter(IRouteView view)
         {
-            _routePointRetriever = RetrieversCache.GetCurrentRoutePointRetriever();
+            _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
+
+            Manager manager =
+                Manager.GetById(
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("ExecutionContext")
+                                         .GetSetting("ManagerId")
+                                         .AsInt());
+            _routePointRetriever = new RoutePointRetriever(manager);
             _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
             _view = view;
         }

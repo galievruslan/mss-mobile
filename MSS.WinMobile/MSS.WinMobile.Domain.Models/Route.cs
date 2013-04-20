@@ -12,12 +12,6 @@ namespace MSS.WinMobile.Domain.Models
             Date = DateTime.Today;
         }
 
-        public Route()
-        {
-            ManagerId = Context.ManagerId;
-            Date = DateTime.Today;
-        }
-
         public DateTime Date { get; private set; }
 
         public int ManagerId { get; private set; }

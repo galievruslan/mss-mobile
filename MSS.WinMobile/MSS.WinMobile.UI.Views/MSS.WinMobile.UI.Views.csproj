@@ -171,10 +171,6 @@
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Config\MSS.WinMobile.csproj">
-      <Project>{355E3AFE-670B-4DC5-9625-40D66232F9E2}</Project>
-      <Name>MSS.WinMobile</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
       <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>
       <Name>MSS.WinMobile.UI.Controls</Name>

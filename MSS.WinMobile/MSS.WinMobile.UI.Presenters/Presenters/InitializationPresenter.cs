@@ -50,7 +50,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             Notify(new ProgressNotification(0));
-            RetrieversCache.InitializeCurrentRoutePointRetriever();
+            //RetrieversCache.InitializeCurrentRoutePointRetriever();
             Notify(new ProgressNotification(100));
         }
     }
