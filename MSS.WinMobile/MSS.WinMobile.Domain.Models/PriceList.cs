@@ -16,21 +16,5 @@ namespace MSS.WinMobile.Domain.Models
         {
             return ProductsPrice.GetByPriceList(this);
         }
-
-        public override int GetHashCode()
-        {
-            return Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var priceList = obj as PriceList;
-            if (priceList != null)
-            {
-                return priceList.Id == Id;
-            }
-
-            return false;
-        }
     }
 }

@@ -82,11 +82,22 @@
     <Compile Include="Services\Constants.cs" />
     <Compile Include="Services\ParametersBuilder.cs" />
     <Compile Include="Session.cs" />
+    <Compile Include="Translators\CategoryTranslator.cs" />
+    <Compile Include="Translators\CustomerTranslator.cs" />
+    <Compile Include="Translators\DtoTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Common\MSS.WinMobile.Infrastructure.Common.csproj">
+      <Project>{5FB89B66-66E1-4FD1-A4B1-FAD09C616420}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+      <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
       <Project>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</Project>

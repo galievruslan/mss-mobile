@@ -16,6 +16,6 @@
 
         public string Name { get; private set; }
 
-        public int? CategoryId { get; private set; }
+        public int CategoryId { get; private set; }
     }
 }

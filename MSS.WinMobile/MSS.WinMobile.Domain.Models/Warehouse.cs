@@ -9,21 +9,5 @@
         }
 
         public string Address { get; private set; }
-
-        public override int GetHashCode()
-        {
-            return Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var warehouse = obj as Warehouse;
-            if (warehouse != null)
-            {
-                return warehouse.Id == Id;
-            }
-
-            return false;
-        }
     }
 }

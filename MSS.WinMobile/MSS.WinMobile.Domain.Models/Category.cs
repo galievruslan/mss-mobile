@@ -1,21 +1,16 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Category
+    public class Category : Model
     {
-        public Category(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
         public Category(int id, string name, int parentId)
-            : this(id, name)
+            : base(id)
         {
+            Name = name;
             ParentId = parentId;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public int? ParentId { get; private set; }
+        public int ParentId { get; set; }
     }
 }

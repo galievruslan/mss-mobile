@@ -13,6 +13,7 @@
         public int ProductId { get; private set; }
 
         private Product _product;
+
         public Product Product
         {
             get { return _product ?? (_product = Product.GetById(ProductId)); }
@@ -22,21 +23,5 @@
         public int PriceListId { get; private set; }
 
         public decimal Price { get; private set; }
-
-        public override int GetHashCode()
-        {
-            return Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var productsPrice = obj as ProductsPrice;
-            if (productsPrice != null)
-            {
-                return productsPrice.Id == Id;
-            }
-
-            return false;
-        }
     }
 }

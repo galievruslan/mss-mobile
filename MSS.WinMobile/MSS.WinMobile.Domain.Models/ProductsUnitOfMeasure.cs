@@ -22,21 +22,5 @@
         public int UnitOfMeasureId { get; private set; }
 
         public bool Base { get; private set; }
-
-        public override int GetHashCode()
-        {
-            return Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            var productsUnitOfMeasure = obj as ProductsUnitOfMeasure;
-            if (productsUnitOfMeasure != null)
-            {
-                return productsUnitOfMeasure.Id == Id;
-            }
-
-            return false;
-        }
     }
 }

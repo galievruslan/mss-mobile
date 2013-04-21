@@ -32,11 +32,13 @@ CREATE TABLE [Statuses] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Name] VARCHAR(255) NULL
 );
 CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
-, [Date] DATETIME  NULL
+, [OrderDate] DATETIME  NULL
+, [ShippingDate] DATETIME  NULL
 , [ShippingAddress_Id] INTEGER  NULL
 , [Manager_Id] INTEGER  NULL
 , [PriceList_Id] INTEGER  NULL
 , [Warehouse_Id] INTEGER  NULL
+, [OrderStatus] INTEGER  NULL
 , [Note] VARCHAR(1024) NULL
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
 , FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)

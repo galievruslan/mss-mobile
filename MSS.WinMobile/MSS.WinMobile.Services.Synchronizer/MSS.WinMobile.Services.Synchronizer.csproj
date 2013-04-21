@@ -59,10 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
+      <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
+      <Name>MSS.WinMobile.Application.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj">
+      <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
+      <Name>MSS.WinMobile.Application.Environment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
@@ -71,9 +78,6 @@
       <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
       <Name>MSS.WinMobile.Infrastructure.Server</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="strig placeholder.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
