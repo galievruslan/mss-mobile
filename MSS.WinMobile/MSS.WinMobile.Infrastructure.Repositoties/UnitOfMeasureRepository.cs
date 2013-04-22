@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class UnitOfMeasureRepository : Repository<UnitOfMeasure>
     {
-        public UnitOfMeasureRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public UnitOfMeasureRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

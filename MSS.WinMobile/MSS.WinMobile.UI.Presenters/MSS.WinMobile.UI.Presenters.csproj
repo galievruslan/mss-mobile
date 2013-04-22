@@ -119,10 +119,6 @@
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Remote.Data\MSS.WinMobile.Infrastructure.Server.csproj">
-      <Project>{278A8A84-49D1-421D-A772-D6B742DF831F}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
       <Project>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</Project>
       <Name>JsonSerializer</Name>

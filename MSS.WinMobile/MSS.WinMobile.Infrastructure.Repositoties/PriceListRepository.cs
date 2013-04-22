@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class PriceListRepository : Repository<PriceList>
     {
-        public PriceListRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public PriceListRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

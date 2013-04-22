@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class StatusRepository : Repository<Status>
     {
-        public StatusRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public StatusRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

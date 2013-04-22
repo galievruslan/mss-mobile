@@ -7,7 +7,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class RouteRepository : Repository<Route>
     {
-        public RouteRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public RouteRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

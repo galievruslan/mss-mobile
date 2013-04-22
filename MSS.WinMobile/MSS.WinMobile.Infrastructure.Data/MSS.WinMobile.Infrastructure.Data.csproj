@@ -52,10 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IConnectionFactory.cs" />
+    <Compile Include="IDeleteRepository.cs" />
+    <Compile Include="IGetRepository.cs" />
+    <Compile Include="ISaveRepository.cs" />
+    <Compile Include="ISearchRepository.cs" />
     <Compile Include="ITranslator.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IQueryObject.cs" />
-    <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

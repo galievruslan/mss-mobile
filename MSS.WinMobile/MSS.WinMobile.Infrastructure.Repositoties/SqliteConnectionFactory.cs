@@ -1,16 +1,17 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SQLite;
 using MSS.WinMobile.Infrastructure.Data;
 using log4net;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class SqliteConnectionFactory : IConnectionFactory<SQLiteConnection>
+    public class SQLiteConnectionFactory : IConnectionFactory<SQLiteConnection>, IDisposable
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(SqliteConnectionFactory));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(SQLiteConnectionFactory));
 
-        private readonly SqliteDatabase _sqliteDatabase;
-        public SqliteConnectionFactory(SqliteDatabase sqliteDatabase)
+        private readonly SQLiteDatabase _sqliteDatabase;
+        public SQLiteConnectionFactory(SQLiteDatabase sqliteDatabase)
         {
             _sqliteDatabase = sqliteDatabase;
         }
@@ -32,6 +33,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
             }
 
             return _connection;
+        }
+
+        public void Dispose()
+        {
+            if (_connection != null)
+                _connection.Dispose();
         }
     }
 }

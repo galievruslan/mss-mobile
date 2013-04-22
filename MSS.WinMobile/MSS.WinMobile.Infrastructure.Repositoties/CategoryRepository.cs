@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class CategoryRepository : Repository<Category>
     {
-        public CategoryRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public CategoryRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

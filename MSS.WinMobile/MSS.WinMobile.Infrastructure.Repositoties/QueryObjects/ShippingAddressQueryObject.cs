@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class ShippingAddressQueryObject : QueryObject<ShippingAddress>
     {
-        public ShippingAddressQueryObject(SqliteConnectionFactory connectionFactory, ITranslator<ShippingAddress> translator)
+        public ShippingAddressQueryObject(SQLiteConnectionFactory connectionFactory, ITranslator<ShippingAddress> translator)
             : base(connectionFactory, translator)
         {
         }

@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class RoutePointQueryObject : QueryObject<RoutePoint>
     {
-        public RoutePointQueryObject(SqliteConnectionFactory connectionFactory, ITranslator<RoutePoint> translator)
+        public RoutePointQueryObject(SQLiteConnectionFactory connectionFactory, ITranslator<RoutePoint> translator)
             : base(connectionFactory, translator)
         {
         }

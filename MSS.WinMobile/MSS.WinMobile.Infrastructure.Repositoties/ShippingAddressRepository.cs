@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class ShippingAddressRepository : Repository<ShippingAddress>
     {
-        public ShippingAddressRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public ShippingAddressRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

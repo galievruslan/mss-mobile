@@ -7,7 +7,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class OrderItemRepository : Repository<OrderItem>
     {
-        public OrderItemRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+        public OrderItemRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

@@ -4,13 +4,13 @@ using System.IO;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class SqliteDatabase
+    public class SQLiteDatabase
     {
         private readonly string _databaseFullPath;
         private readonly string _databaseVersion;
         private readonly string _databaseScriptFullPath;
 
-        public SqliteDatabase(string databaseFullPath, string databaseVersion, string databaseScriptFullPath)
+        public SQLiteDatabase(string databaseFullPath, string databaseVersion, string databaseScriptFullPath)
         {
             _databaseFullPath = databaseFullPath;
             _databaseVersion = databaseVersion;
