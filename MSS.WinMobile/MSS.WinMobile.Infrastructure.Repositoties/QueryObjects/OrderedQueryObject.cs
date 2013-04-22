@@ -1,6 +1,6 @@
-﻿using System.Text;
+﻿using System.Data.SQLite;
+using System.Text;
 using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObject;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
@@ -9,7 +9,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
         public string OrderByField { get; protected set; }
         public OrderDirection OrderDirection { get; protected set; }
 
-        public OrderedQueryObject(IQueryObject<T, string> queryObject, string orderByField, OrderDirection orderDirection)
+        public OrderedQueryObject(IQueryObject<T, string, SQLiteConnection> queryObject, string orderByField, OrderDirection orderDirection)
             :base(queryObject)
         {
             OrderByField = orderByField;

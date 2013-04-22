@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IConnectionFactory.cs" />
     <Compile Include="ITranslator.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IQueryObject.cs" />

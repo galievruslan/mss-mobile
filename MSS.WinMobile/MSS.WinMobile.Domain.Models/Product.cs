@@ -1,16 +1,11 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Product
+    public class Product : Model
     {
-        public Product(int id, string name)
+        public Product(int id, string name, int categoryId) :
+            base(id)
         {
-            Id = id;
             Name = name;
-        }
-
-        public Product(int id, string name, int categoryId)
-            :this(id, name)
-        {
             CategoryId = categoryId;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SQLite;
 using System.Text;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
@@ -11,12 +12,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(QueryObjectExtensions));
 
-        public static IQueryObject<T,string> Where<T>(this IQueryObject<T,string> queryObject, string fieldName, Condition condition) where T : IModel
+        public static IQueryObject<T, string, SQLiteConnection> Where<T>(this IQueryObject<T, string, SQLiteConnection> queryObject, string fieldName, Condition condition) where T : IModel
         {
             return new FiltredQueryObject<T>(queryObject, fieldName, condition);
         }
 
-        public static OrderedQueryObject<T> OrderBy<T>(this IQueryObject<T, string> queryObject, string fieldName, OrderDirection orderDirection) where T : IModel
+        public static OrderedQueryObject<T> OrderBy<T>(this IQueryObject<T, string, SQLiteConnection> queryObject, string fieldName, OrderDirection orderDirection) where T : IModel
         {
             return new OrderedQueryObject<T>(queryObject, fieldName, orderDirection);
         }
@@ -26,7 +27,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
             return new PagedQueryObject<T>(queryObject, queryObject.OrderByField, queryObject.OrderDirection, countToSkip, countToTake);
         }
 
-        public static int Count<T>(this IQueryObject<T, string> queryObject) where T : IModel
+        public static int Count<T>(this IQueryObject<T, string, SQLiteConnection> queryObject) where T : IModel
         {
             Log.DebugFormat("Select count from database.");
             var queryStringBuilder = new StringBuilder();
@@ -36,7 +37,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
             string commandText = queryStringBuilder.ToString();
 
             int count;
-            IDbConnection connection = SqliteConnectionFactory.Instance.GetConnection();
+            IDbConnection connection = queryObject.ConnectionFactory.GetConnection();
             using (IDbCommand command = connection.CreateCommand())
             {
                 command.CommandText = commandText;

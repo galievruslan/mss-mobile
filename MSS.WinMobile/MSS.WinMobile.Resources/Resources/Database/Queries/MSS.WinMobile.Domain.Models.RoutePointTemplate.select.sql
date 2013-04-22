@@ -1,1 +1,0 @@
-SELECT Id, RouteTemplate_Id, ShippingAddress_Id FROM RoutePointTemplates

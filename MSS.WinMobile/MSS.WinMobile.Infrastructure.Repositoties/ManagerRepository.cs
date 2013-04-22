@@ -6,9 +6,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class ManagerRepository : Repository<Manager>
     {
+        public ManagerRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+            : base(connectionFactory, unitOfWork)
+        {
+        }
+
         protected override QueryObject<Manager> GetQueryObject()
         {
-            return new ManagerQueryObject(new ManagerTranslator());
+            return new ManagerQueryObject(ConnectionFactory, new ManagerTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Managers (Id, Name) VALUES ({0}, '{1}')";

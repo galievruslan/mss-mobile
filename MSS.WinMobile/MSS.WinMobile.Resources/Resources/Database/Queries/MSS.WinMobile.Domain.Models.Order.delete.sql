@@ -1,1 +1,0 @@
-DELETE FROM Orders WHERE Id = {0}

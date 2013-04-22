@@ -1,1 +1,0 @@
-INSERT OR REPLACE INTO Managers (Id, Name) VALUES ({0}, '{1}')

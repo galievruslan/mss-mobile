@@ -1,19 +1,20 @@
 ﻿using System.Data.SQLite;
 using System.Linq;
 using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObject;
 using System.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public abstract class Repository<T> : IRepository<T,string> where T : IModel
+    public abstract class Repository<T> : IRepository<T,string, SQLiteConnection> where T : IModel
     {
         private readonly SqliteUnitOfWork _unitOfWork;
-        protected Repository()
+        protected readonly SqliteConnectionFactory ConnectionFactory;
+        protected Repository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
         {
-            _unitOfWork = SqliteUnitOfWork.Instance;
+            ConnectionFactory = connectionFactory;
+            _unitOfWork = unitOfWork;
         }
 
         public T GetById(int id)
@@ -22,7 +23,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         }
 
         protected abstract QueryObject<T> GetQueryObject();
-        public virtual IQueryObject<T, string> Find()
+        public virtual IQueryObject<T, string, SQLiteConnection> Find()
         {
             return GetQueryObject();
         }
@@ -30,7 +31,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         protected abstract string GetSaveQueryFor(T model);
         public virtual void Save(T model)
         {
-            SQLiteConnection connection = SqliteConnectionFactory.Instance.GetConnection();
+            SQLiteConnection connection = ConnectionFactory.GetConnection();
             string saveQuery = GetSaveQueryFor(model);
             if (_unitOfWork.InTransaction)
             {
@@ -67,7 +68,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         protected abstract string GetDeleteQueryFor(T model);
         public virtual void Delete(T model)
         {
-            SQLiteConnection connection = SqliteConnectionFactory.Instance.GetConnection();
+            SQLiteConnection connection = ConnectionFactory.GetConnection();
             string deleteQuery = GetDeleteQueryFor(model);
             if (_unitOfWork.InTransaction)
             {

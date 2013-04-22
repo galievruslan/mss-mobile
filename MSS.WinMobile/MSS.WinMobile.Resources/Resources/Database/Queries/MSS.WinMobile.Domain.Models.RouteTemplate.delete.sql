@@ -1,1 +1,0 @@
-DELETE FROM RouteTemplates WHERE Id = {0}

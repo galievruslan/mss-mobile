@@ -1,16 +1,17 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class CustomerQueryObject : QueryObject<Customer>
     {
-        public CustomerQueryObject(ITranslator<Customer> translator)
-            : base(translator)
+        public CustomerQueryObject(SqliteConnectionFactory connectionFactory, ITranslator<Customer> translator)
+            : base(connectionFactory, translator)
         {
         }
 
-        public CustomerQueryObject(IQueryObject<Customer, string> queryObject)
+        public CustomerQueryObject(IQueryObject<Customer, string, SQLiteConnection> queryObject)
             : base(queryObject)
         {
         }

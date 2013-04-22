@@ -65,25 +65,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagersShippingAddress.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="OrderItem.ActiveRecord.cs" />
-    <Compile Include="PriceList.ActiveRecord.cs" />
-    <Compile Include="Product.ActiveRecord.cs" />
-    <Compile Include="ProductsPrice.ActiveRecord.cs" />
-    <Compile Include="ProductsUnitOfMeasure.ActiveRecord.cs" />
-    <Compile Include="Route.ActiveRecord.cs" />
-    <Compile Include="RoutePoint.ActiveRecord.cs" />
-    <Compile Include="RoutePointTemplate.ActiveRecord.cs" />
-    <Compile Include="RouteTemplate.ActiveRecord.cs" />
-    <Compile Include="ShippingAddress.ActiveRecord.cs" />
-    <Compile Include="Status.ActiveRecord.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="ProductsPrice.cs" />
     <Compile Include="PriceList.cs" />
     <Compile Include="ProductsUnitOfMeasure.cs" />
     <Compile Include="RoutePointTemplate.cs" />
     <Compile Include="RouteTemplate.cs" />
-    <Compile Include="UnitOfMeasure.ActiveRecord.cs" />
     <Compile Include="UnitOfMeasure.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Manager.cs" />
@@ -95,7 +84,6 @@
     <Compile Include="RoutePoint.cs" />
     <Compile Include="ShippingAddress.cs" />
     <Compile Include="Status.cs" />
-    <Compile Include="Warehouse.ActiveRecord.cs" />
     <Compile Include="Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
         protected override Order DataRecordToModel(IDataRecord value)
         {
             var order = new Order(value.GetInt32(value.GetOrdinal("Id")),
+                value.GetInt32(value.GetOrdinal("RoutePoint_Id")),
                 value.GetDateTime(value.GetOrdinal("OrderDate")),
                 value.GetDateTime(value.GetOrdinal("ShippingDate")),
                 value.GetInt32(value.GetOrdinal("Customer_Id")),

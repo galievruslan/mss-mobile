@@ -1,10 +1,10 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Status
+    public class Status : Model
     {
         public Status(int id, string name)
+            :base(id)
         {
-            Id = id;
             Name = name;
         }
 

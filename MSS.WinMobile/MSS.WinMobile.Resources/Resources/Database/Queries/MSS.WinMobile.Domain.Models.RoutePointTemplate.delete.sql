@@ -1,1 +1,0 @@
-DELETE FROM RoutePointTemplates WHERE Id = {0}

@@ -1,1 +1,0 @@
-DELETE FROM Routes WHERE Id = {0}

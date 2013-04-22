@@ -1,38 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Route
+    public class Route : Model
     {
-        public Route(Manager manager)
+        public Route(int id, int managetId, DateTime date)
+            :base(id)
         {
-            ManagerId = manager.Id;
-            Date = DateTime.Today;
+            ManagerId = managetId;
+            Date = date;
         }
-
-        public DateTime Date { get; private set; }
 
         public int ManagerId { get; private set; }
 
-        private Manager _manager;
-        public Manager Manager
-        {
-            get { return _manager ?? (_manager = Manager.GetById(ManagerId)); }
-            private set { _manager = value; }
-        }
-        
-        public QueryObject<RoutePoint> GetPoints()
-        {
-            return RoutePoint.GetByRoute(this);
-        }
+        public DateTime Date { get; private set; }
 
-        public void AddPoint(ShippingAddress shippingAddress)
-        {
-            // TODO Change retrieving status by id to retrieving by name in config
-            var routePoint = new RoutePoint(this, shippingAddress, Status.GetById(2));
-            routePoint.Save();
-        }
+        //public void AddPoint(ShippingAddress shippingAddress)
+        //{
+        //    // TODO Change retrieving status by id to retrieving by name in config
+        //    var routePoint = new RoutePoint(this, shippingAddress, Status.GetById(2));
+        //    routePoint.Save();
+        //}
     }
 }

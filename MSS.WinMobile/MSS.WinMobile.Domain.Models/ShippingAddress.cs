@@ -1,10 +1,10 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class ShippingAddress
+    public class ShippingAddress : Model
     {
         public ShippingAddress(int id, int customerId, string name, string address)
+            :base(id)
         {
-            Id = id;
             CustomerId = customerId;
             Name = name;
             Address = address;

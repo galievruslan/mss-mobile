@@ -1,10 +1,10 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class UnitOfMeasure
+    public class UnitOfMeasure : Model
     {
         public UnitOfMeasure(int id, string name)
+            :base(id)
         {
-            Id = id;
             Name = name;
         }
 

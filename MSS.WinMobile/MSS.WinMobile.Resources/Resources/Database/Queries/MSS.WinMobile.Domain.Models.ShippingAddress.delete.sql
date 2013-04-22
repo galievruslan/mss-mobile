@@ -1,1 +1,0 @@
-DELETE FROM ShippingAddresses WHERE Id = {0}

@@ -2,49 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using MSS.WinMobile.Infrastructure.Data;
 using log4net;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
-    public abstract class QueryObject<T> : IQueryObject<T, string> where T : IModel
+    public abstract class QueryObject<T> : IQueryObject<T, string, SQLiteConnection> where T : IModel
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(QueryObject<T>));
 
         public ITranslator<T> Translator { get; private set; }
-        protected QueryObject(ITranslator<T> translator)
+        protected QueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<T> translator)
         {
             Translator = translator;
+            ConnectionFactory = connectionFactory;
         }
 
-        public IQueryObject<T, string> InnerQueryObject { get; protected set; }
+        public IQueryObject<T, string, SQLiteConnection> InnerQueryObject { get; protected set; }
 
-        protected QueryObject(IQueryObject<T, string> queryObject)
-            : this(queryObject.Translator)
+        protected QueryObject(IQueryObject<T, string, SQLiteConnection> queryObject)
+            : this(queryObject.ConnectionFactory, queryObject.Translator)
         {
             InnerQueryObject = queryObject;
         }
 
         public abstract string AsQuery();
-
-        //public override string ToString()
-        //{
-        //    var queryStringBuilder = new StringBuilder();
-        //    queryStringBuilder.Append("SELECT ");
-        //    for (int i = 0; i < FieldsNames.Length; i++)
-        //    {
-        //        if (i > 0)
-        //            queryStringBuilder.Append(", ");
-
-        //        queryStringBuilder.Append(string.Format("[{0}].[{1}] AS [{1}]", TableName, FieldsNames[i]));
-        //    }
-
-        //    queryStringBuilder.Append(InnerQueryObject == null
-        //                                  ? string.Format(" FROM [{0}] AS [{0}]", TableName)
-        //                                  : string.Format(" FROM ({0}) AS [{1}]", InnerQueryObject, TableName));
-
-        //    return queryStringBuilder.ToString();
-        //}
+        public IConnectionFactory<SQLiteConnection> ConnectionFactory { get; private set; }
 
         protected virtual T[] Execute()
         {
@@ -53,7 +37,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 
             try
             {
-                IDbConnection connection = SqliteConnectionFactory.Instance.GetConnection();
+                IDbConnection connection = ConnectionFactory.GetConnection();
                 using (IDbCommand command = connection.CreateCommand())
                 {
                     var result = new List<T>();

@@ -1,1 +1,0 @@
-SELECT Id, [Date], Manager_Id FROM Routes

@@ -1,24 +1,19 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class ProductsPrice
+    public class ProductsPrice : Model
     {
-        public ProductsPrice(int id, int productId, int priceListId, decimal price)
+        public ProductsPrice(int id, int productId, string productName, int priceListId, decimal price)
+            :base(id)
         {
-            Id = id;
             ProductId = productId;
+            ProductName = productName;
             PriceListId = priceListId;
             Price = price;
         }
 
         public int ProductId { get; private set; }
 
-        private Product _product;
-
-        public Product Product
-        {
-            get { return _product ?? (_product = Product.GetById(ProductId)); }
-            private set { _product = value; }
-        }
+        public string ProductName { get; private set; }
 
         public int PriceListId { get; private set; }
 

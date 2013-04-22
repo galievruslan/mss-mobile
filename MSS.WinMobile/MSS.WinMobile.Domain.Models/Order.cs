@@ -5,6 +5,7 @@ namespace MSS.WinMobile.Domain.Models
     public class Order : Model
     {
         public Order(int id,
+                     int routePointId,
                      DateTime orderDate,
                      DateTime shippingDate,
                      int customerId,
@@ -21,6 +22,7 @@ namespace MSS.WinMobile.Domain.Models
                      string note)
             :base(id)
         {
+            RoutePointId = routePointId;
             OrderDate = orderDate;
             ShippingDate = shippingDate;
             CustomerId = customerId;
@@ -45,6 +47,8 @@ namespace MSS.WinMobile.Domain.Models
         //    Manager = Manager.GetById(configurationManager.GetConfig("Common").GetSection("ExecutionContext").GetSetting("ManagerId").As<int>());
         //    ShippingAddress = routePoint.ShippingAddress;
         //}
+
+        public int RoutePointId { get; private set; }
 
         public DateTime OrderDate { get; private set; }
         public DateTime ShippingDate { get; private set; }

@@ -1,1 +1,0 @@
-INSERT OR REPLACE INTO RoutePoints (Id, Route_Id, ShippingAddress_Id, Order_Id, Status_Id) VALUES ({0}, {1}, {2}, {3}, {4})

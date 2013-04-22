@@ -1,10 +1,10 @@
 ﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class Warehouse
+    public class Warehouse : Model
     {
         public Warehouse(int id, string address)
+            :base(id)
         {
-            Id = id;
             Address = address;
         }
 

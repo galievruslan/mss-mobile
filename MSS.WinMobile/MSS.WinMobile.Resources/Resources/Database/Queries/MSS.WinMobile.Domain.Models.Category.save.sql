@@ -1,1 +1,0 @@
-INSERT OR REPLACE INTO Categories (Id, Name, Parent_Id) VALUES ({0}, '{1}', {2})

@@ -1,1 +1,0 @@
-INSERT OR REPLACE INTO Routes (Id, [Date], Manager_Id) VALUES ({0}, '{1}', {2})

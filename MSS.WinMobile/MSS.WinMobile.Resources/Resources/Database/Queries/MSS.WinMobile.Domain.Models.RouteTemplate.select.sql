@@ -1,1 +1,0 @@
-SELECT Id, DayOfWeek, Manager_Id FROM RouteTemplates

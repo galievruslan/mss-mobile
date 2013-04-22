@@ -1,1 +1,0 @@
-SELECT Id, Name, Parent_Id FROM Categories

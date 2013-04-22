@@ -32,6 +32,7 @@ CREATE TABLE [Statuses] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Name] VARCHAR(255) NULL
 );
 CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
+, [RoutePoint_Id] INTEGER NULL
 , [OrderDate] DATETIME  NULL
 , [ShippingDate] DATETIME  NULL
 , [ShippingAddress_Id] INTEGER  NULL
@@ -40,6 +41,7 @@ CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Warehouse_Id] INTEGER  NULL
 , [OrderStatus] INTEGER  NULL
 , [Note] VARCHAR(1024) NULL
+, FOREIGN KEY(RoutePoint_Id) REFERENCES RoutePoints(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
 , FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
@@ -51,6 +53,12 @@ CREATE TABLE [OrderItems] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Product_Id] INTEGER  NULL
 , FOREIGN KEY(Order_Id) REFERENCES Orders(Id)
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
+);
+CREATE TABLE [ManagersShippingAddresses] ([Id] INTEGER  NOT NULL PRIMARY KEY
+, [Manager_Id] INTEGER  NULL
+, [ShippingAddress_Id] INTEGER  NULL
+, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
+, FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
 );
 CREATE TABLE [ProductsPrices] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Price] numeric(8,2) NULL
@@ -74,7 +82,6 @@ CREATE TABLE [Routes] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 CREATE TABLE [RoutePoints] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Route_Id] INTEGER NULL
 , [ShippingAddress_Id] INTEGER NULL
-, [Order_Id] VARCHAR(32) NULL
 , [Status_Id] INTEGER  NULL
 , FOREIGN KEY(Route_Id) REFERENCES Routes(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)

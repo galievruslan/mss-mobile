@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Data.SQLite;
+using System.Text;
 using MSS.WinMobile.Infrastructure.Data;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
@@ -8,7 +9,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
         public int CountToSkip { get; protected set; }
         public int CountToTake { get; protected set; }
 
-        public PagedQueryObject(IQueryObject<T, string> queryObject, string orderByField, OrderDirection orderDirection, int countToSkip, int countToTake)
+        public PagedQueryObject(IQueryObject<T, string, SQLiteConnection> queryObject, string orderByField, OrderDirection orderDirection, int countToSkip, int countToTake)
             :base(queryObject, orderByField, orderDirection)
         {
             CountToSkip = countToSkip;

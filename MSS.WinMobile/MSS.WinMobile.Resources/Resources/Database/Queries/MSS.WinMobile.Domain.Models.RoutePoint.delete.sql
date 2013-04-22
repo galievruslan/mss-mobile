@@ -1,1 +1,0 @@
-DELETE FROM RoutePoints WHERE Id = {0}

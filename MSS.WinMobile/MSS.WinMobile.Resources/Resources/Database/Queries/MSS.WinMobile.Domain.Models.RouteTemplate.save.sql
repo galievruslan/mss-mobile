@@ -1,1 +1,0 @@
-INSERT OR REPLACE INTO RouteTemplates (Id, DayOfWeek, Manager_Id) VALUES ({0}, {1}, {2})

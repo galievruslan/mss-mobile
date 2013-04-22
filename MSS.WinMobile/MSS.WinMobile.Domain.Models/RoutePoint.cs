@@ -1,43 +1,21 @@
-﻿using System;
-
-namespace MSS.WinMobile.Domain.Models
+﻿namespace MSS.WinMobile.Domain.Models
 {
-    public partial class RoutePoint
+    public class RoutePoint : Model
     {
-        public RoutePoint(Route route, ShippingAddress shippingAddress, Status status)
+        public RoutePoint(int id, int routeId, int shippinAddressId, string shippingAddressName, int statusId)
+            :base(id)
         {
-            RouteId = route.Id;
-            ShippingAddressId = shippingAddress.Id;
-            StatusId = status.Id;
+            RouteId = routeId;
+            ShippingAddressId = shippinAddressId;
+            ShippingAddressName = shippingAddressName;
+            StatusId = statusId;
         }
 
         public int RouteId { get; private set; }
 
         public int ShippingAddressId { get; private set; }
+        public string ShippingAddressName { get; private set; }
 
         public int StatusId { get; private set; }
-
-        public int OrderId { get; private set; }
-
-        private Order _order;
-        public Order Order
-        {
-            get { return _order ?? (_order = Order.GetById(OrderId)); }
-            private set { _order = value; }
-        }
-
-        private ShippingAddress _shippingAddress;
-        public ShippingAddress ShippingAddress
-        {
-            get { return _shippingAddress ?? (_shippingAddress = ShippingAddress.GetById(ShippingAddressId)); }
-            private set { _shippingAddress = value; }
-        }
-
-        private Status _status;
-        public Status Status
-        {
-            get { return _status ?? (_status = Status.GetById(ShippingAddressId)); }
-            private set { _status = value; }
-        }
     }
 }

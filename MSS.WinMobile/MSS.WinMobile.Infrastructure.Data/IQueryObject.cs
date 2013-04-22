@@ -2,9 +2,10 @@
 
 namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface IQueryObject<T,TQ> : IEnumerable<T> where T : IModel
+    public interface IQueryObject<TM,TQ,TC> : IEnumerable<TM> where TM : IModel
     {
         TQ AsQuery();
-        ITranslator<T> Translator { get; }
+        IConnectionFactory<TC> ConnectionFactory { get; }
+        ITranslator<TM> Translator { get; }
     }
 }

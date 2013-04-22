@@ -9,10 +9,5 @@
         }
 
         public string Name { get; private set; }
-
-        public IQueryObject<ShippingAddress> ShippingAddresses()
-        {
-            return ShippingAddress.GetByCustomer(this);
-        }
     }
 }

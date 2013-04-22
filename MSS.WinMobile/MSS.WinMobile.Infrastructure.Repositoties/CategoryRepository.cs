@@ -5,10 +5,15 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class CategoryRepository : Repository<Category>
-    {   
+    {
+        public CategoryRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+            : base(connectionFactory, unitOfWork)
+        {
+        }
+
         protected override QueryObject<Category> GetQueryObject()
         {
-            return new CategoryQueryObject(new CategoryTranslator());
+            return new CategoryQueryObject(ConnectionFactory, new CategoryTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Categories (Id, Name, Parent_Id) VALUES ({0}, '{1}', {2})";

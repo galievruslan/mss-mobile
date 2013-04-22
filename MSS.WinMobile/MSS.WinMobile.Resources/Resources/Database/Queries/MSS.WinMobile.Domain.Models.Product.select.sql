@@ -1,1 +1,0 @@
-SELECT Id, Name, Category_Id FROM Products

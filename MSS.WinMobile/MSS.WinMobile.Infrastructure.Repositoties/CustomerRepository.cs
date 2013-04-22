@@ -6,9 +6,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class CustomerRepository : Repository<Customer>
     {
+        public CustomerRepository(SqliteConnectionFactory connectionFactory, SqliteUnitOfWork unitOfWork)
+            : base(connectionFactory, unitOfWork)
+        {
+        }
+
         protected override QueryObject<Customer> GetQueryObject()
         {
-            return new CustomerQueryObject(new CustomerTranslator());
+            return new CustomerQueryObject(ConnectionFactory, new CustomerTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Customers (Id, Name) VALUES ({0}, '{1}')";

@@ -1,13 +1,11 @@
-﻿using System.Collections;
-
-namespace MSS.WinMobile.Infrastructure.Data
+﻿namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface IRepository<T,TQ> where T : IModel
+    public interface IRepository<TM,TQ,TC> where TM : IModel
     {
-        T GetById(int id);
-        IQueryObject<T,TQ> Find();
+        TM GetById(int id);
+        IQueryObject<TM,TQ,TC> Find();
 
-        void Save(T model);
-        void Delete(T model);
+        void Save(TM model);
+        void Delete(TM model);
     }
 }
