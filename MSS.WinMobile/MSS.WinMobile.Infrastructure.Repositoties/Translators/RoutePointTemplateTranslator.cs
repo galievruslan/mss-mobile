@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
 {
@@ -7,10 +8,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override RoutePointTemplate DataRecordToModel(IDataRecord value)
         {
-            var routePointTemplate = new RoutePointTemplate(value.GetInt32(value.GetOrdinal("Id")),
-                value.GetInt32(value.GetOrdinal("RouteTemplate_Id")),
-                value.GetInt32(value.GetOrdinal("ShippingAddress_Id")));
-            return routePointTemplate;
+            var proxy = new RoutePointTemplateProxy();
+            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
+            proxy.SetRouteTemplateId(value.GetInt32(value.GetOrdinal("RouteTemplate_Id")));
+            proxy.SetShippingAddressId(value.GetInt32(value.GetOrdinal("ShippingAddress_Id")));
+            return proxy;
         }
     }
 }

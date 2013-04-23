@@ -13,7 +13,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Translators
 
         protected override Category DtoToModel(CategoryDto value)
         {
-            return new Category(value.Id, value.Name, value.ParentId);
+            return new CategoryProxy(value.Id, value.Name, value.ParentId);
         }
     }
 }

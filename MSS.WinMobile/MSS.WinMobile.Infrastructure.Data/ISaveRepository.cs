@@ -2,6 +2,6 @@
 {
     public interface ISaveRepository<TM> where TM : IModel
     {
-        void Save(TM model);
+        TM Save(TM model);
     }
 }

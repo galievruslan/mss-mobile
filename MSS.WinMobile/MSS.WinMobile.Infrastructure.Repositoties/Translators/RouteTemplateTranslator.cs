@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
 {
@@ -8,10 +9,10 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override RouteTemplate DataRecordToModel(IDataRecord value)
         {
-            var routeTemplate = new RouteTemplate(value.GetInt32(value.GetOrdinal("Id")),
-                                                  value.GetInt32(value.GetOrdinal("Manager_Id")),
-                                                  (DayOfWeek) value.GetInt32(value.GetOrdinal("DayOfWeek")));
-            return routeTemplate;
+            var proxy = new RouteTemplateProxy();
+            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
+            proxy.SetRouteTemplateId((DayOfWeek) value.GetInt32(value.GetOrdinal("DayOfWeek")));
+            return proxy;
         }
     }
 }

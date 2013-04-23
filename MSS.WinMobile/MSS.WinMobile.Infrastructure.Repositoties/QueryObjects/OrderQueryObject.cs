@@ -17,10 +17,10 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
         }
 
         private const string SelectQuery =
-            "SELECT orders.Id, orders.RoutePoint_Id, orders.OrderDate, orders.ShippingDate, orders.Manager_Id, " +
+            "SELECT orders.Id, orders.RoutePoint_Id, orders.OrderDate, orders.ShippingDate, " +
             "customers.Id as [Customer_Id], customers.Name as [Customer_Name], orders.ShippingAddress_Id, shipping_addresses.Name as [ShippingAddress_Name], orders.PriceList_Id, " +
             " priceLists.Name as [PriceList_Name], orders.Warehouse_Id, warehouses.Address as [Warehouse_Name], orders.OrderStatus, orders.Note " +
-            " FROM Orders orders Left join Managers managers on orders.[Manager_Id] = managers.[Id] " +
+            " FROM Orders orders " +
             " Left join ShippingAddresses shipping_addresses on orders.[ShippingAddress_Id] = shipping_addresses.[Id] " +
             " Left join Customers customers on  shipping_addresses.[Customer_Id] = customers.[Id] " +
             " Left join PriceLists priceLists on orders.[PriceList_Id] = priceLists.[Id] " +

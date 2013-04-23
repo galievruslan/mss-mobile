@@ -1,9 +1,7 @@
 ﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    public class WarehouseDto
+    public class WarehouseDto : Dto
     {
-        public int Id { get; set; }
-
         public string Address { get; set; }
     }
 }

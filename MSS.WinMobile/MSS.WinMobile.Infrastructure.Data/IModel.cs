@@ -2,7 +2,6 @@
 {
     public interface IModel
     {
-        // TODO Remove "setter" when virtual proxies will be realized
-        int Id { get; set; }
+        int Id { get; }
     }
 }

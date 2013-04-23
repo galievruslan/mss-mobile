@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
 {
@@ -7,9 +8,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override Customer DataRecordToModel(IDataRecord value)
         {
-            var customer = new Customer(value.GetInt32(value.GetOrdinal("Id")),
-                value.GetString(value.GetOrdinal("Name")));
-            return customer;
+            var proxy = new CustomerProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    Name = value.GetString(value.GetOrdinal("Name"))
+                };
+            return proxy;
         }
     }
 }

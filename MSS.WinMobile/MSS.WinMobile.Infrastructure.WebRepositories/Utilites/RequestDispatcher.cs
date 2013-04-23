@@ -10,7 +10,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
 {
     public static class RequestDispatcher
     {
-        public static string Dispatch(CsrfTokenContainer csrfTokenContainer, CookieContainer cookieContainer, HttpWebRequest httpWebRequest)
+        public static string Dispatch(WebConnection connection, HttpWebRequest httpWebRequest)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
                     string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
                     if (!string.IsNullOrEmpty(cookie))
                     {
-                        cookieContainer.SetCookie(cookie);
+                        connection.CookieContainer.SetCookie(cookie);
                     }
                     
                     using (Stream stream = httpWebResponse.GetResponseStream())
@@ -46,7 +46,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
                     }
                 }
 
-                csrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
+                connection.CsrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
                 return responseText;
             }
             catch (WebException webException)

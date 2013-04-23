@@ -16,7 +16,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
         {
         }
 
-        private const string SelectQuery = "SELECT Id, DayOfWeek, Manager_Id FROM RouteTemplates";
+        private const string SelectQuery = "SELECT Id, DayOfWeek FROM RouteTemplates";
         public override string AsQuery()
         {
             return SelectQuery;

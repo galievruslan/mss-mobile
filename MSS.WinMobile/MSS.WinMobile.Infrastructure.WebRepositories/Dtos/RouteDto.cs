@@ -1,16 +1,13 @@
 ﻿using System;
-using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.Server.Dtos
+namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    public class RouteDto
+    public class RouteDto : Dto
     {
         public RouteDto()
         {
             RoutePoints = new RoutePointDto[0];
         }
-
-        public int Id { get; set; }
 
         public DateTime Date { get; set; }
 

@@ -49,6 +49,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,14 +62,12 @@
     <Compile Include="Dtos\CategoryDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\Dto.cs" />
-    <Compile Include="Dtos\ManagerDto.cs" />
     <Compile Include="Dtos\OrderDto.cs" />
     <Compile Include="Dtos\OrderItemDto.cs" />
     <Compile Include="Dtos\PriceListDto.cs" />
     <Compile Include="Dtos\ProductDto.cs" />
     <Compile Include="Dtos\ProductPriceDto.cs" />
     <Compile Include="Dtos\ProductUnitOfMeasureDto.cs" />
-    <Compile Include="Dtos\ProfileDto.cs" />
     <Compile Include="Dtos\RouteDto.cs" />
     <Compile Include="Dtos\RoutePointDto.cs" />
     <Compile Include="Dtos\RoutePointTemplateDto.cs" />
@@ -85,6 +87,9 @@
     <Compile Include="Utilites\RequestDispatcher.cs" />
     <Compile Include="Utilites\RequestFactory.cs" />
     <Compile Include="WebConnection.cs" />
+    <Compile Include="WebConnectionFactory.cs" />
+    <Compile Include="WebQueryObject.cs" />
+    <Compile Include="WebRepository.cs" />
     <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +104,14 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
+      <Project>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</Project>
+      <Name>JsonSerializer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\LitJson.csproj">
+      <Project>{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}</Project>
+      <Name>LitJson</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

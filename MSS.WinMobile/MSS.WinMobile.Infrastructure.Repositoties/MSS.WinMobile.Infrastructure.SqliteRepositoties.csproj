@@ -64,11 +64,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryRepository.cs" />
-    <Compile Include="ManagersShippingAddressRepository.cs" />
-    <Compile Include="QueryObjects\ManagersShippingAddressQueryObject.cs" />
     <Compile Include="SQLiteConnectionFactory.cs" />
     <Compile Include="SQLiteDatabase.cs" />
-    <Compile Include="Translators\ManagersShippingAddressTranslator.cs" />
+    <Compile Include="VirtualProxies\CategoryProxy.cs" />
+    <Compile Include="VirtualProxies\CustomerProxy.cs" />
+    <Compile Include="VirtualProxies\OrderProxy.cs" />
+    <Compile Include="VirtualProxies\OrderItemProxy.cs" />
+    <Compile Include="VirtualProxies\PriceListProxy.cs" />
+    <Compile Include="VirtualProxies\ProductProxy.cs" />
+    <Compile Include="VirtualProxies\ProductsPriceProxy.cs" />
+    <Compile Include="VirtualProxies\ProductsUnitOfMeasureProxy.cs" />
+    <Compile Include="VirtualProxies\RouteProxy.cs" />
+    <Compile Include="VirtualProxies\RoutePointProxy.cs" />
+    <Compile Include="VirtualProxies\RoutePointTemplateProxy.cs" />
+    <Compile Include="VirtualProxies\RouteTemplateProxy.cs" />
+    <Compile Include="VirtualProxies\ShippingAddressProxy.cs" />
+    <Compile Include="VirtualProxies\StatusProxy.cs" />
+    <Compile Include="VirtualProxies\UnitOfMeasureProxy.cs" />
+    <Compile Include="VirtualProxies\WarehouseProxy.cs" />
     <Compile Include="WarehouseRepository.cs" />
     <Compile Include="QueryObjects\WarehouseQueryObject.cs" />
     <Compile Include="Translators\WarehouseTranslator.cs" />
@@ -91,7 +104,6 @@
     <Compile Include="PriceListRepository.cs" />
     <Compile Include="OrderItemRepository.cs" />
     <Compile Include="OrderRepository.cs" />
-    <Compile Include="ManagerRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="QueryObjects\CategoryQueryObject.cs" />
     <Compile Include="QueryObjects\RouteQueryObject.cs" />
@@ -101,7 +113,6 @@
     <Compile Include="QueryObjects\PriceListQueryObject.cs" />
     <Compile Include="QueryObjects\OrderItemQueryObject.cs" />
     <Compile Include="QueryObjects\OrderQueryObject.cs" />
-    <Compile Include="QueryObjects\ManagerQueryObject.cs" />
     <Compile Include="QueryObjects\CustomerQueryObject.cs" />
     <Compile Include="QueryObjects\Conditions\Between.cs" />
     <Compile Include="QueryObjects\Conditions\Condition.cs" />
@@ -131,10 +142,8 @@
     <Compile Include="Translators\PriceListTranslator.cs" />
     <Compile Include="Translators\OrderItemTranslator.cs" />
     <Compile Include="Translators\OrderTranslator.cs" />
-    <Compile Include="Translators\ManagerTranslator.cs" />
     <Compile Include="Translators\CustomerTranslator.cs" />
     <Compile Include="Translators\Translator.cs" />
-    <Compile Include="VirtualProxies\VirtualProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">

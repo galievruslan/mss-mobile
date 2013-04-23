@@ -32,7 +32,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         protected abstract string GetSaveQueryFor(T model);
 
-        public virtual void Save(T model)
+        public virtual T Save(T model)
         {
             SQLiteConnection connection = ConnectionFactory.GetConnection();
             string saveQuery = GetSaveQueryFor(model);
@@ -42,11 +42,6 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
                 {
                     command.CommandText = saveQuery;
                     command.ExecuteNonQuery();
-                }
-
-                if (model.Id == 0)
-                {
-                    model.Id = (int) connection.LastInsertRowId;
                 }
             }
             else
@@ -59,13 +54,10 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
                         command.ExecuteNonQuery();
                     }
                     transaction.Commit();
-
-                    if (model.Id == 0)
-                    {
-                        model.Id = (int) connection.LastInsertRowId;
-                    }
                 }
             }
+
+            return model.Id == 0 ? (GetById((int) connection.LastInsertRowId)) : model;
         }
 
         protected abstract string GetDeleteQueryFor(T model);

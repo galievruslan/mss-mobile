@@ -10,10 +10,8 @@ CREATE TABLE [ShippingAddresses] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Address] VARCHAR(255) NULL
 , [Name] VARCHAR(255) NULL
 , [Customer_Id] INTEGER  NULL
+, [Mine] BIT NULL
 , FOREIGN KEY(Customer_Id) REFERENCES Customers(Id)
-);
-CREATE TABLE [Managers] ([Id] INTEGER  NOT NULL PRIMARY KEY
-, [Name] VARCHAR(255) NULL
 );
 CREATE TABLE [Products] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Name] VARCHAR(255) NULL
@@ -36,14 +34,12 @@ CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [OrderDate] DATETIME  NULL
 , [ShippingDate] DATETIME  NULL
 , [ShippingAddress_Id] INTEGER  NULL
-, [Manager_Id] INTEGER  NULL
 , [PriceList_Id] INTEGER  NULL
 , [Warehouse_Id] INTEGER  NULL
 , [OrderStatus] INTEGER  NULL
 , [Note] VARCHAR(1024) NULL
 , FOREIGN KEY(RoutePoint_Id) REFERENCES RoutePoints(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
-, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
 , FOREIGN KEY(Warehouse_Id) REFERENCES Warehouses(Id)
 );
@@ -54,12 +50,6 @@ CREATE TABLE [OrderItems] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , FOREIGN KEY(Order_Id) REFERENCES Orders(Id)
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 );
-CREATE TABLE [ManagersShippingAddresses] ([Id] INTEGER  NOT NULL PRIMARY KEY
-, [Manager_Id] INTEGER  NULL
-, [ShippingAddress_Id] INTEGER  NULL
-, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
-, FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
-);
 CREATE TABLE [ProductsPrices] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Price] numeric(8,2) NULL
 , [Product_Id] INTEGER  NULL
@@ -68,7 +58,7 @@ CREATE TABLE [ProductsPrices] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
 );
 CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
-, [Base] bit  NULL
+, [Base] BIT  NULL
 , [Product_Id] INTEGER  NULL
 , [UnitOfMeasure_Id] INTEGER  NULL
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
@@ -76,8 +66,6 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 );
 CREATE TABLE [Routes] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Date] DATETIME  NULL
-, [Manager_Id] INTEGER  NULL
-, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
 );
 CREATE TABLE [RoutePoints] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Route_Id] INTEGER NULL
@@ -89,8 +77,6 @@ CREATE TABLE [RoutePoints] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 );
 CREATE TABLE [RouteTemplates] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [DayOfWeek] INTEGER  NULL
-, [Manager_Id] INTEGER  NULL
-, FOREIGN KEY(Manager_Id) REFERENCES Managers(Id)
 );
 CREATE TABLE [RoutePointTemplates] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [RouteTemplate_Id] INTEGER  NULL

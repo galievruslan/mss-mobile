@@ -65,7 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManagersShippingAddress.cs" />
+    <Compile Include="IModelsFactory.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="ProductsPrice.cs" />
@@ -75,7 +75,6 @@
     <Compile Include="RouteTemplate.cs" />
     <Compile Include="UnitOfMeasure.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="Manager.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
     <Compile Include="Product.cs" />

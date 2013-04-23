@@ -1,13 +1,11 @@
 ﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    public class RouteTemplateDto
+    public class RouteTemplateDto : Dto
     {
         public RouteTemplateDto()
         {
             TemplateRoutePoints = new RoutePointTemplateDto[0];
         }
-
-        public int Id { get; set; }
 
         public int DatyOfWeek { get; set; }
 

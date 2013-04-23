@@ -5,16 +5,7 @@ namespace MSS.WinMobile.Domain.Models
 {
     public abstract class Model : IModel
     {
-        protected Model()
-        {
-        }
-
-        protected Model(int id)
-        {
-            Id = id;
-        }
-
-        public int Id { get; set; }
+        public virtual int Id { get; protected set; }
 
         public override int GetHashCode()
         {

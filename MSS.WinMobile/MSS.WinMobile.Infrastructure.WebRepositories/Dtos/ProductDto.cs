@@ -1,16 +1,12 @@
-﻿using MSS.WinMobile.Infrastructure.Server.Dtos;
-
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    public class ProductDto
+    public class ProductDto : Dto
     {
         public ProductDto()
         {
             ProductUnitOfMeasures = new ProductUnitOfMeasure[0];
             ProductPrices = new ProductPriceDto[0];
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

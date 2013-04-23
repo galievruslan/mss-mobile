@@ -16,10 +16,10 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
             return new RouteTemplateQueryObject(ConnectionFactory, new RouteTemplateTranslator());
         }
 
-        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RouteTemplates (Id, DayOfWeek, Manager_Id) VALUES ({0}, {1}, {2})";
+        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RouteTemplates (Id, DayOfWeek) VALUES ({0}, {1})";
         protected override string GetSaveQueryFor(RouteTemplate model)
         {
-            return string.Format(SaveQueryTemplate, model.Id, model.DayOfWeek, model.ManagerId);
+            return string.Format(SaveQueryTemplate, model.Id, model.DayOfWeek);
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM RouteTemplates WHERE Id = {0}";

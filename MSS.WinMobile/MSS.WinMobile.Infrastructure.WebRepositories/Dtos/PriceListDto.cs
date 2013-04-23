@@ -1,9 +1,7 @@
 ﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    public class PriceListDto
+    public class PriceListDto : Dto
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
     }
 }

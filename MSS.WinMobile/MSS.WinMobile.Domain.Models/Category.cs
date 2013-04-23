@@ -2,15 +2,7 @@
 {
     public class Category : Model
     {
-        public Category(int id, string name, int parentId)
-            : base(id)
-        {
-            Name = name;
-            ParentId = parentId;
-        }
-
-        public string Name { get; set; }
-
-        public int ParentId { get; set; }
+        public string Name { get; protected set; }
+        public int ParentId { get; protected set; }
     }
 }

@@ -1,9 +1,7 @@
 ﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    public class OrderItemDto
+    public class OrderItemDto : Dto
     {
-        public int Id { get; set; }
-
         public int ProductId { get; set; }
 
         public int Quantity { get; set; }

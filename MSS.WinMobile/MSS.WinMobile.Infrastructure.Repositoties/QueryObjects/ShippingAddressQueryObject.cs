@@ -16,7 +16,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
         {
         }
 
-        private const string SelectQuery = "SELECT Id, Name, Address, Customer_Id FROM ShippingAddresses";
+        private const string SelectQuery = "SELECT Id, Name, Address, Customer_Id, Mine FROM ShippingAddresses";
         public override string AsQuery()
         {
             return SelectQuery;

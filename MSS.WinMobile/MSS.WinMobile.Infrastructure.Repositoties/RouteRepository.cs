@@ -17,13 +17,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
             return new RouteQueryObject(ConnectionFactory, new RouteTranslator());
         }
 
-        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Routes (Id, [Date], Manager_Id) VALUES ({0}, '{1}', {2})";
+        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Routes (Id, [Date]) VALUES ({0}, '{1}')";
         protected override string GetSaveQueryFor(Route model)
         {
             return string.Format(SaveQueryTemplate, 
                 model.Id != 0 ? model.Id.ToString(CultureInfo.InvariantCulture) : "NULL",
-                model.Date.ToString("yyyy-MM-dd HH:mm:ss"),
-                model.ManagerId);
+                model.Date.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM Routes WHERE Id = {0}";

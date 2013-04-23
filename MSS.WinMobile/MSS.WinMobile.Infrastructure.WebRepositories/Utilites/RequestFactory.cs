@@ -8,7 +8,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
 {
     public static class RequestFactory
     {
-        public static HttpWebRequest CreateGetRequest(CsrfTokenContainer csrfTokenContainer, CookieContainer cookieContainer, string path, IDictionary<string, object> parameters)
+        public static HttpWebRequest CreateGetRequest(WebConnection connection, string path, IDictionary<string, object> parameters)
         {
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append('?');
@@ -21,13 +21,13 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
             queryStringBuilder.Remove(queryStringBuilder.Length - 1, 1);
             string queryString = Uri.EscapeUriString(queryStringBuilder.ToString());
 
-            return CreateGetRequest(csrfTokenContainer, cookieContainer, string.Concat(path, queryString));
+            return CreateGetRequest(connection, string.Concat(path, queryString));
         }
 
-        public static HttpWebRequest CreateGetRequest(CsrfTokenContainer csrfTokenContainer, CookieContainer cookieContainer, string path)
+        public static HttpWebRequest CreateGetRequest(WebConnection connection, string path)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(path);
-            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, cookieContainer.Cookie);
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(connection.WebServer.Address, path));
+            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.GET;
             webRequest.UserAgent = WebConnection.USER_AGENT;
             webRequest.ContentType = WebConnection.CONTENT_TYPE;
@@ -35,16 +35,16 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
             return webRequest;
         }
 
-        public static HttpWebRequest CreatePostRequest(CsrfTokenContainer csrfTokenContainer, CookieContainer cookieContainer, string path, IDictionary<string, object> parameters)
+        public static HttpWebRequest CreatePostRequest(WebConnection connection, string path, IDictionary<string, object> parameters)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(path);
-            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, cookieContainer.Cookie);
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(connection.WebServer.Address, path));
+            webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.POST;
             webRequest.UserAgent = WebConnection.USER_AGENT;
             webRequest.ContentType = WebConnection.CONTENT_TYPE;
             webRequest.AllowAutoRedirect = false;
 
-            parameters.Add(WebConnection.CSRF_TOKEN_PARAM_NAME, csrfTokenContainer.CsrfToken);
+            parameters.Add(WebConnection.CSRF_TOKEN_PARAM_NAME, connection.CsrfTokenContainer.CsrfToken);
             string postData = ParseParametersToJson(parameters);
 
             webRequest.AllowWriteStreamBuffering = true;
