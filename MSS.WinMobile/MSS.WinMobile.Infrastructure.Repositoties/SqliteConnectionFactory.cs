@@ -22,8 +22,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
             if (_connection == null)
             {
                 _connection =
-                    new SQLiteConnection(string.Format("Data Source={0};Version={1};", _sqliteDatabase.DatabaseFullPath,
-                                                       _sqliteDatabase.DatabaseVersion));
+                    new SQLiteConnection(_sqliteDatabase.ConnectionString);
                 Log.Debug("Connection object is null, so new one created");
             }
 

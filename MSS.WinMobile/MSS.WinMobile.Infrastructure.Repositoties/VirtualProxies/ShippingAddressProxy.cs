@@ -4,29 +4,34 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class ShippingAddressProxy : ShippingAddress
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetAddress(string address)
+        new public string Name
         {
-            Address = address;
+            get { return base.Name; }
+            set { base.Name = value; }
         }
 
-        internal void SetName(string name)
+        new public string Address
         {
-            Name = name;
+            get { return base.Address; }
+            set { base.Address = value; }
         }
 
-        internal void SetCustomerId(int customerId)
+        new public int CustomerId
         {
-            CustomerId = customerId;
+            get { return base.CustomerId; }
+            set { base.CustomerId = value; }
         }
 
-        internal void SetMine(bool mine)
+        new public bool Mine
         {
-            Mine = mine;
+            get { return base.Mine; }
+            set { base.Mine = value; }
         }
     }
 }

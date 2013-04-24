@@ -5,14 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{239AAB74-FC1C-4CBB-ADF3-5C4998BC7C68}</ProjectGuid>
+    <ProjectGuid>{F02C3955-0F8F-4553-9EEE-4BC6175E0ADD}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MSS.WinMobile.Application.Configuration.Tests</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Application.Configuration.Tests</AssemblyName>
+    <RootNamespace>MSS.WinMobile.Infrastructure.SqliteRepositories.Tests</RootNamespace>
+    <AssemblyName>MSS.WinMobile.Infrastructure.SqliteRepositories.Tests</AssemblyName>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
     <OSVersion>5.2</OSVersion>
-    <DeployDirSuffix>MSS.WinMobile.Application.Configuration.Tests</DeployDirSuffix>
+    <DeployDirSuffix>MSS.WinMobile.Infrastructure.SqliteRepositories.Tests</DeployDirSuffix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FormFactorID>
     </FormFactorID>
@@ -63,12 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigTest.cs" />
-    <Compile Include="ManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SectionTest.cs" />
-    <Compile Include="SettingExtensionsTest.cs" />
-    <Compile Include="SettingTest.cs" />
+    <Compile Include="SQLiteDatabaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />
@@ -77,6 +73,26 @@
     <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
       <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
       <Name>MSS.WinMobile.Application.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj">
+      <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
+      <Name>MSS.WinMobile.Application.Environment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
+      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
+      <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Common\MSS.WinMobile.Infrastructure.Common.csproj">
+      <Project>{5FB89B66-66E1-4FD1-A4B1-FAD09C616420}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+      <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.SqliteRepositoties.csproj">
+      <Project>{4EAE738D-0090-4586-87FD-AD350C79D658}</Project>
+      <Name>MSS.WinMobile.Infrastructure.SqliteRepositoties</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tests.Helpers\Tests.Helpers.csproj">
       <Project>{293EF82F-E089-44D1-863B-46304DE208BB}</Project>

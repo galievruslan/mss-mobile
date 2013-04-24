@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net;
-using Json;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.WebRepositories.Utilites;
 using log4net;
@@ -17,17 +15,17 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
         public IConnectionFactory<WebConnection> ConnectionFactory { get; private set; }
         public ITranslator<T> Translator { get; private set; }
 
-        public WebQueryObject(string relativeUrl, IConnectionFactory<WebConnection> connectionFactory, ITranslator<T> translator)
+        public WebQueryObject(string relativeUrl, IConnectionFactory<WebConnection> connectionFactory)
         {
             _relativeUrl = relativeUrl;
-            Translator = translator;
             ConnectionFactory = connectionFactory;
+            Translator = new WebTranslator<T>();
         }
 
         public IQueryObject<T,HttpWebRequest,WebConnection> InnerQueryObject { get; protected set; }
 
         protected WebQueryObject(IQueryObject<T, HttpWebRequest, WebConnection> queryObject)
-            : this(string.Empty, queryObject.ConnectionFactory, queryObject.Translator)
+            : this(string.Empty, queryObject.ConnectionFactory)
         {
             InnerQueryObject = queryObject;
         }
@@ -40,7 +38,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
         protected virtual T[] Execute()
         {
             string json = ConnectionFactory.GetConnection().Get(AsQuery());
-            return JsonDeserializer.Deserialize<T[]>(json);
+            return Translator.Translate<T[]>(json);
         }
 
         public IEnumerator<T> GetEnumerator()

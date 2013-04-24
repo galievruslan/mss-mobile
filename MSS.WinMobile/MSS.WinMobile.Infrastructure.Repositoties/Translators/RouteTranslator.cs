@@ -8,9 +8,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override Route DataRecordToModel(IDataRecord value)
         {
-            var proxy = new RouteProxy();
-            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
-            proxy.SetDate(value.GetDateTime(value.GetOrdinal("Date")));
+            var proxy = new RouteProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    Date = value.GetDateTime(value.GetOrdinal("Date"))
+                };
             return proxy;
         }
     }

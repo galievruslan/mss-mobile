@@ -5,14 +5,16 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class RouteTemplateProxy : RouteTemplate
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetRouteTemplateId(DayOfWeek dayOfWeek)
+        new public DayOfWeek DayOfWeek
         {
-            DayOfWeek = dayOfWeek;
+            get { return base.DayOfWeek; }
+            set { base.DayOfWeek = value; }
         }
     }
 }

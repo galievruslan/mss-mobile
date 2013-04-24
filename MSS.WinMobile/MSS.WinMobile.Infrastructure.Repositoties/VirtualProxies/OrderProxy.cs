@@ -5,69 +5,82 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class OrderProxy : Order
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetRoutePointId(int routePointId)
+        new public int RoutePointId
         {
-            RoutePointId = routePointId;
+            get { return base.RoutePointId; }
+            set { base.RoutePointId = value; }
         }
 
-        internal void SetOrderDate(DateTime orderDate)
+        new public DateTime OrderDate
         {
-            OrderDate = orderDate;
+            get { return base.OrderDate; }
+            set { base.OrderDate = value; }
         }
 
-        internal void SetShippingDate(DateTime shippingDate)
+        new public DateTime ShippingDate
         {
-            ShippingDate = shippingDate;
+            get { return base.ShippingDate; }
+            set { base.ShippingDate = value; }
         }
 
-        internal void SetCustomerId(int customerId)
+        new public int CustomerId
         {
-            CustomerId = customerId;
+            get { return base.CustomerId; }
+            set { base.CustomerId = value; }
         }
 
-        internal void SetCustomerName(string customerName)
+        new public string CustomerName
         {
-            CustomerName = customerName;
+            get { return base.CustomerName; }
+            set { base.CustomerName = value; }
         }
 
-        internal void SetShippingAddressId(int shippingAddressId)
+        new public int ShippingAddressId
         {
-            ShippingAddressId = shippingAddressId;
+            get { return base.ShippingAddressId; }
+            set { base.ShippingAddressId = value; }
         }
 
-        internal void SetShippingAddressName(string shippingAddressName)
+        new public string ShippingAddressName
         {
-            ShippingAddressName = shippingAddressName;
+            get { return base.ShippingAddressName; }
+            set { base.ShippingAddressName = value; }
         }
 
-        internal void SetPriceListId(int priceListId)
+        new public int PriceListId
         {
-            PriceListId = priceListId;
+            get { return base.PriceListId; }
+            set { base.PriceListId = value; }
         }
 
-        internal void SetPriceListName(string priceListName)
+        new public string PriceListName
         {
-            PriceListName = priceListName;
+            get { return base.PriceListName; }
+            set { base.PriceListName = value; }
         }
 
-        internal void SetWarehouseId(int warehouseId)
+        new public int WarehouseId
         {
-            WarehouseId = warehouseId;
+            get { return base.WarehouseId; }
+            set { base.WarehouseId = value; }
         }
 
-        internal void SetWarehouseAddress(string warehouseAddress)
+        new public string WarehouseAddress
         {
-            WarehouseAddress = warehouseAddress;
+            get { return base.WarehouseAddress; }
+            set { base.WarehouseAddress = value; }
         }
 
-        internal void SetOrderStatus(OrderStatus orderStatus)
+        new public OrderStatus OrderStatus
         {
-            OrderStatus = orderStatus;
+            get { return base.OrderStatus; }
+            set { base.OrderStatus = value; }
         }
     }
 }

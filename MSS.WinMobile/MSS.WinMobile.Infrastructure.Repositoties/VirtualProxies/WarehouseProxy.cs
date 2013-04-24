@@ -4,14 +4,16 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class WarehouseProxy : Warehouse
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetAddress(string address)
+        new public string Address
         {
-            Address = address;
+            get { return base.Address; }
+            set { base.Address = value; }
         }
     }
 }

@@ -5,14 +5,16 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class RouteProxy : Route
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetDate(DateTime date)
+        new public DateTime Date
         {
-            Date = date;
+            get { return base.Date; }
+            set { base.Date = value; }
         }
     }
 }

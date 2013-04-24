@@ -8,9 +8,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override Status DataRecordToModel(IDataRecord value)
         {
-            var proxy = new StatusProxy();
-            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
-            proxy.SetName(value.GetString(value.GetOrdinal("Name")));
+            var proxy = new StatusProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    Name = value.GetString(value.GetOrdinal("Name"))
+                };
             return proxy;
         }
     }

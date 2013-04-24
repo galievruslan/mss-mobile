@@ -4,14 +4,16 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class StatusProxy : Status
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetName(string name)
+        new public string Name
         {
-            Name = name;
+            get { return base.Name; }
+            set { base.Name = value; }
         }
     }
 }

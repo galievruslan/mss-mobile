@@ -8,9 +8,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override PriceList DataRecordToModel(IDataRecord value)
         {
-            var proxy = new PriceListProxy();
-            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
-            proxy.SetName(value.GetString(value.GetOrdinal("Name")));
+            var proxy = new PriceListProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    Name = value.GetString(value.GetOrdinal("Name"))
+                };
             return proxy;
         }
     }

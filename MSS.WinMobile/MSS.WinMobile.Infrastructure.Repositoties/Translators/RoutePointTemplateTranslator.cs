@@ -8,10 +8,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override RoutePointTemplate DataRecordToModel(IDataRecord value)
         {
-            var proxy = new RoutePointTemplateProxy();
-            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
-            proxy.SetRouteTemplateId(value.GetInt32(value.GetOrdinal("RouteTemplate_Id")));
-            proxy.SetShippingAddressId(value.GetInt32(value.GetOrdinal("ShippingAddress_Id")));
+            var proxy = new RoutePointTemplateProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    RouteTemplateId = value.GetInt32(value.GetOrdinal("RouteTemplate_Id")),
+                    ShippingAddressId = value.GetInt32(value.GetOrdinal("ShippingAddress_Id"))
+                };
             return proxy;
         }
     }

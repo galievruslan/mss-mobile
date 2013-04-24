@@ -8,11 +8,13 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override ProductsUnitOfMeasure DataRecordToModel(IDataRecord value)
         {
-            var proxy = new ProductsUnitOfMeasureProxy();
-            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
-            proxy.SetProductId(value.GetInt32(value.GetOrdinal("Product_Id")));
-            proxy.SetUnitOfMeasureId(value.GetInt32(value.GetOrdinal("UnitOfMeasure_Id")));
-            proxy.SetBase(value.GetBoolean(value.GetOrdinal("Base")));
+            var proxy = new ProductsUnitOfMeasureProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    ProductId = value.GetInt32(value.GetOrdinal("Product_Id")),
+                    UnitOfMeasureId = value.GetInt32(value.GetOrdinal("UnitOfMeasure_Id")),
+                    Base = value.GetBoolean(value.GetOrdinal("Base"))
+                };
             return proxy;
         }
     }

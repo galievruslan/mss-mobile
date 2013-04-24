@@ -1,7 +1,8 @@
 ﻿using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
 using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Translators
+namespace MSS.WinMobile.Infrastructure.ModelTranslators
 {
     public class CustomerTranslator : DtoTranslator<Customer, CustomerDto>
     {
@@ -13,7 +14,11 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Translators
 
         protected override Customer DtoToModel(CustomerDto value)
         {
-            return new Customer(value.Id, value.Name);
+            return new CustomerProxy
+                {
+                    Id = value.Id,
+                    Name = value.Name
+                };
         }
     }
 }

@@ -8,12 +8,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
     {
         protected override ShippingAddress DataRecordToModel(IDataRecord value)
         {
-            var proxy = new ShippingAddressProxy();
-            proxy.SetId(value.GetInt32(value.GetOrdinal("Id")));
-            proxy.SetCustomerId(value.GetInt32(value.GetOrdinal("Customer_Id")));
-            proxy.SetName(value.GetString(value.GetOrdinal("Name")));
-            proxy.SetAddress(value.GetString(value.GetOrdinal("Address")));
-            proxy.SetMine(value.GetBoolean(value.GetOrdinal("Mine")));
+            var proxy = new ShippingAddressProxy
+                {
+                    Id = value.GetInt32(value.GetOrdinal("Id")),
+                    CustomerId = value.GetInt32(value.GetOrdinal("Customer_Id")),
+                    Name = value.GetString(value.GetOrdinal("Name")),
+                    Address = value.GetString(value.GetOrdinal("Address")),
+                    Mine = value.GetBoolean(value.GetOrdinal("Mine"))
+                };
             return proxy;
         }
     }

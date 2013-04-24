@@ -6,29 +6,53 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class SQLiteDatabase
     {
-        private readonly string _databaseFullPath;
-        private readonly string _databaseVersion;
-        private readonly string _databaseScriptFullPath;
+        public string ConnectionString { get; private set; }
 
         public SQLiteDatabase(string databaseFullPath, string databaseVersion, string databaseScriptFullPath)
         {
-            _databaseFullPath = databaseFullPath;
-            _databaseVersion = databaseVersion;
-            _databaseScriptFullPath = databaseScriptFullPath;
-
-            if (!File.Exists(_databaseFullPath))
+            ConnectionString = string.Format("Data Source={0};Version={1};", databaseFullPath,
+                                             databaseVersion);
+            if (!File.Exists(databaseFullPath))
             {
-                SQLiteConnection.CreateFile(_databaseFullPath);
-                IDbConnection connection =
-                    new SQLiteConnection(string.Format("Data Source={0};Version={1};", _databaseFullPath,
-                                                       _databaseVersion));
-
+                SQLiteConnection.CreateFile(databaseFullPath);
+                
                 string schemaScript;
-                using (StreamReader reader = File.OpenText(_databaseScriptFullPath))
+                using (StreamReader reader = File.OpenText(databaseScriptFullPath))
                 {
                     schemaScript = reader.ReadToEnd();
                 }
 
+                using (IDbConnection connection =
+                    new SQLiteConnection(ConnectionString))
+                {
+                    connection.Open();
+                    using (IDbTransaction transaction = connection.BeginTransaction())
+                    {
+                        using (IDbCommand command = connection.CreateCommand())
+                        {
+
+                            command.CommandText = schemaScript;
+                            command.ExecuteNonQuery();
+
+                            transaction.Commit();
+                        }
+                    }
+                }
+            }
+        }
+
+        public SQLiteDatabase(string databaseScriptFullPath)
+        {
+            ConnectionString = "Data Source=:memory:";
+            string schemaScript;
+            using (StreamReader reader = File.OpenText(databaseScriptFullPath))
+            {
+                schemaScript = reader.ReadToEnd();
+            }
+
+            using (IDbConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                connection.Open();
                 using (IDbTransaction transaction = connection.BeginTransaction())
                 {
                     using (IDbCommand command = connection.CreateCommand())
@@ -42,8 +66,5 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
                 }
             }
         }
-
-        public string DatabaseFullPath { get { return _databaseFullPath; } }
-        public string DatabaseVersion { get { return _databaseVersion; } }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
 using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Translators
+namespace MSS.WinMobile.Infrastructure.ModelTranslators
 {
     public class CategoryTranslator : DtoTranslator<Category, CategoryDto>
     {
@@ -13,7 +14,12 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Translators
 
         protected override Category DtoToModel(CategoryDto value)
         {
-            return new CategoryProxy(value.Id, value.Name, value.ParentId);
+            return new CategoryProxy
+                {
+                    Id = value.Id,
+                    Name = value.Name,
+                    ParentId = value.ParentId
+                };
         }
     }
 }

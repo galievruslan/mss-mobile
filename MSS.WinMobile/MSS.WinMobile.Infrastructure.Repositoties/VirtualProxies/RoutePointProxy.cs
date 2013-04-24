@@ -4,29 +4,34 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class RoutePointProxy : RoutePoint
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetRouteId(int routeId)
+        new public int RouteId
         {
-            RouteId = routeId;
+            get { return base.RouteId; }
+            set { base.RouteId = value; }
         }
 
-        internal void SetShippingAddressId(int shippingAddressId)
+        new public int ShippingAddressId
         {
-            ShippingAddressId = shippingAddressId;
+            get { return base.ShippingAddressId; }
+            set { base.ShippingAddressId = value; }
         }
 
-        internal void SetShippingAddressName(string shippingAddressName)
+        new public string ShippingAddressName
         {
-            ShippingAddressName = shippingAddressName;
+            get { return base.ShippingAddressName; }
+            set { base.ShippingAddressName = value; }
         }
 
-        internal void SetStatusId(int statusId)
+        new public int StatusId
         {
-            StatusId = statusId;
+            get { return base.StatusId; }
+            set { base.StatusId = value; }
         }
     }
 }

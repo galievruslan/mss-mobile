@@ -5,11 +5,10 @@ using System.Reflection;
 using MSS.WinMobile.Application.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml;
+using Tests.Helpers;
 
 namespace MSS.WinMobile.Application.Configuration.Tests
 {
-    
-    
     /// <summary>
     ///This is a test class for SettingTest and is intended
     ///to contain all SettingTest Unit Tests
@@ -41,12 +40,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestInitialize]
         public void MyTestInitialize()
         {
-            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-            if (directoryName != null)
-            {
-                _applicationPath = directoryName.Replace("file:\\", "");
-            }
-
+            _applicationPath = TestEnvironment.GetApplicationDirectory();
             _configDirectory = _applicationPath + @"\Config";
             Directory.CreateDirectory(_configDirectory);
             _configPath = _configDirectory + @"\" + "Common.config";

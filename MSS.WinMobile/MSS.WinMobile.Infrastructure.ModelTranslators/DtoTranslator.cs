@@ -1,7 +1,7 @@
 ﻿using System;
 using MSS.WinMobile.Infrastructure.Common.Translators;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Translators
+namespace MSS.WinMobile.Infrastructure.ModelTranslators
 {
     public abstract class DtoTranslator<TModel, TDto> : BaseTranslator
     {

@@ -2,6 +2,8 @@
 {
     public class RoutePointTemplateDto : Dto
     {
+        public int RouteTemplateId { get; set; }
+
         public int ShippingAddressId { get; set; }
     }
 }

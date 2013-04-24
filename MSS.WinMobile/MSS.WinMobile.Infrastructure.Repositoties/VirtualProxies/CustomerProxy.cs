@@ -7,13 +7,13 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
         new public int Id
         {
             get { return base.Id; }
-            internal set { base.Id = value; }
+            set { base.Id = value; }
         }
 
         new public string Name
         {
             get { return base.Name; }
-            internal set { base.Name = value; }
+            set { base.Name = value; }
         }
     }
 }

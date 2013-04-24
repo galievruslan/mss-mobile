@@ -4,19 +4,22 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class ProductProxy : Product
     {
-        internal void SetId(int id)
+        new public int Id
         {
-            Id = id;
+            get { return base.Id; }
+            set { base.Id = value; }
         }
 
-        internal void SetName(string name)
+        new public string Name
         {
-            Name = name;
+            get { return base.Name; }
+            set { base.Name = value; }
         }
 
-        internal void SetCategoryId(int categoryId)
+        new public int CategoryId
         {
-            CategoryId = categoryId;
+            get { return base.CategoryId; }
+            set { base.CategoryId = value; }
         }
     }
 }

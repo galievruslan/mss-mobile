@@ -4,6 +4,8 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Helpers;
+
 namespace MSS.WinMobile.Application.Configuration.Tests
 {
     
@@ -40,12 +42,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         [TestInitialize]
         public void MyTestInitialize()
         {
-            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
-            if (directoryName != null)
-            {
-                _applicationPath = directoryName.Replace("file:\\", "");
-            }
-
+            _applicationPath = TestEnvironment.GetApplicationDirectory();
             _configPath = _applicationPath + @"\Config";
             Directory.CreateDirectory(_configPath);
             _configs = new[] { _configPath + "\\" + "Common.config", _configPath + "\\" + "Empty.config" };
@@ -109,12 +106,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void GetNotExistingConfigTest()
         {
             var target = new ConfigurationManager(_applicationPath);
-            try {
-                var actual = target.GetConfig(@"NotExisted");
-                Assert.Fail("Expected exception wasn't thrown.");
-            }
-            catch (ConfigNotFoundException) {
-            }
+            var actual = target.GetConfig(@"NotExisted");
         }
     }
 }

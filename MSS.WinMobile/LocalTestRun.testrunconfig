@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestRunConfiguration name="Local Test Run" id="6b89122c-2e10-4d66-a08b-fd236d6b72b0" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
   <Description>This is a default test run configuration for a local test run.</Description>
+  <Deployment>
+    <DeploymentItem filename="MSS.WinMobile.Resources\bin\Debug\Resources\Database\schema.sql" />
+    <DeploymentItem filename="Packages\Sqlite\SQLite.Interop.084.dll" />
+  </Deployment>
+  <Hosts type="Smart Device">
+    <DeviceHostRunConfigData name="Smart Device" deviceId="d1a7b239-28d5-4485-9b8c-5764e3dc79b6" deviceName="Windows Mobile 6 Classic Emulator" platformId="b2c48bd2-963d-4549-9169-1fa021dce484" platformName="Windows Mobile 6 Professional SDK" uiPlatformId="b2c48bd2-963d-4549-9169-1fa021dce484" />
+  </Hosts>
   <TestTypeSpecific />
 </TestRunConfiguration>
