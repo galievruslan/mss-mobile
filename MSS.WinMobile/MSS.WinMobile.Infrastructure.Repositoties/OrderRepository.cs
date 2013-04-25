@@ -1,5 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Data.SQLite;
+using System.Globalization;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
@@ -7,7 +9,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class OrderRepository : Repository<Order>
     {
-        public OrderRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public OrderRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryRepository.cs" />
-    <Compile Include="SQLiteConnectionFactory.cs" />
     <Compile Include="SQLiteDatabase.cs" />
     <Compile Include="VirtualProxies\CategoryProxy.cs" />
     <Compile Include="VirtualProxies\CustomerProxy.cs" />

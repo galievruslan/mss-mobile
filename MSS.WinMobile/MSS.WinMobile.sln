@@ -66,6 +66,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Helpers", "Tests.Helpers\Tests.Helpers.csproj", "{293EF82F-E089-44D1-863B-46304DE208BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.WebRepositories.Tests", "MSS.WinMobile.Infrastructure.WebRepositories.Tests\MSS.WinMobile.Infrastructure.WebRepositories.Tests.csproj", "{4A828EE3-A52C-4023-9C77-CE7D178CBCC2}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = MSS.WinMobile1.vsmdi
@@ -165,6 +167,10 @@ Global
 		{293EF82F-E089-44D1-863B-46304DE208BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{293EF82F-E089-44D1-863B-46304DE208BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{293EF82F-E089-44D1-863B-46304DE208BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A828EE3-A52C-4023-9C77-CE7D178CBCC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A828EE3-A52C-4023-9C77-CE7D178CBCC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A828EE3-A52C-4023-9C77-CE7D178CBCC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A828EE3-A52C-4023-9C77-CE7D178CBCC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -194,5 +200,6 @@ Global
 		{239AAB74-FC1C-4CBB-ADF3-5C4998BC7C68} = {1A5CBA19-D94A-461B-A455-1F906204708F}
 		{F02C3955-0F8F-4553-9EEE-4BC6175E0ADD} = {1A5CBA19-D94A-461B-A455-1F906204708F}
 		{293EF82F-E089-44D1-863B-46304DE208BB} = {1A5CBA19-D94A-461B-A455-1F906204708F}
+		{4A828EE3-A52C-4023-9C77-CE7D178CBCC2} = {1A5CBA19-D94A-461B-A455-1F906204708F}
 	EndGlobalSection
 EndGlobal

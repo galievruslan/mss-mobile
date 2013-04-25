@@ -1,4 +1,6 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
@@ -6,7 +8,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class RoutePointTemplateRepository : Repository<RoutePointTemplate>
     {
-        public RoutePointTemplateRepository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public RoutePointTemplateRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

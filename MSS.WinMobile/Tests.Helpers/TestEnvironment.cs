@@ -11,7 +11,7 @@ namespace Tests.Helpers
             var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase);
             if (directoryName != null)
             {
-                return directoryName.Replace("file:\\", "");
+                return directoryName;
             }
             
             throw new Exception("Executing assembly directory not found!");

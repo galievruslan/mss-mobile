@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class CustomerQueryObject : QueryObject<Customer>
     {
-        public CustomerQueryObject(SQLiteConnectionFactory connectionFactory, ITranslator<Customer> translator)
+        public CustomerQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Customer> translator)
             : base(connectionFactory, translator)
         {
         }

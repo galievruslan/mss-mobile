@@ -10,9 +10,9 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
     public abstract class Repository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
     {
         private readonly SQLiteUnitOfWork _unitOfWork;
-        protected readonly SQLiteConnectionFactory ConnectionFactory;
+        protected readonly IConnectionFactory<SQLiteConnection> ConnectionFactory;
 
-        protected Repository(SQLiteConnectionFactory connectionFactory, SQLiteUnitOfWork unitOfWork)
+        protected Repository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
         {
             ConnectionFactory = connectionFactory;
             _unitOfWork = unitOfWork;

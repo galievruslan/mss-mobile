@@ -8,10 +8,10 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SQLiteUnitOfWork));
 
-        private readonly SQLiteConnectionFactory _sqliteConnectionFactory;
-        public SQLiteUnitOfWork(SQLiteConnectionFactory sqliteConnectionFactory)
+        private readonly IConnectionFactory<SQLiteConnection> _connectionFactory;
+        public SQLiteUnitOfWork(IConnectionFactory<SQLiteConnection> connectionFactory)
         {
-            _sqliteConnectionFactory = sqliteConnectionFactory;
+            _connectionFactory = connectionFactory;
         }
 
         public bool InTransaction {
@@ -21,7 +21,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         private SQLiteTransaction _transaction;
         public void BeginTransaction()
         {
-            _transaction = _sqliteConnectionFactory.GetConnection().BeginTransaction();
+            _transaction = _connectionFactory.GetConnection().BeginTransaction();
         }
 
         public void Commit()

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
+using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Helpers;
+using System.Data;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
 {
@@ -56,7 +59,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            SQLiteDatabase target = new SQLiteDatabase(databaseScriptFullPath);
+            var target = new SQLiteDatabase(databaseScriptFullPath);
+
+            int actualTablesCount = GetDdTablesCount(target);
+            const int expectedTablesCount = 18;
+            Assert.AreEqual(expectedTablesCount, actualTablesCount);
+            target.Dispose();
         }
 
         /// <summary>
@@ -74,6 +82,26 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
             var target = new SQLiteDatabase(databaseFullPath, databaseVersion, databaseScriptFullPath);
             Console.WriteLine(databaseFullPath);
             Assert.IsTrue(File.Exists(databaseFullPath));
+
+            int actualTablesCount = GetDdTablesCount(target);
+            const int expectedTablesCount = 18;
+            Assert.AreEqual(expectedTablesCount, actualTablesCount);
+            target.Dispose();
+        }
+
+        private int GetDdTablesCount(IConnectionFactory<SQLiteConnection> connectionFactory)
+        {
+            IDbConnection connection = connectionFactory.GetConnection();
+            using (IDbTransaction transaction = connection.BeginTransaction())
+            {
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT count(*) FROM sqlite_master WHERE type='table';";
+                    object result = command.ExecuteScalar();
+                    Console.WriteLine("Get tables count result \"{0}\"", result);
+                    return Convert.ToInt32(result);
+                }
+            }
         }
     }
 }

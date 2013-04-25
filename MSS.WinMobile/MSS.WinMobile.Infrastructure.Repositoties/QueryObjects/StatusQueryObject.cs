@@ -6,7 +6,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class StatusQueryObject : QueryObject<Status>
     {
-        public StatusQueryObject(SQLiteConnectionFactory connectionFactory, ITranslator<Status> translator)
+        public StatusQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Status> translator)
             : base(connectionFactory, translator)
         {
         }
