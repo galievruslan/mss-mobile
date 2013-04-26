@@ -70,9 +70,11 @@
     <Content Include="Config\Common.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config\Synchronization.config">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\Common.config.template">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

@@ -6,9 +6,9 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
     {
         public WebServer(string address)
         {
-            Address = new Uri(address);
+            Address = address;
         }
 
-        public Uri Address { get; private set; }
+        public string Address { get; private set; }
     }
 }

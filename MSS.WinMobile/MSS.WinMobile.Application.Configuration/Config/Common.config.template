@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sections>
+  <Section name="Database">
+    <Setting name="FileName">{FileName}</Setting>
+    <Setting name="FileVersion">{FileVersion}</Setting>
+  </Section>
+  <Section name="Server">
+    <Setting name="Address">{Server Address}</Setting>
+    <Setting name="Username">{Username}</Setting>
+    <Setting name="Password">{Password}</Setting>
+  </Section>
+  <Section name="ExecutionContext">
+    <Setting name="ManagerId">{ManagerId}</Setting>
+  </Section>
+</Sections>

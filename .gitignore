@@ -3,6 +3,7 @@
 *.user
 _ReSharper.*/
 *.sdf
+*.config
 bin/
 obj/
 Debug/

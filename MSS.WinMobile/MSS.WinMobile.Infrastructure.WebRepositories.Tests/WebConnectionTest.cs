@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Infrastructure.WebRepositories;
+﻿using System;
+using MSS.WinMobile.Infrastructure.WebRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 
@@ -113,11 +114,14 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
         [TestMethod()]
         public void WebConnectionConstructorTest()
         {
-            WebServer webServer = new WebServer("http://mss.alkotorg.com");
-            string username = string.Empty; // TODO: Initialize to an appropriate value
-            string password = string.Empty; // TODO: Initialize to an appropriate value
+            var webServer = new WebServer("http://mss.alkotorg.com");
+            const string username = "";
+            const string password = "";
             var target = new WebConnection(webServer, username, password);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            target.Open();
+
+            Console.WriteLine("CSRF token - {0}", target.CsrfTokenContainer.CsrfToken);
+            Assert.AreNotEqual(string.Empty, target.CsrfTokenContainer.CsrfToken);
         }
     }
 }

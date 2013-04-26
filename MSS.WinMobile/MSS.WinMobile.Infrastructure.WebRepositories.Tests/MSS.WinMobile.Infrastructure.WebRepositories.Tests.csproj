@@ -67,9 +67,6 @@
     <Compile Include="WebConnectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AuthoringTests.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>

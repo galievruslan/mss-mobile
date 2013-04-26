@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using MSS.WinMobile.Infrastructure.WebRepositories.Utilites;
 using log4net;
@@ -69,6 +70,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
                 {
                     Log.Error(exception);
                     State = ConnectionState.Corrupted;
+                    throw;
                 }
             }
         }

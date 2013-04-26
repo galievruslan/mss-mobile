@@ -26,7 +26,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
 
         public static HttpWebRequest CreateGetRequest(WebConnection connection, string path)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(connection.WebServer.Address, path));
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.WebServer.Address, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.GET;
             webRequest.UserAgent = WebConnection.USER_AGENT;
@@ -37,7 +37,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
 
         public static HttpWebRequest CreatePostRequest(WebConnection connection, string path, IDictionary<string, object> parameters)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(string.Concat(connection.WebServer.Address, path));
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.WebServer.Address, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.POST;
             webRequest.UserAgent = WebConnection.USER_AGENT;
@@ -78,6 +78,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
                     postDataBuilder.Append(string.Format("\"{0}\" : \"{1}\"", parameter.Key, parameter.Value));
             }
             postDataBuilder.Append('}');
+            Console.WriteLine(postDataBuilder.ToString());
             return postDataBuilder.ToString();
         }
     }
