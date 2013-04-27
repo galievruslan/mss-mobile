@@ -1,7 +1,7 @@
 ﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
-    [UrlAttribute("synchronization/shipping_addresses.json")]
-    public class ShippingAddressDto : Dto
+    [UrlAttribute("synchronization/manager_shipping_addresses.json")]
+    public class MyShippingAddressDto : Dto
     {
         public int CustomerId { get; set; }
 

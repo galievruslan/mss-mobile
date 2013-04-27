@@ -1,5 +1,6 @@
 ﻿using System;
 using MSS.WinMobile.Infrastructure.WebRepositories;
+using MSS.WinMobile.Infrastructure.WebRepositories.Utilites;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 
@@ -50,9 +51,9 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
         [TestMethod()]
         public void PostTest()
         {
-            WebServer webServer = null; // TODO: Initialize to an appropriate value
-            string username = string.Empty; // TODO: Initialize to an appropriate value
-            string password = string.Empty; // TODO: Initialize to an appropriate value
+            WebServer webServer = new WebServer("http://mss.alkotorg.com");
+            string username = "manager";
+            string password = "423200";
             WebConnection target = new WebConnection(webServer, username, password); // TODO: Initialize to an appropriate value
             HttpWebRequest httpWebRequest = null; // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
@@ -68,12 +69,11 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
         [TestMethod()]
         public void OpenTest()
         {
-            WebServer webServer = null; // TODO: Initialize to an appropriate value
-            string username = string.Empty; // TODO: Initialize to an appropriate value
-            string password = string.Empty; // TODO: Initialize to an appropriate value
-            WebConnection target = new WebConnection(webServer, username, password); // TODO: Initialize to an appropriate value
+            var webServer = new WebServer("http://mss.alkotorg.com");
+            string username = "manager";
+            string password = "423200";
+            var target = new WebConnection(webServer, username, password);
             target.Open();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
         /// <summary>
@@ -82,45 +82,15 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
         [TestMethod()]
         public void GetTest()
         {
-            WebServer webServer = null; // TODO: Initialize to an appropriate value
-            string username = string.Empty; // TODO: Initialize to an appropriate value
-            string password = string.Empty; // TODO: Initialize to an appropriate value
-            WebConnection target = new WebConnection(webServer, username, password); // TODO: Initialize to an appropriate value
-            HttpWebRequest httpWebRequest = null; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.Get(httpWebRequest);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Dispose
-        ///</summary>
-        [TestMethod()]
-        public void DisposeTest()
-        {
-            WebServer webServer = null; // TODO: Initialize to an appropriate value
-            string username = string.Empty; // TODO: Initialize to an appropriate value
-            string password = string.Empty; // TODO: Initialize to an appropriate value
-            WebConnection target = new WebConnection(webServer, username, password); // TODO: Initialize to an appropriate value
-            target.Dispose();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for WebConnection Constructor
-        ///</summary>
-        [TestMethod()]
-        public void WebConnectionConstructorTest()
-        {
-            var webServer = new WebServer("http://mss.alkotorg.com");
-            const string username = "";
-            const string password = "";
-            var target = new WebConnection(webServer, username, password);
-            target.Open();
-
-            Console.WriteLine("CSRF token - {0}", target.CsrfTokenContainer.CsrfToken);
+            WebServer webServer = new WebServer("http://mss.alkotorg.com");
+            string username = "manager";
+            string password = "423200";
+            WebConnection target = new WebConnection(webServer, username, password);
+            HttpWebRequest httpWebRequest = RequestFactory.CreateGetRequest(target, @"users/sign_in");
+            string expected = RequestDispatcher.Dispatch(target, httpWebRequest);
+            Console.WriteLine("Response - \"{0}\"", expected);
+            Console.WriteLine("CSRF token - \"{0}\"", target.CsrfTokenContainer.CsrfToken);
+            Console.WriteLine("Cookies - \"{0}\"", target.CookieContainer.Cookie);
             Assert.AreNotEqual(string.Empty, target.CsrfTokenContainer.CsrfToken);
         }
     }

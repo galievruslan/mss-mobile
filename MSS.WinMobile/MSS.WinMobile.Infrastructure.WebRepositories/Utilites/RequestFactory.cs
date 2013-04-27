@@ -29,8 +29,8 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
             var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.WebServer.Address, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.GET;
-            webRequest.UserAgent = WebConnection.USER_AGENT;
-            webRequest.ContentType = WebConnection.CONTENT_TYPE;
+            webRequest.UserAgent = WebConnection.UserAgent;
+            webRequest.ContentType = WebConnection.ContentType;
             webRequest.AllowAutoRedirect = false;
             return webRequest;
         }
@@ -40,11 +40,11 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
             var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.WebServer.Address, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.POST;
-            webRequest.UserAgent = WebConnection.USER_AGENT;
-            webRequest.ContentType = WebConnection.CONTENT_TYPE;
+            webRequest.UserAgent = WebConnection.UserAgent;
+            webRequest.ContentType = WebConnection.ContentType;
             webRequest.AllowAutoRedirect = false;
 
-            parameters.Add(WebConnection.CSRF_TOKEN_PARAM_NAME, connection.CsrfTokenContainer.CsrfToken);
+            parameters.Add(WebConnection.CsrfTokenParamName, connection.CsrfTokenContainer.CsrfToken);
             string postData = ParseParametersToJson(parameters);
 
             webRequest.AllowWriteStreamBuffering = true;
@@ -78,7 +78,6 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
                     postDataBuilder.Append(string.Format("\"{0}\" : \"{1}\"", parameter.Key, parameter.Value));
             }
             postDataBuilder.Append('}');
-            Console.WriteLine(postDataBuilder.ToString());
             return postDataBuilder.ToString();
         }
     }

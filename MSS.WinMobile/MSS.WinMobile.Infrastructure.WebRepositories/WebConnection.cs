@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using MSS.WinMobile.Infrastructure.WebRepositories.Utilites;
 using log4net;
@@ -24,15 +23,18 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
         public CsrfTokenContainer CsrfTokenContainer { get; private set; }
         public CookieContainer CookieContainer { get; private set; }
 
-        public const string USER_AGENT = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-        public const string CONTENT_TYPE = "application/json; charset=utf-8";
-        public const string CSRF_TOKEN_PARAM_NAME = "authenticity_token";
+        public const string UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+        public const string ContentType = "application/json; charset=utf-8";
+        public const string CsrfTokenParamName = "authenticity_token";
 
         public WebConnection(WebServer webServer, string username, string password)
         {
             WebServer = webServer;
             _username = username;
             _password = password;
+
+            CsrfTokenContainer = new CsrfTokenContainer();
+            CookieContainer = new CookieContainer();
             State = ConnectionState.Closed;
         }
 
@@ -52,7 +54,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
                                                         new Dictionary<string, object>()));
 
 
-                    Post(RequestFactory.CreateGetRequest(this, LogonPath,
+                    Post(RequestFactory.CreatePostRequest(this, LogonPath,
                                                          new Dictionary<string, object>
                                                              {
                                                                  {

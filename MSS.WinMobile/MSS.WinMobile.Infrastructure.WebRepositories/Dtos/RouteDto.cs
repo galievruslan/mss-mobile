@@ -2,6 +2,7 @@
 
 namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
+    [UrlAttribute("synchronization/routes.json")]
     public class RouteDto : Dto
     {
         public RouteDto()

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\CategoryDto.cs" />
+    <Compile Include="Dtos\MyShippingAddressDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\Dto.cs" />
     <Compile Include="Dtos\OrderDto.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Dtos\ShippingAddressDto.cs" />
     <Compile Include="Dtos\StatusDto.cs" />
     <Compile Include="Dtos\UnitOfMeasureDto.cs" />
+    <Compile Include="Dtos\UrlAttribute.cs" />
     <Compile Include="Dtos\WarehouseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Constants.cs" />

@@ -12,19 +12,20 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
             return true;
         }
 
-        public TTarget Translate<TTarget>(object source)
-        {
-            return (TTarget)Translate(typeof(TTarget), source);
+        public override object Translate(Type targetType, object source) {
+            if (targetType == typeof(TModel) ||
+                targetType == typeof(TModel[]))
+            return JsonDeserializer.Deserialize<TModel>(source.ToString());
+
+            throw new InvalidOperationException();
         }
 
-        public override object Translate(Type targetType, object source)
-        {
-            if (targetType == typeof(TModel))
-            {
-                return JsonDeserializer.Deserialize<TModel[]>(source as string);
-            }
+        public TTarget Translate<TTarget>(object source) {
+            if (typeof (TTarget) == typeof (TModel) ||
+                typeof (TTarget) == typeof (TModel[]))
+                return JsonDeserializer.Deserialize<TTarget>(source.ToString());
 
-            throw new ArgumentException("Invalid type passed to Translator", "targetType");
+            throw new InvalidOperationException();
         }
     }
 }

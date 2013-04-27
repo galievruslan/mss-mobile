@@ -88,9 +88,8 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
                 var xmlElement = xmlDocument.DocumentElement;
                 if (xmlElement != null)
                 {
-                    XmlAttribute xmlAttribute = xmlElement.Attributes["csrf-token"];
-                    if (xmlAttribute != null)
-                    {
+                    XmlAttribute xmlAttribute = xmlElement.Attributes["name"];
+                    if (xmlAttribute != null && xmlAttribute.Value == "csrf-token") {
                         csrfToken = xmlElement.Attributes["content"].Value;
                     }
                 }

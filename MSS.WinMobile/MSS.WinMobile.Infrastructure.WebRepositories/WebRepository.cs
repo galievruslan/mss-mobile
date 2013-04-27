@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 
@@ -9,9 +10,14 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
         private readonly string _relativeUrl;
         private readonly WebConnectionFactory _webConnectionFactory;
 
-        public WebRepository(string relativeUrl, WebConnectionFactory webConnectionFactory)
-        {
-            _relativeUrl = relativeUrl;
+        public WebRepository(WebConnectionFactory webConnectionFactory) {
+            var attribute = (UrlAttribute)typeof (T).GetCustomAttributes(typeof (UrlAttribute), true)[0];
+            if (attribute != null)
+                _relativeUrl = attribute.Url;
+            else {
+                throw new InvalidOperationException(string.Format("Can't retrieve from web object of type \"{0}\"", typeof(T)));
+            }
+
             _webConnectionFactory = webConnectionFactory;
         }
 

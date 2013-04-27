@@ -2,6 +2,7 @@
 
 namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
+    [UrlAttribute("synchronization/orders.json")]
     public class OrderDto : Dto
     {
         public OrderDto()
