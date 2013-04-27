@@ -79,12 +79,11 @@
     <Compile Include="Dtos\UrlAttribute.cs" />
     <Compile Include="Dtos\WarehouseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Constants.cs" />
-    <Compile Include="Services\ParametersBuilder.cs" />
     <Compile Include="Utilites\CookieContainer.cs" />
     <Compile Include="Utilites\CsrfTokenContainer.cs" />
     <Compile Include="Utilites\RequestDispatcher.cs" />
     <Compile Include="Utilites\RequestFactory.cs" />
+    <Compile Include="WebQueryObjectExtensions.cs" />
     <Compile Include="WebTranslator.cs" />
     <Compile Include="WebConnection.cs" />
     <Compile Include="WebConnectionFactory.cs" />

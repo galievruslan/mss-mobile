@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using MSS.WinMobile.Infrastructure.WebRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 using System.Net;
@@ -51,10 +51,10 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
         [TestMethod()]
         public void FindTest()
         {
-            WebServer webServer = new WebServer("http://mss.alkotorg.com");
-            WebConnectionFactory webConnectionFactory = new WebConnectionFactory(webServer, "manager", "423200");
-            WebRepository<StatusDto> target = new WebRepository<StatusDto>(webConnectionFactory);
-            IQueryObject<StatusDto, HttpWebRequest, WebConnection> actual = target.Find();
+            var webServer = new WebServer("http://mss.alkotorg.com");
+            var webConnectionFactory = new WebConnectionFactory(webServer, "manager", "423200");
+            var target = new WebRepository<StatusDto>(webConnectionFactory);
+            IQueryObject<StatusDto, IDictionary<string,object>, WebConnection> actual = target.Find();
 
             foreach (var statusDto in actual.ToArray())
             {
@@ -62,6 +62,8 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
                 Console.Write(statusDto.Validity.ToString() + '\t');
                 Console.Write(statusDto.Name + '\n');
             }
+
+            Assert.AreEqual(4, actual.ToArray().Length);
         }
     }
 }
