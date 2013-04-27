@@ -65,5 +65,53 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
 
             Assert.AreEqual(4, actual.ToArray().Length);
         }
+
+        [TestMethod()]
+        public void FindPageTest()
+        {
+            var webServer = new WebServer("http://mss.alkotorg.com");
+            var webConnectionFactory = new WebConnectionFactory(webServer, "manager", "423200");
+            var target = new WebRepository<StatusDto>(webConnectionFactory);
+            IQueryObject<StatusDto, IDictionary<string, object>, WebConnection> actual = target.Find().Paged(2, 2);
+
+            foreach (var statusDto in actual.ToArray())
+            {
+                Console.Write(statusDto.Id.ToString(CultureInfo.InvariantCulture) + '\t');
+                Console.Write(statusDto.Validity.ToString() + '\t');
+                Console.Write(statusDto.Name + '\n');
+            }
+
+            Assert.AreEqual(2, actual.ToArray().Length);
+        }
+        
+
+        [TestMethod()]
+        public void FindOlderThanTest()
+        {
+            var webServer = new WebServer("http://mss.alkotorg.com");
+            var webConnectionFactory = new WebConnectionFactory(webServer, "manager", "423200");
+            var target = new WebRepository<StatusDto>(webConnectionFactory);
+            IQueryObject<StatusDto, IDictionary<string, object>, WebConnection> actual = target.Find().UpdatedAfter(new DateTime(2013, 04, 24, 8, 15, 0));
+
+            foreach (var statusDto in actual.ToArray())
+            {
+                Console.Write(statusDto.Id.ToString(CultureInfo.InvariantCulture) + '\t');
+                Console.Write(statusDto.Validity.ToString() + '\t');
+                Console.Write(statusDto.Name + '\n');
+            }
+
+            Assert.AreEqual(4, actual.ToArray().Length);
+
+            actual = target.Find().UpdatedAfter(new DateTime(2013, 04, 24, 8, 16, 0));
+
+            foreach (var statusDto in actual.ToArray())
+            {
+                Console.Write(statusDto.Id.ToString(CultureInfo.InvariantCulture) + '\t');
+                Console.Write(statusDto.Validity.ToString() + '\t');
+                Console.Write(statusDto.Name + '\n');
+            }
+
+            Assert.AreEqual(0, actual.ToArray().Length);
+        }
     }
 }
