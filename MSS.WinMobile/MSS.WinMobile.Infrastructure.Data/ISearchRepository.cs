@@ -1,7 +1,7 @@
 ﻿namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface ISearchRepository<TM, TQ, TC> where TM : IModel
+    public interface ISearchRepository<TModel, TQuery, TConnection, TQueryResult> where TModel : IModel
     {
-        IQueryObject<TM, TQ, TC> Find();
+        IQueryObject<TModel, TQuery, TConnection, TQueryResult> Find();
     }
 }

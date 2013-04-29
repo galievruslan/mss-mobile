@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.Data;
+using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 
@@ -6,13 +7,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class CategoryQueryObject : QueryObject<Category>
     {
-        public CategoryQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Category> translator)
+        public CategoryQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Category, IDataReader> translator)
             : base(connectionFactory, translator)
-        {
-        }
-
-        public CategoryQueryObject(IQueryObject<Category, string, SQLiteConnection> queryObject)
-            : base(queryObject)
         {
         }
 

@@ -1,12 +1,7 @@
-﻿using System;
-
-using System.Collections.Generic;
-using System.Text;
-
-namespace MSS.WinMobile.Infrastructure.Data
+﻿namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface IConnectionFactory<T>
+    public interface IConnectionFactory<TConnection>
     {
-        T GetConnection();
+        TConnection GetConnection();
     }
 }

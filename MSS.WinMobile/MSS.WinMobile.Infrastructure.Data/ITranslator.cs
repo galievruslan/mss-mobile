@@ -1,11 +1,7 @@
-using System;
-
 namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface ITranslator<TModel>
+    public interface ITranslator<TModel, TQueryResult>
     {
-        bool CanTranslate(Type targetType, Type sourceType);
-        TTarget Translate<TTarget>(object source);
-        bool CanTranslate<TTarget, TSource>();
+        TModel[] Translate(TQueryResult queryResult);
     }
 }

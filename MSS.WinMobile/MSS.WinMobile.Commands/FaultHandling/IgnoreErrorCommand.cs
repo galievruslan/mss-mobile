@@ -1,30 +1,28 @@
 ﻿using System;
 using MSS.WinMobile.Common.Observable;
 
-namespace MSS.WinMobile.Commands.FaultHandling
+namespace MSS.WinMobile.Synchronizer.FaultHandling
 {
-    public class IgnoreErrorCommand<T> : Command<T> {
+    public class IgnoreErrorCommand<TS, TD> : Command<TS, TD>
+    {
 
-        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(IgnoreErrorCommand<T>));
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(IgnoreErrorCommand<TS, TD>));
 
-        private readonly Command<T> _command;
-        private readonly T _defaultReturn;
+        private readonly Command<TS, TD> _command;
 
-        public IgnoreErrorCommand(Command<T> command, T defaultReturn) {
+        public IgnoreErrorCommand(Command<TS, TD> command)
+        {
             _command = command;
             _command.Subscribe(this);
-            _defaultReturn = defaultReturn;
         }
 
-        protected override T Execute() {
+        public override void Execute() {
             try {
-                return _command.Do();
+                _command.Execute();
             }
             catch (Exception exception) {
                 Log.Error("Excecution failed. Error will be ignored", exception);
             }
-
-            return _defaultReturn;
         }
 
         public override void Notify(INotification notification)

@@ -4,9 +4,9 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
 {
-    public class OrderItemTranslator : Translator<OrderItem>
+    public class OrderItemDataRecordTranslator : DataRecordTranslator<OrderItem>
     {
-        protected override OrderItem DataRecordToModel(IDataRecord value)
+        protected override OrderItem TranslateOne(IDataRecord value)
         {
             var proxy = new OrderItemProxy
                 {

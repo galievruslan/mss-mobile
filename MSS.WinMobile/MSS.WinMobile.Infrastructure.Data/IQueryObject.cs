@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace MSS.WinMobile.Infrastructure.Data
 {
-    public interface IQueryObject<TM,TQ,TC> : IEnumerable<TM> where TM : IModel
+    public interface IQueryObject<TModel, TQuery, TConnection, TQueryResult> : IEnumerable<TModel> where TModel : IModel
     {
-        TQ AsQuery();
-        IConnectionFactory<TC> ConnectionFactory { get; }
-        ITranslator<TM> Translator { get; }
+        IConnectionFactory<TConnection> ConnectionFactory { get; }
+        ITranslator<TModel, TQueryResult> Translator { get; }
+        TQuery AsQuery();
     }
 
     public class ObjectEnumerator<T> : IEnumerator<T>

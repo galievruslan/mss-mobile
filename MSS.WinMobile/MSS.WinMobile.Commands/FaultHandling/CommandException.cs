@@ -1,16 +1,17 @@
 ﻿using System;
 
-namespace MSS.WinMobile.Commands.FaultHandling
+namespace MSS.WinMobile.Synchronizer.FaultHandling
 {
-    public class CommandException<T> : Exception {
-        private Command<T> _command; 
+    public class CommandException<TS, TD> : Exception
+    {
+        private Command<TS, TD> _command;
 
-        public CommandException(Command<T> command, string message)
+        public CommandException(Command<TS, TD> command, string message)
             : base(message) {
             _command = command;
         }
 
-        public CommandException(Command<T> command, string message, Exception exception) 
+        public CommandException(Command<TS, TD> command, string message, Exception exception) 
             :base(message, exception) {
             _command = command;
         }

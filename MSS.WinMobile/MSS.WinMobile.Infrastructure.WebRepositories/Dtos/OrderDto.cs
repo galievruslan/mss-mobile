@@ -10,7 +10,15 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
             Items = new OrderItemDto[0];
         }
 
-        public DateTime Date { get; set; }
+        public int RoutePointId { get; set; }
+
+        public DateTime OrderDate { get; set; }
+
+        public DateTime ShippingDate { get; set; }
+
+        public int PriceListId { get; set; }
+
+        public int WarehouseId { get; set; }
 
         public int ShippindAddressId { get; set; }
 

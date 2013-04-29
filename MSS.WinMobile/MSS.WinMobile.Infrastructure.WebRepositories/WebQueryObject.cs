@@ -9,13 +9,12 @@ using log4net;
 
 namespace MSS.WinMobile.Infrastructure.WebRepositories
 {
-    public class WebQueryObject<T> : IQueryObject<T,IDictionary<string,object>,WebConnection> where T : IModel
+    public class WebQueryObject<T> : IQueryObject<T, IDictionary<string, object>, WebConnection, string> where T : IModel
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(WebQueryObject<T>));
 
         public IConnectionFactory<WebConnection> ConnectionFactory { get; private set; }
-        public ITranslator<T> Translator { get; private set; }
-
+        public ITranslator<T, string> Translator { get; private set; }
         public WebQueryObject(IConnectionFactory<WebConnection> connectionFactory)
         {
             ConnectionFactory = connectionFactory;
@@ -23,10 +22,10 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
             _arguments = new Dictionary<string, object>();
         }
 
-        private IQueryObject<T, IDictionary<string, object>, WebConnection> InnerQueryObject { get; set; }
+        private IQueryObject<T, IDictionary<string, object>, WebConnection, string> InnerQueryObject { get; set; }
         private readonly IDictionary<string, object> _arguments;
 
-        public WebQueryObject(IQueryObject<T, IDictionary<string, object>, WebConnection> queryObject, IDictionary<string, object> arguments)
+        public WebQueryObject(IQueryObject<T, IDictionary<string, object>, WebConnection, string> queryObject, IDictionary<string, object> arguments)
             : this(queryObject.ConnectionFactory)
         {
             InnerQueryObject = queryObject;
@@ -55,7 +54,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
 
             HttpWebRequest webRequest = RequestFactory.CreateGetRequest(ConnectionFactory.GetConnection(), url, AsQuery());
             string json = ConnectionFactory.GetConnection().Get(webRequest);
-            return Translator.Translate<T[]>(json);
+            return Translator.Translate(json);
         }
 
         public IEnumerator<T> GetEnumerator()

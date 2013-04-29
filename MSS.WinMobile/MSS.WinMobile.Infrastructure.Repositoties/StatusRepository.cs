@@ -6,16 +6,16 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class StatusRepository : Repository<Status>
+    public class StatusSQLiteRepository : SQLiteRepository<Status>
     {
-        public StatusRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public StatusSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }
 
         protected override QueryObject<Status> GetQueryObject()
         {
-            return new StatusQueryObject(ConnectionFactory, new StatusTranslator());
+            return new StatusQueryObject(ConnectionFactory, new StatusDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Statuses (Id, Name) VALUES ({0}, '{1}')";

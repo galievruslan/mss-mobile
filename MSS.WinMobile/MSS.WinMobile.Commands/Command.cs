@@ -2,29 +2,13 @@
 using System.Collections.Generic;
 using MSS.WinMobile.Common.Observable;
 
-namespace MSS.WinMobile.Commands
+namespace MSS.WinMobile.Synchronizer
 {
-    public abstract class Command<T> : IObservable, IObserver {
+    public abstract class Command<TS, TD> : IObservable, IObserver {
 
-        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Command<T>));
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Command<TS, TD>));
 
-        protected virtual void PreExecute() {
-            Log.InfoFormat("Command {0} pre execution", typeof(Command<T>));
-        }
-
-        protected virtual void PostExecute() {
-            Log.InfoFormat("Command {0} post execution", typeof(Command<T>));
-        }
-
-        protected abstract T Execute();
-
-        public T Do() {
-            PreExecute();
-            T result = Execute();
-            PostExecute();
-
-            return result;
-        }
+        public abstract void  Execute();
 
         public void Dispose() {
             while (_observers.Count > 0) {
@@ -32,6 +16,7 @@ namespace MSS.WinMobile.Commands
             }
         }
 
+        #region IObservable
         readonly List<IObserver> _observers = new List<IObserver>();
 
         public void Subscribe(IObserver observer) {
@@ -65,5 +50,6 @@ namespace MSS.WinMobile.Commands
         {
             Log.DebugFormat("notification received {0}", notification);
         }
+        #endregion
     }
 }

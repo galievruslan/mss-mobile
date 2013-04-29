@@ -87,10 +87,6 @@
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Common\MSS.WinMobile.Infrastructure.Common.csproj">
-      <Project>{5FB89B66-66E1-4FD1-A4B1-FAD09C616420}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>

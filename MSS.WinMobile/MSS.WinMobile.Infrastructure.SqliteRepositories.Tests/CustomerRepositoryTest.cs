@@ -56,7 +56,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void SaveTest()
         {
-            var customerRepository = new CustomerRepository(_sqliteDtabase, _unitOfWork);
+            var customerRepository = new CustomerSQLiteRepository(_sqliteDtabase, _unitOfWork);
             var customer = new CustomerProxy
                 {
                     Id = 1,
@@ -77,7 +77,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void DeleteTest()
         {
-            var customerRepository = new CustomerRepository(_sqliteDtabase, _unitOfWork);
+            var customerRepository = new CustomerSQLiteRepository(_sqliteDtabase, _unitOfWork);
             var customer = new CustomerProxy
             {
                 Id = 1,

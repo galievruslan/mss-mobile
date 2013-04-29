@@ -7,12 +7,12 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public abstract class Repository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
+    public abstract class SQLiteRepository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection, IDataReader>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
     {
         private readonly SQLiteUnitOfWork _unitOfWork;
         protected readonly IConnectionFactory<SQLiteConnection> ConnectionFactory;
 
-        protected Repository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        protected SQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
         {
             ConnectionFactory = connectionFactory;
             _unitOfWork = unitOfWork;
@@ -25,7 +25,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         protected abstract QueryObject<T> GetQueryObject();
 
-        public virtual IQueryObject<T, string, SQLiteConnection> Find()
+        public virtual IQueryObject<T, string, SQLiteConnection, IDataReader> Find()
         {
             return GetQueryObject();
         }

@@ -6,16 +6,16 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class RoutePointTemplateRepository : Repository<RoutePointTemplate>
+    public class RoutePointTemplateSQLiteRepository : SQLiteRepository<RoutePointTemplate>
     {
-        public RoutePointTemplateRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public RoutePointTemplateSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }
 
         protected override QueryObject<RoutePointTemplate> GetQueryObject()
         {
-            return new RoutePointTemplateQueryObject(ConnectionFactory, new RoutePointTemplateTranslator());
+            return new RoutePointTemplateQueryObject(ConnectionFactory, new RoutePointTemplateDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RoutePointTemplates (Id, RouteTemplate_Id, ShippingAddress_Id) VALUES ({0}, {1}, {2})";

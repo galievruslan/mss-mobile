@@ -6,16 +6,16 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class ShippingAddressRepository : Repository<ShippingAddress>
+    public class ShippingAddressSQLiteRepository : SQLiteRepository<ShippingAddress>
     {
-        public ShippingAddressRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public ShippingAddressSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }
 
         protected override QueryObject<ShippingAddress> GetQueryObject()
         {
-            return new ShippingAddressQueryObject(ConnectionFactory, new ShippingAddressTranslator());
+            return new ShippingAddressQueryObject(ConnectionFactory, new ShippingAddressDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate =

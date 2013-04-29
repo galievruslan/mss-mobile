@@ -1,7 +1,7 @@
 ﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
 {
     [UrlAttribute("synchronization/product_unit_of_measures.json")]
-    public class ProductUnitOfMeasure : Dto
+    public class ProductUnitOfMeasureDto : Dto
     {
         public int ProductId { get; set; }
 

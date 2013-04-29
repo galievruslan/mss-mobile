@@ -6,13 +6,13 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
 {
     public static class WebQueryObjectExtensions
     {
-        public static IQueryObject<T, IDictionary<string, object>, WebConnection> Paged<T>(this IQueryObject<T, IDictionary<string, object>, WebConnection> queryObject, int page, int pageSize) where T : IModel
+        public static IQueryObject<T, IDictionary<string, object>, WebConnection, string> Paged<T>(this IQueryObject<T, IDictionary<string, object>, WebConnection, string> queryObject, int page, int pageSize) where T : IModel
         {
             return new WebQueryObject<T>(queryObject,
                                          new Dictionary<string, object> {{"page", page}, {"page_size", pageSize}});
         }
 
-        public static IQueryObject<T, IDictionary<string, object>, WebConnection> UpdatedAfter<T>(this IQueryObject<T, IDictionary<string, object>, WebConnection> queryObject, DateTime dateUpdatedAfter) where T : IModel
+        public static IQueryObject<T, IDictionary<string, object>, WebConnection, string> UpdatedAfter<T>(this IQueryObject<T, IDictionary<string, object>, WebConnection, string> queryObject, DateTime dateUpdatedAfter) where T : IModel
         {
             return new WebQueryObject<T>(queryObject,
                                          new Dictionary<string, object>

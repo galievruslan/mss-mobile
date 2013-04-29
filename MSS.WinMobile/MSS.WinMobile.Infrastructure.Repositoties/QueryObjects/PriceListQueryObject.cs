@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.Data;
+using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 
@@ -6,13 +7,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class PriceListQueryObject : QueryObject<PriceList>
     {
-        public PriceListQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<PriceList> translator)
+        public PriceListQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<PriceList, IDataReader> translator)
             : base(connectionFactory, translator)
-        {
-        }
-
-        public PriceListQueryObject(IQueryObject<PriceList, string, SQLiteConnection> queryObject)
-            : base(queryObject)
         {
         }
 

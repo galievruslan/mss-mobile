@@ -3,6 +3,6 @@
     [UrlAttribute("synchronization/template_routes.json")]
     public class RouteTemplateDto : Dto
     {
-        public int DatyOfWeek { get; set; }
+        public int DayOfWeek { get; set; }
     }
 }

@@ -8,49 +8,42 @@ using log4net;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
-    public abstract class QueryObject<T> : IQueryObject<T, string, SQLiteConnection> where T : IModel
+    public abstract class QueryObject<TModel> : IQueryObject<TModel, string, SQLiteConnection, IDataReader> where TModel : IModel
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(QueryObject<T>));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(QueryObject<TModel>));
 
-        public ITranslator<T> Translator { get; private set; }
-        protected QueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<T> translator)
+        public ITranslator<TModel, IDataReader> Translator { get; private set; }
+        public IConnectionFactory<SQLiteConnection> ConnectionFactory { get; private set; }
+        protected QueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<TModel, IDataReader> translator)
         {
             Translator = translator;
             ConnectionFactory = connectionFactory;
         }
 
-        public IQueryObject<T, string, SQLiteConnection> InnerQueryObject { get; protected set; }
-
-        protected QueryObject(IQueryObject<T, string, SQLiteConnection> queryObject)
-            : this(queryObject.ConnectionFactory, queryObject.Translator)
+        public IQueryObject<TModel, string, SQLiteConnection, IDataReader> InnerQueryObject { get; protected set; }
+        protected QueryObject(IQueryObject<TModel, string, SQLiteConnection, IDataReader> queryObject)
+            :this(queryObject.ConnectionFactory, queryObject.Translator)
         {
             InnerQueryObject = queryObject;
         }
 
         public abstract string AsQuery();
-        public IConnectionFactory<SQLiteConnection> ConnectionFactory { get; private set; }
 
-        protected virtual T[] Execute()
+        protected virtual TModel[] Execute()
         {
             Log.DebugFormat("Select from database.");
-            string commandText = AsQuery();
+            string commandText = AsQuery(); 
 
             try
             {
                 IDbConnection connection = ConnectionFactory.GetConnection();
                 using (IDbCommand command = connection.CreateCommand())
-                {
-                    var result = new List<T>();
-                    
+                {   
                     command.CommandText = commandText;
                     using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
                     {
-                        while (reader.Read())
-                        {
-                            result.Add(Translator.Translate<T>(reader));
-                        }
+                        return Translator.Translate(reader);
                     }
-                    return result.ToArray();
                 }
             }
             catch (Exception exception)
@@ -58,12 +51,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
                 Log.Error(string.Format("Query: {0}", commandText), exception);
             }
 
-            return new T[0];
+            return new TModel[0];
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<TModel> GetEnumerator()
         {
-            return new ObjectEnumerator<T>(Execute());
+            return new ObjectEnumerator<TModel>(Execute());
         }
 
         IEnumerator IEnumerable.GetEnumerator()

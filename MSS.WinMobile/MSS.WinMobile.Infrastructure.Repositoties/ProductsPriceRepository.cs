@@ -6,16 +6,16 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class ProductsPriceRepository : Repository<ProductsPrice>
+    public class ProductsPriceSQLiteRepository : SQLiteRepository<ProductsPrice>
     {
-        public ProductsPriceRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public ProductsPriceSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }
 
         protected override QueryObject<ProductsPrice> GetQueryObject()
         {
-            return new ProductsPriceQueryObject(ConnectionFactory, new ProductsPriceTranslator());
+            return new ProductsPriceQueryObject(ConnectionFactory, new ProductsPriceDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO ProductsPrices (Id, Product_Id, PriceList_Id, Price) VALUES ({0}, {1}, {2}, {3})";

@@ -6,19 +6,13 @@ namespace MSS.WinMobile.Infrastructure.ModelTranslators
 {
     public class CustomerTranslator : DtoTranslator<Customer, CustomerDto>
     {
-        protected override CustomerDto ModelToDto(Customer value)
-        {
-            var customerDto = new CustomerDto { Id = value.Id, Name = value.Name };
-            return customerDto;
-        }
-
-        protected override Customer DtoToModel(CustomerDto value)
+        public override Customer Translate(CustomerDto source)
         {
             return new CustomerProxy
-                {
-                    Id = value.Id,
-                    Name = value.Name
-                };
+            {
+                Id = source.Id,
+                Name = source.Name
+            };
         }
     }
 }

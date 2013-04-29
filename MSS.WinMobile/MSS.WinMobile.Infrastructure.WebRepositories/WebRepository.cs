@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 
 namespace MSS.WinMobile.Infrastructure.WebRepositories
 {
-    public class WebRepository<T> : ISearchRepository<T, IDictionary<string, object>, WebConnection> where T : Dto
+    public class WebRepository<T> : ISearchRepository<T, IDictionary<string, object>, WebConnection, string> where T : Dto
     {
         private readonly WebConnectionFactory _webConnectionFactory;
 
@@ -14,7 +12,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
             _webConnectionFactory = webConnectionFactory;
         }
 
-        public IQueryObject<T, IDictionary<string, object>, WebConnection> Find()
+        public IQueryObject<T, IDictionary<string, object>, WebConnection, string> Find()
         {
             return new WebQueryObject<T>(_webConnectionFactory);
         }

@@ -7,16 +7,16 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class OrderRepository : Repository<Order>
+    public class OrderSQLiteRepository : SQLiteRepository<Order>
     {
-        public OrderRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public OrderSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }
 
         protected override QueryObject<Order> GetQueryObject()
         {
-            return new OrderQueryObject(ConnectionFactory, new OrderTranslator());
+            return new OrderQueryObject(ConnectionFactory, new OrderDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate =

@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.Data;
+using System.Data.SQLite;
 using System.Text;
 using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
@@ -10,7 +11,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
         public string FilterByField { get; protected set; }
         public Condition Condition { get; protected set; }
 
-        public FiltredQueryObject(IQueryObject<T, string, SQLiteConnection> queryObject, string filterByField, Condition condition)
+        public FiltredQueryObject(IQueryObject<T, string, SQLiteConnection, IDataReader> queryObject, string filterByField, Condition condition)
             :base(queryObject)
         {
             FilterByField = filterByField;

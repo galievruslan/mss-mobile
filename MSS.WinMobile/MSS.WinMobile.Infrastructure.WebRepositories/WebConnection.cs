@@ -10,12 +10,6 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(WebConnection));
 
-        private const string LogonPath = "users/sign_in";
-        private const string LogoutPath = "users/sign_out";
-        private const string UserParamName = "user";
-        private const string UsernameParamName = "username";
-        private const string PasswordParamName = "password";
-
         public WebServer WebServer { get; private set; }
         private readonly string _username;
         private readonly string _password;
@@ -42,6 +36,11 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
 
         public void Open()
         {
+            const string logonPath = "users/sign_in";
+            const string userParamName = "user";
+            const string usernameParamName = "username";
+            const string passwordParamName = "password";
+
             if (State != ConnectionState.Open)
             {
                 try
@@ -50,18 +49,18 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
                     CookieContainer = new CookieContainer();
 
                     // Only for get CSRF token
-                    Get(RequestFactory.CreateGetRequest(this, LogonPath,
+                    Get(RequestFactory.CreateGetRequest(this, logonPath,
                                                         new Dictionary<string, object>()));
 
 
-                    Post(RequestFactory.CreatePostRequest(this, LogonPath,
+                    Post(RequestFactory.CreatePostRequest(this, logonPath,
                                                          new Dictionary<string, object>
                                                              {
                                                                  {
-                                                                     UserParamName, new Dictionary<string, object>
+                                                                     userParamName, new Dictionary<string, object>
                                                                          {
-                                                                             {UsernameParamName, _username},
-                                                                             {PasswordParamName, _password}
+                                                                             {usernameParamName, _username},
+                                                                             {passwordParamName, _password}
                                                                          }
                                                                  }
                                                              }));
@@ -77,6 +76,13 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
             }
         }
 
+        public DateTime ServerTime()
+        {
+            const string serverTimePath = "synchronization/datetime.json";
+            string json = RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, serverTimePath));
+            return DateTime.Parse(json.Replace("{\"datetime\":\"", string.Empty).Replace("\"}", string.Empty));
+        }
+
         public string Get(HttpWebRequest httpWebRequest)
         {
             return RequestDispatcher.Dispatch(this, httpWebRequest);
@@ -89,7 +95,8 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
 
         public void Dispose()
         {
-            RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, LogoutPath));
+            const string logoutPath = "users/sign_out";
+            RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, logoutPath));
         }
     }
 

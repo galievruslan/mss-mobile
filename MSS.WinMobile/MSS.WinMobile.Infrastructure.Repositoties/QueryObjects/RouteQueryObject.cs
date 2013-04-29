@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.Data;
+using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Data;
 
@@ -6,13 +7,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
 {
     public class RouteQueryObject : QueryObject<Route>
     {
-        public RouteQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Route> translator)
+        public RouteQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Route, IDataReader> translator)
             : base(connectionFactory, translator)
-        {
-        }
-
-        public RouteQueryObject(IQueryObject<Route, string, SQLiteConnection> queryObject)
-            : base(queryObject)
         {
         }
 

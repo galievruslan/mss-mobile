@@ -6,16 +6,16 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class CategoryRepository : Repository<Category>
+    public class CategorySQLiteRepository : SQLiteRepository<Category>
     {
-        public CategoryRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public CategorySQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }
 
         protected override QueryObject<Category> GetQueryObject()
         {
-            return new CategoryQueryObject(ConnectionFactory, new CategoryTranslator());
+            return new CategoryQueryObject(ConnectionFactory, new CategoryDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Categories (Id, Name, Parent_Id) VALUES ({0}, '{1}', {2})";

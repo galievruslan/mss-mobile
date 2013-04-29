@@ -93,5 +93,21 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Tests
             Console.WriteLine("Cookies - \"{0}\"", target.CookieContainer.Cookie);
             Assert.AreNotEqual(string.Empty, target.CsrfTokenContainer.CsrfToken);
         }
+
+        /// <summary>
+        ///A test for ServerTime
+        ///</summary>
+        [TestMethod()]
+        public void ServerTimeTest()
+        {
+            WebServer webServer = new WebServer("http://mss.alkotorg.com");
+            string username = "manager";
+            string password = "423200";
+            WebConnection target = new WebConnection(webServer, username, password);
+            target.Open();
+            DateTime actual = target.ServerTime();
+            Console.WriteLine("Server time - \"{0}\"", actual);
+            Assert.IsNotNull(actual);
+        }
     }
 }
