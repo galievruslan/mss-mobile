@@ -10,13 +10,13 @@ namespace MSS.WinMobile.Synchronizer
     public class MyShippingAddressesSynchronization : Command<MyShippingAddressDto, ShippingAddress>
     {
         private readonly WebRepository<MyShippingAddressDto> _sourceRepository;
-        private readonly SQLiteRepository<ShippingAddress> _destinationRepository;
+        private readonly SqLiteRepository<ShippingAddress> _destinationRepository;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public MyShippingAddressesSynchronization(
             WebRepository<MyShippingAddressDto> sourceRepository,
-            SQLiteRepository<ShippingAddress> destinationRepository,
+            SqLiteRepository<ShippingAddress> destinationRepository,
             int bathSize)
         {
             _sourceRepository = sourceRepository;
@@ -26,7 +26,7 @@ namespace MSS.WinMobile.Synchronizer
 
         public MyShippingAddressesSynchronization(
             WebRepository<MyShippingAddressDto> sourceRepository,
-            SQLiteRepository<ShippingAddress> destinationRepository,
+            SqLiteRepository<ShippingAddress> destinationRepository,
             int bathSize,
             DateTime updatedAfter)
             : this(sourceRepository, destinationRepository, bathSize)

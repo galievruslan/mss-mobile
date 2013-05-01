@@ -11,14 +11,14 @@ namespace MSS.WinMobile.Synchronizer
     public class CategotiesSynchronization : Command<CategoryDto, Category>
     {
         private readonly WebRepository<CategoryDto> _sourceRepository;
-        private readonly SQLiteRepository<Category> _destinationRepository;
+        private readonly SqLiteRepository<Category> _destinationRepository;
         private readonly DtoTranslator<Category, CategoryDto> _translator;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public CategotiesSynchronization(
             WebRepository<CategoryDto> sourceRepository,
-            SQLiteRepository<Category> destinationRepository,
+            SqLiteRepository<Category> destinationRepository,
             DtoTranslator<Category, CategoryDto> translator,
             int bathSize)
         {
@@ -30,7 +30,7 @@ namespace MSS.WinMobile.Synchronizer
 
         public CategotiesSynchronization(
             WebRepository<CategoryDto> sourceRepository,
-            SQLiteRepository<Category> destinationRepository,
+            SqLiteRepository<Category> destinationRepository,
             DtoTranslator<Category, CategoryDto> translator,
             int bathSize,
             DateTime updatedAfter)

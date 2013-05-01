@@ -27,7 +27,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
             string commandText = AsQuery();
 
             int count;
-            IDbConnection connection = ConnectionFactory.GetConnection();
+            IDbConnection connection = ConnectionFactory.CurrentConnection;
             using (IDbCommand command = connection.CreateCommand())
             {
                 command.CommandText = commandText;

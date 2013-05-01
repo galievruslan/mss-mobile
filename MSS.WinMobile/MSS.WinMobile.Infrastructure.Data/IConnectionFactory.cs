@@ -2,6 +2,6 @@
 {
     public interface IConnectionFactory<TConnection>
     {
-        TConnection GetConnection();
+        TConnection CurrentConnection { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -12,14 +13,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPickUpProductView _view;
+        private OrderRepository _orderRepository;
+        private ProductsPriceRepository _productsPriceRepository;
+
         private readonly IDataPageRetriever<ProductsPrice> _productsPriceRetriever;
         private readonly Cache<ProductsPrice> _cache;
         private readonly Order _order; 
 
-        public PickUpProductPresenter(IPickUpProductView view, int orderId)
-        {
-            _order = Order.GetById(orderId);
-            _productsPriceRetriever = new ProductsPriceRetriever(_order.PriceList);
+        public PickUpProductPresenter(IPickUpProductView view, OrderRepository orderRepository, ProductsPriceRepository productsPriceRepository, int priceListId) {
+            _orderRepository = orderRepository;
+            _productsPriceRepository = productsPriceRepository;
+            _productsPriceRetriever = new ProductsPriceRetriever(_productsPriceRepository, _orderRepository.GetById(orderId).PriceListId);
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 10);
             _view = view;
 
@@ -41,7 +45,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 {
                     {"Name", productsPrice.Product.Name},
                     {"Price", productsPrice.Price.ToString(CultureInfo.InvariantCulture)},
-                    {"Count", CurrentItemCount(productsPrice.ProductId).ToString(CultureInfo.InvariantCulture)}
+                    {"GetCount", CurrentItemCount(productsPrice.ProductId).ToString(CultureInfo.InvariantCulture)}
                 };
         }
 

@@ -7,9 +7,9 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class OrderSQLiteRepository : SQLiteRepository<Order>
+    public class OrderRepository : SqLiteRepository<Order>
     {
-        public OrderSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public OrderRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

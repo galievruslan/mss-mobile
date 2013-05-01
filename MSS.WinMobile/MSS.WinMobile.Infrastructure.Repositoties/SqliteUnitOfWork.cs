@@ -4,12 +4,12 @@ using log4net;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class SQLiteUnitOfWork : IUnitOfWork
+    public class SqLiteUnitOfWork : IUnitOfWork
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(SQLiteUnitOfWork));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteUnitOfWork));
 
         private readonly IConnectionFactory<SQLiteConnection> _connectionFactory;
-        public SQLiteUnitOfWork(IConnectionFactory<SQLiteConnection> connectionFactory)
+        public SqLiteUnitOfWork(IConnectionFactory<SQLiteConnection> connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
@@ -21,7 +21,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         private SQLiteTransaction _transaction;
         public void BeginTransaction()
         {
-            _transaction = _connectionFactory.GetConnection().BeginTransaction();
+            _transaction = _connectionFactory.CurrentConnection.BeginTransaction();
         }
 
         public void Commit()

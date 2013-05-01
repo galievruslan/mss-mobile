@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -12,12 +13,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPriceListLookUpView _view;
-        private PriceListRetriever _priceListRetriever;
+        private readonly PriceListRepository _priceListRepository;
+        private readonly PriceListRetriever _priceListRetriever;
         private Cache<PriceList> _cache;
 
-        public PriceListLookUpPresenter(IPriceListLookUpView view)
-        {
-            _priceListRetriever = new PriceListRetriever();
+        public PriceListLookUpPresenter(IPriceListLookUpView view, PriceListRepository priceListRepository) {
+            _priceListRepository = priceListRepository;
+            _priceListRetriever = new PriceListRetriever(_priceListRepository);
             _cache = new Cache<PriceList>(_priceListRetriever, 10);
             _view = view;
         }
@@ -50,7 +52,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void Search(string criteria)
         {
-            _priceListRetriever = new PriceListRetriever {SearchCriteria = criteria};
+            _priceListRetriever.SearchCriteria = criteria;
             _cache = new Cache<PriceList>(_priceListRetriever, 10);
             _view.SetItemCount(_priceListRetriever.Count);
         }

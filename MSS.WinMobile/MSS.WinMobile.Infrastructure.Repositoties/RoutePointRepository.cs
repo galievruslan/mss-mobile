@@ -6,9 +6,9 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class RoutePointSQLiteRepository : SQLiteRepository<RoutePoint>
+    public class RoutePointRepository : SqLiteRepository<RoutePoint>
     {
-        public RoutePointSQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        public RoutePointRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
             : base(connectionFactory, unitOfWork)
         {
         }

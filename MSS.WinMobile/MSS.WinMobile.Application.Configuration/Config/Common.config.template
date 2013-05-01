@@ -9,7 +9,7 @@
     <Setting name="Username">{Username}</Setting>
     <Setting name="Password">{Password}</Setting>
   </Section>
-  <Section name="ExecutionContext">
-    <Setting name="ManagerId">{ManagerId}</Setting>
+  <Section name="Synchronization">
+    <Setting name="LastSyncDate">{LastSyncDate}</Setting>
   </Section>
 </Sections>

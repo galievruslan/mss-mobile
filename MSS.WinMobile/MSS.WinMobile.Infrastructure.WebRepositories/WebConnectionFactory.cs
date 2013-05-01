@@ -1,8 +1,9 @@
-﻿using MSS.WinMobile.Infrastructure.Data;
+﻿using System;
+using MSS.WinMobile.Infrastructure.Data;
 
 namespace MSS.WinMobile.Infrastructure.WebRepositories
 {
-    public class WebConnectionFactory : IConnectionFactory<WebConnection>
+    public class WebConnectionFactory : IConnectionFactory<WebConnection>, IDisposable
     {
         private readonly WebServer _webServer;
         private readonly string _username;
@@ -15,15 +16,20 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
         }
 
         private WebConnection _webConnection;
-        public WebConnection GetConnection()
+        public WebConnection CurrentConnection
         {
-            if (_webConnection == null || _webConnection.State == ConnectionState.Corrupted)
-            {
-                _webConnection = new WebConnection(_webServer, _username, _password);
-                _webConnection.Open();
-            }
+            get {
+                if (_webConnection == null || _webConnection.State == ConnectionState.Corrupted) {
+                    _webConnection = new WebConnection(_webServer, _username, _password);
+                    _webConnection.Open();
+                }
 
-            return _webConnection;
+                return _webConnection;
+            }
+        }
+
+        public void Dispose() {
+            CurrentConnection.Dispose();
         }
     }
 }

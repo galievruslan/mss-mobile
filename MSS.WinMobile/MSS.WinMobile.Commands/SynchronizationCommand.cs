@@ -13,14 +13,14 @@ namespace MSS.WinMobile.Synchronizer
         where TD : Model
     {
         private readonly WebRepository<TS> _sourceRepository;
-        private readonly SQLiteRepository<TD> _destinationRepository;
+        private readonly SqLiteRepository<TD> _destinationRepository;
         private readonly DtoTranslator<TD, TS> _translator;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public SynchronizationCommand(
             WebRepository<TS> sourceRepository,
-            SQLiteRepository<TD> destinationRepository,
+            SqLiteRepository<TD> destinationRepository,
             DtoTranslator<TD,TS> translator,
             int bathSize)
         {
@@ -32,7 +32,7 @@ namespace MSS.WinMobile.Synchronizer
 
         public SynchronizationCommand(
             WebRepository<TS> sourceRepository,
-            SQLiteRepository<TD> destinationRepository,
+            SqLiteRepository<TD> destinationRepository,
             DtoTranslator<TD, TS> translator,
             int bathSize,
             DateTime updatedAfter)

@@ -82,7 +82,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             return new Dictionary<string, string>
                 {
                     {"Name", item.Product.Name},
-                    {"Count", item.Quantity.ToString(CultureInfo.InvariantCulture)}
+                    {"GetCount", item.Quantity.ToString(CultureInfo.InvariantCulture)}
                 };
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
@@ -9,66 +10,54 @@ namespace MSS.WinMobile.UI.Views
     {
         private SynchronizationPresenter _presenter;
 
-        // Designer only usage
         public SynchronizationView()
         {
             InitializeComponent();
         }
 
-        public delegate void UpdateStatusDelegate(string status);
-        public void UpdateStatus(string status)
-        {
-            if (_statusLabel.InvokeRequired)
-            {
+        public SynchronizationViewModel ViewModel { get; private set; }
+
+        private delegate void UpdateStatusDelegate(string status);
+        public void UpdateStatus(string status) {
+            if (_statusLabel.InvokeRequired) {
                 _statusLabel.Invoke(new UpdateStatusDelegate(UpdateStatus), status);
             }
-            else
-            {
+            else {
                 _statusLabel.Text = status;
             }
         }
 
-        public delegate void UpdateProgressDelegate(int percents);
-        public void UpdateProgress(int percents)
-        {
-            if (_progressBar.InvokeRequired)
-            {
+        private delegate void UpdateProgressDelegate(int percents);
+        public void UpdateProgress(int percents) {
+            if (_progressBar.InvokeRequired) {
                 _progressBar.Invoke(new UpdateProgressDelegate(UpdateProgress), percents);
             }
-            else
-            {
+            else {
                 _progressBar.Value = percents;
             }
         }
 
-        private void StartButtonClick(object sender, EventArgs e)
-        {
+        private void StartButtonClick(object sender, EventArgs e) {
             _presenter.Synchronize();
         }
 
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
+        private void CancelButtonClick(object sender, EventArgs e) {
             _presenter.Cancel();
         }
 
-        private void SynchronizationView_Load(object sender, EventArgs e)
-        {
-            if (_presenter == null)
-            {
+        private void ViewLoad(object sender, EventArgs e) {
+            if (_presenter == null) {
                 _presenter = new SynchronizationPresenter(this);
-                _presenter.InitializeView();
+                ViewModel = _presenter.InitializeView();
             }
         }
 
         #region IView
-
-        public void ShowView()
-        {
+        public void ShowView() {
             Show();
         }
 
-        public DialogViewResult ShowDialogView()
-        {
+        public DialogViewResult ShowDialogView() {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
                 return DialogViewResult.OK;
@@ -76,20 +65,16 @@ namespace MSS.WinMobile.UI.Views
             return DialogViewResult.Cancel;
         }
 
-        public void CloseView()
-        {
+        public void CloseView() {
             Close();
         }
 
-        public delegate void DisplayErrorsDelegate(string error);
-        public void DisplayErrors(string error)
-        {
-            if (_errorsLabel.InvokeRequired)
-            {
+        private delegate void DisplayErrorsDelegate(string error);
+        public void DisplayErrors(string error) {
+            if (_errorsLabel.InvokeRequired) {
                 _errorsLabel.Invoke(new DisplayErrorsDelegate(DisplayErrors), error);
             }
-            else
-            {
+            else {
                 _errorsLabel.Text = error;
             }
         }

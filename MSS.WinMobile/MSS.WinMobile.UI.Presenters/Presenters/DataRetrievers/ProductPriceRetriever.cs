@@ -1,33 +1,30 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
-    public class ProductsPriceRetriever : IDataPageRetriever<ProductsPrice>
-    {
+    public class ProductsPriceRetriever : IDataPageRetriever<ProductsPrice> {
+        private readonly ProductsPriceRepository _productsPriceRepository;
         private readonly PriceList _priceList;
-        public ProductsPriceRetriever(PriceList priceList)
-        {
+        public ProductsPriceRetriever(ProductsPriceRepository productsPriceRepository, PriceList priceList) {
+            _productsPriceRepository = productsPriceRepository;
             _priceList = priceList;
         }
 
         public int Count
         {
-            get {
-                return _priceList.GetProductsPrices().Count();
-            }
+            get { return _productsPriceRepository.Find().Where("PriceList_Id", new Equals(_priceList.Id)).GetCount(); }
         }
 
-        public ProductsPrice[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
-        {
+        public ProductsPrice[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
             return
-                _priceList.GetProductsPrices()
-                          .OrderBy(
-                              string.Format("{0}_{1}", Product.Table.TABLE_NAME, Product.Table.Fields.NAME),
-                              OrderDirection.Asceding)
-                          .Page(lowerPageBoundary, rowsPerPage)
-                          .ToArray();
+                _productsPriceRepository.Find().Where("PriceList_Id", new Equals(_priceList.Id))
+                                        .OrderBy("Product_Name", OrderDirection.Asceding)
+                                        .Page(lowerPageBoundary, rowsPerPage)
+                                        .ToArray();
         }
     }
 }

@@ -36,7 +36,10 @@
             this._statusPanel = new System.Windows.Forms.Panel();
             this._progressBar = new System.Windows.Forms.ProgressBar();
             this._statusLabel = new System.Windows.Forms.Label();
-            this._errorsLabel = new System.Windows.Forms.Label();
+            this._synchronizeFullyCheckBox = new System.Windows.Forms.CheckBox();
+            this.lastSynchronizationLabel = new System.Windows.Forms.Label();
+            this.lastDateSynchronizationValueLabel = new System.Windows.Forms.Label();
+            this.synchronizationFullyWarningLabel = new System.Windows.Forms.Label();
             this._actionPanel.SuspendLayout();
             this._statusPanel.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +77,10 @@
             // 
             // _statusPanel
             // 
-            this._statusPanel.Controls.Add(this._errorsLabel);
+            this._statusPanel.Controls.Add(this.synchronizationFullyWarningLabel);
+            this._statusPanel.Controls.Add(this.lastDateSynchronizationValueLabel);
+            this._statusPanel.Controls.Add(this.lastSynchronizationLabel);
+            this._statusPanel.Controls.Add(this._synchronizeFullyCheckBox);
             this._statusPanel.Controls.Add(this._progressBar);
             this._statusPanel.Controls.Add(this._statusLabel);
             this._statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -86,27 +92,47 @@
             // 
             this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._progressBar.Location = new System.Drawing.Point(3, 35);
+            this._progressBar.Location = new System.Drawing.Point(14, 123);
             this._progressBar.Name = "_progressBar";
-            this._progressBar.Size = new System.Drawing.Size(234, 20);
+            this._progressBar.Size = new System.Drawing.Size(212, 20);
             // 
             // _statusLabel
             // 
             this._statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._statusLabel.Location = new System.Drawing.Point(3, 12);
+            this._statusLabel.Location = new System.Drawing.Point(14, 84);
             this._statusLabel.Name = "_statusLabel";
-            this._statusLabel.Size = new System.Drawing.Size(234, 20);
+            this._statusLabel.Size = new System.Drawing.Size(212, 36);
             this._statusLabel.Text = "Sync...";
             // 
-            // _errorsLabel
+            // _synchronizeFullyCheckBox
             // 
-            this._errorsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this._errorsLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this._errorsLabel.Location = new System.Drawing.Point(3, 58);
-            this._errorsLabel.Name = "_errorsLabel";
-            this._errorsLabel.Size = new System.Drawing.Size(234, 20);
+            this._synchronizeFullyCheckBox.Location = new System.Drawing.Point(14, 15);
+            this._synchronizeFullyCheckBox.Name = "_synchronizeFullyCheckBox";
+            this._synchronizeFullyCheckBox.Size = new System.Drawing.Size(210, 20);
+            this._synchronizeFullyCheckBox.TabIndex = 4;
+            this._synchronizeFullyCheckBox.Text = "Synchronize fully";
+            // 
+            // lastSynchronizationLabel
+            // 
+            this.lastSynchronizationLabel.Location = new System.Drawing.Point(14, 241);
+            this.lastSynchronizationLabel.Name = "lastSynchronizationLabel";
+            this.lastSynchronizationLabel.Size = new System.Drawing.Size(145, 20);
+            this.lastSynchronizationLabel.Text = "Last date synchronization";
+            // 
+            // lastDateSynchronizationValueLabel
+            // 
+            this.lastDateSynchronizationValueLabel.Location = new System.Drawing.Point(165, 241);
+            this.lastDateSynchronizationValueLabel.Name = "lastDateSynchronizationValueLabel";
+            this.lastDateSynchronizationValueLabel.Size = new System.Drawing.Size(72, 20);
+            // 
+            // synchronizationFullyWarningLabel
+            // 
+            this.synchronizationFullyWarningLabel.ForeColor = System.Drawing.Color.Gray;
+            this.synchronizationFullyWarningLabel.Location = new System.Drawing.Point(14, 38);
+            this.synchronizationFullyWarningLabel.Name = "synchronizationFullyWarningLabel";
+            this.synchronizationFullyWarningLabel.Size = new System.Drawing.Size(212, 31);
+            this.synchronizationFullyWarningLabel.Text = "(Use only then full synchronization is realy necessary)";
             // 
             // SynchronizationView
             // 
@@ -117,7 +143,7 @@
             this.Controls.Add(this._statusPanel);
             this.Controls.Add(this._actionPanel);
             this.Name = "SynchronizationView";
-            this.Load += new System.EventHandler(this.SynchronizationView_Load);
+            this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
             this._statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -132,6 +158,9 @@
         private System.Windows.Forms.Panel _statusPanel;
         private System.Windows.Forms.ProgressBar _progressBar;
         private System.Windows.Forms.Label _statusLabel;
-        private System.Windows.Forms.Label _errorsLabel;
+        private System.Windows.Forms.Label lastDateSynchronizationValueLabel;
+        private System.Windows.Forms.Label lastSynchronizationLabel;
+        private System.Windows.Forms.CheckBox _synchronizeFullyCheckBox;
+        private System.Windows.Forms.Label synchronizationFullyWarningLabel;
     }
 }

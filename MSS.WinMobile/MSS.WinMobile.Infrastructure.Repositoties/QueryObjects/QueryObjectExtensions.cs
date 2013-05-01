@@ -27,7 +27,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
             return new PagedQueryObject<T>(queryObject, queryObject.OrderByField, queryObject.OrderDirection, countToSkip, countToTake);
         }
 
-        public static int Count<T>(this IQueryObject<T, string, SQLiteConnection, IDataReader> queryObject) where T : IModel
+        public static int GetCount<T>(this IQueryObject<T, string, SQLiteConnection, IDataReader> queryObject) where T : IModel
         {
             var countQueryObject = new CountQueryObject<T>(queryObject);
             return countQueryObject.Execute();

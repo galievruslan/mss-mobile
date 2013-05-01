@@ -59,7 +59,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var target = new SQLiteDatabase(databaseScriptFullPath);
+            var target = new SqLiteDatabase(databaseScriptFullPath);
 
             int actualTablesCount = GetDdTablesCount(target);
             const int expectedTablesCount = 18;
@@ -79,7 +79,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
 
             string databaseFullPath = TestEnvironment.GetApplicationDirectory() + dbFileName;
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var target = new SQLiteDatabase(databaseFullPath, databaseVersion, databaseScriptFullPath);
+            var target = new SqLiteDatabase(databaseFullPath, databaseVersion, databaseScriptFullPath);
             Console.WriteLine(databaseFullPath);
             Assert.IsTrue(File.Exists(databaseFullPath));
 
@@ -91,7 +91,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
 
         private int GetDdTablesCount(IConnectionFactory<SQLiteConnection> connectionFactory)
         {
-            IDbConnection connection = connectionFactory.GetConnection();
+            IDbConnection connection = connectionFactory.CurrentConnection();
             using (IDbTransaction transaction = connection.BeginTransaction())
             {
                 using (IDbCommand command = connection.CreateCommand())

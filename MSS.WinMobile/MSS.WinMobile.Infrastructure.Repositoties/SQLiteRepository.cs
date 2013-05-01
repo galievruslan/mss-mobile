@@ -7,15 +7,15 @@ using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public abstract class SQLiteRepository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection, IDataReader>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
+    public abstract class SqLiteRepository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection, IDataReader>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
     {
-        private readonly SQLiteUnitOfWork _unitOfWork;
+        protected readonly SqLiteUnitOfWork UnitOfWork;
         protected readonly IConnectionFactory<SQLiteConnection> ConnectionFactory;
 
-        protected SQLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SQLiteUnitOfWork unitOfWork)
+        protected SqLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
         {
             ConnectionFactory = connectionFactory;
-            _unitOfWork = unitOfWork;
+            UnitOfWork = unitOfWork;
         }
 
         public T GetById(int id)
@@ -34,9 +34,9 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         public virtual T Save(T model)
         {
-            SQLiteConnection connection = ConnectionFactory.GetConnection();
+            SQLiteConnection connection = ConnectionFactory.CurrentConnection;
             string saveQuery = GetSaveQueryFor(model);
-            if (_unitOfWork.InTransaction)
+            if (UnitOfWork.InTransaction)
             {
                 using (IDbCommand command = connection.CreateCommand())
                 {
@@ -64,9 +64,9 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         public virtual void Delete(T model)
         {
-            SQLiteConnection connection = ConnectionFactory.GetConnection();
+            SQLiteConnection connection = ConnectionFactory.CurrentConnection;
             string deleteQuery = GetDeleteQueryFor(model);
-            if (_unitOfWork.InTransaction)
+            if (UnitOfWork.InTransaction)
             {
                 using (IDbCommand command = connection.CreateCommand())
                 {

@@ -13,8 +13,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
     [TestClass()]
     public class CustomerRepositoryTest
     {
-        private static SQLiteDatabase _sqliteDtabase;
-        private static SQLiteUnitOfWork _unitOfWork;
+        private static SqLiteDatabase _sqliteDtabase;
+        private static SqLiteUnitOfWork _unitOfWork;
 
         #region Additional test attributes
         // 
@@ -40,8 +40,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            _sqliteDtabase = new SQLiteDatabase(databaseScriptFullPath);
-            _unitOfWork = new SQLiteUnitOfWork(_sqliteDtabase);
+            _sqliteDtabase = new SqLiteDatabase(databaseScriptFullPath);
+            _unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase);
         }
         
         //Use TestCleanup to run code after each test has run
@@ -56,7 +56,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void SaveTest()
         {
-            var customerRepository = new CustomerSQLiteRepository(_sqliteDtabase, _unitOfWork);
+            var customerRepository = new CustomerRepository(_sqliteDtabase, _unitOfWork);
             var customer = new CustomerProxy
                 {
                     Id = 1,
@@ -64,7 +64,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
                 };
             customerRepository.Save(customer);
             const int expectedCount = 1;
-            int actualCount = customerRepository.Find().Count();
+            int actualCount = customerRepository.Find().GetCount();
             Assert.AreEqual(expectedCount, actualCount);
 
             const string expectedCustomerName = "ModyfiedName";
@@ -77,7 +77,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void DeleteTest()
         {
-            var customerRepository = new CustomerSQLiteRepository(_sqliteDtabase, _unitOfWork);
+            var customerRepository = new CustomerRepository(_sqliteDtabase, _unitOfWork);
             var customer = new CustomerProxy
             {
                 Id = 1,
@@ -85,12 +85,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
             };
             customerRepository.Save(customer);
             int expectedCount = 1;
-            int actualCount = customerRepository.Find().Count();
+            int actualCount = customerRepository.Find().GetCount();
             Assert.AreEqual(expectedCount, actualCount);
 
             customerRepository.Delete(customer);
             expectedCount = 0;
-            actualCount = customerRepository.Find().Count();
+            actualCount = customerRepository.Find().GetCount();
             Assert.AreEqual(expectedCount, actualCount);
         }
     }

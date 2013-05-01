@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-//using MSS.WinMobile.Commands.FaultHandling;
-//using MSS.WinMobile.Commands.Synchronization;
+using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Common.Observable;
-using MSS.WinMobile.Infrastructure.Server;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
@@ -13,9 +13,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SynchronizationPresenter));
 
+        private readonly Application.Configuration.ConfigurationManager _configurationManager;
         private readonly ISynchronizationView _view;
+
         public SynchronizationPresenter(ISynchronizationView view)
         {
+            _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
             _view = view;
         }
 
@@ -73,9 +76,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         #endregion
 
-        public void InitializeView()
-        {
-            
+        public SynchronizationViewModel InitializeView() {
+            var lastSynchronizationDate =
+                _configurationManager.GetConfig("Common")
+                                     .GetSection("Synchronization")
+                                     .GetSetting("LastSyncDate")
+                                     .As<DateTime>();
+            return new SynchronizationViewModel
+                {
+                    SynchronizeFully = false,
+                    LastSynchronizationDate = lastSynchronizationDate
+                };
         }
     }
 }

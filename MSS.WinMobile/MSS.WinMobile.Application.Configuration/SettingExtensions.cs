@@ -46,20 +46,24 @@ namespace MSS.WinMobile.Application.Configuration
 
         private static T To<T>(string value) {
             object result;
+
+            if (string.IsNullOrEmpty(value))
+                return default(T);
+            
             if (typeof (T) == typeof(int)) {
                 result = Int32.Parse(value);
             }
-            else if (typeof(T) == typeof(DateTime)) {
+            else if (typeof (T) == typeof (DateTime)) {
                 result = DateTime.Parse(value);
             }
-            else if (typeof(T) == typeof(string)) {
+            else if (typeof (T) == typeof (string)) {
                 result = value;
             }
-            else if (typeof(T) == typeof(bool)) {
+            else if (typeof (T) == typeof (bool)) {
                 result = Boolean.Parse(value);
             }
             else {
-                throw new UnsupportedTypeException(typeof(T));
+                throw new UnsupportedTypeException(typeof (T));
             }
 
             return (T)result;

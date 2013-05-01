@@ -1,26 +1,30 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Domain.Models.ActiveRecord.QueryObject;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
-    public class WarehouseRetriever : IDataPageRetriever<Warehouse>
-    {
+    public class WarehouseRetriever : IDataPageRetriever<Warehouse> {
+        private readonly WarehouseRepository _warehouseRepository;
+        public WarehouseRetriever(WarehouseRepository warehouseRepository) {
+            _warehouseRepository = warehouseRepository;
+        }
+
         public int Count
         {
             get
             {
-                return Warehouse.GetAll().Count();
+                return _warehouseRepository.Find().GetCount();
             }
         }
 
-        public Warehouse[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
-        {
+        public Warehouse[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
             return
-                Warehouse.GetAll()
-                         .OrderBy(Warehouse.Table.Fields.ADDRESS, OrderDirection.Asceding)
-                         .Page(lowerPageBoundary, rowsPerPage)
-                         .ToArray();
+                _warehouseRepository.Find()
+                                    .OrderBy("Address", OrderDirection.Asceding)
+                                    .Page(lowerPageBoundary, rowsPerPage)
+                                    .ToArray();
         }
     }
 }

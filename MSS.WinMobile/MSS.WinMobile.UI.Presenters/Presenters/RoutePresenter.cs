@@ -6,7 +6,6 @@ using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
-using Manager = MSS.WinMobile.Domain.Models.Manager;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
@@ -24,12 +23,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
             _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
 
-            Manager manager =
-                Manager.GetById(
-                    _configurationManager.GetConfig("Common")
-                                         .GetSection("ExecutionContext")
-                                         .GetSetting("ManagerId")
-                                         .As<int>());
+
             _routePointRetriever = new RoutePointRetriever(manager);
             _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
             _view = view;

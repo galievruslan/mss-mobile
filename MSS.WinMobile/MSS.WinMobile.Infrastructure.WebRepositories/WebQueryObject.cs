@@ -52,8 +52,8 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
                 throw new InvalidOperationException(string.Format("Can't retrieve from web object of type \"{0}\"",
                                                                   typeof (T)));
 
-            HttpWebRequest webRequest = RequestFactory.CreateGetRequest(ConnectionFactory.GetConnection(), url, AsQuery());
-            string json = ConnectionFactory.GetConnection().Get(webRequest);
+            HttpWebRequest webRequest = RequestFactory.CreateGetRequest(ConnectionFactory.CurrentConnection, url, AsQuery());
+            string json = ConnectionFactory.CurrentConnection.Get(webRequest);
             return Translator.Translate(json);
         }
 

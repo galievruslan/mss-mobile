@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -12,12 +13,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IWarehouseLookUpView _view;
+        private readonly WarehouseRepository _warehouseRepository;
         private readonly IDataPageRetriever<Warehouse> _warehouseRetriever;
         private readonly Cache<Warehouse> _cache;
 
-        public WarehouseLookUpPresenter(IWarehouseLookUpView view)
-        {
-            _warehouseRetriever = new WarehouseRetriever();
+        public WarehouseLookUpPresenter(IWarehouseLookUpView view, WarehouseRepository warehouseRepository) {
+            _warehouseRepository = warehouseRepository;
+            _warehouseRetriever = new WarehouseRetriever(_warehouseRepository);
             _cache = new Cache<Warehouse>(_warehouseRetriever, 10);
             _view = view;
         }
