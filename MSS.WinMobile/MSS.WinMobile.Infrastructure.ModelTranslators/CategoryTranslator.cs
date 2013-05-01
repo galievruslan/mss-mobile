@@ -12,7 +12,7 @@ namespace MSS.WinMobile.Infrastructure.ModelTranslators
             {
                 Id = source.Id,
                 Name = source.Name,
-                ParentId = source.ParentId
+                ParentId = source.ParentId != null ? (int)source.ParentId : 0
             };
         }
     }

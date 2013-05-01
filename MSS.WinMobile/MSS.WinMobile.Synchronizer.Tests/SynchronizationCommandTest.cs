@@ -1,4 +1,4 @@
-﻿using MSS.WinMobile.Synchronizer;
+﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
 using MSS.WinMobile.Domain.Models;
@@ -15,7 +15,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
     ///This is a test class for SynchronizationCommandTest and is intended
     ///to contain all SynchronizationCommandTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestClass]
     public class SynchronizationCommandTest
     {
         #region Additional test attributes
@@ -48,38 +48,186 @@ namespace MSS.WinMobile.Synchronizer.Tests
         //
         #endregion
 
-        [TestMethod()]
+        [TestMethod]
         public void SynchronizeTest()
         {
-            WebServer webServer = new WebServer("");
-            WebConnectionFactory webConnectionFactory = new WebConnectionFactory(webServer, "", "");
+            var webServer = new WebServer("http://mss.alkotorg.com");
+            var webConnectionFactory = new WebConnectionFactory(webServer, "manager", "423200");
+            const int bathSize = 300;
 
+            // Initialization
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var database = new SQLiteDatabase(databaseScriptFullPath);
+            string databaseFileFullPath = TestEnvironment.GetApplicationDirectory() + @"\storage.sqlite";
+            var database = new SQLiteDatabase(databaseFileFullPath, "3", databaseScriptFullPath);
             var unitOfWork = new SQLiteUnitOfWork(database);
 
-            WebRepository<CustomerDto> customerDtoRepository = new WebRepository<CustomerDto>(webConnectionFactory);
-            CustomerSQLiteRepository customerSQLiteRepository = new CustomerSQLiteRepository(database, unitOfWork);
-            DtoTranslator<Customer, CustomerDto> translator = new CustomerTranslator();
+            // Customers synchronization
+            var customerDtoRepository = new WebRepository<CustomerDto>(webConnectionFactory);
+            var customerSqLiteRepository = new CustomerSQLiteRepository(database, unitOfWork);
+            DtoTranslator<Customer, CustomerDto> customerTranslator = new CustomerTranslator();
+            
+            var customerSyncCmd =
+                new SynchronizationCommand<CustomerDto, Customer>(customerDtoRepository, customerSqLiteRepository,
+                                                                  customerTranslator, bathSize);
 
             unitOfWork.BeginTransaction();
-            SynchronizationCommand<CustomerDto, Customer> target =
-                new SynchronizationCommand<CustomerDto, Customer>(customerDtoRepository, customerSQLiteRepository,
-                                                                  translator, 100);
-            target.Execute();
+            customerSyncCmd.Execute();
             unitOfWork.Commit();
 
-            WebRepository<ShippingAddressDto> shippingAddressDtoRepository = new WebRepository<ShippingAddressDto>(webConnectionFactory);
-            ShippingAddressSQLiteRepository shippingAddressSQLiteRepository = new ShippingAddressSQLiteRepository(database, unitOfWork);
-            DtoTranslator<ShippingAddress, ShippingAddressDto> translator1 = new ShippingAddressdTranslator();
+            // Shipping addresses synchronization
+            var shippingAddressDtoRepository = new WebRepository<ShippingAddressDto>(webConnectionFactory);
+            var shippingAddressSqLiteRepository = new ShippingAddressSQLiteRepository(database, unitOfWork);
+            DtoTranslator<ShippingAddress, ShippingAddressDto> shippingAddressdTranslator = new ShippingAddressdTranslator();
+
+            var shippingAddressSyncCmd =
+                new SynchronizationCommand<ShippingAddressDto, ShippingAddress>(shippingAddressDtoRepository, shippingAddressSqLiteRepository,
+                                                                  shippingAddressdTranslator, bathSize);
+            unitOfWork.BeginTransaction();
+            shippingAddressSyncCmd.Execute();
+            unitOfWork.Commit();
+
+            // My shipping addresses synchronization
+            var myShippingAddressDtoRepository = new WebRepository<MyShippingAddressDto>(webConnectionFactory);
+            shippingAddressSqLiteRepository = new ShippingAddressSQLiteRepository(database, unitOfWork);
+            var myShippingAddressSyncCmd = new MyShippingAddressesSynchronization(myShippingAddressDtoRepository,
+                                                                                  shippingAddressSqLiteRepository, bathSize);
 
             unitOfWork.BeginTransaction();
-            SynchronizationCommand<ShippingAddressDto, ShippingAddress> target1 =
-                new SynchronizationCommand<ShippingAddressDto, ShippingAddress>(shippingAddressDtoRepository, shippingAddressSQLiteRepository,
-                                                                  translator1, 100);
-            target1.Execute();
+            myShippingAddressSyncCmd.Execute();
             unitOfWork.Commit();
+
+            // Categories synchronization
+            var categoriesDtoRepository = new WebRepository<CategoryDto>(webConnectionFactory);
+            var categorySqLiteRepository = new CategorySQLiteRepository(database, unitOfWork);
+            DtoTranslator<Category, CategoryDto> categoriesTranslator = new CategoryTranslator();
+            var categoriesSyncCmd = new CategotiesSynchronization(categoriesDtoRepository,
+                                                                  categorySqLiteRepository, categoriesTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            categoriesSyncCmd.Execute();
+            unitOfWork.Commit();
+
+            // Statuses synchronization
+            var statusDtoRepository = new WebRepository<StatusDto>(webConnectionFactory);
+            var statusSqLiteRepository = new StatusSQLiteRepository(database, unitOfWork);
+            DtoTranslator<Status, StatusDto> statusTranslator = new StatusTranslator();
+
+            var statusSyncCommand =
+                new SynchronizationCommand<StatusDto, Status>(statusDtoRepository, statusSqLiteRepository,
+                                                                  statusTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            statusSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Warehouses synchronization
+            var warehouseDtoRepository = new WebRepository<WarehouseDto>(webConnectionFactory);
+            var warehouseSqLiteRepository = new WarehouseSQLiteRepository(database, unitOfWork);
+            DtoTranslator<Warehouse, WarehouseDto> warehouseTranslator = new WarehouseTranslator();
+
+            var warehouseSyncCommand =
+                new SynchronizationCommand<WarehouseDto, Warehouse>(warehouseDtoRepository, warehouseSqLiteRepository,
+                                                                  warehouseTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            warehouseSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Price lists synchronization
+            var priceListDtoRepository = new WebRepository<PriceListDto>(webConnectionFactory);
+            var priceListSqLiteRepository = new PriceListSQLiteRepository(database, unitOfWork);
+            DtoTranslator<PriceList, PriceListDto> priceListTranslator = new PriceListTranslator();
+
+            var priceListSyncCommand =
+                new SynchronizationCommand<PriceListDto, PriceList>(priceListDtoRepository, priceListSqLiteRepository,
+                                                                  priceListTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            priceListSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // UnitOfMeasures synchronization
+            var unitOfMeasureDtoRepository = new WebRepository<UnitOfMeasureDto>(webConnectionFactory);
+            var unitOfMeasureSqLiteRepository = new UnitOfMeasureSQLiteRepository(database, unitOfWork);
+            DtoTranslator<UnitOfMeasure, UnitOfMeasureDto> unitOfMeasureTranslator = new UnitOfMeasureTranslator();
+
+            var unitOfMeasureSyncCommand =
+                new SynchronizationCommand<UnitOfMeasureDto, UnitOfMeasure>(unitOfMeasureDtoRepository, unitOfMeasureSqLiteRepository,
+                                                                  unitOfMeasureTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            unitOfMeasureSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Products synchronization
+            var productDtoRepository = new WebRepository<ProductDto>(webConnectionFactory);
+            var productSqLiteRepository = new ProductSQLiteRepository(database, unitOfWork);
+            DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator();
+
+            var productSyncCommand =
+                new SynchronizationCommand<ProductDto, Product>(productDtoRepository, productSqLiteRepository,
+                                                                  productTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            productSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Product prices synchronization
+            var productsPriceDtoRepository = new WebRepository<ProductPriceDto>(webConnectionFactory);
+            var productsPriceSqLiteRepository = new ProductsPriceSQLiteRepository(database, unitOfWork);
+            DtoTranslator<ProductsPrice, ProductPriceDto> productsPriceTranslator = new ProductsPriceTranslator();
+
+            var productsPricesSyncCommand =
+                new SynchronizationCommand<ProductPriceDto, ProductsPrice>(productsPriceDtoRepository, productsPriceSqLiteRepository,
+                                                                  productsPriceTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            productsPricesSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Product units of measure synchronization
+            var productsUomDtoRepository = new WebRepository<ProductUnitOfMeasureDto>(webConnectionFactory);
+            var productsUnitOfMeasureSqLiteRepository = new ProductsUnitOfMeasureSQLiteRepository(database, unitOfWork);
+            DtoTranslator<ProductsUnitOfMeasure, ProductUnitOfMeasureDto> productsUnitOfMeasureTranslator = new ProductsUnitOfMeasureTranslator();
+
+            var productsUomSyncCommand =
+                new SynchronizationCommand<ProductUnitOfMeasureDto, ProductsUnitOfMeasure>(productsUomDtoRepository, productsUnitOfMeasureSqLiteRepository,
+                                                                  productsUnitOfMeasureTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            productsUomSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Route templates synchronization
+            var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webConnectionFactory);
+            var routeTemplateSqLiteRepository = new RouteTemplateSQLiteRepository(database, unitOfWork);
+            DtoTranslator<RouteTemplate, RouteTemplateDto> routeTemplateTranslator = new RouteTemplateTranslator();
+
+            var routeTemplateSyncCommand =
+                new SynchronizationCommand<RouteTemplateDto, RouteTemplate>(routeTemplateDtoRepository, routeTemplateSqLiteRepository,
+                                                                  routeTemplateTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            routeTemplateSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Route points templates synchronization
+            var routePointTemplateDtoRepository = new WebRepository<RoutePointTemplateDto>(webConnectionFactory);
+            var routePointTemplateSqLiteRepository = new RoutePointTemplateSQLiteRepository(database, unitOfWork);
+            DtoTranslator<RoutePointTemplate, RoutePointTemplateDto> routePointTemplateTranslator = new RoutePointTemplateTranslator();
+
+            var routePointTemplateSyncCommand =
+                new SynchronizationCommand<RoutePointTemplateDto, RoutePointTemplate>(routePointTemplateDtoRepository, routePointTemplateSqLiteRepository,
+                                                                  routePointTemplateTranslator, bathSize);
+
+            unitOfWork.BeginTransaction();
+            routePointTemplateSyncCommand.Execute();
+            unitOfWork.Commit();
+
+            // Copy result database
+            File.Copy(databaseFileFullPath, @"\Storage Card\storage.sqlite");
+            database.Dispose();
         }
     }
 }

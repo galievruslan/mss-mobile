@@ -133,7 +133,6 @@ namespace LitJson
         }
         #endregion
 
-
         #region Private Methods
         private static void AddArrayMetadata (Type type)
         {
@@ -287,10 +286,10 @@ namespace LitJson
 
             if (reader.Token == JsonToken.Null) {
 
-                if (! instType.IsClass)
-                    throw new JsonException (String.Format (
-                            "Can't assign null to an instance of type {0}",
-                            instType));
+                //if (! instType.IsClass)
+                    //throw new JsonException (String.Format (
+                    //        "Can't assign null to an instance of type {0}",
+                    //        instType));
 
                 return null;
             }

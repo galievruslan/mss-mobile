@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
+    <Compile Include="CategotiesSynchronization.cs" />
+    <Compile Include="MyShippingAddressesSynchronization.cs" />
     <Compile Include="FaultHandling\CommandException.cs" />
     <Compile Include="FaultHandling\CommandExtensions.cs" />
     <Compile Include="FaultHandling\IgnoreErrorCommand.cs" />

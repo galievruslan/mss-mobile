@@ -12,7 +12,7 @@ namespace MSS.WinMobile.Infrastructure.ModelTranslators
                 {
                     Id = value.Id,
                     Name = value.Name,
-                    CategoryId = value.CategoryId
+                    CategoryId = value.CategoryId != null ? (int)value.CategoryId : 0
                 };
             return proxy;
         }
