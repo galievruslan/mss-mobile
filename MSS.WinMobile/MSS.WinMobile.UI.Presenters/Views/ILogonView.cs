@@ -1,8 +1,8 @@
-﻿namespace MSS.WinMobile.UI.Presenters.Views
+﻿using MSS.WinMobile.UI.Presenters.ViewModels;
+
+namespace MSS.WinMobile.UI.Presenters.Views
 {
     public interface ILogonView : IView
     {
-        string Account { get; set; }
-        string Password { get; set; }
     }
 }

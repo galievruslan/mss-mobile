@@ -79,7 +79,7 @@ namespace MSS.WinMobile.UI.Controls
             this.resetButton.PressedImage = null;
             this.resetButton.Size = new System.Drawing.Size(22, 22);
             this.resetButton.TabIndex = 1;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.resetButton.Click += new System.EventHandler(this.ResetButtonClick);
             // 
             // lookUpButton
             // 
@@ -91,7 +91,7 @@ namespace MSS.WinMobile.UI.Controls
             this.lookUpButton.PressedImage = null;
             this.lookUpButton.Size = new System.Drawing.Size(22, 22);
             this.lookUpButton.TabIndex = 0;
-            this.lookUpButton.Click += new System.EventHandler(this._lookUpButton_Click);
+            this.lookUpButton.Click += new System.EventHandler(this.LookUpButtonClick);
             // 
             // LookUpBox
             // 

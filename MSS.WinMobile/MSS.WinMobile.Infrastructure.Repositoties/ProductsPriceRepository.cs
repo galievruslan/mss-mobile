@@ -1,6 +1,4 @@
-﻿using System.Data.SQLite;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
@@ -8,14 +6,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class ProductsPriceRepository : SqLiteRepository<ProductsPrice>
     {
-        public ProductsPriceRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
-            : base(connectionFactory, unitOfWork)
+        public ProductsPriceRepository(SqLiteUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
         protected override QueryObject<ProductsPrice> GetQueryObject()
         {
-            return new ProductsPriceQueryObject(ConnectionFactory, new ProductsPriceDataRecordTranslator());
+            return new ProductsPriceQueryObject(UnitOfWork, new ProductsPriceDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO ProductsPrices (Id, Product_Id, PriceList_Id, Price) VALUES ({0}, {1}, {2}, {3})";

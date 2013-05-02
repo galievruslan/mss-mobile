@@ -47,7 +47,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }

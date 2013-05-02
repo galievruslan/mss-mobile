@@ -1,70 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems
 {
-    public partial class VirtualListBoxItem : UserControl
+    public class VirtualListBoxItem : UserControl
     {
+        protected VirtualListBoxItem() {
+            Index = -1;
+        }
+
         public delegate void OnDataNeeded(VirtualListBoxItem sender);
         public delegate void OnSelected(VirtualListBoxItem sender);
 
-        protected VirtualListBoxItem()
-        {
-            Index = -1;
-            InitializeComponent();
-            Empty = true;
-        }
-
         public event OnDataNeeded DataNeeded;
         public event OnSelected Selected;
-
         public int Index { get; set; }
-
-        public bool Empty { get; protected set; }
-
         public bool IsSelected { get; set; }
-        private void VirtualListBoxItem_Click(object sender, EventArgs e)
-        {
-            IsSelected = true;
-            if (Selected != null)
-                Selected.Invoke(this);
-        }
-
-        protected IDictionary<string, string> Data; 
-        public void SetData(IDictionary<string, string> data)
-        {
-            Data = data;
-        }
-
-        protected virtual void DrawItem(Graphics graphics, Rectangle rectangle)
-        {
-        }
-
-        private void VirtualListBoxItem_Paint(object sender, PaintEventArgs e)
-        {
-            if (Data == null || !Data.Any())
-                return;
-
-            e.Graphics.FillRectangle(
-                IsSelected ? new SolidBrush(Constants.ColorSelected) : new SolidBrush(Constants.ColorUnSelected),
-                e.ClipRectangle);
-
-            e.Graphics.DrawLine(new Pen(Color.DarkGray), e.ClipRectangle.X + Constants.MARGIN,
-                                e.ClipRectangle.Height - 2,
-                                e.ClipRectangle.Width - Constants.DIVISOR_LINE*Constants.MARGIN,
-                                e.ClipRectangle.Height - Constants.DIVISOR_LINE);
-
-            DrawItem(e.Graphics, e.ClipRectangle);
-        }
-
-        public void RefreshData()
-        {
-            Data = null;
+        public void RefreshData() {
             if (DataNeeded != null)
                 DataNeeded.Invoke(this);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            e.Graphics.DrawLine(new Pen(Color.Gainsboro), 2, Height - 2, Width - 4, Height - 4);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // VirtualListBoxItem
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackColor = System.Drawing.Color.White;
+            this.Name = "VirtualListBoxItem";
+            this.Size = new System.Drawing.Size(200, 30);
+            this.ResumeLayout(false);
+
         }
     }
 }

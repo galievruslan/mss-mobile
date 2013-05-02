@@ -33,7 +33,6 @@ namespace MSS.WinMobile.UI.Views
             this._actionPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this.warehouseListBox = new MSS.WinMobile.UI.Controls.ListBox.WarehouseListBox();
             this.searchPanel = new SearchPanel();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
@@ -71,16 +70,6 @@ namespace MSS.WinMobile.UI.Views
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this.CancelClick);
             // 
-            // warehouseListBox
-            // 
-            this.warehouseListBox.BackColor = System.Drawing.Color.White;
-            this.warehouseListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.warehouseListBox.Location = new System.Drawing.Point(0, 24);
-            this.warehouseListBox.Name = "warehouseListBox";
-            this.warehouseListBox.SelectedIndex = -1;
-            this.warehouseListBox.Size = new System.Drawing.Size(240, 240);
-            this.warehouseListBox.TabIndex = 3;
-            // 
             // searchPanel
             // 
             this.searchPanel.BackColor = System.Drawing.Color.White;
@@ -96,7 +85,6 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.Controls.Add(this.warehouseListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
             this.Name = "WarehouseLookUpView";
@@ -113,7 +101,6 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
-        private MSS.WinMobile.UI.Controls.ListBox.WarehouseListBox warehouseListBox;
 
     }
 }

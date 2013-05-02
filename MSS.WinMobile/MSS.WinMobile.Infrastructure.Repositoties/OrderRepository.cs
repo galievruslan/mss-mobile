@@ -1,7 +1,5 @@
-﻿using System.Data.SQLite;
-using System.Globalization;
+﻿using System.Globalization;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
@@ -9,14 +7,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class OrderRepository : SqLiteRepository<Order>
     {
-        public OrderRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
-            : base(connectionFactory, unitOfWork)
+        public OrderRepository(SqLiteUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
         protected override QueryObject<Order> GetQueryObject()
         {
-            return new OrderQueryObject(ConnectionFactory, new OrderDataRecordTranslator());
+            return new OrderQueryObject(UnitOfWork, new OrderDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate =

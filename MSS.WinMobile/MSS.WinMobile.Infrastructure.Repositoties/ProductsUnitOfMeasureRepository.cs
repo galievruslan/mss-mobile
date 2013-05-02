@@ -8,15 +8,15 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class ProductsUnitOfMeasureRepository : SqLiteRepository<ProductsUnitOfMeasure>
     {
-        public ProductsUnitOfMeasureRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
-            : base(connectionFactory, unitOfWork)
+        public ProductsUnitOfMeasureRepository(SqLiteUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
 
         protected override QueryObject<ProductsUnitOfMeasure> GetQueryObject()
         {
-            return new ProductsUnitOfMeasureQueryObject(ConnectionFactory, new ProductsUnitOfMeasureDataRecordTranslator());
+            return new ProductsUnitOfMeasureQueryObject(UnitOfWork, new ProductsUnitOfMeasureDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO ProductsUnitOfMeasures (Id, Product_Id, UnitOfMeasure_Id, Base) VALUES ({0}, {1}, {2}, {3})";

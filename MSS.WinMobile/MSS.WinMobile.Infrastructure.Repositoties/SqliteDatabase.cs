@@ -2,12 +2,11 @@
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
-using MSS.WinMobile.Infrastructure.Data;
 using log4net;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class SqLiteDatabase : IConnectionFactory<SQLiteConnection>, IDisposable
+    public class SqLiteDatabase : IDisposable
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteDatabase));
         public static SqLiteDatabase CreateOrOpenFileDatabase(string databaseFullPath, string databaseScriptFullPath) {
@@ -33,7 +32,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
                 schemaScript = reader.ReadToEnd();
             }
 
-            IDbConnection connection = sqLiteDatabase.CurrentConnection;
+            IDbConnection connection = sqLiteDatabase.UnitOfWork.CurrentConnection;
             using (IDbTransaction transaction = connection.BeginTransaction())
             {
                 using (IDbCommand command = connection.CreateCommand())
@@ -55,29 +54,16 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
             ConnectionString = "Data Source=\":memory:\";Version=3";
         }
 
-        private string ConnectionString { get; set; }
+        public string ConnectionString { get; private set; }
 
-        private SQLiteConnection _connection;
-        public SQLiteConnection CurrentConnection
-        {
-            get {
-                if (_connection == null) {
-                    _connection =
-                        new SQLiteConnection(ConnectionString);
-                    Log.Debug("Connection object is null, so new one created");
-                }
-
-                if (_connection.State != ConnectionState.Open) {
-                    _connection.Open();
-                }
-
-                return _connection;
-            }
+        private SqLiteUnitOfWork _unitOfWork;
+        public SqLiteUnitOfWork UnitOfWork {
+            get { return _unitOfWork ?? (_unitOfWork = new SqLiteUnitOfWork(this)); }
         }
 
         public void Delete() {
             // If it's in memory database - it'll be deleted after connection disposing
-            CurrentConnection.Dispose();
+            _unitOfWork.Dispose();
             
             // File database
             if (!string.IsNullOrEmpty(_databaseFullPath)) {
@@ -88,8 +74,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         public void Dispose()
         {
-            if (_connection != null)
-                _connection.Dispose();
+            if (_unitOfWork != null)
+                _unitOfWork.Dispose();
         }
     }
 }

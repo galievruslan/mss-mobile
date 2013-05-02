@@ -64,53 +64,7 @@
     <Compile Include="Buttons\CancelButton.Designer.cs">
       <DependentUpon>CancelButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListBox\ListBoxItems\ProductPriceListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\PriceListListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ProductPriceListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\WarehouseListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\Constants.cs" />
-    <Compile Include="ListBox\ListBoxItems\WarehouseListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\PriceListListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\ShippingAddressListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ShippingAddressListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\CustomerListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\OrderItemListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\RoutePointListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\CustomerListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.Designer.cs">
-      <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListBox\OrderItemListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\RoutePointListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="LookUpBox.cs">
@@ -177,6 +131,12 @@
     <EmbeddedResource Include="ListBox\VirtualListBox.resx">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
+      <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
+      <Name>MSS.WinMobile.UI.Presenters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

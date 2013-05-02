@@ -6,12 +6,12 @@ using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class SynchronizationView : Form, ISynchronizationView
-    {
+    public partial class SynchronizationView : Form, ISynchronizationView {
+        private readonly PresentersFactory _presentersFactory;
         private SynchronizationPresenter _presenter;
-
-        public SynchronizationView()
-        {
+        
+        public SynchronizationView(PresentersFactory presentersFactory) {
+            _presentersFactory = presentersFactory;
             InitializeComponent();
         }
 
@@ -37,18 +37,11 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        private void StartButtonClick(object sender, EventArgs e) {
-            _presenter.Synchronize();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _presenter.Cancel();
-        }
-
         private void ViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                _presenter = new SynchronizationPresenter(this);
+                _presenter = _presentersFactory.CreateSynchronizationPresenter(this);
                 ViewModel = _presenter.InitializeView();
+                synchronizationViewModelBindingSource.DataSource = ViewModel;
             }
         }
 
@@ -60,7 +53,7 @@ namespace MSS.WinMobile.UI.Views
         public DialogViewResult ShowDialogView() {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }
@@ -69,16 +62,22 @@ namespace MSS.WinMobile.UI.Views
             Close();
         }
 
-        private delegate void DisplayErrorsDelegate(string error);
         public void DisplayErrors(string error) {
-            if (_errorsLabel.InvokeRequired) {
-                _errorsLabel.Invoke(new DisplayErrorsDelegate(DisplayErrors), error);
-            }
-            else {
-                _errorsLabel.Text = error;
-            }
+            notification.Text = error;
+            notification.Critical = true;
+            notification.Visible = true;
         }
 
         #endregion
+
+        private void OkButtonClick(object sender, EventArgs e)
+        {
+            _presenter.Synchronize();
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+            _presenter.Cancel();
+        }
     }
 }

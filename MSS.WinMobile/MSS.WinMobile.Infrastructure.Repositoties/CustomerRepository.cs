@@ -1,6 +1,4 @@
-﻿using System.Data.SQLite;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
@@ -8,15 +6,13 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class CustomerRepository : SqLiteRepository<Customer>
     {
-        public CustomerRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
-            : base(connectionFactory, unitOfWork)
+        public CustomerRepository(SqLiteUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
         protected override QueryObject<Customer> GetQueryObject() {
-            return new CustomerQueryObject(ConnectionFactory,
-                                           new CustomerTranslator(new ShippingAddressRepository(
-                                                                      ConnectionFactory, UnitOfWork)));
+            return new CustomerQueryObject(UnitOfWork, new CustomerTranslator(new ShippingAddressRepository(UnitOfWork)));
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Customers (Id, Name) VALUES ({0}, '{1}')";

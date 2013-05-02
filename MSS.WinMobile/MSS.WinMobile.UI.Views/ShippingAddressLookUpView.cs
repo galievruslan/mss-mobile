@@ -26,10 +26,10 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                shippingAddressListBox.ItemDataNeeded += ItemDataNeeded;
-                shippingAddressListBox.ItemSelected += ItemSelected;
-                _presenter = new ShippingAddressLookUpPresenter(this, _customerId);
-                _presenter.InitializeView();
+                //shippingAddressListBox.ItemDataNeeded += ItemDataNeeded;
+                //shippingAddressListBox.ItemSelected += ItemSelected;
+                //_presenter = new ShippingAddressLookUpPresenter(this, _customerId);
+                //_presenter.InitializeView();
             }
         }
 
@@ -40,11 +40,11 @@ namespace MSS.WinMobile.UI.Views
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            var shippingAddressListBoxItem = item as ShippingAddressListBoxItem;
-            if (shippingAddressListBoxItem != null)
-            {
-                shippingAddressListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            }
+            //var shippingAddressListBoxItem = item as ShippingAddressListBoxItem;
+            //if (shippingAddressListBoxItem != null)
+            //{
+            //    shippingAddressListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            //}
         }
 
         private void CancelClick(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace MSS.WinMobile.UI.Views
 
         public void SetItemCount(int count)
         {
-            shippingAddressListBox.SetListSize(count);
+            //shippingAddressListBox.SetListSize(count);
         }
 
         public int GetSelectedId()
@@ -80,7 +80,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }

@@ -28,10 +28,10 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                productsPriceListBox.ItemDataNeeded += ItemDataNeeded;
-                productsPriceListBox.ItemSelected += ProductsPriceListBoxItemSelected;
-                _presenter = new PickUpProductPresenter(this, _orderId);
-                _presenter.InitializeView();
+                //productsPriceListBox.ItemDataNeeded += ItemDataNeeded;
+                //productsPriceListBox.ItemSelected += ProductsPriceListBoxItemSelected;
+                //_presenter = new PickUpProductPresenter(this, _orderId);
+                //_presenter.InitializeView();
             }
         }
 
@@ -43,16 +43,16 @@ namespace MSS.WinMobile.UI.Views
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            var productPriceListBoxItem = item as ProductPriceListBoxItem;
-            if (productPriceListBoxItem != null)
-            {
-                productPriceListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            }
+            //var productPriceListBoxItem = item as ProductPriceListBoxItem;
+            //if (productPriceListBoxItem != null)
+            //{
+            //    productPriceListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            //}
         }
 
         public void SetItemCount(int count)
         {
-            productsPriceListBox.SetListSize(count);
+            //productsPriceListBox.SetListSize(count);
         }
 
         #region IView
@@ -66,7 +66,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }
@@ -85,20 +85,20 @@ namespace MSS.WinMobile.UI.Views
 
         private void DigitButtonClick(object sender, EventArgs e)
         {
-            var digitButton = sender as Button;
-            if (digitButton != null)
-            {
-                _presenter.AddDigit(productsPriceListBox.SelectedIndex, Int32.Parse(digitButton.Text));
-                _selectedItem.RefreshData();
-                _selectedItem.Refresh();
-            }
+            //var digitButton = sender as Button;
+            //if (digitButton != null)
+            //{
+            //    _presenter.AddDigit(productsPriceListBox.SelectedIndex, Int32.Parse(digitButton.Text));
+            //    _selectedItem.RefreshData();
+            //    _selectedItem.Refresh();
+            //}
         }
 
         private void DeleteDigitButtonClick(object sender, EventArgs e)
         {
-            _presenter.RemoveDigit(productsPriceListBox.SelectedIndex);
-            _selectedItem.RefreshData();
-            _selectedItem.Refresh();
+            //_presenter.RemoveDigit(productsPriceListBox.SelectedIndex);
+            //_selectedItem.RefreshData();
+            //_selectedItem.Refresh();
         }
 
         public IDictionary<int, int> GetValues()

@@ -34,7 +34,6 @@ namespace MSS.WinMobile.UI.Views
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
             this.searchPanel = new SearchPanel();
-            this.shippingAddressListBox = new MSS.WinMobile.UI.Controls.ListBox.ShippingAddressListBox();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,23 +79,12 @@ namespace MSS.WinMobile.UI.Views
             this.searchPanel.Size = new System.Drawing.Size(240, 24);
             this.searchPanel.TabIndex = 0;
             // 
-            // shippingAddressListBox
-            // 
-            this.shippingAddressListBox.BackColor = System.Drawing.Color.White;
-            this.shippingAddressListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shippingAddressListBox.Location = new System.Drawing.Point(0, 24);
-            this.shippingAddressListBox.Name = "shippingAddressListBox";
-            this.shippingAddressListBox.SelectedIndex = -1;
-            this.shippingAddressListBox.Size = new System.Drawing.Size(240, 240);
-            this.shippingAddressListBox.TabIndex = 5;
-            // 
             // ShippingAddressLookUpView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.Controls.Add(this.shippingAddressListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
             this.Name = "ShippingAddressLookUpView";
@@ -113,6 +101,5 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
-        private MSS.WinMobile.UI.Controls.ListBox.ShippingAddressListBox shippingAddressListBox;
     }
 }

@@ -1,15 +1,25 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace MSS.WinMobile.UI.Presenters.ViewModels
 {
     public abstract class ViewModel
     {
-        private readonly IList<string> _errors = new List<string>();
-        public string[] Errors {
-            get { return _errors.ToArray(); }
+        protected readonly IList<string> ErrorList = new List<string>();
+        public string Errors {
+            get {
+                var errorsStringBilder = new StringBuilder();
+                foreach (var error in ErrorList) {
+                    errorsStringBilder.Append(error);
+                    errorsStringBilder.Append('\n');
+                }
+                return errorsStringBilder.ToString();
+            }
         }
 
-        public abstract bool Validate();
+        public virtual bool Validate() {
+            ErrorList.Clear();
+            return true;
+        }
     }
 }

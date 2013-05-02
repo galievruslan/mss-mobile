@@ -2,36 +2,38 @@
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class RouteView : Form, IRouteView
-    {
+    public partial class RouteView : Form, IRouteView {
+        private readonly PresentersFactory _presentersFactory;
         private RoutePresenter _presenter;
 
-        public RouteView()
-        {
+        public RouteView(PresentersFactory presentersFactory) {
+            _presentersFactory = presentersFactory;
             InitializeComponent();
         }
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            var pointListBoxItem = item as RoutePointListBoxItem;
-            if (pointListBoxItem != null)
-            {
-                pointListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            }
+            //var pointListBoxItem = item as RoutePointListBoxItem;
+            //if (pointListBoxItem != null)
+            //{
+            //    pointListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            //}
         }
 
+        private RouteViewModel _viewModel;
         private void ViewLoad(object sender, EventArgs e)
         {
             if (_presenter == null)
             {
-                _routeVirtualListBox.ItemSelected += ItemSelected;
-                _routeVirtualListBox.ItemDataNeeded += ItemDataNeeded;
-                _presenter = new RoutePresenter(this);
-                _presenter.InitializeView();
+                routePointListBox.ItemSelected += ItemSelected;
+                routePointListBox.ItemDataNeeded += ItemDataNeeded;
+                _presenter = _presentersFactory.CreateRoutePresenter(this);
+                _viewModel = _presenter.InitializeView();
             }
         }
 
@@ -48,7 +50,7 @@ namespace MSS.WinMobile.UI.Views
 
         public void SetItemCount(int count)
         {
-            _routeVirtualListBox.SetListSize(count);
+            //_routeVirtualListBox.SetListSize(count);
         }
 
         #region IView
@@ -62,7 +64,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }
@@ -79,5 +81,16 @@ namespace MSS.WinMobile.UI.Views
         }
 
         #endregion
+
+        private void DatePickerValueChanged(object sender, EventArgs e)
+        {
+            if (_presenter.IsRouteOnDateExist(_viewModel.Date))
+
+            if (DialogResult.OK ==
+                MessageBox.Show(string.Format("Do you want create route on \"{0}\"", _viewModel.Date), "Confirmation",
+                                MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)) {
+
+            }
+        }
     }
 }

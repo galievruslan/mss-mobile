@@ -10,11 +10,9 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
     public abstract class SqLiteRepository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection, IDataReader>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
     {
         protected readonly SqLiteUnitOfWork UnitOfWork;
-        protected readonly IConnectionFactory<SQLiteConnection> ConnectionFactory;
 
-        protected SqLiteRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
+        protected SqLiteRepository(SqLiteUnitOfWork unitOfWork)
         {
-            ConnectionFactory = connectionFactory;
             UnitOfWork = unitOfWork;
         }
 
@@ -34,7 +32,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         public virtual T Save(T model)
         {
-            SQLiteConnection connection = ConnectionFactory.CurrentConnection;
+            SQLiteConnection connection = UnitOfWork.CurrentConnection;
             string saveQuery = GetSaveQueryFor(model);
             if (UnitOfWork.InTransaction)
             {
@@ -64,7 +62,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         public virtual void Delete(T model)
         {
-            SQLiteConnection connection = ConnectionFactory.CurrentConnection;
+            SQLiteConnection connection = UnitOfWork.CurrentConnection;
             string deleteQuery = GetDeleteQueryFor(model);
             if (UnitOfWork.InTransaction)
             {

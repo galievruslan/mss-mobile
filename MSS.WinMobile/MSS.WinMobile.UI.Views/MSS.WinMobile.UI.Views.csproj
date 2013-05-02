@@ -171,14 +171,25 @@
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.UI.Controls.Concret\MSS.WinMobile.UI.Controls.Concret.csproj">
+      <Project>{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}</Project>
+      <Name>MSS.WinMobile.UI.Controls.Concret</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.Base.csproj">
       <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>
-      <Name>MSS.WinMobile.UI.Controls</Name>
+      <Name>MSS.WinMobile.UI.Controls.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
       <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
       <Name>MSS.WinMobile.UI.Presenters</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.LogonViewModel.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel1.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.SynchronizationViewModel.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

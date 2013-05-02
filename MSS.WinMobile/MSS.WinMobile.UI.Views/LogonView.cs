@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
@@ -7,56 +8,41 @@ namespace MSS.WinMobile.UI.Views
     public partial class LogonView : Form, ILogonView
     {
         private LogonPresenter _presenter;
+        private LogonViewModel _viewModel;
 
         public LogonView()
         {
             InitializeComponent();
         }
 
-        public string Account { get; set; }
-        public string Password { get; set; }
-
-        private void AccountTextBoxTextChanged(object sender, System.EventArgs e) {
-            Account = _accountTextBox.Text;
-        }
-
-        private void PasswordTextBoxTextChanged(object sender, System.EventArgs e) {
-            Password = _passwordTextBox.Text;
-        }
-
-        private void ViewLoad(object sender, System.EventArgs e)
-        {
-            if (_presenter == null)
-            {
+        private void ViewLoad(object sender, System.EventArgs e) {
+            if (_presenter == null) {
                 _presenter = new LogonPresenter(this);
-                _presenter.InitializeView();
+                _viewModel = _presenter.InitializeView();
+                logonViewModelBindingSource.DataSource = _viewModel;
             }
         }
 
         #region IView
 
-        public void ShowView()
-        {
+        public void ShowView() {
             Show();
         }
 
-        public DialogViewResult ShowDialogView()
-        {
+        public DialogViewResult ShowDialogView() {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }
 
-        public void CloseView()
-        {
+        public void CloseView() {
             Close();
             Dispose();
         }
 
-        public void DisplayErrors(string error)
-        {
+        public void DisplayErrors(string error) {
             notification.Text = error;
             notification.Critical = true;
             notification.Visible = true;
@@ -64,13 +50,11 @@ namespace MSS.WinMobile.UI.Views
 
         #endregion
 
-        private void okButton_Click(object sender, System.EventArgs e)
-        {
+        private void OkButtonClick(object sender, System.EventArgs e) {
             _presenter.Logon();
         }
 
-        private void cancelButton_Click(object sender, System.EventArgs e)
-        {
+        private void CancelButtonClick(object sender, System.EventArgs e) {
             _presenter.Cancel();
         }
     }

@@ -19,10 +19,10 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                customerListBox.ItemDataNeeded += customerListBox_ItemDataNeeded;
-                customerListBox.ItemSelected += customerListBox_ItemSelected;
-                _presenter = new CustomerLookUpPresenter(this);
-                _presenter.InitializeView();
+                //customerListBox.ItemDataNeeded += customerListBox_ItemDataNeeded;
+                //customerListBox.ItemSelected += customerListBox_ItemSelected;
+                //_presenter = new CustomerLookUpPresenter(this);
+                //_presenter.InitializeView();
             }
         }
 
@@ -33,11 +33,11 @@ namespace MSS.WinMobile.UI.Views
 
         void customerListBox_ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            var customerListBoxItem = item as CustomerListBoxItem;
-            if (customerListBoxItem != null)
-            {
-                customerListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            }
+            //var customerListBoxItem = item as CustomerListBoxItem;
+            //if (customerListBoxItem != null)
+            //{
+            //    customerListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            //}
         }
 
         private void _cancelButton_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace MSS.WinMobile.UI.Views
 
         public void SetItemCount(int count)
         {
-            customerListBox.SetListSize(count);
+            //customerListBox.SetListSize(count);
         }
 
         public int GetSelectedId()
@@ -73,7 +73,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }

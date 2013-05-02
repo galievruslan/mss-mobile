@@ -1,6 +1,4 @@
-﻿using System.Data.SQLite;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
 
@@ -8,14 +6,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class RouteTemplateRepository : SqLiteRepository<RouteTemplate>
     {
-        public RouteTemplateRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
-            : base(connectionFactory, unitOfWork)
+        public RouteTemplateRepository(SqLiteUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
         protected override QueryObject<RouteTemplate> GetQueryObject()
         {
-            return new RouteTemplateQueryObject(ConnectionFactory, new RouteTemplateDataRecordTranslator());
+            return new RouteTemplateQueryObject(UnitOfWork, new RouteTemplateDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RouteTemplates (Id, DayOfWeek) VALUES ({0}, {1})";

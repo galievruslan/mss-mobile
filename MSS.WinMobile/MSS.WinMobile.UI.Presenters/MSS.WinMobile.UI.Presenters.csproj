@@ -73,8 +73,13 @@
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
     <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
     <Compile Include="Presenters\Exceptions\NoSelectedItemsException.cs" />
+    <Compile Include="Presenters\PresentersFactory.cs" />
     <Compile Include="Presenters\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\PriceListLookUpPresenter.cs" />
+    <Compile Include="ViewModels\LogonViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\RoutePointViewModel.cs" />
+    <Compile Include="ViewModels\RouteViewModel.cs" />
     <Compile Include="ViewModels\SynchronizationViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\IInitializationView.cs" />
@@ -117,6 +122,10 @@
       <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
       <Name>MSS.WinMobile.Application.Environment</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Commands\MSS.WinMobile.Synchronizer.csproj">
+      <Project>{5CB36071-60FE-4063-AE50-3F62D51D69C8}</Project>
+      <Name>MSS.WinMobile.Synchronizer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
@@ -128,6 +137,10 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
       <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
       <Name>MSS.WinMobile.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.ModelTranslators\MSS.WinMobile.Infrastructure.ModelTranslators.csproj">
+      <Project>{365ECB82-AE6D-4760-8EAB-CA5A9B3807E4}</Project>
+      <Name>MSS.WinMobile.Infrastructure.ModelTranslators</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.SqliteRepositoties.csproj">
       <Project>{4EAE738D-0090-4586-87FD-AD350C79D658}</Project>

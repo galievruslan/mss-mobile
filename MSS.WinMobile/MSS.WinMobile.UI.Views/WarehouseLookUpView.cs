@@ -19,10 +19,10 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                warehouseListBox.ItemDataNeeded += ItemDataNeeded;
-                warehouseListBox.ItemSelected += ItemSelected;
-                _presenter = new WarehouseLookUpPresenter(this);
-                _presenter.InitializeView();
+                //warehouseListBox.ItemDataNeeded += ItemDataNeeded;
+                //warehouseListBox.ItemSelected += ItemSelected;
+                //_presenter = new WarehouseLookUpPresenter(this);
+                //_presenter.InitializeView();
             }
         }
 
@@ -33,11 +33,11 @@ namespace MSS.WinMobile.UI.Views
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            var priceListListBoxItem = item as WarehouseListBoxItem;
-            if (priceListListBoxItem != null)
-            {
-                priceListListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            }
+            //var priceListListBoxItem = item as WarehouseListBoxItem;
+            //if (priceListListBoxItem != null)
+            //{
+            //    priceListListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            //}
         }
 
         private void CancelClick(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace MSS.WinMobile.UI.Views
 
         public void SetItemCount(int count)
         {
-            warehouseListBox.SetListSize(count);
+            //warehouseListBox.SetListSize(count);
         }
 
         public int GetSelectedId()
@@ -73,7 +73,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }

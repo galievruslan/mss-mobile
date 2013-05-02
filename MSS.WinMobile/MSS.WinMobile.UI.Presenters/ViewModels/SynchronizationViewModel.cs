@@ -6,9 +6,5 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
     {
         public bool SynchronizeFully { get; set; }
         public DateTime LastSynchronizationDate { get; set; }
-
-        public override bool Validate() {
-            return true;
-        }
     }
 }

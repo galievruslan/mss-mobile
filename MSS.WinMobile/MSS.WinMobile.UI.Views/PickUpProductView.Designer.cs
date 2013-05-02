@@ -34,7 +34,6 @@ namespace MSS.WinMobile.UI.Views
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PickUpProductView));
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.CancelButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.OkButton();
-            this.productsPriceListBox = new MSS.WinMobile.UI.Controls.ListBox.ProductPriceListBox();
             this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.quantityPanel = new System.Windows.Forms.Panel();
@@ -73,16 +72,6 @@ namespace MSS.WinMobile.UI.Views
             this.okButton.Size = new System.Drawing.Size(22, 22);
             this.okButton.TabIndex = 11;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
-            // productsPriceListBox
-            // 
-            this.productsPriceListBox.BackColor = System.Drawing.Color.White;
-            this.productsPriceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.productsPriceListBox.Location = new System.Drawing.Point(0, 24);
-            this.productsPriceListBox.Name = "productsPriceListBox";
-            this.productsPriceListBox.SelectedIndex = -1;
-            this.productsPriceListBox.Size = new System.Drawing.Size(240, 240);
-            this.productsPriceListBox.TabIndex = 3;
             // 
             // searchPanel
             // 
@@ -242,7 +231,6 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.Controls.Add(this.productsPriceListBox);
             this.Controls.Add(this.quantityPanel);
             this.Controls.Add(this.searchPanel);
             this.Name = "PickUpProductView";
@@ -256,7 +244,6 @@ namespace MSS.WinMobile.UI.Views
         #endregion
 
         private SearchPanel searchPanel;
-        private MSS.WinMobile.UI.Controls.ListBox.ProductPriceListBox productsPriceListBox;
         private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
         private System.Windows.Forms.Panel quantityPanel;
         private System.Windows.Forms.Button oneButton;

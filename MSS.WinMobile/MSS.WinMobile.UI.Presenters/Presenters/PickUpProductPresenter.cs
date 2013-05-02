@@ -13,24 +13,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPickUpProductView _view;
-        private OrderRepository _orderRepository;
-        private ProductsPriceRepository _productsPriceRepository;
+        private SqLiteUnitOfWork _unitOfWork;
 
         private readonly IDataPageRetriever<ProductsPrice> _productsPriceRetriever;
         private readonly Cache<ProductsPrice> _cache;
-        private readonly Order _order; 
+        //private readonly Order _order; 
 
-        public PickUpProductPresenter(IPickUpProductView view, OrderRepository orderRepository, ProductsPriceRepository productsPriceRepository, int priceListId) {
-            _orderRepository = orderRepository;
-            _productsPriceRepository = productsPriceRepository;
-            _productsPriceRetriever = new ProductsPriceRetriever(_productsPriceRepository, _orderRepository.GetById(orderId).PriceListId);
+        public PickUpProductPresenter(IPickUpProductView view, SqLiteUnitOfWork unitOfWork, int priceListId) {
+            _unitOfWork = unitOfWork;
+            var productsPriceRepository = new ProductsPriceRepository(unitOfWork);
+            var priceListRepository = new PriceListRepository(unitOfWork);
+            _productsPriceRetriever = new ProductsPriceRetriever(productsPriceRepository, priceListRepository.GetById(priceListId));
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 10);
             _view = view;
 
-            foreach (var orderItem in _order.Items())
-            {
-                _values.Add(orderItem.Product.Id, orderItem.Quantity);
-            }
+            //foreach (var orderItem in _order.Items())
+            //{
+            //    _values.Add(orderItem.Product.Id, orderItem.Quantity);
+            //}
         }
 
         public void InitializeView()
@@ -43,7 +43,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             ProductsPrice productsPrice = _cache.RetrieveElement(index);
             return new Dictionary<string, string>
                 {
-                    {"Name", productsPrice.Product.Name},
+                    //{"Name", productsPrice.Product.Name},
                     {"Price", productsPrice.Price.ToString(CultureInfo.InvariantCulture)},
                     {"GetCount", CurrentItemCount(productsPrice.ProductId).ToString(CultureInfo.InvariantCulture)}
                 };

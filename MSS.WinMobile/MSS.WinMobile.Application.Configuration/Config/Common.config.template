@@ -2,12 +2,13 @@
 <Sections>
   <Section name="Database">
     <Setting name="FileName">{FileName}</Setting>
-    <Setting name="FileVersion">{FileVersion}</Setting>
+    <Setting name="SchemaScript">{SchemaScript}</Setting>
   </Section>
   <Section name="Server">
     <Setting name="Address">{Server Address}</Setting>
     <Setting name="Username">{Username}</Setting>
     <Setting name="Password">{Password}</Setting>
+    <Setting name="BathSize">{BathSize}</Setting>
   </Section>
   <Section name="Synchronization">
     <Setting name="LastSyncDate">{LastSyncDate}</Setting>

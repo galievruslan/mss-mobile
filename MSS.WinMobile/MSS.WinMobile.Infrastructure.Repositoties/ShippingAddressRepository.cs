@@ -8,14 +8,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
     public class ShippingAddressRepository : SqLiteRepository<ShippingAddress>
     {
-        public ShippingAddressRepository(IConnectionFactory<SQLiteConnection> connectionFactory, SqLiteUnitOfWork unitOfWork)
-            : base(connectionFactory, unitOfWork)
+        public ShippingAddressRepository(SqLiteUnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
         protected override QueryObject<ShippingAddress> GetQueryObject()
         {
-            return new ShippingAddressQueryObject(ConnectionFactory, new ShippingAddressDataRecordTranslator());
+            return new ShippingAddressQueryObject(UnitOfWork, new ShippingAddressDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate =

@@ -27,10 +27,10 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                itemsVirtualListBox.ItemDataNeeded += itemsVirtualListBox_ItemDataNeeded;
-                itemsVirtualListBox.ItemSelected += itemsVirtualListBox_ItemSelected;
-                _presenter = new OrderPresenter(this, _routePointId);
-                _presenter.InitializeView();
+                //itemsVirtualListBox.ItemDataNeeded += itemsVirtualListBox_ItemDataNeeded;
+                //itemsVirtualListBox.ItemSelected += itemsVirtualListBox_ItemSelected;
+                //_presenter = new OrderPresenter(this, _routePointId);
+                //_presenter.InitializeView();
             }
         }
 
@@ -41,12 +41,12 @@ namespace MSS.WinMobile.UI.Views
 
         void itemsVirtualListBox_ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            _presenter.GetItemData(item.Index);
-            var orderItemListBoxItem = item as OrderItemListBoxItem;
-            if (orderItemListBoxItem != null)
-            {
-                orderItemListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            }
+            //_presenter.GetItemData(item.Index);
+            //var orderItemListBoxItem = item as OrderItemListBoxItem;
+            //if (orderItemListBoxItem != null)
+            //{
+            //    orderItemListBoxItem.SetData(_presenter.GetItemData(item.Index));
+            //}
         }
 
         private void PriceListLookUp(Controls.LookUpBox sender)
@@ -56,7 +56,7 @@ namespace MSS.WinMobile.UI.Views
                 if (DialogResult.OK == priceListLookUpView.ShowDialog())
                 {
                     int priceListId = priceListLookUpView.GetSelectedId();
-                    _presenter.SetPriceList(priceListId);
+                    //_presenter.SetPriceList(priceListId);
                 }
             }
         }
@@ -68,62 +68,14 @@ namespace MSS.WinMobile.UI.Views
                 if (DialogResult.OK == warehouseLookUpView.ShowDialog())
                 {
                     int warehouseListId = warehouseLookUpView.GetSelectedId();
-                    _presenter.SetWarehouse(warehouseListId);
+                    //_presenter.SetWarehouse(warehouseListId);
                 }
             }
         }
 
-        private void _okButton_Click(object sender, EventArgs e)
-        {
-            if (_presenter.Save())
-            {
-                Close();
-                Dispose();
-            }
-        }
-
-        private void _cancelButton_Click(object sender, EventArgs e)
-        {
-            if (_presenter.Cancel())
-            {
-                Close();
-                Dispose();
-            }
-        }
-
-        public void SetNumber(string number)
-        {
-            _noTextBox.Text = number;
-        }
-
-        public void SetDate(DateTime date)
-        {
-            _dateTextBox.Text = date.ToString(CultureInfo.InvariantCulture);
-        }
-
-        public void SetCustomer(string name)
-        {
-            _customerTextBox.Text = name;
-        }
-
-        public void SetShippingAddress(string address)
-        {
-            _shippingAddressTextBox.Text = address;
-        }
-
-        public void SetPriceList(string name)
-        {
-            _priceLookUpBox.Label = name;
-        }
-
-        public void SetWarehouse(string address)
-        {
-            _warehouseLookUpBox.Label = address;
-        }
-
         public void SetItemCount(int count)
         {
-            itemsVirtualListBox.SetListSize(count);
+            //itemsVirtualListBox.SetListSize(count);
         }
 
         private void AddClick(object sender, EventArgs e)
@@ -142,7 +94,7 @@ namespace MSS.WinMobile.UI.Views
         {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
-                return DialogViewResult.OK;
+                return DialogViewResult.Ok;
 
             return DialogViewResult.Cancel;
         }
@@ -158,5 +110,15 @@ namespace MSS.WinMobile.UI.Views
         }
 
         #endregion
+
+        private void ResetButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LookUpButtonClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

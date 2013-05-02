@@ -1,17 +1,39 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data;
+using System.Data.SQLite;
 using MSS.WinMobile.Infrastructure.Data;
 using log4net;
 
 namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 {
-    public class SqLiteUnitOfWork : IUnitOfWork
+    public class SqLiteUnitOfWork : IUnitOfWork, IDisposable, IConnectionFactory<SQLiteConnection>
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteUnitOfWork));
 
-        private readonly IConnectionFactory<SQLiteConnection> _connectionFactory;
-        public SqLiteUnitOfWork(IConnectionFactory<SQLiteConnection> connectionFactory)
+        private readonly SqLiteDatabase _sqLiteDatabase;
+        public SqLiteUnitOfWork(SqLiteDatabase sqLiteDatabase) {
+            _sqLiteDatabase = sqLiteDatabase;
+        }
+
+        private SQLiteConnection _connection;
+        public SQLiteConnection CurrentConnection
         {
-            _connectionFactory = connectionFactory;
+            get
+            {
+                if (_connection == null)
+                {
+                    _connection =
+                        new SQLiteConnection(_sqLiteDatabase.ConnectionString);
+                    Log.Debug("Connection object is null, so new one created");
+                }
+
+                if (_connection.State != ConnectionState.Open)
+                {
+                    _connection.Open();
+                }
+
+                return _connection;
+            }
         }
 
         public bool InTransaction {
@@ -21,7 +43,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         private SQLiteTransaction _transaction;
         public void BeginTransaction()
         {
-            _transaction = _connectionFactory.CurrentConnection.BeginTransaction();
+            _transaction = CurrentConnection.BeginTransaction();
         }
 
         public void Commit()
@@ -47,6 +69,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
                 _transaction.Dispose();
                 _transaction = null;
             }
+        }
+
+        public void Dispose() {
+            if (_connection != null)
+                _connection.Dispose();
         }
     }
 }

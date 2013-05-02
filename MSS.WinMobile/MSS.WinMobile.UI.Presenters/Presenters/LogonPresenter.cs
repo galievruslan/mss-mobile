@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Infrastructure.WebRepositories;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
@@ -12,43 +13,36 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private readonly Application.Configuration.ConfigurationManager _configurationManager;
         private readonly ILogonView _view;
-        private readonly WebConnectionFactory _webConnectionFactory;
 
-        public LogonPresenter(ILogonView view, WebConnectionFactory webConnectionFactory)
+        public LogonPresenter(ILogonView view)
         {
             _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
-            _webConnectionFactory = webConnectionFactory;
             _view = view;
         }
 
         public void Logon()
         {
-            string serverAddress = _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Address").Value;
+            if (_viewModel.Validate()) {
+                try {
+                    var webServer = new WebServer(_viewModel.ServerAddress);
+                    using (new WebConnectionFactory(webServer, _viewModel.Username, _viewModel.Password)) {
+                        _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value =
+                            _viewModel.Username;
+                        _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value =
+                            _viewModel.Password;
+                        _configurationManager.GetConfig("Common").Save();
+                    }
 
-            if (string.IsNullOrEmpty(_view.Account)) {
-                _view.DisplayErrors("Account can't be empty!");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_view.Password)) {
-                _view.DisplayErrors("Password can't be empty!");
-                return;
-            }
-
-            try {
-                if (_webConnectionFactory.CurrentConnection != null) {
-                    _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value =
-                        _view.Account;
-                    _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value =
-                        _view.Password;
-                    _configurationManager.GetConfig("Common").Save();
                     NavigationContext.NavigateTo<IInitializationView>().ShowView();
                     _view.CloseView();
                 }
+                catch (WebException webException) {
+                    Log.Error(webException);
+                    _view.DisplayErrors("Can't connect to the server!");
+                }
             }
-            catch (WebException webException) {
-                Log.Error(webException);
-                _view.DisplayErrors("Can't connect to the server!");
+            else {
+                _view.DisplayErrors(_viewModel.Errors);
             }
         }
 
@@ -56,9 +50,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
         }
 
-        public void InitializeView()
+        private LogonViewModel _viewModel;
+        public LogonViewModel InitializeView()
         {
-            
+            _viewModel = new LogonViewModel
+                {
+                    ServerAddress =
+                        _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Address").Value
+                };
+            return _viewModel;
         }
     }
 }

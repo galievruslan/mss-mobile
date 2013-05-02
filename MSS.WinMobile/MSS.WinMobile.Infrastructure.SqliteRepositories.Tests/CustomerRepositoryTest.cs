@@ -10,7 +10,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
     ///This is a test class for CustomerRepositoryTest and is intended
     ///to contain all CustomerRepositoryTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestClass]
     public class CustomerRepositoryTest
     {
         private static SqLiteDatabase _sqliteDtabase;
@@ -40,12 +40,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            _sqliteDtabase = new SqLiteDatabase(databaseScriptFullPath);
+            _sqliteDtabase = SqLiteDatabase.CreateInMemoryDatabase(databaseScriptFullPath);
             _unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase);
         }
         
         //Use TestCleanup to run code after each test has run
-        [TestCleanup()]
+        [TestCleanup]
         public void MyTestCleanup()
         {
             _sqliteDtabase.Dispose();
@@ -56,8 +56,9 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void SaveTest()
         {
-            var customerRepository = new CustomerRepository(_sqliteDtabase, _unitOfWork);
-            var customer = new CustomerProxy
+            var customerRepository = new CustomerRepository(_unitOfWork);
+            var shippingAddressRepository = new ShippingAddressRepository(_unitOfWork);
+            var customer = new CustomerProxy(shippingAddressRepository)
                 {
                     Id = 1,
                     Name = "Test User"
@@ -77,12 +78,13 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void DeleteTest()
         {
-            var customerRepository = new CustomerRepository(_sqliteDtabase, _unitOfWork);
-            var customer = new CustomerProxy
-            {
-                Id = 1,
-                Name = "Test User"
-            };
+            var customerRepository = new CustomerRepository(_unitOfWork);
+            var shippingAddressRepository = new ShippingAddressRepository(_unitOfWork);
+            var customer = new CustomerProxy(shippingAddressRepository)
+                {
+                    Id = 1,
+                    Name = "Test User"
+                };
             customerRepository.Save(customer);
             int expectedCount = 1;
             int actualCount = customerRepository.Find().GetCount();

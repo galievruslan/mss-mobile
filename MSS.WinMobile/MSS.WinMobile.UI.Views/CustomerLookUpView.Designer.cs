@@ -33,8 +33,7 @@ namespace MSS.WinMobile.UI.Views
             this._actionPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this.customerListBox = new MSS.WinMobile.UI.Controls.ListBox.CustomerListBox();
-            this.searchPanel = new SearchPanel();
+            this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,16 +70,6 @@ namespace MSS.WinMobile.UI.Views
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
             // 
-            // customerListBox
-            // 
-            this.customerListBox.BackColor = System.Drawing.Color.White;
-            this.customerListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customerListBox.Location = new System.Drawing.Point(0, 24);
-            this.customerListBox.Name = "customerListBox";
-            this.customerListBox.SelectedIndex = -1;
-            this.customerListBox.Size = new System.Drawing.Size(240, 240);
-            this.customerListBox.TabIndex = 3;
-            // 
             // searchPanel
             // 
             this.searchPanel.BackColor = System.Drawing.Color.White;
@@ -96,7 +85,6 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.Controls.Add(this.customerListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
             this.Name = "CustomerLookUpView";
@@ -113,7 +101,6 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
-        private MSS.WinMobile.UI.Controls.ListBox.CustomerListBox customerListBox;
 
     }
 }

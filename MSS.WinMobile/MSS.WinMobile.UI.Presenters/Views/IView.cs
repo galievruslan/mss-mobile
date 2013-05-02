@@ -14,7 +14,7 @@ namespace MSS.WinMobile.UI.Presenters.Views
 
     public enum DialogViewResult
     {
-        OK,
+        Ok,
         Cancel
     }
 }

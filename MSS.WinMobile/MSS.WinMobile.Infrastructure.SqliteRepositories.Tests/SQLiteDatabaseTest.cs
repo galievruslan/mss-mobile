@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Data.SQLite;
-using System.Diagnostics;
 using System.IO;
-using MSS.WinMobile.Infrastructure.Data;
 using MSS.WinMobile.Infrastructure.SqliteRepositoties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Helpers;
@@ -16,8 +13,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
     ///This is a test class for SQLiteDatabaseTest and is intended
     ///to contain all SQLiteDatabaseTest Unit Tests
     ///</summary>
-    [TestClass()]
-    public class SQLiteDatabaseTest
+    [TestClass]
+    public class SqLiteDatabaseTest
     {
 
         #region Additional test attributes
@@ -54,14 +51,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         /// <summary>
         ///A test for SQLiteDatabase Constructor
         ///</summary>
-        [TestMethod()]
-        public void SQLiteDatabaseInMemoryDbTest()
+        [TestMethod]
+        public void SqLiteDatabaseInMemoryDbTest()
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var target = new SqLiteDatabase(databaseScriptFullPath);
+            var target = SqLiteDatabase.CreateInMemoryDatabase(databaseScriptFullPath);
 
-            int actualTablesCount = GetDdTablesCount(target);
+            int actualTablesCount = GetDdTablesCount(target.UnitOfWork);
             const int expectedTablesCount = 18;
             Assert.AreEqual(expectedTablesCount, actualTablesCount);
             target.Dispose();
@@ -70,30 +67,27 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         /// <summary>
         ///A test for SQLiteDatabase Constructor
         ///</summary>
-        [TestMethod()]
-        public void SQLiteDatabaseFileDbInitializationTest()
+        [TestMethod]
+        public void SqLiteDatabaseFileDbInitializationTest()
         {
             const string dbFileName = @"\storage.sqlite";
             const string dbScriptFileName = @"\schema.sql";
-            const string databaseVersion = "3";
 
             string databaseFullPath = TestEnvironment.GetApplicationDirectory() + dbFileName;
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var target = new SqLiteDatabase(databaseFullPath, databaseVersion, databaseScriptFullPath);
+            var target = SqLiteDatabase.CreateOrOpenFileDatabase(databaseFullPath, databaseScriptFullPath);
             Console.WriteLine(databaseFullPath);
             Assert.IsTrue(File.Exists(databaseFullPath));
 
-            int actualTablesCount = GetDdTablesCount(target);
+            int actualTablesCount = GetDdTablesCount(target.UnitOfWork);
             const int expectedTablesCount = 18;
             Assert.AreEqual(expectedTablesCount, actualTablesCount);
             target.Dispose();
         }
 
-        private int GetDdTablesCount(IConnectionFactory<SQLiteConnection> connectionFactory)
-        {
-            IDbConnection connection = connectionFactory.CurrentConnection();
-            using (IDbTransaction transaction = connection.BeginTransaction())
-            {
+        private int GetDdTablesCount(SqLiteUnitOfWork sqLiteUnitOfWork) {
+            IDbConnection connection = sqLiteUnitOfWork.CurrentConnection;
+            using (connection.BeginTransaction()) {
                 using (IDbCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "SELECT count(*) FROM sqlite_master WHERE type='table';";

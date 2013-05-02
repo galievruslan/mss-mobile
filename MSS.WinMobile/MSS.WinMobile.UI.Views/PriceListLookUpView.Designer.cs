@@ -33,7 +33,6 @@ namespace MSS.WinMobile.UI.Views
             this._actionPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
-            this.priceListListBox = new MSS.WinMobile.UI.Controls.ListBox.PriceListListBox();
             this.searchPanel = new SearchPanel();
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
@@ -73,16 +72,6 @@ namespace MSS.WinMobile.UI.Views
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this.CancelClick);
             // 
-            // priceListListBox
-            // 
-            this.priceListListBox.BackColor = System.Drawing.Color.White;
-            this.priceListListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceListListBox.Location = new System.Drawing.Point(0, 24);
-            this.priceListListBox.Name = "priceListListBox";
-            this.priceListListBox.SelectedIndex = -1;
-            this.priceListListBox.Size = new System.Drawing.Size(240, 214);
-            this.priceListListBox.TabIndex = 3;
-            // 
             // searchPanel
             // 
             this.searchPanel.BackColor = System.Drawing.Color.White;
@@ -98,7 +87,6 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Controls.Add(this.priceListListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
             this.Menu = this.mainMenu;
@@ -116,7 +104,6 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Panel _actionPanel;
         private System.Windows.Forms.Button _okButton;
         private System.Windows.Forms.Button _cancelButton;
-        private MSS.WinMobile.UI.Controls.ListBox.PriceListListBox priceListListBox;
         private System.Windows.Forms.MainMenu mainMenu;
         private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
 

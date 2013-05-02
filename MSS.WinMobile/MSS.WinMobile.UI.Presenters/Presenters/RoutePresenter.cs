@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.Application.Environment;
-using MSS.WinMobile.Application.Configuration;
+﻿using System;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
-using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
@@ -13,25 +15,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
-        private readonly Application.Configuration.ConfigurationManager _configurationManager;
+        private readonly SqLiteUnitOfWork _unitOfWork;
+        private RouteRepository _routeRepository;
 
         private readonly IRouteView _view;
-        private readonly IDataPageRetriever<RoutePoint> _routePointRetriever;
-        private readonly Cache<RoutePoint> _cache; 
+        private IDataPageRetriever<RoutePoint> _routePointRetriever;
+        private Cache<RoutePoint> _cache; 
 
-        public RoutePresenter(IRouteView view)
-        {
-            _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
-
-
-            _routePointRetriever = new RoutePointRetriever(manager);
-            _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
+        public RoutePresenter(IRouteView view, SqLiteUnitOfWork unitOfWork) {
+            _unitOfWork = unitOfWork;
             _view = view;
         }
 
-        public void InitializeView()
-        {
-            _view.SetItemCount(_routePointRetriever.Count);
+        private RouteViewModel _viewModel;
+        public RouteViewModel InitializeView() {
+            _viewModel = new RouteViewModel {Date = DateTime.Now};
+            GetRouteOnDate(_viewModel.Date);
+            return _viewModel;
         }
 
         private RoutePoint _selectedRoutePoint;
@@ -41,18 +41,26 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _selectedRoutePoint = _cache.RetrieveElement(index);
         }
 
-        public IDictionary<string, string> GetItemData(int index)
+        public RoutePointViewModel GetRoutePointViewModel(int index)
         {
             RoutePoint item = _cache.RetrieveElement(index);
-            return new Dictionary<string, string> { { "Name", item.ShippingAddress.Name } };
+            return new RoutePointViewModel
+                {
+                    ShippinAddressName = item.ShippingAddressName
+                };
         }
 
-        public int GetSelectedItemId()
-        {
-            if (_selectedRoutePoint != null)
-                return _selectedRoutePoint.Id;
-
-            throw new NoSelectedItemsException();
+        public void GetRouteOnDate(DateTime date) {
+            if (_routeRepository.Find().Where("Date", new Equals(_viewModel.Date.Date)).Any()) {
+                _routeRepository = new RouteRepository(_unitOfWork);
+                var route = _routeRepository.Find().Where("Date", new Equals(_viewModel.Date.Date)).FirstOrDefault();
+                if (route == null) {
+                    
+                }
+                _routePointRetriever = new RoutePointRetriever(new RoutePointRepository(_unitOfWork), route);
+                _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
+                _view.SetItemCount(_routePointRetriever.Count);
+            }
         }
     }
 }

@@ -64,9 +64,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Customers synchronization
             var customerDtoRepository = new WebRepository<CustomerDto>(webConnectionFactory);
-            var customerSqLiteRepository = new CustomerRepository(database, unitOfWork);
+            var customerSqLiteRepository = new CustomerRepository(unitOfWork);
             DtoTranslator<Customer, CustomerDto> customerTranslator =
-                new CustomerTranslator(new ShippingAddressRepository(database, unitOfWork));
+                new CustomerTranslator(new ShippingAddressRepository(unitOfWork));
             
             var customerSyncCmd =
                 new SynchronizationCommand<CustomerDto, Customer>(customerDtoRepository, customerSqLiteRepository,
@@ -78,7 +78,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Shipping addresses synchronization
             var shippingAddressDtoRepository = new WebRepository<ShippingAddressDto>(webConnectionFactory);
-            var shippingAddressSqLiteRepository = new ShippingAddressRepository(database, unitOfWork);
+            var shippingAddressSqLiteRepository = new ShippingAddressRepository(unitOfWork);
             DtoTranslator<ShippingAddress, ShippingAddressDto> shippingAddressdTranslator = new ShippingAddressdTranslator();
 
             var shippingAddressSyncCmd =
@@ -90,7 +90,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // My shipping addresses synchronization
             var myShippingAddressDtoRepository = new WebRepository<MyShippingAddressDto>(webConnectionFactory);
-            shippingAddressSqLiteRepository = new ShippingAddressRepository(database, unitOfWork);
+            shippingAddressSqLiteRepository = new ShippingAddressRepository(unitOfWork);
             var myShippingAddressSyncCmd = new MyShippingAddressesSynchronization(myShippingAddressDtoRepository,
                                                                                   shippingAddressSqLiteRepository, bathSize);
 
@@ -100,7 +100,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Categories synchronization
             var categoriesDtoRepository = new WebRepository<CategoryDto>(webConnectionFactory);
-            var categorySqLiteRepository = new CategoryRepository(database, unitOfWork);
+            var categorySqLiteRepository = new CategoryRepository(unitOfWork);
             DtoTranslator<Category, CategoryDto> categoriesTranslator = new CategoryTranslator();
             var categoriesSyncCmd = new CategotiesSynchronization(categoriesDtoRepository,
                                                                   categorySqLiteRepository, categoriesTranslator, bathSize);
@@ -111,7 +111,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Statuses synchronization
             var statusDtoRepository = new WebRepository<StatusDto>(webConnectionFactory);
-            var statusSqLiteRepository = new StatusRepository(database, unitOfWork);
+            var statusSqLiteRepository = new StatusRepository(unitOfWork);
             DtoTranslator<Status, StatusDto> statusTranslator = new StatusTranslator();
 
             var statusSyncCommand =
@@ -124,7 +124,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Warehouses synchronization
             var warehouseDtoRepository = new WebRepository<WarehouseDto>(webConnectionFactory);
-            var warehouseSqLiteRepository = new WarehouseRepository(database, unitOfWork);
+            var warehouseSqLiteRepository = new WarehouseRepository(unitOfWork);
             DtoTranslator<Warehouse, WarehouseDto> warehouseTranslator = new WarehouseTranslator();
 
             var warehouseSyncCommand =
@@ -137,7 +137,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Price lists synchronization
             var priceListDtoRepository = new WebRepository<PriceListDto>(webConnectionFactory);
-            var priceListSqLiteRepository = new PriceListRepository(database, unitOfWork);
+            var priceListSqLiteRepository = new PriceListRepository(unitOfWork);
             DtoTranslator<PriceList, PriceListDto> priceListTranslator = new PriceListTranslator();
 
             var priceListSyncCommand =
@@ -150,7 +150,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // UnitOfMeasures synchronization
             var unitOfMeasureDtoRepository = new WebRepository<UnitOfMeasureDto>(webConnectionFactory);
-            var unitOfMeasureSqLiteRepository = new UnitOfMeasureRepository(database, unitOfWork);
+            var unitOfMeasureSqLiteRepository = new UnitOfMeasureRepository(unitOfWork);
             DtoTranslator<UnitOfMeasure, UnitOfMeasureDto> unitOfMeasureTranslator = new UnitOfMeasureTranslator();
 
             var unitOfMeasureSyncCommand =
@@ -163,7 +163,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Products synchronization
             var productDtoRepository = new WebRepository<ProductDto>(webConnectionFactory);
-            var productSqLiteRepository = new ProductRepository(database, unitOfWork);
+            var productSqLiteRepository = new ProductRepository(unitOfWork);
             DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator();
 
             var productSyncCommand =
@@ -176,7 +176,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Product prices synchronization
             var productsPriceDtoRepository = new WebRepository<ProductPriceDto>(webConnectionFactory);
-            var productsPriceSqLiteRepository = new ProductsPriceRepository(database, unitOfWork);
+            var productsPriceSqLiteRepository = new ProductsPriceRepository(unitOfWork);
             DtoTranslator<ProductsPrice, ProductPriceDto> productsPriceTranslator = new ProductsPriceTranslator();
 
             var productsPricesSyncCommand =
@@ -189,7 +189,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Product units of measure synchronization
             var productsUomDtoRepository = new WebRepository<ProductUnitOfMeasureDto>(webConnectionFactory);
-            var productsUnitOfMeasureSqLiteRepository = new ProductsUnitOfMeasureRepository(database, unitOfWork);
+            var productsUnitOfMeasureSqLiteRepository = new ProductsUnitOfMeasureRepository(unitOfWork);
             DtoTranslator<ProductsUnitOfMeasure, ProductUnitOfMeasureDto> productsUnitOfMeasureTranslator = new ProductsUnitOfMeasureTranslator();
 
             var productsUomSyncCommand =
@@ -202,7 +202,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Route templates synchronization
             var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webConnectionFactory);
-            var routeTemplateSqLiteRepository = new RouteTemplateRepository(database, unitOfWork);
+            var routeTemplateSqLiteRepository = new RouteTemplateRepository(unitOfWork);
             DtoTranslator<RouteTemplate, RouteTemplateDto> routeTemplateTranslator = new RouteTemplateTranslator();
 
             var routeTemplateSyncCommand =
@@ -215,7 +215,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             // Route points templates synchronization
             var routePointTemplateDtoRepository = new WebRepository<RoutePointTemplateDto>(webConnectionFactory);
-            var routePointTemplateSqLiteRepository = new RoutePointTemplateRepository(database, unitOfWork);
+            var routePointTemplateSqLiteRepository = new RoutePointTemplateRepository(unitOfWork);
             DtoTranslator<RoutePointTemplate, RoutePointTemplateDto> routePointTemplateTranslator = new RoutePointTemplateTranslator();
 
             var routePointTemplateSyncCommand =
