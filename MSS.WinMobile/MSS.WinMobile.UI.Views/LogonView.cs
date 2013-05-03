@@ -18,7 +18,7 @@ namespace MSS.WinMobile.UI.Views
         private void ViewLoad(object sender, System.EventArgs e) {
             if (_presenter == null) {
                 _presenter = new LogonPresenter(this);
-                _viewModel = _presenter.InitializeView();
+                _viewModel = _presenter.Initialize();
                 logonViewModelBindingSource.DataSource = _viewModel;
             }
         }

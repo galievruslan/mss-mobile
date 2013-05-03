@@ -27,6 +27,18 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
+        private delegate void ShowProgressBarDelegate();
+        public void ShowProgressBar()
+        {
+            if (InvokeRequired) {
+                Invoke(new ShowProgressBarDelegate(ShowProgressBar));
+            }
+            else {
+                _progressBar.Visible = true;
+                _statusLabel.Visible = true;
+            }
+        }
+
         private delegate void UpdateProgressDelegate(int percents);
         public void UpdateProgress(int percents) {
             if (_progressBar.InvokeRequired) {
@@ -72,6 +84,7 @@ namespace MSS.WinMobile.UI.Views
 
         private void OkButtonClick(object sender, EventArgs e)
         {
+            synchronizationViewModelBindingSource.EndEdit();
             _presenter.Synchronize();
         }
 

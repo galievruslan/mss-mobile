@@ -11,7 +11,7 @@ namespace MSS.WinMobile.Infrastructure.ModelTranslators
             var proxy = new RoutePointTemplateProxy
                 {
                     Id = value.Id,
-                    RouteTemplateId = value.RouteTemplateId,
+                    RouteTemplateId = value.TemplateRouteId,
                     ShippingAddressId = value.ShippingAddressId
                 };
             return proxy;

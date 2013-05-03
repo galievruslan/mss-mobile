@@ -8,7 +8,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class ShippingAddressLookUpPresenter : IPresenter
+    public class ShippingAddressLookUpPresenter : IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
@@ -25,11 +25,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                      _customerRepository.GetById(customerId));
             _cache = new Cache<ShippingAddress>(_shippingAddressRetriever, 10);
             _view = view;
-        }
-
-        public void InitializeView()
-        {
-            _view.SetItemCount(_shippingAddressRetriever.Count);
         }
 
         private ShippingAddress _selectedShippingAddress;
@@ -51,6 +46,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 return _selectedShippingAddress.Id;
 
             throw new NoSelectedItemsException();
+        }
+
+        public int InitializeList() {
+            return _shippingAddressRetriever.Count;
         }
     }
 }

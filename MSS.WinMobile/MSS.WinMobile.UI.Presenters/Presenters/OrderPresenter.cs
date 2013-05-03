@@ -13,7 +13,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class OrderPresenter : IPresenter
+    public class OrderPresenter : IPresenter<OrderViewModel>, IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(OrderPresenter));
 
@@ -39,23 +39,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _orderItemRetriever = new OrderItemRetriever(new OrderItemRepository(_unitOfWork),
                                                          _order);
             _cache = new Cache<OrderItem>(_orderItemRetriever, 10);
-        }
-
-        private OrderViewModel _viewModel;
-        public OrderViewModel InitializeView() {
-            _viewModel = new OrderViewModel
-                {
-                    CustomerId = _order.CustomerId,
-                    CustomerName = _order.CustomerName,
-                    ShippingAddressId = _order.ShippingAddressId,
-                    ShippingAddressName = _order.ShippingAddressName,
-                    PriceListId = _order.PriceListId,
-                    PriceListName = _order.PriceListName,
-                    WarehouseId = _order.WarehouseId,
-                    WarehouseName = _order.WarehouseAddress
-                };
-            _view.SetItemCount(_orderItemRetriever.Count);
-            return _viewModel;
         }
 
         public IDictionary<string, string> GetItemData(int index)
@@ -126,6 +109,26 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             //        _view.SetItemCount(_orderItemRetriever.Count);
             //    }
             //}
+        }
+
+        private OrderViewModel _viewModel;
+        public OrderViewModel Initialize() {
+            _viewModel = new OrderViewModel
+            {
+                CustomerId = _order.CustomerId,
+                CustomerName = _order.CustomerName,
+                ShippingAddressId = _order.ShippingAddressId,
+                ShippingAddressName = _order.ShippingAddressName,
+                PriceListId = _order.PriceListId,
+                PriceListName = _order.PriceListName,
+                WarehouseId = _order.WarehouseId,
+                WarehouseName = _order.WarehouseAddress
+            };
+            return _viewModel;
+        }
+
+        public int InitializeList() {
+            return _orderItemRetriever.Count;
         }
     }
 

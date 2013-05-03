@@ -66,12 +66,8 @@
   </Target>
   -->
   <ItemGroup>
-    <Content Include="Resources\Database\schema.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Synchronization\Patterns\JSONObject.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\Database\schema.sql">
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\" />

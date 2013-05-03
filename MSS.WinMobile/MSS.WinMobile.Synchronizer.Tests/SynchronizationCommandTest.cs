@@ -70,11 +70,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
             
             var customerSyncCmd =
                 new SynchronizationCommand<CustomerDto, Customer>(customerDtoRepository, customerSqLiteRepository,
-                                                                  customerTranslator, bathSize);
+                                                                  customerTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             customerSyncCmd.Execute();
-            unitOfWork.Commit();
 
             // Shipping addresses synchronization
             var shippingAddressDtoRepository = new WebRepository<ShippingAddressDto>(webConnectionFactory);
@@ -83,31 +81,25 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var shippingAddressSyncCmd =
                 new SynchronizationCommand<ShippingAddressDto, ShippingAddress>(shippingAddressDtoRepository, shippingAddressSqLiteRepository,
-                                                                  shippingAddressdTranslator, bathSize);
-            unitOfWork.BeginTransaction();
+                                                                  shippingAddressdTranslator, unitOfWork, bathSize);
             shippingAddressSyncCmd.Execute();
-            unitOfWork.Commit();
 
             // My shipping addresses synchronization
             var myShippingAddressDtoRepository = new WebRepository<MyShippingAddressDto>(webConnectionFactory);
             shippingAddressSqLiteRepository = new ShippingAddressRepository(unitOfWork);
             var myShippingAddressSyncCmd = new MyShippingAddressesSynchronization(myShippingAddressDtoRepository,
-                                                                                  shippingAddressSqLiteRepository, bathSize);
+                                                                                  shippingAddressSqLiteRepository, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             myShippingAddressSyncCmd.Execute();
-            unitOfWork.Commit();
 
             // Categories synchronization
             var categoriesDtoRepository = new WebRepository<CategoryDto>(webConnectionFactory);
             var categorySqLiteRepository = new CategoryRepository(unitOfWork);
             DtoTranslator<Category, CategoryDto> categoriesTranslator = new CategoryTranslator();
             var categoriesSyncCmd = new CategotiesSynchronization(categoriesDtoRepository,
-                                                                  categorySqLiteRepository, categoriesTranslator, bathSize);
+                                                                  categorySqLiteRepository, categoriesTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             categoriesSyncCmd.Execute();
-            unitOfWork.Commit();
 
             // Statuses synchronization
             var statusDtoRepository = new WebRepository<StatusDto>(webConnectionFactory);
@@ -116,11 +108,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var statusSyncCommand =
                 new SynchronizationCommand<StatusDto, Status>(statusDtoRepository, statusSqLiteRepository,
-                                                                  statusTranslator, bathSize);
+                                                                  statusTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             statusSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Warehouses synchronization
             var warehouseDtoRepository = new WebRepository<WarehouseDto>(webConnectionFactory);
@@ -129,11 +119,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var warehouseSyncCommand =
                 new SynchronizationCommand<WarehouseDto, Warehouse>(warehouseDtoRepository, warehouseSqLiteRepository,
-                                                                  warehouseTranslator, bathSize);
+                                                                  warehouseTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             warehouseSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Price lists synchronization
             var priceListDtoRepository = new WebRepository<PriceListDto>(webConnectionFactory);
@@ -142,11 +130,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var priceListSyncCommand =
                 new SynchronizationCommand<PriceListDto, PriceList>(priceListDtoRepository, priceListSqLiteRepository,
-                                                                  priceListTranslator, bathSize);
+                                                                  priceListTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             priceListSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // UnitOfMeasures synchronization
             var unitOfMeasureDtoRepository = new WebRepository<UnitOfMeasureDto>(webConnectionFactory);
@@ -155,11 +141,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var unitOfMeasureSyncCommand =
                 new SynchronizationCommand<UnitOfMeasureDto, UnitOfMeasure>(unitOfMeasureDtoRepository, unitOfMeasureSqLiteRepository,
-                                                                  unitOfMeasureTranslator, bathSize);
+                                                                  unitOfMeasureTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             unitOfMeasureSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Products synchronization
             var productDtoRepository = new WebRepository<ProductDto>(webConnectionFactory);
@@ -168,11 +152,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var productSyncCommand =
                 new SynchronizationCommand<ProductDto, Product>(productDtoRepository, productSqLiteRepository,
-                                                                  productTranslator, bathSize);
+                                                                  productTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             productSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Product prices synchronization
             var productsPriceDtoRepository = new WebRepository<ProductPriceDto>(webConnectionFactory);
@@ -181,11 +163,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var productsPricesSyncCommand =
                 new SynchronizationCommand<ProductPriceDto, ProductsPrice>(productsPriceDtoRepository, productsPriceSqLiteRepository,
-                                                                  productsPriceTranslator, bathSize);
+                                                                  productsPriceTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             productsPricesSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Product units of measure synchronization
             var productsUomDtoRepository = new WebRepository<ProductUnitOfMeasureDto>(webConnectionFactory);
@@ -194,11 +174,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var productsUomSyncCommand =
                 new SynchronizationCommand<ProductUnitOfMeasureDto, ProductsUnitOfMeasure>(productsUomDtoRepository, productsUnitOfMeasureSqLiteRepository,
-                                                                  productsUnitOfMeasureTranslator, bathSize);
+                                                                  productsUnitOfMeasureTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             productsUomSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Route templates synchronization
             var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webConnectionFactory);
@@ -207,11 +185,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var routeTemplateSyncCommand =
                 new SynchronizationCommand<RouteTemplateDto, RouteTemplate>(routeTemplateDtoRepository, routeTemplateSqLiteRepository,
-                                                                  routeTemplateTranslator, bathSize);
+                                                                  routeTemplateTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             routeTemplateSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Route points templates synchronization
             var routePointTemplateDtoRepository = new WebRepository<RoutePointTemplateDto>(webConnectionFactory);
@@ -220,11 +196,9 @@ namespace MSS.WinMobile.Synchronizer.Tests
 
             var routePointTemplateSyncCommand =
                 new SynchronizationCommand<RoutePointTemplateDto, RoutePointTemplate>(routePointTemplateDtoRepository, routePointTemplateSqLiteRepository,
-                                                                  routePointTemplateTranslator, bathSize);
+                                                                  routePointTemplateTranslator, unitOfWork, bathSize);
 
-            unitOfWork.BeginTransaction();
             routePointTemplateSyncCommand.Execute();
-            unitOfWork.Commit();
 
             // Copy result database
             File.Copy(databaseFileFullPath, @"\Storage Card\storage.sqlite");

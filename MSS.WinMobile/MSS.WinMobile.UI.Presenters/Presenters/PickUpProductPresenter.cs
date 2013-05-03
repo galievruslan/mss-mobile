@@ -8,7 +8,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class PickUpProductPresenter : IPresenter
+    public class PickUpProductPresenter : IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
@@ -31,11 +31,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             //{
             //    _values.Add(orderItem.Product.Id, orderItem.Quantity);
             //}
-        }
-
-        public void InitializeView()
-        {
-            _view.SetItemCount(_productsPriceRetriever.Count);
         }
 
         public IDictionary<string, string> GetItemData(int index)
@@ -95,6 +90,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public IDictionary<int, int> GetValues()
         {
             return _values;
+        }
+
+        public int InitializeList() {
+            return _productsPriceRetriever.Count;
         }
     }
 }

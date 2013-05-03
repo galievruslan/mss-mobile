@@ -68,12 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NavigationContext.cs" />
+    <Compile Include="Presenters\DataRetrievers\RoutesRetriever.cs" />
+    <Compile Include="Presenters\IListPresenter.cs" />
     <Compile Include="Presenters\InitializationPresenter.cs" />
     <Compile Include="Presenters\PickUpProductPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
     <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
     <Compile Include="Presenters\Exceptions\NoSelectedItemsException.cs" />
     <Compile Include="Presenters\PresentersFactory.cs" />
+    <Compile Include="Presenters\RouteListPresenter.cs" />
     <Compile Include="Presenters\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\PriceListLookUpPresenter.cs" />
     <Compile Include="ViewModels\LogonViewModel.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Views\IListView.cs" />
     <Compile Include="INavigator.cs" />
     <Compile Include="Views\IPickUpProductView.cs" />
+    <Compile Include="Views\IRouteListView.cs" />
     <Compile Include="Views\IWarehouseLookUpView.cs" />
     <Compile Include="Views\IPriceListLookUpView.cs" />
     <Compile Include="Presenters\DataRetrievers\WarehouseRetriever.cs" />

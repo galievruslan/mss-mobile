@@ -2,38 +2,31 @@
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
-using log4net;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class MenuView : Form, IMenuView
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(MenuView));
+    public partial class RouteListView : Form, IRouteListView {
 
-        private MenuPresenter _presenter;
-        
-        public MenuView()
+        private RouteListPresenter _presenter;
+        private readonly PresentersFactory _presentersFactory;
+
+        public RouteListView()
         {
+            InitializeComponent();
+        }
+
+        public RouteListView(PresentersFactory presentersFactory)
+        {
+            _presentersFactory = presentersFactory;
             InitializeComponent();
         }
 
         private void ViewLoad(object sender, EventArgs e)
         {
-            if (_presenter == null)
-            {
-                _presenter = new MenuPresenter(this);
-                _presenter.InitializeView();
+            if (_presenter == null) {
+                _presenter = _presentersFactory.CreateRouteListPresenter(this);
+                routeListBox.SetListSize(_presenter.InitializeList());
             }
-        }
-
-        private void SynchronizationLabelClick(object sender, EventArgs e)
-        {
-            _presenter.ShowSyncView();
-        }
-
-        private void RouteClick(object sender, EventArgs e)
-        {
-            _presenter.ShowRouteView();
         }
 
         #region IView
@@ -64,5 +57,15 @@ namespace MSS.WinMobile.UI.Views
         }
 
         #endregion
+
+        private void CreateRouteClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenRouteClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

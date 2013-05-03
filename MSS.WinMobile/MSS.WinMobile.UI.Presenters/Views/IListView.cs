@@ -2,6 +2,5 @@
 {
     public interface IListView : IView
     {
-        void SetItemCount(int count);
     }
 }

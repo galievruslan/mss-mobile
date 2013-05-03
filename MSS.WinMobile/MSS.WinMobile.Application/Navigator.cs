@@ -33,7 +33,11 @@ namespace MSS.WinMobile.Application
             }
             else if (typeof(T) == typeof(IRouteView))
             {
-                view = (new RouteView()) as T;
+                view = (new RouteView(_presentersFactory)) as T;
+            }
+            else if (typeof(T) == typeof(IRouteListView))
+            {
+                view = (new RouteListView(_presentersFactory)) as T;
             }
             else if (typeof(T) == typeof(IPickUpProductView))
             {

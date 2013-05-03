@@ -5,6 +5,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
 {
     public class RouteProxy : Route
     {
+        public RouteProxy() {
+        }
+
+        public RouteProxy(DateTime date) : base(date) {
+        }
+
         new public int Id
         {
             get { return base.Id; }

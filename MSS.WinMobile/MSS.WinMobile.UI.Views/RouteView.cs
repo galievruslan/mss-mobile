@@ -44,8 +44,6 @@ namespace MSS.WinMobile.UI.Views
 
         private void CreateOrderClick(object sender, EventArgs e)
         {
-            var orderView = new OrderView(_presenter.GetSelectedItemId());
-            orderView.Show();
         }
 
         public void SetItemCount(int count)
@@ -81,16 +79,5 @@ namespace MSS.WinMobile.UI.Views
         }
 
         #endregion
-
-        private void DatePickerValueChanged(object sender, EventArgs e)
-        {
-            if (_presenter.IsRouteOnDateExist(_viewModel.Date))
-
-            if (DialogResult.OK ==
-                MessageBox.Show(string.Format("Do you want create route on \"{0}\"", _viewModel.Date), "Confirmation",
-                                MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)) {
-
-            }
-        }
     }
 }

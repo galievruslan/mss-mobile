@@ -13,6 +13,7 @@ namespace MSS.WinMobile.Synchronizer
         private readonly WebRepository<CategoryDto> _sourceRepository;
         private readonly SqLiteRepository<Category> _destinationRepository;
         private readonly DtoTranslator<Category, CategoryDto> _translator;
+        private SqLiteUnitOfWork _unitOfWork;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
@@ -20,11 +21,13 @@ namespace MSS.WinMobile.Synchronizer
             WebRepository<CategoryDto> sourceRepository,
             SqLiteRepository<Category> destinationRepository,
             DtoTranslator<Category, CategoryDto> translator,
+            SqLiteUnitOfWork unitOfWork,
             int bathSize)
         {
             _sourceRepository = sourceRepository;
             _destinationRepository = destinationRepository;
             _translator = translator;
+            _unitOfWork = unitOfWork;
             _bathSize = bathSize;
         }
 
@@ -32,17 +35,26 @@ namespace MSS.WinMobile.Synchronizer
             WebRepository<CategoryDto> sourceRepository,
             SqLiteRepository<Category> destinationRepository,
             DtoTranslator<Category, CategoryDto> translator,
+            SqLiteUnitOfWork unitOfWork,
             int bathSize,
             DateTime updatedAfter)
-            : this(sourceRepository, destinationRepository, translator, bathSize)
+            : this(sourceRepository, destinationRepository, translator, unitOfWork, bathSize)
         {
             _updatedAfter = updatedAfter;
         }
 
         public override void Execute()
         {
-            SyncronizeData();
-            SynchronizeHierarchy();
+            try {
+                _unitOfWork.BeginTransaction();
+                SyncronizeData();
+                SynchronizeHierarchy();
+                _unitOfWork.Commit();
+            }
+            catch (Exception exception) {
+                _unitOfWork.Rollback();
+                throw;
+            }
         }
 
         private void SyncronizeData() {

@@ -8,7 +8,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class WarehouseLookUpPresenter : IPresenter
+    public class WarehouseLookUpPresenter : IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
@@ -22,11 +22,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _warehouseRetriever = new WarehouseRetriever(_warehouseRepository);
             _cache = new Cache<Warehouse>(_warehouseRetriever, 10);
             _view = view;
-        }
-
-        public void InitializeView()
-        {
-            _view.SetItemCount(_warehouseRetriever.Count);
         }
 
         private Warehouse _selectedWarehouse;
@@ -48,6 +43,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 return _selectedWarehouse.Id;
 
             throw new NoSelectedItemsException();
+        }
+
+        public int InitializeList() {
+            return _warehouseRetriever.Count;
         }
     }
 }

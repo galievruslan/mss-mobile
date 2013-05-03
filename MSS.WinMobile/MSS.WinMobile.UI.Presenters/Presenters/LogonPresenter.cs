@@ -7,7 +7,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class LogonPresenter : IPresenter
+    public class LogonPresenter : IPresenter<LogonViewModel>
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(LogonPresenter));
 
@@ -51,13 +51,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         private LogonViewModel _viewModel;
-        public LogonViewModel InitializeView()
-        {
+        public LogonViewModel Initialize() {
             _viewModel = new LogonViewModel
-                {
-                    ServerAddress =
-                        _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Address").Value
-                };
+            {
+                ServerAddress =
+                    _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Address").Value
+            };
             return _viewModel;
         }
     }

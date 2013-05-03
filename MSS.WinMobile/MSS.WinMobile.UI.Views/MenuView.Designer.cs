@@ -78,7 +78,7 @@
             this._synchronizationLabel.Size = new System.Drawing.Size(201, 20);
             this._synchronizationLabel.TabIndex = 7;
             this._synchronizationLabel.Text = "Synchronization";
-            this._synchronizationLabel.Click += new System.EventHandler(this._synchronizationLabel_Click);
+            this._synchronizationLabel.Click += new System.EventHandler(this.SynchronizationLabelClick);
             // 
             // _newOrderLabel
             // 
@@ -144,7 +144,7 @@
             this.Controls.Add(this._routeLabel);
             this.Controls.Add(this._routeIcon);
             this.Name = "MenuView";
-            this.Load += new System.EventHandler(this.MenuView_Load);
+            this.Load += new System.EventHandler(this.ViewLoad);
             this.ResumeLayout(false);
 
         }

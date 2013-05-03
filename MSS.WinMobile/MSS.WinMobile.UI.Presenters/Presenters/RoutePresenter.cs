@@ -11,7 +11,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class RoutePresenter : IPresenter
+    public class RoutePresenter : IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
@@ -59,8 +59,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 }
                 _routePointRetriever = new RoutePointRetriever(new RoutePointRepository(_unitOfWork), route);
                 _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
-                _view.SetItemCount(_routePointRetriever.Count);
             }
+        }
+
+        public int InitializeList() {
+            return _routePointRetriever.Count;
         }
     }
 }

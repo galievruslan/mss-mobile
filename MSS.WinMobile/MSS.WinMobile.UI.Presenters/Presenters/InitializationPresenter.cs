@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
 using MSS.WinMobile.Common.Observable;
-using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class InitializationPresenter : IPresenter, IObserver
+    public class InitializationPresenter : IObserver
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(InitializationPresenter));
 
@@ -37,17 +36,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public void InitializeView()
         {
             var backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += backgroundWorker_DoWork;
-            backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
+            backgroundWorker.DoWork += BackgroundWorkerDoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorkerRunWorkerCompleted;
             backgroundWorker.RunWorkerAsync();
         }
 
-        void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        void BackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             _view.CloseView();
         }
 
-        void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             Notify(new ProgressNotification(0));
             //RetrieversCache.InitializeCurrentRoutePointRetriever();

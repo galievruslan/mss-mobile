@@ -33,13 +33,13 @@
             this._actionPanel = new System.Windows.Forms.Panel();
             this._statusPanel = new System.Windows.Forms.Panel();
             this.synchronizationFullyWarningLabel = new System.Windows.Forms.Label();
-            this.lastDateSynchronizationValueLabel = new System.Windows.Forms.Label();
-            this.synchronizationViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lastSynchronizationLabel = new System.Windows.Forms.Label();
             this._synchronizeFullyCheckBox = new System.Windows.Forms.CheckBox();
             this._progressBar = new System.Windows.Forms.ProgressBar();
             this._statusLabel = new System.Windows.Forms.Label();
             this.notification = new Microsoft.WindowsCE.Forms.Notification();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.synchronizationViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel.SuspendLayout();
@@ -58,8 +58,8 @@
             // 
             // _statusPanel
             // 
+            this._statusPanel.Controls.Add(this.dateTimePicker);
             this._statusPanel.Controls.Add(this.synchronizationFullyWarningLabel);
-            this._statusPanel.Controls.Add(this.lastDateSynchronizationValueLabel);
             this._statusPanel.Controls.Add(this.lastSynchronizationLabel);
             this._statusPanel.Controls.Add(this._synchronizeFullyCheckBox);
             this._statusPanel.Controls.Add(this._progressBar);
@@ -77,18 +77,6 @@
             this.synchronizationFullyWarningLabel.Name = "synchronizationFullyWarningLabel";
             this.synchronizationFullyWarningLabel.Size = new System.Drawing.Size(212, 31);
             this.synchronizationFullyWarningLabel.Text = "(Use only then full synchronization is realy necessary)";
-            // 
-            // lastDateSynchronizationValueLabel
-            // 
-            this.lastDateSynchronizationValueLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.synchronizationViewModelBindingSource, "LastSynchronizationDate", true));
-            this.lastDateSynchronizationValueLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this.lastDateSynchronizationValueLabel.Location = new System.Drawing.Point(165, 241);
-            this.lastDateSynchronizationValueLabel.Name = "lastDateSynchronizationValueLabel";
-            this.lastDateSynchronizationValueLabel.Size = new System.Drawing.Size(72, 20);
-            // 
-            // synchronizationViewModelBindingSource
-            // 
-            this.synchronizationViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.SynchronizationViewModel);
             // 
             // lastSynchronizationLabel
             // 
@@ -115,6 +103,7 @@
             this._progressBar.Location = new System.Drawing.Point(14, 123);
             this._progressBar.Name = "_progressBar";
             this._progressBar.Size = new System.Drawing.Size(212, 20);
+            this._progressBar.Visible = false;
             // 
             // _statusLabel
             // 
@@ -125,10 +114,26 @@
             this._statusLabel.Name = "_statusLabel";
             this._statusLabel.Size = new System.Drawing.Size(212, 36);
             this._statusLabel.Text = "Sync...";
+            this._statusLabel.Visible = false;
             // 
             // notification
             // 
             this.notification.Text = "notification1";
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this.dateTimePicker.Enabled = false;
+            this.dateTimePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker.Location = new System.Drawing.Point(153, 239);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(73, 22);
+            this.dateTimePicker.TabIndex = 7;
+            // 
+            // synchronizationViewModelBindingSource
+            // 
+            this.synchronizationViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.SynchronizationViewModel);
             // 
             // cancelButton
             // 
@@ -179,7 +184,6 @@
         private System.Windows.Forms.Panel _statusPanel;
         private System.Windows.Forms.ProgressBar _progressBar;
         private System.Windows.Forms.Label _statusLabel;
-        private System.Windows.Forms.Label lastDateSynchronizationValueLabel;
         private System.Windows.Forms.Label lastSynchronizationLabel;
         private System.Windows.Forms.CheckBox _synchronizeFullyCheckBox;
         private System.Windows.Forms.Label synchronizationFullyWarningLabel;
@@ -187,5 +191,6 @@
         private Microsoft.WindowsCE.Forms.Notification notification;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

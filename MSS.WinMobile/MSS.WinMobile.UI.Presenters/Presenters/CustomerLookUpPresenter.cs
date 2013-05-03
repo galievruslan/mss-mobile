@@ -8,7 +8,7 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class CustomerLookUpPresenter : IPresenter
+    public class CustomerLookUpPresenter : IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
@@ -22,11 +22,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _customerRetriever = new CustomerRetriever(_customerRepository);
             _cache = new Cache<Customer>(_customerRetriever, 10);
             _view = view;
-        }
-
-        public void InitializeView()
-        {
-            _view.SetItemCount(_customerRetriever.Count);
         }
 
         private Customer _selectedCustomer;
@@ -48,6 +43,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 return _selectedCustomer.Id;
 
             throw new NoSelectedItemsException();
+        }
+
+        public int InitializeList() {
+            return _customerRetriever.Count;
         }
     }
 }

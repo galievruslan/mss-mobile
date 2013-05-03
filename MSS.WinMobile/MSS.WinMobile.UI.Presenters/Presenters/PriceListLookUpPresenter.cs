@@ -8,25 +8,18 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class PriceListLookUpPresenter : IPresenter
+    public class PriceListLookUpPresenter : IListPresenter
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPriceListLookUpView _view;
-        private readonly PriceListRepository _priceListRepository;
-        private readonly PriceListRetriever _priceListRetriever;
+        private SqLiteUnitOfWork _unitOfWork;
+        private PriceListRetriever _priceListRetriever;
         private Cache<PriceList> _cache;
 
-        public PriceListLookUpPresenter(IPriceListLookUpView view, PriceListRepository priceListRepository) {
-            _priceListRepository = priceListRepository;
-            _priceListRetriever = new PriceListRetriever(_priceListRepository);
-            _cache = new Cache<PriceList>(_priceListRetriever, 10);
+        public PriceListLookUpPresenter(IPriceListLookUpView view, SqLiteUnitOfWork unitOfWork) {
+            _unitOfWork = unitOfWork;
             _view = view;
-        }
-
-        public void InitializeView()
-        {
-            _view.SetItemCount(_priceListRetriever.Count);
         }
 
         private PriceList _selectedPriceList;
@@ -50,11 +43,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             throw new NoSelectedItemsException();
         }
 
-        public void Search(string criteria)
-        {
-            _priceListRetriever.SearchCriteria = criteria;
+        public void Search(string criteria) {
+            _searchCriteria = criteria;
+        }
+
+        private string _searchCriteria;
+        public int InitializeList() {
+
+            _priceListRetriever = new PriceListRetriever(new PriceListRepository(_unitOfWork));
+            if (!string.IsNullOrEmpty(_searchCriteria))
+                _priceListRetriever.SearchCriteria = _searchCriteria;
+
             _cache = new Cache<PriceList>(_priceListRetriever, 10);
-            _view.SetItemCount(_priceListRetriever.Count);
+            return _priceListRetriever.Count;
         }
     }
 }

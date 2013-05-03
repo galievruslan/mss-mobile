@@ -53,33 +53,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerListBox.cs">
+    <Compile Include="ListBoxItems\RouteListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListBoxItems\CustomerListBoxItem.cs" />
-    <Compile Include="ListBoxItems\OrderItemListBoxItem.cs" />
-    <Compile Include="ListBoxItems\PriceListListBoxItem.cs" />
-    <Compile Include="ListBoxItems\ProductPriceListBoxItem.cs" />
+    <Compile Include="RouteListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBoxItems\RoutePointListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListBoxItems\ShippingAddressListBoxItem.cs" />
-    <Compile Include="ListBoxItems\WarehouseListBoxItem.cs" />
-    <Compile Include="OrderItemListBox.cs" />
-    <Compile Include="PriceListListBox.cs" />
-    <Compile Include="ProductPriceListBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutePointListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ShippingAddressListBox.cs" />
-    <Compile Include="WarehouseListBox.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ListBoxItems\RoutePointListBoxItem.resx">
-      <DependentUpon>RoutePointListBoxItem.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.Base.csproj">
@@ -93,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RoutePointViewModel.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

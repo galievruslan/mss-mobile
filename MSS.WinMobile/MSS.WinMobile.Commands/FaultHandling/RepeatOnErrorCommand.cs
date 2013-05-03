@@ -28,6 +28,7 @@ namespace MSS.WinMobile.Synchronizer.FaultHandling
 
                 try {
                     _command.Execute();
+                    return;
                 }
                 catch (Exception exception) {
                     Log.Error(string.Format("Excecution try #{0} failed", tryNo), exception);

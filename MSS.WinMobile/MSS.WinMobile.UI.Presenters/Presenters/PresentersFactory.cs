@@ -20,5 +20,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public RoutePresenter CreateRoutePresenter(IRouteView routeView) {
             return new RoutePresenter(routeView, _sqLiteDatabase.UnitOfWork);
         }
+
+        public RouteListPresenter CreateRouteListPresenter(IRouteListView routeView) {
+            return new RouteListPresenter(routeView, _sqLiteDatabase.UnitOfWork);
+        }
     }
 }

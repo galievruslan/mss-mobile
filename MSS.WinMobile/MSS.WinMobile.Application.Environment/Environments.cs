@@ -8,7 +8,7 @@ namespace MSS.WinMobile.Application.Environment
         public static string AppPath {
             get {
                 return Path.GetDirectoryName(
-                    Assembly.GetExecutingAssembly().GetName().CodeBase);
+                    Assembly.GetExecutingAssembly().GetName().CodeBase) + '/';
             }
         }
     }

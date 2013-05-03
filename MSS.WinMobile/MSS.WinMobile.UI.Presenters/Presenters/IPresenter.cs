@@ -1,6 +1,8 @@
-﻿namespace MSS.WinMobile.UI.Presenters.Presenters
+﻿using MSS.WinMobile.UI.Presenters.ViewModels;
+
+namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public interface IPresenter
-    {
+    public interface IPresenter<TViewModel> where TViewModel : ViewModel {
+        TViewModel Initialize();
     }
 }
