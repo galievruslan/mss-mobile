@@ -1,19 +1,21 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class StatusRepository : SqLiteRepository<Status>
-    {
-        public StatusRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class StatusStorageRepository : SqLiteStorageRepository<Status> {
+        private readonly ISpecificationTranslator<Status> _specificationTranslator;
+        internal StatusStorageRepository(IStorage storage, ISpecificationTranslator<Status> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<Status> GetQueryObject()
         {
-            return new StatusQueryObject(UnitOfWork, new StatusDataRecordTranslator());
+            return new StatusQueryObject(Storage, _specificationTranslator, new StatusDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Statuses (Id, Name) VALUES ({0}, '{1}')";

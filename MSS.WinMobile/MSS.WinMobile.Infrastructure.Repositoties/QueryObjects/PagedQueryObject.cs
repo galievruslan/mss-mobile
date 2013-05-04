@@ -1,26 +1,29 @@
-﻿using System.Data;
-using System.Data.SQLite;
-using System.Text;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using System.Text;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 {
-    public class PagedQueryObject<T> : OrderedQueryObject<T> where T : IModel
-    {
+    public class PagedQueryObject<TModel> : QueryObject<TModel>, IPagedQueryObject<TModel> where TModel : IModel {
+        private readonly string _innerQuery;
         public int CountToSkip { get; protected set; }
         public int CountToTake { get; protected set; }
 
-        public PagedQueryObject(IQueryObject<T, string, SQLiteConnection, IDataReader> queryObject, string orderByField, OrderDirection orderDirection, int countToSkip, int countToTake)
-            :base(queryObject, orderByField, orderDirection)
-        {
+        public PagedQueryObject(IStorage storage,
+                                ISpecificationTranslator<TModel> specificationTranslator,
+                                DataRecordTranslator<TModel> translator, string innerQuery,
+                                int countToSkip, int countToTake)
+            : base(storage, specificationTranslator, translator) {
+            _innerQuery = innerQuery;
             CountToSkip = countToSkip;
             CountToTake = countToTake;
         }
 
-        public override string AsQuery()
+        protected override string AsQuery()
         {
             var queryStringBuilder = new StringBuilder();
-            queryStringBuilder.Append(string.Format("{0} LIMIT {1} OFFSET {2}", InnerQueryObject.AsQuery(), CountToTake, CountToSkip));
+            queryStringBuilder.Append(string.Format("{0} LIMIT {1} OFFSET {2}", _innerQuery, CountToTake, CountToSkip));
             return queryStringBuilder.ToString();
         }
     }

@@ -46,14 +46,6 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.SmartDevice.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -75,25 +67,21 @@
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
-      <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
-      <Name>MSS.WinMobile.Application.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj">
-      <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
-      <Name>MSS.WinMobile.Application.Environment</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Storage.csproj">
       <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+      <Name>MSS.WinMobile.Infrastructure.Storage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.SqliteRepositoties.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.Sqlite.Repositoties.csproj">
       <Project>{4EAE738D-0090-4586-87FD-AD350C79D658}</Project>
-      <Name>MSS.WinMobile.Infrastructure.SqliteRepositoties</Name>
+      <Name>MSS.WinMobile.Infrastructure.Sqlite.Repositoties</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.SqliteSpecificationsTranslators\MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators.csproj">
+      <Project>{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tests.Helpers\Tests.Helpers.csproj">
       <Project>{293EF82F-E089-44D1-863B-46304DE208BB}</Project>

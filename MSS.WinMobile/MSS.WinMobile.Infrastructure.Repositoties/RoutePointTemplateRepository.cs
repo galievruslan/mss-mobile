@@ -1,19 +1,21 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class RoutePointTemplateRepository : SqLiteRepository<RoutePointTemplate>
-    {
-        public RoutePointTemplateRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class RoutePointTemplateStorageRepository : SqLiteStorageRepository<RoutePointTemplate> {
+        private readonly ISpecificationTranslator<RoutePointTemplate> _specificationTranslator;
+        internal RoutePointTemplateStorageRepository(IStorage storage, ISpecificationTranslator<RoutePointTemplate> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<RoutePointTemplate> GetQueryObject()
         {
-            return new RoutePointTemplateQueryObject(UnitOfWork, new RoutePointTemplateDataRecordTranslator());
+            return new RoutePointTemplateQueryObject(Storage, _specificationTranslator, new RoutePointTemplateDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RoutePointTemplates (Id, RouteTemplate_Id, ShippingAddress_Id) VALUES ({0}, {1}, {2})";

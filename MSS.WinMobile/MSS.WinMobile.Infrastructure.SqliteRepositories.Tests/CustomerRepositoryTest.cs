@@ -1,6 +1,8 @@
-﻿using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
+﻿using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
+using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
+using MSS.WinMobile.Infrastructure.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Helpers;
 
@@ -13,8 +15,8 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
     [TestClass]
     public class CustomerRepositoryTest
     {
-        private static SqLiteDatabase _sqliteDtabase;
-        private static SqLiteUnitOfWork _unitOfWork;
+        private IStorage _sqliteDtabase;
+        private RepositoryFactory _repositoryFactory;
 
         #region Additional test attributes
         // 
@@ -40,8 +42,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            _sqliteDtabase = SqLiteDatabase.CreateInMemoryDatabase(databaseScriptFullPath);
-            _unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase);
+            var storageManager = new SqLiteStorageManager();
+
+            _sqliteDtabase = storageManager.InitializeInMemoryStorage(databaseScriptFullPath);
+            _repositoryFactory = new RepositoryFactory(_sqliteDtabase);
+            _repositoryFactory.RegisterSpecificationTranslator(new CommonTranslator<Customer>())
+                             .RegisterSpecificationTranslator(new ShippingAddressSpecTranslator());
         }
         
         //Use TestCleanup to run code after each test has run
@@ -54,46 +60,59 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         #endregion
 
         [TestMethod]
-        public void SaveTest()
-        {
-            var customerRepository = new CustomerRepository(_unitOfWork);
-            var shippingAddressRepository = new ShippingAddressRepository(_unitOfWork);
-            var customer = new CustomerProxy(shippingAddressRepository)
-                {
+        public void SaveTest() {
+            using (var unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase)) {
+                var customerRepository = _repositoryFactory.CreateRepository<Customer>();
+                var shippingAddressRepository =
+                    _repositoryFactory.CreateRepository<ShippingAddress>();
+                var customer = new CustomerProxy(shippingAddressRepository) {
                     Id = 1,
                     Name = "Test User"
                 };
-            customerRepository.Save(customer);
-            const int expectedCount = 1;
-            int actualCount = customerRepository.Find().GetCount();
-            Assert.AreEqual(expectedCount, actualCount);
 
-            const string expectedCustomerName = "ModyfiedName";
-            customer.Name = expectedCustomerName;
-            customerRepository.Save(customer);
-            string actualName = customerRepository.GetById(customer.Id).Name;
-            Assert.AreEqual(expectedCustomerName, actualName);
+                unitOfWork.BeginTransaction();
+                customerRepository.Save(customer);
+                unitOfWork.Commit();
+                const int expectedCount = 1;
+                int actualCount = customerRepository.Find().Count();
+                Assert.AreEqual(expectedCount, actualCount);
+
+                const string expectedCustomerName = "ModyfiedName";
+                customer.Name = expectedCustomerName;
+                unitOfWork.BeginTransaction();
+                customerRepository.Save(customer);
+                unitOfWork.Commit();
+                string actualName = customerRepository.GetById(customer.Id).Name;
+                Assert.AreEqual(expectedCustomerName, actualName);
+            }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            var customerRepository = new CustomerRepository(_unitOfWork);
-            var shippingAddressRepository = new ShippingAddressRepository(_unitOfWork);
-            var customer = new CustomerProxy(shippingAddressRepository)
-                {
+            using (var unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase)) {
+                var customerRepository = _repositoryFactory.CreateRepository<Customer>();
+                var shippingAddressRepository =
+                    _repositoryFactory.CreateRepository<ShippingAddress>();
+                
+                var customer = new CustomerProxy(shippingAddressRepository) {
                     Id = 1,
                     Name = "Test User"
                 };
-            customerRepository.Save(customer);
-            int expectedCount = 1;
-            int actualCount = customerRepository.Find().GetCount();
-            Assert.AreEqual(expectedCount, actualCount);
+                unitOfWork.BeginTransaction();
+                customerRepository.Save(customer);
+                unitOfWork.Commit();
+                int expectedCount = 1;
+                int actualCount = customerRepository.Find().Count();
+                Assert.AreEqual(expectedCount, actualCount);
 
-            customerRepository.Delete(customer);
-            expectedCount = 0;
-            actualCount = customerRepository.Find().GetCount();
-            Assert.AreEqual(expectedCount, actualCount);
+                unitOfWork.BeginTransaction();
+                customerRepository.Delete(customer);
+                unitOfWork.Commit();
+                expectedCount = 0;
+                actualCount = customerRepository.Find().Count();
+                Assert.AreEqual(expectedCount, actualCount);
+            }
         }
     }
 }

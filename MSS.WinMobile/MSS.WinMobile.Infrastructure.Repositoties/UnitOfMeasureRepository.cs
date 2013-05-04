@@ -1,19 +1,21 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class UnitOfMeasureRepository : SqLiteRepository<UnitOfMeasure>
-    {
-        public UnitOfMeasureRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class UnitOfMeasureStorageRepository : SqLiteStorageRepository<UnitOfMeasure> {
+        private readonly ISpecificationTranslator<UnitOfMeasure> _specificationTranslator;
+        internal UnitOfMeasureStorageRepository(IStorage storage, ISpecificationTranslator<UnitOfMeasure> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<UnitOfMeasure> GetQueryObject()
         {
-            return new UnitOfMeasureQueryObject(UnitOfWork, new UnitOfMeasureDataRecordTranslator());
+            return new UnitOfMeasureQueryObject(Storage, _specificationTranslator, new UnitOfMeasureDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO UnitsOfMeasure (Id, Name) VALUES ({0}, '{1}')";

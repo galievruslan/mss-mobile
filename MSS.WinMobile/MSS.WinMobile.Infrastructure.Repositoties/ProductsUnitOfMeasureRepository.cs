@@ -1,22 +1,21 @@
 ﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class ProductsUnitOfMeasureRepository : SqLiteRepository<ProductsUnitOfMeasure>
-    {
-        public ProductsUnitOfMeasureRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class ProductsUnitOfMeasureStorageRepository : SqLiteStorageRepository<ProductsUnitOfMeasure> {
+        private readonly ISpecificationTranslator<ProductsUnitOfMeasure> _specificationTranslator;
+        internal ProductsUnitOfMeasureStorageRepository(IStorage storage, ISpecificationTranslator<ProductsUnitOfMeasure> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
-
 
         protected override QueryObject<ProductsUnitOfMeasure> GetQueryObject()
         {
-            return new ProductsUnitOfMeasureQueryObject(UnitOfWork, new ProductsUnitOfMeasureDataRecordTranslator());
+            return new ProductsUnitOfMeasureQueryObject(Storage, _specificationTranslator, new ProductsUnitOfMeasureDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO ProductsUnitOfMeasures (Id, Product_Id, UnitOfMeasure_Id, Base) VALUES ({0}, {1}, {2}, {3})";

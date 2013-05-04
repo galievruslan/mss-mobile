@@ -1,19 +1,23 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class RouteTemplateRepository : SqLiteRepository<RouteTemplate>
-    {
-        public RouteTemplateRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class RouteTemplateStorageRepository : SqLiteStorageRepository<RouteTemplate> {
+        private readonly ISpecificationTranslator<RouteTemplate> _specificationTranslator;
+        private readonly IRepositoryFactory _repositoryFactory;
+        internal RouteTemplateStorageRepository(IStorage storage, ISpecificationTranslator<RouteTemplate> specificationTranslator, IRepositoryFactory repositoryFactory)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
+            _repositoryFactory = repositoryFactory;
         }
 
         protected override QueryObject<RouteTemplate> GetQueryObject()
         {
-            return new RouteTemplateQueryObject(UnitOfWork, new RouteTemplateDataRecordTranslator());
+            return new RouteTemplateQueryObject(Storage, _specificationTranslator, new RouteTemplateDataRecordTranslator(_repositoryFactory));
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RouteTemplates (Id, DayOfWeek) VALUES ({0}, {1})";

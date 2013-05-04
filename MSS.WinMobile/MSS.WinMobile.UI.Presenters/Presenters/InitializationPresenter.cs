@@ -33,17 +33,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         #endregion
 
+        private BackgroundWorker _backgroundWorker;
         public void InitializeView()
         {
-            var backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += BackgroundWorkerDoWork;
-            backgroundWorker.RunWorkerCompleted += BackgroundWorkerRunWorkerCompleted;
-            backgroundWorker.RunWorkerAsync();
+            _backgroundWorker = new BackgroundWorker();
+            _backgroundWorker.DoWork += BackgroundWorkerDoWork;
+            _backgroundWorker.RunWorkerCompleted += BackgroundWorkerRunWorkerCompleted;
+            _backgroundWorker.RunWorkerAsync();
         }
 
         void BackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             _view.CloseView();
+            _backgroundWorker.Dispose();
         }
 
         void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)

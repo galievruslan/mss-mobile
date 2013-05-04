@@ -70,8 +70,14 @@ namespace MSS.WinMobile.UI.Views
             return DialogViewResult.Cancel;
         }
 
+        private delegate void CloseDelegate();
         public void CloseView() {
-            Close();
+            if (InvokeRequired) {
+                Invoke(new CloseDelegate(CloseView));
+            }
+            else {
+                Close();
+            }
         }
 
         public void DisplayErrors(string error) {

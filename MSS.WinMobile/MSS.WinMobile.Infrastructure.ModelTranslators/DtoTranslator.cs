@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.ModelTranslators
+﻿namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
 {
     public abstract class DtoTranslator<TModel, TDto> : ITranslator<TModel, TDto>
     {

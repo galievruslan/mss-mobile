@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public interface IListPresenter {
-        int InitializeList();
+    public interface IListPresenter<TViewModel> where TViewModel : ViewModel {
+        int InitializeListSize();
+        TViewModel GetItem(int index);
     }
 }

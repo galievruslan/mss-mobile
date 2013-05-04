@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using MSS.WinMobile.Application.Environment;
-using MSS.WinMobile.Infrastructure.WebRepositories;
+using MSS.WinMobile.Infrastructure.Web.Repositories;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -24,8 +24,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
             if (_viewModel.Validate()) {
                 try {
-                    var webServer = new WebServer(_viewModel.ServerAddress);
-                    using (new WebConnectionFactory(webServer, _viewModel.Username, _viewModel.Password)) {
+                    using (new WebServer(_viewModel.ServerAddress, _viewModel.Username, _viewModel.Password).Connect()) {
                         _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value =
                             _viewModel.Username;
                         _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value =

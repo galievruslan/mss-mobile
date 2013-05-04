@@ -1,16 +1,16 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 {
     public class OrderQueryObject : QueryObject<Order>
     {
-        public OrderQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Order, IDataReader> translator)
-            : base(connectionFactory, translator)
-        {
-        }
+        public OrderQueryObject(IStorage storage,
+                                ISpecificationTranslator<Order> specificationTranslator,
+                                DataRecordTranslator<Order> translator)
+            : base(storage, specificationTranslator, translator) {}
 
         private const string SelectQuery =
             "SELECT orders.Id, orders.RoutePoint_Id, orders.OrderDate, orders.ShippingDate, " +
@@ -21,7 +21,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
             " Left join Customers customers on  shipping_addresses.[Customer_Id] = customers.[Id] " +
             " Left join PriceLists priceLists on orders.[PriceList_Id] = priceLists.[Id] " +
             " Left join Warehouses warehouses on orders.[Warehouse_Id] = warehouses.[Id]";
-        public override string AsQuery()
+        protected override string AsQuery()
         {
             return SelectQuery;
         }

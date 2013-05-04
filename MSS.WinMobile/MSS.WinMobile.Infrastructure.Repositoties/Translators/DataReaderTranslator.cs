@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using MSS.WinMobile.Infrastructure.Data;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
 {
-    public abstract class DataRecordTranslator<TModel> : ITranslator<TModel, IDataReader>
+    public abstract class DataRecordTranslator<TModel>
     {
         public TModel[] Translate(IDataReader queryResult)
         {

@@ -1,6 +1,6 @@
 ﻿using MSS.WinMobile.Domain.Models;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
     public class RoutePointTemplateProxy : RoutePointTemplate
     {

@@ -1,20 +1,18 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
+﻿using MSS.WinMobile.Infrastructure.Web.QueryObjects;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories
+namespace MSS.WinMobile.Infrastructure.Web.Repositories
 {
-    public class WebRepository<T> : ISearchRepository<T, IDictionary<string, object>, WebConnection, string> where T : Dto
-    {
-        private readonly WebConnectionFactory _webConnectionFactory;
+    public class WebRepository<T> : IWebRepository<T> where T : Dto {
+        private readonly IWebServer _webServer;
 
-        public WebRepository(WebConnectionFactory webConnectionFactory) {
-            _webConnectionFactory = webConnectionFactory;
+        public WebRepository(IWebServer webServer) {
+            _webServer = webServer;
         }
 
-        public IQueryObject<T, IDictionary<string, object>, WebConnection, string> Find()
+        public IQueryObject<T> Find()
         {
-            return new WebQueryObject<T>(_webConnectionFactory);
+            return new WebQueryObject<T>(_webServer);
         }
     }
 }

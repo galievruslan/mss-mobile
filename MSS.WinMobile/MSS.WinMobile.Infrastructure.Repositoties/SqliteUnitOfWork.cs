@@ -1,49 +1,27 @@
 ﻿using System;
 using System.Data;
-using System.Data.SQLite;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Storage;
 using log4net;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class SqLiteUnitOfWork : IUnitOfWork, IDisposable, IConnectionFactory<SQLiteConnection>
+    public class SqLiteUnitOfWork : IUnitOfWork, IDisposable
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteUnitOfWork));
 
-        private readonly SqLiteDatabase _sqLiteDatabase;
-        public SqLiteUnitOfWork(SqLiteDatabase sqLiteDatabase) {
-            _sqLiteDatabase = sqLiteDatabase;
-        }
-
-        private SQLiteConnection _connection;
-        public SQLiteConnection CurrentConnection
-        {
-            get
-            {
-                if (_connection == null)
-                {
-                    _connection =
-                        new SQLiteConnection(_sqLiteDatabase.ConnectionString);
-                    Log.Debug("Connection object is null, so new one created");
-                }
-
-                if (_connection.State != ConnectionState.Open)
-                {
-                    _connection.Open();
-                }
-
-                return _connection;
-            }
+        private readonly IStorage _storage;
+        public SqLiteUnitOfWork(IStorage storage) {
+            _storage = storage;
         }
 
         public bool InTransaction {
             get { return _transaction != null; }
         }
 
-        private SQLiteTransaction _transaction;
+        private IDbTransaction _transaction;
         public void BeginTransaction()
         {
-            _transaction = CurrentConnection.BeginTransaction();
+            _transaction = _storage.Connect().BeginTransaction();
         }
 
         public void Commit()
@@ -72,8 +50,17 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
         }
 
         public void Dispose() {
-            if (_connection != null)
-                _connection.Dispose();
+            if (_transaction != null) {
+                try {
+                    _transaction.Rollback();
+                }
+                catch (Exception exception) {
+                    Log.Error(exception);
+                }
+                finally {
+                    _transaction.Dispose();
+                }
+            }
         }
     }
 }

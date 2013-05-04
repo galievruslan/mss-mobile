@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+namespace MSS.WinMobile.Infrastructure.Web.Repositories.Dtos
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class UrlAttribute : Attribute

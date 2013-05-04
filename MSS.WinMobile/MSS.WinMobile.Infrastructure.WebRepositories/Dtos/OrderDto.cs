@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+namespace MSS.WinMobile.Infrastructure.Web.Repositories.Dtos
 {
-    [UrlAttribute("synchronization/orders.json")]
+    [Url("synchronization/orders.json")]
     public class OrderDto : Dto
     {
         public OrderDto()

@@ -1,28 +1,26 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+﻿using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class ShippingAddressLookUpPresenter : IListPresenter
+    public class ShippingAddressLookUpPresenter : IListPresenter<ShippingAddressViewModel>
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IShippingAddressLookUpView _view;
-        private readonly CustomerRepository _customerRepository;
-        private readonly ShippingAddressRepository _shippingAddressRepository;
+        private readonly IRepositoryFactory _repositoryFactory;
         private readonly IDataPageRetriever<ShippingAddress> _shippingAddressRetriever;
         private readonly Cache<ShippingAddress> _cache;
 
-        public ShippingAddressLookUpPresenter(IShippingAddressLookUpView view, CustomerRepository customerRepository, ShippingAddressRepository shippingAddressRepository, int customerId) {
-            _customerRepository = customerRepository;
-            _shippingAddressRepository = shippingAddressRepository;
-            _shippingAddressRetriever = new ShippingAddressRetriever(_shippingAddressRepository,
-                                                                     _customerRepository.GetById(customerId));
+        public ShippingAddressLookUpPresenter(IShippingAddressLookUpView view, IRepositoryFactory repositoryFactory, int customerId) {
+            _repositoryFactory = repositoryFactory;
+            var customerRepository = _repositoryFactory.CreateRepository<Customer>();
+            _shippingAddressRetriever = new ShippingAddressRetriever(customerRepository.GetById(customerId));
             _cache = new Cache<ShippingAddress>(_shippingAddressRetriever, 10);
             _view = view;
         }
@@ -34,12 +32,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _selectedShippingAddress = _cache.RetrieveElement(index);
         }
 
-        public IDictionary<string, string> GetItemData(int index)
-        {
-            ShippingAddress item = _cache.RetrieveElement(index);
-            return new Dictionary<string, string> { { "Address", item.Address } };
-        }
-
         public int GetSelectedItemId()
         {
             if (_selectedShippingAddress != null)
@@ -48,8 +40,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             throw new NoSelectedItemsException();
         }
 
-        public int InitializeList() {
+        public int InitializeListSize() {
             return _shippingAddressRetriever.Count;
+        }
+
+        public ShippingAddressViewModel GetItem(int index) {
+            ShippingAddress item = _cache.RetrieveElement(index);
+            return new ShippingAddressViewModel {
+                Name = item.Name,
+                Address = item.Address
+            };
         }
     }
 }

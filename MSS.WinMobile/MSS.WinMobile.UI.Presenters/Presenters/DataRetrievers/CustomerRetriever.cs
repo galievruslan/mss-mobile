@@ -1,30 +1,30 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class CustomerRetriever : IDataPageRetriever<Customer> {
 
-        private readonly CustomerRepository _customerRepository;
+        private readonly CustomerStorageRepository _customerStorageRepository;
 
-        public CustomerRetriever(CustomerRepository customerRepository) {
-            _customerRepository = customerRepository;
+        public CustomerRetriever(CustomerStorageRepository customerStorageRepository) {
+            _customerStorageRepository = customerStorageRepository;
         }
 
         public int Count {
             get {
-                return _customerRepository.Find().GetCount();
+                return _customerStorageRepository.Find().Count();
             }
         }
 
         public Customer[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
         {
             return
-                _customerRepository.Find()
+                _customerStorageRepository.Find()
                         .OrderBy("Name", OrderDirection.Asceding)
-                        .Page(lowerPageBoundary, rowsPerPage)
+                        .Paged(lowerPageBoundary, rowsPerPage)
                         .ToArray();
         }
     }

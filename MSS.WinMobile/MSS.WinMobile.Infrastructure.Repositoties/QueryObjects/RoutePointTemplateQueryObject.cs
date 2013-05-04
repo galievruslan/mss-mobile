@@ -1,19 +1,19 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 {
     public class RoutePointTemplateQueryObject : QueryObject<RoutePointTemplate>
     {
-        public RoutePointTemplateQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<RoutePointTemplate, IDataReader> translator)
-            : base(connectionFactory, translator)
-        {
-        }
+        public RoutePointTemplateQueryObject(IStorage storage,
+                                             ISpecificationTranslator<RoutePointTemplate> specificationTranslator,
+                                             DataRecordTranslator<RoutePointTemplate> translator)
+            : base(storage, specificationTranslator, translator) {}
 
         private const string SelectQuery = "SELECT Id, RouteTemplate_Id, ShippingAddress_Id FROM RoutePointTemplates";
-        public override string AsQuery()
+        protected override string AsQuery()
         {
             return SelectQuery;
         }

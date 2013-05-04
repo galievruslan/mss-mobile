@@ -1,19 +1,19 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 {
     public class ShippingAddressQueryObject : QueryObject<ShippingAddress>
     {
-        public ShippingAddressQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<ShippingAddress, IDataReader> translator)
-            : base(connectionFactory, translator)
-        {
-        }
+        public ShippingAddressQueryObject(IStorage storage,
+                                          ISpecificationTranslator<ShippingAddress> specificationTranslator,
+                                          DataRecordTranslator<ShippingAddress> translator)
+            : base(storage, specificationTranslator, translator) {}
 
         private const string SelectQuery = "SELECT Id, Name, Address, Customer_Id, Mine FROM ShippingAddresses";
-        public override string AsQuery()
+        protected override string AsQuery()
         {
             return SelectQuery;
         }

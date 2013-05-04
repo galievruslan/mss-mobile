@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Storage;
 
 namespace MSS.WinMobile.Domain.Models
 {

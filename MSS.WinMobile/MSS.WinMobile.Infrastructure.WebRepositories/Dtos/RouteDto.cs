@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+namespace MSS.WinMobile.Infrastructure.Web.Repositories.Dtos
 {
-    [UrlAttribute("synchronization/routes.json")]
+    [Url("synchronization/routes.json")]
     public class RouteDto : Dto
     {
         public RouteDto()

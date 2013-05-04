@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
 {
     public class ProductsUnitOfMeasureDataRecordTranslator : DataRecordTranslator<ProductsUnitOfMeasure>
     {

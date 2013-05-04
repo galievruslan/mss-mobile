@@ -1,20 +1,22 @@
-﻿using System.Globalization;
+﻿using System.Data.SQLite;
+using System.Globalization;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class OrderItemRepository : SqLiteRepository<OrderItem>
-    {
-        public OrderItemRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class OrderItemStorageRepository : SqLiteStorageRepository<OrderItem> {
+        private readonly ISpecificationTranslator<OrderItem> _specificationTranslator;
+        internal OrderItemStorageRepository(IStorage storage, ISpecificationTranslator<OrderItem> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<OrderItem> GetQueryObject()
         {
-            return new OrderItemQueryObject(UnitOfWork, new OrderItemDataRecordTranslator());
+            return new OrderItemQueryObject(Storage, _specificationTranslator, new OrderItemDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate =

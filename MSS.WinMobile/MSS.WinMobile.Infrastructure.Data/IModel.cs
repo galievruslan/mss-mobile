@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.Data
+﻿namespace MSS.WinMobile.Infrastructure.Storage
 {
     public interface IModel
     {

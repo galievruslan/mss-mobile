@@ -1,19 +1,21 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class ProductsPriceRepository : SqLiteRepository<ProductsPrice>
-    {
-        public ProductsPriceRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class ProductsPriceStorageRepository : SqLiteStorageRepository<ProductsPrice> {
+        private readonly ISpecificationTranslator<ProductsPrice> _specificationTranslator;
+        internal ProductsPriceStorageRepository(IStorage storage, ISpecificationTranslator<ProductsPrice> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<ProductsPrice> GetQueryObject()
         {
-            return new ProductsPriceQueryObject(UnitOfWork, new ProductsPriceDataRecordTranslator());
+            return new ProductsPriceQueryObject(Storage, _specificationTranslator, new ProductsPriceDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO ProductsPrices (Id, Product_Id, PriceList_Id, Price) VALUES ({0}, {1}, {2}, {3})";

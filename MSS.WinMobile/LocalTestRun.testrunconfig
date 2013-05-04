@@ -2,7 +2,7 @@
 <TestRunConfiguration name="Local Test Run" id="6b89122c-2e10-4d66-a08b-fd236d6b72b0" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
   <Description>This is a default test run configuration for a local test run.</Description>
   <Deployment>
-    <DeploymentItem filename="MSS.WinMobile.Resources\bin\Debug\Resources\Database\schema.sql" />
+    <DeploymentItem filename="MSS.WinMobile.Application\Resources\Database\schema.sql" />
     <DeploymentItem filename="Packages\Sqlite\SQLite.Interop.084.dll" />
   </Deployment>
   <Hosts type="Smart Device">

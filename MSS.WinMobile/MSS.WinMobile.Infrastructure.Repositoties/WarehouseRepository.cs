@@ -1,19 +1,21 @@
-﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+﻿using System.Data.SQLite;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class WarehouseRepository : SqLiteRepository<Warehouse>
-    {
-        public WarehouseRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class WarehouseStorageRepository : SqLiteStorageRepository<Warehouse> {
+        private readonly ISpecificationTranslator<Warehouse> _specificationTranslator;
+        internal WarehouseStorageRepository(IStorage storage, ISpecificationTranslator<Warehouse> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<Warehouse> GetQueryObject()
         {
-            return new WarehouseQueryObject(UnitOfWork, new WarehouseDataRecordTranslator());
+            return new WarehouseQueryObject(Storage, _specificationTranslator, new WarehouseDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Warehouses (Id, Address) VALUES ({0}, '{1}')";

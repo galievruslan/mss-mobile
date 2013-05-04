@@ -1,19 +1,19 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 {
     public class UnitOfMeasureQueryObject : QueryObject<UnitOfMeasure>
     {
-        public UnitOfMeasureQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<UnitOfMeasure, IDataReader> translator)
-            : base(connectionFactory, translator)
-        {
-        }
+        public UnitOfMeasureQueryObject(IStorage storage,
+                                        ISpecificationTranslator<UnitOfMeasure> specificationTranslator,
+                                        DataRecordTranslator<UnitOfMeasure> translator)
+            : base(storage, specificationTranslator, translator) {}
 
         private const string SelectQuery = "SELECT Id, Name FROM UnitsOfMeasure";
-        public override string AsQuery()
+        protected override string AsQuery()
         {
             return SelectQuery;
         }

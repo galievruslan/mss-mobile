@@ -4,11 +4,11 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
+namespace MSS.WinMobile.Infrastructure.Web.Repositories.Utilites
 {
     public static class RequestFactory
     {
-        public static HttpWebRequest CreateGetRequest(WebConnection connection, string path, IDictionary<string, object> parameters)
+        public static HttpWebRequest CreateGetRequest(IWebConnection connection, string path, IDictionary<string, object> parameters)
         {
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append('?');
@@ -24,27 +24,27 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
             return CreateGetRequest(connection, string.Concat(path, queryString));
         }
 
-        public static HttpWebRequest CreateGetRequest(WebConnection connection, string path)
+        public static HttpWebRequest CreateGetRequest(IWebConnection connection, string path)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.WebServer.Address, path));
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.Address, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.GET;
-            webRequest.UserAgent = WebConnection.UserAgent;
-            webRequest.ContentType = WebConnection.ContentType;
+            webRequest.UserAgent = WebConnection.USER_AGENT;
+            webRequest.ContentType = WebConnection.CONTENT_TYPE;
             webRequest.AllowAutoRedirect = false;
             return webRequest;
         }
 
-        public static HttpWebRequest CreatePostRequest(WebConnection connection, string path, IDictionary<string, object> parameters)
+        public static HttpWebRequest CreatePostRequest(IWebConnection connection, string path, IDictionary<string, object> parameters)
         {
-            var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.WebServer.Address, path));
+            var webRequest = (HttpWebRequest)WebRequest.Create(string.Format("{0}//{1}", connection.Address, path));
             webRequest.Headers.Add(CookieContainer.REQUESTHEADER_SESSIONCOOKIE, connection.CookieContainer.Cookie);
             webRequest.Method = WebMethod.POST;
-            webRequest.UserAgent = WebConnection.UserAgent;
-            webRequest.ContentType = WebConnection.ContentType;
+            webRequest.UserAgent = WebConnection.USER_AGENT;
+            webRequest.ContentType = WebConnection.CONTENT_TYPE;
             webRequest.AllowAutoRedirect = false;
 
-            parameters.Add(WebConnection.CsrfTokenParamName, connection.CsrfTokenContainer.CsrfToken);
+            parameters.Add(WebConnection.CSRF_TOKEN_PARAM_NAME, connection.CsrfTokenContainer.CsrfToken);
             string postData = ParseParametersToJson(parameters);
 
             webRequest.AllowWriteStreamBuffering = true;

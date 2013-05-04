@@ -1,4 +1,4 @@
-﻿namespace MSS.WinMobile.Infrastructure.ModelTranslators
+﻿namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
 {
     public interface ITranslator<TDestination, TSource>
     {

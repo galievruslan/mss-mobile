@@ -1,20 +1,23 @@
 ﻿using System.Globalization;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class RouteRepository : SqLiteRepository<Route>
-    {
-        public RouteRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class RouteStorageRepository : SqLiteStorageRepository<Route> {
+        private readonly ISpecificationTranslator<Route> _specificationTranslator;
+        private readonly IRepositoryFactory _repositoryFactory;
+        internal RouteStorageRepository(IStorage storage, ISpecificationTranslator<Route> specificationTranslator, IRepositoryFactory repositoryFactory)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
+            _repositoryFactory = repositoryFactory;
         }
 
         protected override QueryObject<Route> GetQueryObject()
         {
-            return new RouteQueryObject(UnitOfWork, new RouteDataRecordTranslator());
+            return new RouteQueryObject(Storage, _specificationTranslator, new RouteDataRecordTranslator(_repositoryFactory));
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Routes (Id, [Date]) VALUES ({0}, '{1}')";

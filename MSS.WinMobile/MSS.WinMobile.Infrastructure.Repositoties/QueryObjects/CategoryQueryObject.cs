@@ -1,19 +1,19 @@
-﻿using System.Data;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 {
     public class CategoryQueryObject : QueryObject<Category>
     {
-        public CategoryQueryObject(IConnectionFactory<SQLiteConnection> connectionFactory, ITranslator<Category, IDataReader> translator)
-            : base(connectionFactory, translator)
-        {
-        }
+        public CategoryQueryObject(IStorage storage,
+                                   ISpecificationTranslator<Category> specificationTranslator,
+                                   DataRecordTranslator<Category> translator)
+            : base(storage, specificationTranslator, translator) {}
 
         private const string SelectQuery = "SELECT Id, Name, Parent_Id FROM Categories";
-        public override string AsQuery()
+        protected override string AsQuery()
         {
             return SelectQuery;
         }

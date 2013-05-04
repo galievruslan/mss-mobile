@@ -1,21 +1,21 @@
 ﻿using System.Data.SQLite;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Data;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.Translators;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
+using MSS.WinMobile.Infrastructure.Storage;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class ShippingAddressRepository : SqLiteRepository<ShippingAddress>
-    {
-        public ShippingAddressRepository(SqLiteUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
+    public class ShippingAddressStorageRepository : SqLiteStorageRepository<ShippingAddress> {
+        private readonly ISpecificationTranslator<ShippingAddress> _specificationTranslator;
+        internal ShippingAddressStorageRepository(IStorage storage, ISpecificationTranslator<ShippingAddress> specificationTranslator)
+            : base(storage) {
+            _specificationTranslator = specificationTranslator;
         }
 
         protected override QueryObject<ShippingAddress> GetQueryObject()
         {
-            return new ShippingAddressQueryObject(UnitOfWork, new ShippingAddressDataRecordTranslator());
+            return new ShippingAddressQueryObject(Storage, _specificationTranslator, new ShippingAddressDataRecordTranslator());
         }
 
         private const string SaveQueryTemplate =

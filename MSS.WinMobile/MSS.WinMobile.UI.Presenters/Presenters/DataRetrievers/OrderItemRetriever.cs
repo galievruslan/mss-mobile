@@ -1,31 +1,25 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class OrderItemRetriever : IDataPageRetriever<OrderItem> {
-        private readonly OrderItemRepository _orderItemRepository;
         private readonly Order _order;
-        public OrderItemRetriever(OrderItemRepository orderItemRepository, Order order) {
-            _orderItemRepository = orderItemRepository;
+        public OrderItemRetriever(Order order) {
             _order = order;
         }
 
         public int Count
         {
-            get { return _orderItemRepository.Find().Where("Order_Id", new Equals(_order.Id)).GetCount(); }
+            get { return _order.Items.Count(); }
         }
 
-        public OrderItem[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
-        {
+        public OrderItem[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
             return
-                _orderItemRepository.Find().Where("Order_Id", new Equals(_order.Id))
-                         .OrderBy("Id", OrderDirection.Asceding)
-                         .Page(lowerPageBoundary, rowsPerPage)
-                         .ToArray();
+                _order.Items.OrderBy("Id", OrderDirection.Asceding)
+                      .Paged(lowerPageBoundary, rowsPerPage)
+                      .ToArray();
         }
     }
 }

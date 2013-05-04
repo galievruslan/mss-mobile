@@ -1,10 +1,17 @@
 ﻿using System;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
-    public class OrderProxy : Order
-    {
+    public class OrderProxy : Order {
+        private IStorageRepository<OrderItem> _orderItemRepository;
+        public OrderProxy(IStorageRepository<OrderItem> orderItemRepository) {
+            _orderItemRepository = orderItemRepository;
+        }
+
         new public int Id
         {
             get { return base.Id; }
@@ -81,6 +88,13 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
         {
             get { return base.OrderStatus; }
             set { base.OrderStatus = value; }
+        }
+
+        public override IQueryObject<OrderItem> Items {
+            get {
+                var orderItemsSpec = new OrdersItemsSpec(this);
+                return _orderItemRepository.Find().Where(orderItemsSpec);
+            }
         }
     }
 }

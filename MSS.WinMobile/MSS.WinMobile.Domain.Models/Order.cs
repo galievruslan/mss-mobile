@@ -1,8 +1,9 @@
 ﻿using System;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
 namespace MSS.WinMobile.Domain.Models
 {
-    public class Order : Model
+    public abstract class Order : Model
     {
         public int RoutePointId { get; protected set; }
 
@@ -23,6 +24,8 @@ namespace MSS.WinMobile.Domain.Models
 
         public OrderStatus OrderStatus { get; protected set; }
         public string Note { get; set; }
+
+        public abstract IQueryObject<OrderItem> Items { get; }
     }
 
     public enum OrderStatus

@@ -1,8 +1,8 @@
 ﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
-using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.ModelTranslators
+namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
 {
     public class ProductsPriceTranslator : DtoTranslator<ProductsPrice, ProductPriceDto>
     {

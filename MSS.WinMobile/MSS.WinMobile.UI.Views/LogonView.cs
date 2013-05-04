@@ -5,19 +5,25 @@ using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class LogonView : Form, ILogonView
-    {
+    public partial class LogonView : Form, ILogonView {
+        private readonly IPresentersFactory _presentersFactory;
         private LogonPresenter _presenter;
         private LogonViewModel _viewModel;
 
-        public LogonView()
+        // Designer only
+        public LogonView() {
+            InitializeComponent();
+        }
+
+        public LogonView(IPresentersFactory presentersFactory)
         {
             InitializeComponent();
+            _presentersFactory = presentersFactory;
         }
 
         private void ViewLoad(object sender, System.EventArgs e) {
             if (_presenter == null) {
-                _presenter = new LogonPresenter(this);
+                _presenter = _presentersFactory.CreateLogonPresenter(this);
                 _viewModel = _presenter.Initialize();
                 logonViewModelBindingSource.DataSource = _viewModel;
             }

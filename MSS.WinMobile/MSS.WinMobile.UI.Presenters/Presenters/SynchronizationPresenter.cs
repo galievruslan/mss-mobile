@@ -5,10 +5,11 @@ using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.ModelTranslators;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.WebRepositories;
-using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
+using MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Web;
+using MSS.WinMobile.Infrastructure.Web.Repositories;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 using MSS.WinMobile.Synchronizer;
 using MSS.WinMobile.Synchronizer.FaultHandling;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -23,12 +24,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private readonly ConfigurationManager _configurationManager;
         private readonly ISynchronizationView _view;
-        private SqLiteDatabase _sqLiteDatabase;
+        private readonly IStorageManager _storageManager;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepositoryFactory _repositoryFactory;
 
-        public SynchronizationPresenter(ISynchronizationView view, SqLiteDatabase sqLiteDatabase) {
+        public SynchronizationPresenter(ISynchronizationView view, IStorageManager storageManager, IUnitOfWork unitOfWork, IRepositoryFactory repositoryFactory) {
             _configurationManager = new ConfigurationManager(Environments.AppPath);
             _view = view;
-            _sqLiteDatabase = sqLiteDatabase;
+
+            _storageManager = storageManager;
+            _unitOfWork = unitOfWork;
+            _repositoryFactory = repositoryFactory;
         }
 
         private Thread _thread;
@@ -54,34 +60,31 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 var schemaScript =
                     _configurationManager.GetConfig("Common").GetSection("Database").GetSetting("SchemaScript").Value;
 
-            using (
-                var webConnectionFactory = new WebConnectionFactory(new WebServer(serverAddress), username, password)
-                ) {
+                using (IWebServer webServer = new WebServer(serverAddress, username, password)) {
                 if (_viewModel.SynchronizeFully) {
                     Notify(new TextNotification("Clear Database"));
-                    _sqLiteDatabase.UnitOfWork.Dispose();
-                    _sqLiteDatabase.Delete();
+                    _storageManager.DeleteCurrentStorage();
                 }
 
-                DateTime synchronizationDate = webConnectionFactory.CurrentConnection.ServerTime();
+                DateTime synchronizationDate = webServer.Connect().ServerTime();
 
                 // Initialization
                 string databaseScriptFullPath = Environments.AppPath + schemaScript;
                 string databaseFileFullPath = Environments.AppPath + databaseName;
-                _sqLiteDatabase = SqLiteDatabase.CreateOrOpenFileDatabase(databaseFileFullPath,
-                                                                          databaseScriptFullPath);
+                _storageManager.CreateOrOpenStorage(databaseFileFullPath, databaseScriptFullPath);
 
                 Notify(new TextNotification("Start synchronization."));
                 _view.ShowProgressBar();
-                using (var unitOfWork = new SqLiteUnitOfWork(_sqLiteDatabase)) {
+                using (_unitOfWork) {
 
                     try {
                         // Customers synchronization
                         Notify(new TextNotification("Customers synchronization"));
-                        var customerDtoRepository = new WebRepository<CustomerDto>(webConnectionFactory);
-                        var customerSqLiteRepository = new CustomerRepository(unitOfWork);
+                        var customerDtoRepository = new WebRepository<CustomerDto>(webServer);
+                        var customerSqLiteRepository =
+                            _repositoryFactory.CreateRepository<Customer>();
                         DtoTranslator<Customer, CustomerDto> customerTranslator =
-                            new CustomerTranslator(new ShippingAddressRepository(unitOfWork));
+                            new CustomerTranslator(_repositoryFactory);
 
                         Command<CustomerDto, Customer> customerSyncCmd = _viewModel.SynchronizeFully
                                                                              ? new SynchronizationCommand
@@ -89,14 +92,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                    customerDtoRepository,
                                                                                    customerSqLiteRepository,
                                                                                    customerTranslator, 
-                                                                                   unitOfWork,
+                                                                                   _unitOfWork,
                                                                                    bathSize)
                                                                              : new SynchronizationCommand
                                                                                    <CustomerDto, Customer>(
                                                                                    customerDtoRepository,
                                                                                    customerSqLiteRepository,
                                                                                    customerTranslator,
-                                                                                   unitOfWork, 
+                                                                                   _unitOfWork, 
                                                                                    bathSize,
                                                                                    _viewModel
                                                                                        .LastSynchronizationDate);
@@ -107,8 +110,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Shipping addresses synchronization
                         Notify(new TextNotification("Shipping addresses synchronization"));
-                        var shippingAddressDtoRepository = new WebRepository<ShippingAddressDto>(webConnectionFactory);
-                        var shippingAddressSqLiteRepository = new ShippingAddressRepository(unitOfWork);
+                        var shippingAddressDtoRepository = new WebRepository<ShippingAddressDto>(webServer);
+                        var shippingAddressSqLiteRepository =
+                            _repositoryFactory.CreateRepository<ShippingAddress>();
                         DtoTranslator<ShippingAddress, ShippingAddressDto> shippingAddressdTranslator =
                             new ShippingAddressdTranslator();
 
@@ -120,7 +124,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                       shippingAddressDtoRepository,
                                       shippingAddressSqLiteRepository,
                                       shippingAddressdTranslator,
-                                      unitOfWork,
+                                      _unitOfWork,
                                       bathSize)
                                 : new SynchronizationCommand
                                       <ShippingAddressDto,
@@ -128,7 +132,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                       shippingAddressDtoRepository,
                                       shippingAddressSqLiteRepository,
                                       shippingAddressdTranslator,
-                                      unitOfWork,
+                                      _unitOfWork,
                                       bathSize,
                                       _viewModel
                                           .LastSynchronizationDate);
@@ -139,19 +143,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         // My shipping addresses synchronization
                         Notify(new TextNotification("My shipping addresses synchronization"));
                         var myShippingAddressDtoRepository =
-                            new WebRepository<MyShippingAddressDto>(webConnectionFactory);
-                        shippingAddressSqLiteRepository = new ShippingAddressRepository(unitOfWork);
+                            new WebRepository<MyShippingAddressDto>(webServer);
+                        shippingAddressSqLiteRepository =
+                            _repositoryFactory.CreateRepository<ShippingAddress>();
                         Command<MyShippingAddressDto, ShippingAddress> myShippingAddressSyncCmd =
                             _viewModel.SynchronizeFully
                                 ? new MyShippingAddressesSynchronization(
                                       myShippingAddressDtoRepository,
                                       shippingAddressSqLiteRepository,
-                                      unitOfWork,
+                                      _unitOfWork,
                                       bathSize)
                                 : new MyShippingAddressesSynchronization(
                                       myShippingAddressDtoRepository,
                                       shippingAddressSqLiteRepository,
-                                      unitOfWork, 
+                                      _unitOfWork, 
                                       bathSize,
                                       _viewModel.LastSynchronizationDate);
 
@@ -161,20 +166,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Categories synchronization
                         Notify(new TextNotification("Categories synchronization"));
-                        var categoriesDtoRepository = new WebRepository<CategoryDto>(webConnectionFactory);
-                        var categorySqLiteRepository = new CategoryRepository(unitOfWork);
+                        var categoriesDtoRepository = new WebRepository<CategoryDto>(webServer);
+                        var categorySqLiteRepository =
+                            _repositoryFactory.CreateRepository<Category>();
                         DtoTranslator<Category, CategoryDto> categoriesTranslator = new CategoryTranslator();
                         Command<CategoryDto, Category> categoriesSyncCmd = _viewModel.SynchronizeFully
                                                                                ? new CategotiesSynchronization(
                                                                                      categoriesDtoRepository,
                                                                                      categorySqLiteRepository,
                                                                                      categoriesTranslator,
-                                                                                     unitOfWork, bathSize)
+                                                                                     _unitOfWork, bathSize)
                                                                                : new CategotiesSynchronization(
                                                                                      categoriesDtoRepository,
                                                                                      categorySqLiteRepository,
                                                                                      categoriesTranslator,
-                                                                                     unitOfWork, bathSize,
+                                                                                     _unitOfWork, bathSize,
                                                                                      _viewModel.LastSynchronizationDate);
 
                         categoriesSyncCmd = categoriesSyncCmd.RepeatOnError(3, 5000);
@@ -183,8 +189,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Statuses synchronization
                         Notify(new TextNotification("Statuses synchronization"));
-                        var statusDtoRepository = new WebRepository<StatusDto>(webConnectionFactory);
-                        var statusSqLiteRepository = new StatusRepository(unitOfWork);
+                        var statusDtoRepository = new WebRepository<StatusDto>(webServer);
+                        var statusSqLiteRepository =
+                            _repositoryFactory.CreateRepository<Status>();
                         DtoTranslator<Status, StatusDto> statusTranslator = new StatusTranslator();
 
                         Command<StatusDto, Status> statusSyncCommand = _viewModel.SynchronizeFully
@@ -193,13 +200,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                  statusDtoRepository,
                                                                                  statusSqLiteRepository,
                                                                                  statusTranslator,
-                                                                                 unitOfWork, bathSize)
+                                                                                 _unitOfWork, bathSize)
                                                                            : new SynchronizationCommand
                                                                                  <StatusDto, Status>(
                                                                                  statusDtoRepository,
                                                                                  statusSqLiteRepository,
                                                                                  statusTranslator,
-                                                                                 unitOfWork, bathSize,
+                                                                                 _unitOfWork, bathSize,
                                                                                  _viewModel
                                                                                      .LastSynchronizationDate);
 
@@ -209,8 +216,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Warehouses synchronization
                         Notify(new TextNotification("Warehouses synchronization"));
-                        var warehouseDtoRepository = new WebRepository<WarehouseDto>(webConnectionFactory);
-                        var warehouseSqLiteRepository = new WarehouseRepository(unitOfWork);
+                        var warehouseDtoRepository = new WebRepository<WarehouseDto>(webServer);
+                        var warehouseSqLiteRepository =
+                            _repositoryFactory.CreateRepository<Warehouse>();
                         DtoTranslator<Warehouse, WarehouseDto> warehouseTranslator = new WarehouseTranslator();
 
                         Command<WarehouseDto, Warehouse> warehouseSyncCommand = _viewModel.SynchronizeFully
@@ -219,13 +227,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                           warehouseDtoRepository,
                                                                                           warehouseSqLiteRepository,
                                                                                           warehouseTranslator,
-                                                                                          unitOfWork, bathSize)
+                                                                                          _unitOfWork, bathSize)
                                                                                     : new SynchronizationCommand
                                                                                           <WarehouseDto, Warehouse>(
                                                                                           warehouseDtoRepository,
                                                                                           warehouseSqLiteRepository,
                                                                                           warehouseTranslator,
-                                                                                          unitOfWork, bathSize,
+                                                                                          _unitOfWork, bathSize,
                                                                                           _viewModel
                                                                                               .LastSynchronizationDate);
 
@@ -235,9 +243,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Price lists synchronization
                         Notify(new TextNotification("Price lists synchronization"));
-                        var priceListDtoRepository = new WebRepository<PriceListDto>(webConnectionFactory);
-                        var priceListSqLiteRepository = new PriceListRepository(unitOfWork);
-                        DtoTranslator<PriceList, PriceListDto> priceListTranslator = new PriceListTranslator();
+                        var priceListDtoRepository = new WebRepository<PriceListDto>(webServer);
+                        var priceListSqLiteRepository =
+                            _repositoryFactory.CreateRepository<PriceList>();
+                        DtoTranslator<PriceList, PriceListDto> priceListTranslator = new PriceListTranslator(_repositoryFactory);
 
                         Command<PriceListDto, PriceList> priceListSyncCommand = _viewModel.SynchronizeFully
                                                                                     ? new SynchronizationCommand
@@ -245,13 +254,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                           priceListDtoRepository,
                                                                                           priceListSqLiteRepository,
                                                                                           priceListTranslator,
-                                                                                          unitOfWork, bathSize)
+                                                                                          _unitOfWork, bathSize)
                                                                                     : new SynchronizationCommand
                                                                                           <PriceListDto, PriceList>(
                                                                                           priceListDtoRepository,
                                                                                           priceListSqLiteRepository,
                                                                                           priceListTranslator,
-                                                                                          unitOfWork, bathSize,
+                                                                                          _unitOfWork, bathSize,
                                                                                           _viewModel
                                                                                               .LastSynchronizationDate);
 
@@ -261,8 +270,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // UnitOfMeasures synchronization
                         Notify(new TextNotification("UnitOfMeasures synchronization"));
-                        var unitOfMeasureDtoRepository = new WebRepository<UnitOfMeasureDto>(webConnectionFactory);
-                        var unitOfMeasureSqLiteRepository = new UnitOfMeasureRepository(unitOfWork);
+                        var unitOfMeasureDtoRepository = new WebRepository<UnitOfMeasureDto>(webServer);
+                        var unitOfMeasureSqLiteRepository =
+                            _repositoryFactory.CreateRepository<UnitOfMeasure>();
                         DtoTranslator<UnitOfMeasure, UnitOfMeasureDto> unitOfMeasureTranslator =
                             new UnitOfMeasureTranslator();
 
@@ -273,7 +283,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                       unitOfMeasureDtoRepository,
                                                                                                       unitOfMeasureSqLiteRepository,
                                                                                                       unitOfMeasureTranslator,
-                                                                                                      unitOfWork,
+                                                                                                      _unitOfWork,
                                                                                                       bathSize)
                                                                                                 : new SynchronizationCommand
                                                                                                       <UnitOfMeasureDto,
@@ -281,7 +291,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                       unitOfMeasureDtoRepository,
                                                                                                       unitOfMeasureSqLiteRepository,
                                                                                                       unitOfMeasureTranslator,
-                                                                                                      unitOfWork,
+                                                                                                      _unitOfWork,
                                                                                                       bathSize,
                                                                                                       _viewModel
                                                                                                           .LastSynchronizationDate);
@@ -292,8 +302,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Products synchronization
                         Notify(new TextNotification("Products synchronization"));
-                        var productDtoRepository = new WebRepository<ProductDto>(webConnectionFactory);
-                        var productSqLiteRepository = new ProductRepository(unitOfWork);
+                        var productDtoRepository = new WebRepository<ProductDto>(webServer);
+                        var productSqLiteRepository =
+                            _repositoryFactory.CreateRepository<Product>();
                         DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator();
 
                         Command<ProductDto, Product> productSyncCommand = _viewModel.SynchronizeFully
@@ -302,14 +313,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                     productDtoRepository,
                                                                                     productSqLiteRepository,
                                                                                     productTranslator,
-                                                                                    unitOfWork,
+                                                                                    _unitOfWork,
                                                                                     bathSize)
                                                                               : new SynchronizationCommand
                                                                                     <ProductDto, Product>(
                                                                                     productDtoRepository,
                                                                                     productSqLiteRepository,
                                                                                     productTranslator,
-                                                                                    unitOfWork, bathSize,
+                                                                                    _unitOfWork, bathSize,
                                                                                     _viewModel
                                                                                         .LastSynchronizationDate);
                         productSyncCommand = productSyncCommand.RepeatOnError(3, 5000);
@@ -318,8 +329,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Product prices synchronization
                         Notify(new TextNotification("Product prices synchronization"));
-                        var productsPriceDtoRepository = new WebRepository<ProductPriceDto>(webConnectionFactory);
-                        var productsPriceSqLiteRepository = new ProductsPriceRepository(unitOfWork);
+                        var productsPriceDtoRepository = new WebRepository<ProductPriceDto>(webServer);
+                        var productsPriceSqLiteRepository =
+                            _repositoryFactory.CreateRepository<ProductsPrice>();
                         DtoTranslator<ProductsPrice, ProductPriceDto> productsPriceTranslator =
                             new ProductsPriceTranslator();
 
@@ -330,7 +342,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                       productsPriceDtoRepository,
                                                                                                       productsPriceSqLiteRepository,
                                                                                                       productsPriceTranslator,
-                                                                                                      unitOfWork,
+                                                                                                      _unitOfWork,
                                                                                                       bathSize)
                                                                                                 : new SynchronizationCommand
                                                                                                       <ProductPriceDto,
@@ -338,7 +350,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                       productsPriceDtoRepository,
                                                                                                       productsPriceSqLiteRepository,
                                                                                                       productsPriceTranslator,
-                                                                                                      unitOfWork,
+                                                                                                      _unitOfWork,
                                                                                                       bathSize,
                                                                                                       _viewModel
                                                                                                           .LastSynchronizationDate);
@@ -349,8 +361,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Product units of measure synchronization
                         Notify(new TextNotification("Product units of measure synchronization"));
-                        var productsUomDtoRepository = new WebRepository<ProductUnitOfMeasureDto>(webConnectionFactory);
-                        var productsUnitOfMeasureSqLiteRepository = new ProductsUnitOfMeasureRepository(unitOfWork);
+                        var productsUomDtoRepository = new WebRepository<ProductUnitOfMeasureDto>(webServer);
+                        var productsUnitOfMeasureSqLiteRepository =
+                            _repositoryFactory.CreateRepository<ProductsUnitOfMeasure>();
                         DtoTranslator<ProductsUnitOfMeasure, ProductUnitOfMeasureDto> productsUnitOfMeasureTranslator =
                             new ProductsUnitOfMeasureTranslator();
 
@@ -360,12 +373,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                       <ProductUnitOfMeasureDto, ProductsUnitOfMeasure>(
                                       productsUomDtoRepository, productsUnitOfMeasureSqLiteRepository,
                                       productsUnitOfMeasureTranslator,
-                                      unitOfWork, bathSize)
+                                      _unitOfWork, bathSize)
                                 : new SynchronizationCommand
                                       <ProductUnitOfMeasureDto, ProductsUnitOfMeasure>(
                                       productsUomDtoRepository, productsUnitOfMeasureSqLiteRepository,
                                       productsUnitOfMeasureTranslator,
-                                      unitOfWork, bathSize,
+                                      _unitOfWork, bathSize,
                                       _viewModel.LastSynchronizationDate);
 
                         productsUomSyncCommand = productsUomSyncCommand.RepeatOnError(3, 5000);
@@ -374,10 +387,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                         // Route templates synchronization
                         Notify(new TextNotification("Route templates synchronization"));
-                        var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webConnectionFactory);
-                        var routeTemplateSqLiteRepository = new RouteTemplateRepository(unitOfWork);
+                        var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webServer);
+                        var routeTemplateSqLiteRepository =
+                            _repositoryFactory.CreateRepository<RouteTemplate>();
                         DtoTranslator<RouteTemplate, RouteTemplateDto> routeTemplateTranslator =
-                            new RouteTemplateTranslator();
+                            new RouteTemplateTranslator(_repositoryFactory);
 
                         Command<RouteTemplateDto, RouteTemplate> routeTemplateSyncCommand = _viewModel.SynchronizeFully
                                                                                                 ? new SynchronizationCommand
@@ -386,7 +400,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                       routeTemplateDtoRepository,
                                                                                                       routeTemplateSqLiteRepository,
                                                                                                       routeTemplateTranslator,
-                                                                                                      unitOfWork,
+                                                                                                      _unitOfWork,
                                                                                                       bathSize)
                                                                                                 : new SynchronizationCommand
                                                                                                       <RouteTemplateDto,
@@ -394,7 +408,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                       routeTemplateDtoRepository,
                                                                                                       routeTemplateSqLiteRepository,
                                                                                                       routeTemplateTranslator,
-                                                                                                      unitOfWork,
+                                                                                                      _unitOfWork,
                                                                                                       bathSize,
                                                                                                       _viewModel
                                                                                                           .LastSynchronizationDate);
@@ -406,8 +420,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         // Route points templates synchronization
                         Notify(new TextNotification("Route points templates synchronization"));
                         var routePointTemplateDtoRepository =
-                            new WebRepository<RoutePointTemplateDto>(webConnectionFactory);
-                        var routePointTemplateSqLiteRepository = new RoutePointTemplateRepository(unitOfWork);
+                            new WebRepository<RoutePointTemplateDto>(webServer);
+                        var routePointTemplateSqLiteRepository =
+                            _repositoryFactory.CreateRepository<RoutePointTemplate>();
                         DtoTranslator<RoutePointTemplate, RoutePointTemplateDto> routePointTemplateTranslator =
                             new RoutePointTemplateTranslator();
 
@@ -418,13 +433,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                       routePointTemplateDtoRepository,
                                       routePointTemplateSqLiteRepository,
                                       routePointTemplateTranslator,
-                                      unitOfWork, bathSize)
+                                      _unitOfWork, bathSize)
                                 : new SynchronizationCommand
                                       <RoutePointTemplateDto, RoutePointTemplate>(
                                       routePointTemplateDtoRepository,
                                       routePointTemplateSqLiteRepository,
                                       routePointTemplateTranslator,
-                                      unitOfWork, bathSize,
+                                      _unitOfWork, bathSize,
                                       _viewModel.LastSynchronizationDate);
 
                         routePointTemplateSyncCommand = routePointTemplateSyncCommand.RepeatOnError(3, 5000);
@@ -435,6 +450,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                              .GetSection("Synchronization")
                                              .GetSetting("LastSyncDate").Value =
                             synchronizationDate.ToString(CultureInfo.InvariantCulture);
+                        _configurationManager.GetConfig("Common").Save();
                     }
                     catch(Exception exception) {
                         Notify(new TextNotification("Synchronization failed"));
@@ -449,6 +465,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             try {
                 if (_thread != null)
                     _thread.Abort();
+                _view.CloseView();
             }
             catch (ThreadAbortException threadAbortException) {
                 Log.Error("Synchronization cancelation error", threadAbortException);

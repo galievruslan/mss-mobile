@@ -1,18 +1,18 @@
 ﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies;
-using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 
-namespace MSS.WinMobile.Infrastructure.ModelTranslators
+namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
 {
     public class CustomerTranslator : DtoTranslator<Customer, CustomerDto> {
-        private readonly ShippingAddressRepository _shippingAddressRepository;
-        public CustomerTranslator(ShippingAddressRepository shippingAddressRepository) {
-            _shippingAddressRepository = shippingAddressRepository;
+        private readonly IRepositoryFactory _repositoryFactory;
+        public CustomerTranslator(IRepositoryFactory repositoryFactory) {
+            _repositoryFactory = repositoryFactory;
         }
 
         public override Customer Translate(CustomerDto source) {
-            return new CustomerProxy(_shippingAddressRepository)
+            return new CustomerProxy(_repositoryFactory.CreateRepository<ShippingAddress>())
                 {
                     Id = source.Id,
                     Name = source.Name

@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using MSS.WinMobile.Infrastructure.WebRepositories.Utilites;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 using log4net;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories
+namespace MSS.WinMobile.Infrastructure.Web.Repositories
 {
-    public class WebConnection : IDisposable
+    public class WebConnection : IWebConnection
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(WebConnection));
 
-        public WebServer WebServer { get; private set; }
+        public string Address { get; private set; }
         private readonly string _username;
         private readonly string _password;
 
         public CsrfTokenContainer CsrfTokenContainer { get; private set; }
         public CookieContainer CookieContainer { get; private set; }
 
-        public const string UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-        public const string ContentType = "application/json; charset=utf-8";
-        public const string CsrfTokenParamName = "authenticity_token";
+        public const string USER_AGENT = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+        public const string CONTENT_TYPE = "application/json; charset=utf-8";
+        public const string CSRF_TOKEN_PARAM_NAME = "authenticity_token";
 
-        public WebConnection(WebServer webServer, string username, string password)
-        {
-            WebServer = webServer;
+        public WebConnection(string address, string username, string password) {
+            Address = address;
             _username = username;
             _password = password;
 
@@ -97,13 +96,7 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories
         {
             const string logoutPath = "users/sign_out";
             RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, logoutPath));
+            State = ConnectionState.Closed;
         }
-    }
-
-    public enum ConnectionState
-    {
-        Open,
-        Closed,
-        Corrupted
     }
 }

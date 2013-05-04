@@ -1,6 +1,6 @@
-﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+﻿namespace MSS.WinMobile.Infrastructure.Web.Repositories.Dtos
 {
-    [UrlAttribute("synchronization/customers.json")]
+    [Url("synchronization/customers.json")]
     public class CustomerDto : Dto
     {
         public string Name { get; set; }

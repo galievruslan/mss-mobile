@@ -1,13 +1,14 @@
 ﻿using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
     public class CustomerProxy : Customer {
-        private readonly ShippingAddressRepository _shippingAddressRepository;
-        public CustomerProxy(ShippingAddressRepository shippingAddressRepository) {
-            _shippingAddressRepository = shippingAddressRepository;
+        private readonly IStorageRepository<ShippingAddress> _shippingAddressStorageRepository;
+        public CustomerProxy(IStorageRepository<ShippingAddress> shippingAddressStorageRepository) {
+            _shippingAddressStorageRepository = shippingAddressStorageRepository;
         }
 
         new public int Id
@@ -22,8 +23,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties.VirtualProxies
             set { base.Name = value; }
         }
 
-        public override System.Collections.Generic.IEnumerable<ShippingAddress> ShippingAddresses {
-            get { return _shippingAddressRepository.Find().Where("Customer_Id", new Equals(Id)); }
+        public override IQueryObject<ShippingAddress> ShippingAddresses {
+            get {
+                var customersShippingAddressesSpec = new CustomersShippingAddressesSpec(this);
+                return _shippingAddressStorageRepository.Find().Where(customersShippingAddressesSpec);
+            }
         }
     }
 }

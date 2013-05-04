@@ -1,6 +1,6 @@
-﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+﻿namespace MSS.WinMobile.Infrastructure.Web.Repositories.Dtos
 {
-    [UrlAttribute("synchronization/route_points.json")]
+    [Url("synchronization/route_points.json")]
     public class RoutePointDto : Dto
     {
         public int ShippingAddressId { get; set; }

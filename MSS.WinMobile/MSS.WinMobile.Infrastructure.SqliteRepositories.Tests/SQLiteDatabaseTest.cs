@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests.Helpers;
 using System.Data;
@@ -56,10 +57,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         {
             const string dbScriptFileName = @"\schema.sql";
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var target = SqLiteDatabase.CreateInMemoryDatabase(databaseScriptFullPath);
+            var storageManager = new SqLiteStorageManager();
+            var target = storageManager.InitializeInMemoryStorage(databaseScriptFullPath);
 
-            int actualTablesCount = GetDdTablesCount(target.UnitOfWork);
-            const int expectedTablesCount = 18;
+            int actualTablesCount = GetDdTablesCount(target);
+            const int expectedTablesCount = 17;
             Assert.AreEqual(expectedTablesCount, actualTablesCount);
             target.Dispose();
         }
@@ -75,18 +77,19 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
 
             string databaseFullPath = TestEnvironment.GetApplicationDirectory() + dbFileName;
             string databaseScriptFullPath = TestEnvironment.GetApplicationDirectory() + dbScriptFileName;
-            var target = SqLiteDatabase.CreateOrOpenFileDatabase(databaseFullPath, databaseScriptFullPath);
+            var storageManager = new SqLiteStorageManager();
+            var target = storageManager.CreateOrOpenStorage(databaseFullPath, databaseScriptFullPath);
             Console.WriteLine(databaseFullPath);
             Assert.IsTrue(File.Exists(databaseFullPath));
 
-            int actualTablesCount = GetDdTablesCount(target.UnitOfWork);
-            const int expectedTablesCount = 18;
+            int actualTablesCount = GetDdTablesCount(target);
+            const int expectedTablesCount = 17;
             Assert.AreEqual(expectedTablesCount, actualTablesCount);
             target.Dispose();
         }
 
-        private int GetDdTablesCount(SqLiteUnitOfWork sqLiteUnitOfWork) {
-            IDbConnection connection = sqLiteUnitOfWork.CurrentConnection;
+        private int GetDdTablesCount(IStorage sqLiteStorage) {
+            IDbConnection connection = sqLiteStorage.Connect();
             using (connection.BeginTransaction()) {
                 using (IDbCommand command = connection.CreateCommand())
                 {

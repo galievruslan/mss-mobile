@@ -86,21 +86,29 @@
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Storage.csproj">
       <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+      <Name>MSS.WinMobile.Infrastructure.Storage</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.ModelTranslators\MSS.WinMobile.Infrastructure.ModelTranslators.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.ModelTranslators\MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators.csproj">
       <Project>{365ECB82-AE6D-4760-8EAB-CA5A9B3807E4}</Project>
-      <Name>MSS.WinMobile.Infrastructure.ModelTranslators</Name>
+      <Name>MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.SqliteRepositoties.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.RemoteData\MSS.WinMobile.Infrastructure.Web.csproj">
+      <Project>{F6F297DA-4944-4695-952E-1F0F07197B67}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.Sqlite.Repositoties.csproj">
       <Project>{4EAE738D-0090-4586-87FD-AD350C79D658}</Project>
-      <Name>MSS.WinMobile.Infrastructure.SqliteRepositoties</Name>
+      <Name>MSS.WinMobile.Infrastructure.Sqlite.Repositoties</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.WebRepositories\MSS.WinMobile.Infrastructure.WebRepositories.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.SqliteSpecificationsTranslators\MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators.csproj">
+      <Project>{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.WebRepositories\MSS.WinMobile.Infrastructure.Web.Repositories.csproj">
       <Project>{E2DB17CF-A95C-499E-812E-686946F3DA5C}</Project>
-      <Name>MSS.WinMobile.Infrastructure.WebRepositories</Name>
+      <Name>MSS.WinMobile.Infrastructure.Web.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tests.Helpers\Tests.Helpers.csproj">
       <Project>{293EF82F-E089-44D1-863B-46304DE208BB}</Project>

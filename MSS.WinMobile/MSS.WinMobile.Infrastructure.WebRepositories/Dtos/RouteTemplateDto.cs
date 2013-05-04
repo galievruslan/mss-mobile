@@ -1,6 +1,6 @@
-﻿namespace MSS.WinMobile.Infrastructure.WebRepositories.Dtos
+﻿namespace MSS.WinMobile.Infrastructure.Web.Repositories.Dtos
 {
-    [UrlAttribute("synchronization/template_routes.json")]
+    [Url("synchronization/template_routes.json")]
     public class RouteTemplateDto : Dto
     {
         public int DayOfWeek { get; set; }

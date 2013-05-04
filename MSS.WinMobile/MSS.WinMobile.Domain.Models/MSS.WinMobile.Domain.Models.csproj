@@ -94,9 +94,9 @@
       <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
       <Name>MSS.WinMobile.Application.Environment</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Storage.csproj">
       <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Data</Name>
+      <Name>MSS.WinMobile.Infrastructure.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

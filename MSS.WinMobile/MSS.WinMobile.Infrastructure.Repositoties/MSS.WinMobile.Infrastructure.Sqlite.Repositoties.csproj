@@ -1,0 +1,186 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4EAE738D-0090-4586-87FD-AD350C79D658}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MSS.WinMobile.Infrastructure.Sqlite.Repositoties</RootNamespace>
+    <AssemblyName>MSS.WinMobile.Infrastructure.Sqlite.Repositoties</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
+    <OSVersion>5.2</OSVersion>
+    <DeployDirSuffix>MSS.WinMobile.Infrastructure.Repositoties</DeployDirSuffix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Clarius.UI.OrientationAware" />
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.84.0, Culture=neutral, PublicKeyToken=1fdb50b1b62b4c84, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\Sqlite\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CategoryRepository.cs" />
+    <Compile Include="QueryObjects\ISpecificationTranslator.cs" />
+    <Compile Include="QueryObjects\Specifications\OrdersItemsSpec.cs" />
+    <Compile Include="QueryObjects\Specifications\PricesLinesSpec.cs" />
+    <Compile Include="QueryObjects\Specifications\RouteTemplatesPointsSpec.cs" />
+    <Compile Include="QueryObjects\Specifications\RoutesPointsSpec.cs" />
+    <Compile Include="QueryObjects\Specifications\CustomersShippingAddressesSpec.cs" />
+    <Compile Include="QueryObjects\Specifications\WithIdSpec.cs" />
+    <Compile Include="RepositoryFactory.cs" />
+    <Compile Include="SqLiteStorage.cs" />
+    <Compile Include="SqLiteStorageConnection.cs" />
+    <Compile Include="SqLiteStorageManager.cs" />
+    <Compile Include="VirtualProxies\CategoryProxy.cs" />
+    <Compile Include="VirtualProxies\CustomerProxy.cs" />
+    <Compile Include="VirtualProxies\ModelsFactory.cs" />
+    <Compile Include="VirtualProxies\OrderProxy.cs" />
+    <Compile Include="VirtualProxies\OrderItemProxy.cs" />
+    <Compile Include="VirtualProxies\PriceListProxy.cs" />
+    <Compile Include="VirtualProxies\ProductProxy.cs" />
+    <Compile Include="VirtualProxies\ProductsPriceProxy.cs" />
+    <Compile Include="VirtualProxies\ProductsUnitOfMeasureProxy.cs" />
+    <Compile Include="VirtualProxies\RouteProxy.cs" />
+    <Compile Include="VirtualProxies\RoutePointProxy.cs" />
+    <Compile Include="VirtualProxies\RoutePointTemplateProxy.cs" />
+    <Compile Include="VirtualProxies\RouteTemplateProxy.cs" />
+    <Compile Include="VirtualProxies\ShippingAddressProxy.cs" />
+    <Compile Include="VirtualProxies\StatusProxy.cs" />
+    <Compile Include="VirtualProxies\UnitOfMeasureProxy.cs" />
+    <Compile Include="VirtualProxies\WarehouseProxy.cs" />
+    <Compile Include="WarehouseRepository.cs" />
+    <Compile Include="QueryObjects\WarehouseQueryObject.cs" />
+    <Compile Include="Translators\WarehouseTranslator.cs" />
+    <Compile Include="UnitOfMeasureRepository.cs" />
+    <Compile Include="QueryObjects\UnitOfMeasureQueryObject.cs" />
+    <Compile Include="StatusRepository.cs" />
+    <Compile Include="QueryObjects\StatusQueryObject.cs" />
+    <Compile Include="ShippingAddressRepository.cs" />
+    <Compile Include="QueryObjects\ShippingAddressQueryObject.cs" />
+    <Compile Include="RouteTemplateRepository.cs" />
+    <Compile Include="QueryObjects\RouteTemplateQueryObject.cs" />
+    <Compile Include="RoutePointTemplateRepository.cs" />
+    <Compile Include="QueryObjects\RoutePointTemplateQueryObject.cs" />
+    <Compile Include="RoutePointRepository.cs" />
+    <Compile Include="QueryObjects\RoutePointQueryObject.cs" />
+    <Compile Include="RouteRepository.cs" />
+    <Compile Include="ProductsUnitOfMeasureRepository.cs" />
+    <Compile Include="ProductsPriceRepository.cs" />
+    <Compile Include="ProductRepository.cs" />
+    <Compile Include="PriceListRepository.cs" />
+    <Compile Include="OrderItemRepository.cs" />
+    <Compile Include="OrderRepository.cs" />
+    <Compile Include="CustomerRepository.cs" />
+    <Compile Include="QueryObjects\CategoryQueryObject.cs" />
+    <Compile Include="QueryObjects\RouteQueryObject.cs" />
+    <Compile Include="QueryObjects\ProductsUnitOfMeasureQueryObject.cs" />
+    <Compile Include="QueryObjects\ProductsPriceQueryObject.cs" />
+    <Compile Include="QueryObjects\ProductQueryObject.cs" />
+    <Compile Include="QueryObjects\PriceListQueryObject.cs" />
+    <Compile Include="QueryObjects\OrderItemQueryObject.cs" />
+    <Compile Include="QueryObjects\OrderQueryObject.cs" />
+    <Compile Include="QueryObjects\CustomerQueryObject.cs" />
+    <Compile Include="QueryObjects\FiltredQueryObject.cs" />
+    <Compile Include="QueryObjects\OrderedQueryObject.cs" />
+    <Compile Include="QueryObjects\PagedQueryObject.cs" />
+    <Compile Include="QueryObjects\QueryObject.cs" />
+    <Compile Include="SqLiteRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqLiteUnitOfWork.cs" />
+    <Compile Include="Translators\CategoryTranslator.cs" />
+    <Compile Include="Translators\UnitOfMeasureTranslator.cs" />
+    <Compile Include="Translators\StatusTranslator.cs" />
+    <Compile Include="Translators\ShippingAddressTranslator.cs" />
+    <Compile Include="Translators\RouteTemplateTranslator.cs" />
+    <Compile Include="Translators\RoutePointTemplateTranslator.cs" />
+    <Compile Include="Translators\RoutePointTranslator.cs" />
+    <Compile Include="Translators\RouteTranslator.cs" />
+    <Compile Include="Translators\ProductsUnitOfMeasureTranslator.cs" />
+    <Compile Include="Translators\ProductsPriceTranslator.cs" />
+    <Compile Include="Translators\ProductTranslator.cs" />
+    <Compile Include="Translators\PriceListTranslator.cs" />
+    <Compile Include="Translators\OrderItemTranslator.cs" />
+    <Compile Include="Translators\OrderTranslator.cs" />
+    <Compile Include="Translators\CustomerTranslator.cs" />
+    <Compile Include="Translators\DataReaderTranslator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
+      <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
+      <Name>MSS.WinMobile.Application.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj">
+      <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
+      <Name>MSS.WinMobile.Application.Environment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
+      <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
+      <Name>MSS.WinMobile.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Storage.csproj">
+      <Project>{DE59B572-7C0F-4A7D-9944-326D3C37CF46}</Project>
+      <Name>MSS.WinMobile.Infrastructure.Storage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

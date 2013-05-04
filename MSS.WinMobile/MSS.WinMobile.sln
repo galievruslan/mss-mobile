@@ -52,13 +52,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application.Cache", "MSS.WinMobile.Application.Cache\MSS.WinMobile.Application.Cache.csproj", "{FB8FE25C-BECC-401F-A325-E562F2E10017}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Data", "MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Data.csproj", "{DE59B572-7C0F-4A7D-9944-326D3C37CF46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Storage", "MSS.WinMobile.Infrastructure.Data\MSS.WinMobile.Infrastructure.Storage.csproj", "{DE59B572-7C0F-4A7D-9944-326D3C37CF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.SqliteRepositoties", "MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.SqliteRepositoties.csproj", "{4EAE738D-0090-4586-87FD-AD350C79D658}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Sqlite.Repositoties", "MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.Sqlite.Repositoties.csproj", "{4EAE738D-0090-4586-87FD-AD350C79D658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.WebRepositories", "MSS.WinMobile.Infrastructure.WebRepositories\MSS.WinMobile.Infrastructure.WebRepositories.csproj", "{E2DB17CF-A95C-499E-812E-686946F3DA5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Web.Repositories", "MSS.WinMobile.Infrastructure.WebRepositories\MSS.WinMobile.Infrastructure.Web.Repositories.csproj", "{E2DB17CF-A95C-499E-812E-686946F3DA5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.ModelTranslators", "MSS.WinMobile.Infrastructure.ModelTranslators\MSS.WinMobile.Infrastructure.ModelTranslators.csproj", "{365ECB82-AE6D-4760-8EAB-CA5A9B3807E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators", "MSS.WinMobile.Infrastructure.ModelTranslators\MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators.csproj", "{365ECB82-AE6D-4760-8EAB-CA5A9B3807E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.SqliteRepositories.Tests", "MSS.WinMobile.Infrastructure.SqliteRepositories.Tests\MSS.WinMobile.Infrastructure.SqliteRepositories.Tests.csproj", "{F02C3955-0F8F-4553-9EEE-4BC6175E0ADD}"
 EndProject
@@ -67,6 +67,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Synchronizer.Tests", "MSS.WinMobile.Synchronizer.Tests\MSS.WinMobile.Synchronizer.Tests.csproj", "{CBBEDD95-B521-474C-8DF1-726AF910C41C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Controls.Concret", "MSS.WinMobile.UI.Controls.Concret\MSS.WinMobile.UI.Controls.Concret.csproj", "{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators", "MSS.WinMobile.Infrastructure.SqliteSpecificationsTranslators\MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators.csproj", "{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Web", "MSS.WinMobile.Infrastructure.RemoteData\MSS.WinMobile.Infrastructure.Web.csproj", "{F6F297DA-4944-4695-952E-1F0F07197B67}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -171,6 +175,14 @@ Global
 		{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F297DA-4944-4695-952E-1F0F07197B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F297DA-4944-4695-952E-1F0F07197B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F297DA-4944-4695-952E-1F0F07197B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F297DA-4944-4695-952E-1F0F07197B67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +192,8 @@ Global
 		{4EAE738D-0090-4586-87FD-AD350C79D658} = {2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}
 		{E2DB17CF-A95C-499E-812E-686946F3DA5C} = {2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}
 		{365ECB82-AE6D-4760-8EAB-CA5A9B3807E4} = {2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}
+		{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170} = {2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}
+		{F6F297DA-4944-4695-952E-1F0F07197B67} = {2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}
 		{4CEEC8F0-27AE-49C2-8241-81297733DE20} = {1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}
 		{0DE7B077-6E48-4EB7-B8D9-60A80ED1A414} = {B99B4618-934F-4C64-B2EF-10F148DA5D73}
 		{13A9120E-F646-4A64-9303-5036B5C86613} = {B99B4618-934F-4C64-B2EF-10F148DA5D73}

@@ -1,29 +1,27 @@
-﻿using System.Data.SQLite;
-using System.Linq;
-using MSS.WinMobile.Infrastructure.Data;
+﻿using System.Linq;
 using System.Data;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
-namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
+namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public abstract class SqLiteRepository<T> : IGetRepository<T>, ISearchRepository<T, string, SQLiteConnection, IDataReader>, ISaveRepository<T>, IDeleteRepository<T> where T : IModel
+    public abstract class SqLiteStorageRepository<T> : IStorageRepository<T> where T : IModel
     {
-        protected readonly SqLiteUnitOfWork UnitOfWork;
-
-        protected SqLiteRepository(SqLiteUnitOfWork unitOfWork)
-        {
-            UnitOfWork = unitOfWork;
+        protected readonly IStorage Storage;
+        protected SqLiteStorageRepository(IStorage storage) {
+            Storage = storage;
         }
 
-        public T GetById(int id)
-        {
-            return Find().Where("Id", new Equals(id)).FirstOrDefault();
+        public T GetById(int id) {
+            var withIdSpec = new WithIdSpec<T>(id);
+            return Find().Where(withIdSpec).FirstOrDefault();
         }
 
         protected abstract QueryObject<T> GetQueryObject();
 
-        public virtual IQueryObject<T, string, SQLiteConnection, IDataReader> Find()
+        public virtual IQueryObject<T> Find()
         {
             return GetQueryObject();
         }
@@ -32,27 +30,11 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         public virtual T Save(T model)
         {
-            SQLiteConnection connection = UnitOfWork.CurrentConnection;
+            IStorageConnection connection = Storage.Connect();
             string saveQuery = GetSaveQueryFor(model);
-            if (UnitOfWork.InTransaction)
-            {
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = saveQuery;
-                    command.ExecuteNonQuery();
-                }
-            }
-            else
-            {
-                using (IDbTransaction transaction = connection.BeginTransaction())
-                {
-                    using (IDbCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = saveQuery;
-                        command.ExecuteNonQuery();
-                    }
-                    transaction.Commit();
-                }
+            using (IDbCommand command = connection.CreateCommand()) {
+                command.CommandText = saveQuery;
+                command.ExecuteNonQuery();
             }
 
             return model.Id == 0 ? (GetById((int) connection.LastInsertRowId)) : model;
@@ -60,29 +42,12 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositoties
 
         protected abstract string GetDeleteQueryFor(T model);
 
-        public virtual void Delete(T model)
-        {
-            SQLiteConnection connection = UnitOfWork.CurrentConnection;
+        public virtual void Delete(T model) {
+            IStorageConnection connection = Storage.Connect();
             string deleteQuery = GetDeleteQueryFor(model);
-            if (UnitOfWork.InTransaction)
-            {
-                using (IDbCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = deleteQuery;
-                    command.ExecuteNonQuery();
-                }
-            }
-            else
-            {
-                using (IDbTransaction transaction = connection.BeginTransaction())
-                {
-                    using (IDbCommand command = connection.CreateCommand())
-                    {
-                        command.CommandText = deleteQuery;
-                        command.ExecuteNonQuery();
-                    }
-                    transaction.Commit();
-                }
+            using (IDbCommand command = connection.CreateCommand()) {
+                command.CommandText = deleteQuery;
+                command.ExecuteNonQuery();
             }
         }
     }

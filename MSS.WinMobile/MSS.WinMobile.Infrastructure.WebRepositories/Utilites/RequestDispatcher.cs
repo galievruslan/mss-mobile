@@ -7,13 +7,13 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using log4net;
 
-namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
+namespace MSS.WinMobile.Infrastructure.Web.Repositories.Utilites
 {
     public static class RequestDispatcher
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RequestDispatcher));
 
-        public static string Dispatch(WebConnection connection, HttpWebRequest httpWebRequest)
+        public static string Dispatch(IWebConnection connection, HttpWebRequest httpWebRequest)
         {
             try
             {
@@ -72,7 +72,6 @@ namespace MSS.WinMobile.Infrastructure.WebRepositories.Utilites
             }
         }
 
-        // TODO search attribute by name!!!
         private static string ExtractCsrfToken(string response)
         {
             string csrfToken = string.Empty;

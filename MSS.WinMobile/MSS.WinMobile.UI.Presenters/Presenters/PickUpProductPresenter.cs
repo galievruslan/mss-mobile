@@ -1,29 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class PickUpProductPresenter : IListPresenter
+    public class PickUpProductPresenter : IListPresenter<PickUpProductViewModel>
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPickUpProductView _view;
-        private SqLiteUnitOfWork _unitOfWork;
+        private IRepositoryFactory _repositoryFactory;
 
         private readonly IDataPageRetriever<ProductsPrice> _productsPriceRetriever;
         private readonly Cache<ProductsPrice> _cache;
         //private readonly Order _order; 
 
-        public PickUpProductPresenter(IPickUpProductView view, SqLiteUnitOfWork unitOfWork, int priceListId) {
-            _unitOfWork = unitOfWork;
-            var productsPriceRepository = new ProductsPriceRepository(unitOfWork);
-            var priceListRepository = new PriceListRepository(unitOfWork);
-            _productsPriceRetriever = new ProductsPriceRetriever(productsPriceRepository, priceListRepository.GetById(priceListId));
+        public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, int priceListId) {
+            _repositoryFactory = repositoryFactory;
+            var productsPriceRepository = _repositoryFactory.CreateRepository<ProductsPrice>();
+            var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(priceListId));
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 10);
             _view = view;
 
@@ -92,8 +94,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             return _values;
         }
 
-        public int InitializeList() {
+        public int InitializeListSize() {
             return _productsPriceRetriever.Count;
+        }
+
+        public PickUpProductViewModel GetItem(int index) {
+            ProductsPrice item = _cache.RetrieveElement(index);
+            return new PickUpProductViewModel {
+                ProductId = item.ProductId,
+                ProductName = item.ProductName,
+                Price = item.Price,
+                Quantity = 0
+            };
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Views;
@@ -34,10 +34,10 @@ namespace MSS.WinMobile.Application
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("FileName").Value;
             var schemaScript =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("SchemaScript").Value;
-            SqLiteDatabase sqLiteDatabase =
-                SqLiteDatabase.CreateOrOpenFileDatabase(string.Concat(Environments.AppPath, databaseName),
+            SqLiteStorage sqLiteStorage =
+                SqLiteStorage.CreateOrOpenFileDatabase(string.Concat(Environments.AppPath, databaseName),
                                                         string.Concat(Environments.AppPath, schemaScript));
-            var presentersFactory = new PresentersFactory(sqLiteDatabase);
+            var presentersFactory = new PresentersFactory(sqLiteStorage);
             // Register navigator for presenters
             NavigationContext.RegisterNavigator(new Navigator(presentersFactory));
 

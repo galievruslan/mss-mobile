@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.WebRepositories;
-using MSS.WinMobile.Infrastructure.WebRepositories.Dtos;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Infrastructure.Web;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 
 namespace MSS.WinMobile.Synchronizer
 {
     public class MyShippingAddressesSynchronization : Command<MyShippingAddressDto, ShippingAddress>
     {
-        private readonly WebRepository<MyShippingAddressDto> _sourceRepository;
-        private readonly SqLiteRepository<ShippingAddress> _destinationRepository;
-        private readonly SqLiteUnitOfWork _unitOfWork;
+        private readonly IWebRepository<MyShippingAddressDto> _sourceWebRepository;
+        private readonly IStorageRepository<ShippingAddress> _destinationStorageRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public MyShippingAddressesSynchronization(
-            WebRepository<MyShippingAddressDto> sourceRepository,
-            SqLiteRepository<ShippingAddress> destinationRepository,
-            SqLiteUnitOfWork unitOfWork,
+            IWebRepository<MyShippingAddressDto> sourceWebRepository,
+            IStorageRepository<ShippingAddress> destinationStorageRepository,
+            IUnitOfWork unitOfWork,
             int bathSize)
         {
-            _sourceRepository = sourceRepository;
-            _destinationRepository = destinationRepository;
+            _sourceWebRepository = sourceWebRepository;
+            _destinationStorageRepository = destinationStorageRepository;
             _unitOfWork = unitOfWork;
             _bathSize = bathSize;
         }
 
         public MyShippingAddressesSynchronization(
-            WebRepository<MyShippingAddressDto> sourceRepository,
-            SqLiteRepository<ShippingAddress> destinationRepository,
-            SqLiteUnitOfWork unitOfWork,
+            IWebRepository<MyShippingAddressDto> sourceWebRepository,
+            IStorageRepository<ShippingAddress> destinationStorageRepository,
+            IUnitOfWork unitOfWork,
             int bathSize,
             DateTime updatedAfter)
-            : this(sourceRepository, destinationRepository, unitOfWork, bathSize)
+            : this(sourceWebRepository, destinationStorageRepository, unitOfWork, bathSize)
         {
             _updatedAfter = updatedAfter;
         }
@@ -47,20 +47,20 @@ namespace MSS.WinMobile.Synchronizer
 
                 do {
                     dtos = _updatedAfter != DateTime.MinValue
-                               ? _sourceRepository.Find().Paged(page, _bathSize).UpdatedAfter(_updatedAfter).ToArray()
-                               : _sourceRepository.Find().Paged(page, _bathSize).ToArray();
+                               ? _sourceWebRepository.Find().UpdatedAfter(_updatedAfter).Paged(page, _bathSize).ToArray()
+                               : _sourceWebRepository.Find().Paged(page, _bathSize).ToArray();
 
                     foreach (var dto in dtos) {
-                        ShippingAddress shippingAddress = _destinationRepository.GetById(dto.ShippingAddressId);
+                        ShippingAddress shippingAddress = _destinationStorageRepository.GetById(dto.ShippingAddressId);
                         shippingAddress.Mine = dto.Validity;
-                        _destinationRepository.Save(shippingAddress);
+                        _destinationStorageRepository.Save(shippingAddress);
                     }
 
                     page++;
                 } while (dtos.Length == _bathSize);
                 _unitOfWork.Commit();
             }
-            catch (Exception exception) {
+            catch (Exception) {
                 _unitOfWork.Rollback();
                 throw;
             }

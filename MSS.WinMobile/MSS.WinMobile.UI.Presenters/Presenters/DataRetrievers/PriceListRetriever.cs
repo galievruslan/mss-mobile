@@ -1,36 +1,30 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class PriceListRetriever : IDataPageRetriever<PriceList> {
-        private readonly PriceListRepository _priceListRepository;
-        public PriceListRetriever(PriceListRepository priceListRepository)
+        private readonly PriceListStorageRepository _priceListStorageRepository;
+        public PriceListRetriever(PriceListStorageRepository priceListStorageRepository)
         {
-            _priceListRepository = priceListRepository;
+            _priceListStorageRepository = priceListStorageRepository;
         }
 
         public int Count
         {
             get {
-                var queryObject = _priceListRepository.Find();
-                if (!string.IsNullOrEmpty(SearchCriteria))
-                    queryObject = queryObject.Where("Name", new Contains(SearchCriteria));
-                return queryObject.GetCount();
+                return _priceListStorageRepository.Find().Count();
             }
         }
 
-        public string SearchCriteria { private get; set; }
-
-        public PriceList[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage)
-        {
-            var queryObject = _priceListRepository.Find();
-            if (!string.IsNullOrEmpty(SearchCriteria))
-                queryObject = queryObject.Where("Name", new Contains(SearchCriteria));
-            return queryObject.OrderBy("Name", OrderDirection.Asceding).Page(lowerPageBoundary, rowsPerPage).ToArray();
+        public PriceList[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
+            return
+                _priceListStorageRepository.Find()
+                                           .OrderBy("Name", OrderDirection.Asceding)
+                                           .Paged(lowerPageBoundary, rowsPerPage)
+                                           .ToArray();
         }
     }
 }

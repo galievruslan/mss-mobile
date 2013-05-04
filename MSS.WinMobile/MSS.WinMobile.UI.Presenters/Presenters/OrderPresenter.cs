@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects;
-using MSS.WinMobile.Infrastructure.SqliteRepositoties.QueryObjects.Conditions;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -13,31 +12,31 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class OrderPresenter : IPresenter<OrderViewModel>, IListPresenter
+    public class OrderPresenter : IPresenter<OrderViewModel>, IListPresenter<OrderItemViewModel>
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(OrderPresenter));
 
         private readonly IOrderView _view;
-        private readonly SqLiteUnitOfWork _unitOfWork;
         private readonly Order _order;
-         
+
+        private IUnitOfWork _unitOfWork;
+        private IRepositoryFactory _repositoryFactory;
         private IDataPageRetriever<OrderItem> _orderItemRetriever;
         private Cache<OrderItem> _cache;
 
-        public OrderPresenter(IOrderView view, SqLiteUnitOfWork unitOfWork, int routePointId)
+        public OrderPresenter(IOrderView view, IUnitOfWork unitOfWork, IRepositoryFactory repositoryFactory, IModelsFactory modelsFactory, int orderId)
         {
             _view = view;
             _unitOfWork = unitOfWork;
-            var orderRepository = new OrderRepository(_unitOfWork);
-            _order = orderRepository.Find().Where("RoutePoint_Id", new Equals(routePointId)).FirstOrDefault();
-            if (_order == null)
-            {
-                _order = new Order();
+            _repositoryFactory = repositoryFactory;
+            var orderRepository = _repositoryFactory.CreateRepository<Order>();
+            _order = orderRepository.GetById(orderId);
+            if (_order == null) {
+                _order = modelsFactory.CreateOrder();
                 _order = orderRepository.Save(_order);
             }
 
-            _orderItemRetriever = new OrderItemRetriever(new OrderItemRepository(_unitOfWork),
-                                                         _order);
+            _orderItemRetriever = new OrderItemRetriever(_order);
             _cache = new Cache<OrderItem>(_orderItemRetriever, 10);
         }
 
@@ -129,6 +128,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public int InitializeList() {
             return _orderItemRetriever.Count;
+        }
+
+        public int InitializeListSize() {
+            throw new NotImplementedException();
+        }
+
+        public OrderItemViewModel GetItem(int index) {
+            throw new NotImplementedException();
         }
     }
 
