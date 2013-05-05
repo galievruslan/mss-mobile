@@ -7,10 +7,10 @@ using MSS.WinMobile.UI.Presenters.Views;
 namespace MSS.WinMobile.UI.Views
 {
     public partial class SynchronizationView : Form, ISynchronizationView {
-        private readonly PresentersFactory _presentersFactory;
+        private readonly IPresentersFactory _presentersFactory;
         private SynchronizationPresenter _presenter;
         
-        public SynchronizationView(PresentersFactory presentersFactory) {
+        public SynchronizationView(IPresentersFactory presentersFactory) {
             _presentersFactory = presentersFactory;
             InitializeComponent();
         }

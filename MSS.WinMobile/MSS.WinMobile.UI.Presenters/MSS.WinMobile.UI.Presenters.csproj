@@ -60,13 +60,10 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.84.0, Culture=neutral, PublicKeyToken=1fdb50b1b62b4c84, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\Sqlite\System.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
     <Compile Include="NavigationContext.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />
@@ -75,6 +72,7 @@
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
     <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
     <Compile Include="Presenters\Exceptions\NoSelectedItemsException.cs" />
+    <Compile Include="Presenters\Specificarions\RouteOnDateSpec.cs" />
     <Compile Include="Presenters\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\PriceListLookUpPresenter.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
@@ -92,9 +90,7 @@
     <Compile Include="Views\IInitializationView.cs" />
     <Compile Include="Views\IListView.cs" />
     <Compile Include="INavigator.cs" />
-    <Compile Include="Views\INewRouteView.cs" />
     <Compile Include="Views\IPickUpProductView.cs" />
-    <Compile Include="Views\IRouteListView.cs" />
     <Compile Include="Views\IWarehouseLookUpView.cs" />
     <Compile Include="Views\IPriceListLookUpView.cs" />
     <Compile Include="Presenters\DataRetrievers\WarehouseRetriever.cs" />
@@ -154,10 +150,6 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.RemoteData\MSS.WinMobile.Infrastructure.Web.csproj">
       <Project>{F6F297DA-4944-4695-952E-1F0F07197B67}</Project>
       <Name>MSS.WinMobile.Infrastructure.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Infrastructure.Repositoties\MSS.WinMobile.Infrastructure.Sqlite.Repositoties.csproj">
-      <Project>{4EAE738D-0090-4586-87FD-AD350C79D658}</Project>
-      <Name>MSS.WinMobile.Infrastructure.Sqlite.Repositoties</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.WebRepositories\MSS.WinMobile.Infrastructure.Web.Repositories.csproj">
       <Project>{E2DB17CF-A95C-499E-812E-686946F3DA5C}</Project>

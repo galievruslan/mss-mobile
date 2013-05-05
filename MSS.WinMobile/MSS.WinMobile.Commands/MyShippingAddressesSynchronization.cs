@@ -11,58 +11,65 @@ namespace MSS.WinMobile.Synchronizer
     {
         private readonly IWebRepository<MyShippingAddressDto> _sourceWebRepository;
         private readonly IStorageRepository<ShippingAddress> _destinationStorageRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public MyShippingAddressesSynchronization(
             IWebRepository<MyShippingAddressDto> sourceWebRepository,
             IStorageRepository<ShippingAddress> destinationStorageRepository,
-            IUnitOfWork unitOfWork,
+            IUnitOfWorkFactory unitOfWorkFactory,
             int bathSize)
         {
             _sourceWebRepository = sourceWebRepository;
             _destinationStorageRepository = destinationStorageRepository;
-            _unitOfWork = unitOfWork;
+            _unitOfWorkFactory = unitOfWorkFactory;
             _bathSize = bathSize;
         }
 
         public MyShippingAddressesSynchronization(
             IWebRepository<MyShippingAddressDto> sourceWebRepository,
             IStorageRepository<ShippingAddress> destinationStorageRepository,
-            IUnitOfWork unitOfWork,
+            IUnitOfWorkFactory unitOfWorkFactory,
             int bathSize,
             DateTime updatedAfter)
-            : this(sourceWebRepository, destinationStorageRepository, unitOfWork, bathSize)
+            : this(sourceWebRepository, destinationStorageRepository, unitOfWorkFactory, bathSize)
         {
             _updatedAfter = updatedAfter;
         }
 
         public override void Execute()
         {
-            try {
-                _unitOfWork.BeginTransaction();
-                int page = 1;
-                MyShippingAddressDto[] dtos;
+            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
 
-                do {
-                    dtos = _updatedAfter != DateTime.MinValue
-                               ? _sourceWebRepository.Find().UpdatedAfter(_updatedAfter).Paged(page, _bathSize).ToArray()
-                               : _sourceWebRepository.Find().Paged(page, _bathSize).ToArray();
+                try {
+                    unitOfWork.BeginTransaction();
+                    int page = 1;
+                    MyShippingAddressDto[] dtos;
 
-                    foreach (var dto in dtos) {
-                        ShippingAddress shippingAddress = _destinationStorageRepository.GetById(dto.ShippingAddressId);
-                        shippingAddress.Mine = dto.Validity;
-                        _destinationStorageRepository.Save(shippingAddress);
-                    }
+                    do {
+                        dtos = _updatedAfter != DateTime.MinValue
+                                   ? _sourceWebRepository.Find()
+                                                         .UpdatedAfter(_updatedAfter)
+                                                         .Paged(page, _bathSize)
+                                                         .ToArray()
+                                   : _sourceWebRepository.Find().Paged(page, _bathSize).ToArray();
 
-                    page++;
-                } while (dtos.Length == _bathSize);
-                _unitOfWork.Commit();
-            }
-            catch (Exception) {
-                _unitOfWork.Rollback();
-                throw;
+                        foreach (var dto in dtos) {
+                            ShippingAddress shippingAddress =
+                                _destinationStorageRepository.GetById(dto.ShippingAddressId);
+                            shippingAddress.Mine = dto.Validity;
+                            _destinationStorageRepository.Save(shippingAddress);
+                        }
+
+                        page++;
+                    } while (dtos.Length == _bathSize);
+                    unitOfWork.Commit();
+                }
+                catch (Exception) {
+                    unitOfWork.Rollback();
+                    throw;
+                }
             }
         }
     }

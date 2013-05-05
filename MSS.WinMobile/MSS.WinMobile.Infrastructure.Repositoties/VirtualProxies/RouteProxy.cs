@@ -36,5 +36,9 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
                 return _routesPointsRepository.Find().Where(routesPointsSpec);
             }
         }
+
+        public override RoutePoint CreatePoint() {
+            return new RoutePointProxy(this);
+        }
     }
 }

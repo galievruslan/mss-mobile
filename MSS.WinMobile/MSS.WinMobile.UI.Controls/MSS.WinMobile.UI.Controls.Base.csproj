@@ -64,6 +64,7 @@
     <Compile Include="Buttons\CancelButton.Designer.cs">
       <DependentUpon>CancelButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPaintControl.cs" />
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="ListBox\VirtualListBox.Designer.cs">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransparentControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TransparentLabel.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>

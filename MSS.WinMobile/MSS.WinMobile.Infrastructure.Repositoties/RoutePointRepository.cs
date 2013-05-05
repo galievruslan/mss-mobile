@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Globalization;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
@@ -21,7 +22,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RoutePoints (Id, Route_Id, ShippingAddress_Id, ShippingAddress_Name, Status_Id) VALUES ({0}, {1}, {2}, '{3}', {4})";
         protected override string GetSaveQueryFor(RoutePoint model)
         {
-            return string.Format(SaveQueryTemplate, model.Id, model.RouteId, model.ShippingAddressId,
+            return string.Format(SaveQueryTemplate, model.Id != 0 ? model.Id.ToString(CultureInfo.InvariantCulture) : "NULL", model.RouteId, model.ShippingAddressId,
                                  model.ShippingAddressName.Replace("'", "''"), model.StatusId);
         }
 

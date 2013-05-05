@@ -62,6 +62,7 @@
     <Compile Include="QueryObjects\ISpecifications\ISpecification.cs" />
     <Compile Include="IStorage.cs" />
     <Compile Include="IStorageConnection.cs" />
+    <Compile Include="IUnitOfWorkFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

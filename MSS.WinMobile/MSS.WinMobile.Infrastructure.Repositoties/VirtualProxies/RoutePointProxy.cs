@@ -4,6 +4,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
     public class RoutePointProxy : RoutePoint
     {
+        public RoutePointProxy() { }
+
+        public RoutePointProxy(Route route) : base(route) {
+        }
+
         new public int Id
         {
             get { return base.Id; }

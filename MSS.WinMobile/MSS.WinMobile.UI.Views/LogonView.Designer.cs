@@ -41,9 +41,9 @@ namespace MSS.WinMobile.UI.Views
             this._actionPanel = new System.Windows.Forms.Panel();
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.mainMenu = new System.Windows.Forms.MainMenu();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.notification = new Microsoft.WindowsCE.Forms.Notification();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
             ((System.ComponentModel.ISupportInitialize)(this.logonViewModelBindingSource)).BeginInit();
             this._inputPanel.SuspendLayout();
             this._actionPanel.SuspendLayout();
@@ -138,10 +138,6 @@ namespace MSS.WinMobile.UI.Views
             this.okButton.TabIndex = 2;
             this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
-            // inputPanel
-            // 
-            this.inputPanel.Enabled = true;
-            // 
             // notification
             // 
             this.notification.Text = "notification1";
@@ -158,7 +154,6 @@ namespace MSS.WinMobile.UI.Views
             this.Controls.Add(this._inputPanel);
             this.Menu = this.mainMenu;
             this.Name = "LogonView";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.ViewLoad);
             ((System.ComponentModel.ISupportInitialize)(this.logonViewModelBindingSource)).EndInit();
             this._inputPanel.ResumeLayout(false);
@@ -175,11 +170,11 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Label _passwordLabel;
         private System.Windows.Forms.Panel _inputPanel;
         private System.Windows.Forms.Panel _actionPanel;
-        private System.Windows.Forms.MainMenu mainMenu;
         private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
         private Microsoft.WindowsCE.Forms.Notification notification;
         private PictureButton cancelButton;
         private PictureButton okButton;
         private System.Windows.Forms.BindingSource logonViewModelBindingSource;
+        private System.Windows.Forms.MainMenu mainMenu;
     }
 }

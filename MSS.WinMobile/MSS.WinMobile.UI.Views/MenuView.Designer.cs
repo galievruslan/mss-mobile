@@ -51,7 +51,7 @@
             // 
             // _routeLabel
             // 
-            this._routeLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._routeLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._routeLabel.ForeColor = System.Drawing.Color.Black;
             this._routeLabel.Location = new System.Drawing.Point(39, 9);
             this._routeLabel.Name = "_routeLabel";
@@ -71,7 +71,7 @@
             // 
             // _synchronizationLabel
             // 
-            this._synchronizationLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._synchronizationLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._synchronizationLabel.ForeColor = System.Drawing.Color.Black;
             this._synchronizationLabel.Location = new System.Drawing.Point(39, 81);
             this._synchronizationLabel.Name = "_synchronizationLabel";
@@ -82,7 +82,7 @@
             // 
             // _newOrderLabel
             // 
-            this._newOrderLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._newOrderLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._newOrderLabel.ForeColor = System.Drawing.Color.Black;
             this._newOrderLabel.Location = new System.Drawing.Point(39, 45);
             this._newOrderLabel.Name = "_newOrderLabel";
@@ -101,7 +101,7 @@
             // 
             // _settingsLabel
             // 
-            this._settingsLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._settingsLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._settingsLabel.ForeColor = System.Drawing.Color.Black;
             this._settingsLabel.Location = new System.Drawing.Point(39, 117);
             this._settingsLabel.Name = "_settingsLabel";
@@ -120,7 +120,7 @@
             // 
             // _logoutLabel
             // 
-            this._logoutLabel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Underline);
+            this._logoutLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._logoutLabel.ForeColor = System.Drawing.Color.Black;
             this._logoutLabel.Location = new System.Drawing.Point(174, 260);
             this._logoutLabel.Name = "_logoutLabel";

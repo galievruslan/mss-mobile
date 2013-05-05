@@ -1,5 +1,4 @@
-﻿using System.Data.SQLite;
-using System.Globalization;
+﻿using System.Globalization;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;

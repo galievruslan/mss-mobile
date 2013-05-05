@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
 using MSS.WinMobile.Infrastructure.Storage;
 
 namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies {

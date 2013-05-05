@@ -77,6 +77,7 @@
     <Compile Include="SqLiteStorage.cs" />
     <Compile Include="SqLiteStorageConnection.cs" />
     <Compile Include="SqLiteStorageManager.cs" />
+    <Compile Include="SqLiteUnitOfWorkFactory.cs" />
     <Compile Include="VirtualProxies\CategoryProxy.cs" />
     <Compile Include="VirtualProxies\CustomerProxy.cs" />
     <Compile Include="VirtualProxies\ModelsFactory.cs" />

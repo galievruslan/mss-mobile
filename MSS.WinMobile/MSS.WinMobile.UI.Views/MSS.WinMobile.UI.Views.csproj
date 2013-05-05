@@ -74,12 +74,6 @@
     <Compile Include="PickUpProductView.Designer.cs">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
     </Compile>
-    <Compile Include="RouteListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RouteListView.Designer.cs">
-      <DependentUpon>RouteListView.cs</DependentUpon>
-    </Compile>
     <Compile Include="WarehouseLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,9 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PickUpProductView.resx">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RouteListView.resx">
-      <DependentUpon>RouteListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WarehouseLookUpView.resx">
       <DependentUpon>WarehouseLookUpView.cs</DependentUpon>

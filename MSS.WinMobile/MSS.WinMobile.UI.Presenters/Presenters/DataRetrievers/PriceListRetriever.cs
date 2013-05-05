@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class PriceListRetriever : IDataPageRetriever<PriceList> {
-        private readonly PriceListStorageRepository _priceListStorageRepository;
-        public PriceListRetriever(PriceListStorageRepository priceListStorageRepository)
+        private readonly IStorageRepository<PriceList> _priceListStorageRepository;
+        public PriceListRetriever(IStorageRepository<PriceList> priceListStorageRepository)
         {
             _priceListStorageRepository = priceListStorageRepository;
         }

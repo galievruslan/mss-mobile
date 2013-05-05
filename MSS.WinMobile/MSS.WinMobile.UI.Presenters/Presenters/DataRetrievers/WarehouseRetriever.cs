@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
     public class WarehouseRetriever : IDataPageRetriever<Warehouse> {
-        private readonly WarehouseStorageRepository _warehouseStorageRepository;
-        public WarehouseRetriever(WarehouseStorageRepository warehouseStorageRepository) {
+        private readonly IStorageRepository<Warehouse> _warehouseStorageRepository;
+        public WarehouseRetriever(IStorageRepository<Warehouse> warehouseStorageRepository) {
             _warehouseStorageRepository = warehouseStorageRepository;
         }
 

@@ -53,12 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListBoxItems\RouteListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RouteListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ListBoxItems\RoutePointListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -81,6 +75,11 @@
   <ItemGroup>
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RoutePointViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ListBoxItems\RoutePointListBoxItem.resx">
+      <DependentUpon>RoutePointListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

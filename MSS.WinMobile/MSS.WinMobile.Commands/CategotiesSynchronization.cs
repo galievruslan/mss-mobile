@@ -13,7 +13,7 @@ namespace MSS.WinMobile.Synchronizer
         private readonly IWebRepository<CategoryDto> _sourceWebRepository;
         private readonly IStorageRepository<Category> _destinationStorageRepository;
         private readonly DtoTranslator<Category, CategoryDto> _translator;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
@@ -21,13 +21,13 @@ namespace MSS.WinMobile.Synchronizer
             IWebRepository<CategoryDto> sourceWebRepository,
             IStorageRepository<Category> destinationStorageRepository,
             DtoTranslator<Category, CategoryDto> translator,
-            IUnitOfWork unitOfWork,
+            IUnitOfWorkFactory unitOfWorkFactory,
             int bathSize)
         {
             _sourceWebRepository = sourceWebRepository;
             _destinationStorageRepository = destinationStorageRepository;
             _translator = translator;
-            _unitOfWork = unitOfWork;
+            _unitOfWorkFactory = unitOfWorkFactory;
             _bathSize = bathSize;
         }
 
@@ -35,25 +35,27 @@ namespace MSS.WinMobile.Synchronizer
             IWebRepository<CategoryDto> sourceWebRepository,
             IStorageRepository<Category> destinationStorageRepository,
             DtoTranslator<Category, CategoryDto> translator,
-            IUnitOfWork unitOfWork,
+            IUnitOfWorkFactory unitOfWorkFactory,
             int bathSize,
             DateTime updatedAfter)
-            : this(sourceWebRepository, destinationStorageRepository, translator, unitOfWork, bathSize)
+            : this(sourceWebRepository, destinationStorageRepository, translator, unitOfWorkFactory, bathSize)
         {
             _updatedAfter = updatedAfter;
         }
 
         public override void Execute()
         {
-            try {
-                _unitOfWork.BeginTransaction();
-                SyncronizeData();
-                SynchronizeHierarchy();
-                _unitOfWork.Commit();
-            }
-            catch (Exception) {
-                _unitOfWork.Rollback();
-                throw;
+            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                try {
+                    unitOfWork.BeginTransaction();
+                    SyncronizeData();
+                    SynchronizeHierarchy();
+                    unitOfWork.Commit();
+                }
+                catch (Exception) {
+                    unitOfWork.Rollback();
+                    throw;
+                }
             }
         }
 

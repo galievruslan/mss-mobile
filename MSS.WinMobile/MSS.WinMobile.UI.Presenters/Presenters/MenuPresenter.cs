@@ -18,19 +18,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
 
             if (string.IsNullOrEmpty(userName) ||
-                string.IsNullOrEmpty(password))
-            {
-                NavigationContext.NavigateTo<ILogonView>().ShowView();
+                string.IsNullOrEmpty(password)) {
+                if (DialogViewResult.Ok !=
+                    NavigationContext.NavigateTo<ILogonView>().ShowDialogView()) {
+                    _view.CloseView();
+                }
             }
-            else
-            {
-                NavigationContext.NavigateTo<IInitializationView>().ShowView();
+            else {
+                NavigationContext.NavigateTo<IInitializationView>().ShowDialogView();
             }
         }
 
         public void ShowRouteView()
         {
-            NavigationContext.NavigateTo<IRouteListView>().ShowView();
+            NavigationContext.NavigateTo<IRouteView>().ShowView();
         }
 
         public void ShowSyncView()

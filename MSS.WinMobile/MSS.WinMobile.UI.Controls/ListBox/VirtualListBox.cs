@@ -33,7 +33,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 else
                     _vScrollBar.Hide();
 
-                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount - 1;
+                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount;
             }
             ReindexItems();
         }
@@ -53,7 +53,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             if (itemsHeight != 0)
                 itemAvgHeight = ((float)itemsHeight) / _items.Count;
 
-            while (_dataPanel.Height - itemsHeight > 0)
+            while (_dataPanel.Height - itemsHeight - itemAvgHeight > 0)
             {
                 VirtualListBoxItem listBoxItem = NewItem();
                 AddListBoxItem(listBoxItem);
@@ -62,21 +62,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 itemAvgHeight = ((float)itemsHeight) / _items.Count;
             }
 
-            while (_dataPanel.Height - itemsHeight + itemAvgHeight < 0)
+            while (_dataPanel.Height - itemsHeight < 0)
             {
                 RemoveListBoxItem();
-
-                itemsHeight = _items.Sum(item =>
-                {
-                    var control = item as Control;
-                    return control != null ? control.Height : 0;
-                });
+                itemsHeight = _items.Sum(item => item.Height);
             }
 
             foreach (var listBoxItem in _items)
             {
-                var control = listBoxItem as Control;
-                if (control != null) control.Width = _dataPanel.Width;
+                listBoxItem.Width = _dataPanel.Width;
             }
         }
 

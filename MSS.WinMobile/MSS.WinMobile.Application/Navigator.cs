@@ -7,8 +7,8 @@ using MSS.WinMobile.UI.Views;
 namespace MSS.WinMobile.Application
 {
     public class Navigator : INavigator {
-        private readonly PresentersFactory _presentersFactory;
-        public Navigator(PresentersFactory presentersFactory) {
+        private readonly IPresentersFactory _presentersFactory;
+        public Navigator(IPresentersFactory presentersFactory) {
             _presentersFactory = presentersFactory;
         }
 
@@ -17,7 +17,7 @@ namespace MSS.WinMobile.Application
             T view = default(T);
             if (typeof (T) == typeof (ILogonView))
             {
-                view = (new LogonView()) as T;
+                view = (new LogonView(_presentersFactory)) as T;
             }
             else if (typeof(T) == typeof(IMenuView))
             {
@@ -34,10 +34,6 @@ namespace MSS.WinMobile.Application
             else if (typeof(T) == typeof(IRouteView))
             {
                 view = (new RouteView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IRouteListView))
-            {
-                view = (new RouteListView(_presentersFactory)) as T;
             }
             else if (typeof(T) == typeof(IPickUpProductView))
             {

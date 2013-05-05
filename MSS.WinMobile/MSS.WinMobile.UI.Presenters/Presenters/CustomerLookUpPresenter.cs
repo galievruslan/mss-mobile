@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -14,13 +14,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly ICustomerLookUpView _view;
-        private readonly CustomerStorageRepository _customerStorageRepository;
+        private readonly IRepositoryFactory _repositoryFactory;
         private readonly IDataPageRetriever<Customer> _customerRetriever;
         private readonly Cache<Customer> _cache;
 
-        public CustomerLookUpPresenter(ICustomerLookUpView view, CustomerStorageRepository customerStorageRepository) {
-            _customerStorageRepository = customerStorageRepository;
-            _customerRetriever = new CustomerRetriever(_customerStorageRepository);
+        public CustomerLookUpPresenter(ICustomerLookUpView view, IRepositoryFactory repositoryFactory) {
+            _repositoryFactory = repositoryFactory;
+            _customerRetriever = new CustomerRetriever(_repositoryFactory.CreateRepository<Customer>());
             _cache = new Cache<Customer>(_customerRetriever, 10);
             _view = view;
         }

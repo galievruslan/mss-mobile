@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
@@ -15,7 +14,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IPriceListLookUpView _view;
-        private IRepositoryFactory _repositoryFactory;
+        private readonly IRepositoryFactory _repositoryFactory;
         private ProductsPriceRetriever _productsPricesRetriever;
         private Cache<ProductsPrice> _cache;
         private int _orderId;

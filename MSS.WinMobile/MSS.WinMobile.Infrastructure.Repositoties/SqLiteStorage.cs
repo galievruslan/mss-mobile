@@ -6,7 +6,7 @@ using log4net;
 
 namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class SqLiteStorage : IStorage, IDisposable {
+    public class SqLiteStorage : IStorage {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteStorage));
         
         private readonly string _connectionString;

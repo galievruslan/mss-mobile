@@ -10,11 +10,6 @@ namespace MSS.WinMobile.UI.Views
         private LogonPresenter _presenter;
         private LogonViewModel _viewModel;
 
-        // Designer only
-        public LogonView() {
-            InitializeComponent();
-        }
-
         public LogonView(IPresentersFactory presentersFactory)
         {
             InitializeComponent();
@@ -57,10 +52,13 @@ namespace MSS.WinMobile.UI.Views
         #endregion
 
         private void OkButtonClick(object sender, System.EventArgs e) {
+            logonViewModelBindingSource.EndEdit();
+            DialogResult = DialogResult.OK;
             _presenter.Logon();
         }
 
         private void CancelButtonClick(object sender, System.EventArgs e) {
+            DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
         }
     }

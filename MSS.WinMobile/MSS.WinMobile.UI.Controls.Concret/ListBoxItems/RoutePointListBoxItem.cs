@@ -1,12 +1,13 @@
-﻿using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+﻿using System.Drawing;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
 {
     public class RoutePointListBoxItem : VirtualListBoxItem {
         private System.Windows.Forms.BindingSource _routePointViewModelBindingSource;
+        private TransparentLabel _label;
         private System.ComponentModel.IContainer components;
-        private System.Windows.Forms.LinkLabel _routePointShippingAddressLabel;
     
         public RoutePointListBoxItem(){
             InitializeComponent();
@@ -21,46 +22,47 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             }
         }
 
-        private void RoutePointShippingAddressLabelClick(object sender, System.EventArgs e) {
-            RefreshData();
-        }
-
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this._routePointShippingAddressLabel = new System.Windows.Forms.LinkLabel();
             this._routePointViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._label = new MSS.WinMobile.UI.Controls.TransparentLabel();
             ((System.ComponentModel.ISupportInitialize)(this._routePointViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // _routePointShippingAddressLabel
-            // 
-            this._routePointShippingAddressLabel.BackColor = System.Drawing.Color.White;
-            this._routePointShippingAddressLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._routePointViewModelBindingSource, "ShippinAddressName", true));
-            this._routePointShippingAddressLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._routePointShippingAddressLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._routePointShippingAddressLabel.ForeColor = System.Drawing.Color.Black;
-            this._routePointShippingAddressLabel.Location = new System.Drawing.Point(0, 0);
-            this._routePointShippingAddressLabel.Name = "_routePointShippingAddressLabel";
-            this._routePointShippingAddressLabel.Size = new System.Drawing.Size(200, 30);
-            this._routePointShippingAddressLabel.TabIndex = 0;
-            this._routePointShippingAddressLabel.Text = "Some route point shipping address";
-            this._routePointShippingAddressLabel.Click += new System.EventHandler(this.RoutePointShippingAddressLabelClick);
             // 
             // _routePointViewModelBindingSource
             // 
             this._routePointViewModelBindingSource.AllowNew = false;
             this._routePointViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.RoutePointViewModel);
             // 
+            // _label
+            // 
+            this._label.BackColor = System.Drawing.SystemColors.Control;
+            this._label.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._routePointViewModelBindingSource, "ShippinAddressName", true));
+            this._label.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._label.Location = new System.Drawing.Point(3, 0);
+            this._label.Name = "_label";
+            this._label.Size = new System.Drawing.Size(194, 28);
+            this._label.TabIndex = 0;
+            this._label.Text = "Some shipping address ";
+            this._label.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this._label.TransparentBackground = true;
+            this._label.Click += new System.EventHandler(this._label_Click);
+            // 
             // RoutePointListBoxItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.Controls.Add(this._routePointShippingAddressLabel);
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this._label);
             this.Name = "RoutePointListBoxItem";
             this.Size = new System.Drawing.Size(200, 30);
             ((System.ComponentModel.ISupportInitialize)(this._routePointViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void _label_Click(object sender, System.EventArgs e) {
+            VirtualListBoxItemClick(sender, e);
         }
     }
 }

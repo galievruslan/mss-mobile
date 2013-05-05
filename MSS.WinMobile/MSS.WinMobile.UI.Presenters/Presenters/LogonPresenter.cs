@@ -33,7 +33,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     }
 
                     NavigationContext.NavigateTo<IInitializationView>().ShowView();
-                    _view.CloseView();
                 }
                 catch (WebException webException) {
                     Log.Error(webException);

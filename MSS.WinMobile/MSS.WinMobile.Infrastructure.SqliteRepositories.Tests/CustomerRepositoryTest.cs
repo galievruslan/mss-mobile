@@ -45,7 +45,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
             var storageManager = new SqLiteStorageManager();
 
             _sqliteDtabase = storageManager.InitializeInMemoryStorage(databaseScriptFullPath);
-            _repositoryFactory = new RepositoryFactory(_sqliteDtabase);
+            _repositoryFactory = new RepositoryFactory(storageManager);
             _repositoryFactory.RegisterSpecificationTranslator(new CommonTranslator<Customer>())
                              .RegisterSpecificationTranslator(new ShippingAddressSpecTranslator());
         }
@@ -61,7 +61,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
 
         [TestMethod]
         public void SaveTest() {
-            using (var unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase)) {
+            using (var unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase.Connect())) {
                 var customerRepository = _repositoryFactory.CreateRepository<Customer>();
                 var shippingAddressRepository =
                     _repositoryFactory.CreateRepository<ShippingAddress>();
@@ -90,7 +90,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
         [TestMethod]
         public void DeleteTest()
         {
-            using (var unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase)) {
+            using (var unitOfWork = new SqLiteUnitOfWork(_sqliteDtabase.Connect())) {
                 var customerRepository = _repositoryFactory.CreateRepository<Customer>();
                 var shippingAddressRepository =
                     _repositoryFactory.CreateRepository<ShippingAddress>();

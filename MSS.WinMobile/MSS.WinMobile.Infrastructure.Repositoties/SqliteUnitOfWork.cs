@@ -5,13 +5,13 @@ using log4net;
 
 namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
-    public class SqLiteUnitOfWork : IUnitOfWork, IDisposable
+    public class SqLiteUnitOfWork : IUnitOfWork
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteUnitOfWork));
 
-        private readonly IStorage _storage;
-        public SqLiteUnitOfWork(IStorage storage) {
-            _storage = storage;
+        private readonly IStorageConnection _connection;
+        public SqLiteUnitOfWork(IStorageConnection connection) {
+            _connection = connection;
         }
 
         public bool InTransaction {
@@ -21,7 +21,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
         private IDbTransaction _transaction;
         public void BeginTransaction()
         {
-            _transaction = _storage.Connect().BeginTransaction();
+            _transaction = _connection.BeginTransaction();
         }
 
         public void Commit()

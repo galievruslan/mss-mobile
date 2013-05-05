@@ -117,45 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_openRouteIcon.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwQAA
-        DsEBuJFr7QAAAiBJREFUeF7t27FKA0EQgOFgIxa2goV2IiI2gjaCiOAjiIj4Atr4COksBBuxECzsbPMI
-        aXwEsbGzsxAsBLHRGUjguOydO8meZif/wiC5TJbMx+7eZjlbLRoCCCCAAAIIIIAAAggggAACCCAwKQJ3
-        Umg3Yex4h3uUAr8Txof05RotNZjiu0ZrAsw1WlNgbtHKYK+Ri/Z1YN37ClxzNz1Tgh0L2Jt3tJRgq4K1
-        7h0tNZjOaNdoTYC5RmsKzC1ak2Au0ZoGc4f2F2C/oW1E7v3GIi0lmG5m2zXRqfiRfzIWEpFfIiXYsKce
-        gBmPiwADbHB+h358MyVr1sGl3smqnq5aQm8KZdiJmJKR95SBtH3AbHSA2bxagAFmFDCmM8IAMwoY0xlh
-        gBkFjOmMMMCMAsZ0RhhgRgFjOiMMMKOAMZ0RNulg7wKgo6CpuPR2HjbsMfMon8v6xHWUwof9LGCBaVeH
-        CZhnsEMp7vSfY814pyUdgQkTWJF69Yno3Zq6Z+W9PYkjifmavJi+sua9KS3YnUA1m3LtpZCnm93tQF5M
-        X1ljHVTc3XS0FdtTIO+5lBPbV9ZgtxVg+uBJvy1U5Og+a66QF9NX1lj65c8rMNqFyqYrcj7lur7XbzF9
-        ZQ+2KBXo/wYVd+X6erlU2VUATUdUscX2lT2aPsZ0L6FrUldiK1DRlFw7k3jo5V3I35lAXkxf2YNRAAII
-        IIAAAggggAACCCAwpgI/iQENVntpLu0AAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="_createRouteIcon.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwQAA
-        DsEBuJFr7QAAAqtJREFUeF7t2y1LBEEYB3ARUcQiYhGbVTBZbBaTINfs+hkMIsIVi11sFrH4BSwGiwgm
-        rSLaxSqIiPr8YQYej929nZub23mW/8LgcszOy2+fmdk3x8a4UYACFKAABShAAQpQgAIUoAAFKEABClCA
-        AhRoWGBX6j9JlLYb7luS6i+l1N9E6UfK3UnS6gYLTQmGE9E6NA12Hzk0n0sitVVoGqwbGem6rAcXXX64
-        twYtFRjwMX8ByhTarDQYqxXSdEEEpQRDdabQ1qXB7+oMP8o+APWWGswMGrA+Cibha/ltUomNAix7tLUS
-        LD+XnCuwLdn/crCYd2K2fvjZDk9EUdXFKCJvScl0HFpqsGwj7a0CDFgYrtj8X+wD7SAmvOTYfhHmi88u
-        0u5KwDTWnstzrJBmRgRWFmk66iObEnb4imR/6UErwvLDVqOF1fQ/t44w1IdIr0rfPW1cjqk89tg5KeDK
-        NagKa5hosfeljYIBfFzSkZqr/DAsWxBiI808mI7SfljDiDRECBaSkKRPXuMRpsEQPXWfe8VGWsh0ki0Y
-        OpEjWtZgOaJlD5YbmgmwnNDMgOWCZgosBzRzYE2jmQRrEs0c2KK6ygy5ThvWW21zYBcC1glEO3P3qfpR
-        d8jVvc5rDgw3zHhEXRfNYyEybyVNDCrljjMJhkYDbaNPpGmsJ3dvihvtmM0sGBre7em5ntOKsIqOCcVr
-        FZhfPcuw0NmbUKGe/K0DQ//wIBJzlh+GupOf8vtUBForweCxKulU0qubu3RHNwlWLYCXLPuSsEriY5ND
-        gtUXmJesRR+51C2htUOyLkBoPoIFipkGi/1kc5CvsU2D1X2rlCpfVq/ZykZK7MvXYeKZAEv5jw2hQ3Qh
-        cP5jdgpQgAIUoAAFKEABClCAAhSgAAUoQAEKUIAC9QT+ALJFqIR7IkFAAAAAAElFTkSuQmCC
-</value>
-  </data>
+  <metadata name="_routePointViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
-  </metadata>
-  <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </metadata>
 </root>

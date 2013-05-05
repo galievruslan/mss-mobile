@@ -10,26 +10,24 @@ namespace MSS.WinMobile.Synchronizer
 {
     public class SynchronizationCommand<TS, TD> : Command<TS, TD>
         where TS : Dto
-        where TD : Model
-    {
+        where TD : Model {
         private readonly IWebRepository<TS> _sourceWebRepository;
         private readonly IStorageRepository<TD> _destinationStorageRepository;
         private readonly DtoTranslator<TD, TS> _translator;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public SynchronizationCommand(
             IWebRepository<TS> sourceWebRepository,
             IStorageRepository<TD> destinationStorageRepository,
-            DtoTranslator<TD,TS> translator,
-            IUnitOfWork unitOfWork,
-            int bathSize)
-        {
+            DtoTranslator<TD, TS> translator,
+            IUnitOfWorkFactory unitOfWorkFactory,
+            int bathSize) {
             _sourceWebRepository = sourceWebRepository;
             _destinationStorageRepository = destinationStorageRepository;
             _translator = translator;
-            _unitOfWork = unitOfWork;
+            _unitOfWorkFactory = unitOfWorkFactory;
             _bathSize = bathSize;
         }
 
@@ -37,41 +35,49 @@ namespace MSS.WinMobile.Synchronizer
             IWebRepository<TS> sourceWebRepository,
             IStorageRepository<TD> destinationStorageRepository,
             DtoTranslator<TD, TS> translator,
-            IUnitOfWork unitOfWork,
+            IUnitOfWorkFactory unitOfWorkFactory,
             int bathSize,
             DateTime updatedAfter)
-            : this(sourceWebRepository, destinationStorageRepository, translator, unitOfWork, bathSize)
-        {
+            : this(
+                sourceWebRepository, destinationStorageRepository, translator, unitOfWorkFactory,
+                bathSize) {
             _updatedAfter = updatedAfter;
         }
 
-        public override void Execute()
-        {
-            try {
-                _unitOfWork.BeginTransaction();
-                int page = 1;
-                TS[] dtos;
+        public override void Execute() {
 
-                do {
-                    dtos = _updatedAfter != DateTime.MinValue
-                               ? _sourceWebRepository.Find().UpdatedAfter(_updatedAfter).Paged(page, _bathSize).ToArray()
-                               : _sourceWebRepository.Find().Paged(page, _bathSize).ToArray();
+            using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                try {
+                    unitOfWork.BeginTransaction();
+                    int page = 1;
+                    TS[] dtos;
 
-                    foreach (var dto in dtos) {
-                        var model = _translator.Translate(dto);
-                        if (dto.Validity)
-                            _destinationStorageRepository.Save(model);
-                        else
-                            _destinationStorageRepository.Delete(model);
-                    }
+                    do {
+                        dtos = _updatedAfter != DateTime.MinValue
+                                   ? _sourceWebRepository.Find()
+                                                         .UpdatedAfter(_updatedAfter)
+                                                         .Paged(page, _bathSize)
+                                                         .ToArray()
+                                   : _sourceWebRepository.Find()
+                                                         .Paged(page, _bathSize)
+                                                         .ToArray();
 
-                    page++;
-                } while (dtos.Length == _bathSize);
-                _unitOfWork.Commit();
-            }
-            catch (Exception) {
-                _unitOfWork.Rollback();
-                throw;
+                        foreach (var dto in dtos) {
+                            var model = _translator.Translate(dto);
+                            if (dto.Validity)
+                                _destinationStorageRepository.Save(model);
+                            else
+                                _destinationStorageRepository.Delete(model);
+                        }
+
+                        page++;
+                    } while (dtos.Length == _bathSize);
+                    unitOfWork.Commit();
+                }
+                catch(Exception) {
+                    unitOfWork.Rollback();
+                    throw;
+                }
             }
         }
     }

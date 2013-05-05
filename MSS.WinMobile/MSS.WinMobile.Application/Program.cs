@@ -1,9 +1,12 @@
 ﻿using System;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
+using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters;
-using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Views;
 using log4net.Config;
 
@@ -34,10 +37,35 @@ namespace MSS.WinMobile.Application
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("FileName").Value;
             var schemaScript =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("SchemaScript").Value;
-            SqLiteStorage sqLiteStorage =
-                SqLiteStorage.CreateOrOpenFileDatabase(string.Concat(Environments.AppPath, databaseName),
-                                                        string.Concat(Environments.AppPath, schemaScript));
-            var presentersFactory = new PresentersFactory(sqLiteStorage);
+
+            IStorageManager storageManager = new SqLiteStorageManager();
+            storageManager.CreateOrOpenStorage(
+                string.Concat(Environments.AppPath, databaseName),
+                string.Concat(Environments.AppPath, schemaScript));
+
+            var repositoryFactory = new RepositoryFactory(storageManager);
+            repositoryFactory.RegisterSpecificationTranslator(new CommonTranslator<Customer>())
+                             .RegisterSpecificationTranslator(new ShippingAddressSpecTranslator())
+                             .RegisterSpecificationTranslator(new CommonTranslator<Category>())
+                             .RegisterSpecificationTranslator(new CommonTranslator<PriceList>())
+                             .RegisterSpecificationTranslator(new CommonTranslator<Product>())
+                             .RegisterSpecificationTranslator(new CommonTranslator<Order>())
+                             .RegisterSpecificationTranslator(new OrderItemSpecTranslator())
+                             .RegisterSpecificationTranslator(new ProductPriceSpecTranslator())
+                             .RegisterSpecificationTranslator(
+                                 new CommonTranslator<ProductsUnitOfMeasure>())
+                             .RegisterSpecificationTranslator(new RoutePointSpecTranslator())
+                             .RegisterSpecificationTranslator(new RouteSpecTranslator())
+                             .RegisterSpecificationTranslator(
+                                 new RoutePointTemplateSpecTranslator())
+                             .RegisterSpecificationTranslator(new RouteTemplateSpecTranslator())
+                             .RegisterSpecificationTranslator(new CommonTranslator<Status>())
+                             .RegisterSpecificationTranslator(new CommonTranslator<UnitOfMeasure>())
+                             .RegisterSpecificationTranslator(new CommonTranslator<Warehouse>());
+
+            IModelsFactory modelsFactory = new ModelsFactory(repositoryFactory);
+            var presentersFactory = new PresentersFactory(storageManager, repositoryFactory,
+                                                          modelsFactory);
             // Register navigator for presenters
             NavigationContext.RegisterNavigator(new Navigator(presentersFactory));
 

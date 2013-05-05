@@ -15,5 +15,7 @@ namespace MSS.WinMobile.Domain.Models
         public DateTime Date { get; protected set; }
 
         public abstract IQueryObject<RoutePoint> Points { get; }
+
+        public abstract RoutePoint CreatePoint();
     }
 }

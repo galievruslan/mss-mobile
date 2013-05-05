@@ -37,6 +37,7 @@ namespace MSS.WinMobile.UI.Views
             this._createOrderIcon = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.routeViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this._actionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.routeViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -69,10 +70,17 @@ namespace MSS.WinMobile.UI.Views
             // 
             this.routePointListBox.BackColor = System.Drawing.Color.White;
             this.routePointListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.routePointListBox.Location = new System.Drawing.Point(0, 24);
+            this.routePointListBox.Location = new System.Drawing.Point(0, 48);
             this.routePointListBox.Name = "routePointListBox";
-            this.routePointListBox.Size = new System.Drawing.Size(240, 270);
+            this.routePointListBox.Size = new System.Drawing.Size(240, 246);
             this.routePointListBox.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(240, 24);
             // 
             // RouteView
             // 
@@ -80,6 +88,7 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(240, 294);
             this.Controls.Add(this.routePointListBox);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this._actionPanel);
             this.Name = "RouteView";
             this.Load += new System.EventHandler(this.ViewLoad);
@@ -95,5 +104,6 @@ namespace MSS.WinMobile.UI.Views
         private PictureButton _createOrderIcon;
         private MSS.WinMobile.UI.Controls.Concret.RoutePointListBox routePointListBox;
         private System.Windows.Forms.BindingSource routeViewModelBindingSource;
+        private System.Windows.Forms.Panel panel1;
     }
 }

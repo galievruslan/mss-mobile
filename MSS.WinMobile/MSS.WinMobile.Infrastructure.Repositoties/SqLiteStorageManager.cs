@@ -8,25 +8,25 @@ using log4net;
 namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties {
     public class SqLiteStorageManager : IStorageManager {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteStorageManager));
-
-        private SqLiteStorage _currentStorage;
         public IStorage CreateOrOpenStorage(string databaseFullPath, string databaseScriptFullPath) {
-            _currentStorage = new SqLiteStorage(databaseFullPath);
+            Current = new SqLiteStorage(databaseFullPath);
             if (!File.Exists(databaseFullPath)) {
                 SQLiteConnection.CreateFile(databaseFullPath);
-                ApplyDatabaseSchema(_currentStorage, databaseScriptFullPath);
+                ApplyDatabaseSchema(Current, databaseScriptFullPath);
             }
-            return _currentStorage;
+            return Current;
         }
 
         public IStorage InitializeInMemoryStorage(string databaseScriptFullPath) {
-            _currentStorage = new SqLiteStorage();
-            ApplyDatabaseSchema(_currentStorage, databaseScriptFullPath);
-            return _currentStorage;
+            Current = new SqLiteStorage();
+            ApplyDatabaseSchema(Current, databaseScriptFullPath);
+            return Current;
         }
 
+        public IStorage Current { get; private set; }
+
         public void DeleteCurrentStorage() {
-            IStorageConnection connection = _currentStorage.Connect();
+            IStorageConnection connection = Current.Connect();
             try {
                 connection.Close();
             }
@@ -38,21 +38,21 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties {
             }
 
             // File database
-            if (!string.IsNullOrEmpty(_currentStorage.Path)) {
-                if (File.Exists(_currentStorage.Path))
-                    File.Delete(_currentStorage.Path);
+            if (!string.IsNullOrEmpty(Current.Path)) {
+                if (File.Exists(Current.Path))
+                    File.Delete(Current.Path);
             }
         }
 
-        private void ApplyDatabaseSchema(SqLiteStorage sqLiteStorage,
+        private void ApplyDatabaseSchema(IStorage storage,
                                                 string databaseScriptFullPath) {
             string schemaScript;
             using (StreamReader reader = File.OpenText(databaseScriptFullPath)) {
                 schemaScript = reader.ReadToEnd();
             }
 
-            IDbConnection connection = sqLiteStorage.Connect();
-            using (var unitOfWork = new SqLiteUnitOfWork(sqLiteStorage)) {
+            IDbConnection connection = storage.Connect();
+            using (var unitOfWork = new SqLiteUnitOfWork(storage.Connect())) {
                 unitOfWork.BeginTransaction();
                 using (IDbCommand command = connection.CreateCommand()) {
                     command.CommandText = schemaScript;

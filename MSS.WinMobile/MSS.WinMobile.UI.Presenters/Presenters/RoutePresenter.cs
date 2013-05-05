@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
+using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
+using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -13,42 +14,63 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
-        private readonly SqLiteUnitOfWork _unitOfWork;
-        private RouteStorageRepository _routeStorageRepository;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
         private readonly IRouteView _view;
-        private IDataPageRetriever<RoutePoint> _routePointRetriever;
-        private Cache<RoutePoint> _cache; 
+        private readonly IRepositoryFactory _repositoryFactory;
+        private readonly IModelsFactory _modelsFactory;
 
-        public RoutePresenter(IRouteView view, SqLiteUnitOfWork unitOfWork) {
-            _unitOfWork = unitOfWork;
+        private readonly IDataPageRetriever<RoutePoint> _routePointRetriever;
+        private readonly Cache<RoutePoint> _cache;
+
+        public RoutePresenter(IRouteView view, IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repositoryFactory, IModelsFactory modelsFactory) {
+            _repositoryFactory = repositoryFactory;
+            _modelsFactory = modelsFactory;
+            _unitOfWorkFactory = unitOfWorkFactory;
             _view = view;
-        }
 
-        private RouteViewModel _viewModel;
-        public RouteViewModel InitializeView() {
-            _viewModel = new RouteViewModel {Date = DateTime.Now};
-            GetRouteOnDate(_viewModel.Date);
-            return _viewModel;
+            var routeRepository = repositoryFactory.CreateRepository<Route>();
+            var route =
+                routeRepository.Find().Where(new RouteOnDateSpec(DateTime.Today)).FirstOrDefault();
+            if (route == null) {
+                var routeTemplateRepository = _repositoryFactory.CreateRepository<RouteTemplate>();
+                var routeTemplate =
+                    routeTemplateRepository.Find()
+                                           .Where(new RouteTemplateByDayOfWeekSpec(DateTime.Today.DayOfWeek))
+                                           .FirstOrDefault();
+
+                var shippingAddressRepository =
+                    _repositoryFactory.CreateRepository<ShippingAddress>();
+                var routePointRepository = repositoryFactory.CreateRepository<RoutePoint>();
+                var statusRepository = repositoryFactory.CreateRepository<Status>();
+                var defaultStatus = statusRepository.Find().FirstOrDefault();
+
+                using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                    unitOfWork.BeginTransaction();
+                    route = _modelsFactory.CreateRoute(DateTime.Today);
+                    route = routeRepository.Save(route);
+
+                    if (routeTemplate != null) {
+                        foreach (var pointTemplate in routeTemplate.PointTemplates.ToArray()) {
+                            RoutePoint routePoint = route.CreatePoint();
+                            ShippingAddress shippingAddress =
+                                shippingAddressRepository.GetById(pointTemplate.ShippingAddressId);
+
+                            routePoint.SetShippingAddress(shippingAddress);
+                            routePointRepository.Save(routePoint);
+                        }
+                    }
+                    unitOfWork.Commit();
+                }
+            }
+
+            _routePointRetriever = new RoutePointRetriever(route);
+            _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
         }
 
         private RoutePoint _selectedRoutePoint;
-
-        public void SelectItem(int index)
-        {
+        public void SelectItem(int index) {
             _selectedRoutePoint = _cache.RetrieveElement(index);
-        }
-
-        public void GetRouteOnDate(DateTime date) {
-            //if (_routeStorageRepository.Find().Where("Date", new Equals(_viewModel.Date.Date)).Any()) {
-            //    _routeStorageRepository = new RouteStorageRepository(_unitOfWork);
-            //    var route = _routeStorageRepository.Find().Where("Date", new Equals(_viewModel.Date.Date)).FirstOrDefault();
-            //    if (route == null) {
-                    
-            //    }
-            //    _routePointRetriever = new RoutePointRetriever(new RoutePointStorageRepository(_unitOfWork), route);
-            //    _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
-            //}
         }
 
         public int InitializeListSize() {
