@@ -20,7 +20,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _view = view;
         }
 
-        public void Logon()
+        public bool Logon()
         {
             if (_viewModel.Validate()) {
                 try {
@@ -31,8 +31,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
-
                     NavigationContext.NavigateTo<IInitializationView>().ShowView();
+                    return true;
                 }
                 catch (WebException webException) {
                     Log.Error(webException);
@@ -42,6 +42,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             else {
                 _view.DisplayErrors(_viewModel.Errors);
             }
+
+            return false;
         }
 
         public void Cancel()

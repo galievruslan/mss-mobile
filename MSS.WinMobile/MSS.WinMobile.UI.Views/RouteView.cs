@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
@@ -30,7 +31,9 @@ namespace MSS.WinMobile.UI.Views
             {
                 routePointListBox.ItemSelected += ItemSelected;
                 routePointListBox.ItemDataNeeded += ItemDataNeeded;
+
                 _presenter = _presentersFactory.CreateRoutePresenter(this);
+                routeViewModelBindingSource.DataSource = _presenter.Initialize();
                 routePointListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
@@ -42,11 +45,6 @@ namespace MSS.WinMobile.UI.Views
 
         private void CreateOrderClick(object sender, EventArgs e)
         {
-        }
-
-        public void SetItemCount(int count)
-        {
-            //_routeVirtualListBox.SetListSize(count);
         }
 
         #region IView
@@ -77,5 +75,19 @@ namespace MSS.WinMobile.UI.Views
         }
 
         #endregion
+
+        private void CreateRouteOnDateButtonClick(object sender, EventArgs e) {
+            routeViewModelBindingSource.EndEdit();
+            _presenter.CreateRouteOnDate();
+            routePointListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void DateChanged(object sender, EventArgs e) {
+            var routeViewModel = routeViewModelBindingSource.Current as RouteViewModel;
+            if (routeViewModel != null)
+                routeViewModel.Date = datePicker.Value;
+            routeViewModelBindingSource.EndEdit();
+            routePointListBox.SetListSize(_presenter.InitializeListSize());
+        }
     }
 }

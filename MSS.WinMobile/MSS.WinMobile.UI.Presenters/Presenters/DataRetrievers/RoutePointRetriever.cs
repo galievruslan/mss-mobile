@@ -13,15 +13,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 
         public int Count
         {
-            get { return _route.Points.Count(); }
+            get {
+                return _route == null ? 0 : _route.Points.Count();
+            }
         }
 
         public RoutePoint[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
-            return
-                _route.Points
-                      .OrderBy("Id", OrderDirection.Asceding)
-                      .Paged(lowerPageBoundary, rowsPerPage)
-                      .ToArray();
+            return _route == null
+                       ? new RoutePoint[0]
+                       : _route.Points
+                               .OrderBy("Id", OrderDirection.Asceding)
+                               .Paged(lowerPageBoundary, rowsPerPage)
+                               .ToArray();
         }
     }
 }

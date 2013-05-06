@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+﻿using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
@@ -17,6 +16,8 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
         public RoutePointViewModel ViewModel {
             get { return _viewModel; }
             set {
+                Empty = _viewModel == null;
+
                 _viewModel = value;
                 _routePointViewModelBindingSource.DataSource = _viewModel;
             }
@@ -47,7 +48,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             this._label.Text = "Some shipping address ";
             this._label.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this._label.TransparentBackground = true;
-            this._label.Click += new System.EventHandler(this._label_Click);
+            this._label.Click += new System.EventHandler(this.LabelClick);
             // 
             // RoutePointListBoxItem
             // 
@@ -61,7 +62,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
 
         }
 
-        private void _label_Click(object sender, System.EventArgs e) {
+        private void LabelClick(object sender, System.EventArgs e) {
             VirtualListBoxItemClick(sender, e);
         }
     }

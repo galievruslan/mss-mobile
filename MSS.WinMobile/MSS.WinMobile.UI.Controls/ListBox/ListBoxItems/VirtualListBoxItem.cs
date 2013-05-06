@@ -42,6 +42,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
             }
         }
 
+        public bool Empty { get; protected set; }
+
         public void RefreshData() {
             if (DataNeeded != null)
                 DataNeeded.Invoke(this);

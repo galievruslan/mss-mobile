@@ -37,9 +37,12 @@ namespace MSS.WinMobile.UI.Views
             this._createOrderIcon = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.routeViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel = new System.Windows.Forms.Panel();
+            this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this._actionPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.routeViewModelBindingSource)).BeginInit();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _actionPanel
@@ -75,12 +78,37 @@ namespace MSS.WinMobile.UI.Views
             this.routePointListBox.Size = new System.Drawing.Size(240, 246);
             this.routePointListBox.TabIndex = 3;
             // 
-            // panel1
+            // panel
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(240, 24);
+            this.panel.Controls.Add(this.createRouteOnDateButton);
+            this.panel.Controls.Add(this.datePicker);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel.Location = new System.Drawing.Point(0, 24);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // createRouteOnDateButton
+            // 
+            this.createRouteOnDateButton.BackColor = System.Drawing.Color.White;
+            this.createRouteOnDateButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createRouteOnDateButton.BackgroundImage")));
+            this.createRouteOnDateButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.createRouteOnDateButton.Location = new System.Drawing.Point(94, 2);
+            this.createRouteOnDateButton.Name = "createRouteOnDateButton";
+            this.createRouteOnDateButton.PressedImage = null;
+            this.createRouteOnDateButton.Size = new System.Drawing.Size(20, 20);
+            this.createRouteOnDateButton.TabIndex = 3;
+            this.createRouteOnDateButton.Click += new System.EventHandler(this.CreateRouteOnDateButtonClick);
+            // 
+            // datePicker
+            // 
+            this.datePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.routeViewModelBindingSource, "Date", true));
+            this.datePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePicker.Location = new System.Drawing.Point(2, 1);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(89, 22);
+            this.datePicker.TabIndex = 1;
+            this.datePicker.ValueChanged += new System.EventHandler(this.DateChanged);
             // 
             // RouteView
             // 
@@ -88,12 +116,13 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(240, 294);
             this.Controls.Add(this.routePointListBox);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this._actionPanel);
             this.Name = "RouteView";
             this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.routeViewModelBindingSource)).EndInit();
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -104,6 +133,8 @@ namespace MSS.WinMobile.UI.Views
         private PictureButton _createOrderIcon;
         private MSS.WinMobile.UI.Controls.Concret.RoutePointListBox routePointListBox;
         private System.Windows.Forms.BindingSource routeViewModelBindingSource;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.DateTimePicker datePicker;
+        private PictureButton createRouteOnDateButton;
     }
 }

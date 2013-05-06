@@ -53,8 +53,8 @@ namespace MSS.WinMobile.UI.Views
 
         private void OkButtonClick(object sender, System.EventArgs e) {
             logonViewModelBindingSource.EndEdit();
-            DialogResult = DialogResult.OK;
-            _presenter.Logon();
+            if (_presenter.Logon())
+                DialogResult = DialogResult.OK;
         }
 
         private void CancelButtonClick(object sender, System.EventArgs e) {

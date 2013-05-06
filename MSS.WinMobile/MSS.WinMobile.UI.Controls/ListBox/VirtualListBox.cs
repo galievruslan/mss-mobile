@@ -53,7 +53,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             if (itemsHeight != 0)
                 itemAvgHeight = ((float)itemsHeight) / _items.Count;
 
-            while (_dataPanel.Height - itemsHeight - itemAvgHeight > 0)
+            while (_dataPanel.Height - itemsHeight - itemAvgHeight > 0 &&
+                _items.Count < _itemCount)
             {
                 VirtualListBoxItem listBoxItem = NewItem();
                 AddListBoxItem(listBoxItem);
@@ -62,7 +63,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 itemAvgHeight = ((float)itemsHeight) / _items.Count;
             }
 
-            while (_dataPanel.Height - itemsHeight < 0)
+            while (_dataPanel.Height - itemsHeight < 0 ||
+                _items.Count > _itemCount)
             {
                 RemoveListBoxItem();
                 itemsHeight = _items.Sum(item => item.Height);
@@ -113,17 +115,16 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 if (item.IsSelected)
                 {
                     item.IsSelected = false;
-                    sender.Refresh();
+                    item.Refresh();
                 }
             }
 
             SelectedIndex = sender.Index;
             sender.IsSelected = true;
+            sender.Refresh();
 
             if (ItemSelected != null)
                 ItemSelected.Invoke(this, sender);
-
-            sender.Refresh();
         }
 
         private void RemoveListBoxItem()
@@ -144,13 +145,10 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 var item = _items[i];
                 item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
                 item.IsSelected = item.Index == SelectedIndex;
-
                 item.RefreshData();
-                var control = item as Control;
-                if (control != null) {
-                    control.Refresh();
-                }
+                Refresh();
             }
+            Refresh();
         }
 
         #endregion
