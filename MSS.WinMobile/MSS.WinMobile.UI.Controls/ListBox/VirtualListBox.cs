@@ -85,16 +85,14 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             var listBoxItemControl = item as Control;
             if (_items.Count > 0)
             {
-                var lastListBoxItem = _items[_items.Count - 1] as Control;
-                if (lastListBoxItem != null)
-                    listBoxItemControl.Top = lastListBoxItem.Top + lastListBoxItem.Height;
+                var lastListBoxItem = _items[_items.Count - 1];
+                listBoxItemControl.Top = lastListBoxItem.Top + lastListBoxItem.Height;
             }
 
             item.DataNeeded += OnItemDataNeededHandler;
             item.Selected += OnItemSelectedHandler;
-            var control = item as Control;
-            control.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
-            _dataPanel.Controls.Add(control);
+            item.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
+            _dataPanel.Controls.Add(item);
             _items.Add(item);
         }
 
@@ -115,13 +113,11 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 if (item.IsSelected)
                 {
                     item.IsSelected = false;
-                    item.Refresh();
                 }
             }
 
             SelectedIndex = sender.Index;
             sender.IsSelected = true;
-            sender.Refresh();
 
             if (ItemSelected != null)
                 ItemSelected.Invoke(this, sender);
@@ -145,10 +141,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 var item = _items[i];
                 item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
                 item.IsSelected = item.Index == SelectedIndex;
-                item.RefreshData();
-                Refresh();
             }
-            Refresh();
         }
 
         #endregion

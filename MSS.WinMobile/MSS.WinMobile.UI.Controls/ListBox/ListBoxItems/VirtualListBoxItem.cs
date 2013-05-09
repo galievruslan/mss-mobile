@@ -20,15 +20,24 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
         }
 
         public delegate void OnDataNeeded(VirtualListBoxItem sender);
-
         public delegate void OnSelected(VirtualListBoxItem sender);
-
         public delegate void OnUnSelected(VirtualListBoxItem sender);
 
         public event OnDataNeeded DataNeeded;
         public event OnSelected Selected;
         public event OnUnSelected UnSelected;
-        public int Index { get; set; }
+
+        private int _index;
+
+        public int Index {
+            get { return _index; }
+            set {
+                _index = value;
+                if (DataNeeded != null)
+                    DataNeeded.Invoke(this);
+                Refresh();
+            }
+        }
 
         private bool _isSelected;
 
@@ -39,10 +48,9 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
                 if (!_isSelected)
                     if (UnSelected != null)
                         UnSelected.Invoke(this);
+                Refresh();
             }
         }
-
-        public bool Empty { get; protected set; }
 
         public void RefreshData() {
             if (DataNeeded != null)
@@ -71,6 +79,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
         protected void VirtualListBoxItemClick(object sender, System.EventArgs e) {
             if (Selected != null)
                 Selected.Invoke(this);
+            Refresh();
         }
 
         public void InvokePaintBackground(PaintEventArgs e) {

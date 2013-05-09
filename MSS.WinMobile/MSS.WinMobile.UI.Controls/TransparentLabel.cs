@@ -3,6 +3,10 @@ using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls {
     public class TransparentLabel : TransparentControl {
+        public TransparentLabel() {
+            TransparentBackground = true;
+        }
+
         private ContentAlignment _textAlign = ContentAlignment.TopLeft;
 
         public ContentAlignment TextAlign {

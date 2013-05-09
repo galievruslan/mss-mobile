@@ -9,7 +9,7 @@ namespace MSS.WinMobile.Domain.Models
         }
 
         protected Route(DateTime date) {
-            Date = date;
+            Date = date.Date;
         }
 
         public DateTime Date { get; protected set; }
