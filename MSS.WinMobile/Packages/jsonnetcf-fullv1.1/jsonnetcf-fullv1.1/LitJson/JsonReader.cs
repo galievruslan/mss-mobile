@@ -292,7 +292,7 @@ namespace LitJson
                 n_int64 = Int64.Parse(number);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 n_int64 = -1;
                 return false;
@@ -306,7 +306,7 @@ namespace LitJson
                 n_int32 = Int32.Parse(number);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 n_int32 = -1;
                 return false;
@@ -320,7 +320,7 @@ namespace LitJson
                 n_double = Double.Parse(number);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 n_double = -1;
                 return false;

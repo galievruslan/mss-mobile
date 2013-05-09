@@ -12,38 +12,32 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         public delegate void OnItemSelected(object sender, VirtualListBoxItem item);
 
         // Designer only
-        protected VirtualListBox()
-        {
+        protected VirtualListBox() {
+            SelectedIndex = 0;
         }
 
         public event OnItemDataNeeded ItemDataNeeded;
         public event OnItemSelected ItemSelected;
 
-        private int _itemCount = -1;
-
-        public void SetListSize(int size)
-        {
-            if (_itemCount != size)
-            {
-                _itemCount = size;
+        protected int ItemCount = 0;
+        public void SetListSize(int size) {
+            SelectedIndex = 0;
+            if (ItemCount != size) {
+                ItemCount = size;
 
                 FillItemPanel();
-                if (_itemCount > _items.Count)
+
+                if (ItemCount > _items.Count)
                     _vScrollBar.Show();
                 else
                     _vScrollBar.Hide();
-
-                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount;
+                _vScrollBar.Maximum = _vScrollBar.Minimum + ItemCount;
             }
+
             ReindexItems();
         }
 
-        private int _selecteIndex = -1;
-
-        private int SelectedIndex {
-            get { return _selecteIndex; }
-            set { _selecteIndex = value; }
-        }
+        private int SelectedIndex { get; set; }
 
         private void FillItemPanel()
         {
@@ -54,7 +48,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 itemAvgHeight = ((float)itemsHeight) / _items.Count;
 
             while (_dataPanel.Height - itemsHeight - itemAvgHeight > 0 &&
-                _items.Count < _itemCount)
+                _items.Count < ItemCount)
             {
                 VirtualListBoxItem listBoxItem = NewItem();
                 AddListBoxItem(listBoxItem);
@@ -64,7 +58,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             }
 
             while (_dataPanel.Height - itemsHeight < 0 ||
-                _items.Count > _itemCount)
+                _items.Count > ItemCount)
             {
                 RemoveListBoxItem();
                 itemsHeight = _items.Sum(item => item.Height);
@@ -101,14 +95,14 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         void OnItemDataNeededHandler(VirtualListBoxItem sender)
         {
-            if (ItemDataNeeded != null && sender.Index < _itemCount)
+            if (ItemDataNeeded != null && sender.Index < ItemCount)
                 ItemDataNeeded.Invoke(this, sender);
         }
 
         void OnItemSelectedHandler(VirtualListBoxItem sender)
         {
             // return if listbox doesn't contains data
-            if (sender.Index >= _itemCount)
+            if (sender.Index >= ItemCount)
                 return;
 
             foreach (var item in _items)

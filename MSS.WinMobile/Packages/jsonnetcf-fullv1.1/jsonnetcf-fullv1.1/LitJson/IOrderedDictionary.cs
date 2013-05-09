@@ -10,7 +10,7 @@ namespace LitJson
             set;
         }
 
-        IDictionaryEnumerator GetEnumerator();
+        new IDictionaryEnumerator GetEnumerator();
 
         void Insert(int idx, object key, object value);
 

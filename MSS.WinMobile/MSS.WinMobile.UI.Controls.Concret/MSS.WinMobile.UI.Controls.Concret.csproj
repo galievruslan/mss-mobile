@@ -80,6 +80,9 @@
     <EmbeddedResource Include="ListBoxItems\RoutePointListBoxItem.resx">
       <DependentUpon>RoutePointListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RoutePointListBox.resx">
+      <DependentUpon>RoutePointListBox.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

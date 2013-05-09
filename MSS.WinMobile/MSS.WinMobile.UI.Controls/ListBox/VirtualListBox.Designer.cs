@@ -46,6 +46,7 @@
             this._vScrollBar.Name = "_vScrollBar";
             this._vScrollBar.Size = new System.Drawing.Size(13, 297);
             this._vScrollBar.TabIndex = 0;
+            this._vScrollBar.Visible = false;
             this._vScrollBar.ValueChanged += new System.EventHandler(this.VScrollBarValueChanged);
             // 
             // VirtualListBox

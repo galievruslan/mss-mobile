@@ -24,7 +24,6 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
             _nameLabel.BackColor = IsSelected ? ColorSelected : ColorUnselected;
-
             base.OnPaint(e);
             DrawDivisor(e.Graphics);
         }
@@ -45,12 +44,12 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             // _nameLabel
             // 
             this._nameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._routePointViewModelBindingSource, "ShippinAddressName", true));
-            this._nameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._nameLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this._nameLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._nameLabel.ForeColor = System.Drawing.Color.Black;
             this._nameLabel.Location = new System.Drawing.Point(0, 0);
             this._nameLabel.Name = "_nameLabel";
-            this._nameLabel.Size = new System.Drawing.Size(200, 30);
+            this._nameLabel.Size = new System.Drawing.Size(200, 28);
             this._nameLabel.TabIndex = 0;
             this._nameLabel.Text = "linkLabel1";
             this._nameLabel.Click += new System.EventHandler(this.NameLabelClick);
