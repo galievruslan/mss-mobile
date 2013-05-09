@@ -82,16 +82,19 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         private void AddListBoxItem(VirtualListBoxItem item)
         {
-            var listBoxItemControl = item as Control;
-            if (_items.Count > 0)
-            {
-                var lastListBoxItem = _items[_items.Count - 1];
-                listBoxItemControl.Top = lastListBoxItem.Top + lastListBoxItem.Height;
+            if (_items.Any()) {
+                var lastListBoxItem = _items.Last();
+                item.Top = lastListBoxItem.Top + lastListBoxItem.Height;
+            }
+            else {
+                item.Top = 0;
             }
 
+            item.Left = 0;
+            item.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
             item.DataNeeded += OnItemDataNeededHandler;
             item.Selected += OnItemSelectedHandler;
-            item.Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
+
             _dataPanel.Controls.Add(item);
             _items.Add(item);
         }
@@ -157,6 +160,13 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         protected virtual VirtualListBoxItem NewItem() {
             return null;
+        }
+
+        private void VirtualListBoxResize(object sender, EventArgs e)
+        {
+            foreach (var virtualListBoxItem in _items) {
+                virtualListBoxItem.Width = _dataPanel.Width;
+            }
         }
     }
 }

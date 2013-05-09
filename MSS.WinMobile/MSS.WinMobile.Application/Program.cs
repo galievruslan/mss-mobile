@@ -8,6 +8,7 @@ using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Views;
+using OpenNETCF.Windows.Forms;
 using log4net.Config;
 
 namespace MSS.WinMobile.Application
@@ -70,7 +71,7 @@ namespace MSS.WinMobile.Application
             NavigationContext.RegisterNavigator(new Navigator(presentersFactory));
 
             Log.Info("Application start");
-            System.Windows.Forms.Application.Run(new MenuView());
+            Application2.Run(new MenuView());
             Log.Info("Application finish");
         }
     }

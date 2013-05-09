@@ -51,6 +51,22 @@
     </Reference>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
+    <Reference Include="OpenNETCF, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenNETCF.Drawing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenNETCF.Windows.Forms, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenNETCF.WindowsCE, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.WindowsCE.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -64,7 +80,6 @@
     <Compile Include="Buttons\CancelButton.Designer.cs">
       <DependentUpon>CancelButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="IPaintControl.cs" />
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,12 +118,6 @@
     </Compile>
     <Compile Include="ListBox\VirtualListBox.Designer.cs">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TransparentControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TransparentLabel.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>

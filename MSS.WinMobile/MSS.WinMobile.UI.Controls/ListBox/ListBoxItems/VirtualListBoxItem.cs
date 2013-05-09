@@ -2,21 +2,16 @@
 using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
-    public class VirtualListBoxItem : UserControl, IPaintControl {
+    public class VirtualListBoxItem : UserControl {
         protected VirtualListBoxItem() {
             Index = -1;
-            UnSelected += VirtualListBoxItem_UnSelected;
-            Selected += VirtualListBoxItem_Selected;
         }
 
-        private void VirtualListBoxItem_Selected(VirtualListBoxItem sender) {
-            BackColor = Color.LightSkyBlue;
-            Refresh();
-        }
+        protected readonly Color ColorSelected = Color.LightSkyBlue;
+        protected readonly Color ColorUnselected = Color.White;
 
-        private void VirtualListBoxItem_UnSelected(VirtualListBoxItem sender) {
-            BackColor = Color.White;
-            Refresh();
+        protected void DrawDivisor(Graphics graphics) {
+            graphics.DrawLine(new Pen(Color.Gainsboro), 4, Height - 1, Width - 8, Height - 1);
         }
 
         public delegate void OnDataNeeded(VirtualListBoxItem sender);
@@ -57,11 +52,6 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
                 DataNeeded.Invoke(this);
         }
 
-        protected override void OnPaint(PaintEventArgs e) {
-            base.OnPaint(e);
-            e.Graphics.DrawLine(new Pen(Color.Gainsboro), 4, Height - 1, Width - 8, Height - 1);
-        }
-
         private void InitializeComponent() {
             this.SuspendLayout();
             // 
@@ -69,21 +59,17 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "VirtualListBoxItem";
-            this.Size = new System.Drawing.Size(200, 30);
+            this.Size = new System.Drawing.Size(198, 28);
             this.Click += new System.EventHandler(this.VirtualListBoxItemClick);
             this.ResumeLayout(false);
 
         }
 
         protected void VirtualListBoxItemClick(object sender, System.EventArgs e) {
-            if (Selected != null)
+            if (!IsSelected && Selected != null)
                 Selected.Invoke(this);
-            Refresh();
-        }
-
-        public void InvokePaintBackground(PaintEventArgs e) {
-            OnPaintBackground(e);
         }
     }
 }

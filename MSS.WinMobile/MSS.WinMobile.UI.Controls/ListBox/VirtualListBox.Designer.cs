@@ -57,6 +57,7 @@
             this.Controls.Add(this._dataPanel);
             this.Name = "VirtualListBox";
             this.Size = new System.Drawing.Size(226, 297);
+            this.Resize += new System.EventHandler(this.VirtualListBoxResize);
             this.ResumeLayout(false);
 
         }
