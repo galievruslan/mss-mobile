@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
@@ -23,29 +24,40 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private IDataPageRetriever<RoutePoint> _routePointRetriever;
         private Cache<RoutePoint> _cache;
 
-        public RoutePresenter(IRouteView view, IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repositoryFactory, IModelsFactory modelsFactory) {
+        public RoutePresenter(IRouteView view, IUnitOfWorkFactory unitOfWorkFactory,
+                              IRepositoryFactory repositoryFactory, IModelsFactory modelsFactory) {
             _repositoryFactory = repositoryFactory;
             _modelsFactory = modelsFactory;
             _unitOfWorkFactory = unitOfWorkFactory;
             _view = view;
         }
 
-        private RoutePoint _selectedRoutePoint;
-        public void SelectItem(int index) {
-            _selectedRoutePoint = _cache.RetrieveElement(index);
-        }
-
         public int InitializeListSize() {
-            GetRouteOnDate();
             return _routePointRetriever.Count;
         }
 
         public RoutePointViewModel GetItem(int index) {
             RoutePoint item = _cache.RetrieveElement(index);
-            return new RoutePointViewModel
-            {
+            return new RoutePointViewModel {
+                Id = item.Id,
                 ShippinAddressName = item.ShippingAddressName
             };
+        }
+
+        private RoutePoint _selectedRoutePoint;
+        public void Select(int index) {
+            _selectedRoutePoint = _cache.RetrieveElement(index);
+        }
+
+        public RoutePointViewModel SelectedModel {
+            get {
+                return _selectedRoutePoint != null
+                           ? new RoutePointViewModel {
+                               Id = _selectedRoutePoint.Id,
+                               ShippinAddressName = _selectedRoutePoint.ShippingAddressName
+                           }
+                           : null;
+            }
         }
 
         private RouteViewModel _viewModel;
@@ -53,6 +65,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _viewModel = new RouteViewModel {
                 Date = DateTime.Now
             };
+
+            GetRouteOnDate();
             return _viewModel;
         }
 
@@ -62,6 +76,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
             _routePointRetriever = new RoutePointRetriever(route);
             _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
+
+            if (route != null) {
+                _viewModel.Id = route.Id;
+            }
         }
 
         public void CreateRouteOnDate() {
@@ -77,25 +95,57 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var statusRepository = _repositoryFactory.CreateRepository<Status>();
             var defaultStatus = statusRepository.Find().FirstOrDefault();
+            var route =
+                routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
 
             using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                 unitOfWork.BeginTransaction();
-                var route = _modelsFactory.CreateRoute(_viewModel.Date);
+
+                if (route == null) _modelsFactory.CreateRoute(_viewModel.Date);
                 route = routeRepository.Save(route);
 
-                if (routeTemplate != null) {
-                    foreach (var pointTemplate in routeTemplate.PointTemplates.ToArray()) {
-                        RoutePoint routePoint = route.CreatePoint();
-                        ShippingAddress shippingAddress =
-                            shippingAddressRepository.GetById(pointTemplate.ShippingAddressId);
+                if (route.Points.Count() == 0) {
+                    if (routeTemplate != null) {
+                        foreach (var pointTemplate in routeTemplate.PointTemplates.ToArray()) {
+                            RoutePoint routePoint = route.CreatePoint();
+                            ShippingAddress shippingAddress =
+                                shippingAddressRepository.GetById(pointTemplate.ShippingAddressId);
 
-                        routePoint.SetShippingAddress(shippingAddress);
-                        routePoint.SetStatus(defaultStatus);
-                        routePointRepository.Save(routePoint);
+                            routePoint.SetShippingAddress(shippingAddress);
+                            routePoint.SetStatus(defaultStatus);
+                            routePointRepository.Save(routePoint);
+                        }
                     }
                 }
+
                 unitOfWork.Commit();
             }
+        }
+
+        public bool AddRoutePoint() {
+            var routeRepository = _repositoryFactory.CreateRepository<Route>();
+            var route =
+                routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
+
+            if (route == null) {
+                using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                    unitOfWork.BeginTransaction();
+                    route = _modelsFactory.CreateRoute(_viewModel.Date);
+                    route = routeRepository.Save(route);
+                    unitOfWork.Commit();
+                }
+            }
+
+            var newRoutePointView =
+                NavigationContext.NavigateTo<INewRoutePointView>(
+                    new Dictionary<string, object> {{"route_id", route.Id}});
+            if (newRoutePointView.ShowDialogView() == DialogViewResult.Ok) {
+                _routePointRetriever = new RoutePointRetriever(route);
+                _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
+                return true;
+            }
+
+            return false;
         }
     }
 }

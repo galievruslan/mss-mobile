@@ -19,13 +19,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
             if (string.IsNullOrEmpty(userName) ||
                 string.IsNullOrEmpty(password)) {
-                if (DialogViewResult.Ok !=
-                    NavigationContext.NavigateTo<ILogonView>().ShowDialogView()) {
-                    _view.CloseView();
+                var logonView = NavigationContext.NavigateTo<ILogonView>();
+                if (DialogViewResult.Ok != logonView.ShowDialogView()) {
+                    logonView.CloseView();
                 }
             }
             else {
-                NavigationContext.NavigateTo<IInitializationView>().ShowDialogView();
+                //NavigationContext.NavigateTo<IInitializationView>();
             }
         }
 

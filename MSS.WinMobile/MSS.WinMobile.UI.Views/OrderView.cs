@@ -55,7 +55,7 @@ namespace MSS.WinMobile.UI.Views
             {
                 if (DialogResult.OK == priceListLookUpView.ShowDialog())
                 {
-                    int priceListId = priceListLookUpView.GetSelectedId();
+                    //int priceListId = priceListLookUpView.
                     //_presenter.SetPriceList(priceListId);
                 }
             }
@@ -67,7 +67,7 @@ namespace MSS.WinMobile.UI.Views
             {
                 if (DialogResult.OK == warehouseLookUpView.ShowDialog())
                 {
-                    int warehouseListId = warehouseLookUpView.GetSelectedId();
+                    //int warehouseListId = warehouseLookUpView.GetSelectedId();
                     //_presenter.SetWarehouse(warehouseListId);
                 }
             }

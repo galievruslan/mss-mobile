@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -41,6 +42,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         private void FillItemPanel()
         {
+            Refresh();
             int itemsHeight = _items.Sum(item => item.Height);
 
             float itemAvgHeight = 0;
@@ -160,6 +162,22 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         {
             foreach (var virtualListBoxItem in _items) {
                 virtualListBoxItem.Width = _dataPanel.Width;
+            }
+        }
+
+        protected virtual string EmptyListMessage {
+            get { return "Where are no items."; }
+        }
+
+        private void DataPanelPaint(object sender, PaintEventArgs e) {
+            if (ItemCount == 0) {
+                var format = new StringFormat {
+                    Alignment = StringAlignment.Center,
+                    FormatFlags = StringFormatFlags.NoClip
+                };
+
+                e.Graphics.DrawString(EmptyListMessage, Font, new SolidBrush(ForeColor),
+                                      e.ClipRectangle, format);
             }
         }
     }

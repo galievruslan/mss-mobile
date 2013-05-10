@@ -44,8 +44,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         void BackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            _view.CloseView();
             _backgroundWorker.Dispose();
+            _view.CloseView();
         }
 
         void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)

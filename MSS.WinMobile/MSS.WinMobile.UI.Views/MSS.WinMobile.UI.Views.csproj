@@ -68,6 +68,12 @@
     <Compile Include="InitializationView.Designer.cs">
       <DependentUpon>InitializationView.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewRoutePointView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewRoutePointView.Designer.cs">
+      <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PickUpProductView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     <EmbeddedResource Include="InitializationView.resx">
       <DependentUpon>InitializationView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewRoutePointView.resx">
+      <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PickUpProductView.resx">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.LogonViewModel.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.NewRoutePointViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel1.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />

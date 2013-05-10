@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\NewRoutePointPresenter.cs" />
     <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
     <Compile Include="NavigationContext.cs" />
@@ -71,11 +72,12 @@
     <Compile Include="Presenters\PickUpProductPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
     <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
-    <Compile Include="Presenters\Exceptions\NoSelectedItemsException.cs" />
     <Compile Include="Presenters\Specificarions\RouteOnDateSpec.cs" />
     <Compile Include="Presenters\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\PriceListLookUpPresenter.cs" />
+    <Compile Include="ViewModels\PriceListViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\NewRoutePointViewModel.cs" />
     <Compile Include="ViewModels\PickUpProductViewModel.cs" />
     <Compile Include="ViewModels\OrderItemViewModel.cs" />
     <Compile Include="ViewModels\LogonViewModel.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Views\IInitializationView.cs" />
     <Compile Include="Views\IListView.cs" />
     <Compile Include="INavigator.cs" />
+    <Compile Include="Views\INewRoutePointView.cs" />
     <Compile Include="Views\IPickUpProductView.cs" />
     <Compile Include="Views\IWarehouseLookUpView.cs" />
     <Compile Include="Views\IPriceListLookUpView.cs" />

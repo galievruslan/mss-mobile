@@ -29,18 +29,21 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                routePointListBox.ItemSelected += ItemSelected;
+                routePointListBox.ItemSelected += routePointListBox_ItemSelected;
                 routePointListBox.ItemDataNeeded += ItemDataNeeded;
 
                 _presenter = _presentersFactory.CreateRoutePresenter(this);
                 routeViewModelBindingSource.DataSource = _presenter.Initialize();
                 routePointListBox.SetListSize(_presenter.InitializeListSize());
+                datePicker.ValueChanged += DateChanged;
             }
         }
 
-        void ItemSelected(object sender, VirtualListBoxItem item)
-        {
-            _presenter.SelectItem(item.Index);
+        void routePointListBox_ItemSelected(object sender, VirtualListBoxItem item) {
+            var routePointListBoxItem = item as RoutePointListBoxItem;
+            if (routePointListBoxItem != null) {
+                routePointListBoxItem.ViewModel = _presenter.GetItem(item.Index);
+            }
         }
 
         private void CreateOrderClick(object sender, EventArgs e)
@@ -69,9 +72,10 @@ namespace MSS.WinMobile.UI.Views
             Dispose();
         }
 
-        public void DisplayErrors(string error)
-        {
-            throw new NotImplementedException();
+        public void DisplayErrors(string error) {
+            _notification.Critical = true;
+            _notification.Text = error;
+            _notification.Visible = true;
         }
 
         #endregion
@@ -87,7 +91,14 @@ namespace MSS.WinMobile.UI.Views
             if (routeViewModel != null)
                 routeViewModel.Date = datePicker.Value;
             routeViewModelBindingSource.EndEdit();
+            _presenter.GetRouteOnDate();
             routePointListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void _createRoutePointButton_Click(object sender, EventArgs e) {
+            if (_presenter.AddRoutePoint()) {
+                routePointListBox.SetListSize(_presenter.InitializeListSize());
+            }
         }
     }
 }

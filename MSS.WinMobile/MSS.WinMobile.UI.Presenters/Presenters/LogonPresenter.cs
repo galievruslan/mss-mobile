@@ -31,7 +31,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
-                    NavigationContext.NavigateTo<IInitializationView>().ShowView();
                     return true;
                 }
                 catch (WebException webException) {
@@ -48,6 +47,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void Cancel()
         {
+            _view.CloseView();
         }
 
         private LogonViewModel _viewModel;

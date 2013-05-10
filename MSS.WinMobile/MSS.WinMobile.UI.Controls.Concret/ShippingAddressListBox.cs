@@ -4,20 +4,20 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.Concret
 {
-    public class RoutePointListBox : VirtualListBox
+    public class ShippingAddressListBox : VirtualListBox
     {
-        public RoutePointListBox() {
+        public ShippingAddressListBox() {
             InitializeComponent();
         }
 
         protected override VirtualListBoxItem NewItem()
         {
-            return new RoutePointListBoxItem();
+            return new ShippingAddressListBoxItem();
         }
 
         protected override string EmptyListMessage {
             get {
-                return "Where are no route points on this date.";
+                return "Where are no shipping addresses.";
             }
         }
     }

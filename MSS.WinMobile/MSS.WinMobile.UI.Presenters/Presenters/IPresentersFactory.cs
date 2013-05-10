@@ -8,5 +8,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             ISynchronizationView synchronizationView);
 
         RoutePresenter CreateRoutePresenter(IRouteView routeView);
+
+        NewRoutePointPresenter CreateNewRoutePointPresenter(INewRoutePointView newRoutePointView, int routeId);
+
+        CustomerLookUpPresenter CreateCustomerLookUpPresenter(ICustomerLookUpView customerLookUpView);
+
+        ShippingAddressLookUpPresenter CreateShippingAddressLookUpPresenter(
+            IShippingAddressLookUpView shippingAddressLookUpView, int customerId);
     }
 }

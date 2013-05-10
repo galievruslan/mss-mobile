@@ -38,6 +38,7 @@
             this._dataPanel.Location = new System.Drawing.Point(0, 0);
             this._dataPanel.Name = "_dataPanel";
             this._dataPanel.Size = new System.Drawing.Size(226, 297);
+            this._dataPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.DataPanelPaint);
             // 
             // _vScrollBar
             // 

@@ -136,6 +136,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public OrderItemViewModel GetItem(int index) {
             throw new NotImplementedException();
         }
+
+        public void Select(int index) {
+            throw new NotImplementedException();
+        }
+
+        public OrderItemViewModel SelectedModel { get; private set; }
     }
 
     public class PriceListEmptyException : Exception

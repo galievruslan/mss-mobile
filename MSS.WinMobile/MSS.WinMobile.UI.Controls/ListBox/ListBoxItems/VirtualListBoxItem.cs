@@ -61,7 +61,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "VirtualListBoxItem";
-            this.Size = new System.Drawing.Size(198, 28);
+            this.Size = new System.Drawing.Size(200, 28);
             this.Click += new System.EventHandler(this.VirtualListBoxItemClick);
             this.ResumeLayout(false);
 

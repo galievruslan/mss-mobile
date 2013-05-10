@@ -106,5 +106,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 Quantity = 0
             };
         }
+
+        public void Select(int index) {
+            throw new System.NotImplementedException();
+        }
+
+        public PickUpProductViewModel SelectedModel { get; private set; }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.Domain.Models;
+﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
-using MSS.WinMobile.UI.Presenters.Presenters.Exceptions;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -21,22 +19,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public CustomerLookUpPresenter(ICustomerLookUpView view, IRepositoryFactory repositoryFactory) {
             _repositoryFactory = repositoryFactory;
             _customerRetriever = new CustomerRetriever(_repositoryFactory.CreateRepository<Customer>());
-            _cache = new Cache<Customer>(_customerRetriever, 10);
+            _cache = new Cache<Customer>(_customerRetriever, 100);
             _view = view;
-        }
-
-        private Customer _selectedCustomer;
-        public void SelectItem(int index)
-        {
-            _selectedCustomer = _cache.RetrieveElement(index);
-        }
-
-        public int GetSelectedItemId()
-        {
-            if (_selectedCustomer != null)
-                return _selectedCustomer.Id;
-
-            throw new NoSelectedItemsException();
         }
 
         public int InitializeListSize() {
@@ -48,6 +32,33 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             return new CustomerViewModel {
                 Name = item.Name
             };
+        }
+
+        private Customer _selectedCustomer;
+        public void Select(int index) {
+            _selectedCustomer = _cache.RetrieveElement(index);
+        }
+
+        public CustomerViewModel SelectedModel {
+            get {
+                return _selectedCustomer != null
+                           ? new CustomerViewModel {
+                               Id = _selectedCustomer.Id,
+                               Name = _selectedCustomer.Name
+                           }
+                           : null;
+            }
+        }
+
+        public bool LookUp() {
+            if (_selectedCustomer != null)
+                return true;
+
+            return false;
+        }
+
+        public void Cancel() {
+            _view.CloseView();
         }
     }
 }

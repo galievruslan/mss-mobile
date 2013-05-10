@@ -13,12 +13,6 @@ namespace MSS.WinMobile.UI.Views
         public PriceListLookUpView()
         {
             InitializeComponent();
-            searchPanel.SearchNeeded += searchPanel_SearchNeeded;
-        }
-
-        void searchPanel_SearchNeeded(object sender, string criteria)
-        {
-            _presenter.Search(criteria);
         }
 
         private void ViewLoad(object sender, EventArgs e)
@@ -30,11 +24,6 @@ namespace MSS.WinMobile.UI.Views
                 //_presenter = new PriceListLookUpPresenter(this);
                 //_presenter.InitializeView();
             }
-        }
-
-        void ItemSelected(object sender, VirtualListBoxItem item)
-        {
-            _presenter.SelectItem(item.Index);
         }
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
@@ -61,11 +50,6 @@ namespace MSS.WinMobile.UI.Views
         public void SetItemCount(int count)
         {
             //priceListListBox.SetListSize(count);
-        }
-
-        public int GetSelectedId()
-        {
-            return _presenter.GetSelectedItemId();
         }
 
         #region IView

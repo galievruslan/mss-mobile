@@ -36,5 +36,21 @@ namespace MSS.WinMobile.Application {
                                       _unitOfWorkFactory,
                                       _repositoryFactory, _modelsFactory);
         }
+
+        public NewRoutePointPresenter CreateNewRoutePointPresenter(
+            INewRoutePointView newRoutePointView, int routeId) {
+            return new NewRoutePointPresenter(newRoutePointView, _unitOfWorkFactory,
+                                              _repositoryFactory, routeId);
+        }
+
+        public CustomerLookUpPresenter CreateCustomerLookUpPresenter(ICustomerLookUpView customerLookUpView) {
+            return new CustomerLookUpPresenter(customerLookUpView, _repositoryFactory);
+        }
+
+        public ShippingAddressLookUpPresenter CreateShippingAddressLookUpPresenter(
+            IShippingAddressLookUpView shippingAddressLookUpView, int customerId) {
+            return new ShippingAddressLookUpPresenter(shippingAddressLookUpView, _repositoryFactory,
+                                                      customerId);
+        }
     }
 }

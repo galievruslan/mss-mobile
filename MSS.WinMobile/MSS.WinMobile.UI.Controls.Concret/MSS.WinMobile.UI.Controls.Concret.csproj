@@ -53,6 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListBoxItems\ShippingAddressListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShippingAddressListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomerListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBoxItems\CustomerListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBoxItems\RoutePointListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,10 +85,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.CustomerViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RoutePointViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.ShippingAddressViewModel.datasource" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ListBoxItems\ShippingAddressListBoxItem.resx">
+      <DependentUpon>ShippingAddressListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShippingAddressListBox.resx">
+      <DependentUpon>ShippingAddressListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerListBox.resx">
+      <DependentUpon>CustomerListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBoxItems\CustomerListBoxItem.resx">
+      <DependentUpon>CustomerListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListBoxItems\RoutePointListBoxItem.resx">
       <DependentUpon>RoutePointListBoxItem.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,11 +26,6 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        void ItemSelected(object sender, VirtualListBoxItem item)
-        {
-            _presenter.SelectItem(item.Index);
-        }
-
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
             //var priceListListBoxItem = item as WarehouseListBoxItem;
@@ -55,11 +50,6 @@ namespace MSS.WinMobile.UI.Views
         public void SetItemCount(int count)
         {
             //warehouseListBox.SetListSize(count);
-        }
-
-        public int GetSelectedId()
-        {
-            return _presenter.GetSelectedItemId();
         }
 
         #region IView

@@ -118,7 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_createOrderIcon.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_createRoutePointButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAADRSURBVHhe7dTBCYAwAATB9N+0WoARloAhMIIfOR+Oq2M4
+        CBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgUfgmpxwJgLAYhrAgEWBOFcYsCgQ5woDFgXiXGHAokCcKwxY
+        FIhzhQGLAnGuMGDfArNCdl+P7+2/+W6Y4z5pYDFOYMCiQJwrLIKtzo/7aa8+8Or9wKIgMGBRIM4VBiwK
+        xLnCgEWBOFcYsCgQ5woDFgXiXGHAokCcKwxYFDAnQIAAAQIECBAgQIAAAQIECBAgQIAAAQLvAjfODKJs
+        VC81dAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="_createOrderButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
@@ -136,31 +146,26 @@
         cP5jdgpQgAIUoAAFKEABClCAAhSgAAUoQAEKUIAC9QT+ALJFqIR7IkFAAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="routeViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="createRouteOnDateButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAOfSURBVHhe7ZpPqE1BHMdfElm9t0BJ6i28LGzeiqR0F0p2
-        NhbKykbYsLDVi2wkC2Uh0pOUZPHqJayQXmSBkrJQFpKSkkQWwvfL/DRNM+fMvFfnzr33O/Xt3jfvd+bP
-        53xnztyZMzamJAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiIAIiUEhgGeKPQZ+hh9BpaDc0XljO
-        SIRPoZcL0O+IfiHvBXQB2getHwkiiU6aq74nYMUAMu8tdA06CG2GWE7VaTlatweah65D+6HVhS1uclUK
-        VCr/bmHdnYVPoqaT0IfE0HmK/BloW8Ndz3HVj0LH3e+MQEZF5qbbiOV8knv3P0Xc1+Sqd4i/58rnPLUd
-        Og6x3i8t9VYBrMlNudAsjqCfQKm56jL+x6ch3clr1gQ3kq6cho5CtyLw+gZssW4qBWjxHNq7PDgpYOFA
-        COvrGzA+cXI6/xpxp1zsRXzyaTUHfc28nnXchNYGJIYK2Dd07irUc53ksGHH2UlLK/BlJ8RF57MEvI/I
-        3xtaxv09FMC45jkMTQSdjAELOaxDxgHohoP3OOIq/5qhAMYVdizlAPOvoxtTZVmcgHnEBMwNM7oiJwmY
-        gP37IRsuKzSHNYwfAcuZXLyYfgPbgrYcgVa1tLvqlX6XQzL3/o4ksF5kvkz9LHsVkBQwB++KW9xyX82H
-        ImAAEnOYbevYit+gCZiAtU/X4UrfHHYOl3L3glrpiuHT2vLoLnOYnRuM9ByW2uqxW8DNQQPGJza3hwYS
-        2LRr+Bw+6Yi2lHIY5yu6jeJ+GtOkl/c8ABZ7kla14+qvwzhkeJjKBoYNf4+8WYiOmYjQSwHzy2mb9NmW
-        gQC2CQ09C/EkKGcL+yfiHkEnIDty43UEegmiI+mosKyhANZ2xJUDMASdAnYGEGegBwFMm8N4YMw1Gm+I
-        X29VQzIHSGlMCljuSn8cwPiiCs8OCPdOZAroJCv31IgHIhxeHG489KAz6IJccEsF1gmMnEragL1EIbED
-        ESt7A74ccnc8dWjL1wA2JuawGHAeAvMgpcoUA2Zu2lrYYm7RcNich9449y3gc8qV08twZNWw2A8fWJub
-        Cvn9XVv5ryW1AaseFgFwqMxCpW4qhcf4JmADAWsxnV7KNSlggpWgGgMmWA0WDIEJVst49YEJVsbkZsAE
-        KwOWPSUFKxMWw3ZA1a7gC/rRWWj179Z3RkIViYAIiIAIiIAIiIAIiIAIiIAIiIAIiMB/An8AG0EBNk+h
-        l98AAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAHJSURBVHhe7dqxSsRAEMbxw87C0srexs4n8BFsxFawtDuw
+        8zVsfQt7LewFEezsLWwFm3NGOFmWc3NfSDaZ5L8wELhJjvxudpPMZbFgIIAAAggggAACCCCAAAIIIIAA
+        Aggg8CdwZFtdxeEcXFd2kl3G9dTRusRaH2vSaH2A+TEni5aC+VrWdpzajt/Z9J4kWgls1wCuhLjfsB7e
+        Jvtf2PZO219kLPuVwPY7viD4d91FR6sNFh5NAXuy6ngQ4rlQoWErTQHzKaqMkwTsy7Y/M8CQaLXAPgzr
+        eApoNcG8OsOj1QYLjzYEWGi0ocDCog0JFhJtaLBwaGMA+w/tRrnpq5VbC8w7GU1PCe/Zja0/uI9u1AJr
+        03cDrPBsuQl0dmAHBqT00zz3MUGdHVib9ceR1tUG2BaCgG2BlKYABpgoIKZTYYCJAmI6FQaYKCCmU2GA
+        iQJiOhUGmCggpoeqsKWd3FkSl1k7Rv3nW7T6TQ8F1tTkA0xs6AFmYK+FeGNKaqtK/kIdFdbgl4P560m+
+        KPcZL0lVj7LjWjLr45XNpgtL+jlg4kUmHNhez9OvaWqfa0su2QgggAACCCCAAAIIIIAAAggggAACCCCA
+        gCjwAxCai6w31tlEAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="routeViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="_notification.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>238, 17</value>
+  </metadata>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
   </metadata>
