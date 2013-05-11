@@ -50,7 +50,7 @@ namespace MSS.WinMobile.Application
                              .RegisterSpecificationTranslator(new CommonTranslator<Category>())
                              .RegisterSpecificationTranslator(new CommonTranslator<PriceList>())
                              .RegisterSpecificationTranslator(new CommonTranslator<Product>())
-                             .RegisterSpecificationTranslator(new CommonTranslator<Order>())
+                             .RegisterSpecificationTranslator(new OrderSpecTranslator())
                              .RegisterSpecificationTranslator(new OrderItemSpecTranslator())
                              .RegisterSpecificationTranslator(new ProductPriceSpecTranslator())
                              .RegisterSpecificationTranslator(

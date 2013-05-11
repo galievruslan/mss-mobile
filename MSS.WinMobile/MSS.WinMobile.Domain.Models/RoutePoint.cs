@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.Domain.Models
+﻿using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
+
+namespace MSS.WinMobile.Domain.Models
 {
     public abstract class RoutePoint : Model
     {
@@ -25,5 +27,7 @@
         public void SetStatus(Status status) {
             StatusId = status.Id;
         }
+
+        public abstract IQueryObject<Order> Orders { get; }
     }
 }

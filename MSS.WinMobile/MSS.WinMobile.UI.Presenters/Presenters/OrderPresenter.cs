@@ -120,7 +120,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 PriceListId = _order.PriceListId,
                 PriceListName = _order.PriceListName,
                 WarehouseId = _order.WarehouseId,
-                WarehouseName = _order.WarehouseAddress
+                WarehouseAddress = _order.WarehouseAddress
             };
             return _viewModel;
         }

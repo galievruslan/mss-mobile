@@ -34,6 +34,8 @@ namespace MSS.WinMobile.UI.Views
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             this._actionPanel = new System.Windows.Forms.Panel();
+            this._listOrdersButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this.divisorLabel = new System.Windows.Forms.Label();
             this._createRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._createOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.panel = new System.Windows.Forms.Panel();
@@ -49,12 +51,33 @@ namespace MSS.WinMobile.UI.Views
             // 
             // _actionPanel
             // 
+            this._actionPanel.Controls.Add(this._listOrdersButton);
+            this._actionPanel.Controls.Add(this.divisorLabel);
             this._actionPanel.Controls.Add(this._createRoutePointButton);
             this._actionPanel.Controls.Add(this._createOrderButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._actionPanel.Location = new System.Drawing.Point(0, 0);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // _listOrdersButton
+            // 
+            this._listOrdersButton.BackColor = System.Drawing.Color.White;
+            this._listOrdersButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_listOrdersButton.BackgroundImage")));
+            this._listOrdersButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._listOrdersButton.Location = new System.Drawing.Point(32, 2);
+            this._listOrdersButton.Name = "_listOrdersButton";
+            this._listOrdersButton.PressedImage = null;
+            this._listOrdersButton.Size = new System.Drawing.Size(20, 20);
+            this._listOrdersButton.TabIndex = 3;
+            this._listOrdersButton.Click += new System.EventHandler(this.ListOrdersButtonClick);
+            // 
+            // divisorLabel
+            // 
+            this.divisorLabel.Location = new System.Drawing.Point(22, 3);
+            this.divisorLabel.Name = "divisorLabel";
+            this.divisorLabel.Size = new System.Drawing.Size(5, 20);
+            this.divisorLabel.Text = "|";
             // 
             // _createRoutePointButton
             // 
@@ -66,14 +89,14 @@ namespace MSS.WinMobile.UI.Views
             this._createRoutePointButton.PressedImage = null;
             this._createRoutePointButton.Size = new System.Drawing.Size(20, 20);
             this._createRoutePointButton.TabIndex = 1;
-            this._createRoutePointButton.Click += new System.EventHandler(this._createRoutePointButton_Click);
+            this._createRoutePointButton.Click += new System.EventHandler(this.CreateRoutePointButtonClick);
             // 
             // _createOrderButton
             // 
             this._createOrderButton.BackColor = System.Drawing.Color.White;
             this._createOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_createOrderButton.BackgroundImage")));
             this._createOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._createOrderButton.Location = new System.Drawing.Point(24, 2);
+            this._createOrderButton.Location = new System.Drawing.Point(54, 2);
             this._createOrderButton.Name = "_createOrderButton";
             this._createOrderButton.PressedImage = null;
             this._createOrderButton.Size = new System.Drawing.Size(20, 20);
@@ -157,5 +180,7 @@ namespace MSS.WinMobile.UI.Views
         private PictureButton createRouteOnDateButton;
         private PictureButton _createRoutePointButton;
         private Microsoft.WindowsCE.Forms.Notification _notification;
+        private PictureButton _listOrdersButton;
+        private System.Windows.Forms.Label divisorLabel;
     }
 }

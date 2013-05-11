@@ -74,6 +74,12 @@
     <Compile Include="NewRoutePointView.Designer.cs">
       <DependentUpon>NewRoutePointView.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderListView.Designer.cs">
+      <DependentUpon>OrderListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PickUpProductView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewRoutePointView.resx">
       <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderListView.resx">
+      <DependentUpon>OrderListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PickUpProductView.resx">
       <DependentUpon>PickUpProductView.cs</DependentUpon>

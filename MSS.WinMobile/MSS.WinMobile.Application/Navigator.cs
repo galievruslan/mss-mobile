@@ -48,6 +48,11 @@ namespace MSS.WinMobile.Application
                 int routeId = Int32.Parse(args["route_id"].ToString());
                 view = (new NewRoutePointView(_presentersFactory, routeId)) as T;
             }
+            else if (typeof(T) == typeof(IOrderListView))
+            {
+                int routeId = Int32.Parse(args["route_point_id"].ToString());
+                view = (new OrderListView(_presentersFactory, routeId)) as T;
+            }
             else if (typeof(T) == typeof(IPickUpProductView))
             {
                 view = (new PickUpProductView(args)) as T;

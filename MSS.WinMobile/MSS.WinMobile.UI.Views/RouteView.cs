@@ -29,7 +29,7 @@ namespace MSS.WinMobile.UI.Views
         {
             if (_presenter == null)
             {
-                routePointListBox.ItemSelected += routePointListBox_ItemSelected;
+                routePointListBox.ItemSelected += ItemSelected;
                 routePointListBox.ItemDataNeeded += ItemDataNeeded;
 
                 _presenter = _presentersFactory.CreateRoutePresenter(this);
@@ -39,11 +39,8 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        void routePointListBox_ItemSelected(object sender, VirtualListBoxItem item) {
-            var routePointListBoxItem = item as RoutePointListBoxItem;
-            if (routePointListBoxItem != null) {
-                routePointListBoxItem.ViewModel = _presenter.GetItem(item.Index);
-            }
+        void ItemSelected(object sender, VirtualListBoxItem item) {
+            _presenter.Select(item.Index);
         }
 
         private void CreateOrderClick(object sender, EventArgs e)
@@ -95,10 +92,15 @@ namespace MSS.WinMobile.UI.Views
             routePointListBox.SetListSize(_presenter.InitializeListSize());
         }
 
-        private void _createRoutePointButton_Click(object sender, EventArgs e) {
+        private void CreateRoutePointButtonClick(object sender, EventArgs e) {
             if (_presenter.AddRoutePoint()) {
                 routePointListBox.SetListSize(_presenter.InitializeListSize());
             }
+        }
+
+        private void ListOrdersButtonClick(object sender, EventArgs e)
+        {
+            _presenter.GoToOrderList();
         }
     }
 }

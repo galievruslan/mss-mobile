@@ -11,6 +11,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels {
         public string ShippingAddressName { get; set; }
 
         public override bool Validate() {
+            base.Validate();
             if (CustomerId == 0 ||
                 string.IsNullOrEmpty(CustomerName))
                 ErrorList.Add("Customer must be selected.");
@@ -19,7 +20,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels {
                 string.IsNullOrEmpty(ShippingAddressName))
                 ErrorList.Add("Shipping address must be selected.");
 
-            return ErrorList.Any();
+            return !ErrorList.Any();
         }
     }
 }

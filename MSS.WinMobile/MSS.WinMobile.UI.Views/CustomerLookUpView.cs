@@ -75,12 +75,12 @@ namespace MSS.WinMobile.UI.Views
 
         #endregion
 
-        private void okButton_Click(object sender, EventArgs e) {
+        private void OkButtonClick(object sender, EventArgs e) {
             if (_presenter.LookUp())
                 DialogResult = DialogResult.OK;
         }
 
-        private void cancelButton_Click(object sender, EventArgs e) {
+        private void CancelButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
         }

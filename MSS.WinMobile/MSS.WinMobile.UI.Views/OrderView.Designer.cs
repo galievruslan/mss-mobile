@@ -124,7 +124,7 @@ namespace MSS.WinMobile.UI.Views
             // 
             // warehouseTextBox
             // 
-            this.warehouseTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.orderViewModelBindingSource, "WarehouseName", true));
+            this.warehouseTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.orderViewModelBindingSource, "WarehouseAddress", true));
             this.warehouseTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.warehouseTextBox.Location = new System.Drawing.Point(0, 0);
             this.warehouseTextBox.Multiline = true;

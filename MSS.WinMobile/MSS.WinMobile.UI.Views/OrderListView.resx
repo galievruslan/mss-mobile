@@ -118,31 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_listOrdersButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwQAA
-        DsEBuJFr7QAAAdhJREFUeF7t2j1OAzEQhuH0HAHR0iCugLgEl4AGcQJOQJeGI8AJqOAEdDRUNDQ0lEgI
-        idhSkEarJc7nn4lsvZHcje2dJzPOJpvFghcCCCCAAAIIIIAAAggggAACCCCAAAJJgYMQcVRx7CV37Dzg
-        Llz/b8XxFNYaGq02WMQfGq0F2NBoFuw643h5Me38PWnt7ivtOCR0MRnPJslSsMuw1utIaOeJw70U7Cys
-        vz8SmgdY7Oph0CzY5/rT7KNiS8YK+3sNgWbBHteZ1Tz0LdgQleYN1j3aLsC6RtsV2Ca0jFs/vymtweJ5
-        GG9N/hu3M7c1ftln7NQaLOdLfEYaflMAE61bgN2Ea4ituO14mLSlmIJveAswNYP4Y6VtXXW+azxgIjdg
-        gIkCYjgVBpgoIIZTYYCJAmI4FQaYKCCGU2GAiQJiOBUGmCgghlNhgIkCYjgVBpgoIIanKuw+rBefXrcc
-        VyP94prz1Kd0jvie+4anKqw0+Zz5vgLibnNg8alP/Bdhq/FjWvBtZh8xBd/wObDWV2D/TnXaerPa61uw
-        97D40mF8mQrrGiznvCmdA9jkFiEF2h3YiUMLbmrzw9pnDOshgAACCCCAAAIIIIAAAggggAACCCCAAAJb
-        CawApYaflPc9A+UAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="_createRoutePointButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwQAA
-        DsEBuJFr7QAAANFJREFUeF7t1MEJgDAABMH037RagBGWgCEwgh85H46rYzgIECBAgAABAgQIECBAgAAB
-        AgQIECBAgACBR+CanHAmAsBiGsCARYE4VxiwKBDnCgMWBeJcYcCiQJwrDFgUiHOFAYsCca4wYN8Cs0J2
-        X4/v7b/5bpjjPmlgMU5gwKJAnCssgq3Oj/tprz7w6v3AoiAwYFEgzhUGLArEucKARYE4VxiwKBDnCgMW
-        BeJcYcCiQJwrDFgUMCdAgAABAgQIECBAgAABAgQIECBAgAABAu8CN84MomxULzV0AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="_createOrderButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -158,34 +133,10 @@
         IIAAAnUElt12ZfzpaPSuAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="createRouteOnDateButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOwQAA
-        DsEBuJFr7QAAAclJREFUeF7t2rFKxEAQxvHDzsLSyt7GzifwEWzEVrC0O7DzNWx9C3st7AUR7OwtbAWb
-        c0Y4WZZzc19INpnkvzAQuEmO/G52k8xlsWAggAACCCCAAAIIIIAAAggggAACCCDwJ3BkW13F4RxcV3aS
-        Xcb11NG6xFofa9JofYD5MSeLloL5WtZ2nNqO39n0niRaCWzXAK6EuN+wHt4m+1/Y9k7bX2Qs+5XA9ju+
-        IPh33UVHqw0WHk0Be7LqeBDiuVChYStNAfMpqoyTBOzLtj8zwJBotcA+DOt4Cmg1wbw6w6PVBguPNgRY
-        aLShwMKiDQkWEm1osHBoYwD7D+1GuemrlVsLzDsZTU8J79mNrT+4j27UAmvTdwOs8Gy5CXR2YAcGpPTT
-        PPcxQZ0dWJv1x5HW1QbYFoKAbYGUpgAGmCggplNhgIkCYjoVBpgoIKZTYYCJAmI6FQaYKCCmh6qwpZ3c
-        WRKXWTtG/edbtPpNDwXW1OQDTGzoAWZgr4V4Y0pqq0r+Qh0V1uCXg/nrSb4o9xkvSVWPsuNaMuvjlc2m
-        C0v6OWDiRSYc2F7P069pap9rSy7ZCCCAAAIIIIAAAggggAACCCCAAAIIIICAKPADEJqLrDfW2UQAAAAA
-        SUVORK5CYII=
-</value>
-  </data>
-  <metadata name="routeViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="_notification.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>238, 17</value>
-  </metadata>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
   </metadata>
   <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
   </metadata>
 </root>

@@ -15,5 +15,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         ShippingAddressLookUpPresenter CreateShippingAddressLookUpPresenter(
             IShippingAddressLookUpView shippingAddressLookUpView, int customerId);
+
+        OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, int routePointId);
     }
 }

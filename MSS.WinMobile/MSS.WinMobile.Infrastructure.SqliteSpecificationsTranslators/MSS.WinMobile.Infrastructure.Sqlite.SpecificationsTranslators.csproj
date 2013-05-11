@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonTranslator.cs" />
+    <Compile Include="OrderSpecTranslator.cs" />
     <Compile Include="ProductPriceSpecTranslator.cs" />
     <Compile Include="OrderItemSpecTranslator.cs" />
     <Compile Include="RoutePointTemplateSpecTranslator.cs" />

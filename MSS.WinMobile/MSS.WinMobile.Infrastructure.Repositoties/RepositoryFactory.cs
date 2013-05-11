@@ -93,7 +93,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties {
                     (IStorageRepository<TModel>)
                     new RoutePointStorageRepository(_storageManager.Current,
                                                    specificationTranslator as
-                                                   ISpecificationTranslator<RoutePoint>);
+                                                   ISpecificationTranslator<RoutePoint>,
+                                                   this);
             }
             if (typeof(TModel) == typeof(RoutePointTemplate)) {
                 return

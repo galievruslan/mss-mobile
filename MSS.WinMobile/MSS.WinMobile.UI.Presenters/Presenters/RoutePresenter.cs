@@ -84,6 +84,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void CreateRouteOnDate() {
             var routeRepository = _repositoryFactory.CreateRepository<Route>();
+            var route =
+                routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
+            if (route != null)
+                return;
+
+            route = _modelsFactory.CreateRoute(_viewModel.Date);
             var routeTemplateRepository = _repositoryFactory.CreateRepository<RouteTemplate>();
             var routeTemplate =
                 routeTemplateRepository.Find()
@@ -95,26 +101,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var statusRepository = _repositoryFactory.CreateRepository<Status>();
             var defaultStatus = statusRepository.Find().FirstOrDefault();
-            var route =
-                routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
 
             using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                 unitOfWork.BeginTransaction();
-
-                if (route == null) _modelsFactory.CreateRoute(_viewModel.Date);
                 route = routeRepository.Save(route);
 
-                if (route.Points.Count() == 0) {
-                    if (routeTemplate != null) {
-                        foreach (var pointTemplate in routeTemplate.PointTemplates.ToArray()) {
-                            RoutePoint routePoint = route.CreatePoint();
-                            ShippingAddress shippingAddress =
-                                shippingAddressRepository.GetById(pointTemplate.ShippingAddressId);
+                if (routeTemplate != null) {
+                    foreach (var pointTemplate in routeTemplate.PointTemplates.ToArray()) {
+                        RoutePoint routePoint = route.CreatePoint();
+                        ShippingAddress shippingAddress =
+                            shippingAddressRepository.GetById(pointTemplate.ShippingAddressId);
 
-                            routePoint.SetShippingAddress(shippingAddress);
-                            routePoint.SetStatus(defaultStatus);
-                            routePointRepository.Save(routePoint);
-                        }
+                        routePoint.SetShippingAddress(shippingAddress);
+                        routePoint.SetStatus(defaultStatus);
+                        routePointRepository.Save(routePoint);
                     }
                 }
 
@@ -146,6 +146,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
 
             return false;
+        }
+
+        public void GoToOrderList() {
+            if (SelectedModel != null) {
+                var orderListView =
+                    NavigationContext.NavigateTo<IOrderListView>(new Dictionary<string, object>
+                        {
+                            {"route_point_id", SelectedModel.Id}
+                        });
+                orderListView.ShowView();
+            }
         }
     }
 }

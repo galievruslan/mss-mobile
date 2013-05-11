@@ -27,6 +27,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewRoutePointView));
             this._shippingAddressPanel = new System.Windows.Forms.Panel();
             this._shippingAddressTextBox = new System.Windows.Forms.TextBox();
+            this._newRoutePointViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._shippingAddressButtonPanel = new System.Windows.Forms.Panel();
             this._shippingAddressResetButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._shippingAddressLookUpButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -41,32 +42,35 @@
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._notification = new Microsoft.WindowsCE.Forms.Notification();
-            this.newRoutePointViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._shippingAddressPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._newRoutePointViewModelBindingSource)).BeginInit();
             this._shippingAddressButtonPanel.SuspendLayout();
             this._customerPanel.SuspendLayout();
             this._customerButtonPanel.SuspendLayout();
             this._actionPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.newRoutePointViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _shippingAddressPanel
             // 
             this._shippingAddressPanel.Controls.Add(this._shippingAddressTextBox);
             this._shippingAddressPanel.Controls.Add(this._shippingAddressButtonPanel);
-            this._shippingAddressPanel.Location = new System.Drawing.Point(82, 37);
+            this._shippingAddressPanel.Location = new System.Drawing.Point(82, 60);
             this._shippingAddressPanel.Name = "_shippingAddressPanel";
-            this._shippingAddressPanel.Size = new System.Drawing.Size(155, 24);
+            this._shippingAddressPanel.Size = new System.Drawing.Size(155, 48);
             // 
             // _shippingAddressTextBox
             // 
-            this._shippingAddressTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.newRoutePointViewModelBindingSource, "ShippingAddressName", true));
+            this._shippingAddressTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._newRoutePointViewModelBindingSource, "ShippingAddressName", true));
             this._shippingAddressTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shippingAddressTextBox.Location = new System.Drawing.Point(0, 0);
             this._shippingAddressTextBox.Multiline = true;
             this._shippingAddressTextBox.Name = "_shippingAddressTextBox";
-            this._shippingAddressTextBox.Size = new System.Drawing.Size(111, 24);
+            this._shippingAddressTextBox.Size = new System.Drawing.Size(131, 48);
             this._shippingAddressTextBox.TabIndex = 4;
+            // 
+            // _newRoutePointViewModelBindingSource
+            // 
+            this._newRoutePointViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.NewRoutePointViewModel);
             // 
             // _shippingAddressButtonPanel
             // 
@@ -74,38 +78,38 @@
             this._shippingAddressButtonPanel.Controls.Add(this._shippingAddressResetButton);
             this._shippingAddressButtonPanel.Controls.Add(this._shippingAddressLookUpButton);
             this._shippingAddressButtonPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this._shippingAddressButtonPanel.Location = new System.Drawing.Point(111, 0);
+            this._shippingAddressButtonPanel.Location = new System.Drawing.Point(131, 0);
             this._shippingAddressButtonPanel.Name = "_shippingAddressButtonPanel";
-            this._shippingAddressButtonPanel.Size = new System.Drawing.Size(44, 24);
+            this._shippingAddressButtonPanel.Size = new System.Drawing.Size(24, 48);
             // 
             // _shippingAddressResetButton
             // 
+            this._shippingAddressResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._shippingAddressResetButton.BackColor = System.Drawing.Color.White;
             this._shippingAddressResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_shippingAddressResetButton.BackgroundImage")));
-            this._shippingAddressResetButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this._shippingAddressResetButton.Location = new System.Drawing.Point(22, 0);
+            this._shippingAddressResetButton.Location = new System.Drawing.Point(2, 24);
             this._shippingAddressResetButton.Name = "_shippingAddressResetButton";
             this._shippingAddressResetButton.PressedImage = null;
             this._shippingAddressResetButton.Size = new System.Drawing.Size(22, 24);
             this._shippingAddressResetButton.TabIndex = 1;
-            this._shippingAddressResetButton.Click += new System.EventHandler(this._shippingAddressResetButton_Click);
+            this._shippingAddressResetButton.Click += new System.EventHandler(this.ShippingAddressResetButtonClick);
             // 
             // _shippingAddressLookUpButton
             // 
+            this._shippingAddressLookUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._shippingAddressLookUpButton.BackColor = System.Drawing.Color.White;
             this._shippingAddressLookUpButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_shippingAddressLookUpButton.BackgroundImage")));
-            this._shippingAddressLookUpButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this._shippingAddressLookUpButton.Location = new System.Drawing.Point(0, 0);
+            this._shippingAddressLookUpButton.Location = new System.Drawing.Point(2, 0);
             this._shippingAddressLookUpButton.Name = "_shippingAddressLookUpButton";
             this._shippingAddressLookUpButton.PressedImage = null;
             this._shippingAddressLookUpButton.Size = new System.Drawing.Size(22, 24);
             this._shippingAddressLookUpButton.TabIndex = 0;
-            this._shippingAddressLookUpButton.Click += new System.EventHandler(this._shippingAddressLookUpButton_Click);
+            this._shippingAddressLookUpButton.Click += new System.EventHandler(this.ShippingAddressLookUpButtonClick);
             // 
             // _shippingAddressLabel
             // 
             this._shippingAddressLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._shippingAddressLabel.Location = new System.Drawing.Point(12, 37);
+            this._shippingAddressLabel.Location = new System.Drawing.Point(12, 60);
             this._shippingAddressLabel.Name = "_shippingAddressLabel";
             this._shippingAddressLabel.Size = new System.Drawing.Size(64, 33);
             this._shippingAddressLabel.Text = "Shipping Address";
@@ -116,16 +120,16 @@
             this._customerPanel.Controls.Add(this._customerButtonPanel);
             this._customerPanel.Location = new System.Drawing.Point(82, 3);
             this._customerPanel.Name = "_customerPanel";
-            this._customerPanel.Size = new System.Drawing.Size(155, 24);
+            this._customerPanel.Size = new System.Drawing.Size(155, 48);
             // 
             // _customerTextBox
             // 
-            this._customerTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.newRoutePointViewModelBindingSource, "CustomerName", true));
+            this._customerTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._newRoutePointViewModelBindingSource, "CustomerName", true));
             this._customerTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._customerTextBox.Location = new System.Drawing.Point(0, 0);
             this._customerTextBox.Multiline = true;
             this._customerTextBox.Name = "_customerTextBox";
-            this._customerTextBox.Size = new System.Drawing.Size(111, 24);
+            this._customerTextBox.Size = new System.Drawing.Size(131, 48);
             this._customerTextBox.TabIndex = 4;
             // 
             // _customerButtonPanel
@@ -134,33 +138,33 @@
             this._customerButtonPanel.Controls.Add(this._customerResetButton);
             this._customerButtonPanel.Controls.Add(this._customerLookUpButton);
             this._customerButtonPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this._customerButtonPanel.Location = new System.Drawing.Point(111, 0);
+            this._customerButtonPanel.Location = new System.Drawing.Point(131, 0);
             this._customerButtonPanel.Name = "_customerButtonPanel";
-            this._customerButtonPanel.Size = new System.Drawing.Size(44, 24);
+            this._customerButtonPanel.Size = new System.Drawing.Size(24, 48);
             // 
             // _customerResetButton
             // 
+            this._customerResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._customerResetButton.BackColor = System.Drawing.Color.White;
             this._customerResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_customerResetButton.BackgroundImage")));
-            this._customerResetButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this._customerResetButton.Location = new System.Drawing.Point(22, 0);
+            this._customerResetButton.Location = new System.Drawing.Point(2, 24);
             this._customerResetButton.Name = "_customerResetButton";
             this._customerResetButton.PressedImage = null;
             this._customerResetButton.Size = new System.Drawing.Size(22, 24);
             this._customerResetButton.TabIndex = 1;
-            this._customerResetButton.Click += new System.EventHandler(this._customerResetButton_Click);
+            this._customerResetButton.Click += new System.EventHandler(this.CustomerResetButtonClick);
             // 
             // _customerLookUpButton
             // 
+            this._customerLookUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._customerLookUpButton.BackColor = System.Drawing.Color.White;
             this._customerLookUpButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_customerLookUpButton.BackgroundImage")));
-            this._customerLookUpButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this._customerLookUpButton.Location = new System.Drawing.Point(0, 0);
+            this._customerLookUpButton.Location = new System.Drawing.Point(2, 0);
             this._customerLookUpButton.Name = "_customerLookUpButton";
             this._customerLookUpButton.PressedImage = null;
-            this._customerLookUpButton.Size = new System.Drawing.Size(22, 24);
+            this._customerLookUpButton.Size = new System.Drawing.Size(24, 24);
             this._customerLookUpButton.TabIndex = 0;
-            this._customerLookUpButton.Click += new System.EventHandler(this._customerLookUpButton_Click);
+            this._customerLookUpButton.Click += new System.EventHandler(this.CustomerLookUpButtonClick);
             // 
             // _customerLabel
             // 
@@ -190,7 +194,7 @@
             this.cancelButton.PressedImage = null;
             this.cancelButton.Size = new System.Drawing.Size(24, 24);
             this.cancelButton.TabIndex = 5;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // okButton
             // 
@@ -203,15 +207,11 @@
             this.okButton.PressedImage = null;
             this.okButton.Size = new System.Drawing.Size(24, 24);
             this.okButton.TabIndex = 4;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // _notification
             // 
             this._notification.Text = "notification1";
-            // 
-            // newRoutePointViewModelBindingSource
-            // 
-            this.newRoutePointViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.NewRoutePointViewModel);
             // 
             // NewRoutePointView
             // 
@@ -219,6 +219,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ControlBox = false;
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._customerPanel);
             this.Controls.Add(this._customerLabel);
@@ -226,13 +227,13 @@
             this.Controls.Add(this._shippingAddressLabel);
             this.Name = "NewRoutePointView";
             this.Text = "NewRoutePointView";
-            this.Load += new System.EventHandler(this.NewRoutePointView_Load);
+            this.Load += new System.EventHandler(this.NewRoutePointViewLoad);
             this._shippingAddressPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._newRoutePointViewModelBindingSource)).EndInit();
             this._shippingAddressButtonPanel.ResumeLayout(false);
             this._customerPanel.ResumeLayout(false);
             this._customerButtonPanel.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.newRoutePointViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,6 +256,6 @@
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private Microsoft.WindowsCE.Forms.Notification _notification;
-        private System.Windows.Forms.BindingSource newRoutePointViewModelBindingSource;
+        private System.Windows.Forms.BindingSource _newRoutePointViewModelBindingSource;
     }
 }

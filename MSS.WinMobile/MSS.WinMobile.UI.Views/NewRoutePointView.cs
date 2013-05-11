@@ -22,12 +22,15 @@ namespace MSS.WinMobile.UI.Views {
             _routeId = routeId;
         }
 
-        private void NewRoutePointView_Load(object sender, EventArgs e) {
+        private void NewRoutePointViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
                 _presenter = _presentersFactory.CreateNewRoutePointPresenter(this, _routeId);
                 _viewModel = _presenter.Initialize();
+                _newRoutePointViewModelBindingSource.DataSource = _viewModel;
             }
         }
+
+        
 
         #region IView
 
@@ -56,32 +59,36 @@ namespace MSS.WinMobile.UI.Views {
 
         #endregion
 
-        private void _customerLookUpButton_Click(object sender, EventArgs e) {
+        private void CustomerLookUpButtonClick(object sender, EventArgs e) {
             _presenter.LookUpCustomer();
-            Refresh();
+            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _customerTextBox.Refresh();
         }
 
-        private void _customerResetButton_Click(object sender, EventArgs e) {
+        private void CustomerResetButtonClick(object sender, EventArgs e) {
             _presenter.ResetCustomer();
-            Refresh();
+            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _customerTextBox.Refresh();
         }
 
-        private void _shippingAddressLookUpButton_Click(object sender, EventArgs e) {
+        private void ShippingAddressLookUpButtonClick(object sender, EventArgs e) {
             _presenter.LookUpShippingAddress();
-            Refresh();
+            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _shippingAddressTextBox.Refresh();
         }
 
-        private void _shippingAddressResetButton_Click(object sender, EventArgs e) {
+        private void ShippingAddressResetButtonClick(object sender, EventArgs e) {
             _presenter.ResetShippingAddress();
-            Refresh();
+            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _shippingAddressTextBox.Refresh();
         }
 
-        private void okButton_Click(object sender, EventArgs e) {
+        private void OkButtonClick(object sender, EventArgs e) {
             if (_presenter.Save())
                 DialogResult = DialogResult.OK;
         }
 
-        private void cancelButton_Click(object sender, EventArgs e) {
+        private void CancelButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
         }

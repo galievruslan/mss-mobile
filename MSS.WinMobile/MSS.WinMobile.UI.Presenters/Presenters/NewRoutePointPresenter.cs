@@ -52,7 +52,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     new Dictionary<string, object> {{"customer_id", _viewModel.CustomerId}});
             if (view.ShowDialogView() == DialogViewResult.Ok) {
                 _viewModel.ShippingAddressId = view.SelectedShippingAddress.Id;
-                _viewModel.ShippingAddressName = view.SelectedShippingAddress.Name;
+                _viewModel.ShippingAddressName = view.SelectedShippingAddress.Address;
             }
             view.CloseView();
         }
@@ -71,7 +71,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
                 var defaultStatus = statusRepository.Find().FirstOrDefault();
                 var shippingAddressRepository =
-                _repositoryFactory.CreateRepository<ShippingAddress>();
+                    _repositoryFactory.CreateRepository<ShippingAddress>();
 
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
 
@@ -85,9 +85,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     unitOfWork.BeginTransaction();
                     routePointRepository.Save(routePoint);
                     unitOfWork.Commit();
+                    return true;
                 }
             }
 
+            _view.DisplayErrors(_viewModel.Errors);
             return false;
         }
 

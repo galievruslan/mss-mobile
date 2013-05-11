@@ -21,7 +21,11 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public string PriceListName { get; set; }
 
         public int WarehouseId { get; set; }
-        public string WarehouseName { get; set; }
+        public string WarehouseAddress { get; set; }
+
+        public string Description {
+            get { return string.Format("Order {0} from {1}", OrderId, OrderDate); }
+        }
 
         public override bool Validate() {
             base.Validate();
@@ -46,7 +50,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
             if (WarehouseId == 0)
                 ErrorList.Add("Warehouse must be selected.");
 
-            if (string.IsNullOrEmpty(WarehouseName))
+            if (string.IsNullOrEmpty(WarehouseAddress))
                 ErrorList.Add("Warehouse must be selected.");
 
             return !ErrorList.Any();

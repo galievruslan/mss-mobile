@@ -12,8 +12,9 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             InitializeComponent();
         }
 
-        private CustomerViewModel _viewModel;
-        public CustomerViewModel ViewModel {
+        private ShippingAddressViewModel _viewModel;
+        public ShippingAddressViewModel ViewModel
+        {
             get { return _viewModel; }
             set {
                 _viewModel = value;

@@ -68,7 +68,7 @@ namespace MSS.WinMobile.UI.Views
             this.cancelButton.PressedImage = null;
             this.cancelButton.Size = new System.Drawing.Size(24, 24);
             this.cancelButton.TabIndex = 3;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // okButton
             // 
@@ -81,7 +81,7 @@ namespace MSS.WinMobile.UI.Views
             this.okButton.PressedImage = null;
             this.okButton.Size = new System.Drawing.Size(24, 24);
             this.okButton.TabIndex = 2;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // searchPanel
             // 

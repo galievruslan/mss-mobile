@@ -9,14 +9,16 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
     public class RoutePointStorageRepository : SqLiteStorageRepository<RoutePoint> {
         private readonly ISpecificationTranslator<RoutePoint> _specificationTranslator;
-        internal RoutePointStorageRepository(IStorage storage, ISpecificationTranslator<RoutePoint> specificationTranslator)
+        private readonly IRepositoryFactory _repositoryFactory;
+        internal RoutePointStorageRepository(IStorage storage, ISpecificationTranslator<RoutePoint> specificationTranslator, IRepositoryFactory repositoryFactory)
             : base(storage) {
             _specificationTranslator = specificationTranslator;
+            _repositoryFactory = repositoryFactory;
         }
 
         protected override QueryObject<RoutePoint> GetQueryObject()
         {
-            return new RoutePointQueryObject(Storage, _specificationTranslator, new RoutePointDataRecordTranslator());
+            return new RoutePointQueryObject(Storage, _specificationTranslator, new RoutePointTranslator(_repositoryFactory));
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RoutePoints (Id, Route_Id, ShippingAddress_Id, ShippingAddress_Name, Status_Id) VALUES ({0}, {1}, {2}, '{3}', {4})";

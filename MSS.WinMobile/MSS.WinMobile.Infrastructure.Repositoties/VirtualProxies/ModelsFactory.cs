@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using MSS.WinMobile.Domain.Models;
-using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
 using MSS.WinMobile.Infrastructure.Storage;
 
 namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies {
@@ -12,7 +10,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies {
         }
 
         public Route CreateRoute(DateTime date) {
-            return new RouteProxy(date, _repositoryFactory.CreateRepository<RoutePoint>());
+            return new RouteProxy(date, _repositoryFactory.CreateRepository<RoutePoint>(), _repositoryFactory.CreateRepository<Order>());
         }
 
         public Order CreateOrder() {

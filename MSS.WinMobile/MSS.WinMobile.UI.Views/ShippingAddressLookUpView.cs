@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -24,25 +25,29 @@ namespace MSS.WinMobile.UI.Views
             _customerId = customerId;
         }
 
-        private void CustomerLookUpView_Load(object sender, EventArgs e)
+        private void ShippingAddressLookUpViewLoad(object sender, EventArgs e)
         {
             if (_presenter == null) {
                 _presenter = _presentersFactory.CreateShippingAddressLookUpPresenter(this,
                                                                                      _customerId);
-                //shippingAddressListBox.ItemDataNeeded += ItemDataNeeded;
-                //shippingAddressListBox.ItemSelected += ItemSelected;
-                //_presenter = new ShippingAddressLookUpPresenter(this, _customerId);
-                //_presenter.InitializeView();
+                shippingAddressListBox.ItemDataNeeded += ItemDataNeeded;
+                shippingAddressListBox.ItemSelected += ItemSelected;
+                shippingAddressListBox.SetListSize(_presenter.InitializeListSize());
             }
+        }
+
+        void ItemSelected(object sender, VirtualListBoxItem item)
+        {
+            _presenter.Select(item.Index);
         }
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
         {
-            //var shippingAddressListBoxItem = item as ShippingAddressListBoxItem;
-            //if (shippingAddressListBoxItem != null)
-            //{
-            //    shippingAddressListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            //}
+            var shippingAddressListBoxItem = item as ShippingAddressListBoxItem;
+            if (shippingAddressListBoxItem != null)
+            {
+                shippingAddressListBoxItem.ViewModel = _presenter.GetItem(item.Index);
+            }
         }
 
         #region IView
@@ -77,13 +82,13 @@ namespace MSS.WinMobile.UI.Views
             get { return _presenter.SelectedModel; }
         }
 
-        private void okButton_Click_1(object sender, EventArgs e) {
+        private void OkButtonClick(object sender, EventArgs e) {
             if (_presenter.LookUp()) {
                 DialogResult = DialogResult.OK;
             }
         }
 
-        private void cancelButton_Click_1(object sender, EventArgs e) {
+        private void CancelButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
         }

@@ -63,7 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\DataRetrievers\OrderRetriever.cs" />
     <Compile Include="Presenters\NewRoutePointPresenter.cs" />
+    <Compile Include="Presenters\OrderListPresenter.cs" />
     <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
     <Compile Include="NavigationContext.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Views\IListView.cs" />
     <Compile Include="INavigator.cs" />
     <Compile Include="Views\INewRoutePointView.cs" />
+    <Compile Include="Views\IOrderListView.cs" />
     <Compile Include="Views\IPickUpProductView.cs" />
     <Compile Include="Views\IWarehouseLookUpView.cs" />
     <Compile Include="Views\IPriceListLookUpView.cs" />

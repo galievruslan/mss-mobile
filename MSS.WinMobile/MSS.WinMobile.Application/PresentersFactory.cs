@@ -52,5 +52,9 @@ namespace MSS.WinMobile.Application {
             return new ShippingAddressLookUpPresenter(shippingAddressLookUpView, _repositoryFactory,
                                                       customerId);
         }
+
+        public OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, int routePointId) {
+            return new OrderListPresenter(orderListView, _repositoryFactory, routePointId);
+        }
     }
 }
