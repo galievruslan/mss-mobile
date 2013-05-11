@@ -10,7 +10,9 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies {
         }
 
         public Route CreateRoute(DateTime date) {
-            return new RouteProxy(date, _repositoryFactory.CreateRepository<RoutePoint>(), _repositoryFactory.CreateRepository<Order>());
+            return new RouteProxy(date, _repositoryFactory.CreateRepository<RoutePoint>(),
+                                  _repositoryFactory.CreateRepository<Order>(),
+                                  _repositoryFactory.CreateRepository<OrderItem>());
         }
 
         public Order CreateOrder() {

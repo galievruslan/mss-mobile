@@ -13,7 +13,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
             : base(storage, specificationTranslator, translator) {}
 
         private const string SelectQuery =
-            "SELECT orderItems.Id, orderItems.Order_Id, orderItems.Product_Id, products.Name as Product_Name, orderItems.Quantity " +
+            "SELECT orderItems.Id, orderItems.Order_Id, orderItems.Product_Id, products.Name as Product_Name, orderItems.Quantity,  orderItems.Price " +
             "FROM OrderItems orderItems Left Join " +
             "Products products on orderItems.Product_Id = products.Id";
         protected override string AsQuery()

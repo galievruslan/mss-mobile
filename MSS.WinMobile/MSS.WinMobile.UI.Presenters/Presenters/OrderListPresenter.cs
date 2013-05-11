@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Collections.Generic;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -9,18 +10,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     public class OrderListPresenter : IListPresenter<OrderViewModel> {
         private IOrderListView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly int _routePointId;
+        private RoutePointViewModel _routePointViewModel;
 
-        private OrderRetriever _retriever;
-        private Cache<Order> _cache; 
+        private readonly OrderRetriever _retriever;
+        private readonly Cache<Order> _cache;
 
-        public OrderListPresenter(IOrderListView view, IRepositoryFactory repositoryFactory, int routePointId) {
+        public OrderListPresenter(IOrderListView view, IRepositoryFactory repositoryFactory, RoutePointViewModel routePointViewModel)
+        {
             _view = view;
             _repositoryFactory = repositoryFactory;
-            _routePointId = routePointId;
+            _routePointViewModel = routePointViewModel;
 
             var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
-            var routePoint = routePointRepository.GetById(_routePointId);
+            var routePoint = routePointRepository.GetById(routePointViewModel.Id);
             _retriever = new OrderRetriever(routePoint);
             _cache = new Cache<Order>(_retriever, 10);
         }
@@ -71,6 +73,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                }
                            : null;
             }
+        }
+
+        public void CreateOrder() {
+            var newOrderView = NavigationContext.NavigateTo<INewOrderView>(new Dictionary<string, object> { { "route_point", _routePointViewModel } });
+            newOrderView.ShowView();
         }
     }
 }

@@ -30,10 +30,8 @@ namespace MSS.WinMobile.UI.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogonView));
             this._passwordTextBox = new System.Windows.Forms.TextBox();
-            this.logonViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._accountTextBox = new System.Windows.Forms.TextBox();
             this._accountLabel = new System.Windows.Forms.Label();
             this._passwordLabel = new System.Windows.Forms.Label();
@@ -43,8 +41,7 @@ namespace MSS.WinMobile.UI.Views
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.notification = new Microsoft.WindowsCE.Forms.Notification();
-            this.mainMenu = new System.Windows.Forms.MainMenu();
-            ((System.ComponentModel.ISupportInitialize)(this.logonViewModelBindingSource)).BeginInit();
+            this.inputButton1 = new MSS.WinMobile.UI.Controls.Buttons.InputButton();
             this._inputPanel.SuspendLayout();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
@@ -53,28 +50,24 @@ namespace MSS.WinMobile.UI.Views
             // 
             this._passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._passwordTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.logonViewModelBindingSource, "Password", true));
             this._passwordTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._passwordTextBox.Location = new System.Drawing.Point(82, 36);
             this._passwordTextBox.Name = "_passwordTextBox";
             this._passwordTextBox.PasswordChar = '*';
             this._passwordTextBox.Size = new System.Drawing.Size(155, 21);
             this._passwordTextBox.TabIndex = 1;
-            // 
-            // logonViewModelBindingSource
-            // 
-            this.logonViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.LogonViewModel);
+            this._passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBoxTextChanged);
             // 
             // _accountTextBox
             // 
             this._accountTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._accountTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.logonViewModelBindingSource, "Username", true));
             this._accountTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._accountTextBox.Location = new System.Drawing.Point(82, 9);
             this._accountTextBox.Name = "_accountTextBox";
             this._accountTextBox.Size = new System.Drawing.Size(155, 21);
             this._accountTextBox.TabIndex = 0;
+            this._accountTextBox.TextChanged += new System.EventHandler(this.AccountTextBoxTextChanged);
             // 
             // _accountLabel
             // 
@@ -101,14 +94,15 @@ namespace MSS.WinMobile.UI.Views
             this._inputPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._inputPanel.Location = new System.Drawing.Point(0, 0);
             this._inputPanel.Name = "_inputPanel";
-            this._inputPanel.Size = new System.Drawing.Size(240, 268);
+            this._inputPanel.Size = new System.Drawing.Size(240, 294);
             // 
             // _actionPanel
             // 
+            this._actionPanel.Controls.Add(this.inputButton1);
             this._actionPanel.Controls.Add(this.cancelButton);
             this._actionPanel.Controls.Add(this.okButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 238);
+            this._actionPanel.Location = new System.Drawing.Point(0, 264);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
@@ -142,20 +136,30 @@ namespace MSS.WinMobile.UI.Views
             // 
             this.notification.Text = "notification1";
             // 
+            // inputButton1
+            // 
+            this.inputButton1.BackColor = System.Drawing.Color.White;
+            this.inputButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("inputButton1.BackgroundImage")));
+            this.inputButton1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.inputButton1.Location = new System.Drawing.Point(210, 0);
+            this.inputButton1.Name = "inputButton1";
+            this.inputButton1.PressedImage = null;
+            this.inputButton1.Size = new System.Drawing.Size(30, 30);
+            this.inputButton1.TabIndex = 4;
+            this.inputButton1.Click += new System.EventHandler(this.InputButtonClick);
+            // 
             // LogonView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(240, 268);
+            this.ClientSize = new System.Drawing.Size(240, 294);
             this.ControlBox = false;
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._inputPanel);
-            this.Menu = this.mainMenu;
             this.Name = "LogonView";
             this.Load += new System.EventHandler(this.ViewLoad);
-            ((System.ComponentModel.ISupportInitialize)(this.logonViewModelBindingSource)).EndInit();
             this._inputPanel.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -174,7 +178,6 @@ namespace MSS.WinMobile.UI.Views
         private Microsoft.WindowsCE.Forms.Notification notification;
         private PictureButton cancelButton;
         private PictureButton okButton;
-        private System.Windows.Forms.BindingSource logonViewModelBindingSource;
-        private System.Windows.Forms.MainMenu mainMenu;
+        private InputButton inputButton1;
     }
 }

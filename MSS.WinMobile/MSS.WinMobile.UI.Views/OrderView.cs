@@ -1,85 +1,61 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows.Forms;
+using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class OrderView : Form, IOrderView
+    public partial class OrderView : Form, INewOrderView
     {
-        private OrderPresenter _presenter;
-        private readonly int _routePointId;
+        private NewOrderPresenter _presenter;
+        private readonly IPresentersFactory _presentersFactory;
+        private readonly RoutePointViewModel _routePointViewModel;
 
-        public OrderView()
-        {
+        public OrderView() {
             InitializeComponent();
         }
 
-        public OrderView(int routePointId)
-            :this()
-        {
-            _routePointId = routePointId;
+        public OrderView(IPresentersFactory presentersFactory, RoutePointViewModel routePointViewModel)
+            :this() {
+            _presentersFactory = presentersFactory;
+            _routePointViewModel = routePointViewModel;
         }
 
-        private void OrderView_Load(object sender, EventArgs e)
-        {
-            if (_presenter == null)
-            {
-                //itemsVirtualListBox.ItemDataNeeded += itemsVirtualListBox_ItemDataNeeded;
-                //itemsVirtualListBox.ItemSelected += itemsVirtualListBox_ItemSelected;
-                //_presenter = new OrderPresenter(this, _routePointId);
-                //_presenter.InitializeView();
+        private OrderViewModel _viewModel;
+        private void ViewLoad(object sender, EventArgs e) {
+            if (_presenter == null) {
+                _presenter = _presentersFactory.CreateNewOrderPresenter(this, _routePointViewModel);
+                _viewModel = _presenter.Initialize();
+
+                _orderDatePicker.Value = _viewModel.OrderDate;
+                _shippingDatePicker.Value = _viewModel.ShippingDate;
+                _customerTextBox.Text = _viewModel.CustomerName;
+                _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
+                _priceListTextBox.Text = _viewModel.PriceListName;
+                _warehouseTextBox.Text = _viewModel.WarehouseAddress;
+                _notesTextBox.Text = _viewModel.Note;
+
+                orderItemListBox.ItemDataNeeded += ItemDataNeeded;
+                orderItemListBox.ItemSelected += ItemSelected;
+                orderItemListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
 
-        void itemsVirtualListBox_ItemSelected(object sender, VirtualListBoxItem item)
-        {
-            //throw new NotImplementedException();
+        private void ItemSelected(object sender, VirtualListBoxItem item) {
+            _presenter.Select(item.Index);
         }
 
-        void itemsVirtualListBox_ItemDataNeeded(object sender, VirtualListBoxItem item)
-        {
-            //_presenter.GetItemData(item.Index);
-            //var orderItemListBoxItem = item as OrderItemListBoxItem;
-            //if (orderItemListBoxItem != null)
-            //{
-            //    orderItemListBoxItem.SetData(_presenter.GetItemData(item.Index));
-            //}
-        }
-
-        private void PriceListLookUp(Controls.LookUpBox sender)
-        {
-            using (var priceListLookUpView = new PriceListLookUpView())
-            {
-                if (DialogResult.OK == priceListLookUpView.ShowDialog())
-                {
-                    //int priceListId = priceListLookUpView.
-                    //_presenter.SetPriceList(priceListId);
-                }
+        private void ItemDataNeeded(object sender, VirtualListBoxItem item) {
+            var orderItemListBoxItem = item as OrderItemListBoxItem;
+            if (orderItemListBoxItem != null) {
+                orderItemListBoxItem.ViewModel = _presenter.GetItem(item.Index);
             }
         }
 
-        private void WarehouseLookUp(Controls.LookUpBox sender)
-        {
-            using (var warehouseLookUpView = new WarehouseLookUpView())
-            {
-                if (DialogResult.OK == warehouseLookUpView.ShowDialog())
-                {
-                    //int warehouseListId = warehouseLookUpView.GetSelectedId();
-                    //_presenter.SetWarehouse(warehouseListId);
-                }
-            }
-        }
-
-        public void SetItemCount(int count)
-        {
-            //itemsVirtualListBox.SetListSize(count);
-        }
-
-        private void AddClick(object sender, EventArgs e)
-        {
+        private void AddClick(object sender, EventArgs e) {
             _presenter.PickUpProducts();
         }
 
@@ -104,21 +80,57 @@ namespace MSS.WinMobile.UI.Views
             Close();
         }
 
-        public void DisplayErrors(string error)
-        {
-            throw new NotImplementedException();
+        public void DisplayErrors(string error) {
+            notification.Critical = true;
+            notification.Text = error;
+            notification.Visible = true;
         }
 
         #endregion
 
-        private void ResetButtonClick(object sender, EventArgs e)
+        private void PriceListlookUp(object sender, EventArgs e)
         {
-
+            _presenter.LookUpPriceList();
+            _priceListTextBox.Text = _viewModel.PriceListName;
+            _priceListTextBox.Refresh();
         }
 
-        private void LookUpButtonClick(object sender, EventArgs e)
+        private void WarehouseLookUp(object sender, EventArgs e)
         {
+            _presenter.LookUpWarehouse();
+            _warehouseTextBox.Text = _viewModel.WarehouseAddress;
+            _warehouseTextBox.Refresh();
+        }
 
+        private void PriceListReset(object sender, EventArgs e)
+        {
+            _presenter.ResetPriceList();
+            _priceListTextBox.Text = _viewModel.PriceListName;
+            _priceListTextBox.Refresh();
+        }
+
+        private void WarehouseReset(object sender, EventArgs e)
+        {
+            _presenter.ResetWarehouse();
+            _warehouseTextBox.Text = _viewModel.WarehouseAddress;
+            _warehouseTextBox.Refresh();
+        }
+
+        private void OkButtonClick(object sender, EventArgs e) {
+            _presenter.Save();
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+            _presenter.Cancel();
+        }
+
+        private void ShippingDatePickerValueChanged(object sender, EventArgs e) {
+            _viewModel.ShippingDate = _shippingDatePicker.Value;
+        }
+
+        private void NotesTextBoxTextChanged(object sender, EventArgs e) {
+            _viewModel.Note = _notesTextBox.Text;
         }
     }
 }

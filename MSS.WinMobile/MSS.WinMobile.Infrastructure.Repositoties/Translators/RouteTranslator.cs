@@ -13,7 +13,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators {
 
         protected override Route TranslateOne(IDataRecord value) {
             var proxy = new RouteProxy(_repositoryFactory.CreateRepository<RoutePoint>(),
-                                       _repositoryFactory.CreateRepository<Order>())
+                                       _repositoryFactory.CreateRepository<Order>(),
+                                       _repositoryFactory.CreateRepository<OrderItem>())
                 {
                     Id = value.GetInt32(value.GetOrdinal("Id")),
                     Date = value.GetDateTime(value.GetOrdinal("Date"))

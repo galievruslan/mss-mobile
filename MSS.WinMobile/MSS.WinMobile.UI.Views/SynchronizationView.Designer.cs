@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SynchronizationView));
             this._actionPanel = new System.Windows.Forms.Panel();
+            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._statusPanel = new System.Windows.Forms.Panel();
             this.synchronizationFullyWarningLabel = new System.Windows.Forms.Label();
             this.lastSynchronizationLabel = new System.Windows.Forms.Label();
@@ -38,13 +39,9 @@
             this._progressBar = new System.Windows.Forms.ProgressBar();
             this._statusLabel = new System.Windows.Forms.Label();
             this.notification = new Microsoft.WindowsCE.Forms.Notification();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.synchronizationViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this._lastSyncDateLabel = new System.Windows.Forms.Label();
             this._actionPanel.SuspendLayout();
             this._statusPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.synchronizationViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _actionPanel
@@ -55,85 +52,6 @@
             this._actionPanel.Location = new System.Drawing.Point(0, 264);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
-            // _statusPanel
-            // 
-            this._statusPanel.Controls.Add(this.dateTimePicker);
-            this._statusPanel.Controls.Add(this.synchronizationFullyWarningLabel);
-            this._statusPanel.Controls.Add(this.lastSynchronizationLabel);
-            this._statusPanel.Controls.Add(this._synchronizeFullyCheckBox);
-            this._statusPanel.Controls.Add(this._progressBar);
-            this._statusPanel.Controls.Add(this._statusLabel);
-            this._statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._statusPanel.Location = new System.Drawing.Point(0, 0);
-            this._statusPanel.Name = "_statusPanel";
-            this._statusPanel.Size = new System.Drawing.Size(240, 264);
-            // 
-            // synchronizationFullyWarningLabel
-            // 
-            this.synchronizationFullyWarningLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this.synchronizationFullyWarningLabel.ForeColor = System.Drawing.Color.Gray;
-            this.synchronizationFullyWarningLabel.Location = new System.Drawing.Point(14, 38);
-            this.synchronizationFullyWarningLabel.Name = "synchronizationFullyWarningLabel";
-            this.synchronizationFullyWarningLabel.Size = new System.Drawing.Size(212, 31);
-            this.synchronizationFullyWarningLabel.Text = "(Use only then full synchronization is realy necessary)";
-            // 
-            // lastSynchronizationLabel
-            // 
-            this.lastSynchronizationLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this.lastSynchronizationLabel.Location = new System.Drawing.Point(14, 241);
-            this.lastSynchronizationLabel.Name = "lastSynchronizationLabel";
-            this.lastSynchronizationLabel.Size = new System.Drawing.Size(145, 20);
-            this.lastSynchronizationLabel.Text = "Last date synchronization";
-            // 
-            // _synchronizeFullyCheckBox
-            // 
-            this._synchronizeFullyCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.synchronizationViewModelBindingSource, "SynchronizeFully", true));
-            this._synchronizeFullyCheckBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._synchronizeFullyCheckBox.Location = new System.Drawing.Point(14, 15);
-            this._synchronizeFullyCheckBox.Name = "_synchronizeFullyCheckBox";
-            this._synchronizeFullyCheckBox.Size = new System.Drawing.Size(210, 20);
-            this._synchronizeFullyCheckBox.TabIndex = 4;
-            this._synchronizeFullyCheckBox.Text = "Synchronize fully";
-            // 
-            // _progressBar
-            // 
-            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this._progressBar.Location = new System.Drawing.Point(14, 123);
-            this._progressBar.Name = "_progressBar";
-            this._progressBar.Size = new System.Drawing.Size(212, 20);
-            this._progressBar.Visible = false;
-            // 
-            // _statusLabel
-            // 
-            this._statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this._statusLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._statusLabel.Location = new System.Drawing.Point(14, 84);
-            this._statusLabel.Name = "_statusLabel";
-            this._statusLabel.Size = new System.Drawing.Size(212, 36);
-            this._statusLabel.Text = "Sync...";
-            this._statusLabel.Visible = false;
-            // 
-            // notification
-            // 
-            this.notification.Text = "notification1";
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this.dateTimePicker.Enabled = false;
-            this.dateTimePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(153, 239);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(73, 22);
-            this.dateTimePicker.TabIndex = 7;
-            // 
-            // synchronizationViewModelBindingSource
-            // 
-            this.synchronizationViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.SynchronizationViewModel);
             // 
             // cancelButton
             // 
@@ -161,6 +79,78 @@
             this.okButton.TabIndex = 4;
             this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
+            // _statusPanel
+            // 
+            this._statusPanel.Controls.Add(this._lastSyncDateLabel);
+            this._statusPanel.Controls.Add(this.synchronizationFullyWarningLabel);
+            this._statusPanel.Controls.Add(this.lastSynchronizationLabel);
+            this._statusPanel.Controls.Add(this._synchronizeFullyCheckBox);
+            this._statusPanel.Controls.Add(this._progressBar);
+            this._statusPanel.Controls.Add(this._statusLabel);
+            this._statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._statusPanel.Location = new System.Drawing.Point(0, 0);
+            this._statusPanel.Name = "_statusPanel";
+            this._statusPanel.Size = new System.Drawing.Size(240, 264);
+            // 
+            // synchronizationFullyWarningLabel
+            // 
+            this.synchronizationFullyWarningLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this.synchronizationFullyWarningLabel.ForeColor = System.Drawing.Color.Gray;
+            this.synchronizationFullyWarningLabel.Location = new System.Drawing.Point(14, 38);
+            this.synchronizationFullyWarningLabel.Name = "synchronizationFullyWarningLabel";
+            this.synchronizationFullyWarningLabel.Size = new System.Drawing.Size(212, 31);
+            this.synchronizationFullyWarningLabel.Text = "(Use only then full synchronization is realy necessary)";
+            // 
+            // lastSynchronizationLabel
+            // 
+            this.lastSynchronizationLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this.lastSynchronizationLabel.Location = new System.Drawing.Point(14, 222);
+            this.lastSynchronizationLabel.Name = "lastSynchronizationLabel";
+            this.lastSynchronizationLabel.Size = new System.Drawing.Size(103, 39);
+            this.lastSynchronizationLabel.Text = "Last date synchronization";
+            // 
+            // _synchronizeFullyCheckBox
+            // 
+            this._synchronizeFullyCheckBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._synchronizeFullyCheckBox.Location = new System.Drawing.Point(14, 15);
+            this._synchronizeFullyCheckBox.Name = "_synchronizeFullyCheckBox";
+            this._synchronizeFullyCheckBox.Size = new System.Drawing.Size(210, 20);
+            this._synchronizeFullyCheckBox.TabIndex = 4;
+            this._synchronizeFullyCheckBox.Text = "Synchronize fully";
+            this._synchronizeFullyCheckBox.CheckStateChanged += new System.EventHandler(this.SynchronizeFullyCheckBoxCheckStateChanged);
+            // 
+            // _progressBar
+            // 
+            this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._progressBar.Location = new System.Drawing.Point(14, 123);
+            this._progressBar.Name = "_progressBar";
+            this._progressBar.Size = new System.Drawing.Size(212, 20);
+            this._progressBar.Visible = false;
+            // 
+            // _statusLabel
+            // 
+            this._statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._statusLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._statusLabel.Location = new System.Drawing.Point(14, 99);
+            this._statusLabel.Name = "_statusLabel";
+            this._statusLabel.Size = new System.Drawing.Size(212, 21);
+            this._statusLabel.Text = "Sync...";
+            this._statusLabel.Visible = false;
+            // 
+            // notification
+            // 
+            this.notification.Text = "notification1";
+            // 
+            // _lastSyncDateLabel
+            // 
+            this._lastSyncDateLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._lastSyncDateLabel.Location = new System.Drawing.Point(114, 232);
+            this._lastSyncDateLabel.Name = "_lastSyncDateLabel";
+            this._lastSyncDateLabel.Size = new System.Drawing.Size(112, 20);
+            this._lastSyncDateLabel.Text = "dd.MM.yyyy HH:mm";
+            // 
             // SynchronizationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -173,7 +163,6 @@
             this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
             this._statusPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.synchronizationViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -187,10 +176,9 @@
         private System.Windows.Forms.Label lastSynchronizationLabel;
         private System.Windows.Forms.CheckBox _synchronizeFullyCheckBox;
         private System.Windows.Forms.Label synchronizationFullyWarningLabel;
-        private System.Windows.Forms.BindingSource synchronizationViewModelBindingSource;
         private Microsoft.WindowsCE.Forms.Notification notification;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Label _lastSyncDateLabel;
     }
 }

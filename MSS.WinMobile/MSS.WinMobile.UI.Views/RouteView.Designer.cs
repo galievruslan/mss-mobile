@@ -31,7 +31,6 @@ namespace MSS.WinMobile.UI.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             this._actionPanel = new System.Windows.Forms.Panel();
             this._listOrdersButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -41,12 +40,10 @@ namespace MSS.WinMobile.UI.Views
             this.panel = new System.Windows.Forms.Panel();
             this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
-            this.routeViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
             this._notification = new Microsoft.WindowsCE.Forms.Notification();
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.routeViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _actionPanel
@@ -127,17 +124,12 @@ namespace MSS.WinMobile.UI.Views
             // datePicker
             // 
             this.datePicker.CustomFormat = "dd.MM.yyyy";
-            this.datePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.routeViewModelBindingSource, "Date", true));
             this.datePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.datePicker.Location = new System.Drawing.Point(2, 1);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(89, 22);
             this.datePicker.TabIndex = 1;
-            // 
-            // routeViewModelBindingSource
-            // 
-            this.routeViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel);
             // 
             // routePointListBox
             // 
@@ -164,7 +156,6 @@ namespace MSS.WinMobile.UI.Views
             this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.routeViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -174,7 +165,6 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.Panel _actionPanel;
         private PictureButton _createOrderButton;
         private MSS.WinMobile.UI.Controls.Concret.RoutePointListBox routePointListBox;
-        private System.Windows.Forms.BindingSource routeViewModelBindingSource;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.DateTimePicker datePicker;
         private PictureButton createRouteOnDateButton;

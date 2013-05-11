@@ -27,5 +27,17 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             get { return base.ProductName; }
             set { base.ProductName = value; }
         }
+
+        new public int Quantity
+        {
+            get { return base.Quantity; }
+            set { base.Quantity = value; }
+        }
+
+        new public decimal Price
+        {
+            get { return base.Price; }
+            set { base.Price = value; }
+        }
     }
 }

@@ -2,7 +2,10 @@
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
+using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.Application {
     public class PresentersFactory : IPresentersFactory {
@@ -38,9 +41,9 @@ namespace MSS.WinMobile.Application {
         }
 
         public NewRoutePointPresenter CreateNewRoutePointPresenter(
-            INewRoutePointView newRoutePointView, int routeId) {
+            INewRoutePointView newRoutePointView, RouteViewModel routeViewModel) {
             return new NewRoutePointPresenter(newRoutePointView, _unitOfWorkFactory,
-                                              _repositoryFactory, routeId);
+                                              _repositoryFactory, routeViewModel);
         }
 
         public CustomerLookUpPresenter CreateCustomerLookUpPresenter(ICustomerLookUpView customerLookUpView) {
@@ -48,13 +51,25 @@ namespace MSS.WinMobile.Application {
         }
 
         public ShippingAddressLookUpPresenter CreateShippingAddressLookUpPresenter(
-            IShippingAddressLookUpView shippingAddressLookUpView, int customerId) {
+            IShippingAddressLookUpView shippingAddressLookUpView, CustomerViewModel customerViewModel) {
             return new ShippingAddressLookUpPresenter(shippingAddressLookUpView, _repositoryFactory,
-                                                      customerId);
+                                                      customerViewModel);
         }
 
-        public OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, int routePointId) {
-            return new OrderListPresenter(orderListView, _repositoryFactory, routePointId);
+        public OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, RoutePointViewModel routePointViewModel) {
+            return new OrderListPresenter(orderListView, _repositoryFactory, routePointViewModel);
+        }
+
+        public NewOrderPresenter CreateNewOrderPresenter(INewOrderView orderView, RoutePointViewModel routePointViewModel) {
+            return new NewOrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, routePointViewModel);
+        }
+
+        public PriceListLookUpPresenter CreatePriceListLookUpPresenter(IPriceListLookUpView priceListLookUpView) {
+            return new PriceListLookUpPresenter(priceListLookUpView, _repositoryFactory);
+        }
+
+        public WarehouseLookUpPresenter CreateWarehouseLookUpPresenter(IWarehouseLookUpView warehouseLookUpView) {
+            return new WarehouseLookUpPresenter(warehouseLookUpView, _repositoryFactory);
         }
     }
 }

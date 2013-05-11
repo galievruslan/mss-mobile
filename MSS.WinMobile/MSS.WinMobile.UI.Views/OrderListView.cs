@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
@@ -15,13 +16,13 @@ namespace MSS.WinMobile.UI.Views
 
         private OrderListPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
-        private readonly int _routePointId;
+        private readonly RoutePointViewModel _routePointViewModel;
 
-        public OrderListView(IPresentersFactory presentersFactory, int routePointId)
+        public OrderListView(IPresentersFactory presentersFactory, RoutePointViewModel routePointViewModel)
         {
             InitializeComponent();
             _presentersFactory = presentersFactory;
-            _routePointId = routePointId;
+            _routePointViewModel = routePointViewModel;
         }
 
         private void CreateRoutePointButtonClick(object sender, EventArgs e)
@@ -31,13 +32,13 @@ namespace MSS.WinMobile.UI.Views
 
         private void CreateOrderClick(object sender, EventArgs e)
         {
-
+            _presenter.CreateOrder();
         }
 
         private void ViewLoad(object sender, EventArgs e)
         {
             if (_presenter == null) {
-                _presenter = _presentersFactory.CreateOrderListPresenter(this, _routePointId);
+                _presenter = _presentersFactory.CreateOrderListPresenter(this, _routePointViewModel);
                 _orderListBox.ItemDataNeeded += ItemDataNeeded;
                 _orderListBox.ItemSelected += ItemSelected;
                 _orderListBox.SetListSize(_presenter.InitializeListSize());

@@ -20,7 +20,9 @@ namespace MSS.WinMobile.UI.Views
             if (_presenter == null) {
                 _presenter = _presentersFactory.CreateLogonPresenter(this);
                 _viewModel = _presenter.Initialize();
-                logonViewModelBindingSource.DataSource = _viewModel;
+
+                _accountTextBox.Text = _viewModel.Username;
+                _passwordTextBox.Text = _viewModel.Password;
             }
         }
 
@@ -52,7 +54,6 @@ namespace MSS.WinMobile.UI.Views
         #endregion
 
         private void OkButtonClick(object sender, System.EventArgs e) {
-            logonViewModelBindingSource.EndEdit();
             if (_presenter.Logon())
                 DialogResult = DialogResult.OK;
         }
@@ -60,6 +61,18 @@ namespace MSS.WinMobile.UI.Views
         private void CancelButtonClick(object sender, System.EventArgs e) {
             DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
+        }
+
+        private void AccountTextBoxTextChanged(object sender, System.EventArgs e) {
+            _viewModel.Username = _accountTextBox.Text;
+        }
+
+        private void PasswordTextBoxTextChanged(object sender, System.EventArgs e) {
+            _viewModel.Password = _passwordTextBox.Text;
+        }
+
+        private void InputButtonClick(object sender, System.EventArgs e) {
+            inputPanel.Enabled = !inputPanel.Enabled;
         }
     }
 }

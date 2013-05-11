@@ -10,15 +10,20 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
     {
         private readonly IStorageRepository<RoutePoint> _routesPointsRepository;
         private readonly IStorageRepository<Order> _ordersRepository;
-        public RouteProxy(IStorageRepository<RoutePoint> routesPointsRepository, IStorageRepository<Order> ordersRepository) {
+        private IStorageRepository<OrderItem> _orderItemsRepository;
+        public RouteProxy(IStorageRepository<RoutePoint> routesPointsRepository, IStorageRepository<Order> ordersRepository, IStorageRepository<OrderItem> orderItemsRepository) {
             _routesPointsRepository = routesPointsRepository;
             _ordersRepository = ordersRepository;
+            _orderItemsRepository = orderItemsRepository;
         }
 
-        public RouteProxy(DateTime date, IStorageRepository<RoutePoint> routesPointsRepository, IStorageRepository<Order> ordersRepository)
+        public RouteProxy(DateTime date, IStorageRepository<RoutePoint> routesPointsRepository,
+                          IStorageRepository<Order> ordersRepository,
+                          IStorageRepository<OrderItem> orderItemsRepository)
             : base(date) {
             _routesPointsRepository = routesPointsRepository;
             _ordersRepository = ordersRepository;
+            _orderItemsRepository = orderItemsRepository;
         }
 
         new public int Id
@@ -41,7 +46,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
         }
 
         public override RoutePoint CreatePoint() {
-            return new RoutePointProxy(this, _ordersRepository);
+            return new RoutePointProxy(this, _ordersRepository, _orderItemsRepository);
         }
     }
 }

@@ -23,11 +23,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewRoutePointView));
             this._shippingAddressPanel = new System.Windows.Forms.Panel();
             this._shippingAddressTextBox = new System.Windows.Forms.TextBox();
-            this._newRoutePointViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._shippingAddressButtonPanel = new System.Windows.Forms.Panel();
             this._shippingAddressResetButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._shippingAddressLookUpButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -43,7 +41,6 @@
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._notification = new Microsoft.WindowsCE.Forms.Notification();
             this._shippingAddressPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._newRoutePointViewModelBindingSource)).BeginInit();
             this._shippingAddressButtonPanel.SuspendLayout();
             this._customerPanel.SuspendLayout();
             this._customerButtonPanel.SuspendLayout();
@@ -54,23 +51,20 @@
             // 
             this._shippingAddressPanel.Controls.Add(this._shippingAddressTextBox);
             this._shippingAddressPanel.Controls.Add(this._shippingAddressButtonPanel);
-            this._shippingAddressPanel.Location = new System.Drawing.Point(82, 60);
+            this._shippingAddressPanel.Location = new System.Drawing.Point(82, 57);
             this._shippingAddressPanel.Name = "_shippingAddressPanel";
             this._shippingAddressPanel.Size = new System.Drawing.Size(155, 48);
             // 
             // _shippingAddressTextBox
             // 
-            this._shippingAddressTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._newRoutePointViewModelBindingSource, "ShippingAddressName", true));
+            this._shippingAddressTextBox.BackColor = System.Drawing.Color.White;
             this._shippingAddressTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._shippingAddressTextBox.Location = new System.Drawing.Point(0, 0);
             this._shippingAddressTextBox.Multiline = true;
             this._shippingAddressTextBox.Name = "_shippingAddressTextBox";
+            this._shippingAddressTextBox.ReadOnly = true;
             this._shippingAddressTextBox.Size = new System.Drawing.Size(131, 48);
             this._shippingAddressTextBox.TabIndex = 4;
-            // 
-            // _newRoutePointViewModelBindingSource
-            // 
-            this._newRoutePointViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.NewRoutePointViewModel);
             // 
             // _shippingAddressButtonPanel
             // 
@@ -109,7 +103,7 @@
             // _shippingAddressLabel
             // 
             this._shippingAddressLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._shippingAddressLabel.Location = new System.Drawing.Point(12, 60);
+            this._shippingAddressLabel.Location = new System.Drawing.Point(12, 57);
             this._shippingAddressLabel.Name = "_shippingAddressLabel";
             this._shippingAddressLabel.Size = new System.Drawing.Size(64, 33);
             this._shippingAddressLabel.Text = "Shipping Address";
@@ -124,11 +118,12 @@
             // 
             // _customerTextBox
             // 
-            this._customerTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._newRoutePointViewModelBindingSource, "CustomerName", true));
+            this._customerTextBox.BackColor = System.Drawing.Color.White;
             this._customerTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._customerTextBox.Location = new System.Drawing.Point(0, 0);
             this._customerTextBox.Multiline = true;
             this._customerTextBox.Name = "_customerTextBox";
+            this._customerTextBox.ReadOnly = true;
             this._customerTextBox.Size = new System.Drawing.Size(131, 48);
             this._customerTextBox.TabIndex = 4;
             // 
@@ -229,7 +224,6 @@
             this.Text = "NewRoutePointView";
             this.Load += new System.EventHandler(this.NewRoutePointViewLoad);
             this._shippingAddressPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._newRoutePointViewModelBindingSource)).EndInit();
             this._shippingAddressButtonPanel.ResumeLayout(false);
             this._customerPanel.ResumeLayout(false);
             this._customerButtonPanel.ResumeLayout(false);
@@ -256,6 +250,5 @@
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private Microsoft.WindowsCE.Forms.Notification _notification;
-        private System.Windows.Forms.BindingSource _newRoutePointViewModelBindingSource;
     }
 }

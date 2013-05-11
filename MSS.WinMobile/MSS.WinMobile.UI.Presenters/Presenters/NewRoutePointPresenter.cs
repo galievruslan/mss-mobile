@@ -4,6 +4,7 @@ using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
+using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters {
     public class NewRoutePointPresenter : IPresenter<NewRoutePointViewModel> {
@@ -12,20 +13,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
-        private readonly int _routeId;
+        private readonly RouteViewModel _routeViewModel;
 
         public NewRoutePointPresenter(INewRoutePointView view, IUnitOfWorkFactory unitOfWorkFactory,
-                                      IRepositoryFactory repositoryFactory, int routeId) {
+                                      IRepositoryFactory repositoryFactory, RouteViewModel routeViewModel) {
             _view = view;
             _repositoryFactory = repositoryFactory;
             _unitOfWorkFactory = unitOfWorkFactory;
-            _routeId = routeId;
+            _routeViewModel = routeViewModel;
         }
 
         private NewRoutePointViewModel _viewModel;
         public NewRoutePointViewModel Initialize() {
             _viewModel = new NewRoutePointViewModel {
-                RouteId = _routeId
+                RouteId = _routeViewModel.Id
             };
             return _viewModel;
         }
@@ -35,6 +36,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             if (view.ShowDialogView() == DialogViewResult.Ok) {
                 _viewModel.CustomerId = view.SelectedCustomer.Id;
                 _viewModel.CustomerName = view.SelectedCustomer.Name;
+                _viewModel.ShippingAddressId = 0;
+                _viewModel.ShippingAddressName = string.Empty;
             }
             view.CloseView();
         }
@@ -49,7 +52,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         public void LookUpShippingAddress() {
             var view =
                 NavigationContext.NavigateTo<IShippingAddressLookUpView>(
-                    new Dictionary<string, object> {{"customer_id", _viewModel.CustomerId}});
+                    new Dictionary<string, object>
+                        {
+                            {"customer", new CustomerViewModel {Id = _viewModel.CustomerId, Name = _viewModel.CustomerName}}
+                        });
             if (view.ShowDialogView() == DialogViewResult.Ok) {
                 _viewModel.ShippingAddressId = view.SelectedShippingAddress.Id;
                 _viewModel.ShippingAddressName = view.SelectedShippingAddress.Address;
@@ -67,7 +73,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
                 IStorageRepository<Route> routeRepository =
                     _repositoryFactory.CreateRepository<Route>();
-                var route = routeRepository.GetById(_routeId);
+                var route = routeRepository.GetById(_routeViewModel.Id);
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
                 var defaultStatus = statusRepository.Find().FirstOrDefault();
                 var shippingAddressRepository =

@@ -8,5 +8,7 @@
         public string ProductName { get; protected set; }
 
         public int Quantity { get; set; }
+
+        public decimal Price { get; protected set; }
     }
 }

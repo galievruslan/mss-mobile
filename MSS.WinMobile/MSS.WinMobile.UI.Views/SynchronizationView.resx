@@ -120,34 +120,33 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cancelButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAYtJREFUeF7t2s0NwjAMhmFGYwRGQIyAYHQuHIBEaqSq4sd2v7YJeZEiDiSO/dAi
-        03a344UAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIDAmgKntNlhgQ33KeZ5gbibhsxYjzTuYrSM
-        dUvjmcZ10wqFmxesXFQeKrQxVondPNoUS4X2Dqt5tONwGpZCpu/RI+0bVtnjIjxDVgtlKcyLtkTM1UAs
-        GykLVMay5L7ZHEWhihibAUQ2nlPwnLWRXKtZEyk8sqaaghWJeAA8cxW5VRvDClE6eHVbUi3Mt8QsaJ+g
-        lP8WmsKLonl7t6ZQfiXrResaq2Ba0cAaxAD7dR6OPrdiqa5yOFKrb6oXq2u0KFaXaBas/ANP45oQrFgH
-        59z6fnAEGXmwPC3HX7YbEaxu0eZgdYemwOoGTYnVBdoxVZnvdquvZ1m+iCZvs+Wjghu5gfaCRwVmoKl7
-        pvHp2fxzFVNXHncKHGksQQABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQqFHgBcAp0NqEgJkfAAAA
-        AElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvgAA
+        Dr4B6kKxwAAAAYtJREFUeF7t2s0NwjAMhmFGYwRGQIyAYHQuHIBEaqSq4sd2v7YJeZEiDiSO/dAi03a3
+        44UAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIDAmgKntNlhgQ33KeZ5gbibhsxYjzTuYrSMdUvj
+        mcZ10wqFmxesXFQeKrQxVondPNoUS4X2Dqt5tONwGpZCpu/RI+0bVtnjIjxDVgtlKcyLtkTM1UAsGykL
+        VMay5L7ZHEWhihibAUQ2nlPwnLWRXKtZEyk8sqaaghWJeAA8cxW5VRvDClE6eHVbUi3Mt8QsaJ+glP8W
+        msKLonl7t6ZQfiXrResaq2Ba0cAaxAD7dR6OPrdiqa5yOFKrb6oXq2u0KFaXaBas/ANP45oQrFgH59z6
+        fnAEGXmwPC3HX7YbEaxu0eZgdYemwOoGTYnVBdoxVZnvdquvZ1m+iCZvs+Wjghu5gfaCRwVmoKl7pvHp
+        2fxzFVNXHncKHGksQQABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQqFHgBcAp0NqEgJkfAAAAAElF
+        TkSuQmCC
 </value>
   </data>
   <data name="okButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAfdJREFUeF7t2CFLBEEYxvFDRBARRDBZDCJYjEabxWSxWU0Wi0G/gNguX7BZ7GLW
-        KDaLzSSIxSAYRNRn4AaOxdn3bm93dWb+B8sdzDAz74+Z3b2n0+GDAAIIIIAAAggggAACCCCAAAIIIIAA
-        AggggAACCCCAQGoCCyroVNdEaoU1Uc+UBr3W9a3rDDSbuNvHcmCgGV47BSzQSsDW1PYeAPM7zd6fmfSY
-        VZ0PJVgO7CQTC7NM9yS8MrAu1T5pjpRJh2MD617tc5lYmGVuqcdnCdiL2pbNUTLpsKQ6X0uwPtS2mYmF
-        WeaMetwaR3HfHOUfd3CLX6lxfecGVq/GuVof6rBf3FNNaHsG1o3a3d+jKD8ey79xj4u2IQV3b/LjFb8f
-        1TYfpZQWXcQaF80lEA48hPWmttXUsKqiDSYQv4F9CWo7Viy37tDuGix2lOPZNe5bRzFj+bXXhRZKIDz+
-        RQpYdaFZCcSdJppOCWyc42klEO5IL6aGVXWnWQmEe7VYTxWrCpqVQOymjjUK2rM6lyUQ2QWBwzw9Qy+n
-        2QaBVdCyDwJHQSMI7N/UhkEjCCw84Sy0qIPApp7mIbSog8CmsEKvHFEHgU1jFdGiDgLbwvLzHOhHtEFg
-        21jMhwACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggg8JcCP2uGRdHeen42AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvgAA
+        Dr4B6kKxwAAAAfdJREFUeF7t2CFLBEEYxvFDRBARRDBZDCJYjEabxWSxWU0Wi0G/gNguX7BZ7GLWKDaL
+        zSSIxSAYRNRn4AaOxdn3bm93dWb+B8sdzDAz74+Z3b2n0+GDAAIIIIAAAggggAACCCCAAAIIIIAAAggg
+        gAACCCCAQGoCCyroVNdEaoU1Uc+UBr3W9a3rDDSbuNvHcmCgGV47BSzQSsDW1PYeAPM7zd6fmfSYVZ0P
+        JVgO7CQTC7NM9yS8MrAu1T5pjpRJh2MD617tc5lYmGVuqcdnCdiL2pbNUTLpsKQ6X0uwPtS2mYmFWeaM
+        etwaR3HfHOUfd3CLX6lxfecGVq/GuVof6rBf3FNNaHsG1o3a3d+jKD8ey79xj4u2IQV3b/LjFb8f1TYf
+        pZQWXcQaF80lEA48hPWmttXUsKqiDSYQv4F9CWo7Viy37tDuGix2lOPZNe5bRzFj+bXXhRZKIDz+RQpY
+        daFZCcSdJppOCWyc42klEO5IL6aGVXWnWQmEe7VYTxWrCpqVQOymjjUK2rM6lyUQ2QWBwzw9Qy+n2QaB
+        VdCyDwJHQSMI7N/UhkEjCCw84Sy0qIPApp7mIbSog8CmsEKvHFEHgU1jFdGiDgLbwvLzHOhHtEFg21jM
+        hwACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggg8JcCP2uGRdHeen42AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="synchronizationViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 17</value>
-  </metadata>
   <metadata name="notification.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>379, 17</value>
   </metadata>

@@ -6,8 +6,7 @@ using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
-namespace MSS.WinMobile.UI.Views
-{
+namespace MSS.WinMobile.UI.Views {
     public partial class RouteView : Form, IRouteView {
         private readonly IPresentersFactory _presentersFactory;
         private RoutePresenter _presenter;
@@ -17,45 +16,41 @@ namespace MSS.WinMobile.UI.Views
             InitializeComponent();
         }
 
-        void ItemDataNeeded(object sender, VirtualListBoxItem item)
-        {
+        private void ItemDataNeeded(object sender, VirtualListBoxItem item) {
             var pointListBoxItem = item as RoutePointListBoxItem;
             if (pointListBoxItem != null) {
                 pointListBoxItem.ViewModel = _presenter.GetItem(item.Index);
             }
         }
 
-        private void ViewLoad(object sender, EventArgs e)
-        {
-            if (_presenter == null)
-            {
+        private RouteViewModel _viewModel;
+
+        private void ViewLoad(object sender, EventArgs e) {
+            if (_presenter == null) {
                 routePointListBox.ItemSelected += ItemSelected;
                 routePointListBox.ItemDataNeeded += ItemDataNeeded;
 
                 _presenter = _presentersFactory.CreateRoutePresenter(this);
-                routeViewModelBindingSource.DataSource = _presenter.Initialize();
+                _viewModel = _presenter.Initialize();
                 routePointListBox.SetListSize(_presenter.InitializeListSize());
                 datePicker.ValueChanged += DateChanged;
             }
         }
 
-        void ItemSelected(object sender, VirtualListBoxItem item) {
+        private void ItemSelected(object sender, VirtualListBoxItem item) {
             _presenter.Select(item.Index);
         }
 
-        private void CreateOrderClick(object sender, EventArgs e)
-        {
+        private void CreateOrderClick(object sender, EventArgs e) {
         }
 
         #region IView
 
-        public void ShowView()
-        {
+        public void ShowView() {
             Show();
         }
 
-        public DialogViewResult ShowDialogView()
-        {
+        public DialogViewResult ShowDialogView() {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
                 return DialogViewResult.Ok;
@@ -63,8 +58,7 @@ namespace MSS.WinMobile.UI.Views
             return DialogViewResult.Cancel;
         }
 
-        public void CloseView()
-        {
+        public void CloseView() {
             Close();
             Dispose();
         }
@@ -78,16 +72,13 @@ namespace MSS.WinMobile.UI.Views
         #endregion
 
         private void CreateRouteOnDateButtonClick(object sender, EventArgs e) {
-            routeViewModelBindingSource.EndEdit();
             _presenter.CreateRouteOnDate();
+            _presenter.GetRouteOnDate();
             routePointListBox.SetListSize(_presenter.InitializeListSize());
         }
 
         private void DateChanged(object sender, EventArgs e) {
-            var routeViewModel = routeViewModelBindingSource.Current as RouteViewModel;
-            if (routeViewModel != null)
-                routeViewModel.Date = datePicker.Value;
-            routeViewModelBindingSource.EndEdit();
+            _viewModel.Date = datePicker.Value;
             _presenter.GetRouteOnDate();
             routePointListBox.SetListSize(_presenter.InitializeListSize());
         }
@@ -98,8 +89,7 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        private void ListOrdersButtonClick(object sender, EventArgs e)
-        {
+        private void ListOrdersButtonClick(object sender, EventArgs e) {
             _presenter.GoToOrderList();
         }
     }

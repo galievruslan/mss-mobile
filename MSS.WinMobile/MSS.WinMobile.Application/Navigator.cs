@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
+using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using MSS.WinMobile.UI.Views;
+using MSS.WinMobile.UI.Views.LookUps;
 
 namespace MSS.WinMobile.Application
 {
@@ -40,22 +43,23 @@ namespace MSS.WinMobile.Application
                 view = (new CustomerLookUpView(_presentersFactory)) as T;
             }
             else if (typeof(T) == typeof(IShippingAddressLookUpView)) {
-                int customerId = Int32.Parse(args["customer_id"].ToString());
+                var customer = args["customer"] as CustomerViewModel;
 
-                view = (new ShippingAddressLookUpView(_presentersFactory, customerId)) as T;
+                view = (new ShippingAddressLookUpView(_presentersFactory, customer)) as T;
             }
             else if (typeof(T) == typeof(INewRoutePointView)) {
-                int routeId = Int32.Parse(args["route_id"].ToString());
-                view = (new NewRoutePointView(_presentersFactory, routeId)) as T;
+                var route = args["route"] as RouteViewModel;
+                view = (new NewRoutePointView(_presentersFactory, route)) as T;
             }
             else if (typeof(T) == typeof(IOrderListView))
             {
-                int routeId = Int32.Parse(args["route_point_id"].ToString());
-                view = (new OrderListView(_presentersFactory, routeId)) as T;
+                var routePointViewModel = args["route_point"] as RoutePointViewModel;
+                view = (new OrderListView(_presentersFactory, routePointViewModel)) as T;
             }
-            else if (typeof(T) == typeof(IPickUpProductView))
+            else if (typeof(T) == typeof(INewOrderView))
             {
-                view = (new PickUpProductView(args)) as T;
+                var routePointViewModel = args["route_point"] as RoutePointViewModel;
+                view = (new OrderView(_presentersFactory, routePointViewModel)) as T;
             }
 
             return view;

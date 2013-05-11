@@ -53,6 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListBoxItems\PriceListListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBoxItems\WarehouseListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WarehouseListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PriceListListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListBoxItems\OrderItemsListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderItemListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBoxItems\OrderListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,33 +109,44 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.CustomerViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RoutePointViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.ShippingAddressViewModel.datasource" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="ListBoxItems\CustomerListBoxItem.resx">
+      <DependentUpon>CustomerListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBoxItems\OrderItemsListBoxItem.resx">
+      <DependentUpon>OrderItemsListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListBoxItems\OrderListBoxItem.resx">
       <DependentUpon>OrderListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderListBox.resx">
-      <DependentUpon>OrderListBox.cs</DependentUpon>
+    <EmbeddedResource Include="ListBoxItems\PriceListListBoxItem.resx">
+      <DependentUpon>PriceListListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBoxItems\RoutePointListBoxItem.resx">
+      <DependentUpon>RoutePointListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListBoxItems\ShippingAddressListBoxItem.resx">
       <DependentUpon>ShippingAddressListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListBoxItems\WarehouseListBoxItem.resx">
+      <DependentUpon>WarehouseListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseListBox.resx">
+      <DependentUpon>WarehouseListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PriceListListBox.resx">
+      <DependentUpon>PriceListListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderItemListBox.resx">
+      <DependentUpon>OrderItemListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderListBox.resx">
+      <DependentUpon>OrderListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShippingAddressListBox.resx">
       <DependentUpon>ShippingAddressListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerListBox.resx">
       <DependentUpon>CustomerListBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListBoxItems\CustomerListBoxItem.resx">
-      <DependentUpon>CustomerListBoxItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListBoxItems\RoutePointListBoxItem.resx">
-      <DependentUpon>RoutePointListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoutePointListBox.resx">
       <DependentUpon>RoutePointListBox.cs</DependentUpon>

@@ -7,6 +7,8 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
     {
         public int OrderId { get; set; }
 
+        public int RoutePointId { get; set; }
+
         public DateTime OrderDate { get; set; }
 
         public DateTime ShippingDate { get; set; }
@@ -23,9 +25,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public int WarehouseId { get; set; }
         public string WarehouseAddress { get; set; }
 
-        public string Description {
-            get { return string.Format("Order {0} from {1}", OrderId, OrderDate); }
-        }
+        public string Note { get; set; }
 
         public override bool Validate() {
             base.Validate();

@@ -12,21 +12,24 @@ namespace MSS.WinMobile.UI.Views {
 
         private readonly IPresentersFactory _presentersFactory;
         private NewRoutePointPresenter _presenter;
-        private readonly int _routeId;
+        private readonly RouteViewModel _routeViewModel;
 
         private NewRoutePointViewModel _viewModel;
-        public NewRoutePointView(IPresentersFactory presentersFactory, int routeId) {
+        public NewRoutePointView(IPresentersFactory presentersFactory, RouteViewModel routeViewModel)
+        {
             InitializeComponent();
 
             _presentersFactory = presentersFactory;
-            _routeId = routeId;
+            _routeViewModel = routeViewModel;
         }
 
         private void NewRoutePointViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                _presenter = _presentersFactory.CreateNewRoutePointPresenter(this, _routeId);
+                _presenter = _presentersFactory.CreateNewRoutePointPresenter(this, _routeViewModel);
                 _viewModel = _presenter.Initialize();
-                _newRoutePointViewModelBindingSource.DataSource = _viewModel;
+
+                _customerTextBox.Text = _viewModel.CustomerName;
+                _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             }
         }
 
@@ -61,25 +64,29 @@ namespace MSS.WinMobile.UI.Views {
 
         private void CustomerLookUpButtonClick(object sender, EventArgs e) {
             _presenter.LookUpCustomer();
-            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _customerTextBox.Text = _viewModel.CustomerName;
+            _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             _customerTextBox.Refresh();
+            _shippingAddressTextBox.Refresh();
         }
 
         private void CustomerResetButtonClick(object sender, EventArgs e) {
             _presenter.ResetCustomer();
-            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _customerTextBox.Text = _viewModel.CustomerName;
+            _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             _customerTextBox.Refresh();
+            _shippingAddressTextBox.Refresh();
         }
 
         private void ShippingAddressLookUpButtonClick(object sender, EventArgs e) {
             _presenter.LookUpShippingAddress();
-            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             _shippingAddressTextBox.Refresh();
         }
 
         private void ShippingAddressResetButtonClick(object sender, EventArgs e) {
             _presenter.ResetShippingAddress();
-            _newRoutePointViewModelBindingSource.ResetBindings(false);
+            _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             _shippingAddressTextBox.Refresh();
         }
 

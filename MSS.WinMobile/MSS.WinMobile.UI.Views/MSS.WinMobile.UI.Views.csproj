@@ -86,28 +86,28 @@
     <Compile Include="PickUpProductView.Designer.cs">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
     </Compile>
-    <Compile Include="WarehouseLookUpView.cs">
+    <Compile Include="LookUps\WarehouseLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WarehouseLookUpView.Designer.cs">
+    <Compile Include="LookUps\WarehouseLookUpView.Designer.cs">
       <DependentUpon>WarehouseLookUpView.cs</DependentUpon>
     </Compile>
-    <Compile Include="PriceListLookUpView.cs">
+    <Compile Include="LookUps\PriceListLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PriceListLookUpView.Designer.cs">
+    <Compile Include="LookUps\PriceListLookUpView.Designer.cs">
       <DependentUpon>PriceListLookUpView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShippingAddressLookUpView.cs">
+    <Compile Include="LookUps\ShippingAddressLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShippingAddressLookUpView.Designer.cs">
+    <Compile Include="LookUps\ShippingAddressLookUpView.Designer.cs">
       <DependentUpon>ShippingAddressLookUpView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerLookUpView.cs">
+    <Compile Include="LookUps\CustomerLookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerLookUpView.Designer.cs">
+    <Compile Include="LookUps\CustomerLookUpView.Designer.cs">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </Compile>
     <Compile Include="LogonView.cs">
@@ -156,16 +156,16 @@
     <EmbeddedResource Include="PickUpProductView.resx">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WarehouseLookUpView.resx">
+    <EmbeddedResource Include="LookUps\WarehouseLookUpView.resx">
       <DependentUpon>WarehouseLookUpView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PriceListLookUpView.resx">
+    <EmbeddedResource Include="LookUps\PriceListLookUpView.resx">
       <DependentUpon>PriceListLookUpView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShippingAddressLookUpView.resx">
+    <EmbeddedResource Include="LookUps\ShippingAddressLookUpView.resx">
       <DependentUpon>ShippingAddressLookUpView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerLookUpView.resx">
+    <EmbeddedResource Include="LookUps\CustomerLookUpView.resx">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogonView.resx">
@@ -201,14 +201,6 @@
       <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
       <Name>MSS.WinMobile.UI.Presenters</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.LogonViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.NewRoutePointViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.OrderViewModel1.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.RouteViewModel.datasource" />
-    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.SynchronizationViewModel.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

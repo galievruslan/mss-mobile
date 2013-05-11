@@ -29,5 +29,7 @@ namespace MSS.WinMobile.Domain.Models
         }
 
         public abstract IQueryObject<Order> Orders { get; }
+
+        public abstract Order CreateOrder();
     }
 }

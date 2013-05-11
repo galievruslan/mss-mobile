@@ -138,7 +138,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
             var newRoutePointView =
                 NavigationContext.NavigateTo<INewRoutePointView>(
-                    new Dictionary<string, object> {{"route_id", route.Id}});
+                    new Dictionary<string, object> {{"route", _viewModel}});
             if (newRoutePointView.ShowDialogView() == DialogViewResult.Ok) {
                 _routePointRetriever = new RoutePointRetriever(route);
                 _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
@@ -153,7 +153,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 var orderListView =
                     NavigationContext.NavigateTo<IOrderListView>(new Dictionary<string, object>
                         {
-                            {"route_point_id", SelectedModel.Id}
+                            {"route_point", SelectedModel}
                         });
                 orderListView.ShowView();
             }

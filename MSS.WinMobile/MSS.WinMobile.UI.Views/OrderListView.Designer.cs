@@ -53,6 +53,7 @@
             this._createOrderButton.PressedImage = null;
             this._createOrderButton.Size = new System.Drawing.Size(20, 20);
             this._createOrderButton.TabIndex = 0;
+            this._createOrderButton.Click += new System.EventHandler(this.CreateOrderClick);
             // 
             // _orderListBox
             // 
