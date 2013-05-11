@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Collections.Generic;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -70,6 +71,11 @@ namespace MSS.WinMobile.Application {
 
         public WarehouseLookUpPresenter CreateWarehouseLookUpPresenter(IWarehouseLookUpView warehouseLookUpView) {
             return new WarehouseLookUpPresenter(warehouseLookUpView, _repositoryFactory);
+        }
+
+        public PickUpProductPresenter CreatePickUpProductPresenter(IPickUpProductView pickUpProductView, OrderViewModel orderViewModel,
+                                                                   IList<OrderItemViewModel> orderItemViewModels) {
+            return new PickUpProductPresenter(pickUpProductView, _repositoryFactory, orderViewModel, orderItemViewModels);
         }
     }
 }

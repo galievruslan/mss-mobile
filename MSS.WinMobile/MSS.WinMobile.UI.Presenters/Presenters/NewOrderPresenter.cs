@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -18,7 +19,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly OrderViewModel _orderViewModel;
-        private readonly List<OrderItemViewModel> _orderItemViewModels; 
+        private readonly IList<OrderItemViewModel> _orderItemViewModels; 
 
         public NewOrderPresenter(INewOrderView view, IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repositoryFactory,
             RoutePointViewModel routePointViewModel) {
@@ -66,8 +67,30 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _view.CloseView();
         }
 
-        public void PickUpProducts()
+        public bool PickUpProducts()
         {
+            var view = NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object>
+                    {
+                        {"order", _orderViewModel},
+                        {"order_items", _orderItemViewModels}
+                    });
+            if (view.ShowDialogView() == DialogViewResult.Ok) {
+                IList<PickUpProductViewModel> pickUpProductViewModels = view.PickedUpProducts;
+                _orderItemViewModels.Clear();
+                foreach (var pickUpProductViewModel in pickUpProductViewModels) {
+                    _orderItemViewModels.Add(new OrderItemViewModel
+                        {
+                            ProductId = pickUpProductViewModel.ProductId,
+                            ProductName = pickUpProductViewModel.ProductName,
+                            Quantity = pickUpProductViewModel.Quantity,
+                            Price = pickUpProductViewModel.Price
+                        });
+                }
+                return true;
+
+            }
+            view.CloseView();
+            return false;
         }
 
         public OrderViewModel Initialize() {
@@ -91,9 +114,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             get { return _selectedOrderItemViewModel; }
         }
 
-        public void LookUpPriceList()
-        {
-            var view = NavigationContext.NavigateTo<IPriceListLookUpView>();
+        public void LookUpPriceList() {
+            var view =
+                NavigationContext.NavigateTo<IPriceListLookUpView>();
             if (view.ShowDialogView() == DialogViewResult.Ok)
             {
                 _orderViewModel.PriceListId = view.SelectedPriceList.Id;

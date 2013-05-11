@@ -71,7 +71,7 @@
     <Compile Include="NavigationContext.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />
     <Compile Include="Presenters\InitializationPresenter.cs" />
-    <Compile Include="Presenters\PickUpProductPresenter.cs" />
+    <Compile Include="Presenters\LookUps\PickUpProductPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />
     <Compile Include="Presenters\DataRetrievers\ProductPriceRetriever.cs" />
     <Compile Include="Presenters\Specificarions\RouteOnDateSpec.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="INavigator.cs" />
     <Compile Include="Views\INewRoutePointView.cs" />
     <Compile Include="Views\IOrderListView.cs" />
-    <Compile Include="Views\IPickUpProductView.cs" />
+    <Compile Include="Views\LookUps\IPickUpProductView.cs" />
     <Compile Include="Views\LookUps\IWarehouseLookUpView.cs" />
     <Compile Include="Views\LookUps\IPriceListLookUpView.cs" />
     <Compile Include="Presenters\DataRetrievers\WarehouseRetriever.cs" />

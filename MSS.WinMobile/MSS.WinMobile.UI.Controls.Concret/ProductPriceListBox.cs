@@ -4,21 +4,21 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.Concret
 {
-    public class PriceListListBox : VirtualListBox
+    public class ProductPriceListBox : VirtualListBox
     {
-        public PriceListListBox()
+        public ProductPriceListBox()
         {
             InitializeComponent();
         }
 
         protected override VirtualListBoxItem NewItem()
         {
-            return new PriceListListBoxItem();
+            return new ProductPriceListBoxItem();
         }
 
         protected override string EmptyListMessage {
             get {
-                return "Where are no price lists.";
+                return "Where are no products for current price list.";
             }
         }
     }

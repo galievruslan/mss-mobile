@@ -1,7 +1,7 @@
 ﻿using MSS.WinMobile.UI.Controls;
 using MSS.WinMobile.UI.Controls.Buttons;
 
-namespace MSS.WinMobile.UI.Views
+namespace MSS.WinMobile.UI.Views.LookUps
 {
     partial class PickUpProductView
     {
@@ -48,6 +48,7 @@ namespace MSS.WinMobile.UI.Views
             this.threeButton = new System.Windows.Forms.Button();
             this.twoButton = new System.Windows.Forms.Button();
             this.oneButton = new System.Windows.Forms.Button();
+            this._productPriceListBox = new MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox();
             this.quantityPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@ namespace MSS.WinMobile.UI.Views
             this.cancelButton.PressedImage = null;
             this.cancelButton.Size = new System.Drawing.Size(22, 22);
             this.cancelButton.TabIndex = 12;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // okButton
             // 
@@ -71,7 +72,7 @@ namespace MSS.WinMobile.UI.Views
             this.okButton.PressedImage = null;
             this.okButton.Size = new System.Drawing.Size(22, 22);
             this.okButton.TabIndex = 11;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // searchPanel
             // 
@@ -225,12 +226,23 @@ namespace MSS.WinMobile.UI.Views
             this.oneButton.Text = "1";
             this.oneButton.Click += new System.EventHandler(this.DigitButtonClick);
             // 
+            // _productPriceListBox
+            // 
+            this._productPriceListBox.BackColor = System.Drawing.Color.White;
+            this._productPriceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._productPriceListBox.Location = new System.Drawing.Point(0, 24);
+            this._productPriceListBox.Name = "_productPriceListBox";
+            this._productPriceListBox.Size = new System.Drawing.Size(240, 240);
+            this._productPriceListBox.TabIndex = 1;
+            // 
             // PickUpProductView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ControlBox = false;
+            this.Controls.Add(this._productPriceListBox);
             this.Controls.Add(this.quantityPanel);
             this.Controls.Add(this.searchPanel);
             this.Name = "PickUpProductView";
@@ -259,6 +271,7 @@ namespace MSS.WinMobile.UI.Views
         private OkButton okButton;
         private CancelButton cancelButton;
         public PictureButton deleteButton;
+        private MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox _productPriceListBox;
 
     }
 }

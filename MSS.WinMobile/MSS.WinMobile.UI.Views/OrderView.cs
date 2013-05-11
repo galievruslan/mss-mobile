@@ -38,9 +38,9 @@ namespace MSS.WinMobile.UI.Views
                 _warehouseTextBox.Text = _viewModel.WarehouseAddress;
                 _notesTextBox.Text = _viewModel.Note;
 
-                orderItemListBox.ItemDataNeeded += ItemDataNeeded;
-                orderItemListBox.ItemSelected += ItemSelected;
-                orderItemListBox.SetListSize(_presenter.InitializeListSize());
+                _orderItemListBox.ItemDataNeeded += ItemDataNeeded;
+                _orderItemListBox.ItemSelected += ItemSelected;
+                _orderItemListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
 
@@ -56,7 +56,9 @@ namespace MSS.WinMobile.UI.Views
         }
 
         private void AddClick(object sender, EventArgs e) {
-            _presenter.PickUpProducts();
+            if (_presenter.PickUpProducts()) {
+                _orderItemListBox.SetListSize(_presenter.InitializeListSize());
+            }
         }
 
         #region IView

@@ -42,6 +42,14 @@ namespace MSS.WinMobile.Application
             else if (typeof(T) == typeof(ICustomerLookUpView)) {
                 view = (new CustomerLookUpView(_presentersFactory)) as T;
             }
+            else if (typeof(T) == typeof(IPriceListLookUpView))
+            {
+                view = (new PriceListLookUpView(_presentersFactory)) as T;
+            }
+            else if (typeof(T) == typeof(IWarehouseLookUpView))
+            {
+                view = (new WarehouseLookUpView(_presentersFactory)) as T;
+            }
             else if (typeof(T) == typeof(IShippingAddressLookUpView)) {
                 var customer = args["customer"] as CustomerViewModel;
 
@@ -60,6 +68,12 @@ namespace MSS.WinMobile.Application
             {
                 var routePointViewModel = args["route_point"] as RoutePointViewModel;
                 view = (new OrderView(_presentersFactory, routePointViewModel)) as T;
+            }
+            else if (typeof(T) == typeof(IPickUpProductView))
+            {
+                var orderViewModel = args["order"] as OrderViewModel;
+                var orderItemsViewModel = args["order_items"] as IList<OrderItemViewModel>;
+                view = (new PickUpProductView(_presentersFactory, orderViewModel, orderItemsViewModel)) as T;
             }
 
             return view;

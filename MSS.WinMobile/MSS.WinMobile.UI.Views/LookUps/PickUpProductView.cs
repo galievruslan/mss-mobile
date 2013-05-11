@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
+using MSS.WinMobile.UI.Presenters.ViewModels;
+using MSS.WinMobile.UI.Presenters.Views;
+using MSS.WinMobile.UI.Presenters.Views.LookUps;
+
+namespace MSS.WinMobile.UI.Views.LookUps
+{
+    public partial class PickUpProductView : Form, IPickUpProductView
+    {
+        private PickUpProductPresenter _presenter;
+        private readonly IPresentersFactory _presentersFactory;
+        private readonly OrderViewModel _orderViewModel;
+        private readonly IList<OrderItemViewModel> _orderItemViewModels; 
+
+        public PickUpProductView()
+        {
+            InitializeComponent();
+        }
+
+        public PickUpProductView(IPresentersFactory presentersFactory, OrderViewModel orderViewModel, IList<OrderItemViewModel> orderItemViewModels)
+            :this() {
+            _presentersFactory = presentersFactory;
+            _orderViewModel = orderViewModel;
+            _orderItemViewModels = orderItemViewModels;
+        }
+
+        private void ViewLoad(object sender, EventArgs e)
+        {
+            if (_presenter == null)
+            {
+                _productPriceListBox.ItemDataNeeded += ItemDataNeeded;
+                _productPriceListBox.ItemSelected += ProductsPriceListBoxItemSelected;
+                _presenter = _presentersFactory.CreatePickUpProductPresenter(this, _orderViewModel, _orderItemViewModels);
+                _productPriceListBox.SetListSize(_presenter.InitializeListSize());
+            }
+        }
+
+        private VirtualListBoxItem _selectedItem;
+        void ProductsPriceListBoxItemSelected(object sender, VirtualListBoxItem item)
+        {
+            _selectedItem = item;
+        }
+
+        void ItemDataNeeded(object sender, VirtualListBoxItem item)
+        {
+            var productPriceListBoxItem = item as ProductPriceListBoxItem;
+            if (productPriceListBoxItem != null)
+            {
+                productPriceListBoxItem.ViewModel = _presenter.GetItem(item.Index);
+            }
+        }
+
+        #region IView
+
+        public void ShowView()
+        {
+            Show();
+        }
+
+        public DialogViewResult ShowDialogView()
+        {
+            DialogResult dialogResult = ShowDialog();
+            if (dialogResult == DialogResult.OK)
+                return DialogViewResult.Ok;
+
+            return DialogViewResult.Cancel;
+        }
+
+        public void CloseView()
+        {
+            Close();
+        }
+
+        public void DisplayErrors(string error)
+        {
+            
+        }
+
+        #endregion
+
+        private void DigitButtonClick(object sender, EventArgs e)
+        {
+            var digitButton = sender as Button;
+            if (digitButton != null)
+            {
+                _presenter.AddDigit(Int32.Parse(digitButton.Text));
+                _selectedItem.RefreshData();
+                _selectedItem.Refresh();
+            }
+        }
+
+        private void DeleteDigitButtonClick(object sender, EventArgs e)
+        {
+            _presenter.RemoveDigit();
+            _selectedItem.RefreshData();
+            _selectedItem.Refresh();
+        }
+
+        private void OkButtonClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        public IList<PickUpProductViewModel> PickedUpProducts {
+            get { return _presenter.PickedUpProducts; }
+        }
+    }
+}

@@ -55,7 +55,7 @@ namespace MSS.WinMobile.UI.Views
             this._customerLabel = new System.Windows.Forms.Label();
             this._orderDateLabel = new System.Windows.Forms.Label();
             this._detailsTab = new System.Windows.Forms.TabPage();
-            this.orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
+            this._orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
             this.itemsActionPanel = new System.Windows.Forms.Panel();
             this.addButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._notesTab = new System.Windows.Forms.TabPage();
@@ -308,21 +308,21 @@ namespace MSS.WinMobile.UI.Views
             // 
             // _detailsTab
             // 
-            this._detailsTab.Controls.Add(this.orderItemListBox);
+            this._detailsTab.Controls.Add(this._orderItemListBox);
             this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(232, 238);
+            this._detailsTab.Size = new System.Drawing.Size(240, 240);
             this._detailsTab.Text = "Details";
             // 
-            // orderItemListBox
+            // _orderItemListBox
             // 
-            this.orderItemListBox.BackColor = System.Drawing.Color.White;
-            this.orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderItemListBox.Location = new System.Drawing.Point(0, 24);
-            this.orderItemListBox.Name = "orderItemListBox";
-            this.orderItemListBox.Size = new System.Drawing.Size(232, 214);
-            this.orderItemListBox.TabIndex = 1;
+            this._orderItemListBox.BackColor = System.Drawing.Color.White;
+            this._orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._orderItemListBox.Location = new System.Drawing.Point(0, 24);
+            this._orderItemListBox.Name = "_orderItemListBox";
+            this._orderItemListBox.Size = new System.Drawing.Size(240, 216);
+            this._orderItemListBox.TabIndex = 1;
             // 
             // itemsActionPanel
             // 
@@ -330,7 +330,7 @@ namespace MSS.WinMobile.UI.Views
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(232, 24);
+            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
             // 
             // addButton
             // 
@@ -349,7 +349,7 @@ namespace MSS.WinMobile.UI.Views
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(240, 240);
+            this._notesTab.Size = new System.Drawing.Size(232, 238);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox
@@ -458,7 +458,7 @@ namespace MSS.WinMobile.UI.Views
         private PictureButton _warehouseResetButton;
         private PictureButton _warehouseLookUpButton;
         private System.Windows.Forms.TextBox _priceListTextBox;
-        private MSS.WinMobile.UI.Controls.Concret.OrderItemListBox orderItemListBox;
+        private MSS.WinMobile.UI.Controls.Concret.OrderItemListBox _orderItemListBox;
         public System.Windows.Forms.Panel pricePanel;
     }
 }
