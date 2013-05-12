@@ -61,8 +61,12 @@ namespace MSS.WinMobile.Application {
             return new OrderListPresenter(orderListView, _repositoryFactory, routePointViewModel);
         }
 
-        public NewOrderPresenter CreateNewOrderPresenter(INewOrderView orderView, RoutePointViewModel routePointViewModel) {
-            return new NewOrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, routePointViewModel);
+        public OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel) {
+            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, routePointViewModel);
+        }
+
+        public OrderPresenter CreateOrderPresenter(IOrderView orderView, OrderViewModel orderViewModel) {
+            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, orderViewModel);
         }
 
         public PriceListLookUpPresenter CreatePriceListLookUpPresenter(IPriceListLookUpView priceListLookUpView) {

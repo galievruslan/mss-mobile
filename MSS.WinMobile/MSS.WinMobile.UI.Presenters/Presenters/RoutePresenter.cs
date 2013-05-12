@@ -158,5 +158,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 orderListView.ShowView();
             }
         }
+
+        public void CreateOrder() {
+            if (SelectedModel != null) {
+                var newOrderView =
+                    NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> {
+                        {"route_point", SelectedModel}
+                    });
+                newOrderView.ShowView();
+            }
+        }
     }
 }

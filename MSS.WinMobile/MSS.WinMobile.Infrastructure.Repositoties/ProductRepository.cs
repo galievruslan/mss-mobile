@@ -8,14 +8,16 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 {
     public class ProductStorageRepository : SqLiteStorageRepository<Product> {
         private readonly ISpecificationTranslator<Product> _specificationTranslator;
-        internal ProductStorageRepository(IStorage storage, ISpecificationTranslator<Product> specificationTranslator)
+        private readonly IRepositoryFactory _repositoryFactory;
+        internal ProductStorageRepository(IStorage storage, ISpecificationTranslator<Product> specificationTranslator, IRepositoryFactory repositoryFactory)
             : base(storage) {
             _specificationTranslator = specificationTranslator;
+            _repositoryFactory = repositoryFactory;
         }
 
         protected override QueryObject<Product> GetQueryObject()
         {
-            return new ProductQueryObject(Storage, _specificationTranslator, new ProductDataRecordTranslator());
+            return new ProductQueryObject(Storage, _specificationTranslator, new ProductDataRecordTranslator(_repositoryFactory));
         }
 
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Products (Id, Name, Category_Id) VALUES ({0}, '{1}', {2})";

@@ -2,7 +2,7 @@
 
 namespace MSS.WinMobile.UI.Presenters.Views
 {
-    public interface INewOrderView : IListView
+    public interface IOrderView : IListView
     {
     }
 }

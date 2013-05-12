@@ -7,7 +7,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
     public class RoutePointProxy : RoutePoint {
         private readonly IStorageRepository<Order> _ordersRepository;
-        private IStorageRepository<OrderItem> _orderItemsRepository;
+        private readonly IStorageRepository<OrderItem> _orderItemsRepository;
         public RoutePointProxy(IStorageRepository<Order> ordersRepository, IStorageRepository<OrderItem> orderItemsRepository)
         {
             _ordersRepository = ordersRepository;
@@ -58,7 +58,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
         }
 
         public override Order CreateOrder() {
-            return new OrderProxy(_orderItemsRepository);
+            return new OrderProxy(this, _orderItemsRepository);
         }
     }
 }

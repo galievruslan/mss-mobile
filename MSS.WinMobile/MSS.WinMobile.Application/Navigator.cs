@@ -64,10 +64,17 @@ namespace MSS.WinMobile.Application
                 var routePointViewModel = args["route_point"] as RoutePointViewModel;
                 view = (new OrderListView(_presentersFactory, routePointViewModel)) as T;
             }
-            else if (typeof(T) == typeof(INewOrderView))
+            else if (typeof(T) == typeof(IOrderView))
             {
-                var routePointViewModel = args["route_point"] as RoutePointViewModel;
-                view = (new OrderView(_presentersFactory, routePointViewModel)) as T;
+                if (args.ContainsKey("route_point")) {
+                    var routePointViewModel = args["route_point"] as RoutePointViewModel;
+                    view = (new OrderView(_presentersFactory, routePointViewModel)) as T;
+                }
+
+                if (args.ContainsKey("order")) {
+                    var orderViewModel = args["order"] as OrderViewModel;
+                    view = (new OrderView(_presentersFactory, orderViewModel)) as T;
+                }
             }
             else if (typeof(T) == typeof(IPickUpProductView))
             {

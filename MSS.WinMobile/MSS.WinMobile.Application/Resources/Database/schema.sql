@@ -48,6 +48,7 @@ CREATE TABLE [OrderItems] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Price] numeric(8,2) NULL
 , [Order_Id] INTEGER NULL
 , [Product_Id] INTEGER  NULL
+, [UnitOfMeasure_Id] INTEGER  NULL
 , FOREIGN KEY(Order_Id) REFERENCES Orders(Id)
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 );

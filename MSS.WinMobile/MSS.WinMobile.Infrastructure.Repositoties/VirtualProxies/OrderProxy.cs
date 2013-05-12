@@ -7,8 +7,13 @@ using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
     public class OrderProxy : Order {
-        private IStorageRepository<OrderItem> _orderItemRepository;
+        private readonly IStorageRepository<OrderItem> _orderItemRepository;
         public OrderProxy(IStorageRepository<OrderItem> orderItemRepository) {
+            _orderItemRepository = orderItemRepository;
+        }
+
+        public OrderProxy(RoutePoint routePoint, IStorageRepository<OrderItem> orderItemRepository)
+            : base(routePoint) {
             _orderItemRepository = orderItemRepository;
         }
 
@@ -95,6 +100,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
                 var orderItemsSpec = new OrdersItemsSpec(this);
                 return _orderItemRepository.Find().Where(orderItemsSpec);
             }
+        }
+
+        public override OrderItem CreateItem() {
+            return new OrderItemProxy(this);
         }
     }
 }

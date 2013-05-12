@@ -112,14 +112,14 @@
     <Compile Include="Views\LookUps\ICustomerLookUpView.cs" />
     <Compile Include="Views\ILogonView.cs" />
     <Compile Include="Views\IMenuView.cs" />
-    <Compile Include="Views\INewOrderView.cs" />
+    <Compile Include="Views\IOrderView.cs" />
     <Compile Include="Views\IRouteView.cs" />
     <Compile Include="Views\ISynchronizationView.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Presenters\LogonPresenter.cs" />
     <Compile Include="Presenters\MenuPresenter.cs" />
     <Compile Include="Presenters\IPresenter.cs" />
-    <Compile Include="Presenters\NewOrderPresenter.cs" />
+    <Compile Include="Presenters\OrderPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presenters\RoutePresenter.cs" />
     <Compile Include="Presenters\SynchronizationPresenter.cs" />

@@ -19,13 +19,14 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
         }
 
         private const string SaveQueryTemplate =
-            "INSERT OR REPLACE INTO OrderItems (Id, Order_Id, Product_Id, Quantity, Price) VALUES ({0}, {1}, {2}, {3} {4})";
+            "INSERT OR REPLACE INTO OrderItems (Id, Order_Id, Product_Id, UnitOfMeasure_Id, Quantity, Price) VALUES ({0}, {1}, {2}, {3}, {4}, {5})";
         protected override string GetSaveQueryFor(OrderItem model)
         {
             return string.Format(SaveQueryTemplate,
                                  model.Id != 0 ? model.Id.ToString(CultureInfo.InvariantCulture) : "NULL",
                                  model.OrderId,
                                  model.ProductId,
+                                 model.UnitOfMeasureId,
                                  model.Quantity,
                                  model.Price);
         }

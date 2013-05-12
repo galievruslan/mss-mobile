@@ -41,7 +41,7 @@ namespace MSS.WinMobile.UI.Views
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.notification = new Microsoft.WindowsCE.Forms.Notification();
-            this.inputButton1 = new MSS.WinMobile.UI.Controls.Buttons.InputButton();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
             this._inputPanel.SuspendLayout();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
@@ -94,15 +94,14 @@ namespace MSS.WinMobile.UI.Views
             this._inputPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._inputPanel.Location = new System.Drawing.Point(0, 0);
             this._inputPanel.Name = "_inputPanel";
-            this._inputPanel.Size = new System.Drawing.Size(240, 294);
+            this._inputPanel.Size = new System.Drawing.Size(240, 268);
             // 
             // _actionPanel
             // 
-            this._actionPanel.Controls.Add(this.inputButton1);
             this._actionPanel.Controls.Add(this.cancelButton);
             this._actionPanel.Controls.Add(this.okButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 264);
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
@@ -136,28 +135,17 @@ namespace MSS.WinMobile.UI.Views
             // 
             this.notification.Text = "notification1";
             // 
-            // inputButton1
-            // 
-            this.inputButton1.BackColor = System.Drawing.Color.White;
-            this.inputButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("inputButton1.BackgroundImage")));
-            this.inputButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.inputButton1.Location = new System.Drawing.Point(210, 0);
-            this.inputButton1.Name = "inputButton1";
-            this.inputButton1.PressedImage = null;
-            this.inputButton1.Size = new System.Drawing.Size(30, 30);
-            this.inputButton1.TabIndex = 4;
-            this.inputButton1.Click += new System.EventHandler(this.InputButtonClick);
-            // 
             // LogonView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._inputPanel);
+            this.Menu = this.mainMenu;
             this.Name = "LogonView";
             this.Load += new System.EventHandler(this.ViewLoad);
             this._inputPanel.ResumeLayout(false);
@@ -178,6 +166,6 @@ namespace MSS.WinMobile.UI.Views
         private Microsoft.WindowsCE.Forms.Notification notification;
         private PictureButton cancelButton;
         private PictureButton okButton;
-        private InputButton inputButton1;
+        private System.Windows.Forms.MainMenu mainMenu;
     }
 }

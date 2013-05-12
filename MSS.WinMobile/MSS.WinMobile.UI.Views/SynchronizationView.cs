@@ -59,7 +59,10 @@ namespace MSS.WinMobile.UI.Views {
                 _viewModel = ViewModel;
 
                 _synchronizeFullyCheckBox.Checked = _viewModel.SynchronizeFully;
-                _lastSyncDateLabel.Text = _viewModel.LastSynchronizationDate.ToString("dd.MM.yyyy HH:mm");
+                _lastSyncDateLabel.Text = _viewModel.LastSynchronizationDate != DateTime.MinValue
+                                          ? _viewModel.LastSynchronizationDate.ToString(
+                                              "dd.MM.yyyy HH:mm")
+                                          : "never";
             }
         }
 
@@ -99,7 +102,10 @@ namespace MSS.WinMobile.UI.Views {
         private void OkButtonClick(object sender, EventArgs e) {
             _presenter.Synchronize();
             _synchronizeFullyCheckBox.Checked = _viewModel.SynchronizeFully;
-            _lastSyncDateLabel.Text = _viewModel.LastSynchronizationDate.ToString("dd.MM.yyyy HH:mm");
+            _lastSyncDateLabel.Text = _viewModel.LastSynchronizationDate != DateTime.MinValue
+                                          ? _viewModel.LastSynchronizationDate.ToString(
+                                              "dd.MM.yyyy HH:mm")
+                                          : "never";
         }
 
         private void CancelButtonClick(object sender, EventArgs e) {

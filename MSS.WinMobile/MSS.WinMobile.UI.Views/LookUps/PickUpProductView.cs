@@ -35,16 +35,17 @@ namespace MSS.WinMobile.UI.Views.LookUps
             if (_presenter == null)
             {
                 _productPriceListBox.ItemDataNeeded += ItemDataNeeded;
-                _productPriceListBox.ItemSelected += ProductsPriceListBoxItemSelected;
+                _productPriceListBox.ItemSelected += ItemSelected;
                 _presenter = _presentersFactory.CreatePickUpProductPresenter(this, _orderViewModel, _orderItemViewModels);
                 _productPriceListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
 
         private VirtualListBoxItem _selectedItem;
-        void ProductsPriceListBoxItemSelected(object sender, VirtualListBoxItem item)
-        {
+        void ItemSelected(object sender, VirtualListBoxItem item) {
+
             _selectedItem = item;
+            _presenter.Select(item.Index);
         }
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item)
@@ -90,16 +91,16 @@ namespace MSS.WinMobile.UI.Views.LookUps
             if (digitButton != null)
             {
                 _presenter.AddDigit(Int32.Parse(digitButton.Text));
-                _selectedItem.RefreshData();
-                _selectedItem.Refresh();
+                if (_selectedItem != null)
+                    _selectedItem.RefreshData();
             }
         }
 
         private void DeleteDigitButtonClick(object sender, EventArgs e)
         {
             _presenter.RemoveDigit();
-            _selectedItem.RefreshData();
-            _selectedItem.Refresh();
+            if (_selectedItem != null)
+                _selectedItem.RefreshData();
         }
 
         private void OkButtonClick(object sender, EventArgs e)

@@ -73,7 +73,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
                              .RegisterSpecificationTranslator(new OrderItemSpecTranslator())
                              .RegisterSpecificationTranslator(new ProductPriceSpecTranslator())
                              .RegisterSpecificationTranslator(
-                                 new CommonTranslator<ProductsUnitOfMeasure>())
+                                 new ProductsUnitOfMeasureSpecTranslator())
                              .RegisterSpecificationTranslator(new RoutePointSpecTranslator())
                              .RegisterSpecificationTranslator(new RouteSpecTranslator())
                              .RegisterSpecificationTranslator(
@@ -191,7 +191,7 @@ namespace MSS.WinMobile.Synchronizer.Tests
                 // Products synchronization
                 var productDtoRepository = new WebRepository<ProductDto>(webServer);
                 var productSqLiteRepository = repositoryFactory.CreateRepository<Product>();
-                DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator();
+                DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator(repositoryFactory);
 
                 var productSyncCommand =
                     new SynchronizationCommand<ProductDto, Product>(productDtoRepository,

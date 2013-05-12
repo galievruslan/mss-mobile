@@ -54,7 +54,7 @@ namespace MSS.WinMobile.Application
                              .RegisterSpecificationTranslator(new OrderItemSpecTranslator())
                              .RegisterSpecificationTranslator(new ProductPriceSpecTranslator())
                              .RegisterSpecificationTranslator(
-                                 new CommonTranslator<ProductsUnitOfMeasure>())
+                                 new ProductsUnitOfMeasureSpecTranslator())
                              .RegisterSpecificationTranslator(new RoutePointSpecTranslator())
                              .RegisterSpecificationTranslator(new RouteSpecTranslator())
                              .RegisterSpecificationTranslator(

@@ -8,11 +8,12 @@ using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class OrderView : Form, INewOrderView
+    public partial class OrderView : Form, IOrderView
     {
-        private NewOrderPresenter _presenter;
+        private OrderPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
         private readonly RoutePointViewModel _routePointViewModel;
+        private OrderViewModel _orderViewModel;
 
         public OrderView() {
             InitializeComponent();
@@ -24,10 +25,20 @@ namespace MSS.WinMobile.UI.Views
             _routePointViewModel = routePointViewModel;
         }
 
+        public OrderView(IPresentersFactory presentersFactory, OrderViewModel orderViewModel)
+            : this() {
+            _presentersFactory = presentersFactory;
+            _orderViewModel = orderViewModel;
+        }
+
         private OrderViewModel _viewModel;
         private void ViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                _presenter = _presentersFactory.CreateNewOrderPresenter(this, _routePointViewModel);
+                _presenter = _routePointViewModel != null
+                                 ? _presentersFactory.CreateOrderPresenter(this,
+                                                                           _routePointViewModel)
+                                 : _presentersFactory.CreateOrderPresenter(this, _orderViewModel);
+
                 _viewModel = _presenter.Initialize();
 
                 _orderDatePicker.Value = _viewModel.OrderDate;

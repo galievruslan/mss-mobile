@@ -72,7 +72,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties {
                     (IStorageRepository<TModel>)
                     new ProductStorageRepository(_storageManager.Current,
                                                    specificationTranslator as
-                                                   ISpecificationTranslator<Product>);
+                                                   ISpecificationTranslator<Product>, this);
             }
             if (typeof(TModel) == typeof(ProductsPrice)) {
                 return

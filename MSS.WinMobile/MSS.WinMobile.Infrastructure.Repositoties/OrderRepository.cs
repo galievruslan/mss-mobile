@@ -33,7 +33,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
                                  model.ShippingAddressId,
                                  model.PriceListId,
                                  model.WarehouseId,
-                                 model.OrderStatus,
+                                 (int)model.OrderStatus,
                                  model.Note.Replace("'", "''"));
         }
 

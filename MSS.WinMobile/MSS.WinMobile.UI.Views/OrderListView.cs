@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -25,16 +26,6 @@ namespace MSS.WinMobile.UI.Views
             _routePointViewModel = routePointViewModel;
         }
 
-        private void CreateRoutePointButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CreateOrderClick(object sender, EventArgs e)
-        {
-            _presenter.CreateOrder();
-        }
-
         private void ViewLoad(object sender, EventArgs e)
         {
             if (_presenter == null) {
@@ -45,9 +36,11 @@ namespace MSS.WinMobile.UI.Views
             }
         }
 
-        void ItemSelected(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem item)
+        private VirtualListBoxItem _selectedListItem;
+        void ItemSelected(object sender, VirtualListBoxItem item)
         {
             _presenter.Select(item.Index);
+            _selectedListItem = item;
         }
 
         void ItemDataNeeded(object sender, Controls.ListBox.ListBoxItems.VirtualListBoxItem item)
@@ -87,5 +80,19 @@ namespace MSS.WinMobile.UI.Views
 
         #endregion
 
+        private void CreateOrderClick(object sender, EventArgs e) {
+            _presenter.CreateOrder();
+            _orderListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void EditOrderClick(object sender, EventArgs e) {
+            _presenter.EditOrder();
+            if (_selectedListItem != null)
+                _selectedListItem.RefreshData();
+        }
+
+        private void SendOrderClick(object sender, EventArgs e) {
+            _presenter.PrepareOrderForSending();
+        }
     }
 }

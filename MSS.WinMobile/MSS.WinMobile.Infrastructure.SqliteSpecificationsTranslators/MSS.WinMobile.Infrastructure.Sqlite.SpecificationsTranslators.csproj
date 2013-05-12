@@ -55,6 +55,7 @@
     <Compile Include="OrderSpecTranslator.cs" />
     <Compile Include="ProductPriceSpecTranslator.cs" />
     <Compile Include="OrderItemSpecTranslator.cs" />
+    <Compile Include="ProductsUnitOfMeasureSpecTranslator.cs" />
     <Compile Include="RoutePointTemplateSpecTranslator.cs" />
     <Compile Include="RoutePointSpecTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

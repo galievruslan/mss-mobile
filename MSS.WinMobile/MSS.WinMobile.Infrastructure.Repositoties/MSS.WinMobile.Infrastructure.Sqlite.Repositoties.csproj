@@ -69,6 +69,7 @@
     <Compile Include="QueryObjects\ISpecificationTranslator.cs" />
     <Compile Include="QueryObjects\Specifications\OrdersItemsSpec.cs" />
     <Compile Include="QueryObjects\Specifications\PricesLinesSpec.cs" />
+    <Compile Include="QueryObjects\Specifications\ProductUnitsOfMeasuresSpec.cs" />
     <Compile Include="QueryObjects\Specifications\RoutePointsOrdersSpec.cs" />
     <Compile Include="QueryObjects\Specifications\RouteTemplatesPointsSpec.cs" />
     <Compile Include="QueryObjects\Specifications\RoutesPointsSpec.cs" />

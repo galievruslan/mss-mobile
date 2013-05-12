@@ -68,7 +68,6 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
 
         protected virtual TModel[] Execute()
         {
-            Log.DebugFormat("Select from database.");
             string commandText = AsQuery(); 
 
             try

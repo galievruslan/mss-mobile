@@ -70,9 +70,5 @@ namespace MSS.WinMobile.UI.Views
         private void PasswordTextBoxTextChanged(object sender, System.EventArgs e) {
             _viewModel.Password = _passwordTextBox.Text;
         }
-
-        private void InputButtonClick(object sender, System.EventArgs e) {
-            inputPanel.Enabled = !inputPanel.Enabled;
-        }
     }
 }

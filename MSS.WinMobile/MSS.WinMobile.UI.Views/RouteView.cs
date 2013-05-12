@@ -37,11 +37,16 @@ namespace MSS.WinMobile.UI.Views {
             }
         }
 
+        private VirtualListBoxItem _selectedListItem;
         private void ItemSelected(object sender, VirtualListBoxItem item) {
             _presenter.Select(item.Index);
+            _selectedListItem = item;
         }
 
         private void CreateOrderClick(object sender, EventArgs e) {
+            _presenter.CreateOrder();
+            if (_selectedListItem != null)
+                _selectedListItem.RefreshData();
         }
 
         #region IView

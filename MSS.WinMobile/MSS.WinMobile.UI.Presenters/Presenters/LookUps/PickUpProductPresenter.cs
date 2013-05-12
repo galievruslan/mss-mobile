@@ -29,13 +29,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
             _pickUpProductViewModels = new List<PickUpProductViewModel>();
             foreach (var orderItemViewModel in orderItemViewModels) {
-                _pickUpProductViewModels.Add(new PickUpProductViewModel
-                    {
-                        ProductId = orderItemViewModel.ProductId,
-                        ProductName = orderItemViewModel.ProductName,
-                        Quantity = orderItemViewModel.Quantity,
-                        Price = orderItemViewModel.Price
-                    });
+                _pickUpProductViewModels.Add(new PickUpProductViewModel {
+                    OrderItemId = orderItemViewModel.Id,
+                    ProductId = orderItemViewModel.ProductId,
+                    ProductName = orderItemViewModel.ProductName,
+                    Quantity = orderItemViewModel.Quantity,
+                    Price = orderItemViewModel.Price
+                });
             }
         }
 
@@ -81,12 +81,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         }
 
         public PickUpProductViewModel GetItem(int index) {
+            int quantity = 0;
             ProductsPrice item = _cache.RetrieveElement(index);
+
+            var pickUpProductViewModel =
+                _pickUpProductViewModels.FirstOrDefault(model => model.ProductId == item.ProductId);
+            if (pickUpProductViewModel != null)
+                quantity = pickUpProductViewModel.Quantity;
+            
             return new PickUpProductViewModel {
                 ProductId = item.ProductId,
                 ProductName = item.ProductName,
                 Price = item.Price,
-                Quantity = 0
+                Quantity = quantity
             };
         }
 

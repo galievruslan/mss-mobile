@@ -335,7 +335,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     var productDtoRepository = new WebRepository<ProductDto>(webServer);
                     var productSqLiteRepository =
                         _repositoryFactory.CreateRepository<Product>();
-                    DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator();
+                    DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator(_repositoryFactory);
 
                     Command<ProductDto, Product> productSyncCommand = _viewModel.SynchronizeFully
                                                                           ? new SynchronizationCommand

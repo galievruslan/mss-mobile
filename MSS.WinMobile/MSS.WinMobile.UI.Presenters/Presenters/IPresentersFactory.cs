@@ -22,7 +22,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, RoutePointViewModel routePointViewModel);
 
-        NewOrderPresenter CreateNewOrderPresenter(INewOrderView orderView, RoutePointViewModel routePointViewModel);
+        OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel);
+
+        OrderPresenter CreateOrderPresenter(IOrderView orderView, OrderViewModel orderViewModel);
 
         PriceListLookUpPresenter CreatePriceListLookUpPresenter(IPriceListLookUpView priceListLookUpView);
 

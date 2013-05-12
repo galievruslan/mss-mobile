@@ -42,16 +42,6 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             }
         }
 
-        private void CancelClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
-            _presenter.Cancel();
-        }
-
-        private void OkClick(object sender, EventArgs e) {
-            if (_presenter.LookUp())
-                DialogResult = DialogResult.OK;
-        }
-
         #region IView
 
         public void ShowView() {
@@ -78,6 +68,16 @@ namespace MSS.WinMobile.UI.Views.LookUps {
 
         public WarehouseViewModel SelectedWarehouse {
             get { return _presenter.SelectedModel; }
+        }
+
+        private void okButton_Click(object sender, EventArgs e) {
+            if (_presenter.LookUp())
+                DialogResult = DialogResult.OK;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
+            _presenter.Cancel();
         }
     }
 }

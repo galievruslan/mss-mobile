@@ -12,15 +12,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 
         public int Count
         {
-            get { return _priceList.Lines.Count(); }
+            get { return _priceList == null ? 0 : _priceList.Lines.Count(); }
         }
 
         public ProductsPrice[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
-            return
-                _priceList.Lines
-                          .OrderBy("Product_Name", OrderDirection.Asceding)
-                          .Paged(lowerPageBoundary, rowsPerPage)
-                          .ToArray();
+            return _priceList == null
+                       ? new ProductsPrice[0]
+                       : _priceList.Lines
+                                   .OrderBy("Product_Name", OrderDirection.Asceding)
+                                   .Paged(lowerPageBoundary, rowsPerPage)
+                                   .ToArray();
         }
     }
 }

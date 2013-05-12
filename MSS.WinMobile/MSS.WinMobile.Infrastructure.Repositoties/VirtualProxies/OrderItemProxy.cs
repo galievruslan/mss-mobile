@@ -4,6 +4,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
 {
     public class OrderItemProxy : OrderItem
     {
+        public OrderItemProxy() {}
+
+        public OrderItemProxy(Order order) : base(order) {}
+
         new public int Id
         {
             get { return base.Id; }
@@ -26,6 +30,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
         {
             get { return base.ProductName; }
             set { base.ProductName = value; }
+        }
+
+        new public int UnitOfMeasureId {
+            get { return base.UnitOfMeasureId; }
+            set { base.UnitOfMeasureId = value; }
         }
 
         new public int Quantity
