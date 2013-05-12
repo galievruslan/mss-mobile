@@ -312,7 +312,7 @@ namespace MSS.WinMobile.UI.Views
             this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(240, 240);
+            this._detailsTab.Size = new System.Drawing.Size(232, 238);
             this._detailsTab.Text = "Details";
             // 
             // _orderItemListBox
@@ -321,7 +321,7 @@ namespace MSS.WinMobile.UI.Views
             this._orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._orderItemListBox.Location = new System.Drawing.Point(0, 24);
             this._orderItemListBox.Name = "_orderItemListBox";
-            this._orderItemListBox.Size = new System.Drawing.Size(240, 216);
+            this._orderItemListBox.Size = new System.Drawing.Size(232, 214);
             this._orderItemListBox.TabIndex = 1;
             // 
             // itemsActionPanel
@@ -330,7 +330,7 @@ namespace MSS.WinMobile.UI.Views
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
+            this.itemsActionPanel.Size = new System.Drawing.Size(232, 24);
             // 
             // addButton
             // 
@@ -407,6 +407,7 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ControlBox = false;
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this._actionPanel);
             this.Name = "OrderView";

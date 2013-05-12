@@ -28,6 +28,8 @@ namespace MSS.WinMobile.Domain.Models
             StatusId = status.Id;
         }
 
+        public bool Synchronized { get; set; }
+
         public abstract IQueryObject<Order> Orders { get; }
 
         public abstract Order CreateOrder();

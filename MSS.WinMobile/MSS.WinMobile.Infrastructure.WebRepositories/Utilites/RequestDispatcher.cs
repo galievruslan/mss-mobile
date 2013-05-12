@@ -49,7 +49,8 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories.Utilites
                     }
                 }
 
-                connection.CsrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
+                if (httpWebRequest.Method == "GET")
+                    connection.CsrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
                 return responseText;
             }
             catch (WebException webException)

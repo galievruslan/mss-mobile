@@ -31,6 +31,8 @@ namespace MSS.WinMobile.Domain.Models
         public OrderStatus OrderStatus { get; set; }
         public string Note { get; set; }
 
+        public bool Synchronized { get; set; }
+
         public abstract IQueryObject<OrderItem> Items { get; }
 
         public void SetOrderDate(DateTime orderDate) {

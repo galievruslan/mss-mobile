@@ -21,11 +21,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
             return new RoutePointQueryObject(Storage, _specificationTranslator, new RoutePointTranslator(_repositoryFactory));
         }
 
-        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RoutePoints (Id, Route_Id, ShippingAddress_Id, ShippingAddress_Name, Status_Id) VALUES ({0}, {1}, {2}, '{3}', {4})";
+        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO RoutePoints (Id, Route_Id, ShippingAddress_Id, ShippingAddress_Name, Status_Id, Synchronized) VALUES ({0}, {1}, {2}, '{3}', {4}, {5})";
         protected override string GetSaveQueryFor(RoutePoint model)
         {
             return string.Format(SaveQueryTemplate, model.Id != 0 ? model.Id.ToString(CultureInfo.InvariantCulture) : "NULL", model.RouteId, model.ShippingAddressId,
-                                 model.ShippingAddressName.Replace("'", "''"), model.StatusId);
+                                 model.ShippingAddressName.Replace("'", "''"), model.StatusId, model.Synchronized ? 1 : 0);
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM RoutePoints WHERE Id = {0}";

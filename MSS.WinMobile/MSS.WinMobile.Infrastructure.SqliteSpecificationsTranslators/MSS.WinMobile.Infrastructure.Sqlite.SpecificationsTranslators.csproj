@@ -64,6 +64,10 @@
     <Compile Include="ShippingAddressSpecTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Commands\MSS.WinMobile.Synchronizer.csproj">
+      <Project>{5CB36071-60FE-4063-AE50-3F62D51D69C8}</Project>
+      <Name>MSS.WinMobile.Synchronizer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>

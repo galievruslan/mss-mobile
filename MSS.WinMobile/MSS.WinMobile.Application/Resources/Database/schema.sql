@@ -38,6 +38,7 @@ CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Warehouse_Id] INTEGER  NULL
 , [OrderStatus] INTEGER  NULL
 , [Note] VARCHAR(1024) NULL
+, [Synchronized] BIT  NULL
 , FOREIGN KEY(RoutePoint_Id) REFERENCES RoutePoints(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
@@ -74,6 +75,7 @@ CREATE TABLE [RoutePoints] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [ShippingAddress_Id] INTEGER NULL
 , [ShippingAddress_Name] VARCHAR(255) NULL
 , [Status_Id] INTEGER  NULL
+, [Synchronized] BIT  NULL
 , FOREIGN KEY(Route_Id) REFERENCES Routes(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
 , FOREIGN KEY(Status_Id) REFERENCES Statuses(Id)

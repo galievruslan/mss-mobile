@@ -32,10 +32,12 @@ namespace MSS.WinMobile.UI.Views.LookUps
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShippingAddressLookUpView));
             this._actionPanel = new System.Windows.Forms.Panel();
-            this.shippingAddressListBox = new MSS.WinMobile.UI.Controls.Concret.ShippingAddressListBox();
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this.shippingAddressListBox = new MSS.WinMobile.UI.Controls.Concret.ShippingAddressListBox();
             this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
+            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,18 +46,9 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._actionPanel.Controls.Add(this.cancelButton);
             this._actionPanel.Controls.Add(this.okButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 264);
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
-            // shippingAddressListBox
-            // 
-            this.shippingAddressListBox.BackColor = System.Drawing.Color.White;
-            this.shippingAddressListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shippingAddressListBox.Location = new System.Drawing.Point(0, 24);
-            this.shippingAddressListBox.Name = "shippingAddressListBox";
-            this.shippingAddressListBox.Size = new System.Drawing.Size(240, 240);
-            this.shippingAddressListBox.TabIndex = 3;
             // 
             // cancelButton
             // 
@@ -83,6 +76,15 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.okButton.TabIndex = 2;
             this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
+            // shippingAddressListBox
+            // 
+            this.shippingAddressListBox.BackColor = System.Drawing.Color.White;
+            this.shippingAddressListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shippingAddressListBox.Location = new System.Drawing.Point(0, 24);
+            this.shippingAddressListBox.Name = "shippingAddressListBox";
+            this.shippingAddressListBox.Size = new System.Drawing.Size(240, 214);
+            this.shippingAddressListBox.TabIndex = 3;
+            // 
             // searchPanel
             // 
             this.searchPanel.BackColor = System.Drawing.Color.White;
@@ -97,11 +99,12 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this.shippingAddressListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
+            this.Menu = this.mainMenu;
             this.Name = "ShippingAddressLookUpView";
             this.Text = "ShippingAddressLookUpView";
             this.Load += new System.EventHandler(this.ShippingAddressLookUpViewLoad);
@@ -117,5 +120,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private MSS.WinMobile.UI.Controls.Concret.ShippingAddressListBox shippingAddressListBox;
+        private System.Windows.Forms.MainMenu mainMenu;
+        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
     }
 }

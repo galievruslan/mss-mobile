@@ -84,8 +84,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _storageManager.DeleteCurrentStorage();
                 }
 
-                DateTime synchronizationDate = webServer.Connect().ServerTime();
-
                 // Initialization
                 string databaseScriptFullPath = Environments.AppPath + schemaScript;
                 string databaseFileFullPath = Environments.AppPath + databaseName;
@@ -95,6 +93,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 _view.ShowProgressBar();
 
                 try {
+                    Notify(new TextNotification("Routes synchronization"));
+                    var routesRepository = _repositoryFactory.CreateRepository<Route>();
+                    var routesSyncCmd =
+                        new RoutesSynchronization(webServer, routesRepository,
+                                                  _unitOfWorkFactory).RepeatOnError(3, 5000);
+                    routesSyncCmd.Execute();
+
+                    DateTime synchronizationDate = webServer.Connect().ServerTime();
+
                     // Customers synchronization
                     Notify(new TextNotification("Customers synchronization"));
                     var customerDtoRepository = new WebRepository<CustomerDto>(webServer);

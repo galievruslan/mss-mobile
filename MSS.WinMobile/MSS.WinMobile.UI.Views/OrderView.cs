@@ -6,21 +6,20 @@ using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
-namespace MSS.WinMobile.UI.Views
-{
-    public partial class OrderView : Form, IOrderView
-    {
+namespace MSS.WinMobile.UI.Views {
+    public partial class OrderView : Form, IOrderView {
         private OrderPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
         private readonly RoutePointViewModel _routePointViewModel;
-        private OrderViewModel _orderViewModel;
+        private readonly OrderViewModel _orderViewModel;
 
         public OrderView() {
             InitializeComponent();
         }
 
-        public OrderView(IPresentersFactory presentersFactory, RoutePointViewModel routePointViewModel)
-            :this() {
+        public OrderView(IPresentersFactory presentersFactory,
+                         RoutePointViewModel routePointViewModel)
+            : this() {
             _presentersFactory = presentersFactory;
             _routePointViewModel = routePointViewModel;
         }
@@ -32,6 +31,7 @@ namespace MSS.WinMobile.UI.Views
         }
 
         private OrderViewModel _viewModel;
+
         private void ViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
                 _presenter = _routePointViewModel != null
@@ -74,13 +74,11 @@ namespace MSS.WinMobile.UI.Views
 
         #region IView
 
-        public void ShowView()
-        {
+        public void ShowView() {
             Show();
         }
 
-        public DialogViewResult ShowDialogView()
-        {
+        public DialogViewResult ShowDialogView() {
             DialogResult dialogResult = ShowDialog();
             if (dialogResult == DialogResult.OK)
                 return DialogViewResult.Ok;
@@ -88,8 +86,7 @@ namespace MSS.WinMobile.UI.Views
             return DialogViewResult.Cancel;
         }
 
-        public void CloseView()
-        {
+        public void CloseView() {
             Close();
         }
 
@@ -101,40 +98,38 @@ namespace MSS.WinMobile.UI.Views
 
         #endregion
 
-        private void PriceListlookUp(object sender, EventArgs e)
-        {
+        private void PriceListlookUp(object sender, EventArgs e) {
             _presenter.LookUpPriceList();
             _priceListTextBox.Text = _viewModel.PriceListName;
             _priceListTextBox.Refresh();
         }
 
-        private void WarehouseLookUp(object sender, EventArgs e)
-        {
+        private void WarehouseLookUp(object sender, EventArgs e) {
             _presenter.LookUpWarehouse();
             _warehouseTextBox.Text = _viewModel.WarehouseAddress;
             _warehouseTextBox.Refresh();
         }
 
-        private void PriceListReset(object sender, EventArgs e)
-        {
+        private void PriceListReset(object sender, EventArgs e) {
             _presenter.ResetPriceList();
             _priceListTextBox.Text = _viewModel.PriceListName;
             _priceListTextBox.Refresh();
         }
 
-        private void WarehouseReset(object sender, EventArgs e)
-        {
+        private void WarehouseReset(object sender, EventArgs e) {
             _presenter.ResetWarehouse();
             _warehouseTextBox.Text = _viewModel.WarehouseAddress;
             _warehouseTextBox.Refresh();
         }
 
         private void OkButtonClick(object sender, EventArgs e) {
-            _presenter.Save();
+            if (_presenter.Save())
+                DialogResult = DialogResult.OK;
+
         }
 
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
+        private void CancelButtonClick(object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
         }
 

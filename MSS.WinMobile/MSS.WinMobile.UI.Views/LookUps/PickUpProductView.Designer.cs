@@ -49,6 +49,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.twoButton = new System.Windows.Forms.Button();
             this.oneButton = new System.Windows.Forms.Button();
             this._productPriceListBox = new MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
             this.quantityPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +100,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.quantityPanel.Controls.Add(this.twoButton);
             this.quantityPanel.Controls.Add(this.oneButton);
             this.quantityPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.quantityPanel.Location = new System.Drawing.Point(0, 264);
+            this.quantityPanel.Location = new System.Drawing.Point(0, 238);
             this.quantityPanel.Name = "quantityPanel";
             this.quantityPanel.Size = new System.Drawing.Size(240, 30);
             // 
@@ -232,7 +233,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._productPriceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._productPriceListBox.Location = new System.Drawing.Point(0, 24);
             this._productPriceListBox.Name = "_productPriceListBox";
-            this._productPriceListBox.Size = new System.Drawing.Size(240, 240);
+            this._productPriceListBox.Size = new System.Drawing.Size(240, 214);
             this._productPriceListBox.TabIndex = 1;
             // 
             // PickUpProductView
@@ -240,11 +241,12 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._productPriceListBox);
             this.Controls.Add(this.quantityPanel);
             this.Controls.Add(this.searchPanel);
+            this.Menu = this.mainMenu;
             this.Name = "PickUpProductView";
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
@@ -272,6 +274,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private CancelButton cancelButton;
         public PictureButton deleteButton;
         private MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox _productPriceListBox;
+        private System.Windows.Forms.MainMenu mainMenu;
 
     }
 }

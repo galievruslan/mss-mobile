@@ -22,7 +22,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
         }
 
         private const string SaveQueryTemplate =
-            "INSERT OR REPLACE INTO Orders (Id, RoutePoint_Id, OrderDate, ShippingDate, ShippingAddress_Id, PriceList_Id, Warehouse_Id, OrderStatus, Note) VALUES ({0}, {1}, '{2}', '{3}', {4}, {5}, {6}, {7}, '{8}')";
+            "INSERT OR REPLACE INTO Orders (Id, RoutePoint_Id, OrderDate, ShippingDate, ShippingAddress_Id, PriceList_Id, Warehouse_Id, OrderStatus, Note, Synchronized) VALUES ({0}, {1}, '{2}', '{3}', {4}, {5}, {6}, {7}, '{8}', {9})";
         protected override string GetSaveQueryFor(Order model)
         {
             return string.Format(SaveQueryTemplate,
@@ -34,7 +34,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
                                  model.PriceListId,
                                  model.WarehouseId,
                                  (int)model.OrderStatus,
-                                 model.Note.Replace("'", "''"));
+                                 model.Note.Replace("'", "''"),
+                                 model.Synchronized ? 1 : 0);
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM Orders WHERE Id = {0}";

@@ -79,12 +79,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void CreateOrder() {
             var newOrderView = NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> { { "route_point", _routePointViewModel } });
-            newOrderView.ShowView();
+            if (newOrderView.ShowDialogView() == DialogViewResult.Ok) {
+                newOrderView.Dispose();
 
-            var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
-            var routePoint = routePointRepository.GetById(_routePointViewModel.Id);
-            _retriever = new OrderRetriever(routePoint);
-            _cache = new Cache<Order>(_retriever, 10);
+                var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
+                var routePoint = routePointRepository.GetById(_routePointViewModel.Id);
+                _retriever = new OrderRetriever(routePoint);
+                _cache = new Cache<Order>(_retriever, 10);
+            }
         }
 
         public void EditOrder() {
@@ -93,7 +95,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> {
                         {"order", SelectedModel}
                     });
-                editOrderView.ShowView();
+                if (editOrderView.ShowDialogView() == DialogViewResult.Ok) {
+                    editOrderView.Dispose();
+                }
             }
         }
 

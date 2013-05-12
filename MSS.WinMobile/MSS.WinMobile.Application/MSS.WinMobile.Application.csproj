@@ -19,6 +19,9 @@
     <FormFactorID>
     </FormFactorID>
     <DeployDirPrefix>%25CSIDL_PROGRAM_FILES%25</DeployDirPrefix>
+    <ApplicationIcon>mobile_checkmark.ico</ApplicationIcon>
+    <Win32Resource>
+    </Win32Resource>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,6 +133,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="mobile_checkmark.ico" />
     <Content Include="Resources\Database\schema.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

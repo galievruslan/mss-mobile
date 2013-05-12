@@ -36,6 +36,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
+            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +46,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._actionPanel.Controls.Add(this.cancelButton);
             this._actionPanel.Controls.Add(this.okButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 264);
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
@@ -54,7 +56,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.customerListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customerListBox.Location = new System.Drawing.Point(0, 24);
             this.customerListBox.Name = "customerListBox";
-            this.customerListBox.Size = new System.Drawing.Size(240, 240);
+            this.customerListBox.Size = new System.Drawing.Size(240, 214);
             this.customerListBox.TabIndex = 1;
             // 
             // cancelButton
@@ -97,11 +99,12 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this.customerListBox);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
+            this.Menu = this.mainMenu;
             this.Name = "CustomerLookUpView";
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
@@ -117,6 +120,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private System.Windows.Forms.Panel _actionPanel;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
+        private System.Windows.Forms.MainMenu mainMenu;
+        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
 
     }
 }

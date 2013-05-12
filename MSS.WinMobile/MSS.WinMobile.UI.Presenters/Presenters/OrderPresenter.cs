@@ -8,21 +8,20 @@ using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
 
-namespace MSS.WinMobile.UI.Presenters.Presenters
-{
-    public class OrderPresenter : IPresenter<OrderViewModel>, IListPresenter<OrderItemViewModel>
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(OrderPresenter));
+namespace MSS.WinMobile.UI.Presenters.Presenters {
+    public class OrderPresenter : IPresenter<OrderViewModel>, IListPresenter<OrderItemViewModel> {
+        private static readonly ILog Log = LogManager.GetLogger(typeof (OrderPresenter));
 
         private readonly IOrderView _view;
 
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly OrderViewModel _orderViewModel;
-        private readonly IList<OrderItemViewModel> _orderItemViewModels; 
+        private readonly IList<OrderItemViewModel> _orderItemViewModels;
 
-        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repositoryFactory,
-            RoutePointViewModel routePointViewModel) {
+        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
+                              IRepositoryFactory repositoryFactory,
+                              RoutePointViewModel routePointViewModel) {
             _view = view;
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
@@ -36,22 +35,22 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             var customersRepository = _repositoryFactory.CreateRepository<Customer>();
             var customer = customersRepository.GetById(shippingAddress.CustomerId);
 
-            _orderViewModel = new OrderViewModel
-                {
-                    OrderDate = DateTime.Now,
-                    ShippingDate = DateTime.Now,
-                    RoutePointId = routePoint.Id,
-                    CustomerId = customer.Id,
-                    CustomerName = customer.Name,
-                    ShippingAddressId = shippingAddress.Id,
-                    ShippingAddressName = shippingAddress.Address
-                };
+            _orderViewModel = new OrderViewModel {
+                OrderDate = DateTime.Now,
+                ShippingDate = DateTime.Now,
+                RoutePointId = routePoint.Id,
+                CustomerId = customer.Id,
+                CustomerName = customer.Name,
+                ShippingAddressId = shippingAddress.Id,
+                ShippingAddressName = shippingAddress.Address
+            };
 
             _orderItemViewModels = new List<OrderItemViewModel>();
         }
 
-        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repositoryFactory,
-            OrderViewModel orderViewModel) {
+        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
+                              IRepositoryFactory repositoryFactory,
+                              OrderViewModel orderViewModel) {
             _view = view;
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
@@ -73,8 +72,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
         }
 
-        public void Save()
-        {
+        public bool Save() {
             if (_orderViewModel.Validate()) {
                 var orderRepository = _repositoryFactory.CreateRepository<Order>();
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
@@ -84,8 +82,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                   ? orderRepository.GetById(_orderViewModel.OrderId)
                                   : routePoint.CreateOrder();
 
-                var shippingAddressRepository = _repositoryFactory.CreateRepository<ShippingAddress>();
-                var shippingAddress = shippingAddressRepository.GetById(_orderViewModel.ShippingAddressId);
+                var shippingAddressRepository =
+                    _repositoryFactory.CreateRepository<ShippingAddress>();
+                var shippingAddress =
+                    shippingAddressRepository.GetById(_orderViewModel.ShippingAddressId);
 
                 var customersRepository = _repositoryFactory.CreateRepository<Customer>();
                 var customer = customersRepository.GetById(_orderViewModel.CustomerId);
@@ -118,7 +118,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             orderItemRepository.Delete(item);
                         }
                     }
-                    
+
                     foreach (var orderItemViewModel in _orderItemViewModels) {
                         OrderItem orderItem = orderItemViewModel.Id == 0
                                                   ? order.CreateItem()
@@ -136,24 +136,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 }
 
                 _view.CloseView();
-                return;
+                return true;
             }
 
             _view.DisplayErrors(_orderViewModel.Errors);
+            return false;
         }
 
-        public void Cancel()
-        {
+        public void Cancel() {
             _view.CloseView();
         }
 
-        public bool PickUpProducts()
-        {
-            var view = NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object>
-                    {
-                        {"order", _orderViewModel},
-                        {"order_items", _orderItemViewModels}
-                    });
+        public bool PickUpProducts() {
+            var view =
+                NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object> {
+                    {"order", _orderViewModel},
+                    {"order_items", _orderItemViewModels}
+                });
             if (view.ShowDialogView() == DialogViewResult.Ok) {
                 IList<PickUpProductViewModel> pickUpProductViewModels = view.PickedUpProducts;
                 _orderItemViewModels.Clear();
@@ -186,6 +185,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         private OrderItemViewModel _selectedOrderItemViewModel;
+
         public void Select(int index) {
             _selectedOrderItemViewModel = _orderItemViewModels[index];
         }
@@ -197,33 +197,28 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public void LookUpPriceList() {
             var view =
                 NavigationContext.NavigateTo<IPriceListLookUpView>();
-            if (view.ShowDialogView() == DialogViewResult.Ok)
-            {
+            if (view.ShowDialogView() == DialogViewResult.Ok) {
                 _orderViewModel.PriceListId = view.SelectedPriceList.Id;
                 _orderViewModel.PriceListName = view.SelectedPriceList.Name;
             }
             view.CloseView();
         }
 
-        public void ResetPriceList()
-        {
+        public void ResetPriceList() {
             _orderViewModel.PriceListId = 0;
             _orderViewModel.PriceListName = string.Empty;
         }
 
-        public void LookUpWarehouse()
-        {
+        public void LookUpWarehouse() {
             var view = NavigationContext.NavigateTo<IWarehouseLookUpView>();
-            if (view.ShowDialogView() == DialogViewResult.Ok)
-            {
+            if (view.ShowDialogView() == DialogViewResult.Ok) {
                 _orderViewModel.WarehouseId = view.SelectedWarehouse.Id;
                 _orderViewModel.WarehouseAddress = view.SelectedWarehouse.Address;
             }
             view.CloseView();
         }
 
-        public void ResetWarehouse()
-        {
+        public void ResetWarehouse() {
             _orderViewModel.WarehouseId = 0;
             _orderViewModel.WarehouseAddress = string.Empty;
         }
