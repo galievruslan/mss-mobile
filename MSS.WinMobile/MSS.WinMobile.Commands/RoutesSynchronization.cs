@@ -13,12 +13,15 @@ namespace MSS.WinMobile.Synchronizer {
 
         private readonly IWebServer _webServer;
         private readonly IStorageRepository<Route> _routesRepository;
+        private readonly IStorageRepository<RoutePoint> _routePointsRepository;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         public RoutesSynchronization(IWebServer webServer,
             IStorageRepository<Route> routesRepository,
+            IStorageRepository<RoutePoint> routePointsRepository,
             IUnitOfWorkFactory unitOfWorkFactory) {
             _webServer = webServer;
             _routesRepository = routesRepository;
+            _routePointsRepository = routePointsRepository;
             _unitOfWorkFactory = unitOfWorkFactory;
         }
 
@@ -32,6 +35,15 @@ namespace MSS.WinMobile.Synchronizer {
                                                                       "synchronization/routes.json",
                                                                       routeDictionary);
                 string result = webConnection.Post(httpWebRequest);
+
+                using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                    unitOfWork.BeginTransaction();
+                    foreach (var point in route.Points) {
+                        point.Synchronized = true;
+                        _routePointsRepository.Save(point);
+                    }
+                    unitOfWork.Commit();
+                }
             }
         }
 

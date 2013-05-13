@@ -95,10 +95,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 try {
                     Notify(new TextNotification("Routes synchronization"));
                     var routesRepository = _repositoryFactory.CreateRepository<Route>();
+                    var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
                     var routesSyncCmd =
-                        new RoutesSynchronization(webServer, routesRepository,
+                        new RoutesSynchronization(webServer, routesRepository, routePointsRepository,
                                                   _unitOfWorkFactory).RepeatOnError(3, 5000);
                     routesSyncCmd.Execute();
+
+                    Notify(new TextNotification("Orders synchronization"));
+                    var ordersRepository = _repositoryFactory.CreateRepository<Order>();
+                    var ordersSyncCmd =
+                        new OrdersSynchronization(webServer, ordersRepository, 
+                                                  _unitOfWorkFactory).RepeatOnError(3, 5000);
+                    ordersSyncCmd.Execute();
 
                     DateTime synchronizationDate = webServer.Connect().ServerTime();
 
