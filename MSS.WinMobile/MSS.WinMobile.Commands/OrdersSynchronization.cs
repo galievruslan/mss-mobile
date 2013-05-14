@@ -36,6 +36,7 @@ namespace MSS.WinMobile.Synchronizer {
                 using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                     unitOfWork.BeginTransaction();
                     order.Synchronized = true;
+                    _orderRepository.Save(order);
                     unitOfWork.Commit();
                 }
             }
