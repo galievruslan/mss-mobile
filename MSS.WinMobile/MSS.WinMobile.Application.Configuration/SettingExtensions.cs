@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 
 namespace MSS.WinMobile.Application.Configuration
@@ -54,7 +55,7 @@ namespace MSS.WinMobile.Application.Configuration
                 result = Int32.Parse(value);
             }
             else if (typeof (T) == typeof (DateTime)) {
-                result = DateTime.Parse(value);
+                result = DateTime.Parse(value, DateTimeFormatInfo.InvariantInfo);
             }
             else if (typeof (T) == typeof (string)) {
                 result = value;

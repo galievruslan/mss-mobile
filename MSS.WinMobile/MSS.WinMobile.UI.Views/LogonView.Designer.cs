@@ -148,6 +148,7 @@ namespace MSS.WinMobile.UI.Views
             this.Menu = this.mainMenu;
             this.Name = "LogonView";
             this.Load += new System.EventHandler(this.ViewLoad);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LogonView_KeyPress);
             this._inputPanel.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);

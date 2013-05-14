@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Globalization;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators;
@@ -18,10 +19,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
             return new ProductsPriceQueryObject(Storage, _specificationTranslator, new ProductsPriceDataRecordTranslator());
         }
 
+        private static readonly NumberFormatInfo DecimalFormat = NumberFormatInfo.InvariantInfo;
         private const string SaveQueryTemplate = "INSERT OR REPLACE INTO ProductsPrices (Id, Product_Id, PriceList_Id, Price) VALUES ({0}, {1}, {2}, {3})";
         protected override string GetSaveQueryFor(ProductsPrice model)
         {
-            return string.Format(SaveQueryTemplate, model.Id, model.ProductId, model.PriceListId, model.Price);
+            return string.Format(SaveQueryTemplate, model.Id, model.ProductId, model.PriceListId, model.Price.ToString(DecimalFormat));
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM ProductsPrices WHERE Id = {0}";

@@ -64,6 +64,8 @@ namespace MSS.WinMobile.UI.Views
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.notification = new Microsoft.WindowsCE.Forms.Notification();
+            this.mainMenu = new System.Windows.Forms.MainMenu();
+            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
             this.warehousePanel.SuspendLayout();
@@ -86,7 +88,7 @@ namespace MSS.WinMobile.UI.Views
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(240, 264);
+            this.tabControl.Size = new System.Drawing.Size(240, 238);
             this.tabControl.TabIndex = 0;
             // 
             // _generalTab
@@ -105,7 +107,7 @@ namespace MSS.WinMobile.UI.Views
             this._generalTab.Controls.Add(this._orderDateLabel);
             this._generalTab.Location = new System.Drawing.Point(0, 0);
             this._generalTab.Name = "_generalTab";
-            this._generalTab.Size = new System.Drawing.Size(240, 240);
+            this._generalTab.Size = new System.Drawing.Size(240, 214);
             this._generalTab.Text = "General";
             // 
             // warehousePanel
@@ -312,7 +314,7 @@ namespace MSS.WinMobile.UI.Views
             this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(232, 238);
+            this._detailsTab.Size = new System.Drawing.Size(240, 214);
             this._detailsTab.Text = "Details";
             // 
             // _orderItemListBox
@@ -321,7 +323,7 @@ namespace MSS.WinMobile.UI.Views
             this._orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._orderItemListBox.Location = new System.Drawing.Point(0, 24);
             this._orderItemListBox.Name = "_orderItemListBox";
-            this._orderItemListBox.Size = new System.Drawing.Size(232, 214);
+            this._orderItemListBox.Size = new System.Drawing.Size(240, 190);
             this._orderItemListBox.TabIndex = 1;
             // 
             // itemsActionPanel
@@ -330,7 +332,7 @@ namespace MSS.WinMobile.UI.Views
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(232, 24);
+            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
             // 
             // addButton
             // 
@@ -349,7 +351,7 @@ namespace MSS.WinMobile.UI.Views
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(232, 238);
+            this._notesTab.Size = new System.Drawing.Size(240, 214);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox
@@ -358,7 +360,7 @@ namespace MSS.WinMobile.UI.Views
             this._notesTextBox.Location = new System.Drawing.Point(7, 7);
             this._notesTextBox.Multiline = true;
             this._notesTextBox.Name = "_notesTextBox";
-            this._notesTextBox.Size = new System.Drawing.Size(226, 231);
+            this._notesTextBox.Size = new System.Drawing.Size(226, 204);
             this._notesTextBox.TabIndex = 0;
             this._notesTextBox.TextChanged += new System.EventHandler(this.NotesTextBoxTextChanged);
             // 
@@ -367,7 +369,7 @@ namespace MSS.WinMobile.UI.Views
             this._actionPanel.Controls.Add(this.cancelButton);
             this._actionPanel.Controls.Add(this.okButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 264);
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
@@ -406,10 +408,11 @@ namespace MSS.WinMobile.UI.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this._actionPanel);
+            this.Menu = this.mainMenu;
             this.Name = "OrderView";
             this.Text = "OrderView";
             this.Load += new System.EventHandler(this.ViewLoad);
@@ -461,5 +464,7 @@ namespace MSS.WinMobile.UI.Views
         private System.Windows.Forms.TextBox _priceListTextBox;
         private MSS.WinMobile.UI.Controls.Concret.OrderItemListBox _orderItemListBox;
         public System.Windows.Forms.Panel pricePanel;
+        private System.Windows.Forms.MainMenu mainMenu;
+        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
     }
 }

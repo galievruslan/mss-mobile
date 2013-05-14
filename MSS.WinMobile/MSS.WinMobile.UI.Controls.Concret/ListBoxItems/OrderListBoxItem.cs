@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
+﻿using System.Drawing;
+using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
@@ -23,6 +24,11 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e) {
             _descriptionLabel.BackColor = _shippingLabel.BackColor = IsSelected ? ColorSelected : ColorUnselected;
+
+            if (!IsSelected && _viewModel.Synchronized) {
+                _descriptionLabel.BackColor = _shippingLabel.BackColor = Color.LightGreen;
+            }
+
             base.OnPaint(e);
             DrawDivisor(e.Graphics);
         }

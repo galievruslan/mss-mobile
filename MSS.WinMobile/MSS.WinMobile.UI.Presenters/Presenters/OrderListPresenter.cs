@@ -46,7 +46,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 WarehouseId = order.WarehouseId,
                 WarehouseAddress = order.WarehouseAddress,
                 Note = order.Note,
-                RoutePointId = order.RoutePointId
+                RoutePointId = order.RoutePointId,
+                Synchronized = order.Synchronized
             };
         }
 
@@ -71,7 +72,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                WarehouseId = _selectedOrder.WarehouseId,
                                WarehouseAddress = _selectedOrder.WarehouseAddress,
                                Note = _selectedOrder.Note,
-                               RoutePointId = _selectedOrder.RoutePointId
+                               RoutePointId = _selectedOrder.RoutePointId,
+                               Synchronized = _selectedOrder.Synchronized
                            }
                            : null;
             }

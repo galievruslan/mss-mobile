@@ -51,6 +51,10 @@ namespace MSS.WinMobile.UI.Views
             notification.Visible = true;
         }
 
+        public void HideView() {
+            Hide();
+        }
+
         #endregion
 
         private void OkButtonClick(object sender, System.EventArgs e) {
@@ -69,6 +73,9 @@ namespace MSS.WinMobile.UI.Views
 
         private void PasswordTextBoxTextChanged(object sender, System.EventArgs e) {
             _viewModel.Password = _passwordTextBox.Text;
+        }
+
+        private void LogonView_KeyPress(object sender, KeyPressEventArgs e) {
         }
     }
 }

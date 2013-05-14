@@ -78,6 +78,7 @@ namespace LitJson
         private static readonly int MaxNestingDepth;
 
         private static readonly IFormatProvider DatetimeFormat;
+        private static readonly NumberFormatInfo DecimalFormat;
 
         private static readonly IDictionary<Type, ExporterFunc> BaseExportersTable;
         private static readonly IDictionary<Type, ExporterFunc> CustomExportersTable;
@@ -119,6 +120,7 @@ namespace LitJson
             StaticWriter = new JsonWriter ();
 
             DatetimeFormat = DateTimeFormatInfo.InvariantInfo;
+            DecimalFormat = NumberFormatInfo.InvariantInfo;
 
             BaseExportersTable   = new Dictionary<Type, ExporterFunc> ();
             CustomExportersTable = new Dictionary<Type, ExporterFunc> ();
@@ -316,11 +318,11 @@ namespace LitJson
 
                 // juggle between decimal and string
                 if (jsonType == typeof(string) && instType == typeof(float))
-                    return float.Parse((string)(reader.Value), NumberStyles.Any);
+                    return float.Parse((string)(reader.Value), NumberStyles.Number);
 
                 // juggle between decimal and string
                 if (jsonType == typeof(string) && instType == typeof(decimal))
-                    return decimal.Parse((string)(reader.Value), NumberStyles.Any);
+                    return Convert.ToDecimal((string)(reader.Value), DecimalFormat);
 
                 if (instType.IsAssignableFrom (jsonType))
                     return reader.Value;

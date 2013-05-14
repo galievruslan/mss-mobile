@@ -504,12 +504,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _configurationManager.GetConfig("Common")
                                          .GetSection("Synchronization")
                                          .GetSetting("LastSyncDate").Value =
-                        synchronizationDate.ToString(CultureInfo.InvariantCulture);
+                        synchronizationDate.ToString(DateTimeFormatInfo.InvariantInfo);
                     _configurationManager.GetConfig("Common").Save();
+                    _view.ShowInfo("Synchronization complete");
                 }
                 catch (Exception exception) {
-                    Notify(new TextNotification("Synchronization failed"));
                     Log.Error("Synchronization failed", exception);
+                    _view.ShowInfo("Synchronization failed");
                 }
             }
             _view.CloseView();

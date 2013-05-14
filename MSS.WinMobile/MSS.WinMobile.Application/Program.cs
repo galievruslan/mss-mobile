@@ -71,7 +71,7 @@ namespace MSS.WinMobile.Application
             NavigationContext.RegisterNavigator(new Navigator(presentersFactory));
 
             Log.Info("Application start");
-            Application2.Run(new MenuView());
+            Application2.Run(new LogonView(presentersFactory));
             Log.Info("Application finish");
         }
     }

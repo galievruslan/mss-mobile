@@ -2,7 +2,7 @@
 
 namespace MSS.WinMobile.UI.Presenters.Views
 {
-    public interface ILogonView : IView
-    {
+    public interface ILogonView : IView {
+        void HideView();
     }
 }

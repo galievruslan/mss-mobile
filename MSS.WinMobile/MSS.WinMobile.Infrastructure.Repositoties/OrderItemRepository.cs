@@ -18,6 +18,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
             return new OrderItemQueryObject(Storage, _specificationTranslator, new OrderItemDataRecordTranslator());
         }
 
+        private static readonly NumberFormatInfo DecimalFormat = NumberFormatInfo.InvariantInfo;
         private const string SaveQueryTemplate =
             "INSERT OR REPLACE INTO OrderItems (Id, Order_Id, Product_Id, UnitOfMeasure_Id, Quantity, Price) VALUES ({0}, {1}, {2}, {3}, {4}, {5})";
         protected override string GetSaveQueryFor(OrderItem model)
@@ -28,7 +29,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
                                  model.ProductId,
                                  model.UnitOfMeasureId,
                                  model.Quantity,
-                                 model.Price);
+                                 model.Price.ToString(DecimalFormat));
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM OrderItems WHERE Id = {0}";

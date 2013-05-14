@@ -27,6 +27,8 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
 
         public string Note { get; set; }
 
+        public bool Synchronized { get; set; }
+
         public override bool Validate() {
             base.Validate();
             if (CustomerId == 0)

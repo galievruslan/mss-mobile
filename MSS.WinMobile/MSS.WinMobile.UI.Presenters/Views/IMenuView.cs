@@ -1,6 +1,6 @@
 ﻿namespace MSS.WinMobile.UI.Presenters.Views
 {
-    public interface IMenuView : IView
-    {
+    public delegate void OnClosed(object sender);
+    public interface IMenuView : IView {
     }
 }

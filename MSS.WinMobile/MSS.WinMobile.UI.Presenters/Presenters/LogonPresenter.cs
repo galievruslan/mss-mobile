@@ -31,6 +31,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
+                    var menuView = NavigationContext.NavigateTo<IMenuView>();
+                    menuView.ShowView();
+                    _view.HideView();
+
                     return true;
                 }
                 catch (WebException webException) {
@@ -52,10 +56,25 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private LogonViewModel _viewModel;
         public LogonViewModel Initialize() {
-            _viewModel = new LogonViewModel
-            {
+            var manager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
+            string userName = manager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
+            string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
+
+            if (!string.IsNullOrEmpty(userName) &&
+                !string.IsNullOrEmpty(password)) {
+                var menuView = NavigationContext.NavigateTo<IMenuView>();
+                menuView.ShowView();
+                _view.HideView();
+            } 
+
+            _viewModel = new LogonViewModel {
                 ServerAddress =
-                    _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Address").Value
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Server")
+                                         .GetSetting("Address")
+                                         .Value,
+                Username = userName,
+                Password = password
             };
             return _viewModel;
         }

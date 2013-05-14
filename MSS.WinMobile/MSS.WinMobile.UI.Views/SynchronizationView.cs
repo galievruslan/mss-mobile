@@ -50,6 +50,16 @@ namespace MSS.WinMobile.UI.Views {
             }
         }
 
+        public void ShowInfo(string message) {
+            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.None,
+                            MessageBoxDefaultButton.Button1);
+        }
+
+        public void ShowError(string message) {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+        }
+
         private SynchronizationViewModel _viewModel;
 
         private void ViewLoad(object sender, EventArgs e) {

@@ -35,7 +35,6 @@
             this._synchronizationLabel = new System.Windows.Forms.LinkLabel();
             this._settingsLabel = new System.Windows.Forms.LinkLabel();
             this._settingsIcon = new System.Windows.Forms.PictureBox();
-            this._logoutLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // _routeIcon
@@ -97,23 +96,12 @@
             this._settingsIcon.Size = new System.Drawing.Size(30, 30);
             this._settingsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
-            // _logoutLabel
-            // 
-            this._logoutLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
-            this._logoutLabel.ForeColor = System.Drawing.Color.Black;
-            this._logoutLabel.Location = new System.Drawing.Point(174, 260);
-            this._logoutLabel.Name = "_logoutLabel";
-            this._logoutLabel.Size = new System.Drawing.Size(52, 20);
-            this._logoutLabel.TabIndex = 16;
-            this._logoutLabel.Text = "Logout";
-            // 
             // MenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.Controls.Add(this._logoutLabel);
             this.Controls.Add(this._settingsLabel);
             this.Controls.Add(this._settingsIcon);
             this.Controls.Add(this._synchronizationLabel);
@@ -134,7 +122,6 @@
         private System.Windows.Forms.LinkLabel _synchronizationLabel;
         private System.Windows.Forms.LinkLabel _settingsLabel;
         private System.Windows.Forms.PictureBox _settingsIcon;
-        private System.Windows.Forms.LinkLabel _logoutLabel;
 
 
 

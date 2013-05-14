@@ -33,13 +33,11 @@
             this._orderListBox = new MSS.WinMobile.UI.Controls.Concret.OrderListBox();
             this._editOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._createOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._sendOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _actionPanel
             // 
-            this._actionPanel.Controls.Add(this._sendOrderButton);
             this._actionPanel.Controls.Add(this._editOrderButton);
             this._actionPanel.Controls.Add(this._createOrderButton);
             this._actionPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -80,18 +78,6 @@
             this._createOrderButton.TabIndex = 0;
             this._createOrderButton.Click += new System.EventHandler(this.CreateOrderClick);
             // 
-            // _sendOrderButton
-            // 
-            this._sendOrderButton.BackColor = System.Drawing.Color.White;
-            this._sendOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_sendOrderButton.BackgroundImage")));
-            this._sendOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._sendOrderButton.Location = new System.Drawing.Point(46, 2);
-            this._sendOrderButton.Name = "_sendOrderButton";
-            this._sendOrderButton.PressedImage = null;
-            this._sendOrderButton.Size = new System.Drawing.Size(20, 20);
-            this._sendOrderButton.TabIndex = 2;
-            this._sendOrderButton.Click += new System.EventHandler(this.SendOrderClick);
-            // 
             // OrderListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -114,6 +100,5 @@
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _createOrderButton;
         private MSS.WinMobile.UI.Controls.Concret.OrderListBox _orderListBox;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _editOrderButton;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _sendOrderButton;
     }
 }
