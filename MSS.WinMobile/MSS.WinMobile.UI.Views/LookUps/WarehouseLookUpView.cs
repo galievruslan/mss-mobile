@@ -9,7 +9,8 @@ using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps {
-    public partial class WarehouseLookUpView : Form, IWarehouseLookUpView {
+    public partial class WarehouseLookUpView : Form, IWarehouseLookUpView 
+    {
         private WarehouseLookUpPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
 
@@ -42,30 +43,6 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             }
         }
 
-        #region IView
-
-        public void ShowView() {
-            Show();
-        }
-
-        public DialogViewResult ShowDialogView() {
-            DialogResult dialogResult = ShowDialog();
-            if (dialogResult == DialogResult.OK)
-                return DialogViewResult.Ok;
-
-            return DialogViewResult.Cancel;
-        }
-
-        public void CloseView() {
-            Close();
-        }
-
-        public void DisplayErrors(string error) {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
         public WarehouseViewModel SelectedWarehouse {
             get { return _presenter.SelectedModel; }
         }
@@ -78,6 +55,14 @@ namespace MSS.WinMobile.UI.Views.LookUps {
         private void cancelButton_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
+        }
+
+        public void ShowInformation(string message) {
+            throw new NotImplementedException();
+        }
+
+        public void ShowError(string message) {
+            throw new NotImplementedException();
         }
     }
 }

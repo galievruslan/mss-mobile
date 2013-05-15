@@ -2,7 +2,6 @@
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
 
@@ -53,17 +52,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                            }
                            : null;
             }
-        }
-
-        public bool LookUp() {
-            if (_selectedShippingAddress != null)
-                return true;
-
-            return false;
-        }
-
-        public void Cancel() {
-            _view.CloseView();
         }
     }
 }

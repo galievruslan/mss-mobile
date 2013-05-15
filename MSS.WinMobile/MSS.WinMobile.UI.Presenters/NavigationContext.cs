@@ -12,17 +12,19 @@ namespace MSS.WinMobile.UI.Presenters
             _navigator = navigator;
         }
 
-        public static T NavigateTo<T>(IDictionary<string, object> args) where T : class, IView
+        public static void NavigateTo<T>(IDictionary<string, object> args) where T : class, IView
         {
-            if (_navigator != null)
-                return _navigator.NavigateTo<T>(args);
+            if (_navigator != null) {
+                _navigator.NavigateTo<T>(args);
+                return;
+            }
 
             throw new NavigatorNotRegistredException();
         }
 
-        public static T NavigateTo<T>() where T : class, IView
+        public static void NavigateTo<T>() where T : class, IView
         {
-            return NavigateTo<T>(new Dictionary<string, object>());
+            NavigateTo<T>(new Dictionary<string, object>());
         }
     }
 

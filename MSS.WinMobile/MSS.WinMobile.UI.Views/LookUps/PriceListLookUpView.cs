@@ -56,35 +56,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             get { return _presenter.SelectedModel; }
         }
 
-        #region IView
-
-        public void ShowView()
-        {
-            Show();
-        }
-
-        public DialogViewResult ShowDialogView()
-        {
-            DialogResult dialogResult = ShowDialog();
-            if (dialogResult == DialogResult.OK)
-                return DialogViewResult.Ok;
-
-            return DialogViewResult.Cancel;
-        }
-
-        public void CloseView()
-        {
-            Close();
-            Dispose();
-        }
-
-        public void DisplayErrors(string error)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
         private void okButton_Click(object sender, EventArgs e) {
             if (_presenter.LookUp())
                 DialogResult = DialogResult.OK;
@@ -93,6 +64,14 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private void cancelButton_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
+        }
+
+        public void ShowInformation(string message) {
+            throw new NotImplementedException();
+        }
+
+        public void ShowError(string message) {
+            throw new NotImplementedException();
         }
     }
 }

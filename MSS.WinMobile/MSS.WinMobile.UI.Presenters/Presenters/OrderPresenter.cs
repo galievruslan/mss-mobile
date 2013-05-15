@@ -135,40 +135,39 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     unitOfWork.Commit();
                 }
 
-                _view.CloseView();
+                NavigationContext.NavigateTo<IExitView>();
                 return true;
             }
 
-            _view.DisplayErrors(_orderViewModel.Errors);
+            _view.ShowError(_orderViewModel.Errors);
             return false;
         }
 
         public void Cancel() {
-            _view.CloseView();
+            NavigationContext.NavigateTo<IExitView>();
         }
 
         public bool PickUpProducts() {
-            var view =
-                NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object> {
+            NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object> {
                     {"order", _orderViewModel},
                     {"order_items", _orderItemViewModels}
                 });
-            if (view.ShowDialogView() == DialogViewResult.Ok) {
-                IList<PickUpProductViewModel> pickUpProductViewModels = view.PickedUpProducts;
-                _orderItemViewModels.Clear();
-                foreach (var pickUpProductViewModel in pickUpProductViewModels) {
-                    _orderItemViewModels.Add(new OrderItemViewModel {
-                        Id = pickUpProductViewModel.OrderItemId,
-                        ProductId = pickUpProductViewModel.ProductId,
-                        ProductName = pickUpProductViewModel.ProductName,
-                        Quantity = pickUpProductViewModel.Quantity,
-                        Price = pickUpProductViewModel.Price
-                    });
-                }
-                return true;
+            //if (view.ShowDialogView() == DialogViewResult.Ok) {
+                //IList<PickUpProductViewModel> pickUpProductViewModels = view.PickedUpProducts;
+                //_orderItemViewModels.Clear();
+                //foreach (var pickUpProductViewModel in pickUpProductViewModels) {
+                //    _orderItemViewModels.Add(new OrderItemViewModel {
+                //        Id = pickUpProductViewModel.OrderItemId,
+                //        ProductId = pickUpProductViewModel.ProductId,
+                //        ProductName = pickUpProductViewModel.ProductName,
+                //        Quantity = pickUpProductViewModel.Quantity,
+                //        Price = pickUpProductViewModel.Price
+                //    });
+                //}
+                //return true;
 
-            }
-            view.CloseView();
+            //}
+            //view.CloseView();
             return false;
         }
 
@@ -195,13 +194,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpPriceList() {
-            var view =
+            
                 NavigationContext.NavigateTo<IPriceListLookUpView>();
-            if (view.ShowDialogView() == DialogViewResult.Ok) {
-                _orderViewModel.PriceListId = view.SelectedPriceList.Id;
-                _orderViewModel.PriceListName = view.SelectedPriceList.Name;
-            }
-            view.CloseView();
+            //if (view.ShowDialogView() == DialogViewResult.Ok) {
+                //_orderViewModel.PriceListId = view.SelectedPriceList.Id;
+                //_orderViewModel.PriceListName = view.SelectedPriceList.Name;
+            //}
+            //view.CloseView();
         }
 
         public void ResetPriceList() {
@@ -210,12 +209,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpWarehouse() {
-            var view = NavigationContext.NavigateTo<IWarehouseLookUpView>();
-            if (view.ShowDialogView() == DialogViewResult.Ok) {
-                _orderViewModel.WarehouseId = view.SelectedWarehouse.Id;
-                _orderViewModel.WarehouseAddress = view.SelectedWarehouse.Address;
-            }
-            view.CloseView();
+            NavigationContext.NavigateTo<IWarehouseLookUpView>();
+            //if (view.ShowDialogView() == DialogViewResult.Ok) {
+                //_orderViewModel.WarehouseId = view.SelectedWarehouse.Id;
+                //_orderViewModel.WarehouseAddress = view.SelectedWarehouse.Address;
+            //}
+            //view.CloseView();
         }
 
         public void ResetWarehouse() {

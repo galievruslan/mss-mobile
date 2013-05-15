@@ -8,7 +8,7 @@ using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views
 {
-    public partial class OrderListView : Form, IOrderListView
+    public partial class OrderListView : Form//, IOrderListView
     {
         public OrderListView()
         {
@@ -29,7 +29,7 @@ namespace MSS.WinMobile.UI.Views
         private void ViewLoad(object sender, EventArgs e)
         {
             if (_presenter == null) {
-                _presenter = _presentersFactory.CreateOrderListPresenter(this, _routePointViewModel);
+                //_presenter = _presentersFactory.CreateOrderListPresenter(this, _routePointViewModel);
                 _orderListBox.ItemDataNeeded += ItemDataNeeded;
                 _orderListBox.ItemSelected += ItemSelected;
                 _orderListBox.SetListSize(_presenter.InitializeListSize());
@@ -51,34 +51,6 @@ namespace MSS.WinMobile.UI.Views
                 orderListBoxItem.ViewModel = _presenter.GetItem(item.Index);
             }
         }
-
-        #region IView
-
-        public void ShowView()
-        {
-            Show();
-        }
-
-        public DialogViewResult ShowDialogView()
-        {
-            DialogResult dialogResult = ShowDialog();
-            if (dialogResult == DialogResult.OK)
-                return DialogViewResult.Ok;
-
-            return DialogViewResult.Cancel;
-        }
-
-        public void CloseView()
-        {
-            Close();
-            Dispose();
-        }
-
-        public void DisplayErrors(string error)
-        {
-        }
-
-        #endregion
 
         private void CreateOrderClick(object sender, EventArgs e) {
             _presenter.CreateOrder();

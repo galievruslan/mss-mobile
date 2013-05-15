@@ -8,6 +8,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
     public interface IPresentersFactory {
         LogonPresenter CreateLogonPresenter(ILogonView logonView);
 
+        MenuPresenter CreateMenuPresenter(IMenuView logonView);
+
         SynchronizationPresenter CreateSynchronizationPresenter(
             ISynchronizationView synchronizationView);
 

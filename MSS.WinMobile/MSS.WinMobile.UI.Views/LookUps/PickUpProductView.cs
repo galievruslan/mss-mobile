@@ -57,34 +57,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             }
         }
 
-        #region IView
-
-        public void ShowView()
-        {
-            Show();
-        }
-
-        public DialogViewResult ShowDialogView()
-        {
-            DialogResult dialogResult = ShowDialog();
-            if (dialogResult == DialogResult.OK)
-                return DialogViewResult.Ok;
-
-            return DialogViewResult.Cancel;
-        }
-
-        public void CloseView()
-        {
-            Close();
-        }
-
-        public void DisplayErrors(string error)
-        {
-            
-        }
-
-        #endregion
-
         private void DigitButtonClick(object sender, EventArgs e)
         {
             var digitButton = sender as Button;
@@ -115,6 +87,14 @@ namespace MSS.WinMobile.UI.Views.LookUps
 
         public IList<PickUpProductViewModel> PickedUpProducts {
             get { return _presenter.PickedUpProducts; }
+        }
+
+        public void ShowInformation(string message) {
+            throw new NotImplementedException();
+        }
+
+        public void ShowError(string message) {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -7,16 +6,19 @@ using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using MSS.WinMobile.UI.Views;
 using MSS.WinMobile.UI.Views.LookUps;
+using MSS.WinMobile.UI.Views.Views;
 
 namespace MSS.WinMobile.Application
 {
     public class Navigator : INavigator {
+        private readonly IViewContainer _container;
         private readonly IPresentersFactory _presentersFactory;
-        public Navigator(IPresentersFactory presentersFactory) {
+        public Navigator(IViewContainer container, IPresentersFactory presentersFactory) {
+            _container = container;
             _presentersFactory = presentersFactory;
         }
 
-        public T NavigateTo<T>(IDictionary<string, object> args) where T : class, IView
+        public void NavigateTo<T>(IDictionary<string, object> args) where T : class, IView
         {
             T view = default(T);
             if (typeof (T) == typeof (ILogonView))
@@ -25,11 +27,13 @@ namespace MSS.WinMobile.Application
             }
             else if (typeof(T) == typeof(IMenuView))
             {
-                view = (new MenuView()) as T;
+                view = (new MenuView(_presentersFactory)) as T;
             }
-            else if (typeof(T) == typeof(IInitializationView))
+            else if (typeof(T) == typeof(IExitView))
             {
-                view = (new InitializationView()) as T;
+                _container.Close();
+                _container.Dispose();
+                return;
             }
             else if (typeof(T) == typeof(ISynchronizationView))
             {
@@ -38,22 +42,6 @@ namespace MSS.WinMobile.Application
             else if (typeof(T) == typeof(IRouteView))
             {
                 view = (new RouteView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(ICustomerLookUpView)) {
-                view = (new CustomerLookUpView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IPriceListLookUpView))
-            {
-                view = (new PriceListLookUpView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IWarehouseLookUpView))
-            {
-                view = (new WarehouseLookUpView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IShippingAddressLookUpView)) {
-                var customer = args["customer"] as CustomerViewModel;
-
-                view = (new ShippingAddressLookUpView(_presentersFactory, customer)) as T;
             }
             else if (typeof(T) == typeof(INewRoutePointView)) {
                 var route = args["route"] as RouteViewModel;
@@ -83,7 +71,7 @@ namespace MSS.WinMobile.Application
                 view = (new PickUpProductView(_presentersFactory, orderViewModel, orderItemsViewModel)) as T;
             }
 
-            return view;
+            _container.SetView(view);
         }
     }
 }

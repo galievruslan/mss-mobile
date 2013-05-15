@@ -5,7 +5,6 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps
@@ -52,39 +51,22 @@ namespace MSS.WinMobile.UI.Views.LookUps
             get { return _presenter.SelectedModel; }
         }
 
-        #region IView
-
-        public void ShowView() {
-            Show();
-        }
-
-        public DialogViewResult ShowDialogView() {
-            DialogResult dialogResult = ShowDialog();
-            if (dialogResult == DialogResult.OK)
-                return DialogViewResult.Ok;
-
-            return DialogViewResult.Cancel;
-        }
-
-        public void CloseView() {
-            Close();
-            Dispose();
-        }
-
-        public void DisplayErrors(string error) {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
         private void OkButtonClick(object sender, EventArgs e) {
-            if (_presenter.LookUp())
-                DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
-            _presenter.Cancel();
+            Close();
+        }
+
+        public void ShowInformation(string message) {
+            throw new NotImplementedException();
+        }
+
+        public void ShowError(string message) {
+            throw new NotImplementedException();
         }
     }
 }

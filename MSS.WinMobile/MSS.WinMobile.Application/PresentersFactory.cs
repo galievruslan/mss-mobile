@@ -14,6 +14,7 @@ namespace MSS.WinMobile.Application {
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IModelsFactory _modelsFactory;
+        private readonly ILookUpService _lookUpService;
 
         public PresentersFactory(IStorageManager storageManager,
                                  IRepositoryFactory repositoryFactory,
@@ -22,10 +23,15 @@ namespace MSS.WinMobile.Application {
             _unitOfWorkFactory = new SqLiteUnitOfWorkFactory(_storageManager);
             _repositoryFactory = repositoryFactory;
             _modelsFactory = modelsFactory;
+            _lookUpService = new LookUpService(this);
         }
 
         public LogonPresenter CreateLogonPresenter(ILogonView logonView) {
             return new LogonPresenter(logonView);
+        }
+
+        public MenuPresenter CreateMenuPresenter(IMenuView logonView) {
+            return new MenuPresenter(logonView);
         }
 
         public SynchronizationPresenter CreateSynchronizationPresenter(
@@ -44,7 +50,7 @@ namespace MSS.WinMobile.Application {
         public NewRoutePointPresenter CreateNewRoutePointPresenter(
             INewRoutePointView newRoutePointView, RouteViewModel routeViewModel) {
             return new NewRoutePointPresenter(newRoutePointView, _unitOfWorkFactory,
-                                              _repositoryFactory, routeViewModel);
+                                              _repositoryFactory, _lookUpService, routeViewModel);
         }
 
         public CustomerLookUpPresenter CreateCustomerLookUpPresenter(ICustomerLookUpView customerLookUpView) {

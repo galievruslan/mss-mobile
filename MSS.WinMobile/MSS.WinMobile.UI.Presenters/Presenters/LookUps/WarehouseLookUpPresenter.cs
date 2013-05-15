@@ -60,7 +60,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public void Cancel()
         {
-            _view.CloseView();
+            //_view.CloseView();
         }
     }
 }

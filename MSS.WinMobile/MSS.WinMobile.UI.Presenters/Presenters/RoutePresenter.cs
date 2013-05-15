@@ -122,7 +122,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
         }
 
-        public bool AddRoutePoint() {
+        public void GoToAddRoutePoint() {
+            // ToDo Move route creation in-to route point creation
             var routeRepository = _repositoryFactory.CreateRepository<Route>();
             var route =
                 routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
@@ -131,42 +132,33 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                     unitOfWork.BeginTransaction();
                     route = _modelsFactory.CreateRoute(_viewModel.Date);
-                    route = routeRepository.Save(route);
+                    routeRepository.Save(route);
                     unitOfWork.Commit();
                 }
             }
-
-            var newRoutePointView =
-                NavigationContext.NavigateTo<INewRoutePointView>(
-                    new Dictionary<string, object> {{"route", _viewModel}});
-            if (newRoutePointView.ShowDialogView() == DialogViewResult.Ok) {
-                _routePointRetriever = new RoutePointRetriever(route);
-                _cache = new Cache<RoutePoint>(_routePointRetriever, 10);
-                return true;
-            }
-
-            return false;
+            
+            NavigationContext.NavigateTo<INewRoutePointView>(
+                new Dictionary<string, object> {{"route", _viewModel}});
         }
 
         public void GoToOrderList() {
             if (SelectedModel != null) {
-                var orderListView =
-                    NavigationContext.NavigateTo<IOrderListView>(new Dictionary<string, object>
-                        {
-                            {"route_point", SelectedModel}
-                        });
-                orderListView.ShowView();
+                NavigationContext.NavigateTo<IOrderListView>(new Dictionary<string, object> {
+                    {"route_point", SelectedModel}
+                });
             }
         }
 
-        public void CreateOrder() {
+        public void GoToCreateOrder() {
             if (SelectedModel != null) {
-                var newOrderView =
-                    NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> {
+                NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> {
                         {"route_point", SelectedModel}
                     });
-                newOrderView.ShowView();
             }
+        }
+
+        public void GoToMenuView() {
+            NavigationContext.NavigateTo<IMenuView>();
         }
     }
 }

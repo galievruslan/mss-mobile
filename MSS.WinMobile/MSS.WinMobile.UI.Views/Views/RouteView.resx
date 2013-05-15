@@ -118,48 +118,75 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cancelButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_createOrderButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOuQAA
-        DrkBuAYXvwAAAYtJREFUeF7t2s0NwjAMhmFGYwRGQIyAYHQuHIBEaqSq4sd2v7YJeZEiDiSO/dAi03a3
-        44UAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIDAmgKntNlhgQ33KeZ5gbibhsxYjzTuYrSMdUvj
-        mcZ10wqFmxesXFQeKrQxVondPNoUS4X2Dqt5tONwGpZCpu/RI+0bVtnjIjxDVgtlKcyLtkTM1UAsGykL
-        VMay5L7ZHEWhihibAUQ2nlPwnLWRXKtZEyk8sqaaghWJeAA8cxW5VRvDClE6eHVbUi3Mt8QsaJ+glP8W
-        msKLonl7t6ZQfiXrResaq2Ba0cAaxAD7dR6OPrdiqa5yOFKrb6oXq2u0KFaXaBas/ANP45oQrFgH59z6
-        fnAEGXmwPC3HX7YbEaxu0eZgdYemwOoGTYnVBdoxVZnvdquvZ1m+iCZvs+Wjghu5gfaCRwVmoKl7pvHp
-        2fxzFVNXHncKHGksQQABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQqFHgBcAp0NqEgJkfAAAAAElF
-        TkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAdxJREFUeF7t2z1OwzAUwPEKsXABJITYEAsbB0BsDCws7J05AhMrYmFh5QBcAjhBJ2Ym
+        FgZGhi7te1IrLMux6yQ25OVvyVI/4jj51c95+ehkQkEAAQQQQAABBBBAAAEEEEAAAQQQQAABBCoKnEpf
+        j4Xqjax3q+K+VOnqWnpZFKxP1tBKg+mPYQrNBfvsGJpvkZFqBs0Fe+k4Cbjr+pB1fXuAJtBKgSn+iUW0
+        kmA6YM2hlQYzh1YDzBRaLTAzaDXBTKDVBhs82l+ANaFNO+aBVZqXApvL1n8l6o+X2Oq2/PtSCqzNCT1g
+        mVdBRge2L0BnmXXmoI4OrM38o+ec6/AFbANBwDZAchcBbOxgt4EjnU7sfRVzIwwwb2ikElfAAOs2mzDC
+        Mv0AywQ7lOWvVjV09GMO80B35P1upN4H0orLRJvtjB9t0GlFm0syoTbHgOU9sAJYICxjoxEwwH4nmXN5
+        +Ryp7wGs10SbA8tzWGrfSCs8IU0RdMRofQjoAeahkOmnYgywTKEImPvI5t1quaaQ3JPv+3j6Wvsc7E0Q
+        N7fSu9ZamsA01+rrzACwlpiDuM3W9MeGdUheBELvSD7rKyTdsNZtoSCAAAIIIIAAAggggAACCCCAAAII
+        IIAAAnUElt12ZfzpaPSuAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="okButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_createRoutePointButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOuQAA
-        DrkBuAYXvwAAAfdJREFUeF7t2CFLBEEYxvFDRBARRDBZDCJYjEabxWSxWU0Wi0G/gNguX7BZ7GLWKDaL
-        zSSIxSAYRNRn4AaOxdn3bm93dWb+B8sdzDAz74+Z3b2n0+GDAAIIIIAAAggggAACCCCAAAIIIIAAAggg
-        gAACCCCAQGoCCyroVNdEaoU1Uc+UBr3W9a3rDDSbuNvHcmCgGV47BSzQSsDW1PYeAPM7zd6fmfSYVZ0P
-        JVgO7CQTC7NM9yS8MrAu1T5pjpRJh2MD617tc5lYmGVuqcdnCdiL2pbNUTLpsKQ6X0uwPtS2mYmFWeaM
-        etwaR3HfHOUfd3CLX6lxfecGVq/GuVof6rBf3FNNaHsG1o3a3d+jKD8ey79xj4u2IQV3b/LjFb8f1TYf
-        pZQWXcQaF80lEA48hPWmttXUsKqiDSYQv4F9CWo7Viy37tDuGix2lOPZNe5bRzFj+bXXhRZKIDz+RQpY
-        daFZCcSdJppOCWyc42klEO5IL6aGVXWnWQmEe7VYTxWrCpqVQOymjjUK2rM6lyUQ2QWBwzw9Qy+n2QaB
-        VdCyDwJHQSMI7N/UhkEjCCw84Sy0qIPApp7mIbSog8CmsEKvHFEHgU1jFdGiDgLbwvLzHOhHtEFg21jM
-        hwACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggg8JcCP2uGRdHeen42AAAAAElFTkSuQmCC
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAANFJREFUeF7t1MEJgDAABMH037RagBGWgCEwgh85H46rYzgIECBAgAABAgQIECBAgAAB
+        AgQIECBAgACBR+CanHAmAsBiGsCARYE4VxiwKBDnCgMWBeJcYcCiQJwrDFgUiHOFAYsCca4wYN8Cs0J2
+        X4/v7b/5bpjjPmlgMU5gwKJAnCssgq3Oj/tprz7w6v3AoiAwYFEgzhUGLArEucKARYE4VxiwKBDnCgMW
+        BeJcYcCiQJwrDFgUMCdAgAABAgQIECBAgAABAgQIECBAgAABAu8CN84MomxULzV0AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="inputPanel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>127, 17</value>
-  </metadata>
-  <metadata name="notification.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>237, 17</value>
-  </metadata>
-  <metadata name="mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>350, 17</value>
-  </metadata>
+  <data name="_listOrdersButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAdhJREFUeF7t2j1OAzEQhuH0HAHR0iCugLgEl4AGcQJOQJeGI8AJqOAEdDRUNDQ0lEgI
+        idhSkEarJc7nn4lsvZHcje2dJzPOJpvFghcCCCCAAAIIIIAAAggggAACCCCAAAJJgYMQcVRx7CV37Dzg
+        Llz/b8XxFNYaGq02WMQfGq0F2NBoFuw643h5Me38PWnt7ivtOCR0MRnPJslSsMuw1utIaOeJw70U7Cys
+        vz8SmgdY7Oph0CzY5/rT7KNiS8YK+3sNgWbBHteZ1Tz0LdgQleYN1j3aLsC6RtsV2Ca0jFs/vymtweJ5
+        GG9N/hu3M7c1ftln7NQaLOdLfEYaflMAE61bgN2Ea4ituO14mLSlmIJveAswNYP4Y6VtXXW+azxgIjdg
+        gIkCYjgVBpgoIIZTYYCJAmI4FQaYKCCGU2GAiQJiOBUGmCgghlNhgIkCYjgVBpgoIIanKuw+rBefXrcc
+        VyP94prz1Kd0jvie+4anKqw0+Zz5vgLibnNg8alP/Bdhq/FjWvBtZh8xBd/wObDWV2D/TnXaerPa61uw
+        97D40mF8mQrrGiznvCmdA9jkFiEF2h3YiUMLbmrzw9pnDOshgAACCCCAAAIIIIAAAggggAACCCCAAAJb
+        CawApYaflPc9A+UAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="_closeButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
+        dr+2CXmRIg4kjv3QItN2t+OFAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAwJoCp7TZYYEN9ynm
+        eYG4m4bMWI807mK0jHVL45nGddMKhZsXrFxUHiq0MVaJ3TzaFEuF9g6rebTjcBqWQqbv0SPtG1bZ4yI8
+        Q1YLZSnMi7ZEzNVALBspC1TGsuS+2RxFoYoYmwFENp5T8Jy1kVyrWRMpPLKmmoIViXgAPHMVuVUbwwpR
+        Onh1W1ItzLfELGifoJT/FprCi6J5e7emUH4l60XrGqtgWtHAGsQA+3Uejj63YqmucjhSq2+qF6trtChW
+        l2gWrPwDT+OaEKxYB+fc+n5wBBl5sDwtx1+2GxGsbtHmYHWHpsDqBk2J1QXaMVWZ73arr2dZvogmb7Pl
+        o4IbuYH2gkcFZqCpe6bx6dn8cxVTVx53ChxpLEEAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEKhR
+        4AXAKdDahICZHwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="createRouteOnDateButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAclJREFUeF7t2rFKxEAQxvHDzsLSyt7GzifwEWzEVrC0O7DzNWx9C3st7AUR7OwtbAWb
+        c0Y4WZZzc19INpnkvzAQuEmO/G52k8xlsWAggAACCCCAAAIIIIAAAggggAACCCDwJ3BkW13F4RxcV3aS
+        Xcb11NG6xFofa9JofYD5MSeLloL5WtZ2nNqO39n0niRaCWzXAK6EuN+wHt4m+1/Y9k7bX2Qs+5XA9ju+
+        IPh33UVHqw0WHk0Be7LqeBDiuVChYStNAfMpqoyTBOzLtj8zwJBotcA+DOt4Cmg1wbw6w6PVBguPNgRY
+        aLShwMKiDQkWEm1osHBoYwD7D+1GuemrlVsLzDsZTU8J79mNrT+4j27UAmvTdwOs8Gy5CXR2YAcGpPTT
+        PPcxQZ0dWJv1x5HW1QbYFoKAbYGUpgAGmCggplNhgIkCYjoVBpgoIKZTYYCJAmI6FQaYKCCmh6qwpZ3c
+        WRKXWTtG/edbtPpNDwXW1OQDTGzoAWZgr4V4Y0pqq0r+Qh0V1uCXg/nrSb4o9xkvSVWPsuNaMuvjlc2m
+        C0v6OWDiRSYc2F7P069pap9rSy7ZCCCAAAIIIIAAAggggAACCCCAAAIIIICAKPADEJqLrDfW2UQAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
-  </metadata>
-  <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </metadata>
 </root>

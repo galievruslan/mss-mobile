@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -12,13 +11,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         private readonly INewRoutePointView _view;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly ILookUpService _lookUpService;
 
         private readonly RouteViewModel _routeViewModel;
 
         public NewRoutePointPresenter(INewRoutePointView view, IUnitOfWorkFactory unitOfWorkFactory,
-                                      IRepositoryFactory repositoryFactory, RouteViewModel routeViewModel) {
+                                      IRepositoryFactory repositoryFactory, ILookUpService lookUpService, RouteViewModel routeViewModel) {
             _view = view;
             _repositoryFactory = repositoryFactory;
+            _lookUpService = lookUpService;
             _unitOfWorkFactory = unitOfWorkFactory;
             _routeViewModel = routeViewModel;
         }
@@ -32,14 +33,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpCustomer() {
-            var view = NavigationContext.NavigateTo<ICustomerLookUpView>();
-            if (view.ShowDialogView() == DialogViewResult.Ok) {
-                _viewModel.CustomerId = view.SelectedCustomer.Id;
-                _viewModel.CustomerName = view.SelectedCustomer.Name;
+            CustomerViewModel selectedCustomer = _lookUpService.LookUpCustomer();
+            if (selectedCustomer != null) {
+                _viewModel.CustomerId = selectedCustomer.Id;
+                _viewModel.CustomerName = selectedCustomer.Name;
                 _viewModel.ShippingAddressId = 0;
                 _viewModel.ShippingAddressName = string.Empty;
             }
-            view.CloseView();
         }
 
         public void ResetCustomer() {
@@ -50,17 +50,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpShippingAddress() {
-            var view =
-                NavigationContext.NavigateTo<IShippingAddressLookUpView>(
-                    new Dictionary<string, object>
-                        {
-                            {"customer", new CustomerViewModel {Id = _viewModel.CustomerId, Name = _viewModel.CustomerName}}
-                        });
-            if (view.ShowDialogView() == DialogViewResult.Ok) {
-                _viewModel.ShippingAddressId = view.SelectedShippingAddress.Id;
-                _viewModel.ShippingAddressName = view.SelectedShippingAddress.Address;
+            if (_viewModel.CustomerId != 0) {
+                ShippingAddressViewModel selectedShippingAddress =
+                    _lookUpService.LookUpCustomerShippingAddress(new CustomerViewModel {
+                        Id = _viewModel.CustomerId,
+                        Name = _viewModel.CustomerName
+                    });
+
+                if (selectedShippingAddress != null) {
+                    _viewModel.ShippingAddressId = selectedShippingAddress.Id;
+                    _viewModel.ShippingAddressName = selectedShippingAddress.Address;    
+                }
             }
-            view.CloseView();
         }
 
         public void ResetShippingAddress() {
@@ -95,12 +96,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 }
             }
 
-            _view.DisplayErrors(_viewModel.Errors);
+            _view.ShowError(_viewModel.Errors);
             return false;
         }
 
         public void Cancel() {
-            _view.CloseView();
+            NavigationContext.NavigateTo<IRouteView>();
         }
     }
 }

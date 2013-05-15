@@ -7,6 +7,7 @@ using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
 using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters;
+using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Views;
 using OpenNETCF.Windows.Forms;
 using log4net.Config;
@@ -67,11 +68,25 @@ namespace MSS.WinMobile.Application
             IModelsFactory modelsFactory = new ModelsFactory(repositoryFactory);
             var presentersFactory = new PresentersFactory(storageManager, repositoryFactory,
                                                           modelsFactory);
+
+            var main = new Main();
+
             // Register navigator for presenters
-            NavigationContext.RegisterNavigator(new Navigator(presentersFactory));
+            NavigationContext.RegisterNavigator(new Navigator(main, presentersFactory));
+
+            string userName = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
+            string password = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
+
+            if (string.IsNullOrEmpty(userName) ||
+                string.IsNullOrEmpty(password)) {
+                NavigationContext.NavigateTo<ILogonView>();
+            }
+            else {
+                NavigationContext.NavigateTo<IMenuView>();
+            }
 
             Log.Info("Application start");
-            Application2.Run(new LogonView(presentersFactory));
+            Application2.Run(main);
             Log.Info("Application finish");
         }
     }

@@ -62,17 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InitializationView.cs">
+    <Compile Include="IViewContainer.cs" />
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InitializationView.Designer.cs">
-      <DependentUpon>InitializationView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NewRoutePointView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewRoutePointView.Designer.cs">
-      <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderListView.cs">
       <SubType>Form</SubType>
@@ -110,18 +105,6 @@
     <Compile Include="LookUps\CustomerLookUpView.Designer.cs">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogonView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LogonView.designer.cs">
-      <DependentUpon>LogonView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MenuView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MenuView.Designer.cs">
-      <DependentUpon>MenuView.cs</DependentUpon>
-    </Compile>
     <Compile Include="OrderView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,26 +112,48 @@
       <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RouteView.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Views\DesignMode.cs" />
+    <Compile Include="Views\LogonView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RouteView.Designer.cs">
+    <Compile Include="Views\LogonView.Designer.cs">
+      <DependentUpon>LogonView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MenuView.Designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewRoutePointView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\NewRoutePointView.Designer.cs">
+      <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RouteView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\RouteView.Designer.cs">
       <DependentUpon>RouteView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SynchronizationView.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Views\SynchronizationView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SynchronizationView.Designer.cs">
+    <Compile Include="Views\SynchronizationView.Designer.cs">
       <DependentUpon>SynchronizationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\View.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\View.Designer.cs">
+      <DependentUpon>View.cs</DependentUpon>
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InitializationView.resx">
-      <DependentUpon>InitializationView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewRoutePointView.resx">
-      <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderListView.resx">
       <DependentUpon>OrderListView.cs</DependentUpon>
@@ -168,20 +173,26 @@
     <EmbeddedResource Include="LookUps\CustomerLookUpView.resx">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogonView.resx">
-      <DependentUpon>LogonView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MenuView.resx">
-      <DependentUpon>MenuView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RouteView.resx">
+    <EmbeddedResource Include="Views\LogonView.resx">
+      <DependentUpon>LogonView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MenuView.resx">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewRoutePointView.resx">
+      <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RouteView.resx">
       <DependentUpon>RouteView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SynchronizationView.resx">
+    <EmbeddedResource Include="Views\SynchronizationView.resx">
       <DependentUpon>SynchronizationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\View.resx">
+      <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _view = view;
         }
 
-        public bool Logon()
+        public void Logon()
         {
             if (_viewModel.Validate()) {
                 try {
@@ -31,27 +31,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
-                    var menuView = NavigationContext.NavigateTo<IMenuView>();
-                    menuView.ShowView();
-                    _view.HideView();
-
-                    return true;
+                    NavigationContext.NavigateTo<IMenuView>();
                 }
                 catch (WebException webException) {
                     Log.Error(webException);
-                    _view.DisplayErrors("Can't connect to the server!");
+                    _view.ShowError("Can't connect to the server!");
                 }
             }
             else {
-                _view.DisplayErrors(_viewModel.Errors);
+                _view.ShowError(_viewModel.Errors);
             }
-
-            return false;
         }
 
         public void Cancel()
         {
-            _view.CloseView();
+            NavigationContext.NavigateTo<IExitView>();
         }
 
         private LogonViewModel _viewModel;
@@ -59,13 +53,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             var manager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
             string userName = manager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
             string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
-
-            if (!string.IsNullOrEmpty(userName) &&
-                !string.IsNullOrEmpty(password)) {
-                var menuView = NavigationContext.NavigateTo<IMenuView>();
-                menuView.ShowView();
-                _view.HideView();
-            } 
 
             _viewModel = new LogonViewModel {
                 ServerAddress =

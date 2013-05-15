@@ -7,7 +7,8 @@ using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views {
-    public partial class OrderView : Form, IOrderView {
+    public partial class OrderView : Form//, IOrderView 
+    {
         private OrderPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
         private readonly RoutePointViewModel _routePointViewModel;
@@ -34,10 +35,10 @@ namespace MSS.WinMobile.UI.Views {
 
         private void ViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                _presenter = _routePointViewModel != null
-                                 ? _presentersFactory.CreateOrderPresenter(this,
-                                                                           _routePointViewModel)
-                                 : _presentersFactory.CreateOrderPresenter(this, _orderViewModel);
+                //_presenter = _routePointViewModel != null
+                //                 ? _presentersFactory.CreateOrderPresenter(this,
+                //                                                           _routePointViewModel)
+                //                 : _presentersFactory.CreateOrderPresenter(this, _orderViewModel);
 
                 _viewModel = _presenter.Initialize();
 
@@ -71,32 +72,6 @@ namespace MSS.WinMobile.UI.Views {
                 _orderItemListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
-
-        #region IView
-
-        public void ShowView() {
-            Show();
-        }
-
-        public DialogViewResult ShowDialogView() {
-            DialogResult dialogResult = ShowDialog();
-            if (dialogResult == DialogResult.OK)
-                return DialogViewResult.Ok;
-
-            return DialogViewResult.Cancel;
-        }
-
-        public void CloseView() {
-            Close();
-        }
-
-        public void DisplayErrors(string error) {
-            notification.Critical = true;
-            notification.Text = error;
-            notification.Visible = true;
-        }
-
-        #endregion
 
         private void PriceListlookUp(object sender, EventArgs e) {
             _presenter.LookUpPriceList();

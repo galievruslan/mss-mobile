@@ -79,16 +79,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                      .Value;
 
             using (IWebServer webServer = new WebServer(serverAddress, username, password)) {
-                if (_viewModel.SynchronizeFully) {
-                    Notify(new TextNotification("Clear Database"));
-                    _storageManager.DeleteCurrentStorage();
-                }
-
-                // Initialization
-                string databaseScriptFullPath = Environments.AppPath + schemaScript;
-                string databaseFileFullPath = Environments.AppPath + databaseName;
-                _storageManager.CreateOrOpenStorage(databaseFileFullPath, databaseScriptFullPath);
-
                 Notify(new TextNotification("Start synchronization."));
                 _view.ShowProgressBar();
 
@@ -107,6 +97,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         new OrdersSynchronization(webServer, ordersRepository, 
                                                   _unitOfWorkFactory).RepeatOnError(3, 5000);
                     ordersSyncCmd.Execute();
+
+                    if (_viewModel.SynchronizeFully) {
+                        Notify(new TextNotification("Clear Database"));
+                        _storageManager.DeleteCurrentStorage();
+
+                        // Initialization
+                        string databaseScriptFullPath = Environments.AppPath + schemaScript;
+                        string databaseFileFullPath = Environments.AppPath + databaseName;
+                        _storageManager.CreateOrOpenStorage(databaseFileFullPath, databaseScriptFullPath);
+                    }
 
                     DateTime synchronizationDate = webServer.Connect().ServerTime();
 
@@ -506,25 +506,27 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                          .GetSetting("LastSyncDate").Value =
                         synchronizationDate.ToString(DateTimeFormatInfo.InvariantInfo);
                     _configurationManager.GetConfig("Common").Save();
-                    _view.ShowInfo("Synchronization complete");
+                    _view.ShowInformation("Synchronization complete");
                 }
                 catch (Exception exception) {
                     Log.Error("Synchronization failed", exception);
-                    _view.ShowInfo("Synchronization failed");
+                    _view.ShowError("Synchronization failed");
                 }
             }
-            _view.CloseView();
+            NavigationContext.NavigateTo<IMenuView>();
         }
 
         public void Cancel() {
             try {
                 if (_thread != null)
                     _thread.Abort();
-                _view.CloseView();
             }
             catch (ThreadAbortException threadAbortException) {
                 Log.Error("Synchronization cancelation error", threadAbortException);
+                _view.ShowError("Synchronization canceled");
             }
+
+            NavigationContext.NavigateTo<IMenuView>();
         }
 
         #region IObserver
