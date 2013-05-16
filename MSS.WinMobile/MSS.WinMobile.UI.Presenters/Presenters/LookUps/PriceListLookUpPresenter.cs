@@ -52,18 +52,5 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                            : null;
             }
         }
-
-        public bool LookUp()
-        {
-            if (_selectedPriceList != null)
-                return true;
-
-            return false;
-        }
-
-        public void Cancel()
-        {
-            //_view.CloseView();
-        }
     }
 }

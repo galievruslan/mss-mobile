@@ -9,5 +9,6 @@ namespace MSS.WinMobile.UI.Presenters.Views
         void ShowProgressBar();
         void UpdateStatus(string status);
         void UpdateProgress(int percents);
+        void ReturnToMenu();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
@@ -11,14 +12,22 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         private readonly INewRoutePointView _view;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly IModelsFactory _modelsFactory;
+        private readonly INavigator _navigator;
         private readonly ILookUpService _lookUpService;
-
         private readonly RouteViewModel _routeViewModel;
 
-        public NewRoutePointPresenter(INewRoutePointView view, IUnitOfWorkFactory unitOfWorkFactory,
-                                      IRepositoryFactory repositoryFactory, ILookUpService lookUpService, RouteViewModel routeViewModel) {
+        public NewRoutePointPresenter(INewRoutePointView view, 
+                                      IUnitOfWorkFactory unitOfWorkFactory,
+                                      IRepositoryFactory repositoryFactory, 
+                                      IModelsFactory modelsFactory,
+                                      INavigator navigator,
+                                      ILookUpService lookUpService, 
+                                      RouteViewModel routeViewModel) {
             _view = view;
             _repositoryFactory = repositoryFactory;
+            _modelsFactory = modelsFactory;
+            _navigator = navigator;
             _lookUpService = lookUpService;
             _unitOfWorkFactory = unitOfWorkFactory;
             _routeViewModel = routeViewModel;
@@ -59,9 +68,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
                 if (selectedShippingAddress != null) {
                     _viewModel.ShippingAddressId = selectedShippingAddress.Id;
-                    _viewModel.ShippingAddressName = selectedShippingAddress.Address;    
+                    _viewModel.ShippingAddressName = selectedShippingAddress.Address;
                 }
             }
+            else { _view.ShowError("You must select customer first."); }
         }
 
         public void ResetShippingAddress() {
@@ -69,12 +79,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             _viewModel.ShippingAddressName = string.Empty;
         }
 
-        public bool Save() {
+        public void Save() {
             if (_viewModel.Validate()) {
 
-                IStorageRepository<Route> routeRepository =
-                    _repositoryFactory.CreateRepository<Route>();
-                var route = routeRepository.GetById(_routeViewModel.Id);
+                var routeRepository = _repositoryFactory.CreateRepository<Route>();
+                var route =
+                    routeRepository.Find()
+                                   .Where(new RouteOnDateSpec(_routeViewModel.Date))
+                                   .FirstOrDefault();
+
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
                 var defaultStatus = statusRepository.Find().FirstOrDefault();
                 var shippingAddressRepository =
@@ -83,25 +96,28 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
 
                 using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
-
+                    unitOfWork.BeginTransaction();
+                    if (route == null) {
+                        route = _modelsFactory.CreateRoute(_routeViewModel.Date);
+                        route = routeRepository.Save(route);
+                    }
                     var routePoint = route.CreatePoint();
                     routePoint.SetShippingAddress(
                         shippingAddressRepository.GetById(_viewModel.ShippingAddressId));
                     routePoint.SetStatus(defaultStatus);
 
-                    unitOfWork.BeginTransaction();
                     routePointRepository.Save(routePoint);
                     unitOfWork.Commit();
-                    return true;
                 }
             }
-
-            _view.ShowError(_viewModel.Errors);
-            return false;
+            else {
+                _view.ShowError(_viewModel.Errors);
+            }
+            _navigator.GoToRoute(_routeViewModel);
         }
 
         public void Cancel() {
-            NavigationContext.NavigateTo<IRouteView>();
+            _navigator.GoToRoute(_routeViewModel);
         }
     }
 }

@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.UI.Presenters;
+﻿using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
-using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using MSS.WinMobile.UI.Views;
-using MSS.WinMobile.UI.Views.LookUps;
 using MSS.WinMobile.UI.Views.Views;
 
 namespace MSS.WinMobile.Application
@@ -18,60 +15,49 @@ namespace MSS.WinMobile.Application
             _presentersFactory = presentersFactory;
         }
 
-        public void NavigateTo<T>(IDictionary<string, object> args) where T : class, IView
-        {
-            T view = default(T);
-            if (typeof (T) == typeof (ILogonView))
-            {
-                view = (new LogonView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IMenuView))
-            {
-                view = (new MenuView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IExitView))
-            {
-                _container.Close();
-                _container.Dispose();
-                return;
-            }
-            else if (typeof(T) == typeof(ISynchronizationView))
-            {
-                view = (new SynchronizationView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(IRouteView))
-            {
-                view = (new RouteView(_presentersFactory)) as T;
-            }
-            else if (typeof(T) == typeof(INewRoutePointView)) {
-                var route = args["route"] as RouteViewModel;
-                view = (new NewRoutePointView(_presentersFactory, route)) as T;
-            }
-            else if (typeof(T) == typeof(IOrderListView))
-            {
-                var routePointViewModel = args["route_point"] as RoutePointViewModel;
-                view = (new OrderListView(_presentersFactory, routePointViewModel)) as T;
-            }
-            else if (typeof(T) == typeof(IOrderView))
-            {
-                if (args.ContainsKey("route_point")) {
-                    var routePointViewModel = args["route_point"] as RoutePointViewModel;
-                    view = (new OrderView(_presentersFactory, routePointViewModel)) as T;
-                }
+        public void GoToLogon() {
+            ILogonView logonView = new LogonView(_presentersFactory);
+            _container.SetView(logonView);
+        }
 
-                if (args.ContainsKey("order")) {
-                    var orderViewModel = args["order"] as OrderViewModel;
-                    view = (new OrderView(_presentersFactory, orderViewModel)) as T;
-                }
-            }
-            else if (typeof(T) == typeof(IPickUpProductView))
-            {
-                var orderViewModel = args["order"] as OrderViewModel;
-                var orderItemsViewModel = args["order_items"] as IList<OrderItemViewModel>;
-                view = (new PickUpProductView(_presentersFactory, orderViewModel, orderItemsViewModel)) as T;
-            }
+        public void GoToMenu() {
+            IMenuView menuView = new MenuView(_presentersFactory);
+            _container.SetView(menuView);
+        }
 
-            _container.SetView(view);
+        public void GoToSynchronization() {
+            ISynchronizationView synchronizationView = new SynchronizationView(_presentersFactory);
+            _container.SetView(synchronizationView);
+        }
+
+        public void GoToRoute(RouteViewModel routeViewModel) {
+            IRouteView routeView = new RouteView(_presentersFactory, routeViewModel);
+            _container.SetView(routeView);
+        }
+
+        public void GoToNewRoutePoint(RouteViewModel routeViewModel) {
+            INewRoutePointView newRoutePointView = new NewRoutePointView(_presentersFactory, routeViewModel);
+            _container.SetView(newRoutePointView);
+        }
+
+        public void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel) {
+            IOrderListView orderListView = new OrderListView(_presentersFactory, routePointViewModel);
+            _container.SetView(orderListView);
+        }
+
+        public void GoToCreateOrderForRoutePoint(RoutePointViewModel routePointViewModel) {
+            IOrderView orderView = new OrderView(_presentersFactory, routePointViewModel);
+            _container.SetView(orderView);
+        }
+
+        public void GoToEditRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
+            IOrderView orderView = new OrderView(_presentersFactory, routePointViewModel, orderViewModel);
+            _container.SetView(orderView);
+        }
+
+        public void GoToExit() {
+            _container.Close();
+            _container.Dispose();
         }
     }
 }

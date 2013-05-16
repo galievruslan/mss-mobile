@@ -13,7 +13,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         SynchronizationPresenter CreateSynchronizationPresenter(
             ISynchronizationView synchronizationView);
 
-        RoutePresenter CreateRoutePresenter(IRouteView routeView);
+        RoutePresenter CreateRoutePresenter(IRouteView routeView, RouteViewModel routeViewModel);
 
         NewRoutePointPresenter CreateNewRoutePointPresenter(INewRoutePointView newRoutePointView, RouteViewModel routeViewModel);
 
@@ -26,14 +26,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel);
 
-        OrderPresenter CreateOrderPresenter(IOrderView orderView, OrderViewModel orderViewModel);
+        OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel);
 
         PriceListLookUpPresenter CreatePriceListLookUpPresenter(IPriceListLookUpView priceListLookUpView);
 
         WarehouseLookUpPresenter CreateWarehouseLookUpPresenter(IWarehouseLookUpView warehouseLookUpView);
 
         PickUpProductPresenter CreatePickUpProductPresenter(IPickUpProductView pickUpProductView,
-                                                            OrderViewModel orderViewModel,
-                                                            IList<OrderItemViewModel> orderItemViewModels);
+                                                            PriceListViewModel priceListViewModel,
+                                                            IEnumerable<OrderItemViewModel> orderItemViewModels);
     }
 }

@@ -68,7 +68,6 @@
     <Compile Include="Presenters\OrderListPresenter.cs" />
     <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
-    <Compile Include="NavigationContext.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />
     <Compile Include="Presenters\LookUps\PickUpProductPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderItemRetriever.cs" />

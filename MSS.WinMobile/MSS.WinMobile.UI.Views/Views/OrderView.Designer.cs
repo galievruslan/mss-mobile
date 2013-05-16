@@ -1,37 +1,31 @@
-﻿using MSS.WinMobile.UI.Controls.Buttons;
-using MSS.WinMobile.UI.Presenters.Views;
-
-namespace MSS.WinMobile.UI.Views
-{
-    partial class OrderView
-    {
-        /// <summary>
+﻿namespace MSS.WinMobile.UI.Views.Views {
+    partial class OrderView {
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderView));
+            this.itemsActionPanel = new System.Windows.Forms.Panel();
+            this.addButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
             this.warehousePanel = new System.Windows.Forms.Panel();
@@ -56,16 +50,12 @@ namespace MSS.WinMobile.UI.Views
             this._orderDateLabel = new System.Windows.Forms.Label();
             this._detailsTab = new System.Windows.Forms.TabPage();
             this._orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
-            this.itemsActionPanel = new System.Windows.Forms.Panel();
-            this.addButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
-            this._actionPanel = new System.Windows.Forms.Panel();
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.notification = new Microsoft.WindowsCE.Forms.Notification();
-            this.mainMenu = new System.Windows.Forms.MainMenu();
-            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
+            this._actionPanel = new System.Windows.Forms.Panel();
+            this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
             this.warehousePanel.SuspendLayout();
@@ -73,10 +63,29 @@ namespace MSS.WinMobile.UI.Views
             this.pricePanel.SuspendLayout();
             this._buttonPanel.SuspendLayout();
             this._detailsTab.SuspendLayout();
-            this.itemsActionPanel.SuspendLayout();
             this._notesTab.SuspendLayout();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // itemsActionPanel
+            // 
+            this.itemsActionPanel.Controls.Add(this.addButton);
+            this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
+            this.itemsActionPanel.Name = "itemsActionPanel";
+            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // addButton
+            // 
+            this.addButton.BackColor = System.Drawing.Color.White;
+            this.addButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("addButton.BackgroundImage")));
+            this.addButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.addButton.Location = new System.Drawing.Point(2, 2);
+            this.addButton.Name = "addButton";
+            this.addButton.PressedImage = null;
+            this.addButton.Size = new System.Drawing.Size(20, 20);
+            this.addButton.TabIndex = 0;
+            this.addButton.Click += new System.EventHandler(this.AddClick);
             // 
             // tabControl
             // 
@@ -89,7 +98,7 @@ namespace MSS.WinMobile.UI.Views
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(240, 238);
-            this.tabControl.TabIndex = 0;
+            this.tabControl.TabIndex = 2;
             // 
             // _generalTab
             // 
@@ -306,7 +315,7 @@ namespace MSS.WinMobile.UI.Views
             this._orderDateLabel.Location = new System.Drawing.Point(7, 4);
             this._orderDateLabel.Name = "_orderDateLabel";
             this._orderDateLabel.Size = new System.Drawing.Size(94, 20);
-            this._orderDateLabel.Text = "Order Date";
+            this._orderDateLabel.Text = "GoToCreateOrderForRoutePoint Date";
             // 
             // _detailsTab
             // 
@@ -326,26 +335,6 @@ namespace MSS.WinMobile.UI.Views
             this._orderItemListBox.Size = new System.Drawing.Size(240, 190);
             this._orderItemListBox.TabIndex = 1;
             // 
-            // itemsActionPanel
-            // 
-            this.itemsActionPanel.Controls.Add(this.addButton);
-            this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
-            this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
-            // 
-            // addButton
-            // 
-            this.addButton.BackColor = System.Drawing.Color.White;
-            this.addButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("addButton.BackgroundImage")));
-            this.addButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.addButton.Location = new System.Drawing.Point(2, 2);
-            this.addButton.Name = "addButton";
-            this.addButton.PressedImage = null;
-            this.addButton.Size = new System.Drawing.Size(20, 20);
-            this.addButton.TabIndex = 0;
-            this.addButton.Click += new System.EventHandler(this.AddClick);
-            // 
             // _notesTab
             // 
             this._notesTab.Controls.Add(this._notesTextBox);
@@ -363,15 +352,6 @@ namespace MSS.WinMobile.UI.Views
             this._notesTextBox.Size = new System.Drawing.Size(226, 204);
             this._notesTextBox.TabIndex = 0;
             this._notesTextBox.TextChanged += new System.EventHandler(this.NotesTextBoxTextChanged);
-            // 
-            // _actionPanel
-            // 
-            this._actionPanel.Controls.Add(this.cancelButton);
-            this._actionPanel.Controls.Add(this.okButton);
-            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 238);
-            this._actionPanel.Name = "_actionPanel";
-            this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
             // cancelButton
             // 
@@ -399,23 +379,24 @@ namespace MSS.WinMobile.UI.Views
             this.okButton.TabIndex = 4;
             this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
-            // notification
+            // _actionPanel
             // 
-            this.notification.Text = "notification1";
+            this._actionPanel.Controls.Add(this.cancelButton);
+            this._actionPanel.Controls.Add(this.okButton);
+            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._actionPanel.Location = new System.Drawing.Point(0, 238);
+            this._actionPanel.Name = "_actionPanel";
+            this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
             // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 268);
-            this.ControlBox = false;
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this._actionPanel);
-            this.Menu = this.mainMenu;
             this.Name = "OrderView";
-            this.Text = "OrderView";
-            this.Load += new System.EventHandler(this.ViewLoad);
+            this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderViewLoad);
+            this.itemsActionPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this._generalTab.ResumeLayout(false);
             this.warehousePanel.ResumeLayout(false);
@@ -423,7 +404,6 @@ namespace MSS.WinMobile.UI.Views
             this.pricePanel.ResumeLayout(false);
             this._buttonPanel.ResumeLayout(false);
             this._detailsTab.ResumeLayout(false);
-            this.itemsActionPanel.ResumeLayout(false);
             this._notesTab.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -432,39 +412,36 @@ namespace MSS.WinMobile.UI.Views
 
         #endregion
 
+        private System.Windows.Forms.Panel itemsActionPanel;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton addButton;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage _generalTab;
-        private System.Windows.Forms.TabPage _detailsTab;
-        private System.Windows.Forms.TabPage _notesTab;
-        private System.Windows.Forms.Panel _actionPanel;
-        private System.Windows.Forms.Label _orderDateLabel;
+        private System.Windows.Forms.Panel warehousePanel;
+        private System.Windows.Forms.TextBox _warehouseTextBox;
+        private System.Windows.Forms.Panel panel1;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _warehouseResetButton;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _warehouseLookUpButton;
+        public System.Windows.Forms.Panel pricePanel;
+        private System.Windows.Forms.TextBox _priceListTextBox;
+        private System.Windows.Forms.Panel _buttonPanel;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _priceListResetButton;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _priceListLookUpButton;
+        private System.Windows.Forms.DateTimePicker _shippingDatePicker;
+        private System.Windows.Forms.DateTimePicker _orderDatePicker;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox _shippingAddressTextBox;
+        private System.Windows.Forms.TextBox _customerTextBox;
         private System.Windows.Forms.Label _warehouseLabel;
         private System.Windows.Forms.Label _priceLabel;
         private System.Windows.Forms.Label _addressLabel;
         private System.Windows.Forms.Label _customerLabel;
-        private System.Windows.Forms.TextBox _notesTextBox;
-        private System.Windows.Forms.TextBox _shippingAddressTextBox;
-        private System.Windows.Forms.TextBox _customerTextBox;
-        private System.Windows.Forms.Panel itemsActionPanel;
-        private PictureButton addButton;
-        private PictureButton cancelButton;
-        private PictureButton okButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker _shippingDatePicker;
-        private System.Windows.Forms.DateTimePicker _orderDatePicker;
-        private Microsoft.WindowsCE.Forms.Notification notification;
-        private System.Windows.Forms.Panel _buttonPanel;
-        private PictureButton _priceListResetButton;
-        private PictureButton _priceListLookUpButton;
-        private System.Windows.Forms.Panel warehousePanel;
-        private System.Windows.Forms.TextBox _warehouseTextBox;
-        private System.Windows.Forms.Panel panel1;
-        private PictureButton _warehouseResetButton;
-        private PictureButton _warehouseLookUpButton;
-        private System.Windows.Forms.TextBox _priceListTextBox;
+        private System.Windows.Forms.Label _orderDateLabel;
+        private System.Windows.Forms.TabPage _detailsTab;
         private MSS.WinMobile.UI.Controls.Concret.OrderItemListBox _orderItemListBox;
-        public System.Windows.Forms.Panel pricePanel;
-        private System.Windows.Forms.MainMenu mainMenu;
-        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
+        private System.Windows.Forms.TabPage _notesTab;
+        private System.Windows.Forms.TextBox _notesTextBox;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
+        private System.Windows.Forms.Panel _actionPanel;
     }
 }

@@ -20,10 +20,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         private readonly Cache<ProductsPrice> _cache;
         private readonly IList<PickUpProductViewModel> _pickUpProductViewModels;
 
-        public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, OrderViewModel orderViewModel, IList<OrderItemViewModel> orderItemViewModels) {
+        public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels) {
             _repositoryFactory = repositoryFactory;
             var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(orderViewModel.PriceListId));
+            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(priceListViewModel.Id));
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
             _view = view;
 

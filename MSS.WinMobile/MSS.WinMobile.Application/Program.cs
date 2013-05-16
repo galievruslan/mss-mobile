@@ -9,6 +9,7 @@ using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Views;
+using MSS.WinMobile.UI.Views.Views;
 using OpenNETCF.Windows.Forms;
 using log4net.Config;
 
@@ -66,23 +67,20 @@ namespace MSS.WinMobile.Application
                              .RegisterSpecificationTranslator(new CommonTranslator<Warehouse>());
 
             IModelsFactory modelsFactory = new ModelsFactory(repositoryFactory);
-            var presentersFactory = new PresentersFactory(storageManager, repositoryFactory,
-                                                          modelsFactory);
 
             var main = new Main();
-
-            // Register navigator for presenters
-            NavigationContext.RegisterNavigator(new Navigator(main, presentersFactory));
-
+            var presentersFactory = new PresentersFactory(storageManager, repositoryFactory,
+                                                          modelsFactory, main);
+            
             string userName = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
             string password = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
 
             if (string.IsNullOrEmpty(userName) ||
                 string.IsNullOrEmpty(password)) {
-                NavigationContext.NavigateTo<ILogonView>();
+                main.SetView(new LogonView(presentersFactory));
             }
             else {
-                NavigationContext.NavigateTo<IMenuView>();
+                main.SetView(new MenuView(presentersFactory));
             }
 
             Log.Info("Application start");

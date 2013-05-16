@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Application.Environment;
+﻿using System;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
@@ -6,9 +7,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     public class MenuPresenter
     {
         private readonly IMenuView _view;
-        public MenuPresenter(IMenuView view)
+        private readonly INavigator _navigator;
+        public MenuPresenter(IMenuView view, INavigator navigator)
         {
             _view = view;
+            _navigator = navigator;
         }
 
         public void InitializeView()
@@ -16,11 +19,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void ShowRouteView() {
-            NavigationContext.NavigateTo<IRouteView>();
+            _navigator.GoToRoute(new RouteViewModel {Date = DateTime.Today});
         }
 
         public void ShowSyncView() {
-            NavigationContext.NavigateTo<ISynchronizationView>();
+            _navigator.GoToSynchronization();
         }
     }
 }

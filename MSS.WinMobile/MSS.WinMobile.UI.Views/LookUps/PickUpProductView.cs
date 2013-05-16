@@ -15,18 +15,18 @@ namespace MSS.WinMobile.UI.Views.LookUps
     {
         private PickUpProductPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
-        private readonly OrderViewModel _orderViewModel;
-        private readonly IList<OrderItemViewModel> _orderItemViewModels; 
+        private readonly PriceListViewModel _priceListViewModel;
+        private readonly IEnumerable<OrderItemViewModel> _orderItemViewModels; 
 
         public PickUpProductView()
         {
             InitializeComponent();
         }
 
-        public PickUpProductView(IPresentersFactory presentersFactory, OrderViewModel orderViewModel, IList<OrderItemViewModel> orderItemViewModels)
+        public PickUpProductView(IPresentersFactory presentersFactory, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels)
             :this() {
             _presentersFactory = presentersFactory;
-            _orderViewModel = orderViewModel;
+            _priceListViewModel = priceListViewModel;
             _orderItemViewModels = orderItemViewModels;
         }
 
@@ -36,7 +36,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             {
                 _productPriceListBox.ItemDataNeeded += ItemDataNeeded;
                 _productPriceListBox.ItemSelected += ItemSelected;
-                _presenter = _presentersFactory.CreatePickUpProductPresenter(this, _orderViewModel, _orderItemViewModels);
+                _presenter = _presentersFactory.CreatePickUpProductPresenter(this, _priceListViewModel, _orderItemViewModels);
                 _productPriceListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
@@ -78,11 +78,13 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private void OkButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         public IList<PickUpProductViewModel> PickedUpProducts {

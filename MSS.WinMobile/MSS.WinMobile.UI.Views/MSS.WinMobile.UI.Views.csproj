@@ -69,12 +69,6 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrderListView.Designer.cs">
-      <DependentUpon>OrderListView.cs</DependentUpon>
-    </Compile>
     <Compile Include="LookUps\PickUpProductView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,12 +99,6 @@
     <Compile Include="LookUps\CustomerLookUpView.Designer.cs">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrderView.Designer.cs">
-      <DependentUpon>OrderView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\DesignMode.cs" />
     <Compile Include="Views\LogonView.cs">
@@ -130,6 +118,18 @@
     </Compile>
     <Compile Include="Views\NewRoutePointView.Designer.cs">
       <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\OrderListView.Designer.cs">
+      <DependentUpon>OrderListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\OrderView.Designer.cs">
+      <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\RouteView.cs">
       <SubType>UserControl</SubType>
@@ -155,9 +155,6 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderListView.resx">
-      <DependentUpon>OrderListView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LookUps\PickUpProductView.resx">
       <DependentUpon>PickUpProductView.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,9 +170,6 @@
     <EmbeddedResource Include="LookUps\CustomerLookUpView.resx">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderView.resx">
-      <DependentUpon>OrderView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\LogonView.resx">
       <DependentUpon>LogonView.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +178,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\NewRoutePointView.resx">
       <DependentUpon>NewRoutePointView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\OrderListView.resx">
+      <DependentUpon>OrderListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\OrderView.resx">
+      <DependentUpon>OrderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RouteView.resx">
       <DependentUpon>RouteView.cs</DependentUpon>

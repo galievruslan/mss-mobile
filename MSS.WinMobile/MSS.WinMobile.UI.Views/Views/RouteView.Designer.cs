@@ -143,7 +143,7 @@
             this._closeButton.PressedImage = null;
             this._closeButton.Size = new System.Drawing.Size(20, 20);
             this._closeButton.TabIndex = 5;
-            this._closeButton.Click += new System.EventHandler(this._closeButton_Click);
+            this._closeButton.Click += new System.EventHandler(this.CloseButtonClick);
             // 
             // RouteView
             // 

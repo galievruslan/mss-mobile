@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
@@ -32,6 +33,39 @@ namespace MSS.WinMobile.Application {
             }
 
             return selectedShippingAddress;
+        }
+
+        public PriceListViewModel LookUpPriceList() {
+            PriceListViewModel selectedPriceList = null;
+            using (var priceListLookUpView = new PriceListLookUpView(_presentersFactory)) {
+                if (Application2.ShowDialog(priceListLookUpView) == DialogResult.OK) {
+                    selectedPriceList = priceListLookUpView.SelectedPriceList;
+                }
+            }
+
+            return selectedPriceList;
+        }
+
+        public WarehouseViewModel LookUpWarehouse() {
+            WarehouseViewModel selectedWarehouse = null;
+            using (var warehouseLookUpView = new WarehouseLookUpView(_presentersFactory)) {
+                if (Application2.ShowDialog(warehouseLookUpView) == DialogResult.OK) {
+                    selectedWarehouse = warehouseLookUpView.SelectedWarehouse;
+                }
+            }
+
+            return selectedWarehouse;
+        }
+
+        public IEnumerable<PickUpProductViewModel> PickUpProducts(PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItems) {
+            IEnumerable<PickUpProductViewModel> pickedUpProducts = null;
+            using (var pickUpProductView = new PickUpProductView(_presentersFactory, priceListViewModel, orderItems)) {
+                if (Application2.ShowDialog(pickUpProductView) == DialogResult.OK) {
+                    pickedUpProducts = pickUpProductView.PickedUpProducts;
+                }
+            }
+
+            return pickedUpProducts;
         }
     }
 }

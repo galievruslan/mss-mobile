@@ -57,13 +57,13 @@ namespace MSS.WinMobile.UI.Views.LookUps
         }
 
         private void okButton_Click(object sender, EventArgs e) {
-            if (_presenter.LookUp())
-                DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
-            _presenter.Cancel();
+            Close();
         }
 
         public void ShowInformation(string message) {

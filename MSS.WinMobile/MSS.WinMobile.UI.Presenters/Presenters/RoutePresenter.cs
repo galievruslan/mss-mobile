@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -20,16 +18,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IRouteView _view;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IModelsFactory _modelsFactory;
+        private readonly INavigator _navigator;
 
         private IDataPageRetriever<RoutePoint> _routePointRetriever;
         private Cache<RoutePoint> _cache;
 
-        public RoutePresenter(IRouteView view, IUnitOfWorkFactory unitOfWorkFactory,
-                              IRepositoryFactory repositoryFactory, IModelsFactory modelsFactory) {
+        public RoutePresenter(IRouteView view, 
+                              IUnitOfWorkFactory unitOfWorkFactory,
+                              IRepositoryFactory repositoryFactory, 
+                              IModelsFactory modelsFactory, 
+                              INavigator navigator,
+                              RouteViewModel routeViewModel) {
             _repositoryFactory = repositoryFactory;
             _modelsFactory = modelsFactory;
+            _navigator = navigator;
             _unitOfWorkFactory = unitOfWorkFactory;
             _view = view;
+            _viewModel = routeViewModel;
         }
 
         public int InitializeListSize() {
@@ -54,6 +59,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 return _selectedRoutePoint != null
                            ? new RoutePointViewModel {
                                Id = _selectedRoutePoint.Id,
+                               RouteId = _selectedRoutePoint.RouteId,
                                ShippinAddressName = _selectedRoutePoint.ShippingAddressName
                            }
                            : null;
@@ -62,9 +68,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private RouteViewModel _viewModel;
         public RouteViewModel Initialize() {
-            _viewModel = new RouteViewModel {
-                Date = DateTime.Now
-            };
+            if (_viewModel.Id == 0) {
+                var routeRepository = _repositoryFactory.CreateRepository<Route>();
+                var route =
+                    routeRepository.Find()
+                                   .Where(new RouteOnDateSpec(_viewModel.Date))
+                                   .FirstOrDefault();
+                if (route != null) {
+                    _viewModel.Id = route.Id;
+                    _viewModel.Date = route.Date;
+                }
+            }
 
             GetRouteOnDate();
             return _viewModel;
@@ -123,42 +137,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void GoToAddRoutePoint() {
-            // ToDo Move route creation in-to route point creation
-            var routeRepository = _repositoryFactory.CreateRepository<Route>();
-            var route =
-                routeRepository.Find().Where(new RouteOnDateSpec(_viewModel.Date)).FirstOrDefault();
-
-            if (route == null) {
-                using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
-                    unitOfWork.BeginTransaction();
-                    route = _modelsFactory.CreateRoute(_viewModel.Date);
-                    routeRepository.Save(route);
-                    unitOfWork.Commit();
-                }
-            }
-            
-            NavigationContext.NavigateTo<INewRoutePointView>(
-                new Dictionary<string, object> {{"route", _viewModel}});
+            _navigator.GoToNewRoutePoint(_viewModel);
         }
 
         public void GoToOrderList() {
-            if (SelectedModel != null) {
-                NavigationContext.NavigateTo<IOrderListView>(new Dictionary<string, object> {
-                    {"route_point", SelectedModel}
-                });
-            }
+            if (SelectedModel != null)
+                _navigator.GoToRoutePointsOrderList(SelectedModel);
         }
 
         public void GoToCreateOrder() {
-            if (SelectedModel != null) {
-                NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> {
-                        {"route_point", SelectedModel}
-                    });
-            }
+            if (SelectedModel != null)
+                _navigator.GoToCreateOrderForRoutePoint(SelectedModel);
         }
 
         public void GoToMenuView() {
-            NavigationContext.NavigateTo<IMenuView>();
+            _navigator.GoToMenu();
         }
     }
 }

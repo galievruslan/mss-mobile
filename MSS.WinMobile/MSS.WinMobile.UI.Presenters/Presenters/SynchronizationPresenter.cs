@@ -1,6 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Globalization;
-using System.Threading;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Common.Observable;
@@ -27,21 +27,41 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IStorageManager _storageManager;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
+        private readonly INavigator _navigator;
 
-        public SynchronizationPresenter(ISynchronizationView view, IStorageManager storageManager, IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repositoryFactory) {
+        public SynchronizationPresenter(ISynchronizationView view, 
+            IStorageManager storageManager, 
+            IUnitOfWorkFactory unitOfWorkFactory, 
+            IRepositoryFactory repositoryFactory,
+            INavigator navigator) {
             _configurationManager = new ConfigurationManager(Environments.AppPath);
             _view = view;
 
             _storageManager = storageManager;
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
+            _navigator = navigator;
         }
 
-        private Thread _thread;
-
+        private BackgroundWorker _backgroundWorker;
+        private bool _inProgress;
         public void Synchronize() {
-            _thread = new Thread(RunSynchronizationInBackground);
-            _thread.Start();
+            if (_inProgress) return;
+
+            _inProgress = true;
+            _backgroundWorker = new BackgroundWorker();
+            _backgroundWorker.DoWork += backgroundWorker_DoWork;
+            _backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
+            _backgroundWorker.RunWorkerAsync();
+        }
+
+        void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            if (_backgroundWorker != null)
+                _backgroundWorker.Dispose();    
+        }
+
+        void backgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
+            RunSynchronizationInBackground();
         }
 
         private void RunSynchronizationInBackground() {
@@ -436,8 +456,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     productsUomSyncCommand.Execute();
                     Notify(new ProgressNotification(82));
 
-                    // Route templates synchronization
-                    Notify(new TextNotification("Route templates synchronization"));
+                    // GoToRoute templates synchronization
+                    Notify(new TextNotification("GoToRoute templates synchronization"));
                     var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webServer);
                     var routeTemplateSqLiteRepository =
                         _repositoryFactory.CreateRepository<RouteTemplate>();
@@ -469,8 +489,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     routeTemplateSyncCommand.Execute();
                     Notify(new ProgressNotification(90));
 
-                    // Route points templates synchronization
-                    Notify(new TextNotification("Route points templates synchronization"));
+                    // GoToRoute points templates synchronization
+                    Notify(new TextNotification("GoToRoute points templates synchronization"));
                     var routePointTemplateDtoRepository =
                         new WebRepository<RoutePointTemplateDto>(webServer);
                     var routePointTemplateSqLiteRepository =
@@ -513,20 +533,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _view.ShowError("Synchronization failed");
                 }
             }
-            NavigationContext.NavigateTo<IMenuView>();
+
+            _view.ReturnToMenu();
         }
 
         public void Cancel() {
             try {
-                if (_thread != null)
-                    _thread.Abort();
+                if (_backgroundWorker != null)
+                    _backgroundWorker.CancelAsync();
             }
-            catch (ThreadAbortException threadAbortException) {
-                Log.Error("Synchronization cancelation error", threadAbortException);
-                _view.ShowError("Synchronization canceled");
+            finally {
+                _inProgress = false;
             }
 
-            NavigationContext.NavigateTo<IMenuView>();
+            _view.ReturnToMenu();
+        }
+
+        public void ReturnToMenu() {
+            _navigator.GoToMenu();
         }
 
         #region IObserver

@@ -12,9 +12,11 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        public RouteView(IPresentersFactory presentersFactory) {
+        private readonly RouteViewModel _routeViewModel;
+        public RouteView(IPresentersFactory presentersFactory, RouteViewModel routeViewModel) {
             InitializeComponent();
             _presentersFactory = presentersFactory;
+            _routeViewModel = routeViewModel;
         }
 
         private RoutePresenter _routePresenter;
@@ -24,8 +26,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 routePointListBox.ItemSelected += ItemSelected;
                 routePointListBox.ItemDataNeeded += ItemDataNeeded;
 
-                _routePresenter = _presentersFactory.CreateRoutePresenter(this);
+                _routePresenter = _presentersFactory.CreateRoutePresenter(this, _routeViewModel);
                 _viewModel = _routePresenter.Initialize();
+                datePicker.Value = _viewModel.Date;
                 routePointListBox.SetListSize(_routePresenter.InitializeListSize());
                 datePicker.ValueChanged += DateChanged;
             }
@@ -60,8 +63,6 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private void CreateOrderClick(object sender, EventArgs e) {
             _routePresenter.GoToCreateOrder();
-            if (_selectedListItem != null)
-                _selectedListItem.RefreshData();
         }
 
         private void CreateRouteOnDateButtonClick(object sender, EventArgs e) {
@@ -70,7 +71,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             routePointListBox.SetListSize(_routePresenter.InitializeListSize());
         }
 
-        private void _closeButton_Click(object sender, EventArgs e) {
+        private void CloseButtonClick(object sender, EventArgs e) {
             _routePresenter.GoToMenuView();
         }
     }

@@ -16,16 +16,29 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
+        private readonly INavigator _navigator;
+        private readonly ILookUpService _lookUpService;
         private readonly OrderViewModel _orderViewModel;
+        private readonly RoutePointViewModel _routePointViewModel;
         private readonly IList<OrderItemViewModel> _orderItemViewModels;
 
-        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
-                              IRepositoryFactory repositoryFactory,
-                              RoutePointViewModel routePointViewModel) {
+        private OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
+                               IRepositoryFactory repositoryFactory, INavigator navigator,
+                               ILookUpService lookUpService) {
             _view = view;
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
+            _navigator = navigator;
+            _lookUpService = lookUpService;
+        }
 
+        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
+                              IRepositoryFactory repositoryFactory,
+                              INavigator navigator,
+                              ILookUpService lookUpService,
+                              RoutePointViewModel routePointViewModel) 
+            :this(view, unitOfWorkFactory, repositoryFactory, navigator, lookUpService)
+        {
             var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var routePoint = routePointsRepository.GetById(routePointViewModel.Id);
 
@@ -35,6 +48,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             var customersRepository = _repositoryFactory.CreateRepository<Customer>();
             var customer = customersRepository.GetById(shippingAddress.CustomerId);
 
+            _routePointViewModel = routePointViewModel;
             _orderViewModel = new OrderViewModel {
                 OrderDate = DateTime.Now,
                 ShippingDate = DateTime.Now,
@@ -50,11 +64,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
                               IRepositoryFactory repositoryFactory,
-                              OrderViewModel orderViewModel) {
-            _view = view;
-            _unitOfWorkFactory = unitOfWorkFactory;
-            _repositoryFactory = repositoryFactory;
+                              INavigator navigator,
+                              ILookUpService lookUpService,
+                              RoutePointViewModel routePointViewModel,
+                              OrderViewModel orderViewModel)
+            : this(view, unitOfWorkFactory, repositoryFactory, navigator, lookUpService) {
 
+            _routePointViewModel = routePointViewModel;
             _orderViewModel = orderViewModel;
 
             var orderRepository = _repositoryFactory.CreateRepository<Order>();
@@ -72,7 +88,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             }
         }
 
-        public bool Save() {
+        public void Save() {
             if (_orderViewModel.Validate()) {
                 var orderRepository = _repositoryFactory.CreateRepository<Order>();
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
@@ -134,41 +150,34 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
                     unitOfWork.Commit();
                 }
-
-                NavigationContext.NavigateTo<IExitView>();
-                return true;
+                _navigator.GoToRoutePointsOrderList(_routePointViewModel);
             }
-
-            _view.ShowError(_orderViewModel.Errors);
-            return false;
+            else {
+                _view.ShowError(_orderViewModel.Errors);
+            }
         }
 
         public void Cancel() {
-            NavigationContext.NavigateTo<IExitView>();
+            _navigator.GoToRoutePointsOrderList(_routePointViewModel);
         }
 
-        public bool PickUpProducts() {
-            NavigationContext.NavigateTo<IPickUpProductView>(new Dictionary<string, object> {
-                    {"order", _orderViewModel},
-                    {"order_items", _orderItemViewModels}
-                });
-            //if (view.ShowDialogView() == DialogViewResult.Ok) {
-                //IList<PickUpProductViewModel> pickUpProductViewModels = view.PickedUpProducts;
-                //_orderItemViewModels.Clear();
-                //foreach (var pickUpProductViewModel in pickUpProductViewModels) {
-                //    _orderItemViewModels.Add(new OrderItemViewModel {
-                //        Id = pickUpProductViewModel.OrderItemId,
-                //        ProductId = pickUpProductViewModel.ProductId,
-                //        ProductName = pickUpProductViewModel.ProductName,
-                //        Quantity = pickUpProductViewModel.Quantity,
-                //        Price = pickUpProductViewModel.Price
-                //    });
-                //}
-                //return true;
+        public void PickUpProducts() {
+            IEnumerable<PickUpProductViewModel> pickedUpProducts = _lookUpService.PickUpProducts(
+                new PriceListViewModel {
+                    Id = _orderViewModel.PriceListId,
+                    Name = _orderViewModel.PriceListName
+                }, _orderItemViewModels);
 
-            //}
-            //view.CloseView();
-            return false;
+            _orderItemViewModels.Clear();
+            foreach (var pickUpProductViewModel in pickedUpProducts) {
+                _orderItemViewModels.Add(new OrderItemViewModel {
+                    Id = pickUpProductViewModel.OrderItemId,
+                    ProductId = pickUpProductViewModel.ProductId,
+                    ProductName = pickUpProductViewModel.ProductName,
+                    Quantity = pickUpProductViewModel.Quantity,
+                    Price = pickUpProductViewModel.Price
+                });
+            }
         }
 
         public OrderViewModel Initialize() {
@@ -194,13 +203,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpPriceList() {
-            
-                NavigationContext.NavigateTo<IPriceListLookUpView>();
-            //if (view.ShowDialogView() == DialogViewResult.Ok) {
-                //_orderViewModel.PriceListId = view.SelectedPriceList.Id;
-                //_orderViewModel.PriceListName = view.SelectedPriceList.Name;
-            //}
-            //view.CloseView();
+            PriceListViewModel selectedPriceList = _lookUpService.LookUpPriceList();
+            if (selectedPriceList != null) {
+                _orderViewModel.PriceListId = selectedPriceList.Id;
+                _orderViewModel.PriceListName = selectedPriceList.Name;
+            }
         }
 
         public void ResetPriceList() {
@@ -209,12 +216,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpWarehouse() {
-            NavigationContext.NavigateTo<IWarehouseLookUpView>();
-            //if (view.ShowDialogView() == DialogViewResult.Ok) {
-                //_orderViewModel.WarehouseId = view.SelectedWarehouse.Id;
-                //_orderViewModel.WarehouseAddress = view.SelectedWarehouse.Address;
-            //}
-            //view.CloseView();
+            WarehouseViewModel selectedWarehouse = _lookUpService.LookUpWarehouse();
+            if (selectedWarehouse != null) {
+                _orderViewModel.WarehouseId = selectedWarehouse.Id;
+                _orderViewModel.WarehouseAddress = selectedWarehouse.Address;
+            }
         }
 
         public void ResetWarehouse() {

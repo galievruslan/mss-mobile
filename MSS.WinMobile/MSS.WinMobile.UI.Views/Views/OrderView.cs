@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
-namespace MSS.WinMobile.UI.Views {
-    public partial class OrderView : Form//, IOrderView 
-    {
+namespace MSS.WinMobile.UI.Views.Views {
+    public partial class OrderView : View, IOrderView {
+
         private OrderPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
         private readonly RoutePointViewModel _routePointViewModel;
@@ -25,20 +24,24 @@ namespace MSS.WinMobile.UI.Views {
             _routePointViewModel = routePointViewModel;
         }
 
-        public OrderView(IPresentersFactory presentersFactory, OrderViewModel orderViewModel)
+        public OrderView(IPresentersFactory presentersFactory, 
+                         RoutePointViewModel routePointViewModel,
+                         OrderViewModel orderViewModel)
             : this() {
             _presentersFactory = presentersFactory;
+            _routePointViewModel = routePointViewModel;
             _orderViewModel = orderViewModel;
         }
 
         private OrderViewModel _viewModel;
-
-        private void ViewLoad(object sender, EventArgs e) {
+        private void OrderViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                //_presenter = _routePointViewModel != null
-                //                 ? _presentersFactory.CreateOrderPresenter(this,
-                //                                                           _routePointViewModel)
-                //                 : _presentersFactory.CreateOrderPresenter(this, _orderViewModel);
+                _presenter = _orderViewModel != null
+                                 ? _presentersFactory.CreateOrderPresenter(this,
+                                                                           _routePointViewModel,
+                                                                           _orderViewModel)
+                                 : _presentersFactory.CreateOrderPresenter(this,
+                                                                           _routePointViewModel);
 
                 _viewModel = _presenter.Initialize();
 
@@ -68,9 +71,9 @@ namespace MSS.WinMobile.UI.Views {
         }
 
         private void AddClick(object sender, EventArgs e) {
-            if (_presenter.PickUpProducts()) {
-                _orderItemListBox.SetListSize(_presenter.InitializeListSize());
-            }
+            _presenter.PickUpProducts();
+            _orderItemListBox.SetListSize(_presenter.InitializeListSize());
+            _orderItemListBox.Refresh();
         }
 
         private void PriceListlookUp(object sender, EventArgs e) {
@@ -98,13 +101,10 @@ namespace MSS.WinMobile.UI.Views {
         }
 
         private void OkButtonClick(object sender, EventArgs e) {
-            if (_presenter.Save())
-                DialogResult = DialogResult.OK;
-
+            _presenter.Save();
         }
 
         private void CancelButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
             _presenter.Cancel();
         }
 

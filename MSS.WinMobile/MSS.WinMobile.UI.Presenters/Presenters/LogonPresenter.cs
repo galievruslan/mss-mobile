@@ -13,11 +13,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private readonly Application.Configuration.ConfigurationManager _configurationManager;
         private readonly ILogonView _view;
+        private readonly INavigator _navigator;
 
-        public LogonPresenter(ILogonView view)
+        public LogonPresenter(ILogonView view, INavigator navigator)
         {
             _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
             _view = view;
+            _navigator = navigator;
         }
 
         public void Logon()
@@ -31,7 +33,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
-                    NavigationContext.NavigateTo<IMenuView>();
+                    _navigator.GoToMenu();
                 }
                 catch (WebException webException) {
                     Log.Error(webException);
@@ -45,7 +47,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void Cancel()
         {
-            NavigationContext.NavigateTo<IExitView>();
+            _navigator.GoToExit();
         }
 
         private LogonViewModel _viewModel;

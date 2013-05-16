@@ -1,10 +1,19 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.UI.Presenters.Views;
+﻿using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Presenters
 {
-    public interface INavigator
-    {
-        void NavigateTo<T>(IDictionary<string, object> args) where T : class, IView;
+    public interface INavigator {
+        void GoToLogon();
+        void GoToMenu();
+        void GoToSynchronization();
+
+        void GoToRoute(RouteViewModel routeViewModel);
+        void GoToNewRoutePoint(RouteViewModel routeViewModel);
+
+        void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel);
+        void GoToCreateOrderForRoutePoint(RoutePointViewModel routePointViewModel);
+        void GoToEditRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel);
+
+        void GoToExit();
     }
 }

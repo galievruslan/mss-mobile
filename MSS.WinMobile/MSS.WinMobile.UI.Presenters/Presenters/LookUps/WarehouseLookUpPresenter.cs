@@ -49,18 +49,5 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                            : null;
             }
         }
-
-        public bool LookUp()
-        {
-            if (_selectedWarehouse != null)
-                return true;
-
-            return false;
-        }
-
-        public void Cancel()
-        {
-            //_view.CloseView();
-        }
     }
 }

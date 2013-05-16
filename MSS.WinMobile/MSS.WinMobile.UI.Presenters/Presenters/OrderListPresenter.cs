@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MSS.WinMobile.Domain.Models;
+﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -10,15 +9,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     public class OrderListPresenter : IListPresenter<OrderViewModel> {
         private IOrderListView _view;
         private readonly IRepositoryFactory _repositoryFactory;
+        private readonly INavigator _navigator;
         private readonly RoutePointViewModel _routePointViewModel;
 
-        private OrderRetriever _retriever;
-        private Cache<Order> _cache;
+        private readonly OrderRetriever _retriever;
+        private readonly Cache<Order> _cache;
 
-        public OrderListPresenter(IOrderListView view, IRepositoryFactory repositoryFactory, RoutePointViewModel routePointViewModel)
+        public OrderListPresenter(IOrderListView view, 
+            IRepositoryFactory repositoryFactory,
+            INavigator navigator,
+            RoutePointViewModel routePointViewModel)
         {
             _view = view;
             _repositoryFactory = repositoryFactory;
+            _navigator = navigator;
             _routePointViewModel = routePointViewModel;
 
             var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
@@ -80,31 +84,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void CreateOrder() {
-            NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> { { "route_point", _routePointViewModel } });
-            //if (newOrderView.ShowDialogView() == DialogViewResult.Ok) {
-            //    newOrderView.Dispose();
-
-                //var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
-                //var routePoint = routePointRepository.GetById(_routePointViewModel.Id);
-                //_retriever = new OrderRetriever(routePoint);
-                //_cache = new Cache<Order>(_retriever, 10);
-            //}
+            _navigator.GoToCreateOrderForRoutePoint(_routePointViewModel);
         }
 
         public void EditOrder() {
-            if (SelectedModel != null) {
-                NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> {
-                        {"order", SelectedModel}
-                    });
-                //if (editOrderView.ShowDialogView() == DialogViewResult.Ok) {
-                //    editOrderView.Dispose();
-                //}
-            }
+            if (SelectedModel != null)
+                _navigator.GoToEditRoutePointsOrder(_routePointViewModel, SelectedModel);
         }
 
-        public void PrepareOrderForSending() {
-            //var newOrderView = NavigationContext.NavigateTo<IOrderView>(new Dictionary<string, object> { { "route_point", _routePointViewModel } });
-            //newOrderView.ShowView();
+        public void GoToRoute() {
+            var routeRepository = _repositoryFactory.CreateRepository<Route>();
+            var route = routeRepository.GetById(_routePointViewModel.RouteId);
+            _navigator.GoToRoute(new RouteViewModel {Id = route.Id, Date = route.Date});
         }
     }
 }

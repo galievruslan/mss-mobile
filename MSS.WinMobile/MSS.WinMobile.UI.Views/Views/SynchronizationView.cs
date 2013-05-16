@@ -78,5 +78,15 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _progressBar.Value = percents;
             }
         }
+
+        public delegate void ReturnToMenuDelegate();
+        public void ReturnToMenu() {
+            if (InvokeRequired) {
+                Invoke(new ReturnToMenuDelegate(ReturnToMenu));
+            }
+            else {
+                _synchronizationPresenter.ReturnToMenu();
+            }
+        }
     }
 }
