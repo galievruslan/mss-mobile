@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Infrastructure.Web.Repositories;
+using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -26,17 +28,29 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         {
             if (_viewModel.Validate()) {
                 try {
-                    using (new WebServer(_viewModel.ServerAddress, _viewModel.Username, _viewModel.Password).Connect()) {
-                        _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value =
+                    using (
+                        new WebServer(_viewModel.ServerAddress, _viewModel.Username,
+                                      _viewModel.Password).Connect()) {
+                        _configurationManager.GetConfig("Common")
+                                             .GetSection("Server")
+                                             .GetSetting("Username")
+                                             .Value =
                             _viewModel.Username;
-                        _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value =
+                        _configurationManager.GetConfig("Common")
+                                             .GetSection("Server")
+                                             .GetSetting("Password")
+                                             .Value =
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
                     _navigator.GoToMenu();
                 }
-                catch (WebException webException) {
-                    Log.Error(webException);
+                catch (NeedLogonException exception) {
+                    Log.Error(exception);
+                    _view.ShowError("Username or password is wrong!");
+                }
+                catch (Exception exception) {
+                    Log.Error(exception);
                     _view.ShowError("Can't connect to the server!");
                 }
             }

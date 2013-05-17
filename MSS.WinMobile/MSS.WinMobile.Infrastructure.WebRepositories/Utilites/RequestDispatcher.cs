@@ -13,45 +13,10 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories.Utilites
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(RequestDispatcher));
 
-        public static string Dispatch(IWebConnection connection, HttpWebRequest httpWebRequest)
+        public static HttpWebResponse Dispatch(IWebConnection connection, HttpWebRequest httpWebRequest)
         {
-            try
-            {
-                string responseText = string.Empty;
-                using (var httpWebResponse = (HttpWebResponse) httpWebRequest.GetResponse())
-                {
-                    string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
-                    if (!string.IsNullOrEmpty(cookie))
-                    {
-                        connection.CookieContainer.SetCookie(cookie);
-                    }
-
-                    using (Stream stream = httpWebResponse.GetResponseStream())
-                    {
-                        if (stream != null)
-                        {
-                            using (var reader = new StreamReader(stream, true))
-                            {
-                                var responseTextBuilder = new StringBuilder((int) httpWebResponse.ContentLength);
-                                while (!reader.EndOfStream)
-                                {
-                                    var buffer = new char[1024];
-                                    reader.Read(buffer, 0, buffer.Length);
-
-                                    var cleanBuffer = buffer.Where(c => c != '\0').ToArray();
-
-                                    if (cleanBuffer.Length > 0)
-                                        responseTextBuilder.Append(cleanBuffer);
-                                }
-                                responseText = responseTextBuilder.ToString();
-                            }
-                        }
-                    }
-                }
-
-                if (httpWebRequest.Method == "GET")
-                    connection.CsrfTokenContainer.SetCsrfToken(ExtractCsrfToken(responseText));
-                return responseText;
+            try {
+                return (HttpWebResponse) httpWebRequest.GetResponse();
             }
             catch (WebException webException)
             {
@@ -71,6 +36,39 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories.Utilites
                 Log.Error(exception);
                 throw;
             }
+        }
+
+        public static string ProcessResponse(IWebConnection connection,
+                                             HttpWebResponse httpWebResponse) {
+            string responseText = string.Empty;
+            string cookie = httpWebResponse.Headers.Get(CookieContainer.RESPONSEHEADER_SESSIONCOOKIE);
+            if (!string.IsNullOrEmpty(cookie)) {
+                connection.CookieContainer.SetCookie(cookie);
+            }
+
+            using (Stream stream = httpWebResponse.GetResponseStream()) {
+                if (stream != null) {
+                    using (var reader = new StreamReader(stream, true)) {
+                        var responseTextBuilder = new StringBuilder((int)httpWebResponse.ContentLength);
+                        while (!reader.EndOfStream) {
+                            var buffer = new char[1024];
+                            reader.Read(buffer, 0, buffer.Length);
+
+                            var cleanBuffer = buffer.Where(c => c != '\0').ToArray();
+
+                            if (cleanBuffer.Length > 0)
+                                responseTextBuilder.Append(cleanBuffer);
+                        }
+                        responseText = responseTextBuilder.ToString();
+                    }
+                }
+            }
+
+            string csrfToken = ExtractCsrfToken(responseText);
+            if (!string.IsNullOrEmpty(csrfToken))
+                connection.CsrfTokenContainer.SetCsrfToken(csrfToken);
+
+            return responseText;
         }
 
         private static string ExtractCsrfToken(string response)

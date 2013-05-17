@@ -1,6 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Globalization;
+using System.Threading;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Common.Observable;
@@ -43,25 +43,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _navigator = navigator;
         }
 
-        private BackgroundWorker _backgroundWorker;
+        private static readonly object LockObject = new object();
+        private Thread _thread;
         private bool _inProgress;
         public void Synchronize() {
-            if (_inProgress) return;
+            lock (LockObject) {
+                if (_inProgress) return;
+                _inProgress = true;
+            }
 
-            _inProgress = true;
-            _backgroundWorker = new BackgroundWorker();
-            _backgroundWorker.DoWork += backgroundWorker_DoWork;
-            _backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
-            _backgroundWorker.RunWorkerAsync();
-        }
-
-        void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            if (_backgroundWorker != null)
-                _backgroundWorker.Dispose();    
-        }
-
-        void backgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
-            RunSynchronizationInBackground();
+            _thread = new Thread(RunSynchronizationInBackground);
+            _thread.Start();
         }
 
         private void RunSynchronizationInBackground() {
@@ -114,7 +106,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     Notify(new TextNotification("Orders synchronization"));
                     var ordersRepository = _repositoryFactory.CreateRepository<Order>();
                     var ordersSyncCmd =
-                        new OrdersSynchronization(webServer, ordersRepository, 
+                        new OrdersSynchronization(webServer, ordersRepository,
                                                   _unitOfWorkFactory).RepeatOnError(3, 5000);
                     ordersSyncCmd.Execute();
 
@@ -125,7 +117,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         // Initialization
                         string databaseScriptFullPath = Environments.AppPath + schemaScript;
                         string databaseFileFullPath = Environments.AppPath + databaseName;
-                        _storageManager.CreateOrOpenStorage(databaseFileFullPath, databaseScriptFullPath);
+                        _storageManager.CreateOrOpenStorage(databaseFileFullPath,
+                                                            databaseScriptFullPath);
                     }
 
                     DateTime synchronizationDate = webServer.Connect().ServerTime();
@@ -260,13 +253,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                              statusDtoRepository,
                                                                              statusSqLiteRepository,
                                                                              statusTranslator,
-                                                                             _unitOfWorkFactory, bathSize)
+                                                                             _unitOfWorkFactory,
+                                                                             bathSize)
                                                                        : new SynchronizationCommand
                                                                              <StatusDto, Status>(
                                                                              statusDtoRepository,
                                                                              statusSqLiteRepository,
                                                                              statusTranslator,
-                                                                             _unitOfWorkFactory, bathSize,
+                                                                             _unitOfWorkFactory,
+                                                                             bathSize,
                                                                              _viewModel
                                                                                  .LastSynchronizationDate);
 
@@ -370,7 +365,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     var productDtoRepository = new WebRepository<ProductDto>(webServer);
                     var productSqLiteRepository =
                         _repositoryFactory.CreateRepository<Product>();
-                    DtoTranslator<Product, ProductDto> productTranslator = new ProductTranslator(_repositoryFactory);
+                    DtoTranslator<Product, ProductDto> productTranslator =
+                        new ProductTranslator(_repositoryFactory);
 
                     Command<ProductDto, Product> productSyncCommand = _viewModel.SynchronizeFully
                                                                           ? new SynchronizationCommand
@@ -528,6 +524,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _configurationManager.GetConfig("Common").Save();
                     _view.ShowInformation("Synchronization complete");
                 }
+                catch (ThreadAbortException) {}
                 catch (Exception exception) {
                     Log.Error("Synchronization failed", exception);
                     _view.ShowError("Synchronization failed");
@@ -539,8 +536,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void Cancel() {
             try {
-                if (_backgroundWorker != null)
-                    _backgroundWorker.CancelAsync();
+                if (_thread != null) {
+                    _thread.Abort();
+                    _thread.Join();
+                }
+            }
+            catch (ThreadAbortException) {
+                
             }
             finally {
                 _inProgress = false;

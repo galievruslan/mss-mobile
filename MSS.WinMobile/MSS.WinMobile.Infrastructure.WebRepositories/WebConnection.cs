@@ -52,7 +52,7 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories
                                                         new Dictionary<string, object>()));
 
 
-                    Post(RequestFactory.CreatePostRequest(this, logonPath,
+                    using (HttpWebResponse response = RequestDispatcher.Dispatch(this, RequestFactory.CreatePostRequest(this, logonPath,
                                                          new Dictionary<string, object>
                                                              {
                                                                  {
@@ -62,7 +62,11 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories
                                                                              {passwordParamName, _password}
                                                                          }
                                                                  }
-                                                             }));
+                                                             })))
+                    {
+                        if (response.StatusCode != HttpStatusCode.Found)
+                            throw new NeedLogonException();
+                    }
 
                     State = ConnectionState.Open;
                 }
@@ -78,18 +82,25 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories
         public DateTime ServerTime()
         {
             const string serverTimePath = "synchronization/datetime.json";
-            string json = RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, serverTimePath));
+            string json;
+            using (HttpWebResponse response = RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, serverTimePath))) {
+                json = RequestDispatcher.ProcessResponse(this, response);
+            }
             return DateTime.Parse(json.Replace("{\"datetime\":\"", string.Empty).Replace("\"}", string.Empty));
         }
 
         public string Get(HttpWebRequest httpWebRequest)
         {
-            return RequestDispatcher.Dispatch(this, httpWebRequest);
+            using (HttpWebResponse response = RequestDispatcher.Dispatch(this, httpWebRequest)) {
+                return RequestDispatcher.ProcessResponse(this, response);
+            }
         }
 
         public string Post(HttpWebRequest httpWebRequest)
         {
-            return RequestDispatcher.Dispatch(this, httpWebRequest);
+            using (HttpWebResponse response = RequestDispatcher.Dispatch(this, httpWebRequest)) {
+                return RequestDispatcher.ProcessResponse(this, response);
+            }
         }
 
         public void Dispose()
