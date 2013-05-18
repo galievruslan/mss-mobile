@@ -83,21 +83,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             var orderRepository = _repositoryFactory.CreateRepository<Order>();
             if (routeRepository.Find().Where(new RoutesToSyncSpec()).Count() > 0 ||
                 orderRepository.Find().Where(new OrdersToSyncSpec()).Count() > 0) {
-                if (
-                    _view.ShowConfirmation(
-                        "You have not synchronized data, which will be missed. Are you shure, you want to logout?")) {
-                    _storageManager.DeleteCurrentStorage();
-
-                    _configurationManager.GetConfig("Common")
-                                         .GetSection("Server")
-                                         .GetSetting("Username").Value = string.Empty;
-                    _configurationManager.GetConfig("Common")
-                                         .GetSection("Server")
-                                         .GetSetting("Password").Value = string.Empty;
-                    _configurationManager.GetConfig("Common").Save();
-                    _navigator.GoToExit();
-                }
+                if (!_view.ShowConfirmation(
+                        "You have not synchronized data, which will be missed. Are you shure, you want to logout?")) 
+                    return;
             }
+
+            _storageManager.DeleteCurrentStorage();
+
+            _configurationManager.GetConfig("Common")
+                                 .GetSection("Server")
+                                 .GetSetting("Username").Value = string.Empty;
+            _configurationManager.GetConfig("Common")
+                                 .GetSection("Server")
+                                 .GetSetting("Password").Value = string.Empty;
+            _configurationManager.GetConfig("Common").Save();
+            _navigator.GoToExit();
         }
     }
 }

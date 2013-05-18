@@ -168,15 +168,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     Name = _orderViewModel.PriceListName
                 }, _orderItemViewModels);
 
-            _orderItemViewModels.Clear();
-            foreach (var pickUpProductViewModel in pickedUpProducts) {
-                _orderItemViewModels.Add(new OrderItemViewModel {
-                    Id = pickUpProductViewModel.OrderItemId,
-                    ProductId = pickUpProductViewModel.ProductId,
-                    ProductName = pickUpProductViewModel.ProductName,
-                    Quantity = pickUpProductViewModel.Quantity,
-                    Price = pickUpProductViewModel.Price
-                });
+            if (pickedUpProducts != null) {
+                _orderItemViewModels.Clear();
+                foreach (var pickUpProductViewModel in pickedUpProducts) {
+                    _orderItemViewModels.Add(new OrderItemViewModel
+                        {
+                            Id = pickUpProductViewModel.OrderItemId,
+                            ProductId = pickUpProductViewModel.ProductId,
+                            ProductName = pickUpProductViewModel.ProductName,
+                            Quantity = pickUpProductViewModel.Quantity,
+                            Price = pickUpProductViewModel.Price
+                        });
+                }
             }
         }
 

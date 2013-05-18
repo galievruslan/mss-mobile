@@ -2,7 +2,6 @@
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
 
@@ -14,8 +13,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         private readonly IPriceListLookUpView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private PriceListRetriever _priceListRetriever;
-        private Cache<PriceList> _cache;
+        private readonly PriceListRetriever _priceListRetriever;
+        private readonly Cache<PriceList> _cache;
 
         public PriceListLookUpPresenter(IPriceListLookUpView view, IRepositoryFactory repositoryFactory) {
             _view = view;

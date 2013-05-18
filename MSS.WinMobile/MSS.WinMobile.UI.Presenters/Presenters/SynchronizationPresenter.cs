@@ -52,44 +52,44 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         private void RunSynchronizationInBackground() {
+            try {
+                var serverAddress =
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Server")
+                                         .GetSetting("Address")
+                                         .Value;
+                var username =
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Server")
+                                         .GetSetting("Username")
+                                         .Value;
+                var password =
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Server")
+                                         .GetSetting("Password")
+                                         .Value;
+                var bathSize =
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Synchronization")
+                                         .GetSetting("BathSize")
+                                         .As<int>();
 
-            var serverAddress =
-                _configurationManager.GetConfig("Common")
-                                     .GetSection("Server")
-                                     .GetSetting("Address")
-                                     .Value;
-            var username =
-                _configurationManager.GetConfig("Common")
-                                     .GetSection("Server")
-                                     .GetSetting("Username")
-                                     .Value;
-            var password =
-                _configurationManager.GetConfig("Common")
-                                     .GetSection("Server")
-                                     .GetSetting("Password")
-                                     .Value;
-            var bathSize =
-                _configurationManager.GetConfig("Common")
-                                     .GetSection("Synchronization")
-                                     .GetSetting("BathSize")
-                                     .As<int>();
+                var databaseName =
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Database")
+                                         .GetSetting("FileName")
+                                         .Value;
+                var schemaScript =
+                    _configurationManager.GetConfig("Common")
+                                         .GetSection("Database")
+                                         .GetSetting("SchemaScript")
+                                         .Value;
 
-            var databaseName =
-                _configurationManager.GetConfig("Common")
-                                     .GetSection("Database")
-                                     .GetSetting("FileName")
-                                     .Value;
-            var schemaScript =
-                _configurationManager.GetConfig("Common")
-                                     .GetSection("Database")
-                                     .GetSetting("SchemaScript")
-                                     .Value;
+                using (IWebServer webServer = new WebServer(serverAddress, username, password)) {
+                    Notify(new TextNotification("Start synchronization."));
+                    _view.ShowProgressBar();
 
-            using (IWebServer webServer = new WebServer(serverAddress, username, password)) {
-                Notify(new TextNotification("Start synchronization."));
-                _view.ShowProgressBar();
 
-                try {
                     Notify(new TextNotification("Routes synchronization"));
                     var routesRepository = _repositoryFactory.CreateRepository<Route>();
                     var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
@@ -519,15 +519,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _configurationManager.GetConfig("Common").Save();
                     _view.ShowInformation("Synchronization complete");
                 }
-                catch (ThreadAbortException) {
-                }
-                catch (Exception exception) {
-                    Log.Error("Synchronization failed", exception);
-                    _view.ShowError("Synchronization failed");
-                }
-                finally {
-                    _view.MakeActive();
-                }
+            }
+            catch (ThreadAbortException) {
+            }
+            catch (Exception exception) {
+                Log.Error("Synchronization failed", exception);
+                _view.ShowError("Synchronization failed");
+            }
+            finally {
+                _view.MakeActive();
             }
 
             _view.ReturnToMenu();
