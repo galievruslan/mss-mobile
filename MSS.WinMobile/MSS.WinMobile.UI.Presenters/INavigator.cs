@@ -5,6 +5,7 @@ namespace MSS.WinMobile.UI.Presenters
     public interface INavigator {
         void GoToLogon();
         void GoToMenu();
+        void GoToSettings();
         void GoToSynchronization();
 
         void GoToRoute(RouteViewModel routeViewModel);

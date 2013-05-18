@@ -31,5 +31,11 @@ namespace MSS.WinMobile.UI.Views.Views {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
         }
+
+        public bool ShowConfirmation(string message) {
+            return DialogResult.Yes ==
+                   MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                                   MessageBoxDefaultButton.Button2);
+        }
     }
 }

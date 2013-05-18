@@ -10,7 +10,7 @@ using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps
 {
-    public partial class ShippingAddressLookUpView : Form, IShippingAddressLookUpView
+    public partial class ShippingAddressLookUpView : LookUpView, IShippingAddressLookUpView
     {
         public ShippingAddressLookUpView() {
             InitializeComponent();
@@ -64,14 +64,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private void CancelButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        public void ShowInformation(string message) {
-            throw new NotImplementedException();
-        }
-
-        public void ShowError(string message) {
-            throw new NotImplementedException();
         }
     }
 }

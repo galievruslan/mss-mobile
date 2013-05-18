@@ -35,5 +35,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         PickUpProductPresenter CreatePickUpProductPresenter(IPickUpProductView pickUpProductView,
                                                             PriceListViewModel priceListViewModel,
                                                             IEnumerable<OrderItemViewModel> orderItemViewModels);
+
+        SettingsPresenter CreateSettingsPresenter(ISettingsView settingsView);
     }
 }

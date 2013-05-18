@@ -75,7 +75,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                      .Value;
             var bathSize =
                 _configurationManager.GetConfig("Common")
-                                     .GetSection("Server")
+                                     .GetSection("Synchronization")
                                      .GetSetting("BathSize")
                                      .As<int>();
 

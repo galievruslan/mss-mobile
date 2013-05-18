@@ -66,6 +66,7 @@
     <Compile Include="Presenters\DataRetrievers\OrderRetriever.cs" />
     <Compile Include="Presenters\NewRoutePointPresenter.cs" />
     <Compile Include="Presenters\OrderListPresenter.cs" />
+    <Compile Include="Presenters\SettingsPresenter.cs" />
     <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RoutePointViewModel.cs" />
     <Compile Include="ViewModels\RouteViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShippingAddressViewModel.cs" />
     <Compile Include="ViewModels\SynchronizationViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="INavigator.cs" />
     <Compile Include="Views\INewRoutePointView.cs" />
     <Compile Include="Views\IOrderListView.cs" />
+    <Compile Include="Views\ISettingsView.cs" />
     <Compile Include="Views\LookUps\ILookUpService.cs" />
     <Compile Include="Views\LookUps\IPickUpProductView.cs" />
     <Compile Include="Views\LookUps\IWarehouseLookUpView.cs" />

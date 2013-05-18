@@ -62,8 +62,8 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories
                                                                              {passwordParamName, _password}
                                                                          }
                                                                  }
-                                                             })))
-                    {
+                                                             }))) {
+                        RequestDispatcher.ProcessResponse(this, response);
                         if (response.StatusCode != HttpStatusCode.Found)
                             throw new NeedLogonException();
                     }

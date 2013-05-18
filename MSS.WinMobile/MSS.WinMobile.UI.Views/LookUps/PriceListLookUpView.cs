@@ -4,13 +4,12 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps
 {
-    public partial class PriceListLookUpView : Form, IPriceListLookUpView
+    public partial class PriceListLookUpView : LookUpView, IPriceListLookUpView
     {
         private readonly IPresentersFactory _presentersFactory;
         private PriceListLookUpPresenter _presenter;
@@ -56,22 +55,14 @@ namespace MSS.WinMobile.UI.Views.LookUps
             get { return _presenter.SelectedModel; }
         }
 
-        private void okButton_Click(object sender, EventArgs e) {
+        private void OkButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e) {
+        private void CancelButtonClick(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        public void ShowInformation(string message) {
-            throw new NotImplementedException();
-        }
-
-        public void ShowError(string message) {
-            throw new NotImplementedException();
         }
     }
 }

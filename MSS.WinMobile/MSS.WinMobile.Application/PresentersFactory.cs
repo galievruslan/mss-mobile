@@ -99,5 +99,9 @@ namespace MSS.WinMobile.Application {
                                                                    IEnumerable<OrderItemViewModel> orderItemViewModels) {
             return new PickUpProductPresenter(pickUpProductView, _repositoryFactory, priceListViewModel, orderItemViewModels);
         }
+
+        public SettingsPresenter CreateSettingsPresenter(ISettingsView settingsView) {
+            return new SettingsPresenter(settingsView, _storageManager, _repositoryFactory, _navigator);
+        }
     }
 }

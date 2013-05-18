@@ -25,6 +25,11 @@ namespace MSS.WinMobile.Application
             _container.SetView(menuView);
         }
 
+        public void GoToSettings() {
+            ISettingsView settingsView = new SettingsView(_presentersFactory);
+            _container.SetView(settingsView);
+        }
+
         public void GoToSynchronization() {
             ISynchronizationView synchronizationView = new SynchronizationView(_presentersFactory);
             _container.SetView(synchronizationView);

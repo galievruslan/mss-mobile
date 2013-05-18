@@ -38,9 +38,10 @@
             this._settingsLabel.ForeColor = System.Drawing.Color.Black;
             this._settingsLabel.Location = new System.Drawing.Point(39, 81);
             this._settingsLabel.Name = "_settingsLabel";
-            this._settingsLabel.Size = new System.Drawing.Size(201, 20);
+            this._settingsLabel.Size = new System.Drawing.Size(60, 20);
             this._settingsLabel.TabIndex = 20;
             this._settingsLabel.Text = "Settings";
+            this._settingsLabel.Click += new System.EventHandler(this.SettingsLabelClick);
             // 
             // _settingsIcon
             // 
@@ -57,7 +58,7 @@
             this._synchronizationLabel.ForeColor = System.Drawing.Color.Black;
             this._synchronizationLabel.Location = new System.Drawing.Point(39, 45);
             this._synchronizationLabel.Name = "_synchronizationLabel";
-            this._synchronizationLabel.Size = new System.Drawing.Size(201, 20);
+            this._synchronizationLabel.Size = new System.Drawing.Size(109, 20);
             this._synchronizationLabel.TabIndex = 19;
             this._synchronizationLabel.Text = "Synchronization";
             this._synchronizationLabel.Click += new System.EventHandler(this.SynchronizationLabelClick);
@@ -77,7 +78,7 @@
             this._routesLabel.ForeColor = System.Drawing.Color.Black;
             this._routesLabel.Location = new System.Drawing.Point(39, 9);
             this._routesLabel.Name = "_routesLabel";
-            this._routesLabel.Size = new System.Drawing.Size(201, 20);
+            this._routesLabel.Size = new System.Drawing.Size(53, 20);
             this._routesLabel.TabIndex = 18;
             this._routesLabel.Text = "Routes";
             this._routesLabel.Click += new System.EventHandler(this.RouteClick);

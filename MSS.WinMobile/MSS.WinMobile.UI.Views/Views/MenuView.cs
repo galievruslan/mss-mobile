@@ -29,5 +29,10 @@ namespace MSS.WinMobile.UI.Views.Views {
         private void RouteClick(object sender, EventArgs e) {
             _menuPresenter.ShowRouteView();
         }
+
+        private void SettingsLabelClick(object sender, EventArgs e)
+        {
+            _menuPresenter.ShowSettingsView();
+        }
     }
 }

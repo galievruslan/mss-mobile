@@ -53,9 +53,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _warehouseTextBox.Text = _viewModel.WarehouseAddress;
                 _notesTextBox.Text = _viewModel.Note;
 
-                _orderItemListBox.ItemDataNeeded += ItemDataNeeded;
-                _orderItemListBox.ItemSelected += ItemSelected;
-                _orderItemListBox.SetListSize(_presenter.InitializeListSize());
+                orderItemListBox.ItemDataNeeded += ItemDataNeeded;
+                orderItemListBox.ItemSelected += ItemSelected;
+                orderItemListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
 
@@ -72,8 +72,8 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private void AddClick(object sender, EventArgs e) {
             _presenter.PickUpProducts();
-            _orderItemListBox.SetListSize(_presenter.InitializeListSize());
-            _orderItemListBox.Refresh();
+            orderItemListBox.SetListSize(_presenter.InitializeListSize());
+            orderItemListBox.Refresh();
         }
 
         private void PriceListlookUp(object sender, EventArgs e) {

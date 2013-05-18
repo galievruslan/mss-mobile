@@ -11,7 +11,7 @@ using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps
 {
-    public partial class PickUpProductView : Form, IPickUpProductView
+    public partial class PickUpProductView : LookUpView, IPickUpProductView
     {
         private PickUpProductPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
@@ -89,14 +89,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
 
         public IList<PickUpProductViewModel> PickedUpProducts {
             get { return _presenter.PickedUpProducts; }
-        }
-
-        public void ShowInformation(string message) {
-            throw new NotImplementedException();
-        }
-
-        public void ShowError(string message) {
-            throw new NotImplementedException();
         }
     }
 }
