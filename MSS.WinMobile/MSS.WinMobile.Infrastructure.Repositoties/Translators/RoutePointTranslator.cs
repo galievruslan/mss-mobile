@@ -19,6 +19,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                     RouteId = value.GetInt32(value.GetOrdinal("Route_Id")),
                     ShippingAddressId = value.GetInt32(value.GetOrdinal("ShippingAddress_Id")),
                     ShippingAddressName = value.GetString(value.GetOrdinal("ShippingAddress_Name")),
+                    ShippingAddressAddress = value.GetString(value.GetOrdinal("ShippingAddress_Address")),
                     StatusId = value.GetInt32(value.GetOrdinal("Status_Id")),
                     Synchronized = value.GetBoolean(value.GetOrdinal("Synchronized"))
                 };

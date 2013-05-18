@@ -60,7 +60,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                            ? new RoutePointViewModel {
                                Id = _selectedRoutePoint.Id,
                                RouteId = _selectedRoutePoint.RouteId,
-                               ShippinAddressName = _selectedRoutePoint.ShippingAddressName
+                               ShippinAddressName = _selectedRoutePoint.ShippingAddressName,
+                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress
                            }
                            : null;
             }

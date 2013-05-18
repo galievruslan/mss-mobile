@@ -44,6 +44,12 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.ShippingAddressName = value; }
         }
 
+        new public string ShippingAddressAddress
+        {
+            get { return base.ShippingAddressAddress; }
+            set { base.ShippingAddressAddress = value; }
+        }
+
         new public int StatusId
         {
             get { return base.StatusId; }

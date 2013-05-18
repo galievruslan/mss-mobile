@@ -16,12 +16,14 @@ namespace MSS.WinMobile.Domain.Models
 
         public int ShippingAddressId { get; protected set; }
         public string ShippingAddressName { get; protected set; }
+        public string ShippingAddressAddress { get; protected set; }
 
         public int StatusId { get; protected set; }
 
         public void SetShippingAddress(ShippingAddress shippingAddress) {
             ShippingAddressId = shippingAddress.Id;
             ShippingAddressName = shippingAddress.Name;
+            ShippingAddressAddress = shippingAddress.Address;
         }
 
         public void SetStatus(Status status) {
