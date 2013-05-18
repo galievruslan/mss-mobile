@@ -29,9 +29,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public WarehouseViewModel GetItem(int index) {
             Warehouse item = _cache.RetrieveElement(index);
-            return new WarehouseViewModel {
-                Address = item.Address
-            };
+            return new WarehouseViewModel
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Address = item.Address
+                };
         }
 
         private Warehouse _selectedWarehouse;
@@ -42,10 +45,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public WarehouseViewModel SelectedModel {
             get {
                 return _selectedWarehouse != null
-                           ? new WarehouseViewModel {
-                               Id = _selectedWarehouse.Id,
-                               Address = _selectedWarehouse.Address
-                           }
+                           ? new WarehouseViewModel
+                               {
+                                   Id = _selectedWarehouse.Id,
+                                   Name = _selectedWarehouse.Name,
+                                   Address = _selectedWarehouse.Address
+                               }
                            : null;
             }
         }

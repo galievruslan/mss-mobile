@@ -12,7 +12,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
                                     DataRecordTranslator<Warehouse> translator)
             : base(storage, specificationTranslator, translator) {}
 
-        private const string SelectQuery = "SELECT Id, Address FROM Warehouses";
+        private const string SelectQuery = "SELECT Id, Name, Address FROM Warehouses";
         protected override string AsQuery()
         {
             return SelectQuery;

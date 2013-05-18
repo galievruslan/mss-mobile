@@ -11,6 +11,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
             var proxy = new WarehouseProxy
                 {
                     Id = value.Id,
+                    Name = value.Name,
                     Address = value.Address
                 };
             return proxy;

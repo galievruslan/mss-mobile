@@ -10,6 +10,12 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.Id = value; }
         }
 
+        new public string Name
+        {
+            get { return base.Name; }
+            set { base.Name = value; }
+        }
+
         new public string Address
         {
             get { return base.Address; }

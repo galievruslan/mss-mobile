@@ -57,6 +57,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             this._addressLabel.Size = new System.Drawing.Size(200, 14);
             this._addressLabel.TabIndex = 1;
             this._addressLabel.Text = "linkLabel1";
+            this._addressLabel.Click += new System.EventHandler(this.LabelClick);
             // 
             // ShippingAddressListBoxItem
             // 

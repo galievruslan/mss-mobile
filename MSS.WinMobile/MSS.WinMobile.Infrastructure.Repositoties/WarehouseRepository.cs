@@ -18,10 +18,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
             return new WarehouseQueryObject(Storage, _specificationTranslator, new WarehouseDataRecordTranslator());
         }
 
-        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Warehouses (Id, Address) VALUES ({0}, '{1}')";
+        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Warehouses (Id, Name, Address) VALUES ({0}, '{1}', '{2}')";
         protected override string GetSaveQueryFor(Warehouse model)
         {
-            return string.Format(SaveQueryTemplate, model.Id, model.Address.Replace("'", "''"));
+            return string.Format(SaveQueryTemplate, model.Id, model.Name.Replace("'", "''"), model.Address.Replace("'", "''"));
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM Warehouses WHERE Id = {0}";
