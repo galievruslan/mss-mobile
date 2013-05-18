@@ -37,6 +37,7 @@ CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [ShippingAddress_Id] INTEGER  NULL
 , [PriceList_Id] INTEGER  NULL
 , [Warehouse_Id] INTEGER  NULL
+, [Amount] numeric(8,2) NULL
 , [OrderStatus] INTEGER  NULL
 , [Note] VARCHAR(1024) NULL
 , [Synchronized] BIT  NULL

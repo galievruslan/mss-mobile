@@ -28,6 +28,8 @@ namespace MSS.WinMobile.Domain.Models
         public int WarehouseId { get; protected set; }
         public string WarehouseAddress { get; protected set; }
 
+        public decimal Amount { get; set; }
+
         public OrderStatus OrderStatus { get; set; }
         public string Note { get; set; }
 

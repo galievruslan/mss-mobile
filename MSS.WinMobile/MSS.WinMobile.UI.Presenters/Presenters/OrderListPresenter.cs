@@ -49,6 +49,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 PriceListName = order.PriceListName,
                 WarehouseId = order.WarehouseId,
                 WarehouseAddress = order.WarehouseAddress,
+                Amount = order.Amount,
                 Note = order.Note,
                 RoutePointId = order.RoutePointId,
                 Synchronized = order.Synchronized
@@ -75,6 +76,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                PriceListName = _selectedOrder.PriceListName,
                                WarehouseId = _selectedOrder.WarehouseId,
                                WarehouseAddress = _selectedOrder.WarehouseAddress,
+                               Amount = _selectedOrder.Amount,
                                Note = _selectedOrder.Note,
                                RoutePointId = _selectedOrder.RoutePointId,
                                Synchronized = _selectedOrder.Synchronized

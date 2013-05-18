@@ -118,6 +118,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 order.SetShippingAddress(shippingAddress);
                 order.SetPriceList(priceList);
                 order.SetWarehouse(warehouse);
+                order.Amount = _orderItemViewModels.Sum(model => model.Quantity*model.Price);
                 order.Note = _orderViewModel.Note;
                 order.OrderStatus = OrderStatus.New;
 
@@ -180,6 +181,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                             Price = pickUpProductViewModel.Price
                         });
                 }
+                _orderViewModel.Amount = _orderItemViewModels.Sum(model => model.Quantity * model.Price);
             }
         }
 

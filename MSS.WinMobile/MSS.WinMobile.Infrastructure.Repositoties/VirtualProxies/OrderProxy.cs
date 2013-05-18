@@ -89,6 +89,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.WarehouseAddress = value; }
         }
 
+        public new decimal Amount {
+            get { return base.Amount; }
+            set { base.Amount = value; }
+        }
+
         new public OrderStatus OrderStatus
         {
             get { return base.OrderStatus; }

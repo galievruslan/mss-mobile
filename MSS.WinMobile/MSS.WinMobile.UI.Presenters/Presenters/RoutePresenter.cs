@@ -45,7 +45,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             RoutePoint item = _cache.RetrieveElement(index);
             return new RoutePointViewModel {
                 Id = item.Id,
-                ShippinAddressName = item.ShippingAddressName
+                ShippinAddressName = item.ShippingAddressName,
+                ShippinAddressAddress                = item.ShippingAddressAddress,
             };
         }
 
@@ -61,7 +62,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                Id = _selectedRoutePoint.Id,
                                RouteId = _selectedRoutePoint.RouteId,
                                ShippinAddressName = _selectedRoutePoint.ShippingAddressName,
-                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress
+                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress                               
                            }
                            : null;
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -51,6 +52,7 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
                 _priceListTextBox.Text = _viewModel.PriceListName;
                 _warehouseTextBox.Text = _viewModel.WarehouseAddress;
+                _amountValueLable.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);
                 _notesTextBox.Text = _viewModel.Note;
 
                 orderItemListBox.ItemDataNeeded += ItemDataNeeded;
@@ -74,6 +76,8 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.PickUpProducts();
             orderItemListBox.SetListSize(_presenter.InitializeListSize());
             orderItemListBox.Refresh();
+            _amountValueLable.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);
+            _amountValueLable.Refresh();
         }
 
         private void PriceListlookUp(object sender, EventArgs e) {

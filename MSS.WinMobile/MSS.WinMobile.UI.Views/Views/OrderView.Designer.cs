@@ -57,6 +57,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel = new System.Windows.Forms.Panel();
+            this._amountLabel = new System.Windows.Forms.Label();
+            this._amountValueLable = new System.Windows.Forms.Label();
+            this.divisorLabel = new System.Windows.Forms.Label();
             this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
@@ -71,6 +74,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // itemsActionPanel
             // 
+            this.itemsActionPanel.Controls.Add(this.divisorLabel);
+            this.itemsActionPanel.Controls.Add(this._amountValueLable);
+            this.itemsActionPanel.Controls.Add(this._amountLabel);
             this.itemsActionPanel.Controls.Add(this.addButton);
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
@@ -208,10 +214,10 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._priceListResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._priceListResetButton.BackColor = System.Drawing.Color.White;
             this._priceListResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_priceListResetButton.BackgroundImage")));
-            this._priceListResetButton.Location = new System.Drawing.Point(1, 24);
+            this._priceListResetButton.Location = new System.Drawing.Point(0, 24);
             this._priceListResetButton.Name = "_priceListResetButton";
             this._priceListResetButton.PressedImage = null;
-            this._priceListResetButton.Size = new System.Drawing.Size(22, 24);
+            this._priceListResetButton.Size = new System.Drawing.Size(23, 24);
             this._priceListResetButton.TabIndex = 1;
             this._priceListResetButton.Click += new System.EventHandler(this.PriceListReset);
             // 
@@ -390,6 +396,28 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
+            // _amountLabel
+            // 
+            this._amountLabel.Location = new System.Drawing.Point(107, 3);
+            this._amountLabel.Name = "_amountLabel";
+            this._amountLabel.Size = new System.Drawing.Size(52, 19);
+            this._amountLabel.Text = "Amount";
+            // 
+            // _amountValueLable
+            // 
+            this._amountValueLable.Location = new System.Drawing.Point(165, 3);
+            this._amountValueLable.Name = "_amountValueLable";
+            this._amountValueLable.Size = new System.Drawing.Size(72, 19);
+            this._amountValueLable.Text = "0";
+            this._amountValueLable.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // divisorLabel
+            // 
+            this.divisorLabel.Location = new System.Drawing.Point(100, 3);
+            this.divisorLabel.Name = "divisorLabel";
+            this.divisorLabel.Size = new System.Drawing.Size(5, 20);
+            this.divisorLabel.Text = "|";
+            // 
             // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -445,5 +473,8 @@ namespace MSS.WinMobile.UI.Views.Views {
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private System.Windows.Forms.Panel _actionPanel;
         private OrderItemListBox orderItemListBox;
+        private System.Windows.Forms.Label _amountValueLable;
+        private System.Windows.Forms.Label _amountLabel;
+        private System.Windows.Forms.Label divisorLabel;
     }
 }

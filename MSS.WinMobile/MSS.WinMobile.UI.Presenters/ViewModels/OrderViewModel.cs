@@ -25,6 +25,8 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public int WarehouseId { get; set; }
         public string WarehouseAddress { get; set; }
 
+        public decimal Amount { get; set; }
+
         public string Note { get; set; }
 
         public bool Synchronized { get; set; }
