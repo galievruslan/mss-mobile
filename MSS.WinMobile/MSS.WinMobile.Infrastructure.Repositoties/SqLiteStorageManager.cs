@@ -26,21 +26,20 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties {
         public IStorage Current { get; private set; }
 
         public void DeleteCurrentStorage() {
-            IStorageConnection connection = Current.Connect();
-            try {
-                connection.Close();
-            }
-            catch (Exception exception) {
-                Log.Error(exception);
-            }
-            finally {
-                connection.Dispose();
-            }
+            lock (Current) {
+                string path = Current.Path;
+                try {
+                    Current.Dispose();
+                }
+                catch (Exception exception) {
+                    Log.Error(exception);
+                }
 
-            // File database
-            if (!string.IsNullOrEmpty(Current.Path)) {
-                if (File.Exists(Current.Path))
-                    File.Delete(Current.Path);
+                // File database
+                if (!string.IsNullOrEmpty(path)) {
+                    if (File.Exists(path))
+                        File.Delete(path);
+                }
             }
         }
 

@@ -43,14 +43,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _navigator = navigator;
         }
 
-        private static readonly object LockObject = new object();
         private Thread _thread;
-        private bool _inProgress;
         public void Synchronize() {
-            lock (LockObject) {
-                if (_inProgress) return;
-                _inProgress = true;
-            }
+            _view.MakeInactive();
 
             _thread = new Thread(RunSynchronizationInBackground);
             _thread.Start();
@@ -524,10 +519,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _configurationManager.GetConfig("Common").Save();
                     _view.ShowInformation("Synchronization complete");
                 }
-                catch (ThreadAbortException) {}
+                catch (ThreadAbortException) {
+                }
                 catch (Exception exception) {
                     Log.Error("Synchronization failed", exception);
                     _view.ShowError("Synchronization failed");
+                }
+                finally {
+                    _view.MakeActive();
                 }
             }
 
@@ -545,7 +544,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 
             }
             finally {
-                _inProgress = false;
+                _view.MakeActive();
             }
 
             _view.ReturnToMenu();

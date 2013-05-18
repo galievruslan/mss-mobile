@@ -23,7 +23,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void ShowSyncView() {
-            _navigator.GoToSynchronization();
+            _navigator.GoToSynchronization(false);
         }
 
         public void ShowSettingsView()

@@ -22,7 +22,8 @@
         }
 
         public void Dispose() {
-            _webConnection.Dispose();
+            if (_webConnection != null)
+                _webConnection.Dispose();
         }
     }
 }

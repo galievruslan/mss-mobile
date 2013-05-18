@@ -30,8 +30,9 @@ namespace MSS.WinMobile.Application
             _container.SetView(settingsView);
         }
 
-        public void GoToSynchronization() {
-            ISynchronizationView synchronizationView = new SynchronizationView(_presentersFactory);
+        public void GoToSynchronization(bool autostart)
+        {
+            ISynchronizationView synchronizationView = new SynchronizationView(_presentersFactory, autostart);
             _container.SetView(synchronizationView);
         }
 

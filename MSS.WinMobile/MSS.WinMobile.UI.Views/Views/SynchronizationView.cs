@@ -10,8 +10,11 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        public SynchronizationView(IPresentersFactory presentersFactory) {
+        private readonly bool _autostart;
+        public SynchronizationView(IPresentersFactory presentersFactory, bool autostart)
+        {
             _presentersFactory = presentersFactory;
+            _autostart = autostart;
             InitializeComponent();
         }
 
@@ -29,16 +32,18 @@ namespace MSS.WinMobile.UI.Views.Views {
                                           ? ViewModel.LastSynchronizationDate.ToString(
                                               "dd.MM.yyyy HH:mm")
                                           : "never";
+
+                if (_autostart)
+                {
+                    _actionPanel.Visible = false;
+                    _synchronizeFullyCheckBox.Checked = true;
+                    _synchronizationPresenter.Synchronize();
+                }
             }
         }
 
         private void OkButtonClick(object sender, EventArgs e) {
             _synchronizationPresenter.Synchronize();
-            _synchronizeFullyCheckBox.Checked = ViewModel.SynchronizeFully;
-            _lastSyncDateLabel.Text = ViewModel.LastSynchronizationDate != DateTime.MinValue
-                                          ? ViewModel.LastSynchronizationDate.ToString(
-                                              "dd.MM.yyyy HH:mm")
-                                          : "never";
         }
 
         private void CancelButtonClick(object sender, EventArgs e) {
@@ -79,7 +84,29 @@ namespace MSS.WinMobile.UI.Views.Views {
             }
         }
 
-        public delegate void ReturnToMenuDelegate();
+        private delegate void MakeInactiveDelegate();
+
+        public void MakeInactive() {
+            if (InvokeRequired) {
+                Invoke(new MakeInactiveDelegate(MakeInactive));
+            }
+            else {
+                Enabled = false;
+            }
+        }
+
+        private delegate void MakeActiveDelegate();
+
+        public void MakeActive() {
+            if (InvokeRequired) {
+                Invoke(new MakeActiveDelegate(MakeActive));
+            }
+            else {
+                Enabled = false;
+            }
+        }
+
+        private delegate void ReturnToMenuDelegate();
         public void ReturnToMenu() {
             if (InvokeRequired) {
                 Invoke(new ReturnToMenuDelegate(ReturnToMenu));

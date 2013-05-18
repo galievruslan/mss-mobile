@@ -16,11 +16,16 @@ namespace MSS.WinMobile.UI.Views.Views {
         public delegate void OnLoad(object sender, EventArgs e);
         public event OnLoad Load;
 
-        protected override void OnParentChanged(EventArgs e) {
-            base.OnParentChanged(e);
-            if (Load != null)
-                Load.Invoke(this, e);
-        }
+        //private bool _firstTime;
+        //protected override void OnParentChanged(EventArgs e) {
+        //    base.OnParentChanged(e);
+
+        //    if (!_firstTime) {
+        //        if (Load != null)
+        //            Load.Invoke(this, e);
+        //        _firstTime = true;
+        //    }
+        //}
 
         public void ShowInformation(string message) {
             MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.None,

@@ -6,7 +6,7 @@ namespace MSS.WinMobile.UI.Presenters
         void GoToLogon();
         void GoToMenu();
         void GoToSettings();
-        void GoToSynchronization();
+        void GoToSynchronization(bool autostart);
 
         void GoToRoute(RouteViewModel routeViewModel);
         void GoToNewRoutePoint(RouteViewModel routeViewModel);

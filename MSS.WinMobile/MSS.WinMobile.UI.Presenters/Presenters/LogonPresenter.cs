@@ -43,7 +43,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             _viewModel.Password;
                         _configurationManager.GetConfig("Common").Save();
                     }
-                    _navigator.GoToMenu();
+                    _navigator.GoToSynchronization(true);
                 }
                 catch (NeedLogonException exception) {
                     Log.Error(exception);
