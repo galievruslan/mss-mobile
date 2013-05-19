@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\CategoryDto.cs" />
+    <Compile Include="Dtos\ManagerDto.cs" />
     <Compile Include="Dtos\MyShippingAddressDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\Dto.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Dtos\RoutePointDto.cs" />
     <Compile Include="Dtos\RoutePointTemplateDto.cs" />
     <Compile Include="Dtos\RouteTemplateDto.cs" />
+    <Compile Include="Dtos\SettingsDto.cs" />
     <Compile Include="Dtos\ShippingAddressDto.cs" />
     <Compile Include="Dtos\StatusDto.cs" />
     <Compile Include="Dtos\UnitOfMeasureDto.cs" />

@@ -33,7 +33,7 @@ namespace MSS.WinMobile.Synchronizer.FaultHandling
                 catch (Exception exception) {
                     Log.Error(string.Format("Excecution try #{0} failed", tryNo), exception);
 
-                    if (tryNo > _repeatCount) {
+                    if (tryNo >= _repeatCount) {
                         throw new CommandException<TS, TD>(_command, string.Empty, exception);
                     }
 

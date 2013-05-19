@@ -6,8 +6,6 @@ using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
 using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
-using MSS.WinMobile.UI.Presenters;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Views;
 using MSS.WinMobile.UI.Views.Views;
 using OpenNETCF.Windows.Forms;
@@ -64,7 +62,7 @@ namespace MSS.WinMobile.Application
                              .RegisterSpecificationTranslator(new RouteTemplateSpecTranslator())
                              .RegisterSpecificationTranslator(new CommonTranslator<Status>())
                              .RegisterSpecificationTranslator(new CommonTranslator<UnitOfMeasure>())
-                             .RegisterSpecificationTranslator(new CommonTranslator<Warehouse>());
+                             .RegisterSpecificationTranslator(new WarehouseSpecTranslator());
 
             IModelsFactory modelsFactory = new ModelsFactory(repositoryFactory);
 

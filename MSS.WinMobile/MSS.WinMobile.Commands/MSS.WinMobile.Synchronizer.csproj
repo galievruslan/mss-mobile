@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="CategotiesSynchronization.cs" />
+    <Compile Include="ManagerSynchronization.cs" />
     <Compile Include="OrdersSynchronization.cs" />
     <Compile Include="MyShippingAddressesSynchronization.cs" />
     <Compile Include="FaultHandling\CommandException.cs" />
@@ -101,6 +102,14 @@
     <ProjectReference Include="..\MSS.WinMobile.Infrastructure.WebRepositories\MSS.WinMobile.Infrastructure.Web.Repositories.csproj">
       <Project>{E2DB17CF-A95C-499E-812E-686946F3DA5C}</Project>
       <Name>MSS.WinMobile.Infrastructure.Web.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
+      <Project>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</Project>
+      <Name>JsonSerializer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\LitJson.csproj">
+      <Project>{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}</Project>
+      <Name>LitJson</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

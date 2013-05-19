@@ -40,12 +40,15 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
         {
             try
             {
-                _transaction.Rollback();
+                if (_transaction != null)
+                    _transaction.Rollback();
             }
             finally
             {
-                _transaction.Dispose();
-                _transaction = null;
+                if (_transaction != null) {
+                    _transaction.Dispose();
+                    _transaction = null;
+                }
             }
         }
 

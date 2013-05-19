@@ -447,8 +447,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     productsUomSyncCommand.Execute();
                     Notify(new ProgressNotification(82));
 
-                    // GoToRoute templates synchronization
-                    Notify(new TextNotification("GoToRoute templates synchronization"));
+                    // Route templates synchronization
+                    Notify(new TextNotification("Route templates synchronization"));
                     var routeTemplateDtoRepository = new WebRepository<RouteTemplateDto>(webServer);
                     var routeTemplateSqLiteRepository =
                         _repositoryFactory.CreateRepository<RouteTemplate>();
@@ -480,8 +480,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     routeTemplateSyncCommand.Execute();
                     Notify(new ProgressNotification(90));
 
-                    // GoToRoute points templates synchronization
-                    Notify(new TextNotification("GoToRoute points templates synchronization"));
+                    // Route points templates synchronization
+                    Notify(new TextNotification("Route points templates synchronization"));
                     var routePointTemplateDtoRepository =
                         new WebRepository<RoutePointTemplateDto>(webServer);
                     var routePointTemplateSqLiteRepository =
@@ -511,6 +511,29 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                                                 5000);
                     routePointTemplateSyncCommand.Execute();
                     Notify(new ProgressNotification(100));
+
+                    // Managers settings synchronization
+                    Notify(new TextNotification("Managers settings synchronization"));
+                    warehouseSqLiteRepository =
+                        _repositoryFactory.CreateRepository<Warehouse>();
+
+                    Command<ManagerDto, Warehouse> managerSettingsSyncCommand =
+                        _viewModel.SynchronizeFully
+                            ? new ManagerSynchronization(
+                                  webServer,
+                                  warehouseSqLiteRepository,
+                                  _unitOfWorkFactory,
+                                  bathSize)
+                            : new ManagerSynchronization(
+                                  webServer,
+                                  warehouseSqLiteRepository,
+                                  _unitOfWorkFactory,
+                                  bathSize,
+                                  _viewModel
+                                      .LastSynchronizationDate);
+
+                    managerSettingsSyncCommand = managerSettingsSyncCommand.RepeatOnError(3, 5000);
+                    managerSettingsSyncCommand.Execute();
 
                     _configurationManager.GetConfig("Common")
                                          .GetSection("Synchronization")

@@ -21,5 +21,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             get { return base.Address; }
             set { base.Address = value; }
         }
+
+        public new bool Default {
+            get { return base.Default; }
+            set { base.Default = value; }
+        }
     }
 }

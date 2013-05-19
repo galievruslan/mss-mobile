@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
@@ -48,6 +49,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             var customersRepository = _repositoryFactory.CreateRepository<Customer>();
             var customer = customersRepository.GetById(shippingAddress.CustomerId);
 
+            var warehouseRepository = _repositoryFactory.CreateRepository<Warehouse>();
+            var defaultWarehouse =
+                warehouseRepository.Find().Where(new DefaultWarehouseSpec()).FirstOrDefault();
+
             _routePointViewModel = routePointViewModel;
             _orderViewModel = new OrderViewModel {
                 OrderDate = DateTime.Now,
@@ -58,6 +63,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 ShippingAddressId = shippingAddress.Id,
                 ShippingAddressName = shippingAddress.Address
             };
+
+            if (defaultWarehouse != null) {
+                _orderViewModel.WarehouseId = defaultWarehouse.Id;
+                _orderViewModel.WarehouseAddress = defaultWarehouse.Address;
+            }
 
             _orderItemViewModels = new List<OrderItemViewModel>();
         }
