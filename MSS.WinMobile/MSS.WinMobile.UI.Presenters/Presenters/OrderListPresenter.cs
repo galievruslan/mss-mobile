@@ -90,8 +90,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void EditOrder() {
-            if (SelectedModel != null)
-                _navigator.GoToEditRoutePointsOrder(_routePointViewModel, SelectedModel);
+            if (SelectedModel != null) {
+                if (SelectedModel.Synchronized)
+                    _navigator.GoViewRoutePointsOrder(_routePointViewModel, SelectedModel);
+                else
+                    _navigator.GoToEditRoutePointsOrder(_routePointViewModel, SelectedModel);
+            }
         }
 
         public void GoToRoute() {

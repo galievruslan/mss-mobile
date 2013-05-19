@@ -61,6 +61,11 @@ namespace MSS.WinMobile.Application
             _container.SetView(orderView);
         }
 
+        public void GoViewRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
+            IOrderView orderView = new ReadOnlyOrderView(_presentersFactory, routePointViewModel, orderViewModel);
+            _container.SetView(orderView);
+        }
+
         public void GoToExit() {
             _container.Close();
             _container.Dispose();

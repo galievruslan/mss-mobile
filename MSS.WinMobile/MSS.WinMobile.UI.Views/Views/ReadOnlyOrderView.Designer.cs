@@ -1,7 +1,7 @@
 ﻿using MSS.WinMobile.UI.Controls.Concret;
 
 namespace MSS.WinMobile.UI.Views.Views {
-    partial class OrderView {
+    partial class ReadOnlyOrderView {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -25,25 +25,19 @@ namespace MSS.WinMobile.UI.Views.Views {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReadOnlyOrderView));
             this.itemsActionPanel = new System.Windows.Forms.Panel();
             this.divisorLabel = new System.Windows.Forms.Label();
             this._amountValueLable = new System.Windows.Forms.Label();
             this._amountLabel = new System.Windows.Forms.Label();
-            this.addButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
+            this._shippingDateTextBox = new System.Windows.Forms.TextBox();
+            this._orderDataTextBox = new System.Windows.Forms.TextBox();
             this.warehousePanel = new System.Windows.Forms.Panel();
             this._warehouseTextBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this._warehouseResetButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._warehouseLookUpButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.pricePanel = new System.Windows.Forms.Panel();
             this._priceListTextBox = new System.Windows.Forms.TextBox();
-            this._buttonPanel = new System.Windows.Forms.Panel();
-            this._priceListResetButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._priceListLookUpButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._shippingDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this._shippingAddressTextBox = new System.Windows.Forms.TextBox();
             this._customerTextBox = new System.Windows.Forms.TextBox();
@@ -59,14 +53,11 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel = new System.Windows.Forms.Panel();
-            this._orderDateTextBox = new System.Windows.Forms.TextBox();
             this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
             this.warehousePanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.pricePanel.SuspendLayout();
-            this._buttonPanel.SuspendLayout();
             this._detailsTab.SuspendLayout();
             this._notesTab.SuspendLayout();
             this._actionPanel.SuspendLayout();
@@ -77,7 +68,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.itemsActionPanel.Controls.Add(this.divisorLabel);
             this.itemsActionPanel.Controls.Add(this._amountValueLable);
             this.itemsActionPanel.Controls.Add(this._amountLabel);
-            this.itemsActionPanel.Controls.Add(this.addButton);
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
@@ -105,18 +95,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._amountLabel.Size = new System.Drawing.Size(52, 19);
             this._amountLabel.Text = "Amount";
             // 
-            // addButton
-            // 
-            this.addButton.BackColor = System.Drawing.Color.White;
-            this.addButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("addButton.BackgroundImage")));
-            this.addButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.addButton.Location = new System.Drawing.Point(2, 2);
-            this.addButton.Name = "addButton";
-            this.addButton.PressedImage = null;
-            this.addButton.Size = new System.Drawing.Size(20, 20);
-            this.addButton.TabIndex = 0;
-            this.addButton.Click += new System.EventHandler(this.AddClick);
-            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this._generalTab);
@@ -132,10 +110,10 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // _generalTab
             // 
-            this._generalTab.Controls.Add(this._orderDateTextBox);
+            this._generalTab.Controls.Add(this._shippingDateTextBox);
+            this._generalTab.Controls.Add(this._orderDataTextBox);
             this._generalTab.Controls.Add(this.warehousePanel);
             this._generalTab.Controls.Add(this.pricePanel);
-            this._generalTab.Controls.Add(this._shippingDatePicker);
             this._generalTab.Controls.Add(this.label1);
             this._generalTab.Controls.Add(this._shippingAddressTextBox);
             this._generalTab.Controls.Add(this._customerTextBox);
@@ -149,10 +127,25 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._generalTab.Size = new System.Drawing.Size(240, 214);
             this._generalTab.Text = "General";
             // 
+            // _shippingDateTextBox
+            // 
+            this._shippingDateTextBox.Location = new System.Drawing.Point(93, 29);
+            this._shippingDateTextBox.Name = "_shippingDateTextBox";
+            this._shippingDateTextBox.ReadOnly = true;
+            this._shippingDateTextBox.Size = new System.Drawing.Size(139, 21);
+            this._shippingDateTextBox.TabIndex = 60;
+            // 
+            // _orderDataTextBox
+            // 
+            this._orderDataTextBox.Location = new System.Drawing.Point(93, 3);
+            this._orderDataTextBox.Name = "_orderDataTextBox";
+            this._orderDataTextBox.ReadOnly = true;
+            this._orderDataTextBox.Size = new System.Drawing.Size(139, 21);
+            this._orderDataTextBox.TabIndex = 59;
+            // 
             // warehousePanel
             // 
             this.warehousePanel.Controls.Add(this._warehouseTextBox);
-            this.warehousePanel.Controls.Add(this.panel1);
             this.warehousePanel.Location = new System.Drawing.Point(77, 160);
             this.warehousePanel.Name = "warehousePanel";
             this.warehousePanel.Size = new System.Drawing.Size(155, 48);
@@ -165,47 +158,12 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._warehouseTextBox.Multiline = true;
             this._warehouseTextBox.Name = "_warehouseTextBox";
             this._warehouseTextBox.ReadOnly = true;
-            this._warehouseTextBox.Size = new System.Drawing.Size(133, 48);
+            this._warehouseTextBox.Size = new System.Drawing.Size(155, 48);
             this._warehouseTextBox.TabIndex = 5;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this._warehouseResetButton);
-            this.panel1.Controls.Add(this._warehouseLookUpButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(133, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(22, 48);
-            // 
-            // _warehouseResetButton
-            // 
-            this._warehouseResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._warehouseResetButton.BackColor = System.Drawing.Color.White;
-            this._warehouseResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_warehouseResetButton.BackgroundImage")));
-            this._warehouseResetButton.Location = new System.Drawing.Point(0, 24);
-            this._warehouseResetButton.Name = "_warehouseResetButton";
-            this._warehouseResetButton.PressedImage = null;
-            this._warehouseResetButton.Size = new System.Drawing.Size(22, 24);
-            this._warehouseResetButton.TabIndex = 1;
-            this._warehouseResetButton.Click += new System.EventHandler(this.WarehouseReset);
-            // 
-            // _warehouseLookUpButton
-            // 
-            this._warehouseLookUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._warehouseLookUpButton.BackColor = System.Drawing.Color.White;
-            this._warehouseLookUpButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_warehouseLookUpButton.BackgroundImage")));
-            this._warehouseLookUpButton.Location = new System.Drawing.Point(0, 0);
-            this._warehouseLookUpButton.Name = "_warehouseLookUpButton";
-            this._warehouseLookUpButton.PressedImage = null;
-            this._warehouseLookUpButton.Size = new System.Drawing.Size(22, 24);
-            this._warehouseLookUpButton.TabIndex = 0;
-            this._warehouseLookUpButton.Click += new System.EventHandler(this.WarehouseLookUp);
             // 
             // pricePanel
             // 
             this.pricePanel.Controls.Add(this._priceListTextBox);
-            this.pricePanel.Controls.Add(this._buttonPanel);
             this.pricePanel.Location = new System.Drawing.Point(77, 106);
             this.pricePanel.Name = "pricePanel";
             this.pricePanel.Size = new System.Drawing.Size(155, 48);
@@ -218,53 +176,8 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._priceListTextBox.Multiline = true;
             this._priceListTextBox.Name = "_priceListTextBox";
             this._priceListTextBox.ReadOnly = true;
-            this._priceListTextBox.Size = new System.Drawing.Size(133, 48);
+            this._priceListTextBox.Size = new System.Drawing.Size(155, 48);
             this._priceListTextBox.TabIndex = 4;
-            // 
-            // _buttonPanel
-            // 
-            this._buttonPanel.BackColor = System.Drawing.Color.White;
-            this._buttonPanel.Controls.Add(this._priceListResetButton);
-            this._buttonPanel.Controls.Add(this._priceListLookUpButton);
-            this._buttonPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this._buttonPanel.Location = new System.Drawing.Point(133, 0);
-            this._buttonPanel.Name = "_buttonPanel";
-            this._buttonPanel.Size = new System.Drawing.Size(22, 48);
-            // 
-            // _priceListResetButton
-            // 
-            this._priceListResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._priceListResetButton.BackColor = System.Drawing.Color.White;
-            this._priceListResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_priceListResetButton.BackgroundImage")));
-            this._priceListResetButton.Location = new System.Drawing.Point(0, 24);
-            this._priceListResetButton.Name = "_priceListResetButton";
-            this._priceListResetButton.PressedImage = null;
-            this._priceListResetButton.Size = new System.Drawing.Size(23, 24);
-            this._priceListResetButton.TabIndex = 1;
-            this._priceListResetButton.Click += new System.EventHandler(this.PriceListReset);
-            // 
-            // _priceListLookUpButton
-            // 
-            this._priceListLookUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._priceListLookUpButton.BackColor = System.Drawing.Color.White;
-            this._priceListLookUpButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_priceListLookUpButton.BackgroundImage")));
-            this._priceListLookUpButton.Location = new System.Drawing.Point(0, 0);
-            this._priceListLookUpButton.Name = "_priceListLookUpButton";
-            this._priceListLookUpButton.PressedImage = null;
-            this._priceListLookUpButton.Size = new System.Drawing.Size(22, 24);
-            this._priceListLookUpButton.TabIndex = 0;
-            this._priceListLookUpButton.Click += new System.EventHandler(this.PriceListlookUp);
-            // 
-            // _shippingDatePicker
-            // 
-            this._shippingDatePicker.CustomFormat = "dd.MM.yyyy";
-            this._shippingDatePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._shippingDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this._shippingDatePicker.Location = new System.Drawing.Point(107, 29);
-            this._shippingDatePicker.Name = "_shippingDatePicker";
-            this._shippingDatePicker.Size = new System.Drawing.Size(125, 22);
-            this._shippingDatePicker.TabIndex = 52;
-            this._shippingDatePicker.ValueChanged += new System.EventHandler(this.ShippingDatePickerValueChanged);
             // 
             // label1
             // 
@@ -359,7 +272,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(232, 212);
+            this._notesTab.Size = new System.Drawing.Size(240, 214);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox
@@ -368,9 +281,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTextBox.Location = new System.Drawing.Point(7, 7);
             this._notesTextBox.Multiline = true;
             this._notesTextBox.Name = "_notesTextBox";
+            this._notesTextBox.ReadOnly = true;
             this._notesTextBox.Size = new System.Drawing.Size(226, 204);
             this._notesTextBox.TabIndex = 0;
-            this._notesTextBox.TextChanged += new System.EventHandler(this.NotesTextBoxTextChanged);
             // 
             // cancelButton
             // 
@@ -407,29 +320,19 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
             // 
-            // _orderDateTextBox
-            // 
-            this._orderDateTextBox.Location = new System.Drawing.Point(107, 4);
-            this._orderDateTextBox.Name = "_orderDateTextBox";
-            this._orderDateTextBox.ReadOnly = true;
-            this._orderDateTextBox.Size = new System.Drawing.Size(125, 21);
-            this._orderDateTextBox.TabIndex = 59;
-            // 
-            // OrderView
+            // ReadOnlyOrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this._actionPanel);
-            this.Name = "OrderView";
+            this.Name = "ReadOnlyOrderView";
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderViewLoad);
             this.itemsActionPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this._generalTab.ResumeLayout(false);
             this.warehousePanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.pricePanel.ResumeLayout(false);
-            this._buttonPanel.ResumeLayout(false);
             this._detailsTab.ResumeLayout(false);
             this._notesTab.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
@@ -440,20 +343,12 @@ namespace MSS.WinMobile.UI.Views.Views {
         #endregion
 
         private System.Windows.Forms.Panel itemsActionPanel;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton addButton;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage _generalTab;
         private System.Windows.Forms.Panel warehousePanel;
         private System.Windows.Forms.TextBox _warehouseTextBox;
-        private System.Windows.Forms.Panel panel1;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _warehouseResetButton;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _warehouseLookUpButton;
         public System.Windows.Forms.Panel pricePanel;
         private System.Windows.Forms.TextBox _priceListTextBox;
-        private System.Windows.Forms.Panel _buttonPanel;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _priceListResetButton;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _priceListLookUpButton;
-        private System.Windows.Forms.DateTimePicker _shippingDatePicker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _shippingAddressTextBox;
         private System.Windows.Forms.TextBox _customerTextBox;
@@ -472,6 +367,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         private System.Windows.Forms.Label _amountValueLable;
         private System.Windows.Forms.Label _amountLabel;
         private System.Windows.Forms.Label divisorLabel;
-        private System.Windows.Forms.TextBox _orderDateTextBox;
+        private System.Windows.Forms.TextBox _shippingDateTextBox;
+        private System.Windows.Forms.TextBox _orderDataTextBox;
     }
 }

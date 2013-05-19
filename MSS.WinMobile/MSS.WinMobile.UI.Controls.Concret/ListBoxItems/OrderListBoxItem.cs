@@ -30,7 +30,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
                 _shippingLabel.BackColor = _ammountLabel.BackColor = IsSelected ? ColorSelected : ColorUnselected;
 
             if (!IsSelected && _viewModel.Synchronized) {
-                _descriptionLabel.BackColor = _shippingLabel.BackColor = Color.LightGreen;
+                _descriptionLabel.BackColor = _shippingLabel.BackColor = _ammountLabel.BackColor = Color.LightGreen;
             }
 
             base.OnPaint(e);

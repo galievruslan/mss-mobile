@@ -114,6 +114,12 @@
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ReadOnlyOrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ReadOnlyOrderView.Designer.cs">
+      <DependentUpon>ReadOnlyOrderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DesignMode.cs" />
     <Compile Include="Views\LogonView.cs">
       <SubType>UserControl</SubType>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LookUps\CustomerLookUpView.resx">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReadOnlyOrderView.resx">
+      <DependentUpon>ReadOnlyOrderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LogonView.resx">
       <DependentUpon>LogonView.cs</DependentUpon>

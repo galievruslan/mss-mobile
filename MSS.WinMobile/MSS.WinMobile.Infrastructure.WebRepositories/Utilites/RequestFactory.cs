@@ -43,8 +43,9 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories.Utilites
             webRequest.UserAgent = WebConnection.USER_AGENT;
             webRequest.ContentType = WebConnection.CONTENT_TYPE;
             webRequest.AllowAutoRedirect = false;
+            webRequest.Headers.Add("X-CSRF-Token", connection.CsrfTokenContainer.CsrfToken);
 
-            parameters.Add(WebConnection.CSRF_TOKEN_PARAM_NAME, connection.CsrfTokenContainer.CsrfToken);
+            //parameters.Add(WebConnection.CSRF_TOKEN_PARAM_NAME, connection.CsrfTokenContainer.CsrfToken);
             string postData = ParseParametersToJson(parameters);
 
             webRequest.AllowWriteStreamBuffering = true;
