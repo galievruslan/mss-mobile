@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -140,6 +141,29 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void GoToAddRoutePoint() {
             _navigator.GoToNewRoutePoint(_viewModel);
+        }
+
+        public void DeleteRoutePoint() {
+            if (SelectedModel != null) {
+                var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
+                var routePoint = routePointRepository.GetById(SelectedModel.Id);
+                if (routePoint.Orders.Count() > 0 || routePoint.Synchronized) {
+                    _view.ShowError("You can't delete synchronized route point or point with orders.");
+                }
+                else {
+                    using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                        try {
+                            unitOfWork.BeginTransaction();
+                            routePointRepository.Delete(routePoint);
+                            unitOfWork.Commit();
+                        }
+                        catch (Exception exception) {
+                            Log.Error(exception);
+                            unitOfWork.Rollback();
+                        }
+                    }
+                }
+            }
         }
 
         public void GoToOrderList() {
