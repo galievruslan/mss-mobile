@@ -29,12 +29,12 @@
             this.divisorLabel = new System.Windows.Forms.Label();
             this._listOrdersButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel = new System.Windows.Forms.Panel();
+            this._deleteRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._closeButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.panel = new System.Windows.Forms.Panel();
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
-            this._deleteRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -44,7 +44,7 @@
             this._createOrderButton.BackColor = System.Drawing.Color.White;
             this._createOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_createOrderButton.BackgroundImage")));
             this._createOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._createOrderButton.Location = new System.Drawing.Point(83, 2);
+            this._createOrderButton.Location = new System.Drawing.Point(74, 2);
             this._createOrderButton.Name = "_createOrderButton";
             this._createOrderButton.PressedImage = null;
             this._createOrderButton.Size = new System.Drawing.Size(20, 20);
@@ -65,7 +65,7 @@
             // 
             // divisorLabel
             // 
-            this.divisorLabel.Location = new System.Drawing.Point(51, 3);
+            this.divisorLabel.Location = new System.Drawing.Point(44, 3);
             this.divisorLabel.Name = "divisorLabel";
             this.divisorLabel.Size = new System.Drawing.Size(5, 20);
             this.divisorLabel.Text = "|";
@@ -75,7 +75,7 @@
             this._listOrdersButton.BackColor = System.Drawing.Color.White;
             this._listOrdersButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_listOrdersButton.BackgroundImage")));
             this._listOrdersButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._listOrdersButton.Location = new System.Drawing.Point(61, 2);
+            this._listOrdersButton.Location = new System.Drawing.Point(52, 2);
             this._listOrdersButton.Name = "_listOrdersButton";
             this._listOrdersButton.PressedImage = null;
             this._listOrdersButton.Size = new System.Drawing.Size(20, 20);
@@ -94,6 +94,18 @@
             this._actionPanel.Location = new System.Drawing.Point(0, 0);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // _deleteRoutePointButton
+            // 
+            this._deleteRoutePointButton.BackColor = System.Drawing.Color.White;
+            this._deleteRoutePointButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_deleteRoutePointButton.BackgroundImage")));
+            this._deleteRoutePointButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._deleteRoutePointButton.Location = new System.Drawing.Point(24, 2);
+            this._deleteRoutePointButton.Name = "_deleteRoutePointButton";
+            this._deleteRoutePointButton.PressedImage = null;
+            this._deleteRoutePointButton.Size = new System.Drawing.Size(20, 20);
+            this._deleteRoutePointButton.TabIndex = 7;
+            this._deleteRoutePointButton.Click += new System.EventHandler(this._deleteRoutePointButton_Click);
             // 
             // _closeButton
             // 
@@ -146,18 +158,6 @@
             this.routePointListBox.Name = "routePointListBox";
             this.routePointListBox.Size = new System.Drawing.Size(240, 220);
             this.routePointListBox.TabIndex = 6;
-            // 
-            // _deleteRoutePointButton
-            // 
-            this._deleteRoutePointButton.BackColor = System.Drawing.Color.White;
-            this._deleteRoutePointButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_deleteRoutePointButton.BackgroundImage")));
-            this._deleteRoutePointButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._deleteRoutePointButton.Location = new System.Drawing.Point(24, 2);
-            this._deleteRoutePointButton.Name = "_deleteRoutePointButton";
-            this._deleteRoutePointButton.PressedImage = null;
-            this._deleteRoutePointButton.Size = new System.Drawing.Size(20, 20);
-            this._deleteRoutePointButton.TabIndex = 7;
-            this._deleteRoutePointButton.Click += new System.EventHandler(this._deleteRoutePointButton_Click);
             // 
             // RouteView
             // 

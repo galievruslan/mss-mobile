@@ -118,10 +118,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="_deleteOrderButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAGmSURBVHhe7ds7TgMxEIDhCNFwgTSIji4dB4joaGnoqXME
+        TpGGlgNwCeAEOUIqGgpKijRkLAVhRSJkvJ6BmfyWRkrh9eOL11mvndGIhAACCCCAAAIIIIAAAggggAAC
+        CCCAAAIIOApMpa57o7iTco8c++JS1Uxq+TSMh2xo1mDly0iFVoO9Drw1X3aM1DRoNdjTwEmgLmspZb1v
+        AaZAswIr+BcZ0SzByoBNh2YNlg7NAywVmhdYGjRPsBRo3mDh0f4C7Ce024HPgS6XW4GtpPVvv8TH1oNt
+        acu/T1ZgLQt6wJRvQQ4O7FSALpWxqFAPDqxl/ilrzq/bF7A9BAHbA6nOAhhgSgFldkYYYEoBZXZGGGBK
+        AWV2Rlh2sHPp4M0myrLGO4UbYSciNO4cxwr1cGAWRwUmgOkOrACmfK8FGGDfk8yVfHzsHGeZ5zBF30yy
+        hvuVvBaG503MTUh2FxoOrOeuUYs3YEq10GBDj2y2nMYudYbdBGnZfO15Tbhdo56dbykrBJjlHxu0t2hp
+        CwkBBBBAAAEEEEAAAQQQQAABBBBAAAEEEPARWAN9+jQBg23bYAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="_closeButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
+        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
         dr+2CXmRIg4kjv3QItN2t+OFAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAwJoCp7TZYYEN9ynm
         eYG4m4bMWI807mK0jHVL45nGddMKhZsXrFxUHiq0MVaJ3TzaFEuF9g6rebTjcBqWQqbv0SPtG1bZ4yI8
         Q1YLZSnMi7ZEzNVALBspC1TGsuS+2RxFoYoYmwFENp5T8Jy1kVyrWRMpPLKmmoIViXgAPHMVuVUbwwpR

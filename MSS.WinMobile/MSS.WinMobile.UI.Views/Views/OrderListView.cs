@@ -61,5 +61,11 @@ namespace MSS.WinMobile.UI.Views.Views {
         private void CloseButtonClick(object sender, EventArgs e) {
             _presenter.GoToRoute();
         }
+
+        private void _deleteOrderButton_Click(object sender, EventArgs e) {
+            _presenter.DeleteOrder();
+            _orderListBox.SetListSize(_presenter.InitializeListSize());
+            Refresh();
+        }
     }
 }

@@ -75,7 +75,7 @@ namespace MSS.WinMobile.Application {
         }
 
         public OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, RoutePointViewModel routePointViewModel) {
-            return new OrderListPresenter(orderListView, _repositoryFactory, _navigator, routePointViewModel);
+            return new OrderListPresenter(orderListView, _repositoryFactory, _unitOfWorkFactory, _navigator, routePointViewModel);
         }
 
         public OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel) {

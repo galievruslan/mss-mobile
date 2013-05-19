@@ -1,14 +1,20 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System;
+using System.Linq;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
+using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
     public class OrderListPresenter : IListPresenter<OrderViewModel> {
-        private IOrderListView _view;
+        private static readonly ILog Log = LogManager.GetLogger(typeof(OrderListPresenter));
+
+        private readonly IOrderListView _view;
         private readonly IRepositoryFactory _repositoryFactory;
+        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly INavigator _navigator;
         private readonly RoutePointViewModel _routePointViewModel;
 
@@ -17,11 +23,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public OrderListPresenter(IOrderListView view, 
             IRepositoryFactory repositoryFactory,
+            IUnitOfWorkFactory unitOfWorkFactory,
             INavigator navigator,
             RoutePointViewModel routePointViewModel)
         {
             _view = view;
             _repositoryFactory = repositoryFactory;
+            _unitOfWorkFactory = unitOfWorkFactory;
             _navigator = navigator;
             _routePointViewModel = routePointViewModel;
 
@@ -95,6 +103,35 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     _navigator.GoViewRoutePointsOrder(_routePointViewModel, SelectedModel);
                 else
                     _navigator.GoToEditRoutePointsOrder(_routePointViewModel, SelectedModel);
+            }
+        }
+
+        public void DeleteOrder() {
+            if (SelectedModel != null) {
+                var orderRepository = _repositoryFactory.CreateRepository<Order>();
+                var order = orderRepository.GetById(SelectedModel.OrderId);
+                if (order.Synchronized) {
+                    _view.ShowError("You can't delete synchronized order");
+                    return;
+                }
+
+                if (_view.ShowConfirmation("Are you shure, you want to delete the order?")) {
+                    var orderItemRepository = _repositoryFactory.CreateRepository<OrderItem>();
+                    using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                        try {
+                            unitOfWork.BeginTransaction();
+                            foreach (var orderItem in order.Items.ToArray()) {
+                                orderItemRepository.Delete(orderItem);
+                            }
+                            orderRepository.Delete(order);
+                            unitOfWork.Commit();
+                        }
+                        catch (Exception exception) {
+                            Log.Error(exception);
+                            unitOfWork.Rollback();
+                        }
+                    }
+                }
             }
         }
 
