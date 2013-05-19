@@ -46,8 +46,8 @@ namespace MSS.WinMobile.Synchronizer {
             var rootDictionary = new Dictionary<string, object>();
             var orderAttributesDictionary = new  Dictionary<string, object>();
             rootDictionary.Add("order", orderAttributesDictionary);
-            orderAttributesDictionary.Add("date", order.OrderDate.ToString("dd.MM.yyyy"));
-            orderAttributesDictionary.Add("shipping_date", order.ShippingDate.ToString("dd.MM.yyyy"));
+            orderAttributesDictionary.Add("date", order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss"));
+            orderAttributesDictionary.Add("shipping_date", order.ShippingDate.ToString("yyyy-MM-dd HH:mm:ss"));
             orderAttributesDictionary.Add("shipping_address_id", order.ShippingAddressId);
             orderAttributesDictionary.Add("warehouse_id", order.WarehouseId);
             orderAttributesDictionary.Add("price_list_id", order.PriceListId);

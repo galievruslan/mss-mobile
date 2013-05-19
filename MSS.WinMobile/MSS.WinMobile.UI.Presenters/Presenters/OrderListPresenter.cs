@@ -107,9 +107,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void DeleteOrder() {
-            if (SelectedModel != null) {
+            if (_selectedOrder != null) {
                 var orderRepository = _repositoryFactory.CreateRepository<Order>();
-                var order = orderRepository.GetById(SelectedModel.OrderId);
+                var order = orderRepository.GetById(_selectedOrder.Id);
                 if (order.Synchronized) {
                     _view.ShowError("You can't delete synchronized order");
                     return;
@@ -125,6 +125,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             }
                             orderRepository.Delete(order);
                             unitOfWork.Commit();
+                            _selectedOrder = null;
                         }
                         catch (Exception exception) {
                             Log.Error(exception);

@@ -51,7 +51,7 @@ namespace MSS.WinMobile.Synchronizer {
             var rootDictionary = new Dictionary<string, object>();
             var routeAttributesDictionary = new  Dictionary<string, object>();
             rootDictionary.Add("route", routeAttributesDictionary);
-            routeAttributesDictionary.Add("date", route.Date.ToString("dd.MM.yyyy"));
+            routeAttributesDictionary.Add("date", route.Date.ToString("yyyy-MM-dd HH:mm:ss"));
             var routePointsAttributesDictionary = new Dictionary<string, object>();
             routeAttributesDictionary.Add("route_points_attributes", routePointsAttributesDictionary);
             var routePoints = route.Points.ToArray();

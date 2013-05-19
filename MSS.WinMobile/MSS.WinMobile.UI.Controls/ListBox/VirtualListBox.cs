@@ -177,7 +177,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 };
 
                 e.Graphics.DrawString(EmptyListMessage, Font, new SolidBrush(ForeColor),
-                                      e.ClipRectangle, format);
+                                      ClientRectangle, format);
             }
         }
     }

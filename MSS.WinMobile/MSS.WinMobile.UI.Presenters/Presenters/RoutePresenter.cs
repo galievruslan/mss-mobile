@@ -144,9 +144,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void DeleteRoutePoint() {
-            if (SelectedModel != null) {
+            if (_selectedRoutePoint != null) {
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
-                var routePoint = routePointRepository.GetById(SelectedModel.Id);
+                var routePoint = routePointRepository.GetById(_selectedRoutePoint.Id);
                 if (routePoint.Orders.Count() > 0 || routePoint.Synchronized) {
                     _view.ShowError("You can't delete synchronized route point or point with orders.");
                 }
@@ -156,6 +156,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                             unitOfWork.BeginTransaction();
                             routePointRepository.Delete(routePoint);
                             unitOfWork.Commit();
+                            _selectedRoutePoint = null;
                         }
                         catch (Exception exception) {
                             Log.Error(exception);
