@@ -68,6 +68,7 @@
     <Compile Include="Presenters\OrderListPresenter.cs" />
     <Compile Include="Presenters\SettingsPresenter.cs" />
     <Compile Include="Presenters\Specificarions\DefaultWarehouseSpec.cs" />
+    <Compile Include="Presenters\Specificarions\RoutePointInRouteWithShippingAddress.cs" />
     <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />

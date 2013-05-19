@@ -96,14 +96,28 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
 
                 using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                    ShippingAddress shippingAddress =
+                        shippingAddressRepository.GetById(_viewModel.ShippingAddressId);
+                    if (route != null) {
+                        var existingRoutePoint =
+                            routePointRepository.Find()
+                                                .Where(
+                                                    new RoutePointInRouteWithShippingAddress(route,
+                                                                                             shippingAddress))
+                                                .FirstOrDefault();
+                        if (existingRoutePoint != null) {
+                            _view.ShowError("Route point with same shipping address already exist");
+                            return;
+                        }
+                    }
+
                     unitOfWork.BeginTransaction();
                     if (route == null) {
                         route = _modelsFactory.CreateRoute(_routeViewModel.Date);
                         route = routeRepository.Save(route);
                     }
                     var routePoint = route.CreatePoint();
-                    routePoint.SetShippingAddress(
-                        shippingAddressRepository.GetById(_viewModel.ShippingAddressId));
+                    routePoint.SetShippingAddress(shippingAddress);
                     routePoint.SetStatus(defaultStatus);
 
                     routePointRepository.Save(routePoint);
