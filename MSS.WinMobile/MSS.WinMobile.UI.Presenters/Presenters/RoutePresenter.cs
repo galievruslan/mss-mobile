@@ -131,9 +131,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         ShippingAddress shippingAddress =
                             shippingAddressRepository.GetById(pointTemplate.ShippingAddressId);
 
-                        routePoint.SetShippingAddress(shippingAddress);
-                        routePoint.SetStatus(defaultStatus);
-                        routePointRepository.Save(routePoint);
+                        if (shippingAddress != null) {
+                            routePoint.SetShippingAddress(shippingAddress);
+                            routePoint.SetStatus(defaultStatus);
+                            routePointRepository.Save(routePoint);
+                        }
                     }
                 }
 
