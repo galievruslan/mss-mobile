@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="Dtos\CategoryDto.cs" />
     <Compile Include="Dtos\ManagerDto.cs" />
-    <Compile Include="Dtos\MyShippingAddressDto.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\Dto.cs" />
     <Compile Include="Dtos\OrderDto.cs" />

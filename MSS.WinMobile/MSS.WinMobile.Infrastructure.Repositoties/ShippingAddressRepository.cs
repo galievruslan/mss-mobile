@@ -19,10 +19,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
         }
 
         private const string SaveQueryTemplate =
-            "INSERT OR REPLACE INTO ShippingAddresses (Id, Name, Address, Customer_Id, Mine) VALUES ({0}, '{1}', '{2}', {3}, {4})";
+            "INSERT OR REPLACE INTO ShippingAddresses (Id, Name, Address, Customer_Id) VALUES ({0}, '{1}', '{2}', {3})";
         protected override string GetSaveQueryFor(ShippingAddress model) {
             return string.Format(SaveQueryTemplate, model.Id, model.Name.Replace("'", "''"),
-                                 model.Address.Replace("'", "''"), model.CustomerId, model.Mine ? 1 : 0);
+                                 model.Address.Replace("'", "''"), model.CustomerId);
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM ShippingAddresses WHERE Id = {0}";

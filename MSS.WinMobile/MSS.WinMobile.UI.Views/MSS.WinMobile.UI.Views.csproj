@@ -114,6 +114,12 @@
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ChangeStatusView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ChangeStatusView.Designer.cs">
+      <DependentUpon>ChangeStatusView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReadOnlyOrderView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -195,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LookUps\CustomerLookUpView.resx">
       <DependentUpon>CustomerLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChangeStatusView.resx">
+      <DependentUpon>ChangeStatusView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ReadOnlyOrderView.resx">
       <DependentUpon>ReadOnlyOrderView.cs</DependentUpon>

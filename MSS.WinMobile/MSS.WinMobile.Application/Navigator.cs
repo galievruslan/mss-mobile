@@ -46,6 +46,11 @@ namespace MSS.WinMobile.Application
             _container.SetView(newRoutePointView);
         }
 
+        public void GoToChangeStatus(RoutePointViewModel routePointViewModel) {
+            IChangeStatusView changeStatusView = new ChangeStatusView(_presentersFactory, routePointViewModel);
+            _container.SetView(changeStatusView);
+        }
+
         public void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel) {
             IOrderListView orderListView = new OrderListView(_presentersFactory, routePointViewModel);
             _container.SetView(orderListView);

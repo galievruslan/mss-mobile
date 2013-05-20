@@ -110,18 +110,6 @@ namespace MSS.WinMobile.Synchronizer.Tests
                         shippingAddressdTranslator, unitOfWorkFactory, bathSize);
                 shippingAddressSyncCmd.Execute();
 
-                // My shipping addresses synchronization
-                var myShippingAddressDtoRepository =
-                    new WebRepository<MyShippingAddressDto>(webServer);
-                shippingAddressSqLiteRepository =
-                    repositoryFactory.CreateRepository<ShippingAddress>();
-                var myShippingAddressSyncCmd =
-                    new MyShippingAddressesSynchronization(myShippingAddressDtoRepository,
-                                                           shippingAddressSqLiteRepository,
-                                                           unitOfWorkFactory, bathSize);
-
-                myShippingAddressSyncCmd.Execute();
-
                 // Categories synchronization
                 var categoriesDtoRepository = new WebRepository<CategoryDto>(webServer);
                 var categorySqLiteRepository = repositoryFactory.CreateRepository<Category>();

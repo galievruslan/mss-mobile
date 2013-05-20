@@ -64,6 +64,11 @@ namespace MSS.WinMobile.Application {
                                               _lookUpService, routeViewModel);
         }
 
+        public ChangeStatusPresenter CreateChangeStatusPresenter(IChangeStatusView changeStatusView,
+                                                                 RoutePointViewModel routePointViewModel) {
+            return new ChangeStatusPresenter(changeStatusView, _repositoryFactory, _unitOfWorkFactory, _navigator, routePointViewModel);
+        }
+
         public CustomerLookUpPresenter CreateCustomerLookUpPresenter(ICustomerLookUpView customerLookUpView) {
             return new CustomerLookUpPresenter(customerLookUpView, _repositoryFactory);
         }

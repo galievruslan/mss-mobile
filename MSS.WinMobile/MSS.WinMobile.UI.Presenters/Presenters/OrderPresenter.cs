@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
@@ -42,6 +43,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         {
             var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var routePoint = routePointsRepository.GetById(routePointViewModel.Id);
+            var routeRepository = _repositoryFactory.CreateRepository<Route>();
+            var route = routeRepository.GetById(routePoint.Id);
 
             var shippingAddressRepository = _repositoryFactory.CreateRepository<ShippingAddress>();
             var shippingAddress = shippingAddressRepository.GetById(routePoint.ShippingAddressId);
@@ -55,8 +58,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
             _routePointViewModel = routePointViewModel;
             _orderViewModel = new OrderViewModel {
-                OrderDate = DateTime.Now,
-                ShippingDate = DateTime.Now,
+                OrderDate = route.Date.Date,
+                ShippingDate = route.Date.Date,
                 RoutePointId = routePoint.Id,
                 CustomerId = customer.Id,
                 CustomerName = customer.Name,
@@ -103,6 +106,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var orderRepository = _repositoryFactory.CreateRepository<Order>();
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
                 var routePoint = routePointRepository.GetById(_orderViewModel.RoutePointId);
+
+                var configurationManager = new ConfigurationManager(Environments.AppPath);
+                var defaultStatusId = configurationManager.GetConfig("Domain")
+                                                          .GetSection("Statuses")
+                                                          .GetSetting("DefaultRoutePointStatusId")
+                                                          .As<int>();
+
+                var attendedStatusId = configurationManager.GetConfig("Domain")
+                                                          .GetSection("Statuses")
+                                                          .GetSetting("DefaultRoutePointAttendedStatusId")
+                                                          .As<int>();
+                var statusRepository = _repositoryFactory.CreateRepository<Status>();
+                var attendedStatus = statusRepository.GetById(attendedStatusId);
 
                 Order order = _orderViewModel.OrderId != 0
                                   ? orderRepository.GetById(_orderViewModel.OrderId)
@@ -157,6 +173,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                         orderItem.Price = orderItemViewModel.Price;
                         orderItem.Quantity = orderItemViewModel.Quantity;
                         orderItemRepository.Save(orderItem);
+                    }
+
+                    if (routePoint.StatusId == defaultStatusId) {
+                        routePoint.SetStatus(attendedStatus);
+                        routePointRepository.Save(routePoint);
                     }
 
                     unitOfWork.Commit();

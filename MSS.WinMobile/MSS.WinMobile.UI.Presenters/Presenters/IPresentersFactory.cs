@@ -17,6 +17,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         NewRoutePointPresenter CreateNewRoutePointPresenter(INewRoutePointView newRoutePointView, RouteViewModel routeViewModel);
 
+        ChangeStatusPresenter CreateChangeStatusPresenter(IChangeStatusView changeStatusView,
+                                                          RoutePointViewModel routePointViewModel);
+
         CustomerLookUpPresenter CreateCustomerLookUpPresenter(ICustomerLookUpView customerLookUpView);
 
         ShippingAddressLookUpPresenter CreateShippingAddressLookUpPresenter(

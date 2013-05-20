@@ -182,30 +182,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     shippingAddressSyncCmd.Execute();
                     Notify(new ProgressNotification(15));
 
-                    // My shipping addresses synchronization
-                    Notify(new TextNotification("My shipping addresses synchronization"));
-                    var myShippingAddressDtoRepository =
-                        new WebRepository<MyShippingAddressDto>(webServer);
-                    shippingAddressSqLiteRepository =
-                        _repositoryFactory.CreateRepository<ShippingAddress>();
-                    Command<MyShippingAddressDto, ShippingAddress> myShippingAddressSyncCmd =
-                        _viewModel.SynchronizeFully
-                            ? new MyShippingAddressesSynchronization(
-                                  myShippingAddressDtoRepository,
-                                  shippingAddressSqLiteRepository,
-                                  _unitOfWorkFactory,
-                                  bathSize)
-                            : new MyShippingAddressesSynchronization(
-                                  myShippingAddressDtoRepository,
-                                  shippingAddressSqLiteRepository,
-                                  _unitOfWorkFactory,
-                                  bathSize,
-                                  _viewModel.LastSynchronizationDate);
-
-                    myShippingAddressSyncCmd = myShippingAddressSyncCmd.RepeatOnError(3, 5000);
-                    myShippingAddressSyncCmd.Execute();
-                    Notify(new ProgressNotification(22));
-
                     // Categories synchronization
                     Notify(new TextNotification("Categories synchronization"));
                     var categoriesDtoRepository = new WebRepository<CategoryDto>(webServer);
@@ -534,6 +510,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                     managerSettingsSyncCommand = managerSettingsSyncCommand.RepeatOnError(3, 5000);
                     managerSettingsSyncCommand.Execute();
+
+                    // Settings synchronization
+                    Notify(new TextNotification("Settings synchronization"));
+
+                    Command<SettingsDto, SettingsDto> settingsSyncCommand =
+                        _viewModel.SynchronizeFully
+                            ? new SettingsSynchronization(
+                                  webServer)
+                            : new SettingsSynchronization(
+                                  webServer,
+                                  _viewModel
+                                      .LastSynchronizationDate);
+
+                    settingsSyncCommand = settingsSyncCommand.RepeatOnError(3, 5000);
+                    settingsSyncCommand.Execute();
 
                     _configurationManager.GetConfig("Common")
                                          .GetSection("Synchronization")

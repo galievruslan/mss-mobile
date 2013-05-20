@@ -35,6 +35,7 @@
             this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.panel = new System.Windows.Forms.Panel();
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
+            this._changeStatusButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -44,7 +45,7 @@
             this._createOrderButton.BackColor = System.Drawing.Color.White;
             this._createOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_createOrderButton.BackgroundImage")));
             this._createOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._createOrderButton.Location = new System.Drawing.Point(74, 2);
+            this._createOrderButton.Location = new System.Drawing.Point(94, 2);
             this._createOrderButton.Name = "_createOrderButton";
             this._createOrderButton.PressedImage = null;
             this._createOrderButton.Size = new System.Drawing.Size(20, 20);
@@ -65,7 +66,7 @@
             // 
             // divisorLabel
             // 
-            this.divisorLabel.Location = new System.Drawing.Point(44, 3);
+            this.divisorLabel.Location = new System.Drawing.Point(64, 3);
             this.divisorLabel.Name = "divisorLabel";
             this.divisorLabel.Size = new System.Drawing.Size(5, 20);
             this.divisorLabel.Text = "|";
@@ -75,7 +76,7 @@
             this._listOrdersButton.BackColor = System.Drawing.Color.White;
             this._listOrdersButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_listOrdersButton.BackgroundImage")));
             this._listOrdersButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._listOrdersButton.Location = new System.Drawing.Point(52, 2);
+            this._listOrdersButton.Location = new System.Drawing.Point(72, 2);
             this._listOrdersButton.Name = "_listOrdersButton";
             this._listOrdersButton.PressedImage = null;
             this._listOrdersButton.Size = new System.Drawing.Size(20, 20);
@@ -84,6 +85,7 @@
             // 
             // _actionPanel
             // 
+            this._actionPanel.Controls.Add(this._changeStatusButton);
             this._actionPanel.Controls.Add(this._deleteRoutePointButton);
             this._actionPanel.Controls.Add(this._closeButton);
             this._actionPanel.Controls.Add(this._listOrdersButton);
@@ -105,7 +107,7 @@
             this._deleteRoutePointButton.PressedImage = null;
             this._deleteRoutePointButton.Size = new System.Drawing.Size(20, 20);
             this._deleteRoutePointButton.TabIndex = 7;
-            this._deleteRoutePointButton.Click += new System.EventHandler(this._deleteRoutePointButton_Click);
+            this._deleteRoutePointButton.Click += new System.EventHandler(this.DeleteRoutePointButtonClick);
             // 
             // _closeButton
             // 
@@ -159,6 +161,18 @@
             this.routePointListBox.Size = new System.Drawing.Size(240, 220);
             this.routePointListBox.TabIndex = 6;
             // 
+            // _changeStatusButton
+            // 
+            this._changeStatusButton.BackColor = System.Drawing.Color.White;
+            this._changeStatusButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_changeStatusButton.BackgroundImage")));
+            this._changeStatusButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._changeStatusButton.Location = new System.Drawing.Point(46, 2);
+            this._changeStatusButton.Name = "_changeStatusButton";
+            this._changeStatusButton.PressedImage = null;
+            this._changeStatusButton.Size = new System.Drawing.Size(20, 20);
+            this._changeStatusButton.TabIndex = 9;
+            this._changeStatusButton.Click += new System.EventHandler(this.ChangeStatusButtonClick);
+            // 
             // RouteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -187,6 +201,7 @@
         private MSS.WinMobile.UI.Controls.Concret.RoutePointListBox routePointListBox;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _closeButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _deleteRoutePointButton;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _changeStatusButton;
 
     }
 }

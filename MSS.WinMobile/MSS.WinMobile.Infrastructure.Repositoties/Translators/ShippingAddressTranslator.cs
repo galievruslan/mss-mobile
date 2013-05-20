@@ -13,8 +13,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                     Id = value.GetInt32(value.GetOrdinal("Id")),
                     CustomerId = value.GetInt32(value.GetOrdinal("Customer_Id")),
                     Name = value.GetString(value.GetOrdinal("Name")),
-                    Address = value.GetString(value.GetOrdinal("Address")),
-                    Mine = value.GetBoolean(value.GetOrdinal("Mine"))
+                    Address = value.GetString(value.GetOrdinal("Address"))
                 };
             return proxy;
         }

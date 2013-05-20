@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
@@ -88,8 +90,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                                    .Where(new RouteOnDateSpec(_routeViewModel.Date))
                                    .FirstOrDefault();
 
+                var configurationManager = new ConfigurationManager(Environments.AppPath);
+                var defaultStatusId = configurationManager.GetConfig("Domain")
+                                                          .GetSection("Statuses")
+                                                          .GetSetting("DefaultRoutePointStatusId")
+                                                          .As<int>();
+
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
-                var defaultStatus = statusRepository.Find().FirstOrDefault();
+                var defaultStatus = statusRepository.GetById(defaultStatusId);
                 var shippingAddressRepository =
                     _repositoryFactory.CreateRepository<ShippingAddress>();
 

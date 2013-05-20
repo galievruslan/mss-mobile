@@ -5,12 +5,11 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
 {
     public class RoutePointListBoxItem : VirtualListBoxItem {
         private System.Windows.Forms.LinkLabel _nameLabel;
+        private System.Windows.Forms.LinkLabel _addressLabel;
     
         public RoutePointListBoxItem(){
             InitializeComponent();
         }
-
-        private System.Windows.Forms.LinkLabel _addressLabel;
 
         private RoutePointViewModel _viewModel;
         public RoutePointViewModel ViewModel {

@@ -6,8 +6,6 @@
 
         public string Name { get; protected set; }
 
-        public bool Mine { get; set; }
-
         public int CustomerId { get; protected set; }
     }
 }

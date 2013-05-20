@@ -10,6 +10,7 @@ namespace MSS.WinMobile.UI.Presenters
 
         void GoToRoute(RouteViewModel routeViewModel);
         void GoToNewRoutePoint(RouteViewModel routeViewModel);
+        void GoToChangeStatus(RoutePointViewModel routePointViewModel);
 
         void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel);
         void GoToCreateOrderForRoutePoint(RoutePointViewModel routePointViewModel);

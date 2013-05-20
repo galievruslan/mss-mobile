@@ -27,11 +27,5 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             get { return base.CustomerId; }
             set { base.CustomerId = value; }
         }
-
-        new public bool Mine
-        {
-            get { return base.Mine; }
-            set { base.Mine = value; }
-        }
     }
 }

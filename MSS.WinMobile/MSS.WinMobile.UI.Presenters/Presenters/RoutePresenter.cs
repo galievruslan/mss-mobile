@@ -47,7 +47,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             return new RoutePointViewModel {
                 Id = item.Id,
                 ShippinAddressName = item.ShippingAddressName,
-                ShippinAddressAddress                = item.ShippingAddressAddress,
+                ShippinAddressAddress = item.ShippingAddressAddress,
+                StatusId = item.StatusId
             };
         }
 
@@ -62,8 +63,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                            ? new RoutePointViewModel {
                                Id = _selectedRoutePoint.Id,
                                RouteId = _selectedRoutePoint.RouteId,
+                               StatusId = _selectedRoutePoint.StatusId,
                                ShippinAddressName = _selectedRoutePoint.ShippingAddressName,
-                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress                               
+                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress
                            }
                            : null;
             }
@@ -179,6 +181,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public void GoToMenuView() {
             _navigator.GoToMenu();
+        }
+
+        public void GoToStatusChanging() {
+            if (SelectedModel != null)
+                _navigator.GoToChangeStatus(SelectedModel);
         }
     }
 }

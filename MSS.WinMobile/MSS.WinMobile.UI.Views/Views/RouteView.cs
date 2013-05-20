@@ -75,10 +75,14 @@ namespace MSS.WinMobile.UI.Views.Views {
             _routePresenter.GoToMenuView();
         }
 
-        private void _deleteRoutePointButton_Click(object sender, EventArgs e) {
+        private void DeleteRoutePointButtonClick(object sender, EventArgs e) {
             _routePresenter.DeleteRoutePoint();
             routePointListBox.SetListSize(_routePresenter.InitializeListSize());
             Refresh();
+        }
+
+        private void ChangeStatusButtonClick(object sender, EventArgs e) {
+            _routePresenter.GoToStatusChanging();
         }
     }
 }

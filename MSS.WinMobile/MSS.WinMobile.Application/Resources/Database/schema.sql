@@ -10,7 +10,6 @@ CREATE TABLE [ShippingAddresses] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Address] VARCHAR(255) NULL
 , [Name] VARCHAR(255) NULL
 , [Customer_Id] INTEGER  NULL
-, [Mine] BIT NULL
 , FOREIGN KEY(Customer_Id) REFERENCES Customers(Id)
 );
 CREATE TABLE [Products] ([Id] INTEGER  NOT NULL PRIMARY KEY

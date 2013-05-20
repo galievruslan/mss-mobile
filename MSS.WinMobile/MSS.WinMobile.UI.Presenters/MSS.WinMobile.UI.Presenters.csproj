@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\ChangeStatusPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderRetriever.cs" />
     <Compile Include="Presenters\NewRoutePointPresenter.cs" />
     <Compile Include="Presenters\OrderListPresenter.cs" />
@@ -91,9 +92,11 @@
     <Compile Include="ViewModels\RouteViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShippingAddressViewModel.cs" />
+    <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="ViewModels\SynchronizationViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
+    <Compile Include="Views\IChangeStatusView.cs" />
     <Compile Include="Views\IExitView.cs" />
     <Compile Include="Views\IListView.cs" />
     <Compile Include="INavigator.cs" />

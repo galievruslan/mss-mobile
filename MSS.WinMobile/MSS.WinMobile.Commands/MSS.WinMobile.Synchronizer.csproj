@@ -61,9 +61,9 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="CategotiesSynchronization.cs" />
+    <Compile Include="SettingsSynchronization.cs" />
     <Compile Include="ManagerSynchronization.cs" />
     <Compile Include="OrdersSynchronization.cs" />
-    <Compile Include="MyShippingAddressesSynchronization.cs" />
     <Compile Include="FaultHandling\CommandException.cs" />
     <Compile Include="FaultHandling\CommandExtensions.cs" />
     <Compile Include="FaultHandling\IgnoreErrorCommand.cs" />
@@ -75,6 +75,14 @@
     <Compile Include="SynchronizationCommand.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
+      <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
+      <Name>MSS.WinMobile.Application.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj">
+      <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
+      <Name>MSS.WinMobile.Application.Environment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
