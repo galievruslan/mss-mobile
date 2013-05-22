@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
+using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
@@ -12,16 +13,40 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _customer = customer;
         }
 
+        private readonly string _searchCriteria;
+        public ShippingAddressRetriever(Customer customer, string searchCriteria)
+            : this(customer) {
+            _searchCriteria = searchCriteria;
+        }
+
+
         public int Count
         {
-            get { return _customer.ShippingAddresses.Count(); }
+            get {
+                if (_customer == null)
+                    return 0;
+
+                return string.IsNullOrEmpty(_searchCriteria)
+                           ? _customer.ShippingAddresses.Count()
+                           : _customer.ShippingAddresses.Where(
+                               new ShippingAddressWithNameOrAddressLikeSpec(_searchCriteria))
+                                      .Count();
+            }
         }
 
         public ShippingAddress[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
+            if (_customer == null)
+                return new ShippingAddress[0];
+
+            IQueryObject<ShippingAddress> queryObject = _customer.ShippingAddresses;
+            if (string.IsNullOrEmpty(_searchCriteria))
+                queryObject =
+                    queryObject.Where(new ShippingAddressWithNameOrAddressLikeSpec(_searchCriteria));
+
             return
-                _customer.ShippingAddresses.OrderBy("Address", OrderDirection.Asceding)
-                         .Paged(lowerPageBoundary, rowsPerPage)
-                         .ToArray();
+                queryObject.OrderBy("Address", OrderDirection.Asceding)
+                           .Paged(lowerPageBoundary, rowsPerPage)
+                           .ToArray();
         }
     }
 }

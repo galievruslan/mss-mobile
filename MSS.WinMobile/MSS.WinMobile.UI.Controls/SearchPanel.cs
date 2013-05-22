@@ -24,6 +24,7 @@ namespace MSS.WinMobile.UI.Controls
         private void _clearButton_Click(object sender, EventArgs e) {
             if (Clear != null)
                 Clear.Invoke(this);
+            _searchTextBox.Text = string.Empty;
         }
     }
 }

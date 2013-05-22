@@ -13,14 +13,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         private readonly IShippingAddressLookUpView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly IDataPageRetriever<ShippingAddress> _shippingAddressRetriever;
-        private readonly Cache<ShippingAddress> _cache;
+        private readonly CustomerViewModel _customerViewModel;
+        private IDataPageRetriever<ShippingAddress> _shippingAddressRetriever;
+        private Cache<ShippingAddress> _cache;
 
         public ShippingAddressLookUpPresenter(IShippingAddressLookUpView view, IRepositoryFactory repositoryFactory, CustomerViewModel customerViewModel)
         {
             _repositoryFactory = repositoryFactory;
+            _customerViewModel = customerViewModel;
             var customerRepository = _repositoryFactory.CreateRepository<Customer>();
-            _shippingAddressRetriever = new ShippingAddressRetriever(customerRepository.GetById(customerViewModel.Id));
+            var customer = customerRepository.GetById(_customerViewModel.Id);
+            _shippingAddressRetriever = new ShippingAddressRetriever(customer);
             _cache = new Cache<ShippingAddress>(_shippingAddressRetriever, 100);
             _view = view;
         }
@@ -52,6 +55,27 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                            }
                            : null;
             }
+        }
+
+        private string _searchCriteria;
+        public void Search(string criteria) {
+            _searchCriteria = criteria;
+            var customerRepository = _repositoryFactory.CreateRepository<Customer>();
+            var customer = customerRepository.GetById(_customerViewModel.Id);
+            _shippingAddressRetriever =
+                new ShippingAddressRetriever(customer, _searchCriteria);
+            _cache = new Cache<ShippingAddress>(_shippingAddressRetriever, 100);
+            _selectedShippingAddress = null;
+        }
+
+        public void ClearSearch() {
+            _searchCriteria = string.Empty;
+            var customerRepository = _repositoryFactory.CreateRepository<Customer>();
+            var customer = customerRepository.GetById(_customerViewModel.Id);
+            _shippingAddressRetriever =
+                new ShippingAddressRetriever(customer);
+            _cache = new Cache<ShippingAddress>(_shippingAddressRetriever, 100);
+            _selectedShippingAddress = null;
         }
     }
 }

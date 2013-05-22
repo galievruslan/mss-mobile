@@ -32,9 +32,9 @@ namespace MSS.WinMobile.UI.Views.LookUps
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarehouseLookUpView));
             this._actionPanel = new System.Windows.Forms.Panel();
-            this._warehouseListBox = new MSS.WinMobile.UI.Controls.Concret.WarehouseListBox();
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this._warehouseListBox = new MSS.WinMobile.UI.Controls.Concret.WarehouseListBox();
             this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
             this.mainMenu = new System.Windows.Forms.MainMenu();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
@@ -49,15 +49,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._actionPanel.Location = new System.Drawing.Point(0, 238);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
-            // _warehouseListBox
-            // 
-            this._warehouseListBox.BackColor = System.Drawing.Color.White;
-            this._warehouseListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._warehouseListBox.Location = new System.Drawing.Point(0, 24);
-            this._warehouseListBox.Name = "_warehouseListBox";
-            this._warehouseListBox.Size = new System.Drawing.Size(240, 214);
-            this._warehouseListBox.TabIndex = 1;
             // 
             // cancelButton
             // 
@@ -85,6 +76,15 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.okButton.TabIndex = 2;
             this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
+            // _warehouseListBox
+            // 
+            this._warehouseListBox.BackColor = System.Drawing.Color.White;
+            this._warehouseListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._warehouseListBox.Location = new System.Drawing.Point(0, 24);
+            this._warehouseListBox.Name = "_warehouseListBox";
+            this._warehouseListBox.Size = new System.Drawing.Size(240, 214);
+            this._warehouseListBox.TabIndex = 1;
+            // 
             // searchPanel
             // 
             this.searchPanel.BackColor = System.Drawing.Color.White;
@@ -93,12 +93,13 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(240, 24);
             this.searchPanel.TabIndex = 0;
+            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
+            this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.DoSearchClick);
             // 
             // WarehouseLookUpView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._warehouseListBox);

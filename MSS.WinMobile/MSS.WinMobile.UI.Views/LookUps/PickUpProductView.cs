@@ -94,14 +94,26 @@ namespace MSS.WinMobile.UI.Views.LookUps
             get { return _presenter.PickedUpProducts; }
         }
 
-        private void _filterPanel_Filter(object sender) {
+        private void FilterClick(object sender) {
             _presenter.ChangeCategoryFilter();
             _selectedItem = null;
             _productPriceListBox.SetListSize(_presenter.InitializeListSize());
         }
 
-        private void _filterPanel_Clear(object sender) {
+        private void ClearFilterClick(object sender) {
             _presenter.ClearCategoryFilter();
+            _selectedItem = null;
+            _productPriceListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void ClearSearchClick(object sender) {
+            _presenter.ClearSearch();
+            _selectedItem = null;
+            _productPriceListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void SearchClick(object sender, string criteria) {
+            _presenter.Search(criteria);
             _selectedItem = null;
             _productPriceListBox.SetListSize(_presenter.InitializeListSize());
         }

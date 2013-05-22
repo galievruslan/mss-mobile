@@ -32,10 +32,10 @@ namespace MSS.WinMobile.UI.Controls
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchPanel));
             this._buttonPanel = new System.Windows.Forms.Panel();
-            this._inputPanel = new System.Windows.Forms.Panel();
-            this._searchTextBox = new MSS.WinMobile.UI.Controls.TextBoxWithPrompt();
             this._clearButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._searchButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this._inputPanel = new System.Windows.Forms.Panel();
+            this._searchTextBox = new MSS.WinMobile.UI.Controls.TextBoxWithPrompt();
             this._buttonPanel.SuspendLayout();
             this._inputPanel.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,28 @@ namespace MSS.WinMobile.UI.Controls
             this._buttonPanel.Location = new System.Drawing.Point(190, 0);
             this._buttonPanel.Name = "_buttonPanel";
             this._buttonPanel.Size = new System.Drawing.Size(48, 24);
+            // 
+            // _clearButton
+            // 
+            this._clearButton.BackColor = System.Drawing.Color.White;
+            this._clearButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_clearButton.BackgroundImage")));
+            this._clearButton.Location = new System.Drawing.Point(26, 2);
+            this._clearButton.Name = "_clearButton";
+            this._clearButton.PressedImage = null;
+            this._clearButton.Size = new System.Drawing.Size(20, 20);
+            this._clearButton.TabIndex = 1;
+            this._clearButton.Click += new System.EventHandler(this._clearButton_Click);
+            // 
+            // _searchButton
+            // 
+            this._searchButton.BackColor = System.Drawing.Color.White;
+            this._searchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_searchButton.BackgroundImage")));
+            this._searchButton.Location = new System.Drawing.Point(2, 2);
+            this._searchButton.Name = "_searchButton";
+            this._searchButton.PressedImage = null;
+            this._searchButton.Size = new System.Drawing.Size(20, 20);
+            this._searchButton.TabIndex = 0;
+            this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
             // 
             // _inputPanel
             // 
@@ -68,29 +90,8 @@ namespace MSS.WinMobile.UI.Controls
             this._searchTextBox.Name = "_searchTextBox";
             this._searchTextBox.Size = new System.Drawing.Size(190, 21);
             this._searchTextBox.TabIndex = 0;
+            this._searchTextBox.TabStop = false;
             this._searchTextBox.TextPrompt = "Search";
-            // 
-            // _clearButton
-            // 
-            this._clearButton.BackColor = System.Drawing.Color.White;
-            this._clearButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_clearButton.BackgroundImage")));
-            this._clearButton.Location = new System.Drawing.Point(26, 2);
-            this._clearButton.Name = "_clearButton";
-            this._clearButton.PressedImage = null;
-            this._clearButton.Size = new System.Drawing.Size(20, 20);
-            this._clearButton.TabIndex = 2;
-            this._clearButton.Click += new System.EventHandler(this._clearButton_Click);
-            // 
-            // _searchButton
-            // 
-            this._searchButton.BackColor = System.Drawing.Color.White;
-            this._searchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_searchButton.BackgroundImage")));
-            this._searchButton.Location = new System.Drawing.Point(2, 2);
-            this._searchButton.Name = "_searchButton";
-            this._searchButton.PressedImage = null;
-            this._searchButton.Size = new System.Drawing.Size(20, 20);
-            this._searchButton.TabIndex = 0;
-            this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
             // 
             // SearchPanel
             // 

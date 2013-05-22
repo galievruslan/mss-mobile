@@ -248,6 +248,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._searchPanel.Name = "_searchPanel";
             this._searchPanel.Size = new System.Drawing.Size(240, 24);
             this._searchPanel.TabIndex = 5;
+            this._searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
+            this._searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.SearchClick);
             // 
             // _filterHeaderPanel
             // 
@@ -265,8 +267,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._filterPanel.Name = "_filterPanel";
             this._filterPanel.Size = new System.Drawing.Size(240, 24);
             this._filterPanel.TabIndex = 0;
-            this._filterPanel.Filter += new MSS.WinMobile.UI.Controls.FilterPanel.OnFilter(this._filterPanel_Filter);
-            this._filterPanel.Clear += new MSS.WinMobile.UI.Controls.FilterPanel.OnClear(this._filterPanel_Clear);
+            this._filterPanel.Filter += new MSS.WinMobile.UI.Controls.FilterPanel.OnFilter(this.FilterClick);
+            this._filterPanel.Clear += new MSS.WinMobile.UI.Controls.FilterPanel.OnClear(this.ClearFilterClick);
             // 
             // PickUpProductView
             // 

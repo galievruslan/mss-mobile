@@ -134,9 +134,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                 var categoryRepository = _repositoryFactory.CreateRepository<Category>();
 
                 _categoryFilterViewModel = lookedUpCategory;
-                _productsPriceRetriever =
-                    new ProductsPriceRetriever(priceListRepository.GetById(_priceListViewModel.Id),
-                                               categoryRepository.GetById(lookedUpCategory.Id));
+                _productsPriceRetriever = string.IsNullOrEmpty(_searchCriteria)
+                                          ? new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id),
+                                                categoryRepository.GetById(
+                                                    _categoryFilterViewModel.Id))
+                                          : new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id),
+                                                categoryRepository.GetById(
+                                                    _categoryFilterViewModel.Id), _searchCriteria);
                 _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
                 _view.SetCategoryFilter(lookedUpCategory.Name);
             }
@@ -145,8 +151,46 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public void ClearCategoryFilter() {
             _categoryFilterViewModel = null;
             var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(_priceListViewModel.Id));
+            _productsPriceRetriever = string.IsNullOrEmpty(_searchCriteria)
+                                          ? new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id))
+                                          : new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id),
+                                                _searchCriteria);
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
+        }
+
+        private string _searchCriteria;
+        public void Search(string criteria) {
+            _searchCriteria = criteria;
+            var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+            var categoryRepository = _repositoryFactory.CreateRepository<Category>();
+
+            _productsPriceRetriever = _categoryFilterViewModel == null
+                                          ? new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id),
+                                                _searchCriteria)
+                                          : new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id),
+                                                categoryRepository.GetById(
+                                                    _categoryFilterViewModel.Id), _searchCriteria);
+            _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
+            _selectedProductPrice = null;
+        }
+
+        public void ClearSearch() {
+            _searchCriteria = string.Empty;
+            var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+            var categoryRepository = _repositoryFactory.CreateRepository<Category>();
+            _productsPriceRetriever = _categoryFilterViewModel == null
+                                          ? new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id))
+                                          : new ProductsPriceRetriever(
+                                                priceListRepository.GetById(_priceListViewModel.Id),
+                                                categoryRepository.GetById(
+                                                    _categoryFilterViewModel.Id));
+            _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
+            _selectedProductPrice = null;
         }
     }
 }

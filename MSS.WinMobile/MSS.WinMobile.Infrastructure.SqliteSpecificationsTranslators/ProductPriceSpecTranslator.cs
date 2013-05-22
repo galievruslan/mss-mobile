@@ -19,6 +19,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
                 return string.Format("Product_Category_Id = {0}",
                                      (specification as PriceOfProductWithCategorySpec).Category.Id);
             }
+            if (specification is ProductPriceWithNameLikeSpec) {
+                return string.Format("Product_Name like '%{0}%'",
+                                     (specification as ProductPriceWithNameLikeSpec).Criteria);
+            }
 
             throw new TranslatorNotFoundExceprion(specification.GetType());
         }

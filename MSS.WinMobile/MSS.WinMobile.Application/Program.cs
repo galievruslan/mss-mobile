@@ -45,10 +45,10 @@ namespace MSS.WinMobile.Application
                 string.Concat(Environments.AppPath, schemaScript));
 
             var repositoryFactory = new RepositoryFactory(storageManager);
-            repositoryFactory.RegisterSpecificationTranslator(new CommonTranslator<Customer>())
+            repositoryFactory.RegisterSpecificationTranslator(new CustomerSpecTranslator())
                              .RegisterSpecificationTranslator(new ShippingAddressSpecTranslator())
                              .RegisterSpecificationTranslator(new CategorySpecTranslator())
-                             .RegisterSpecificationTranslator(new CommonTranslator<PriceList>())
+                             .RegisterSpecificationTranslator(new PriceListSpecTranslator())
                              .RegisterSpecificationTranslator(new CommonTranslator<Product>())
                              .RegisterSpecificationTranslator(new OrderSpecTranslator())
                              .RegisterSpecificationTranslator(new OrderItemSpecTranslator())

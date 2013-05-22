@@ -70,6 +70,11 @@
     <Compile Include="Presenters\OrderListPresenter.cs" />
     <Compile Include="Presenters\SettingsPresenter.cs" />
     <Compile Include="Presenters\Specificarions\ChildCategoriesSpec.cs" />
+    <Compile Include="Presenters\Specificarions\ProductPriceWithNameLikeSpec.cs" />
+    <Compile Include="Presenters\Specificarions\WarehouseWithNameOrAddressLikeSpec.cs" />
+    <Compile Include="Presenters\Specificarions\ShippingAddressWithNameOrAddressLikeSpec.cs" />
+    <Compile Include="Presenters\Specificarions\PriceListWithNameLikeSpec.cs" />
+    <Compile Include="Presenters\Specificarions\CustomerWithNameLikeSpec.cs" />
     <Compile Include="Presenters\Specificarions\PriceOfProductWithCategorySpec.cs" />
     <Compile Include="Presenters\Specificarions\RootCategoriesSpec.cs" />
     <Compile Include="Presenters\Specificarions\DefaultWarehouseSpec.cs" />

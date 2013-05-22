@@ -55,5 +55,15 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void DoSearchClick(object sender, string criteria) {
+            _presenter.Search(criteria);
+            _warehouseListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void ClearSearchClick(object sender) {
+            _presenter.ClearSearch();
+            _warehouseListBox.SetListSize(_presenter.InitializeListSize());
+        }
     }
 }

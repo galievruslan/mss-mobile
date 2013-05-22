@@ -2,6 +2,7 @@
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
+using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
@@ -12,19 +13,34 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _priceListStorageRepository = priceListStorageRepository;
         }
 
-        public int Count
-        {
+        private readonly string _searchCriteria;
+        public PriceListRetriever(IStorageRepository<PriceList> priceListStorageRepository,
+                                 string searchCriteria)
+            : this(priceListStorageRepository) {
+            _searchCriteria = searchCriteria;
+        }
+
+        public int Count {
             get {
-                return _priceListStorageRepository.Find().Count();
+                return string.IsNullOrEmpty(_searchCriteria)
+                           ? _priceListStorageRepository.Find().Count()
+                           : _priceListStorageRepository.Find()
+                                                       .Where(
+                                                           new PriceListWithNameLikeSpec(
+                                                               _searchCriteria))
+                                                       .Count();
             }
         }
 
         public PriceList[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {
+            IQueryObject<PriceList> queryObject = _priceListStorageRepository.Find();
+            if (!string.IsNullOrEmpty(_searchCriteria))
+                queryObject = queryObject.Where(new PriceListWithNameLikeSpec(_searchCriteria));
+
             return
-                _priceListStorageRepository.Find()
-                                           .OrderBy("Name", OrderDirection.Asceding)
-                                           .Paged(lowerPageBoundary, rowsPerPage)
-                                           .ToArray();
+                queryObject.OrderBy("Name", OrderDirection.Asceding)
+                           .Paged(lowerPageBoundary, rowsPerPage)
+                           .ToArray();
         }
     }
 }

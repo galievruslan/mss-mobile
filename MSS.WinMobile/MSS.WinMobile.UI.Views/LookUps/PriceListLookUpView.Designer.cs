@@ -49,6 +49,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(240, 24);
             this.searchPanel.TabIndex = 0;
+            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
+            this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.DoSearchClick);
             // 
             // _priceListListBox
             // 
@@ -98,7 +100,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._priceListListBox);

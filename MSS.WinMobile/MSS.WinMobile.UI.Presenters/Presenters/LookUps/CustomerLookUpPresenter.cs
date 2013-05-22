@@ -13,8 +13,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         private readonly ICustomerLookUpView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly IDataPageRetriever<Customer> _customerRetriever;
-        private readonly Cache<Customer> _cache;
+        private IDataPageRetriever<Customer> _customerRetriever;
+        private Cache<Customer> _cache;
 
         public CustomerLookUpPresenter(ICustomerLookUpView view, IRepositoryFactory repositoryFactory) {
             _repositoryFactory = repositoryFactory;
@@ -48,6 +48,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                            }
                            : null;
             }
+        }
+
+        private string _searchCriteria;
+        public void Search(string criteria) {
+            _searchCriteria = criteria;
+            _customerRetriever =
+                new CustomerRetriever(_repositoryFactory.CreateRepository<Customer>(),
+                                      _searchCriteria);
+            _cache = new Cache<Customer>(_customerRetriever, 100);
+            _selectedCustomer = null;
+        }
+
+        public void ClearSearch() {
+            _searchCriteria = string.Empty;
+            _customerRetriever =
+                new CustomerRetriever(_repositoryFactory.CreateRepository<Customer>());
+            _cache = new Cache<Customer>(_customerRetriever, 100);
+            _selectedCustomer = null;
         }
     }
 }

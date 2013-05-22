@@ -14,6 +14,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
             if (specification is DefaultWarehouseSpec) {
                 return string.Format("[Default] = 1");
             }
+            if (specification is WarehouseWithNameOrAddressLikeSpec) {
+                return string.Format("Name like '%{0}%' Or Address like '%{0}%'",
+                                     (specification as WarehouseWithNameOrAddressLikeSpec).Criteria);
+            }
 
             throw new TranslatorNotFoundExceprion(specification.GetType());
         }

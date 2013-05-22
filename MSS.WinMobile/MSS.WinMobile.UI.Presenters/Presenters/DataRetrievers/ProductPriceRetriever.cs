@@ -12,9 +12,20 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
         }
 
         private readonly Category _category;
-        public ProductsPriceRetriever(PriceList priceList, Category category) {
-            _priceList = priceList;
+        public ProductsPriceRetriever(PriceList priceList, Category category)
+            : this(priceList) {
             _category = category;
+        }
+
+        private readonly string _searchCriteria;
+        public ProductsPriceRetriever(PriceList priceList, Category category, string searchCriteria)
+        :this(priceList, category) {
+            _searchCriteria = searchCriteria;
+        }
+
+        public ProductsPriceRetriever(PriceList priceList, string searchCriteria)
+            : this(priceList) {
+            _searchCriteria = searchCriteria;
         }
 
         public int Count
@@ -26,6 +37,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                 IQueryObject<ProductsPrice> queryObject = _priceList.Lines;
                 if (_category != null)
                     queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_category));
+
+                if (!string.IsNullOrEmpty(_searchCriteria))
+                    queryObject =
+                        queryObject.Where(new ProductPriceWithNameLikeSpec(_searchCriteria));
 
                 return queryObject.Count();
             }
@@ -39,6 +54,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             if (_category != null)
                 queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_category));
 
+            if (!string.IsNullOrEmpty(_searchCriteria))
+                queryObject =
+                    queryObject.Where(new ProductPriceWithNameLikeSpec(_searchCriteria));
 
             return queryObject.OrderBy("Product_Name", OrderDirection.Asceding)
                               .Paged(lowerPageBoundary, rowsPerPage)

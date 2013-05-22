@@ -13,8 +13,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         private readonly IPriceListLookUpView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly PriceListRetriever _priceListRetriever;
-        private readonly Cache<PriceList> _cache;
+        private PriceListRetriever _priceListRetriever;
+        private Cache<PriceList> _cache;
 
         public PriceListLookUpPresenter(IPriceListLookUpView view, IRepositoryFactory repositoryFactory) {
             _view = view;
@@ -50,6 +50,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                            }
                            : null;
             }
+        }
+
+        private string _searchCriteria;
+        public void Search(string criteria) {
+            _searchCriteria = criteria;
+            _priceListRetriever =
+                new PriceListRetriever(_repositoryFactory.CreateRepository<PriceList>(),
+                                      _searchCriteria);
+            _cache = new Cache<PriceList>(_priceListRetriever, 100);
+            _selectedPriceList = null;
+        }
+
+        public void ClearSearch() {
+            _searchCriteria = string.Empty;
+            _priceListRetriever =
+                new PriceListRetriever(_repositoryFactory.CreateRepository<PriceList>());
+            _cache = new Cache<PriceList>(_priceListRetriever, 100);
+            _selectedPriceList = null;
         }
     }
 }

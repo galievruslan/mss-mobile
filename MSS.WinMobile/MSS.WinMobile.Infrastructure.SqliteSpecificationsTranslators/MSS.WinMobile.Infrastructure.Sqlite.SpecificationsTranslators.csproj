@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="CommonTranslator.cs" />
     <Compile Include="CategorySpecTranslator.cs" />
+    <Compile Include="PriceListSpecTranslator.cs" />
+    <Compile Include="CustomerSpecTranslator.cs" />
     <Compile Include="WarehouseSpecTranslator.cs" />
     <Compile Include="OrderSpecTranslator.cs" />
     <Compile Include="ProductPriceSpecTranslator.cs" />

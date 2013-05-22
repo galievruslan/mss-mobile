@@ -13,8 +13,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         private readonly IWarehouseLookUpView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly IDataPageRetriever<Warehouse> _warehouseRetriever;
-        private readonly Cache<Warehouse> _cache;
+        private IDataPageRetriever<Warehouse> _warehouseRetriever;
+        private Cache<Warehouse> _cache;
 
         public WarehouseLookUpPresenter(IWarehouseLookUpView view, IRepositoryFactory repositoryFactory) {
             _repositoryFactory = repositoryFactory;
@@ -53,6 +53,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                                }
                            : null;
             }
+        }
+
+        private string _searchCriteria;
+        public void Search(string criteria) {
+            _searchCriteria = criteria;
+            _warehouseRetriever =
+                new WarehouseRetriever(_repositoryFactory.CreateRepository<Warehouse>(),
+                                      _searchCriteria);
+            _cache = new Cache<Warehouse>(_warehouseRetriever, 100);
+            _selectedWarehouse = null;
+        }
+
+        public void ClearSearch() {
+            _searchCriteria = string.Empty;
+            _warehouseRetriever =
+                new WarehouseRetriever(_repositoryFactory.CreateRepository<Warehouse>());
+            _cache = new Cache<Warehouse>(_warehouseRetriever, 100);
+            _selectedWarehouse = null;
         }
     }
 }
