@@ -28,6 +28,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.ProductName = value; }
         }
 
+        public new int ProductCategoryId {
+            get { return base.ProductCategoryId; }
+            set { base.ProductCategoryId = value; }
+        }
+
         new public decimal Price
         {
             get { return base.Price; }

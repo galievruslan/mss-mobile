@@ -6,6 +6,8 @@
 
         public string ProductName { get; protected set; }
 
+        public int ProductCategoryId { get; protected set; }
+
         public int PriceListId { get; protected set; }
 
         public decimal Price { get; protected set; }

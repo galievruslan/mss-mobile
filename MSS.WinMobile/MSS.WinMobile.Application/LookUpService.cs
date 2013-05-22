@@ -13,6 +13,17 @@ namespace MSS.WinMobile.Application {
             _presentersFactory = presentersFactory;
         }
 
+        public CategoryViewModel LookUpCategory(CategoryViewModel currentCategory) {
+            CategoryViewModel selectedCategory = null;
+            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, currentCategory)) {
+                if (Application2.ShowDialog(categoryLookUpView) == DialogResult.OK) {
+                    selectedCategory = categoryLookUpView.SelectedCategory;
+                }
+            }
+
+            return selectedCategory;
+        }
+
         public CustomerViewModel LookUpCustomer() {
             CustomerViewModel selectedCustomer = null;
             using (var customerLookUpView = new CustomerLookUpView(_presentersFactory)) {

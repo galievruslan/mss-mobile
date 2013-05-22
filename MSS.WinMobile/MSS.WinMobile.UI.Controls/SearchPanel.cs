@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace MSS.WinMobile.UI.Controls
 {
     public partial class SearchPanel : UserControl
     {
-        public delegate void OnSearchNeeded(object sender, string criteria);
-        public event OnSearchNeeded SearchNeeded;
+        public delegate void OnSearch(object sender, string criteria);
+        public delegate void OnClear(object sender);
+        public event OnSearch Search;
+        public event OnClear Clear;
 
         public SearchPanel()
         {
@@ -16,8 +17,13 @@ namespace MSS.WinMobile.UI.Controls
 
         private void _searchButton_Click(object sender, EventArgs e)
         {
-            if (SearchNeeded != null)
-                SearchNeeded.Invoke(this, _searchTextBox.Text);
+            if (Search != null)
+                Search.Invoke(this, _searchTextBox.Text);
+        }
+
+        private void _clearButton_Click(object sender, EventArgs e) {
+            if (Clear != null)
+                Clear.Invoke(this);
         }
     }
 }

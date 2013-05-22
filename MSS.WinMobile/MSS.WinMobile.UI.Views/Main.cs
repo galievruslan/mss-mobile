@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Views;
+using MSS.WinMobile.UI.Views.Views;
 
 namespace MSS.WinMobile.UI.Views {
     public partial class Main : Form, IViewContainer {

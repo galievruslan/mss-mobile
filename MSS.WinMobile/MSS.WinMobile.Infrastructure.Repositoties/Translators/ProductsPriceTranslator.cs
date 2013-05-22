@@ -14,7 +14,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                     ProductId = value.GetInt32(value.GetOrdinal("Product_Id")),
                     ProductName = value.GetString(value.GetOrdinal("Product_Name")),
                     PriceListId = value.GetInt32(value.GetOrdinal("PriceList_Id")),
-                    Price = value.GetDecimal(value.GetOrdinal("Price"))
+                    Price = value.GetDecimal(value.GetOrdinal("Price")),
+                    ProductCategoryId = value.GetInt32(value.GetOrdinal("Product_Category_Id"))
                 };
             return proxy;
         }

@@ -47,7 +47,7 @@ namespace MSS.WinMobile.Application
             var repositoryFactory = new RepositoryFactory(storageManager);
             repositoryFactory.RegisterSpecificationTranslator(new CommonTranslator<Customer>())
                              .RegisterSpecificationTranslator(new ShippingAddressSpecTranslator())
-                             .RegisterSpecificationTranslator(new CommonTranslator<Category>())
+                             .RegisterSpecificationTranslator(new CategorySpecTranslator())
                              .RegisterSpecificationTranslator(new CommonTranslator<PriceList>())
                              .RegisterSpecificationTranslator(new CommonTranslator<Product>())
                              .RegisterSpecificationTranslator(new OrderSpecTranslator())

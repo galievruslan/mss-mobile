@@ -35,6 +35,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         WarehouseLookUpPresenter CreateWarehouseLookUpPresenter(IWarehouseLookUpView warehouseLookUpView);
 
+        CategoryLookUpPresenter CreateCategoryLookUpPresenter(ICategoryLookUpView categoryLookUpView, CategoryViewModel categoryViewModel);
+
         PickUpProductPresenter CreatePickUpProductPresenter(IPickUpProductView pickUpProductView,
                                                             PriceListViewModel priceListViewModel,
                                                             IEnumerable<OrderItemViewModel> orderItemViewModels);

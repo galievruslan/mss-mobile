@@ -65,11 +65,14 @@
   <ItemGroup>
     <Compile Include="Presenters\ChangeStatusPresenter.cs" />
     <Compile Include="Presenters\DataRetrievers\OrderRetriever.cs" />
+    <Compile Include="Presenters\LookUps\CategoryLookUpPresenter.cs" />
     <Compile Include="Presenters\NewRoutePointPresenter.cs" />
     <Compile Include="Presenters\OrderListPresenter.cs" />
     <Compile Include="Presenters\SettingsPresenter.cs" />
+    <Compile Include="Presenters\Specificarions\ChildCategoriesSpec.cs" />
+    <Compile Include="Presenters\Specificarions\PriceOfProductWithCategorySpec.cs" />
+    <Compile Include="Presenters\Specificarions\RootCategoriesSpec.cs" />
     <Compile Include="Presenters\Specificarions\DefaultWarehouseSpec.cs" />
-    <Compile Include="Presenters\Specificarions\MyCustomers.cs" />
     <Compile Include="Presenters\Specificarions\RoutePointInRouteWithShippingAddress.cs" />
     <Compile Include="Presenters\Specificarions\RouteTemplateByDayOfWeekSpec.cs" />
     <Compile Include="Presenters\IPresentersFactory.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Presenters\Specificarions\RouteOnDateSpec.cs" />
     <Compile Include="Presenters\LookUps\WarehouseLookUpPresenter.cs" />
     <Compile Include="Presenters\LookUps\PriceListLookUpPresenter.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\PriceListViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\NewRoutePointViewModel.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="Views\INewRoutePointView.cs" />
     <Compile Include="Views\IOrderListView.cs" />
     <Compile Include="Views\ISettingsView.cs" />
+    <Compile Include="Views\LookUps\ICategoryLookUpView.cs" />
     <Compile Include="Views\LookUps\ILookUpService.cs" />
     <Compile Include="Views\LookUps\IPickUpProductView.cs" />
     <Compile Include="Views\LookUps\IWarehouseLookUpView.cs" />

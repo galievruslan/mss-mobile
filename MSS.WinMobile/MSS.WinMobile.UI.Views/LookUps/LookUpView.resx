@@ -117,34 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_clearButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
-        dr+2CXmRIg4kjv3QItN2t+OFAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAwJoCp7TZYYEN9ynm
-        eYG4m4bMWI807mK0jHVL45nGddMKhZsXrFxUHiq0MVaJ3TzaFEuF9g6rebTjcBqWQqbv0SPtG1bZ4yI8
-        Q1YLZSnMi7ZEzNVALBspC1TGsuS+2RxFoYoYmwFENp5T8Jy1kVyrWRMpPLKmmoIViXgAPHMVuVUbwwpR
-        Onh1W1ItzLfELGifoJT/FprCi6J5e7emUH4l60XrGqtgWtHAGsQA+3Uejj63YqmucjhSq2+qF6trtChW
-        l2gWrPwDT+OaEKxYB+fc+n5wBBl5sDwtx1+2GxGsbtHmYHWHpsDqBk2J1QXaMVWZ73arr2dZvogmb7Pl
-        o4IbuYH2gkcFZqCpe6bx6dn8cxVTVx53ChxpLEEAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEKhR
-        4AXAKdDahICZHwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="_searchButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAGHSURBVGhD7VaxSgNBFAwWBglKGks7m1TWdhaWadPZ24mF
-        VjaC2KSyiAQSCBELO0EsFBG0sRNb/8FGLAQLMc7AnTyOZG+DnLsnszBccju5nZm8e7uVioYSUAJKQAko
-        ASWgBJSAEvivCSzB2B7wCLwneMb1GFiJ2fQMxB0CH8DIgTPM1WI00ssRbk09gDsXk4mtjPgbfG8C9UTo
-        Kq5M3prox2KA5fBixLUdwnYN7xOfl2Mw0TKirjwEXRr+gQe/cAq7S1oa6x6rkZPynzz4hVOujaCqx2qL
-        hs/SCz7ujCAfMQuG/+bzg6I5F1OW0FpsJbT/i5fY1bGKDv7n+WyFtr+Xro1uw8BXxkS6kc3j/iwwbiM7
-        +rOIHQvZjcl1/snOneKZPDsFHTxxTiOa3FeA70xw8azzceJPcL8B7ABD4B44B3jQ2wDqQSNPFp8kfhBD
-        snkBbU5IvhTiac7uumkJlUY8DXQz/0CpxNMAz/4d4BZgFwreTfJqXvNKQAkoASWgBJSAElACkSXwDYhE
-        nA0B28o5AAAAAElFTkSuQmCC
-</value>
-  </data>
+  <metadata name="mainMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
+  </metadata>
+  <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>

@@ -2,7 +2,7 @@
 
 namespace MSS.WinMobile.UI.Controls
 {
-    partial class SearchPanel
+    partial class FilterPanel
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,12 +30,12 @@ namespace MSS.WinMobile.UI.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchPanel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterPanel));
             this._buttonPanel = new System.Windows.Forms.Panel();
-            this._inputPanel = new System.Windows.Forms.Panel();
-            this._searchTextBox = new MSS.WinMobile.UI.Controls.TextBoxWithPrompt();
             this._clearButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._searchButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this._filterButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this._inputPanel = new System.Windows.Forms.Panel();
+            this._filterLabel = new System.Windows.Forms.Label();
             this._buttonPanel.SuspendLayout();
             this._inputPanel.SuspendLayout();
             this.SuspendLayout();
@@ -44,31 +44,11 @@ namespace MSS.WinMobile.UI.Controls
             // 
             this._buttonPanel.BackColor = System.Drawing.Color.White;
             this._buttonPanel.Controls.Add(this._clearButton);
-            this._buttonPanel.Controls.Add(this._searchButton);
+            this._buttonPanel.Controls.Add(this._filterButton);
             this._buttonPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this._buttonPanel.Location = new System.Drawing.Point(190, 0);
             this._buttonPanel.Name = "_buttonPanel";
             this._buttonPanel.Size = new System.Drawing.Size(48, 24);
-            // 
-            // _inputPanel
-            // 
-            this._inputPanel.BackColor = System.Drawing.Color.White;
-            this._inputPanel.Controls.Add(this._searchTextBox);
-            this._inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._inputPanel.Location = new System.Drawing.Point(0, 0);
-            this._inputPanel.Name = "_inputPanel";
-            this._inputPanel.Size = new System.Drawing.Size(190, 24);
-            // 
-            // _searchTextBox
-            // 
-            this._searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._searchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._searchTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._searchTextBox.Location = new System.Drawing.Point(0, 0);
-            this._searchTextBox.Name = "_searchTextBox";
-            this._searchTextBox.Size = new System.Drawing.Size(190, 21);
-            this._searchTextBox.TabIndex = 0;
-            this._searchTextBox.TextPrompt = "Search";
             // 
             // _clearButton
             // 
@@ -79,27 +59,45 @@ namespace MSS.WinMobile.UI.Controls
             this._clearButton.PressedImage = null;
             this._clearButton.Size = new System.Drawing.Size(20, 20);
             this._clearButton.TabIndex = 2;
-            this._clearButton.Click += new System.EventHandler(this._clearButton_Click);
+            this._clearButton.Click += new System.EventHandler(this.ClearButtonClick);
             // 
-            // _searchButton
+            // _filterButton
             // 
-            this._searchButton.BackColor = System.Drawing.Color.White;
-            this._searchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_searchButton.BackgroundImage")));
-            this._searchButton.Location = new System.Drawing.Point(2, 2);
-            this._searchButton.Name = "_searchButton";
-            this._searchButton.PressedImage = null;
-            this._searchButton.Size = new System.Drawing.Size(20, 20);
-            this._searchButton.TabIndex = 0;
-            this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
+            this._filterButton.BackColor = System.Drawing.Color.White;
+            this._filterButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_filterButton.BackgroundImage")));
+            this._filterButton.Location = new System.Drawing.Point(2, 2);
+            this._filterButton.Name = "_filterButton";
+            this._filterButton.PressedImage = null;
+            this._filterButton.Size = new System.Drawing.Size(20, 20);
+            this._filterButton.TabIndex = 0;
+            this._filterButton.Click += new System.EventHandler(this.FilterButtonClick);
             // 
-            // SearchPanel
+            // _inputPanel
+            // 
+            this._inputPanel.BackColor = System.Drawing.Color.White;
+            this._inputPanel.Controls.Add(this._filterLabel);
+            this._inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._inputPanel.Location = new System.Drawing.Point(0, 0);
+            this._inputPanel.Name = "_inputPanel";
+            this._inputPanel.Size = new System.Drawing.Size(190, 24);
+            // 
+            // _filterLabel
+            // 
+            this._filterLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._filterLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._filterLabel.Location = new System.Drawing.Point(4, 4);
+            this._filterLabel.Name = "_filterLabel";
+            this._filterLabel.Size = new System.Drawing.Size(181, 16);
+            // 
+            // FilterPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._inputPanel);
             this.Controls.Add(this._buttonPanel);
-            this.Name = "SearchPanel";
+            this.Name = "FilterPanel";
             this.Size = new System.Drawing.Size(238, 24);
             this._buttonPanel.ResumeLayout(false);
             this._inputPanel.ResumeLayout(false);
@@ -111,8 +109,8 @@ namespace MSS.WinMobile.UI.Controls
 
         private System.Windows.Forms.Panel _buttonPanel;
         private System.Windows.Forms.Panel _inputPanel;
-        private PictureButton _searchButton;
+        private PictureButton _filterButton;
         private PictureButton _clearButton;
-        private TextBoxWithPrompt _searchTextBox;
+        private System.Windows.Forms.Label _filterLabel;
     }
 }

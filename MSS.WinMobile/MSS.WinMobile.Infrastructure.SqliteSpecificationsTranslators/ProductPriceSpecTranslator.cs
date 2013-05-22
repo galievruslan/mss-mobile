@@ -1,6 +1,7 @@
 ﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects.ISpecifications;
+using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
 
 namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
     public class ProductPriceSpecTranslator : CommonTranslator<ProductsPrice> {
@@ -13,6 +14,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
             if (specification is PricesLinesSpec) {
                 return string.Format("PriceList_Id = {0}",
                                      (specification as PricesLinesSpec).PriceList.Id);
+            }
+            if (specification is PriceOfProductWithCategorySpec) {
+                return string.Format("Product_Category_Id = {0}",
+                                     (specification as PriceOfProductWithCategorySpec).Category.Id);
             }
 
             throw new TranslatorNotFoundExceprion(specification.GetType());

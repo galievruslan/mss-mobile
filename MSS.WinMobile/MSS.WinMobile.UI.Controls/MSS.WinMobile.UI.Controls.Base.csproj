@@ -80,11 +80,23 @@
     <Compile Include="Buttons\CancelButton.Designer.cs">
       <DependentUpon>CancelButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Buttons\FilterButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Buttons\FilterButton.Designer.cs">
+      <DependentUpon>FilterButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Buttons\InputButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Buttons\InputButton.Designer.cs">
       <DependentUpon>InputButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPanel.Designer.cs">
+      <DependentUpon>FilterPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
@@ -125,6 +137,9 @@
     <Compile Include="ListBox\VirtualListBox.Designer.cs">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextBoxWithPromt.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -134,11 +149,17 @@
     <EmbeddedResource Include="Buttons\CancelButton.resx">
       <DependentUpon>CancelButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Buttons\FilterButton.resx">
+      <DependentUpon>FilterButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Buttons\InputButton.resx">
       <DependentUpon>InputButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Buttons\OkButton.resx">
       <DependentUpon>OkButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPanel.resx">
+      <DependentUpon>FilterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>

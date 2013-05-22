@@ -1,13 +1,13 @@
-﻿namespace MSS.WinMobile.UI.Views.LookUps
+﻿namespace MSS.WinMobile.UI.Controls.Buttons
 {
-    partial class LookUpView
+    partial class FilterButton
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,32 +20,29 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterButton));
             this.SuspendLayout();
             // 
-            // LookUpView
+            // FilterButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Menu = this.mainMenu1;
-            this.Name = "LookUpView";
-            this.Text = "LookUpView";
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.Name = "FilterButton";
+            this.Size = new System.Drawing.Size(22, 22);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MainMenu mainMenu1;
     }
 }

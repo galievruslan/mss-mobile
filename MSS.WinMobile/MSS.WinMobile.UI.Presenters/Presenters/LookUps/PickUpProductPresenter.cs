@@ -15,15 +15,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         private readonly IPickUpProductView _view;
         private readonly IRepositoryFactory _repositoryFactory;
+        private readonly ILookUpService _lookUpService;
 
-        private readonly IDataPageRetriever<ProductsPrice> _productsPriceRetriever;
-        private readonly Cache<ProductsPrice> _cache;
+        private IDataPageRetriever<ProductsPrice> _productsPriceRetriever;
+        private Cache<ProductsPrice> _cache;
+        private readonly PriceListViewModel _priceListViewModel;
         private readonly IList<PickUpProductViewModel> _pickUpProductViewModels;
 
-        public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels) {
+        public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, ILookUpService lookUpService, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels) {
             _repositoryFactory = repositoryFactory;
+            _lookUpService = lookUpService;
+            _priceListViewModel = priceListViewModel;
             var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(priceListViewModel.Id));
+            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(_priceListViewModel.Id));
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
             _view = view;
 
@@ -117,6 +121,32 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public IList<PickUpProductViewModel> PickedUpProducts {
             get { return _pickUpProductViewModels; }
+        }
+
+        private CategoryViewModel _categoryFilterViewModel;
+        public void ChangeCategoryFilter() {
+            if (_categoryFilterViewModel == null) {
+                _categoryFilterViewModel = new CategoryViewModel {ParentId = 0};
+            }
+            var lookedUpCategory = _lookUpService.LookUpCategory(_categoryFilterViewModel);
+            if (lookedUpCategory != null) {
+                var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+                var categoryRepository = _repositoryFactory.CreateRepository<Category>();
+
+                _categoryFilterViewModel = lookedUpCategory;
+                _productsPriceRetriever =
+                    new ProductsPriceRetriever(priceListRepository.GetById(_priceListViewModel.Id),
+                                               categoryRepository.GetById(lookedUpCategory.Id));
+                _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
+                _view.SetCategoryFilter(lookedUpCategory.Name);
+            }
+        }
+
+        public void ClearCategoryFilter() {
+            _categoryFilterViewModel = null;
+            var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(_priceListViewModel.Id));
+            _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
         }
     }
 }

@@ -71,6 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IViewContainer.cs" />
+    <Compile Include="LookUps\CategoryLookUpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookUps\CategoryLookUpView.Designer.cs">
+      <DependentUpon>CategoryLookUpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="LookUps\LookUpView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LookUps\CategoryLookUpView.resx">
+      <DependentUpon>CategoryLookUpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookUps\LookUpView.resx">
+      <DependentUpon>LookUpView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

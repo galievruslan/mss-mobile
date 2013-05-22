@@ -6,7 +6,6 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps
@@ -87,8 +86,24 @@ namespace MSS.WinMobile.UI.Views.LookUps
             Close();
         }
 
+        public void SetCategoryFilter(string filter) {
+            _filterPanel.SetFilterValue(filter);
+        }
+
         public IList<PickUpProductViewModel> PickedUpProducts {
             get { return _presenter.PickedUpProducts; }
+        }
+
+        private void _filterPanel_Filter(object sender) {
+            _presenter.ChangeCategoryFilter();
+            _selectedItem = null;
+            _productPriceListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void _filterPanel_Clear(object sender) {
+            _presenter.ClearCategoryFilter();
+            _selectedItem = null;
+            _productPriceListBox.SetListSize(_presenter.InitializeListSize());
         }
     }
 }

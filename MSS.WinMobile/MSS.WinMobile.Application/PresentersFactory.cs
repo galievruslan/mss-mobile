@@ -100,9 +100,14 @@ namespace MSS.WinMobile.Application {
             return new WarehouseLookUpPresenter(warehouseLookUpView, _repositoryFactory);
         }
 
+        public CategoryLookUpPresenter CreateCategoryLookUpPresenter(ICategoryLookUpView categoryLookUpView,
+                                                                     CategoryViewModel categoryViewModel) {
+            return new CategoryLookUpPresenter(categoryLookUpView, _repositoryFactory, categoryViewModel);
+        }
+
         public PickUpProductPresenter CreatePickUpProductPresenter(IPickUpProductView pickUpProductView, PriceListViewModel priceListViewModel,
                                                                    IEnumerable<OrderItemViewModel> orderItemViewModels) {
-            return new PickUpProductPresenter(pickUpProductView, _repositoryFactory, priceListViewModel, orderItemViewModels);
+            return new PickUpProductPresenter(pickUpProductView, _repositoryFactory, _lookUpService, priceListViewModel, orderItemViewModels);
         }
 
         public SettingsPresenter CreateSettingsPresenter(ISettingsView settingsView) {

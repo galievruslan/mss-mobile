@@ -34,7 +34,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PickUpProductView));
             this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.CancelButton();
             this.okButton = new MSS.WinMobile.UI.Controls.Buttons.OkButton();
-            this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
             this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.quantityPanel = new System.Windows.Forms.Panel();
             this.deleteButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -50,7 +49,13 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.oneButton = new System.Windows.Forms.Button();
             this._productPriceListBox = new MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox();
             this.mainMenu = new System.Windows.Forms.MainMenu();
+            this._searchHeaderPanel = new System.Windows.Forms.Panel();
+            this._searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
+            this._filterHeaderPanel = new System.Windows.Forms.Panel();
+            this._filterPanel = new MSS.WinMobile.UI.Controls.FilterPanel();
             this.quantityPanel.SuspendLayout();
+            this._searchHeaderPanel.SuspendLayout();
+            this._filterHeaderPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -74,15 +79,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.okButton.Size = new System.Drawing.Size(22, 22);
             this.okButton.TabIndex = 11;
             this.okButton.Click += new System.EventHandler(this.OkButtonClick);
-            // 
-            // searchPanel
-            // 
-            this.searchPanel.BackColor = System.Drawing.Color.White;
-            this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchPanel.Location = new System.Drawing.Point(0, 0);
-            this.searchPanel.Name = "searchPanel";
-            this.searchPanel.Size = new System.Drawing.Size(240, 24);
-            this.searchPanel.TabIndex = 0;
             // 
             // quantityPanel
             // 
@@ -231,33 +227,70 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this._productPriceListBox.BackColor = System.Drawing.Color.White;
             this._productPriceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._productPriceListBox.Location = new System.Drawing.Point(0, 24);
+            this._productPriceListBox.Location = new System.Drawing.Point(0, 48);
             this._productPriceListBox.Name = "_productPriceListBox";
-            this._productPriceListBox.Size = new System.Drawing.Size(240, 214);
+            this._productPriceListBox.Size = new System.Drawing.Size(240, 190);
             this._productPriceListBox.TabIndex = 1;
+            // 
+            // _searchHeaderPanel
+            // 
+            this._searchHeaderPanel.Controls.Add(this._searchPanel);
+            this._searchHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._searchHeaderPanel.Location = new System.Drawing.Point(0, 24);
+            this._searchHeaderPanel.Name = "_searchHeaderPanel";
+            this._searchHeaderPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // _searchPanel
+            // 
+            this._searchPanel.BackColor = System.Drawing.Color.White;
+            this._searchPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._searchPanel.Location = new System.Drawing.Point(0, 0);
+            this._searchPanel.Name = "_searchPanel";
+            this._searchPanel.Size = new System.Drawing.Size(240, 24);
+            this._searchPanel.TabIndex = 5;
+            // 
+            // _filterHeaderPanel
+            // 
+            this._filterHeaderPanel.Controls.Add(this._filterPanel);
+            this._filterHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._filterHeaderPanel.Location = new System.Drawing.Point(0, 0);
+            this._filterHeaderPanel.Name = "_filterHeaderPanel";
+            this._filterHeaderPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // _filterPanel
+            // 
+            this._filterPanel.BackColor = System.Drawing.Color.White;
+            this._filterPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterPanel.Location = new System.Drawing.Point(0, 0);
+            this._filterPanel.Name = "_filterPanel";
+            this._filterPanel.Size = new System.Drawing.Size(240, 24);
+            this._filterPanel.TabIndex = 0;
+            this._filterPanel.Filter += new MSS.WinMobile.UI.Controls.FilterPanel.OnFilter(this._filterPanel_Filter);
+            this._filterPanel.Clear += new MSS.WinMobile.UI.Controls.FilterPanel.OnClear(this._filterPanel_Clear);
             // 
             // PickUpProductView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._productPriceListBox);
+            this.Controls.Add(this._searchHeaderPanel);
+            this.Controls.Add(this._filterHeaderPanel);
             this.Controls.Add(this.quantityPanel);
-            this.Controls.Add(this.searchPanel);
             this.Menu = this.mainMenu;
             this.Name = "PickUpProductView";
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
             this.quantityPanel.ResumeLayout(false);
+            this._searchHeaderPanel.ResumeLayout(false);
+            this._filterHeaderPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private SearchPanel searchPanel;
         private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
         private System.Windows.Forms.Panel quantityPanel;
         private System.Windows.Forms.Button oneButton;
@@ -275,6 +308,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
         public PictureButton deleteButton;
         private MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox _productPriceListBox;
         private System.Windows.Forms.MainMenu mainMenu;
+        private System.Windows.Forms.Panel _searchHeaderPanel;
+        private System.Windows.Forms.Panel _filterHeaderPanel;
+        private SearchPanel _searchPanel;
+        private FilterPanel _filterPanel;
 
     }
 }
