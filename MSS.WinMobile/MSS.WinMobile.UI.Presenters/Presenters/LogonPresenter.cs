@@ -33,6 +33,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                       _viewModel.Password).Connect()) {
                         _configurationManager.GetConfig("Common")
                                              .GetSection("Server")
+                                             .GetSetting("Address")
+                                             .Value =
+                            _viewModel.ServerAddress;
+                        _configurationManager.GetConfig("Common")
+                                             .GetSection("Server")
                                              .GetSetting("Username")
                                              .Value =
                             _viewModel.Username;

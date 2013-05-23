@@ -52,6 +52,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._descriptionLabel.Name = "_descriptionLabel";
             this._descriptionLabel.Size = new System.Drawing.Size(200, 14);
             this._descriptionLabel.TabIndex = 0;
+            this._descriptionLabel.TabStop = false;
             this._descriptionLabel.Text = "linkLabel1";
             this._descriptionLabel.Click += new System.EventHandler(this.LabelClick);
             // 
@@ -64,6 +65,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._shippingLabel.Name = "_shippingLabel";
             this._shippingLabel.Size = new System.Drawing.Size(200, 14);
             this._shippingLabel.TabIndex = 1;
+            this._shippingLabel.TabStop = false;
             this._shippingLabel.Text = "linkLabel1";
             this._shippingLabel.Click += new System.EventHandler(this.LabelClick);
             // 
@@ -76,6 +78,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._ammountLabel.Name = "_ammountLabel";
             this._ammountLabel.Size = new System.Drawing.Size(200, 14);
             this._ammountLabel.TabIndex = 2;
+            this._ammountLabel.TabStop = false;
             this._ammountLabel.Text = "linkLabel1";
             this._ammountLabel.Click += new System.EventHandler(this.LabelClick);
             // 

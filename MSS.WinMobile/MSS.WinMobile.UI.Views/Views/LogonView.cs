@@ -22,6 +22,7 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _logonPresenter = _presentersFactory.CreateLogonPresenter(this);
                 _viewModel = _logonPresenter.Initialize();
 
+                _serverTextBox.Text = _viewModel.ServerAddress;
                 _accountTextBox.Text = _viewModel.Username;
                 _passwordTextBox.Text = _viewModel.Password;
             }
@@ -41,6 +42,10 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private void AccountTextBoxTextChanged(object sender, EventArgs e) {
             _viewModel.Username = _accountTextBox.Text;
+        }
+
+        private void ServerTextBoxTextChanged(object sender, EventArgs e) {
+            _viewModel.ServerAddress = _serverTextBox.Text;
         }
     }
 }
