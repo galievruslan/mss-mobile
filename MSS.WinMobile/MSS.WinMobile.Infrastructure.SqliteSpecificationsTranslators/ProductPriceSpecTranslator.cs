@@ -20,8 +20,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
                                      (specification as PriceOfProductWithCategorySpec).Category.Id);
             }
             if (specification is ProductPriceWithNameLikeSpec) {
-                return string.Format("Product_Name like '%{0}%'",
-                                     (specification as ProductPriceWithNameLikeSpec).Criteria);
+                return string.Format("UPPER(Product_Name) like '%{0}%'",
+                                     (specification as ProductPriceWithNameLikeSpec).Criteria.ToUpper());
             }
 
             throw new TranslatorNotFoundExceprion(specification.GetType());

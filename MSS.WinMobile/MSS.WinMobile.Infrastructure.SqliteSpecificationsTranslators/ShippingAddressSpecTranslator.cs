@@ -16,8 +16,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
                                      (specification as CustomersShippingAddressesSpec).Customer.Id);
             }
             if (specification is ShippingAddressWithNameOrAddressLikeSpec) {
-                return string.Format("Name like '%{0}%' Or Address like '%{0}%'",
-                                     (specification as ShippingAddressWithNameOrAddressLikeSpec).Criteria);
+                return string.Format("UPPER(Name) like '%{0}%' Or UPPER(Address) like '%{0}%'",
+                                     (specification as ShippingAddressWithNameOrAddressLikeSpec).Criteria.ToUpper());
             }
 
             throw new TranslatorNotFoundExceprion(specification.GetType());

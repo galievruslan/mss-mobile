@@ -12,8 +12,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
             }
             
             if (specification is CustomerWithNameLikeSpec) {
-                return string.Format("Name like '%{0}%'",
-                                     (specification as CustomerWithNameLikeSpec).Criteria);
+                return string.Format("UPPER(Name) like '%{0}%'",
+                                     (specification as CustomerWithNameLikeSpec).Criteria.ToUpper());
             }
 
             throw new TranslatorNotFoundExceprion(specification.GetType());

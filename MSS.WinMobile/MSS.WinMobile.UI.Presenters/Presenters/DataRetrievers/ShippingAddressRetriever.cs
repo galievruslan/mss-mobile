@@ -39,7 +39,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                 return new ShippingAddress[0];
 
             IQueryObject<ShippingAddress> queryObject = _customer.ShippingAddresses;
-            if (string.IsNullOrEmpty(_searchCriteria))
+            if (!string.IsNullOrEmpty(_searchCriteria))
                 queryObject =
                     queryObject.Where(new ShippingAddressWithNameOrAddressLikeSpec(_searchCriteria));
 
