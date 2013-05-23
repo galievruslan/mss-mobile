@@ -44,7 +44,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var routePoint = routePointsRepository.GetById(routePointViewModel.Id);
             var routeRepository = _repositoryFactory.CreateRepository<Route>();
-            var route = routeRepository.GetById(routePoint.Id);
+            var route = routeRepository.GetById(routePoint.RouteId);
 
             var shippingAddressRepository = _repositoryFactory.CreateRepository<ShippingAddress>();
             var shippingAddress = shippingAddressRepository.GetById(routePoint.ShippingAddressId);
