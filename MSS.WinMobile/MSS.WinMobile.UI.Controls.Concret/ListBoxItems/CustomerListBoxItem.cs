@@ -40,7 +40,6 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             this._nameLabel.Name = "_nameLabel";
             this._nameLabel.Size = new System.Drawing.Size(200, 28);
             this._nameLabel.TabIndex = 0;
-            this._nameLabel.TabStop = false;
             this._nameLabel.Text = "linkLabel1";
             this._nameLabel.Click += new System.EventHandler(this.NameLabelClick);
             // 
@@ -50,7 +49,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._nameLabel);
             this.Name = "CustomerListBoxItem";
-            this.Size = new System.Drawing.Size(200, 30);
+            this.Size = new System.Drawing.Size(200, 29);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.CustomerListBoxItemPaint);
             this.ResumeLayout(false);
 

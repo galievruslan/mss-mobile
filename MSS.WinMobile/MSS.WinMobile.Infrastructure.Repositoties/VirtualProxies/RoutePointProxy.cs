@@ -56,6 +56,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.StatusId = value; }
         }
 
+        new public string StatusName {
+            get { return base.StatusName; }
+            set { base.StatusName = value; }
+        }
+
         public override IQueryObject<Order> Orders {
             get {
                 var routePointsOrders = new RoutePointsOrdersSpec(this);

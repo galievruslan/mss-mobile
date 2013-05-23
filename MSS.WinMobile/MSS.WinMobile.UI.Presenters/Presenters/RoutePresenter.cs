@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -24,6 +28,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private IDataPageRetriever<RoutePoint> _routePointRetriever;
         private Cache<RoutePoint> _cache;
 
+        private readonly IDictionary<int, Color> _statusColorDictionary =
+            new Dictionary<int, Color>();
+
         public RoutePresenter(IRouteView view, 
                               IUnitOfWorkFactory unitOfWorkFactory,
                               IRepositoryFactory repositoryFactory, 
@@ -36,6 +43,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _unitOfWorkFactory = unitOfWorkFactory;
             _view = view;
             _viewModel = routeViewModel;
+
+            var statusRepository = _repositoryFactory.CreateRepository<Status>();
+            var configurationManager = new ConfigurationManager(Environments.AppPath);
+            foreach (var status in statusRepository.Find().ToArray()) {
+                try {
+                    var colorName = configurationManager.GetConfig("Domain")
+                                                        .GetSection("Statuses")
+                                                        .GetSetting(status.Name)
+                                                        .Value;
+                    _statusColorDictionary.Add(status.Id, ColorHelper.StringToColor(colorName));
+                }
+                catch (Exception exception) {
+                    Log.Error(exception);
+                }
+            }
         }
 
         public int InitializeListSize() {
@@ -44,11 +66,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public RoutePointViewModel GetItem(int index) {
             RoutePoint item = _cache.RetrieveElement(index);
+            Color color = Color.Empty;
+            if (_statusColorDictionary.ContainsKey(item.StatusId))
+                color = _statusColorDictionary[item.StatusId];
+            
             return new RoutePointViewModel {
                 Id = item.Id,
                 ShippinAddressName = item.ShippingAddressName,
                 ShippinAddressAddress = item.ShippingAddressAddress,
-                StatusId = item.StatusId
+                StatusId = item.StatusId,
+                StatusName = item.StatusName,
+                Color = color
             };
         }
 
@@ -59,13 +87,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public RoutePointViewModel SelectedModel {
             get {
+                Color color = Color.Empty;
+                if (_selectedRoutePoint != null && _statusColorDictionary.ContainsKey(_selectedRoutePoint.StatusId))
+                    color = _statusColorDictionary[_selectedRoutePoint.StatusId];
+
                 return _selectedRoutePoint != null
                            ? new RoutePointViewModel {
                                Id = _selectedRoutePoint.Id,
                                RouteId = _selectedRoutePoint.RouteId,
                                StatusId = _selectedRoutePoint.StatusId,
+                               StatusName = _selectedRoutePoint.StatusName,
                                ShippinAddressName = _selectedRoutePoint.ShippingAddressName,
-                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress
+                               ShippinAddressAddress = _selectedRoutePoint.ShippingAddressAddress,
+                               Color = color
                            }
                            : null;
             }

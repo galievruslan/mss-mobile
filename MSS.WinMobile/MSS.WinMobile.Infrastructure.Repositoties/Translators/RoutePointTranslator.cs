@@ -21,7 +21,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                     ShippingAddressName = value.GetString(value.GetOrdinal("ShippingAddress_Name")),
                     ShippingAddressAddress = value.GetString(value.GetOrdinal("ShippingAddress_Address")),
                     StatusId = value.GetInt32(value.GetOrdinal("Status_Id")),
-                    Synchronized = value.GetBoolean(value.GetOrdinal("Synchronized"))
+                    Synchronized = value.GetBoolean(value.GetOrdinal("Synchronized")),
+                    StatusName = value.GetString(value.GetOrdinal("Status_Name"))
                 };
             return proxy;
         }

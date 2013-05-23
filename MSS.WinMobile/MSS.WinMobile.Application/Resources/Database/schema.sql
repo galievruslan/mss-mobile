@@ -78,6 +78,7 @@ CREATE TABLE [RoutePoints] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [ShippingAddress_Name] VARCHAR(255) NULL
 , [ShippingAddress_Address] VARCHAR(255) NULL
 , [Status_Id] INTEGER  NULL
+, [Status_Name] VARCHAR(255) NULL
 , [Synchronized] BIT  NULL
 , FOREIGN KEY(Route_Id) REFERENCES Routes(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)

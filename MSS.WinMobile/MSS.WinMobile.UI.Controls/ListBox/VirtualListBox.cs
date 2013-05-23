@@ -28,11 +28,15 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
                 FillItemPanel();
 
-                if (_itemCount > _items.Count)
+                if (_itemCount > _items.Count) {
+                    _vScrollBar.LargeChange = _items.Count + 1;
+                    _vScrollBar.SmallChange = 1;
+                    _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount;
+
                     _vScrollBar.Show();
+                }
                 else
                     _vScrollBar.Hide();
-                _vScrollBar.Maximum = _vScrollBar.Minimum + _itemCount;
             }
 
             ReindexItems();

@@ -60,6 +60,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +106,7 @@
     <Compile Include="ViewModels\SynchronizationViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
+    <Compile Include="Views\ColorHelper.cs" />
     <Compile Include="Views\IChangeStatusView.cs" />
     <Compile Include="Views\IExitView.cs" />
     <Compile Include="Views\IListView.cs" />

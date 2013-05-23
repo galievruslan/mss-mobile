@@ -19,6 +19,7 @@ namespace MSS.WinMobile.Domain.Models
         public string ShippingAddressAddress { get; protected set; }
 
         public int StatusId { get; protected set; }
+        public string StatusName { get; protected set; }
 
         public void SetShippingAddress(ShippingAddress shippingAddress) {
             ShippingAddressId = shippingAddress.Id;
@@ -28,6 +29,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public void SetStatus(Status status) {
             StatusId = status.Id;
+            StatusName = status.Name;
         }
 
         public bool Synchronized { get; set; }

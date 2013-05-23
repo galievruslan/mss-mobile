@@ -64,7 +64,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this.Controls.Add(this._addressLabel);
             this.Controls.Add(this._nameLabel);
             this.Name = "WarehouseListBoxItem";
-            this.Size = new System.Drawing.Size(200, 30);
+            this.Size = new System.Drawing.Size(200, 29);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ListBoxItemPaint);
             this.ResumeLayout(false);
 
