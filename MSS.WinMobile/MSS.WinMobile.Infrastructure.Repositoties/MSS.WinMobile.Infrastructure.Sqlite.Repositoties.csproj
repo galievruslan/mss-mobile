@@ -76,6 +76,9 @@
     <Compile Include="QueryObjects\Specifications\CustomersShippingAddressesSpec.cs" />
     <Compile Include="QueryObjects\Specifications\WithIdSpec.cs" />
     <Compile Include="RepositoryFactory.cs" />
+    <Compile Include="SqLiteExtensions\CollationCaseInsensitiveExtension.cs" />
+    <Compile Include="SqLiteExtensions\UpperExtension.cs" />
+    <Compile Include="SqLiteExtensions\LowerExtension.cs" />
     <Compile Include="SqLiteStorage.cs" />
     <Compile Include="SqLiteStorageConnection.cs" />
     <Compile Include="SqLiteStorageManager.cs" />

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.SqLiteExtensions;
 using MSS.WinMobile.Infrastructure.Storage;
 using log4net;
 
@@ -9,6 +10,9 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties {
     public class SqLiteStorageManager : IStorageManager {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SqLiteStorageManager));
         public IStorage CreateOrOpenStorage(string databaseFullPath, string databaseScriptFullPath) {
+            SQLiteFunction.RegisterFunction(typeof(UpperExtension));
+            SQLiteFunction.RegisterFunction(typeof(LowerExtension));
+            SQLiteFunction.RegisterFunction(typeof(CollationCaseInsensitiveExtension));
             Current = new SqLiteStorage(databaseFullPath);
             if (!File.Exists(databaseFullPath)) {
                 SQLiteConnection.CreateFile(databaseFullPath);

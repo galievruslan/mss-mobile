@@ -39,6 +39,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                     _vScrollBar.Hide();
             }
 
+            _vScrollBar.Value = 0;
             ReindexItems();
         }
 
