@@ -51,22 +51,6 @@
     </Reference>
     <Reference Include="Microsoft.WindowsCE.Forms" />
     <Reference Include="mscorlib" />
-    <Reference Include="OpenNETCF, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenNETCF.Drawing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenNETCF.Windows.Forms, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.Windows.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenNETCF.WindowsCE, Version=2.2.0.0, Culture=neutral, PublicKeyToken=e60dbea84bb431b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\SDF Community Edition\Bin\OpenNETCF.WindowsCE.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -86,11 +70,11 @@
     <Compile Include="Buttons\FilterButton.Designer.cs">
       <DependentUpon>FilterButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="Buttons\InputButton.cs">
+    <Compile Include="Buttons\InformationButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Buttons\InputButton.Designer.cs">
-      <DependentUpon>InputButton.cs</DependentUpon>
+    <Compile Include="Buttons\InformationButton.Designer.cs">
+      <DependentUpon>InformationButton.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterPanel.cs">
       <SubType>UserControl</SubType>
@@ -152,8 +136,8 @@
     <EmbeddedResource Include="Buttons\FilterButton.resx">
       <DependentUpon>FilterButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Buttons\InputButton.resx">
-      <DependentUpon>InputButton.cs</DependentUpon>
+    <EmbeddedResource Include="Buttons\InformationButton.resx">
+      <DependentUpon>InformationButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Buttons\OkButton.resx">
       <DependentUpon>OkButton.cs</DependentUpon>
@@ -177,12 +161,6 @@
     <EmbeddedResource Include="ListBox\VirtualListBox.resx">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
-      <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
-      <Name>MSS.WinMobile.UI.Presenters</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

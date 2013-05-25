@@ -23,8 +23,29 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.mainMenu = new System.Windows.Forms.MainMenu();
+            this._mainMenu = new System.Windows.Forms.MainMenu();
+            this._details = new Microsoft.WindowsCE.Forms.Notification();
+            this._leftButton = new System.Windows.Forms.MenuItem();
+            this._rightButton = new System.Windows.Forms.MenuItem();
+            this._inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.SuspendLayout();
+            // 
+            // _mainMenu
+            // 
+            this._mainMenu.MenuItems.Add(this._leftButton);
+            this._mainMenu.MenuItems.Add(this._rightButton);
+            // 
+            // _details
+            // 
+            this._details.Text = "notification1";
+            // 
+            // _leftButton
+            // 
+            this._leftButton.Text = "LeftButton";
+            // 
+            // _rightButton
+            // 
+            this._rightButton.Text = "RightButton";
             // 
             // Main
             // 
@@ -32,7 +53,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Menu = this.mainMenu;
+            this.Menu = this._mainMenu;
             this.Name = "Main";
             this.Text = "Main";
             this.ResumeLayout(false);
@@ -41,6 +62,10 @@
 
         #endregion
 
-        private System.Windows.Forms.MainMenu mainMenu;
+        private System.Windows.Forms.MainMenu _mainMenu;
+        private Microsoft.WindowsCE.Forms.Notification _details;
+        internal Microsoft.WindowsCE.Forms.InputPanel _inputPanel;
+        internal System.Windows.Forms.MenuItem _leftButton;
+        internal System.Windows.Forms.MenuItem _rightButton;
     }
 }

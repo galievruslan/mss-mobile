@@ -55,16 +55,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             get { return _presenter.SelectedModel; }
         }
 
-        private void OkButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
         private void DoSearchClick(object sender, string criteria) {
             _presenter.Search(criteria);
             _priceListListBox.SetListSize(_presenter.InitializeListSize());

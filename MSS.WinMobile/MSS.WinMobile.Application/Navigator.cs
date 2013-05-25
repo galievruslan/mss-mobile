@@ -2,7 +2,6 @@
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
-using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Views;
 using MSS.WinMobile.UI.Views.Views;
 
@@ -17,74 +16,60 @@ namespace MSS.WinMobile.Application
         }
 
         public void GoToLogon() {
-            ILogonView logonView = new LogonView(_presentersFactory);
-            _container.SetView(logonView);
+            _container.SetView(new LogonView(_presentersFactory));
         }
 
         public void GoToMenu() {
-            IMenuView menuView = new MenuView(_presentersFactory);
-            _container.SetView(menuView);
+            _container.SetView(new MenuView(_presentersFactory));
         }
 
         public void GoToSettings() {
-            ISettingsView settingsView = new SettingsView(_presentersFactory);
-            _container.SetView(settingsView);
+            _container.SetView(new SettingsView(_presentersFactory));
         }
 
         public void GoToSynchronization(bool autostart)
         {
-            ISynchronizationView synchronizationView = new SynchronizationView(_presentersFactory, autostart);
-            _container.SetView(synchronizationView);
+            _container.SetView(new SynchronizationView(_presentersFactory, autostart));
         }
 
         public void GoToRoute(RouteViewModel routeViewModel) {
-            IRouteView routeView = new RouteView(_presentersFactory, routeViewModel);
-            _container.SetView(routeView);
+            _container.SetView(new RouteView(_presentersFactory, routeViewModel));
         }
 
         public void GoToNewRoutePoint(RouteViewModel routeViewModel) {
-            INewRoutePointView newRoutePointView = new NewRoutePointView(_presentersFactory, routeViewModel);
-            _container.SetView(newRoutePointView);
+            _container.SetView(new NewRoutePointView(_presentersFactory, routeViewModel));
         }
 
         public void GoToChangeStatus(RoutePointViewModel routePointViewModel) {
-            IChangeStatusView changeStatusView = new ChangeStatusView(_presentersFactory, routePointViewModel);
-            _container.SetView(changeStatusView);
+            _container.SetView(new ChangeStatusView(_presentersFactory, routePointViewModel));
         }
 
         public void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel) {
-            IRoutePointsOrderListView orderListView = new RoutePointsOrderListView(_presentersFactory, routePointViewModel);
-            _container.SetView(orderListView);
+            _container.SetView(new RoutePointsOrderListView(_presentersFactory, routePointViewModel));
         }
 
         public void GoToCreateOrderForRoutePoint(RoutePointViewModel routePointViewModel) {
-            IOrderView orderView = new OrderView(_presentersFactory, routePointViewModel);
-            _container.SetView(orderView);
+            _container.SetView(new OrderView(_presentersFactory, routePointViewModel));
         }
 
         public void GoToEditRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
-            IOrderView orderView = new OrderView(_presentersFactory, routePointViewModel, orderViewModel);
-            _container.SetView(orderView);
+            _container.SetView(new OrderView(_presentersFactory, routePointViewModel, orderViewModel));
         }
 
         public void GoToViewRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
-            IOrderView orderView = new ReadOnlyOrderView(_presentersFactory, routePointViewModel, orderViewModel);
-            _container.SetView(orderView);
+            _container.SetView(new ReadOnlyOrderView(_presentersFactory, routePointViewModel, orderViewModel));
         }
 
         public void GoToOrderList(DateTime date) {
-            IOrderListView orderListView = new OrderListView(_presentersFactory, date);
-            _container.SetView(orderListView);
+            _container.SetView(new OrderListView(_presentersFactory, date));
         }
 
         public void GoToViewOrder(OrderViewModel orderViewModel) {
-            IOrderView orderView = new ReadOnlyOrderView(_presentersFactory, orderViewModel);
-            _container.SetView(orderView);
+            _container.SetView(new ReadOnlyOrderView(_presentersFactory, orderViewModel));
         }
 
         public void GoToEditOrder(OrderViewModel orderViewModel) {
-            IOrderView orderView = new OrderView(_presentersFactory, orderViewModel);
-            _container.SetView(orderView);
+            _container.SetView(new OrderView(_presentersFactory, orderViewModel));
         }
 
         public void GoToExit() {

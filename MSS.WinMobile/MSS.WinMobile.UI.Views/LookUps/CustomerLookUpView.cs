@@ -11,8 +11,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
 {
     public partial class CustomerLookUpView : LookUpView, ICustomerLookUpView
     {
-        public CustomerLookUpView()
-        {
+        public CustomerLookUpView() {
             InitializeComponent();
         }
 
@@ -30,8 +29,13 @@ namespace MSS.WinMobile.UI.Views.LookUps
                 _presenter = _presentersFactory.CreateCustomerLookUpPresenter(this);
                 customerListBox.ItemDataNeeded += ItemDataNeeded;
                 customerListBox.ItemSelected += ItemSelected;
+                customerListBox.ItemInformationNeeded += CustomerListBoxItemInformationNeeded;
                 customerListBox.SetListSize(_presenter.InitializeListSize());
             }
+        }
+
+        private void CustomerListBoxItemInformationNeeded(object sender, VirtualListBoxItem item) {
+            _presenter.DisplayCustomerDetails(item.Index);
         }
 
         void ItemSelected(object sender, VirtualListBoxItem item) {
@@ -49,16 +53,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
 
         public CustomerViewModel SelectedCustomer {
             get { return _presenter.SelectedModel; }
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
 
         private void DoSearchClick(object sender, string criteria) {

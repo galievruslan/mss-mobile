@@ -30,51 +30,9 @@ namespace MSS.WinMobile.UI.Views.LookUps
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShippingAddressLookUpView));
-            this._actionPanel = new System.Windows.Forms.Panel();
-            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.shippingAddressListBox = new MSS.WinMobile.UI.Controls.Concret.ShippingAddressListBox();
             this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
-            this.mainMenu = new System.Windows.Forms.MainMenu();
-            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
-            this._actionPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // _actionPanel
-            // 
-            this._actionPanel.Controls.Add(this.cancelButton);
-            this._actionPanel.Controls.Add(this.okButton);
-            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 238);
-            this._actionPanel.Name = "_actionPanel";
-            this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.BackColor = System.Drawing.Color.White;
-            this.cancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelButton.BackgroundImage")));
-            this.cancelButton.Location = new System.Drawing.Point(123, 3);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.PressedImage = null;
-            this.cancelButton.Size = new System.Drawing.Size(24, 24);
-            this.cancelButton.TabIndex = 3;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
-            // 
-            // okButton
-            // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.BackColor = System.Drawing.Color.White;
-            this.okButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("okButton.BackgroundImage")));
-            this.okButton.Location = new System.Drawing.Point(93, 3);
-            this.okButton.Name = "okButton";
-            this.okButton.PressedImage = null;
-            this.okButton.Size = new System.Drawing.Size(24, 24);
-            this.okButton.TabIndex = 2;
-            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // shippingAddressListBox
             // 
@@ -82,7 +40,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.shippingAddressListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.shippingAddressListBox.Location = new System.Drawing.Point(0, 24);
             this.shippingAddressListBox.Name = "shippingAddressListBox";
-            this.shippingAddressListBox.Size = new System.Drawing.Size(240, 214);
+            this.shippingAddressListBox.Size = new System.Drawing.Size(240, 244);
             this.shippingAddressListBox.TabIndex = 3;
             // 
             // searchPanel
@@ -103,13 +61,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this.shippingAddressListBox);
-            this.Controls.Add(this._actionPanel);
             this.Controls.Add(this.searchPanel);
-            this.Menu = this.mainMenu;
             this.Name = "ShippingAddressLookUpView";
             this.Text = "ShippingAddressLookUpView";
             this.Load += new System.EventHandler(this.ShippingAddressLookUpViewLoad);
-            this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -117,11 +72,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
         #endregion
 
         private SearchPanel searchPanel;
-        private System.Windows.Forms.Panel _actionPanel;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private MSS.WinMobile.UI.Controls.Concret.ShippingAddressListBox shippingAddressListBox;
-        private System.Windows.Forms.MainMenu mainMenu;
-        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
     }
 }

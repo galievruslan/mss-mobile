@@ -32,9 +32,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PickUpProductView));
-            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.CancelButton();
-            this.okButton = new MSS.WinMobile.UI.Controls.Buttons.OkButton();
-            this.inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.quantityPanel = new System.Windows.Forms.Panel();
             this.deleteButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.nilButton = new System.Windows.Forms.Button();
@@ -48,7 +45,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.twoButton = new System.Windows.Forms.Button();
             this.oneButton = new System.Windows.Forms.Button();
             this._productPriceListBox = new MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox();
-            this.mainMenu = new System.Windows.Forms.MainMenu();
             this._searchHeaderPanel = new System.Windows.Forms.Panel();
             this._searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
             this._filterHeaderPanel = new System.Windows.Forms.Panel();
@@ -58,32 +54,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._filterHeaderPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // cancelButton
-            // 
-            this.cancelButton.BackColor = System.Drawing.Color.White;
-            this.cancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelButton.BackgroundImage")));
-            this.cancelButton.Location = new System.Drawing.Point(216, 4);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.PressedImage = null;
-            this.cancelButton.Size = new System.Drawing.Size(22, 22);
-            this.cancelButton.TabIndex = 12;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
-            // 
-            // okButton
-            // 
-            this.okButton.BackColor = System.Drawing.Color.White;
-            this.okButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("okButton.BackgroundImage")));
-            this.okButton.Location = new System.Drawing.Point(190, 4);
-            this.okButton.Name = "okButton";
-            this.okButton.PressedImage = null;
-            this.okButton.Size = new System.Drawing.Size(22, 22);
-            this.okButton.TabIndex = 11;
-            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
-            // 
             // quantityPanel
             // 
-            this.quantityPanel.Controls.Add(this.okButton);
-            this.quantityPanel.Controls.Add(this.cancelButton);
             this.quantityPanel.Controls.Add(this.deleteButton);
             this.quantityPanel.Controls.Add(this.nilButton);
             this.quantityPanel.Controls.Add(this.nineButton);
@@ -280,7 +252,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.Controls.Add(this._searchHeaderPanel);
             this.Controls.Add(this._filterHeaderPanel);
             this.Controls.Add(this.quantityPanel);
-            this.Menu = this.mainMenu;
             this.Name = "PickUpProductView";
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
@@ -293,7 +264,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
 
         #endregion
 
-        private Microsoft.WindowsCE.Forms.InputPanel inputPanel;
         private System.Windows.Forms.Panel quantityPanel;
         private System.Windows.Forms.Button oneButton;
         private System.Windows.Forms.Button nilButton;
@@ -305,11 +275,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private System.Windows.Forms.Button fourButton;
         private System.Windows.Forms.Button threeButton;
         private System.Windows.Forms.Button twoButton;
-        private OkButton okButton;
-        private CancelButton cancelButton;
         public PictureButton deleteButton;
         private MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox _productPriceListBox;
-        private System.Windows.Forms.MainMenu mainMenu;
         private System.Windows.Forms.Panel _searchHeaderPanel;
         private System.Windows.Forms.Panel _filterHeaderPanel;
         private SearchPanel _searchPanel;

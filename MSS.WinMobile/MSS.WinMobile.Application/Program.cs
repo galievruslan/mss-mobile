@@ -8,7 +8,6 @@ using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Views;
 using MSS.WinMobile.UI.Views.Views;
-using OpenNETCF.Windows.Forms;
 using log4net.Config;
 
 namespace MSS.WinMobile.Application
@@ -82,7 +81,7 @@ namespace MSS.WinMobile.Application
             }
 
             Log.Info("Application start");
-            Application2.Run(main);
+            System.Windows.Forms.Application.Run(main);
             Log.Info("Application finish");
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -53,16 +52,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
 
         public ShippingAddressViewModel SelectedShippingAddress {
             get { return _presenter.SelectedModel; }
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
 
         private void DoSearchClick(object sender, string criteria) {

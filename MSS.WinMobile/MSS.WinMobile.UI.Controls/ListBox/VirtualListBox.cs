@@ -81,7 +81,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         private readonly List<VirtualListBoxItem> _items = new List<VirtualListBoxItem>();
 
-        private void AddListBoxItem(VirtualListBoxItem item)
+        protected virtual void AddListBoxItem(VirtualListBoxItem item)
         {
             if (_items.Any()) {
                 var lastListBoxItem = _items.Last();

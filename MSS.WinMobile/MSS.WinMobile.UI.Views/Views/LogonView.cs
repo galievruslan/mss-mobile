@@ -22,18 +22,13 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _logonPresenter = _presentersFactory.CreateLogonPresenter(this);
                 _viewModel = _logonPresenter.Initialize();
 
+                ViewContainer.RegisterLeftAction(new Logon(_logonPresenter));
+                ViewContainer.RegisterRightAction(new Cancel(_logonPresenter));
+
                 _serverTextBox.Text = _viewModel.ServerAddress;
                 _accountTextBox.Text = _viewModel.Username;
                 _passwordTextBox.Text = _viewModel.Password;
             }
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _logonPresenter.Cancel();
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            _logonPresenter.Logon();
         }
 
         private void PasswordTextBoxTextChanged(object sender, EventArgs e) {
@@ -46,6 +41,38 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private void ServerTextBoxTextChanged(object sender, EventArgs e) {
             _viewModel.ServerAddress = _serverTextBox.Text;
+        }
+
+        private class Logon : IViewAction {
+            private readonly LogonPresenter _logonPresenter;
+            public Logon(LogonPresenter logonPresenter) {
+                _logonPresenter = logonPresenter;
+            }
+
+            public string Caption {
+                get { return "Logon"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _logonPresenter.Logon();
+            }
+        }
+
+        private class Cancel : IViewAction
+        {
+            private readonly LogonPresenter _logonPresenter;
+            public Cancel(LogonPresenter logonPresenter)
+            {
+                _logonPresenter = logonPresenter;
+            }
+
+            public string Caption
+            {
+                get { return "Cancel"; }
+            }
+            public void Do(object sender, EventArgs e)
+            {
+                _logonPresenter.Cancel();
+            }
         }
     }
 }

@@ -6,5 +6,6 @@ namespace MSS.WinMobile.UI.Presenters.Views
         void ShowInformation(string message);
         void ShowError(string message);
         bool ShowConfirmation(string message);
+        void ShowDetails(string details);
     }
 }

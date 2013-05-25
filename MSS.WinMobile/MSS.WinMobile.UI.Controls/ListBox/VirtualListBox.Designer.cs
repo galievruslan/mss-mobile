@@ -37,7 +37,7 @@
             this._dataPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataPanel.Location = new System.Drawing.Point(0, 0);
             this._dataPanel.Name = "_dataPanel";
-            this._dataPanel.Size = new System.Drawing.Size(226, 297);
+            this._dataPanel.Size = new System.Drawing.Size(213, 297);
             this._dataPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.DataPanelPaint);
             // 
             // _vScrollBar
@@ -55,8 +55,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this._vScrollBar);
             this.Controls.Add(this._dataPanel);
+            this.Controls.Add(this._vScrollBar);
             this.Name = "VirtualListBox";
             this.Size = new System.Drawing.Size(226, 297);
             this.Resize += new System.EventHandler(this.VirtualListBoxResize);

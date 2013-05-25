@@ -28,5 +28,23 @@ namespace MSS.WinMobile.UI.Views.LookUps
                    MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                    MessageBoxDefaultButton.Button2);
         }
+
+        public void ShowDetails(string details) {
+            _details.Text = details;
+            _details.Visible = true;
+        }
+
+        private void OkMenuItemClick(object sender, System.EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+
+        }
+
+        private void CancelMenuItemClick(object sender, System.EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
 }

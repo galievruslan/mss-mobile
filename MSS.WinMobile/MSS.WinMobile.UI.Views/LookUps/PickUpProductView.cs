@@ -74,18 +74,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
                 _selectedItem.RefreshData();
         }
 
-        private void OkButtonClick(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
         public void SetCategoryFilter(string filter) {
             _filterPanel.SetFilterValue(filter);
         }

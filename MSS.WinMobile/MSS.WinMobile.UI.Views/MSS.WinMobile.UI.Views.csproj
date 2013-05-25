@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IViewAction.cs" />
     <Compile Include="IViewContainer.cs" />
     <Compile Include="LookUps\CategoryLookUpView.cs">
       <SubType>Form</SubType>

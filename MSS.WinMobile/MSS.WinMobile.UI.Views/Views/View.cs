@@ -10,37 +10,33 @@ namespace MSS.WinMobile.UI.Views.Views {
             if (DesignMode.IsTrue)
                 return;
 
-            ParentChanged += (sender, e) => Load(sender, e); 
+            ParentChanged += (sender, e) => Load(sender, e);
+        }
+
+        protected IViewContainer ViewContainer;
+
+        public void SetContainer(IViewContainer viewContainer) {
+            ViewContainer = viewContainer;
         }
 
         public delegate void OnLoad(object sender, EventArgs e);
+
         public event OnLoad Load;
 
-        //private bool _firstTime;
-        //protected override void OnParentChanged(EventArgs e) {
-        //    base.OnParentChanged(e);
-
-        //    if (!_firstTime) {
-        //        if (Load != null)
-        //            Load.Invoke(this, e);
-        //        _firstTime = true;
-        //    }
-        //}
-
         public void ShowInformation(string message) {
-            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.None,
-                            MessageBoxDefaultButton.Button1);
+            ViewContainer.ShowInformation(message);
         }
 
         public void ShowError(string message) {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+            ViewContainer.ShowError(message);
         }
 
         public bool ShowConfirmation(string message) {
-            return DialogResult.Yes ==
-                   MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                                   MessageBoxDefaultButton.Button2);
+            return ViewContainer.ShowConfirmation(message);
+        }
+
+        public void ShowDetails(string details) {
+            ViewContainer.ShowDetails(details);
         }
     }
 }

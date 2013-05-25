@@ -19,19 +19,9 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             SelectedCategory = categoryViewModel;
         }
 
-        private void CancelButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
         public CategoryViewModel SelectedCategory { get; private set; }
         private CategoryLookUpPresenter _categoryLookUpPresenter;
-        private void CategoryLookUpView_Load(object sender, EventArgs e) {
+        private void CategoryLookUpViewLoad(object sender, EventArgs e) {
             if (_categoryLookUpPresenter == null) {
                 _categoryLookUpPresenter = _presentersFactory.CreateCategoryLookUpPresenter(this,
                                                                                             SelectedCategory);
@@ -40,11 +30,11 @@ namespace MSS.WinMobile.UI.Views.LookUps {
                 if (_selectedTreeNode != null)
                     _categoriesTreeView.SelectedNode = _selectedTreeNode;
 
-                _categoriesTreeView.AfterSelect += _categoriesTreeView_AfterSelect;
+                _categoriesTreeView.AfterSelect += CategoriesTreeViewAfterSelect;
             }
         }
 
-        void _categoriesTreeView_AfterSelect(object sender, TreeViewEventArgs e) {
+        void CategoriesTreeViewAfterSelect(object sender, TreeViewEventArgs e) {
             SelectedCategory = e.Node.Tag as CategoryViewModel;
         }
 

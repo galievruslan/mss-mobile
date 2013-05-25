@@ -1,6 +1,6 @@
 ﻿namespace MSS.WinMobile.UI.Controls.Buttons
 {
-    partial class InputButton
+    partial class InformationButton
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputButton));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationButton));
             this.SuspendLayout();
             // 
-            // InputButton
+            // InformationButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.Name = "InputButton";
-            this.Size = new System.Drawing.Size(30, 30);
+            this.Name = "InformationButton";
+            this.Size = new System.Drawing.Size(28, 28);
             this.ResumeLayout(false);
 
         }

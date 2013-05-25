@@ -28,8 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
+            this._mainMenu = new System.Windows.Forms.MainMenu();
+            this._okMenuItem = new System.Windows.Forms.MenuItem();
+            this._cancelMenuItem = new System.Windows.Forms.MenuItem();
+            this._details = new Microsoft.WindowsCE.Forms.Notification();
+            this._inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.SuspendLayout();
+            // 
+            // _mainMenu
+            // 
+            this._mainMenu.MenuItems.Add(this._okMenuItem);
+            this._mainMenu.MenuItems.Add(this._cancelMenuItem);
+            // 
+            // _okMenuItem
+            // 
+            this._okMenuItem.Text = "OK";
+            this._okMenuItem.Click += new System.EventHandler(this.OkMenuItemClick);
+            // 
+            // _cancelMenuItem
+            // 
+            this._cancelMenuItem.Text = "Cancel";
+            this._cancelMenuItem.Click += new System.EventHandler(this.CancelMenuItemClick);
+            // 
+            // _details
+            // 
+            this._details.Text = "notification1";
             // 
             // LookUpView
             // 
@@ -37,7 +60,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
-            this.Menu = this.mainMenu1;
+            this.KeyPreview = true;
+            this.Menu = this._mainMenu;
             this.Name = "LookUpView";
             this.Text = "LookUpView";
             this.ResumeLayout(false);
@@ -46,6 +70,11 @@
 
         #endregion
 
-        private System.Windows.Forms.MainMenu mainMenu1;
+        private Microsoft.WindowsCE.Forms.Notification _details;
+        private System.Windows.Forms.MenuItem _okMenuItem;
+        private System.Windows.Forms.MenuItem _cancelMenuItem;
+        private Microsoft.WindowsCE.Forms.InputPanel _inputPanel;
+        internal System.Windows.Forms.MainMenu _mainMenu;
+
     }
 }

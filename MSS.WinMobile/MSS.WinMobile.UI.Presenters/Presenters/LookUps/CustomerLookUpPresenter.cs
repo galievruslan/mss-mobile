@@ -50,6 +50,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
             }
         }
 
+        public void DisplayCustomerDetails(int index) {
+            _selectedCustomer = _cache.RetrieveElement(index);
+            _view.ShowDetails(_selectedCustomer.Name);
+        }
+
         private string _searchCriteria;
         public void Search(string criteria) {
             _searchCriteria = criteria;

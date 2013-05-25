@@ -2,9 +2,9 @@
 
 namespace MSS.WinMobile.UI.Controls.Buttons
 {
-    public partial class InputButton : PictureButton
+    public partial class InformationButton : PictureButton
     {
-        public InputButton()
+        public InformationButton()
         {
             InitializeComponent();
         }
