@@ -79,8 +79,12 @@ namespace MSS.WinMobile.Application {
                                                       customerViewModel);
         }
 
-        public OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, RoutePointViewModel routePointViewModel) {
-            return new OrderListPresenter(orderListView, _repositoryFactory, _unitOfWorkFactory, _navigator, routePointViewModel);
+        public RoutePointsOrderListPresenter CreateRoutePointsOrderListPresenter(IRoutePointsOrderListView orderListView, RoutePointViewModel routePointViewModel) {
+            return new RoutePointsOrderListPresenter(orderListView, _repositoryFactory, _unitOfWorkFactory, _navigator, routePointViewModel);
+        }
+
+        public OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView) {
+            return new OrderListPresenter(orderListView, _repositoryFactory, _navigator);
         }
 
         public OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel) {
@@ -90,6 +94,11 @@ namespace MSS.WinMobile.Application {
         public OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
             return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _navigator,
                                       _lookUpService, routePointViewModel, orderViewModel);
+        }
+
+        public OrderPresenter CreateOrderPresenter(IOrderView orderView, OrderViewModel orderViewModel) {
+            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _navigator, _lookUpService,
+                                      orderViewModel);
         }
 
         public PriceListLookUpPresenter CreatePriceListLookUpPresenter(IPriceListLookUpView priceListLookUpView) {

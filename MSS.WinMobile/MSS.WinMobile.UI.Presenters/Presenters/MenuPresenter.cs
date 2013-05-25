@@ -2,20 +2,17 @@
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
-namespace MSS.WinMobile.UI.Presenters.Presenters
-{
-    public class MenuPresenter
-    {
+namespace MSS.WinMobile.UI.Presenters.Presenters {
+    public class MenuPresenter {
         private readonly IMenuView _view;
         private readonly INavigator _navigator;
-        public MenuPresenter(IMenuView view, INavigator navigator)
-        {
+
+        public MenuPresenter(IMenuView view, INavigator navigator) {
             _view = view;
             _navigator = navigator;
         }
 
-        public void InitializeView()
-        {
+        public void InitializeView() {
         }
 
         public void ShowRouteView() {
@@ -26,9 +23,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _navigator.GoToSynchronization(false);
         }
 
-        public void ShowSettingsView()
-        {
+        public void ShowSettingsView() {
             _navigator.GoToSettings();
+        }
+
+        public void ShowOrderListView() {
+            _navigator.GoToOrderList(DateTime.Today);
         }
     }
 }

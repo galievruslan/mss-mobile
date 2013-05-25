@@ -4,7 +4,7 @@ using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
-using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
+using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
@@ -101,6 +101,33 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             }
         }
 
+        public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
+                              IRepositoryFactory repositoryFactory,
+                              INavigator navigator,
+                              ILookUpService lookUpService,
+                              OrderViewModel orderViewModel)
+            : this(view, unitOfWorkFactory, repositoryFactory, navigator, lookUpService)
+        {
+
+            _orderViewModel = orderViewModel;
+
+            var orderRepository = _repositoryFactory.CreateRepository<Order>();
+            var order = orderRepository.GetById(_orderViewModel.OrderId);
+
+            _orderItemViewModels = new List<OrderItemViewModel>();
+            foreach (var orderItem in order.Items.ToArray())
+            {
+                _orderItemViewModels.Add(new OrderItemViewModel
+                {
+                    Id = orderItem.Id,
+                    ProductId = orderItem.ProductId,
+                    ProductName = orderItem.ProductName,
+                    Quantity = orderItem.Quantity,
+                    Price = orderItem.Price
+                });
+            }
+        }
+
         public void Save() {
             if (_orderViewModel.Validate()) {
                 var orderRepository = _repositoryFactory.CreateRepository<Order>();
@@ -182,7 +209,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
                     unitOfWork.Commit();
                 }
-                _navigator.GoToRoutePointsOrderList(_routePointViewModel);
+
+                if (_routePointViewModel != null)
+                    _navigator.GoToRoutePointsOrderList(_routePointViewModel);
+                else
+                {
+                    if (_orderViewModel != null)
+                        _navigator.GoToOrderList(_orderViewModel.OrderDate);
+                    else
+                    {
+                        _navigator.GoToMenu();
+                    }
+                }
             }
             else {
                 _view.ShowError(_orderViewModel.Errors);
@@ -190,7 +228,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void Cancel() {
-            _navigator.GoToRoutePointsOrderList(_routePointViewModel);
+            if (_routePointViewModel != null)
+                _navigator.GoToRoutePointsOrderList(_routePointViewModel);
+            else {
+                if (_orderViewModel != null)
+                    _navigator.GoToOrderList(_orderViewModel.OrderDate);
+                else {
+                    _navigator.GoToMenu();
+                }
+            }
         }
 
         public void PickUpProducts() {

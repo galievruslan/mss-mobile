@@ -7,7 +7,7 @@ using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
-using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
+using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;

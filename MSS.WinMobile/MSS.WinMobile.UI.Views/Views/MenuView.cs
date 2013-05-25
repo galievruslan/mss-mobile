@@ -34,5 +34,10 @@ namespace MSS.WinMobile.UI.Views.Views {
         {
             _menuPresenter.ShowSettingsView();
         }
+
+        private void OrdersLabelClick(object sender, EventArgs e)
+        {
+            _menuPresenter.ShowOrderListView();
+        }
     }
 }

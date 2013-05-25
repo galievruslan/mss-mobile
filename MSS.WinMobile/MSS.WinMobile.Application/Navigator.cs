@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.UI.Presenters;
+﻿using System;
+using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -52,7 +53,7 @@ namespace MSS.WinMobile.Application
         }
 
         public void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel) {
-            IOrderListView orderListView = new OrderListView(_presentersFactory, routePointViewModel);
+            IRoutePointsOrderListView orderListView = new RoutePointsOrderListView(_presentersFactory, routePointViewModel);
             _container.SetView(orderListView);
         }
 
@@ -66,8 +67,23 @@ namespace MSS.WinMobile.Application
             _container.SetView(orderView);
         }
 
-        public void GoViewRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
+        public void GoToViewRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
             IOrderView orderView = new ReadOnlyOrderView(_presentersFactory, routePointViewModel, orderViewModel);
+            _container.SetView(orderView);
+        }
+
+        public void GoToOrderList(DateTime date) {
+            IOrderListView orderListView = new OrderListView(_presentersFactory, date);
+            _container.SetView(orderListView);
+        }
+
+        public void GoToViewOrder(OrderViewModel orderViewModel) {
+            IOrderView orderView = new ReadOnlyOrderView(_presentersFactory, orderViewModel);
+            _container.SetView(orderView);
+        }
+
+        public void GoToEditOrder(OrderViewModel orderViewModel) {
+            IOrderView orderView = new OrderView(_presentersFactory, orderViewModel);
             _container.SetView(orderView);
         }
 

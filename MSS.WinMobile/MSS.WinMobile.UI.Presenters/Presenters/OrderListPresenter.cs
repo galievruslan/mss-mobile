@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -9,43 +8,34 @@ using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public class OrderListPresenter : IListPresenter<OrderViewModel> {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(OrderListPresenter));
+    public class OrderListPresenter : IListPresenter<OrderViewModel>
+    {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(RoutePresenter));
 
         private readonly IOrderListView _view;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly INavigator _navigator;
-        private readonly RoutePointViewModel _routePointViewModel;
 
-        private readonly OrderRetriever _retriever;
-        private readonly Cache<Order> _cache;
+        private IDataPageRetriever<Order> _ordersRetriever;
+        private Cache<Order> _cache;
 
         public OrderListPresenter(IOrderListView view, 
-            IRepositoryFactory repositoryFactory,
-            IUnitOfWorkFactory unitOfWorkFactory,
-            INavigator navigator,
-            RoutePointViewModel routePointViewModel)
-        {
-            _view = view;
+                              IRepositoryFactory repositoryFactory, 
+                              INavigator navigator) {
             _repositoryFactory = repositoryFactory;
-            _unitOfWorkFactory = unitOfWorkFactory;
             _navigator = navigator;
-            _routePointViewModel = routePointViewModel;
-
-            var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
-            var routePoint = routePointRepository.GetById(routePointViewModel.Id);
-            _retriever = new OrderRetriever(routePoint);
-            _cache = new Cache<Order>(_retriever, 10);
+            _view = view;
         }
 
         public int InitializeListSize() {
-            return _retriever.Count;
+            return _ordersRetriever.Count;
         }
 
         public OrderViewModel GetItem(int index) {
             Order order = _cache.RetrieveElement(index);
-            return new OrderViewModel {
+
+            return new OrderViewModel
+            {
                 OrderId = order.Id,
                 CustomerId = order.CustomerId,
                 CustomerName = order.CustomerName,
@@ -69,10 +59,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _selectedOrder = _cache.RetrieveElement(index);
         }
 
-        public OrderViewModel SelectedModel {
+        public OrderViewModel SelectedModel
+        {
             get {
                 return _selectedOrder != null
-                           ? new OrderViewModel {
+                           ? new OrderViewModel
+                           {
                                OrderId = _selectedOrder.Id,
                                CustomerId = _selectedOrder.CustomerId,
                                CustomerName = _selectedOrder.CustomerName,
@@ -92,54 +84,22 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                            : null;
             }
         }
-
-        public void CreateOrder() {
-            _navigator.GoToCreateOrderForRoutePoint(_routePointViewModel);
-        }
-
         public void EditOrder() {
             if (SelectedModel != null) {
                 if (SelectedModel.Synchronized)
-                    _navigator.GoViewRoutePointsOrder(_routePointViewModel, SelectedModel);
+                    _navigator.GoToViewOrder(SelectedModel);
                 else
-                    _navigator.GoToEditRoutePointsOrder(_routePointViewModel, SelectedModel);
+                    _navigator.GoToEditOrder(SelectedModel);
             }
         }
 
-        public void DeleteOrder() {
-            if (_selectedOrder != null) {
-                var orderRepository = _repositoryFactory.CreateRepository<Order>();
-                var order = orderRepository.GetById(_selectedOrder.Id);
-                if (order.Synchronized) {
-                    _view.ShowError("You can't delete synchronized order");
-                    return;
-                }
-
-                if (_view.ShowConfirmation("Are you shure, you want to delete the order?")) {
-                    var orderItemRepository = _repositoryFactory.CreateRepository<OrderItem>();
-                    using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
-                        try {
-                            unitOfWork.BeginTransaction();
-                            foreach (var orderItem in order.Items.ToArray()) {
-                                orderItemRepository.Delete(orderItem);
-                            }
-                            orderRepository.Delete(order);
-                            unitOfWork.Commit();
-                            _selectedOrder = null;
-                        }
-                        catch (Exception exception) {
-                            Log.Error(exception);
-                            unitOfWork.Rollback();
-                        }
-                    }
-                }
-            }
+        public void GetOrdersOnDate(DateTime date) {
+            _ordersRetriever = new OrderRetriever(_repositoryFactory.CreateRepository<Order>(), date);
+            _cache = new Cache<Order>(_ordersRetriever, 10);
         }
 
-        public void GoToRoute() {
-            var routeRepository = _repositoryFactory.CreateRepository<Route>();
-            var route = routeRepository.GetById(_routePointViewModel.RouteId);
-            _navigator.GoToRoute(new RouteViewModel {Id = route.Id, Date = route.Date});
+        public void GoToMenuView() {
+            _navigator.GoToMenu();
         }
     }
 }

@@ -1,38 +1,46 @@
 ﻿using System;
+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
+using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views.Views {
-    public partial class OrderListView : View, IOrderListView {
-        public OrderListView() {
+    public partial class RoutePointsOrderListView : View, IRoutePointsOrderListView {
+        public RoutePointsOrderListView() {
             InitializeComponent();
         }
         
         private readonly IPresentersFactory _presentersFactory;
 
-        private OrderListPresenter _presenter;
-        private readonly DateTime _date;
-        public OrderListView(IPresentersFactory presentersFactory, DateTime date)
-        {
+        private RoutePointsOrderListPresenter _presenter;
+        private readonly RoutePointViewModel _routePointViewModel;
+        public RoutePointsOrderListView(IPresentersFactory presentersFactory, RoutePointViewModel routePointViewModel) {
             InitializeComponent();
             _presentersFactory = presentersFactory;
-            _date = date;
+            _routePointViewModel = routePointViewModel;
         }
 
         private void OrderListViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                _presenter = _presentersFactory.CreateOrderListPresenter(this);
-                _presenter.GetOrdersOnDate(_date);
+                _presenter = _presentersFactory.CreateRoutePointsOrderListPresenter(this, _routePointViewModel);
                 _orderListBox.ItemDataNeeded += ItemDataNeeded;
                 _orderListBox.ItemSelected += ItemSelected;
                 _orderListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
 
+        private VirtualListBoxItem _selectedListItem;
         void ItemSelected(object sender, VirtualListBoxItem item) {
             _presenter.Select(item.Index);
+            _selectedListItem = item;
         }
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item) {
@@ -46,13 +54,18 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.EditOrder();
         }
 
-        private void CloseButtonClick(object sender, EventArgs e) {
-            _presenter.GoToMenuView();
+        private void CreateOrderClick(object sender, EventArgs e) {
+            _presenter.CreateOrder();
         }
 
-        private void DatePickerValueChanged(object sender, EventArgs e) {
-            _presenter.GetOrdersOnDate(datePicker.Value);
+        private void CloseButtonClick(object sender, EventArgs e) {
+            _presenter.GoToRoute();
+        }
+
+        private void DeleteOrderButtonClick(object sender, EventArgs e) {
+            _presenter.DeleteOrder();
             _orderListBox.SetListSize(_presenter.InitializeListSize());
+            Refresh();
         }
     }
 }

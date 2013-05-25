@@ -126,6 +126,12 @@
     <Compile Include="Views\ChangeStatusView.Designer.cs">
       <DependentUpon>ChangeStatusView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\OrderListView.Designer.cs">
+      <DependentUpon>OrderListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ReadOnlyOrderView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,11 +157,11 @@
     <Compile Include="Views\NewRoutePointView.Designer.cs">
       <DependentUpon>NewRoutePointView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderListView.cs">
+    <Compile Include="Views\RoutePointsOrderListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\OrderListView.Designer.cs">
-      <DependentUpon>OrderListView.cs</DependentUpon>
+    <Compile Include="Views\RoutePointsOrderListView.Designer.cs">
+      <DependentUpon>RoutePointsOrderListView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderView.cs">
       <SubType>UserControl</SubType>
@@ -217,6 +223,9 @@
     <EmbeddedResource Include="Views\ChangeStatusView.resx">
       <DependentUpon>ChangeStatusView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\OrderListView.resx">
+      <DependentUpon>OrderListView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ReadOnlyOrderView.resx">
       <DependentUpon>ReadOnlyOrderView.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,8 +238,8 @@
     <EmbeddedResource Include="Views\NewRoutePointView.resx">
       <DependentUpon>NewRoutePointView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\OrderListView.resx">
-      <DependentUpon>OrderListView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\RoutePointsOrderListView.resx">
+      <DependentUpon>RoutePointsOrderListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>

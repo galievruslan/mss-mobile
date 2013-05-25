@@ -30,13 +30,15 @@
             this._synchronizationIcon = new System.Windows.Forms.PictureBox();
             this._routesLabel = new System.Windows.Forms.LinkLabel();
             this._routeIcon = new System.Windows.Forms.PictureBox();
+            this._ordersLabel = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
             // _settingsLabel
             // 
             this._settingsLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._settingsLabel.ForeColor = System.Drawing.Color.Black;
-            this._settingsLabel.Location = new System.Drawing.Point(39, 81);
+            this._settingsLabel.Location = new System.Drawing.Point(39, 108);
             this._settingsLabel.Name = "_settingsLabel";
             this._settingsLabel.Size = new System.Drawing.Size(60, 20);
             this._settingsLabel.TabIndex = 20;
@@ -47,7 +49,7 @@
             // 
             this._settingsIcon.BackColor = System.Drawing.Color.White;
             this._settingsIcon.Image = ((System.Drawing.Image)(resources.GetObject("_settingsIcon.Image")));
-            this._settingsIcon.Location = new System.Drawing.Point(3, 75);
+            this._settingsIcon.Location = new System.Drawing.Point(3, 102);
             this._settingsIcon.Name = "_settingsIcon";
             this._settingsIcon.Size = new System.Drawing.Size(30, 30);
             this._settingsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -56,7 +58,7 @@
             // 
             this._synchronizationLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
             this._synchronizationLabel.ForeColor = System.Drawing.Color.Black;
-            this._synchronizationLabel.Location = new System.Drawing.Point(39, 45);
+            this._synchronizationLabel.Location = new System.Drawing.Point(39, 75);
             this._synchronizationLabel.Name = "_synchronizationLabel";
             this._synchronizationLabel.Size = new System.Drawing.Size(109, 20);
             this._synchronizationLabel.TabIndex = 19;
@@ -67,7 +69,7 @@
             // 
             this._synchronizationIcon.BackColor = System.Drawing.Color.White;
             this._synchronizationIcon.Image = ((System.Drawing.Image)(resources.GetObject("_synchronizationIcon.Image")));
-            this._synchronizationIcon.Location = new System.Drawing.Point(3, 39);
+            this._synchronizationIcon.Location = new System.Drawing.Point(3, 69);
             this._synchronizationIcon.Name = "_synchronizationIcon";
             this._synchronizationIcon.Size = new System.Drawing.Size(30, 30);
             this._synchronizationIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -92,10 +94,32 @@
             this._routeIcon.Size = new System.Drawing.Size(30, 30);
             this._routeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
+            // _ordersLabel
+            // 
+            this._ordersLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular);
+            this._ordersLabel.ForeColor = System.Drawing.Color.Black;
+            this._ordersLabel.Location = new System.Drawing.Point(39, 42);
+            this._ordersLabel.Name = "_ordersLabel";
+            this._ordersLabel.Size = new System.Drawing.Size(53, 20);
+            this._ordersLabel.TabIndex = 25;
+            this._ordersLabel.Text = "Orders";
+            this._ordersLabel.Click += new System.EventHandler(this.OrdersLabelClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 36);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            // 
             // MenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this._ordersLabel);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this._settingsLabel);
             this.Controls.Add(this._settingsIcon);
             this.Controls.Add(this._synchronizationLabel);
@@ -116,5 +140,7 @@
         private System.Windows.Forms.PictureBox _synchronizationIcon;
         private System.Windows.Forms.LinkLabel _routesLabel;
         private System.Windows.Forms.PictureBox _routeIcon;
+        private System.Windows.Forms.LinkLabel _ordersLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

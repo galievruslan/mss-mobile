@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.UI.Presenters.ViewModels;
+﻿using System;
+using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Presenters
 {
@@ -15,7 +16,11 @@ namespace MSS.WinMobile.UI.Presenters
         void GoToRoutePointsOrderList(RoutePointViewModel routePointViewModel);
         void GoToCreateOrderForRoutePoint(RoutePointViewModel routePointViewModel);
         void GoToEditRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel);
-        void GoViewRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel);
+        void GoToViewRoutePointsOrder(RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel);
+
+        void GoToOrderList(DateTime date);
+        void GoToViewOrder(OrderViewModel orderViewModel);
+        void GoToEditOrder(OrderViewModel orderViewModel);
 
         void GoToExit();
     }

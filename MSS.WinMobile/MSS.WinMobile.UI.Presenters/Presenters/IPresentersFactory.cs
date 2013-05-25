@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -25,11 +26,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         ShippingAddressLookUpPresenter CreateShippingAddressLookUpPresenter(
             IShippingAddressLookUpView shippingAddressLookUpView, CustomerViewModel customerViewModel);
 
-        OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView, RoutePointViewModel routePointViewModel);
+        RoutePointsOrderListPresenter CreateRoutePointsOrderListPresenter(IRoutePointsOrderListView orderListView, RoutePointViewModel routePointViewModel);
+
+        OrderListPresenter CreateOrderListPresenter(IOrderListView orderListView);
 
         OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel);
 
         OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel);
+
+        OrderPresenter CreateOrderPresenter(IOrderView orderView, OrderViewModel orderViewModel);
 
         PriceListLookUpPresenter CreatePriceListLookUpPresenter(IPriceListLookUpView priceListLookUpView);
 

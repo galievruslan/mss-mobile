@@ -1,6 +1,6 @@
 ﻿using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects.ISpecifications;
-using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
+using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 
 namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
     public class RouteTemplateSpecTranslator : CommonTranslator<RouteTemplate> {

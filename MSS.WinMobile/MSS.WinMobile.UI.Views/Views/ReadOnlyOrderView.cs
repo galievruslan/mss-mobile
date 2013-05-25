@@ -27,15 +27,29 @@ namespace MSS.WinMobile.UI.Views.Views {
             _orderViewModel = orderViewModel;
         }
 
+        public ReadOnlyOrderView(IPresentersFactory presentersFactory,
+                         OrderViewModel orderViewModel)
+            : this()
+        {
+            _presentersFactory = presentersFactory;
+            _orderViewModel = orderViewModel;
+        }
+
         private OrderViewModel _viewModel;
         private void OrderViewLoad(object sender, EventArgs e) {
             if (_presenter == null) {
-                _presenter = _orderViewModel != null
-                                 ? _presentersFactory.CreateOrderPresenter(this,
-                                                                           _routePointViewModel,
-                                                                           _orderViewModel)
-                                 : _presentersFactory.CreateOrderPresenter(this,
-                                                                           _routePointViewModel);
+                if (_orderViewModel != null && _routePointViewModel != null)
+                    _presenter = _presentersFactory.CreateOrderPresenter(this,
+                                                                         _routePointViewModel,
+                                                                         _orderViewModel);
+                else
+                {
+                    if (_routePointViewModel != null)
+                        _presenter = _presentersFactory.CreateOrderPresenter(this,
+                                                                _routePointViewModel);
+                    else
+                        _presenter = _presentersFactory.CreateOrderPresenter(this, _orderViewModel);
+                }
 
                 _viewModel = _presenter.Initialize();
 
@@ -58,10 +72,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             if (orderItemListBoxItem != null) {
                 orderItemListBoxItem.ViewModel = _presenter.GetItem(item.Index);
             }
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            _presenter.Cancel();
         }
 
         private void CancelButtonClick(object sender, EventArgs e) {

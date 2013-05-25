@@ -2,7 +2,7 @@
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
-using MSS.WinMobile.UI.Presenters.Presenters.Specificarions;
+using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {

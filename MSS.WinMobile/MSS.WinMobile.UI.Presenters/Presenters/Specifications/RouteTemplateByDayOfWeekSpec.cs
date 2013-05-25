@@ -2,7 +2,7 @@
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects.ISpecifications;
 
-namespace MSS.WinMobile.UI.Presenters.Presenters.Specificarions {
+namespace MSS.WinMobile.UI.Presenters.Presenters.Specifications {
     public class RouteTemplateByDayOfWeekSpec : ISpecification<RouteTemplate> {
 
         public DayOfWeek DayOfWeek { get; private set; }
