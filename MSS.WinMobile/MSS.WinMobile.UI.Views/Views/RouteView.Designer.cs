@@ -126,7 +126,7 @@
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.datePicker.Location = new System.Drawing.Point(2, 1);
             this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(89, 22);
+            this.datePicker.Size = new System.Drawing.Size(208, 22);
             this.datePicker.TabIndex = 1;
             // 
             // createRouteOnDateButton
@@ -134,7 +134,7 @@
             this.createRouteOnDateButton.BackColor = System.Drawing.Color.White;
             this.createRouteOnDateButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createRouteOnDateButton.BackgroundImage")));
             this.createRouteOnDateButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.createRouteOnDateButton.Location = new System.Drawing.Point(94, 2);
+            this.createRouteOnDateButton.Location = new System.Drawing.Point(216, 2);
             this.createRouteOnDateButton.Name = "createRouteOnDateButton";
             this.createRouteOnDateButton.PressedImage = null;
             this.createRouteOnDateButton.Size = new System.Drawing.Size(20, 20);

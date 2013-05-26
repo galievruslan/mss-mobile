@@ -131,6 +131,24 @@
         hBMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCYmcAveFfUMiWDqGoAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="_informationButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOvAAA
+        DrwBlbxySQAAAq9JREFUeF7tmj9LHUEUxSWEhJDGLxB4jYQgIgi2YidYyGtCulQR8U8hWgVS+BkECzvR
+        zup9hxACKUJS2AkR7CREQjAEC/UceAvL8vLYuTMLd3bPhQOKO+Pc37tz9765MzEhEwEREAEREAEREAER
+        EAEREAEREAEREAEREAEREAEREIHOEngFz1ehQ+gzdAXdQLfQL+gcGkDvoQXoURdJPYXTa9B36D5QP/D8
+        B2iyC+AYHW+hy0BIo6BeY45diPBbaS/g1ccEoKrwvmHOqbYRW4JDPxuAVcBjzuu3BRodYQIPzVWhz/N/
+        vM4d2rIR1ieM2xoqJN8R2kqu0HpYOBNzaKSwtHhccnomcI4/eP5lbtD4NmSUhMLi8zsjnA2JMs7xpQLd
+        Pb91Iyw6u1/x7gl+/2eYj1s6C3uOVbJat0QXxzAPvYEI6hl0bJyLa+Ba3Bu3lBVWeRzBxb5dR21vdwDP
+        EgFLAZ1rcW3TjmAVwLkmt7ZpBLaNcYtjdGGcl9C4Jrd2anSMsMZZzDY/cUsLC7M61iSwr56BWeolbpsB
+        dDAUDwmrZv0gODfLC7eW4s22IWBhdVlqYL/dhhcWZt2S5chMDcz1lozJNQW01MBcJ31rWdFkhLkuK6yF
+        a5PAXBeuc8bCtUlgs56TPtcWm8dS5jD3X74JLPZ4JyWwLI53Yg8QUwHL5gCRURZ6RH2EMXtDzY/IOUzc
+        xd/rbvlsjqjpb2gTZDEgMdcpXbJrgtD/HlS3zZYSWJZttiJg6jZyud3Yta4j9i3/9yU/60ZuAa2PH2Kb
+        GXVOQVpxVaCAxvZ9k5dR/mJ+fjCtMl13MnycfHu+g0Jb/528UFfmqyubhmgrhlQvBfMiMBP4HcQSQZeC
+        I+BqqAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIgAiIQGsIPAAwteXKZJKDRQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
   </metadata>

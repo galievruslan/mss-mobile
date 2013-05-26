@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -191,6 +192,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                                                     _categoryFilterViewModel.Id));
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
             _selectedProductPrice = null;
+        }
+
+        public void ShowDetails() {
+            if (_selectedProductPrice != null) {
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Product name:"));
+                stringBuilder.Append(_selectedProductPrice.ProductName);
+                stringBuilder.Append("</br>");
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Product price for item:"));
+                stringBuilder.Append(_selectedProductPrice.Price);
+
+                _view.ShowDetails(stringBuilder.ToString());
+            }
         }
     }
 }

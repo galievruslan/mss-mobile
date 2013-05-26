@@ -105,5 +105,9 @@ namespace MSS.WinMobile.UI.Views.LookUps
             _selectedItem = null;
             _productPriceListBox.SetListSize(_presenter.InitializeListSize());
         }
+
+        private void InformationButtonClick(object sender, EventArgs e) {
+            _presenter.ShowDetails();
+        }
     }
 }

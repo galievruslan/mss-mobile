@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Text;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -68,6 +69,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                 new PriceListRetriever(_repositoryFactory.CreateRepository<PriceList>());
             _cache = new Cache<PriceList>(_priceListRetriever, 100);
             _selectedPriceList = null;
+        }
+
+        public void ShowDetails() {
+            if (_selectedPriceList != null) {
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Price list name:"));
+                stringBuilder.Append(_selectedPriceList.Name);
+
+                _view.ShowDetails(stringBuilder.ToString());
+            }
         }
     }
 }

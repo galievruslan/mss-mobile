@@ -54,5 +54,9 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             _presenter.ClearSearch();
             _warehouseListBox.SetListSize(_presenter.InitializeListSize());
         }
+
+        private void InformationButtonClick(object sender, EventArgs e) {
+            _presenter.ShowDetails();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Text;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -50,11 +51,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
             }
         }
 
-        public void DisplayCustomerDetails(int index) {
-            _selectedCustomer = _cache.RetrieveElement(index);
-            _view.ShowDetails(_selectedCustomer.Name);
-        }
-
         private string _searchCriteria;
         public void Search(string criteria) {
             _searchCriteria = criteria;
@@ -71,6 +67,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                 new CustomerRetriever(_repositoryFactory.CreateRepository<Customer>());
             _cache = new Cache<Customer>(_customerRetriever, 100);
             _selectedCustomer = null;
+        }
+
+        public void ShowDetails() {
+            if (_selectedCustomer != null) {
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Customer name:"));
+                stringBuilder.Append(_selectedCustomer.Name);
+
+                _view.ShowDetails(stringBuilder.ToString());
+            }
         }
     }
 }

@@ -38,6 +38,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._nameLabel.Name = "_nameLabel";
             this._nameLabel.Size = new System.Drawing.Size(200, 28);
             this._nameLabel.TabIndex = 0;
+            this._nameLabel.TabStop = false;
             this._nameLabel.Text = "linkLabel1";
             this._nameLabel.Click += new System.EventHandler(this.LabelClick);
             // 

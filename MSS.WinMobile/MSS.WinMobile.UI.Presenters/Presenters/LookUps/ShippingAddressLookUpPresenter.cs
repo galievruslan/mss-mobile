@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Text;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -76,6 +77,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                 new ShippingAddressRetriever(customer);
             _cache = new Cache<ShippingAddress>(_shippingAddressRetriever, 100);
             _selectedShippingAddress = null;
+        }
+
+        public void ShowDetails() {
+            if (_selectedShippingAddress != null) {
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Shipping address name:"));
+                stringBuilder.Append(_selectedShippingAddress.Name);
+                stringBuilder.Append("</br>");
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Shipping address:"));
+                stringBuilder.Append(_selectedShippingAddress.Address);
+
+                _view.ShowDetails(stringBuilder.ToString());
+            }
         }
     }
 }

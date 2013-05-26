@@ -32,10 +32,10 @@ namespace MSS.WinMobile.UI.Controls
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchPanel));
             this._buttonPanel = new System.Windows.Forms.Panel();
-            this._clearButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._searchButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._inputPanel = new System.Windows.Forms.Panel();
             this._searchTextBox = new MSS.WinMobile.UI.Controls.TextBoxWithPrompt();
+            this._clearButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
+            this._searchButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._buttonPanel.SuspendLayout();
             this._inputPanel.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,28 @@ namespace MSS.WinMobile.UI.Controls
             this._buttonPanel.Location = new System.Drawing.Point(190, 0);
             this._buttonPanel.Name = "_buttonPanel";
             this._buttonPanel.Size = new System.Drawing.Size(48, 24);
+            // 
+            // _inputPanel
+            // 
+            this._inputPanel.BackColor = System.Drawing.Color.White;
+            this._inputPanel.Controls.Add(this._searchTextBox);
+            this._inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._inputPanel.Location = new System.Drawing.Point(0, 0);
+            this._inputPanel.Name = "_inputPanel";
+            this._inputPanel.Size = new System.Drawing.Size(190, 24);
+            // 
+            // _searchTextBox
+            // 
+            this._searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._searchTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._searchTextBox.Location = new System.Drawing.Point(3, 3);
+            this._searchTextBox.Name = "_searchTextBox";
+            this._searchTextBox.Size = new System.Drawing.Size(187, 21);
+            this._searchTextBox.TabIndex = 0;
+            this._searchTextBox.TabStop = false;
+            this._searchTextBox.TextPrompt = "Search";
             // 
             // _clearButton
             // 
@@ -71,27 +93,6 @@ namespace MSS.WinMobile.UI.Controls
             this._searchButton.Size = new System.Drawing.Size(20, 20);
             this._searchButton.TabIndex = 0;
             this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
-            // 
-            // _inputPanel
-            // 
-            this._inputPanel.BackColor = System.Drawing.Color.White;
-            this._inputPanel.Controls.Add(this._searchTextBox);
-            this._inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._inputPanel.Location = new System.Drawing.Point(0, 0);
-            this._inputPanel.Name = "_inputPanel";
-            this._inputPanel.Size = new System.Drawing.Size(190, 24);
-            // 
-            // _searchTextBox
-            // 
-            this._searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._searchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._searchTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._searchTextBox.Location = new System.Drawing.Point(0, 0);
-            this._searchTextBox.Name = "_searchTextBox";
-            this._searchTextBox.Size = new System.Drawing.Size(190, 21);
-            this._searchTextBox.TabIndex = 0;
-            this._searchTextBox.TabStop = false;
-            this._searchTextBox.TextPrompt = "Search";
             // 
             // SearchPanel
             // 

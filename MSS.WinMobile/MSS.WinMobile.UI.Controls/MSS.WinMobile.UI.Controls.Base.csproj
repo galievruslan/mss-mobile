@@ -82,6 +82,12 @@
     <Compile Include="FilterPanel.Designer.cs">
       <DependentUpon>FilterPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="HorizontalLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HorizontalLine.Designer.cs">
+      <DependentUpon>HorizontalLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +130,12 @@
     <Compile Include="TextBoxWithPromt.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="VericalLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VericalLine.Designer.cs">
+      <DependentUpon>VericalLine.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +157,9 @@
     <EmbeddedResource Include="FilterPanel.resx">
       <DependentUpon>FilterPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HorizontalLine.resx">
+      <DependentUpon>HorizontalLine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListBox\VirtualListBox.resx">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VericalLine.resx">
+      <DependentUpon>VericalLine.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

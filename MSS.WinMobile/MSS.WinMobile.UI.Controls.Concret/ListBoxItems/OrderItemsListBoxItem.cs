@@ -49,6 +49,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._priceLabel.Name = "_priceLabel";
             this._priceLabel.Size = new System.Drawing.Size(44, 14);
             this._priceLabel.TabIndex = 4;
+            this._priceLabel.TabStop = false;
             this._priceLabel.Text = "150,15";
             this._priceLabel.Click += new System.EventHandler(this.LabelClick);
             // 
@@ -62,6 +63,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._quantityLabel.Name = "_quantityLabel";
             this._quantityLabel.Size = new System.Drawing.Size(44, 14);
             this._quantityLabel.TabIndex = 5;
+            this._quantityLabel.TabStop = false;
             this._quantityLabel.Text = "100000";
             this._quantityLabel.Click += new System.EventHandler(this.LabelClick);
             // 
@@ -75,6 +77,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._descriptionLabel.Name = "_descriptionLabel";
             this._descriptionLabel.Size = new System.Drawing.Size(157, 28);
             this._descriptionLabel.TabIndex = 3;
+            this._descriptionLabel.TabStop = false;
             this._descriptionLabel.Text = "very long item description with something additional information";
             this._descriptionLabel.Click += new System.EventHandler(this.LabelClick);
             // 

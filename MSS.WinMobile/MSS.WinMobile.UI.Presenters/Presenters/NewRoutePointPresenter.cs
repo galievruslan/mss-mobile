@@ -131,11 +131,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     routePointRepository.Save(routePoint);
                     unitOfWork.Commit();
                 }
+
+                _navigator.GoToRoute(_routeViewModel);
             }
             else {
                 _view.ShowError(_viewModel.Errors);
             }
-            _navigator.GoToRoute(_routeViewModel);
         }
 
         public void Cancel() {

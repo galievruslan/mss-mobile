@@ -9,10 +9,6 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             InitializeComponent();
         }
 
-        public delegate void OnInformationNeeded(VirtualListBoxItem item);
-
-        public event OnInformationNeeded InformationNeeded;
-
         private CustomerViewModel _viewModel;
 
         public CustomerViewModel ViewModel {
@@ -43,6 +39,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._nameLabel.Name = "_nameLabel";
             this._nameLabel.Size = new System.Drawing.Size(200, 28);
             this._nameLabel.TabIndex = 0;
+            this._nameLabel.TabStop = false;
             this._nameLabel.Text = "Customer name";
             this._nameLabel.Click += new System.EventHandler(this.NameLabelClick);
             // 
@@ -64,12 +61,6 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
 
         private void CustomerListBoxItemPaint(object sender, System.Windows.Forms.PaintEventArgs e) {
             DrawDivisor(e.Graphics);
-        }
-
-        private void InformationButtonClick(object sender, System.EventArgs e) {
-            VirtualListBoxItemClick(sender, e);
-            if (InformationNeeded != null)
-                InformationNeeded.Invoke(this);
         }
     }
 }

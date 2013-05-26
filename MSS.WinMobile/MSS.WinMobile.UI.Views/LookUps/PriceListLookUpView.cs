@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
@@ -63,6 +62,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private void ClearSearchClick(object sender) {
             _presenter.ClearSearch();
             _priceListListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private void InformationButtonClick(object sender, EventArgs e) {
+            _presenter.ShowDetails();
         }
     }
 }

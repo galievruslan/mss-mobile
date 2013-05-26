@@ -45,13 +45,16 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.twoButton = new System.Windows.Forms.Button();
             this.oneButton = new System.Windows.Forms.Button();
             this._productPriceListBox = new MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox();
-            this._searchHeaderPanel = new System.Windows.Forms.Panel();
-            this._searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
             this._filterHeaderPanel = new System.Windows.Forms.Panel();
             this._filterPanel = new MSS.WinMobile.UI.Controls.FilterPanel();
+            this._horizontalLine = new MSS.WinMobile.UI.Controls.HorizontalLine();
+            this._actionPanel = new System.Windows.Forms.Panel();
+            this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
+            this._vericalLine = new MSS.WinMobile.UI.Controls.VericalLine();
+            this._informationButton = new MSS.WinMobile.UI.Controls.Buttons.InformationButton();
             this.quantityPanel.SuspendLayout();
-            this._searchHeaderPanel.SuspendLayout();
             this._filterHeaderPanel.SuspendLayout();
+            this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // quantityPanel
@@ -199,29 +202,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this._productPriceListBox.BackColor = System.Drawing.Color.White;
             this._productPriceListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._productPriceListBox.Location = new System.Drawing.Point(0, 48);
+            this._productPriceListBox.Location = new System.Drawing.Point(0, 53);
             this._productPriceListBox.Name = "_productPriceListBox";
-            this._productPriceListBox.Size = new System.Drawing.Size(240, 190);
+            this._productPriceListBox.Size = new System.Drawing.Size(240, 185);
             this._productPriceListBox.TabIndex = 1;
-            // 
-            // _searchHeaderPanel
-            // 
-            this._searchHeaderPanel.Controls.Add(this._searchPanel);
-            this._searchHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._searchHeaderPanel.Location = new System.Drawing.Point(0, 24);
-            this._searchHeaderPanel.Name = "_searchHeaderPanel";
-            this._searchHeaderPanel.Size = new System.Drawing.Size(240, 24);
-            // 
-            // _searchPanel
-            // 
-            this._searchPanel.BackColor = System.Drawing.Color.White;
-            this._searchPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._searchPanel.Location = new System.Drawing.Point(0, 0);
-            this._searchPanel.Name = "_searchPanel";
-            this._searchPanel.Size = new System.Drawing.Size(240, 24);
-            this._searchPanel.TabIndex = 5;
-            this._searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
-            this._searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.SearchClick);
             // 
             // _filterHeaderPanel
             // 
@@ -242,6 +226,60 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._filterPanel.Filter += new MSS.WinMobile.UI.Controls.FilterPanel.OnFilter(this.FilterClick);
             this._filterPanel.Clear += new MSS.WinMobile.UI.Controls.FilterPanel.OnClear(this.ClearFilterClick);
             // 
+            // _horizontalLine
+            // 
+            this._horizontalLine.BackColor = System.Drawing.Color.White;
+            this._horizontalLine.Dock = System.Windows.Forms.DockStyle.Top;
+            this._horizontalLine.LineColor = System.Drawing.Color.DarkGray;
+            this._horizontalLine.Location = new System.Drawing.Point(0, 48);
+            this._horizontalLine.Name = "_horizontalLine";
+            this._horizontalLine.Size = new System.Drawing.Size(240, 5);
+            this._horizontalLine.TabIndex = 6;
+            this._horizontalLine.TabStop = false;
+            // 
+            // _actionPanel
+            // 
+            this._actionPanel.Controls.Add(this.searchPanel);
+            this._actionPanel.Controls.Add(this._vericalLine);
+            this._actionPanel.Controls.Add(this._informationButton);
+            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._actionPanel.Location = new System.Drawing.Point(0, 24);
+            this._actionPanel.Name = "_actionPanel";
+            this._actionPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // searchPanel
+            // 
+            this.searchPanel.BackColor = System.Drawing.Color.White;
+            this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.searchPanel.Location = new System.Drawing.Point(29, 0);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.Size = new System.Drawing.Size(211, 24);
+            this.searchPanel.TabIndex = 0;
+            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
+            this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.SearchClick);
+            // 
+            // _vericalLine
+            // 
+            this._vericalLine.BackColor = System.Drawing.Color.White;
+            this._vericalLine.Dock = System.Windows.Forms.DockStyle.Left;
+            this._vericalLine.LineColor = System.Drawing.Color.DarkGray;
+            this._vericalLine.Location = new System.Drawing.Point(24, 0);
+            this._vericalLine.Name = "_vericalLine";
+            this._vericalLine.Size = new System.Drawing.Size(5, 24);
+            this._vericalLine.TabIndex = 1;
+            // 
+            // _informationButton
+            // 
+            this._informationButton.BackColor = System.Drawing.Color.Transparent;
+            this._informationButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_informationButton.BackgroundImage")));
+            this._informationButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this._informationButton.Location = new System.Drawing.Point(0, 0);
+            this._informationButton.Name = "_informationButton";
+            this._informationButton.PressedImage = null;
+            this._informationButton.Size = new System.Drawing.Size(24, 24);
+            this._informationButton.TabIndex = 0;
+            this._informationButton.Click += new System.EventHandler(this.InformationButtonClick);
+            // 
             // PickUpProductView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -249,15 +287,16 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._productPriceListBox);
-            this.Controls.Add(this._searchHeaderPanel);
+            this.Controls.Add(this._horizontalLine);
+            this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._filterHeaderPanel);
             this.Controls.Add(this.quantityPanel);
             this.Name = "PickUpProductView";
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
             this.quantityPanel.ResumeLayout(false);
-            this._searchHeaderPanel.ResumeLayout(false);
             this._filterHeaderPanel.ResumeLayout(false);
+            this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -277,10 +316,13 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private System.Windows.Forms.Button twoButton;
         public PictureButton deleteButton;
         private MSS.WinMobile.UI.Controls.Concret.ProductPriceListBox _productPriceListBox;
-        private System.Windows.Forms.Panel _searchHeaderPanel;
         private System.Windows.Forms.Panel _filterHeaderPanel;
-        private SearchPanel _searchPanel;
         private FilterPanel _filterPanel;
+        private HorizontalLine _horizontalLine;
+        private System.Windows.Forms.Panel _actionPanel;
+        private SearchPanel searchPanel;
+        private VericalLine _vericalLine;
+        private InformationButton _informationButton;
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using MSS.WinMobile.Domain.Models;
+﻿using System.Text;
+using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -71,6 +72,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                 new WarehouseRetriever(_repositoryFactory.CreateRepository<Warehouse>());
             _cache = new Cache<Warehouse>(_warehouseRetriever, 100);
             _selectedWarehouse = null;
+        }
+
+        public void ShowDetails() {
+            if (_selectedWarehouse != null) {
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Warehouse name:"));
+                stringBuilder.Append(_selectedWarehouse.Name);
+                stringBuilder.Append("</br>");
+                stringBuilder.Append(string.Format("<b>{0} </b>", "Warehouse address:"));
+                stringBuilder.Append(_selectedWarehouse.Address);
+
+                _view.ShowDetails(stringBuilder.ToString());
+            }
         }
     }
 }
