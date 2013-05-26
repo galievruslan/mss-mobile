@@ -25,7 +25,6 @@ namespace MSS.WinMobile.UI.Views.Views {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReadOnlyOrderView));
             this.itemsActionPanel = new System.Windows.Forms.Panel();
             this.divisorLabel = new System.Windows.Forms.Label();
             this._amountValueLable = new System.Windows.Forms.Label();
@@ -50,8 +49,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
-            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._actionPanel = new System.Windows.Forms.Panel();
             this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
@@ -59,7 +56,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.pricePanel.SuspendLayout();
             this._detailsTab.SuspendLayout();
             this._notesTab.SuspendLayout();
-            this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // itemsActionPanel
@@ -104,7 +100,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(240, 238);
+            this.tabControl.Size = new System.Drawing.Size(240, 268);
             this.tabControl.TabIndex = 2;
             // 
             // _generalTab
@@ -123,7 +119,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._generalTab.Controls.Add(this._orderDateLabel);
             this._generalTab.Location = new System.Drawing.Point(0, 0);
             this._generalTab.Name = "_generalTab";
-            this._generalTab.Size = new System.Drawing.Size(240, 214);
+            this._generalTab.Size = new System.Drawing.Size(240, 244);
             this._generalTab.Text = "General";
             // 
             // _shippingDateTextBox
@@ -284,33 +280,11 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTextBox.Size = new System.Drawing.Size(226, 204);
             this._notesTextBox.TabIndex = 0;
             // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.BackColor = System.Drawing.Color.White;
-            this.cancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelButton.BackgroundImage")));
-            this.cancelButton.Location = new System.Drawing.Point(108, 3);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.PressedImage = null;
-            this.cancelButton.Size = new System.Drawing.Size(24, 24);
-            this.cancelButton.TabIndex = 5;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
-            // 
-            // _actionPanel
-            // 
-            this._actionPanel.Controls.Add(this.cancelButton);
-            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 238);
-            this._actionPanel.Name = "_actionPanel";
-            this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
             // ReadOnlyOrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this._actionPanel);
             this.Name = "ReadOnlyOrderView";
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderViewLoad);
             this.itemsActionPanel.ResumeLayout(false);
@@ -320,7 +294,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.pricePanel.ResumeLayout(false);
             this._detailsTab.ResumeLayout(false);
             this._notesTab.ResumeLayout(false);
-            this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -345,8 +318,6 @@ namespace MSS.WinMobile.UI.Views.Views {
         private System.Windows.Forms.TabPage _detailsTab;
         private System.Windows.Forms.TabPage _notesTab;
         private System.Windows.Forms.TextBox _notesTextBox;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
-        private System.Windows.Forms.Panel _actionPanel;
         private OrderItemListBox orderItemListBox;
         private System.Windows.Forms.Label _amountValueLable;
         private System.Windows.Forms.Label _amountLabel;

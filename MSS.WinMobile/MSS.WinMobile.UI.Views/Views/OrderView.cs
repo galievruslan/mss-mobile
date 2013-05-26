@@ -71,6 +71,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 orderItemListBox.ItemDataNeeded += ItemDataNeeded;
                 orderItemListBox.ItemSelected += ItemSelected;
                 orderItemListBox.SetListSize(_presenter.InitializeListSize());
+
+                ViewContainer.RegisterLeftAction(new Save(_presenter));
+                ViewContainer.RegisterRightAction(new Cancel(_presenter));
             }
         }
 
@@ -117,20 +120,40 @@ namespace MSS.WinMobile.UI.Views.Views {
             _warehouseTextBox.Refresh();
         }
 
-        private void OkButtonClick(object sender, EventArgs e) {
-            _presenter.Save();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _presenter.Cancel();
-        }
-
         private void ShippingDatePickerValueChanged(object sender, EventArgs e) {
             _viewModel.ShippingDate = _shippingDatePicker.Value;
         }
 
         private void NotesTextBoxTextChanged(object sender, EventArgs e) {
             _viewModel.Note = _notesTextBox.Text;
+        }
+
+        private class Save : IViewAction {
+            private readonly OrderPresenter _presenter;
+            public Save(OrderPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Save"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Save();
+            }
+        }
+
+        private class Cancel : IViewAction {
+            private readonly OrderPresenter _presenter;
+            public Cancel(OrderPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Cancel"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Cancel();
+            }
         }
     }
 }

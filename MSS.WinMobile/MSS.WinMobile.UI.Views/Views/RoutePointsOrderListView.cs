@@ -1,11 +1,4 @@
 ﻿using System;
-
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -34,13 +27,14 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _orderListBox.ItemDataNeeded += ItemDataNeeded;
                 _orderListBox.ItemSelected += ItemSelected;
                 _orderListBox.SetListSize(_presenter.InitializeListSize());
+
+                ViewContainer.RegisterLeftAction(new StubAction());
+                ViewContainer.RegisterRightAction(new Back(_presenter));
             }
         }
 
-        private VirtualListBoxItem _selectedListItem;
         void ItemSelected(object sender, VirtualListBoxItem item) {
             _presenter.Select(item.Index);
-            _selectedListItem = item;
         }
 
         void ItemDataNeeded(object sender, VirtualListBoxItem item) {
@@ -58,14 +52,24 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.CreateOrder();
         }
 
-        private void CloseButtonClick(object sender, EventArgs e) {
-            _presenter.GoToRoute();
-        }
-
         private void DeleteOrderButtonClick(object sender, EventArgs e) {
             _presenter.DeleteOrder();
             _orderListBox.SetListSize(_presenter.InitializeListSize());
             Refresh();
+        }
+
+        private class Back : IViewAction {
+            private readonly RoutePointsOrderListPresenter _presenter;
+            public Back(RoutePointsOrderListPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Back"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.GoToRoute();
+            }
         }
     }
 }

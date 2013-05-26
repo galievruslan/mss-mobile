@@ -29,13 +29,12 @@
             this.divisorLabel = new System.Windows.Forms.Label();
             this._listOrdersButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel = new System.Windows.Forms.Panel();
+            this._changeStatusButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._deleteRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this._closeButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.panel = new System.Windows.Forms.Panel();
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
-            this._changeStatusButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +86,6 @@
             // 
             this._actionPanel.Controls.Add(this._changeStatusButton);
             this._actionPanel.Controls.Add(this._deleteRoutePointButton);
-            this._actionPanel.Controls.Add(this._closeButton);
             this._actionPanel.Controls.Add(this._listOrdersButton);
             this._actionPanel.Controls.Add(this.divisorLabel);
             this._actionPanel.Controls.Add(this._createRoutePointButton);
@@ -96,6 +94,18 @@
             this._actionPanel.Location = new System.Drawing.Point(0, 0);
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(240, 24);
+            // 
+            // _changeStatusButton
+            // 
+            this._changeStatusButton.BackColor = System.Drawing.Color.White;
+            this._changeStatusButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_changeStatusButton.BackgroundImage")));
+            this._changeStatusButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._changeStatusButton.Location = new System.Drawing.Point(46, 2);
+            this._changeStatusButton.Name = "_changeStatusButton";
+            this._changeStatusButton.PressedImage = null;
+            this._changeStatusButton.Size = new System.Drawing.Size(20, 20);
+            this._changeStatusButton.TabIndex = 9;
+            this._changeStatusButton.Click += new System.EventHandler(this.ChangeStatusButtonClick);
             // 
             // _deleteRoutePointButton
             // 
@@ -108,18 +118,6 @@
             this._deleteRoutePointButton.Size = new System.Drawing.Size(20, 20);
             this._deleteRoutePointButton.TabIndex = 7;
             this._deleteRoutePointButton.Click += new System.EventHandler(this.DeleteRoutePointButtonClick);
-            // 
-            // _closeButton
-            // 
-            this._closeButton.BackColor = System.Drawing.Color.White;
-            this._closeButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_closeButton.BackgroundImage")));
-            this._closeButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._closeButton.Location = new System.Drawing.Point(217, 2);
-            this._closeButton.Name = "_closeButton";
-            this._closeButton.PressedImage = null;
-            this._closeButton.Size = new System.Drawing.Size(20, 20);
-            this._closeButton.TabIndex = 5;
-            this._closeButton.Click += new System.EventHandler(this.CloseButtonClick);
             // 
             // datePicker
             // 
@@ -161,18 +159,6 @@
             this.routePointListBox.Size = new System.Drawing.Size(240, 220);
             this.routePointListBox.TabIndex = 6;
             // 
-            // _changeStatusButton
-            // 
-            this._changeStatusButton.BackColor = System.Drawing.Color.White;
-            this._changeStatusButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_changeStatusButton.BackgroundImage")));
-            this._changeStatusButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._changeStatusButton.Location = new System.Drawing.Point(46, 2);
-            this._changeStatusButton.Name = "_changeStatusButton";
-            this._changeStatusButton.PressedImage = null;
-            this._changeStatusButton.Size = new System.Drawing.Size(20, 20);
-            this._changeStatusButton.TabIndex = 9;
-            this._changeStatusButton.Click += new System.EventHandler(this.ChangeStatusButtonClick);
-            // 
             // RouteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -199,7 +185,6 @@
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton createRouteOnDateButton;
         private System.Windows.Forms.Panel panel;
         private MSS.WinMobile.UI.Controls.Concret.RoutePointListBox routePointListBox;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _closeButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _deleteRoutePointButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _changeStatusButton;
 

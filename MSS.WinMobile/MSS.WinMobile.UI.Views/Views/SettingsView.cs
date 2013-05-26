@@ -29,6 +29,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _passwordTextBox.Text = _settingsViewModel.Password;
                 _batchSizeTextBox.Text =
                     _settingsViewModel.SynchronizationBatchSize.ToString(CultureInfo.InvariantCulture);
+
+                ViewContainer.RegisterLeftAction(new Save(_settingsPresenter));
+                ViewContainer.RegisterRightAction(new Cancel(_settingsPresenter));
             }
         }
 
@@ -38,15 +41,6 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private void AccountTextBoxTextChanged(object sender, EventArgs e) {
             _settingsViewModel.Username = _accountTextBox.Text;
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-            _settingsPresenter.GoToMenu();
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            _settingsPresenter.Save();
         }
 
         private void ServerNameTextBoxTextChanged(object sender, EventArgs e) {
@@ -64,6 +58,34 @@ namespace MSS.WinMobile.UI.Views.Views {
             catch {
                 _batchSizeTextBox.Text =
                     _settingsViewModel.SynchronizationBatchSize.ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
+        private class Save : IViewAction {
+            private readonly SettingsPresenter _presenter;
+            public Save(SettingsPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Save"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Save();
+            }
+        }
+
+        private class Cancel : IViewAction {
+            private readonly SettingsPresenter _presenter;
+            public Cancel(SettingsPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Cancel"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Cancel();
             }
         }
     }

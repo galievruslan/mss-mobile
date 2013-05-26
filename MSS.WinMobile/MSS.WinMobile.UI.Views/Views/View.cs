@@ -39,4 +39,11 @@ namespace MSS.WinMobile.UI.Views.Views {
             ViewContainer.ShowDetails(details);
         }
     }
+
+    public class StubAction : IViewAction {
+        public string Caption {
+            get { return string.Empty; }
+        }
+        public void Do(object sender, EventArgs e) {}
+    }
 }

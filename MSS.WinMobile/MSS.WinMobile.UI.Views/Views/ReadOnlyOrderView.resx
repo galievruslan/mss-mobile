@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cancelButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOuAAA
-        DrgBakH1WwAAAYtJREFUeF7t2s0NwjAMhmFGYwRGQIyAYHQuHIBEaqSq4sd2v7YJeZEiDiSO/dAi03a3
-        44UAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIDAmgKntNlhgQ33KeZ5gbibhsxYjzTuYrSMdUvj
-        mcZ10wqFmxesXFQeKrQxVondPNoUS4X2Dqt5tONwGpZCpu/RI+0bVtnjIjxDVgtlKcyLtkTM1UAsGykL
-        VMay5L7ZHEWhihibAUQ2nlPwnLWRXKtZEyk8sqaaghWJeAA8cxW5VRvDClE6eHVbUi3Mt8QsaJ+glP8W
-        msKLonl7t6ZQfiXrResaq2Ba0cAaxAD7dR6OPrdiqa5yOFKrb6oXq2u0KFaXaBas/ANP45oQrFgH59z6
-        fnAEGXmwPC3HX7YbEaxu0eZgdYemwOoGTYnVBdoxVZnvdquvZ1m+iCZvs+Wjghu5gfaCRwVmoKl7pvHp
-        2fxzFVNXHncKHGksQQABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQqFHgBcAp0NqEgJkfAAAAAElF
-        TkSuQmCC
-</value>
-  </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Pocket_PC</value>
   </metadata>

@@ -28,6 +28,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _orderListBox.ItemDataNeeded += ItemDataNeeded;
                 _orderListBox.ItemSelected += ItemSelected;
                 _orderListBox.SetListSize(_presenter.InitializeListSize());
+
+                ViewContainer.RegisterLeftAction(new StubAction());
+                ViewContainer.RegisterRightAction(new Back(_presenter));
             }
         }
 
@@ -46,13 +49,23 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.EditOrder();
         }
 
-        private void CloseButtonClick(object sender, EventArgs e) {
-            _presenter.GoToMenuView();
-        }
-
         private void DatePickerValueChanged(object sender, EventArgs e) {
             _presenter.GetOrdersOnDate(datePicker.Value);
             _orderListBox.SetListSize(_presenter.InitializeListSize());
+        }
+
+        private class Back : IViewAction {
+            private readonly OrderListPresenter _presenter;
+            public Back(OrderListPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Back"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.GoToMenuView();
+            }
         }
     }
 }

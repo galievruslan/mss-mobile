@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
             this.tabControl = new System.Windows.Forms.TabControl();
             this._systemTab = new System.Windows.Forms.TabPage();
             this._logoutLinkLabel = new System.Windows.Forms.LinkLabel();
@@ -41,13 +40,9 @@
             this._synchronizationTab = new System.Windows.Forms.TabPage();
             this._batchSizeTextBox = new System.Windows.Forms.TextBox();
             this._batchSizeLabel = new System.Windows.Forms.Label();
-            this._actionPanel = new System.Windows.Forms.Panel();
-            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.tabControl.SuspendLayout();
             this._systemTab.SuspendLayout();
             this._synchronizationTab.SuspendLayout();
-            this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -58,7 +53,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(240, 238);
+            this.tabControl.Size = new System.Drawing.Size(240, 268);
             this.tabControl.TabIndex = 0;
             // 
             // _systemTab
@@ -72,7 +67,7 @@
             this._systemTab.Controls.Add(this._passwordLabel);
             this._systemTab.Location = new System.Drawing.Point(0, 0);
             this._systemTab.Name = "_systemTab";
-            this._systemTab.Size = new System.Drawing.Size(240, 215);
+            this._systemTab.Size = new System.Drawing.Size(240, 245);
             this._systemTab.Text = "System";
             // 
             // _logoutLinkLabel
@@ -150,7 +145,7 @@
             this._synchronizationTab.Controls.Add(this._batchSizeLabel);
             this._synchronizationTab.Location = new System.Drawing.Point(0, 0);
             this._synchronizationTab.Name = "_synchronizationTab";
-            this._synchronizationTab.Size = new System.Drawing.Size(240, 215);
+            this._synchronizationTab.Size = new System.Drawing.Size(232, 212);
             this._synchronizationTab.Text = "Synchronization";
             // 
             // _batchSizeTextBox
@@ -160,7 +155,7 @@
             this._batchSizeTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._batchSizeTextBox.Location = new System.Drawing.Point(78, 7);
             this._batchSizeTextBox.Name = "_batchSizeTextBox";
-            this._batchSizeTextBox.Size = new System.Drawing.Size(155, 21);
+            this._batchSizeTextBox.Size = new System.Drawing.Size(147, 21);
             this._batchSizeTextBox.TabIndex = 11;
             this._batchSizeTextBox.TextChanged += new System.EventHandler(this.BatchSizeTextBoxTextChanged);
             // 
@@ -172,53 +167,16 @@
             this._batchSizeLabel.Size = new System.Drawing.Size(64, 20);
             this._batchSizeLabel.Text = "Batch size";
             // 
-            // _actionPanel
-            // 
-            this._actionPanel.Controls.Add(this.cancelButton);
-            this._actionPanel.Controls.Add(this.okButton);
-            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 238);
-            this._actionPanel.Name = "_actionPanel";
-            this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.BackColor = System.Drawing.Color.White;
-            this.cancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelButton.BackgroundImage")));
-            this.cancelButton.Location = new System.Drawing.Point(123, 3);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.PressedImage = null;
-            this.cancelButton.Size = new System.Drawing.Size(24, 24);
-            this.cancelButton.TabIndex = 3;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
-            // 
-            // okButton
-            // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.BackColor = System.Drawing.Color.White;
-            this.okButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("okButton.BackgroundImage")));
-            this.okButton.Location = new System.Drawing.Point(93, 3);
-            this.okButton.Name = "okButton";
-            this.okButton.PressedImage = null;
-            this.okButton.Size = new System.Drawing.Size(24, 24);
-            this.okButton.TabIndex = 2;
-            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
-            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this._actionPanel);
             this.Name = "SettingsView";
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.SettingsViewLoad);
             this.tabControl.ResumeLayout(false);
             this._systemTab.ResumeLayout(false);
             this._synchronizationTab.ResumeLayout(false);
-            this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -235,9 +193,6 @@
         private System.Windows.Forms.TextBox _accountTextBox;
         private System.Windows.Forms.Label _accountLabel;
         private System.Windows.Forms.Label _passwordLabel;
-        private System.Windows.Forms.Panel _actionPanel;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private System.Windows.Forms.TextBox _batchSizeTextBox;
         private System.Windows.Forms.Label _batchSizeLabel;
     }

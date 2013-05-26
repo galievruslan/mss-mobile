@@ -74,7 +74,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
         }
 
-        public void GoToMenu() {
+        public void Cancel() {
             _navigator.GoToMenu();
         }
 

@@ -64,6 +64,9 @@ namespace MSS.WinMobile.UI.Views.Views {
 
                 orderItemListBox.ItemDataNeeded += ItemDataNeeded;
                 orderItemListBox.SetListSize(_presenter.InitializeListSize());
+
+                ViewContainer.RegisterLeftAction(new StubAction());
+                ViewContainer.RegisterLeftAction(new Back(_presenter));
             }
         }
 
@@ -74,8 +77,18 @@ namespace MSS.WinMobile.UI.Views.Views {
             }
         }
 
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _presenter.Cancel();
+        private class Back : IViewAction {
+            private readonly OrderPresenter _presenter;
+            public Back(OrderPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Back"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Cancel();
+            }
         }
     }
 }

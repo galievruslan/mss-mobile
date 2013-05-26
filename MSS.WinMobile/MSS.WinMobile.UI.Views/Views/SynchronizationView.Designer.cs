@@ -23,18 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SynchronizationView));
             this._lastSyncDateLabel = new System.Windows.Forms.Label();
             this.synchronizationFullyWarningLabel = new System.Windows.Forms.Label();
             this._synchronizeFullyCheckBox = new System.Windows.Forms.CheckBox();
-            this._actionPanel = new System.Windows.Forms.Panel();
-            this.cancelButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.okButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.lastSynchronizationLabel = new System.Windows.Forms.Label();
             this._progressBar = new System.Windows.Forms.ProgressBar();
             this._statusLabel = new System.Windows.Forms.Label();
             this._statusPanel = new System.Windows.Forms.Panel();
-            this._actionPanel.SuspendLayout();
             this._statusPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,41 +59,6 @@
             this._synchronizeFullyCheckBox.TabIndex = 4;
             this._synchronizeFullyCheckBox.Text = "Synchronize fully";
             this._synchronizeFullyCheckBox.CheckStateChanged += new System.EventHandler(this.SynchronizeFullyCheckBoxCheckStateChanged);
-            // 
-            // _actionPanel
-            // 
-            this._actionPanel.Controls.Add(this.cancelButton);
-            this._actionPanel.Controls.Add(this.okButton);
-            this._actionPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._actionPanel.Location = new System.Drawing.Point(0, 238);
-            this._actionPanel.Name = "_actionPanel";
-            this._actionPanel.Size = new System.Drawing.Size(240, 30);
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.BackColor = System.Drawing.Color.White;
-            this.cancelButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cancelButton.BackgroundImage")));
-            this.cancelButton.Location = new System.Drawing.Point(123, 3);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.PressedImage = null;
-            this.cancelButton.Size = new System.Drawing.Size(24, 24);
-            this.cancelButton.TabIndex = 5;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
-            // 
-            // okButton
-            // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.BackColor = System.Drawing.Color.White;
-            this.okButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("okButton.BackgroundImage")));
-            this.okButton.Location = new System.Drawing.Point(93, 3);
-            this.okButton.Name = "okButton";
-            this.okButton.PressedImage = null;
-            this.okButton.Size = new System.Drawing.Size(24, 24);
-            this.okButton.TabIndex = 4;
-            this.okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // lastSynchronizationLabel
             // 
@@ -145,11 +105,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._statusPanel);
             this.Name = "SynchronizationView";
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.SynchronizationViewLoad);
-            this._actionPanel.ResumeLayout(false);
             this._statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -160,9 +118,6 @@
         private System.Windows.Forms.Label _lastSyncDateLabel;
         private System.Windows.Forms.Label synchronizationFullyWarningLabel;
         private System.Windows.Forms.CheckBox _synchronizeFullyCheckBox;
-        private System.Windows.Forms.Panel _actionPanel;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton cancelButton;
-        private MSS.WinMobile.UI.Controls.Buttons.PictureButton okButton;
         private System.Windows.Forms.Label lastSynchronizationLabel;
         private System.Windows.Forms.ProgressBar _progressBar;
         private System.Windows.Forms.Label _statusLabel;

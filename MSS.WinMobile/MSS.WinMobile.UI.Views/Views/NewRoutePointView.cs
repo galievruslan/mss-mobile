@@ -26,6 +26,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _presenter = _presentersFactory.CreateNewRoutePointPresenter(this, _routeViewModel);
                 _viewModel = _presenter.Initialize();
 
+                ViewContainer.RegisterLeftAction(new Save(_presenter));
+                ViewContainer.RegisterRightAction(new Cancel(_presenter));
+
                 _customerTextBox.Text = _viewModel.CustomerName;
                 _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             }
@@ -47,14 +50,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             _shippingAddressTextBox.Refresh();
         }
 
-        private void OkButtonClick(object sender, EventArgs e) {
-            _presenter.Save();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _presenter.Cancel();
-        }
-
         private void ShippingAddressLookUpButtonClick(object sender, EventArgs e) {
             _presenter.LookUpShippingAddress();
             _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
@@ -65,6 +60,34 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.ResetShippingAddress();
             _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
             _shippingAddressTextBox.Refresh();
+        }
+
+        private class Save : IViewAction {
+            private readonly NewRoutePointPresenter _presenter;
+            public Save(NewRoutePointPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Save"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Save();
+            }
+        }
+
+        private class Cancel : IViewAction {
+            private readonly NewRoutePointPresenter _presenter;
+            public Cancel(NewRoutePointPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Cancel"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Cancel();
+            }
         }
     }
 }

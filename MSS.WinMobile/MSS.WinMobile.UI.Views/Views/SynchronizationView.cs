@@ -33,21 +33,15 @@ namespace MSS.WinMobile.UI.Views.Views {
                                               "dd.MM.yyyy HH:mm")
                                           : "never";
 
-                if (_autostart)
-                {
-                    _actionPanel.Visible = false;
+                if (_autostart) {
                     _synchronizeFullyCheckBox.Checked = true;
                     _synchronizationPresenter.Synchronize();
                 }
+                else {
+                    ViewContainer.RegisterLeftAction(new Synchronize(_synchronizationPresenter));
+                    ViewContainer.RegisterRightAction(new Cancel(_synchronizationPresenter));
+                }
             }
-        }
-
-        private void OkButtonClick(object sender, EventArgs e) {
-            _synchronizationPresenter.Synchronize();
-        }
-
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _synchronizationPresenter.Cancel();
         }
 
         private void SynchronizeFullyCheckBoxCheckStateChanged(object sender, EventArgs e) {
@@ -113,6 +107,35 @@ namespace MSS.WinMobile.UI.Views.Views {
             }
             else {
                 _synchronizationPresenter.ReturnToMenu();
+            }
+        }
+
+
+        private class Synchronize : IViewAction {
+            private readonly SynchronizationPresenter _synchronizationPresenter;
+            public Synchronize(SynchronizationPresenter synchronizationPresenter) {
+                _synchronizationPresenter = synchronizationPresenter;
+            }
+
+            public string Caption {
+                get { return "Synchronize"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _synchronizationPresenter.Synchronize();
+            }
+        }
+
+        private class Cancel : IViewAction {
+            private readonly SynchronizationPresenter _synchronizationPresenter;
+            public Cancel(SynchronizationPresenter synchronizationPresenter) {
+                _synchronizationPresenter = synchronizationPresenter;
+            }
+
+            public string Caption {
+                get { return "Cancel"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _synchronizationPresenter.Cancel();
             }
         }
     }

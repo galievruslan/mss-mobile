@@ -25,9 +25,12 @@ namespace MSS.WinMobile.UI.Views.Views {
             if (_routePresenter == null) {
                 routePointListBox.ItemSelected += ItemSelected;
                 routePointListBox.ItemDataNeeded += ItemDataNeeded;
-
+                
                 _routePresenter = _presentersFactory.CreateRoutePresenter(this, _routeViewModel);
                 _viewModel = _routePresenter.Initialize();
+                ViewContainer.RegisterLeftAction(new StubAction());
+                ViewContainer.RegisterRightAction(new Back(_routePresenter));
+
                 datePicker.Value = _viewModel.Date;
                 routePointListBox.SetListSize(_routePresenter.InitializeListSize());
                 datePicker.ValueChanged += DateChanged;
@@ -83,6 +86,20 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private void ChangeStatusButtonClick(object sender, EventArgs e) {
             _routePresenter.GoToStatusChanging();
+        }
+
+        private class Back : IViewAction {
+            private readonly RoutePresenter _routePresenter;
+            public Back(RoutePresenter routePresenter) {
+                _routePresenter = routePresenter;
+            }
+
+            public string Caption {
+                get { return "Back"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _routePresenter.GoToMenuView();
+            }
         }
     }
 }

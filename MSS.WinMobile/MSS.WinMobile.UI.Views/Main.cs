@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MSS.WinMobile.UI.Views.Views;
 using View = MSS.WinMobile.UI.Views.Views.View;
 
 namespace MSS.WinMobile.UI.Views {
@@ -65,9 +66,14 @@ namespace MSS.WinMobile.UI.Views {
                 _mainMenu.MenuItems.Remove(_leftButton);
                 _leftButton.Dispose();
             }
-            _leftButton = new MenuItem();
-            _leftButton.Text = viewAction.Caption;
-            _leftButton.Click += viewAction.Do;
+            _leftButton = new MenuItem {Text = viewAction.Caption};
+            if (!(viewAction is StubAction)) {
+                _leftButton.Click += viewAction.Do;
+            }
+            else {
+                _leftButton.Enabled = false;
+            }
+
             _mainMenu.MenuItems.Add(_leftButton);
         }
 
@@ -76,9 +82,14 @@ namespace MSS.WinMobile.UI.Views {
                 _mainMenu.MenuItems.Remove(_rightButton);
                 _rightButton.Dispose();
             }
-            _rightButton = new MenuItem();
-            _rightButton.Text = viewAction.Caption;
-            _rightButton.Click += viewAction.Do;
+            _rightButton = new MenuItem {Text = viewAction.Caption};
+            if (!(viewAction is StubAction)) {
+                _rightButton.Click += viewAction.Do;
+            }
+            else {
+                _rightButton.Enabled = false;
+            }
+
             _mainMenu.MenuItems.Add(_rightButton);
         }
     }

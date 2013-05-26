@@ -161,7 +161,7 @@
   <data name="_changeStatusButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAJrSURBVHhe7dqxK4VRGAbwm5QkdQcpiQwWSdkMSgaLlAwM
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAJrSURBVHhe7dqxK4VRGAbwm5QkdQcpiQwWSdkMSgaLlAwM
         Ft2UQfwDYribVUlKBuUfkLIpk5QkJSUpk5KUSUnC85Rbd7jXe+7xLfc9z61ncc536v11zved73xyOf0k
         IAEJSEACEpCABCQgAQlIQAISkIAEJCABCUhAAhKQQHYCbRiqB+lFOpCW7Iau/5HyKGEB2UOukDfku0Ke
         f9vZbx5pr//Sa6ugH913kfcqQJXQyv9GwCR+XF4byFckVAktCbABIF3/EyoZsFFAvWSERTTXM4wz6zVD
@@ -178,23 +178,10 @@
   <data name="_deleteRoutePointButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAACYSURBVHhe7dLJCQAwCATA9N90jhJWCOxjBH8KOrqWIECA
+        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAACYSURBVHhe7dLJCQAwCATA9N90jhJWCOxjBH8KOrqWIECA
         AAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIG5wL6tjTnf6HNnI9ab
         qTaAhacBBiwUCMt9WAimnAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQ6BA55
         Z+Mdr7u92AAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="_closeButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAYAAADHl1ErAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAGLSURBVHhe7drNDcIwDIZhRmMERkCMgGB0LhyARGqkquLH
-        dr+2CXmRIg4kjv3QItN2t+OFAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAwJoCp7TZYYEN9ynm
-        eYG4m4bMWI807mK0jHVL45nGddMKhZsXrFxUHiq0MVaJ3TzaFEuF9g6rebTjcBqWQqbv0SPtG1bZ4yI8
-        Q1YLZSnMi7ZEzNVALBspC1TGsuS+2RxFoYoYmwFENp5T8Jy1kVyrWRMpPLKmmoIViXgAPHMVuVUbwwpR
-        Onh1W1ItzLfELGifoJT/FprCi6J5e7emUH4l60XrGqtgWtHAGsQA+3Uejj63YqmucjhSq2+qF6trtChW
-        l2gWrPwDT+OaEKxYB+fc+n5wBBl5sDwtx1+2GxGsbtHmYHWHpsDqBk2J1QXaMVWZ73arr2dZvogmb7Pl
-        o4IbuYH2gkcFZqCpe6bx6dn8cxVTVx53ChxpLEEAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEKhR
-        4AXAKdDahICZHwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="createRouteOnDateButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

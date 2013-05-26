@@ -26,6 +26,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                                                                                         _routePointViewModel);
 
                 _routePointViewModel = _changeStatusPresenter.Initialize();
+                ViewContainer.RegisterLeftAction(new Save(_changeStatusPresenter));
+                ViewContainer.RegisterRightAction(new Cancel(_changeStatusPresenter));
+
                 IEnumerable<StatusViewModel> statusViewModels = _changeStatusPresenter.GetStatuses();
                 foreach (var statusViewModel in statusViewModels) {
                     var radioButton = new RadioButton {
@@ -46,12 +49,32 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _changeStatusPresenter.SelectStatus(radioButton.Tag as StatusViewModel);
         }
 
-        private void CancelButtonClick(object sender, EventArgs e) {
-            _changeStatusPresenter.Cancel();
+        private class Save : IViewAction {
+            private readonly ChangeStatusPresenter _presenter;
+            public Save(ChangeStatusPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Save"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Save();
+            }
         }
 
-        private void OkButtonClick(object sender, EventArgs e) {
-            _changeStatusPresenter.Save();
+        private class Cancel : IViewAction {
+            private readonly ChangeStatusPresenter _presenter;
+            public Cancel(ChangeStatusPresenter presenter) {
+                _presenter = presenter;
+            }
+
+            public string Caption {
+                get { return "Cancel"; }
+            }
+            public void Do(object sender, EventArgs e) {
+                _presenter.Cancel();
+            }
         }
     }
 }
