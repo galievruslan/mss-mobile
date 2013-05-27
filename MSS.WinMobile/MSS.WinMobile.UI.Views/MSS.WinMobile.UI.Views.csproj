@@ -276,6 +276,9 @@
       <Name>MSS.WinMobile.UI.Presenters</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.UnitOfMeasureViewModel.datasource" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

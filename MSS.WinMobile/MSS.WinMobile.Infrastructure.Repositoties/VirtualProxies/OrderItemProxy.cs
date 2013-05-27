@@ -37,6 +37,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.UnitOfMeasureId = value; }
         }
 
+        new public string UnitOfMeasureName {
+            get { return base.UnitOfMeasureName; }
+            set { base.UnitOfMeasureName = value; }
+        }
+
         new public int Quantity
         {
             get { return base.Quantity; }
@@ -47,6 +52,11 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
         {
             get { return base.Price; }
             set { base.Price = value; }
+        }
+
+        new public decimal Amount {
+            get { return base.Amount; }
+            set { base.Amount = value; }
         }
     }
 }

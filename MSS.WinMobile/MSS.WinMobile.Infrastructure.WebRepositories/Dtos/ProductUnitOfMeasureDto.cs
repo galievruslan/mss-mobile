@@ -7,6 +7,8 @@
 
         public int UnitOfMeasureId { get; set; }
 
+        public double CountInBaseUnit { get; set; }
+
         public bool Base { get; set; }
     }
 }

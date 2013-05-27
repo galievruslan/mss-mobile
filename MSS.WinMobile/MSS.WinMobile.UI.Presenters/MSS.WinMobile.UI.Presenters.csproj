@@ -107,6 +107,7 @@
     <Compile Include="ViewModels\ShippingAddressViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="ViewModels\SynchronizationViewModel.cs" />
+    <Compile Include="ViewModels\UnitOfMeasureViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
     <Compile Include="Views\ColorHelper.cs" />

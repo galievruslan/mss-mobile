@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 
@@ -313,11 +314,12 @@ namespace LitJson
             }
         }
 
+        readonly NumberFormatInfo _decimalFormat = NumberFormatInfo.InvariantInfo;
         private bool TryParseDouble(string number, out double n_double)
         {
             try
             {
-                n_double = Double.Parse(number);
+                n_double = Double.Parse(number, _decimalFormat);
                 return true;
             }
             catch (Exception)

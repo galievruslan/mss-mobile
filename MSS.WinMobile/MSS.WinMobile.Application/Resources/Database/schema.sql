@@ -49,6 +49,7 @@ CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 CREATE TABLE [OrderItems] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Quantity] INTEGER  NULL
 , [Price] numeric(8,2) NULL
+, [Amount] numeric(8,2) NULL
 , [Order_Id] INTEGER NULL
 , [Product_Id] INTEGER  NULL
 , [UnitOfMeasure_Id] INTEGER  NULL
@@ -66,6 +67,7 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Base] BIT  NULL
 , [Product_Id] INTEGER  NULL
 , [UnitOfMeasure_Id] INTEGER  NULL
+, [Count_In_Base_Unit] FLOAT  NULL
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 , FOREIGN KEY(UnitOfMeasure_Id) REFERENCES UnitsOfMeasure(Id)
 );

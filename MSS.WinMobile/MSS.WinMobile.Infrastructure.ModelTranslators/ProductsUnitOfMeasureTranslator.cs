@@ -6,15 +6,14 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
 {
     public class ProductsUnitOfMeasureTranslator : DtoTranslator<ProductsUnitOfMeasure, ProductUnitOfMeasureDto>
     {
-        public override ProductsUnitOfMeasure Translate(ProductUnitOfMeasureDto value)
-        {
-            var proxy = new ProductsUnitOfMeasureProxy
-                {
-                    Id = value.Id,
-                    ProductId = value.ProductId,
-                    UnitOfMeasureId = value.UnitOfMeasureId,
-                    Base = value.Base
-                };
+        public override ProductsUnitOfMeasure Translate(ProductUnitOfMeasureDto value) {
+            var proxy = new ProductsUnitOfMeasureProxy {
+                Id = value.Id,
+                ProductId = value.ProductId,
+                UnitOfMeasureId = value.UnitOfMeasureId,
+                CountInBaseUnit = (float)value.CountInBaseUnit,
+                Base = value.Base
+            };
             return proxy;
         }
     }

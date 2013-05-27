@@ -64,7 +64,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 CustomerId = customer.Id,
                 CustomerName = customer.Name,
                 ShippingAddressId = shippingAddress.Id,
-                ShippingAddressName = shippingAddress.Address
+                ShippingAddressName = shippingAddress.Address,                
             };
 
             if (defaultWarehouse != null) {
@@ -96,7 +96,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     ProductId = orderItem.ProductId,
                     ProductName = orderItem.ProductName,
                     Quantity = orderItem.Quantity,
-                    Price = orderItem.Price
+                    Price = orderItem.Price,
+                    UnitOfMeasureId = orderItem.UnitOfMeasureId,
+                    Amount = orderItem.Amount
                 });
             }
         }
@@ -115,15 +117,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             var order = orderRepository.GetById(_orderViewModel.OrderId);
 
             _orderItemViewModels = new List<OrderItemViewModel>();
-            foreach (var orderItem in order.Items.ToArray())
-            {
-                _orderItemViewModels.Add(new OrderItemViewModel
-                {
+            foreach (var orderItem in order.Items.ToArray()) {
+                _orderItemViewModels.Add(new OrderItemViewModel {
                     Id = orderItem.Id,
                     ProductId = orderItem.ProductId,
                     ProductName = orderItem.ProductName,
                     Quantity = orderItem.Quantity,
-                    Price = orderItem.Price
+                    Price = orderItem.Price,
+                    UnitOfMeasureId = orderItem.UnitOfMeasureId
                 });
             }
         }
@@ -171,11 +172,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 order.SetShippingAddress(shippingAddress);
                 order.SetPriceList(priceList);
                 order.SetWarehouse(warehouse);
-                order.Amount = _orderItemViewModels.Sum(model => model.Quantity*model.Price);
+                order.Amount = _orderItemViewModels.Sum(model => model.Amount);
                 order.Note = _orderViewModel.Note;
                 order.OrderStatus = OrderStatus.New;
 
                 var productRepository = _repositoryFactory.CreateRepository<Product>();
+                var unitOfMeasureRepository = _repositoryFactory.CreateRepository<UnitOfMeasure>();
                 var orderItemRepository = _repositoryFactory.CreateRepository<OrderItem>();
                 using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                     unitOfWork.BeginTransaction();
@@ -197,8 +199,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
                         var product = productRepository.GetById(orderItemViewModel.ProductId);
                         orderItem.SetProduct(product);
-                        orderItem.Price = orderItemViewModel.Price;
+                        var unitOfMeasure =
+                            unitOfMeasureRepository.GetById(orderItemViewModel.UnitOfMeasureId);
+                        orderItem.SetUnitOfMeasure(unitOfMeasure);
                         orderItem.Quantity = orderItemViewModel.Quantity;
+                        orderItem.Price = orderItemViewModel.Price;
+                        orderItem.Amount = orderItemViewModel.Amount;
                         orderItemRepository.Save(orderItem);
                     }
 
@@ -248,17 +254,27 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
             if (pickedUpProducts != null) {
                 _orderItemViewModels.Clear();
+                var productRepository = _repositoryFactory.CreateRepository<Product>();
                 foreach (var pickUpProductViewModel in pickedUpProducts) {
-                    _orderItemViewModels.Add(new OrderItemViewModel
-                        {
-                            Id = pickUpProductViewModel.OrderItemId,
-                            ProductId = pickUpProductViewModel.ProductId,
-                            ProductName = pickUpProductViewModel.ProductName,
-                            Quantity = pickUpProductViewModel.Quantity,
-                            Price = pickUpProductViewModel.Price
-                        });
+                    var product = productRepository.GetById(pickUpProductViewModel.ProductId);
+                    PickUpProductViewModel model = pickUpProductViewModel;
+                    var countInBaseUnits =
+                        product.UnitsOfMeasures.FirstOrDefault(
+                            uom => uom.UnitOfMeasureId == model.UnitOfMeasureId).CountInBaseUnit;
+
+                    _orderItemViewModels.Add(new OrderItemViewModel {
+                        Id = pickUpProductViewModel.OrderItemId,
+                        ProductId = pickUpProductViewModel.ProductId,
+                        ProductName = pickUpProductViewModel.ProductName,
+                        Quantity = pickUpProductViewModel.Quantity,
+                        Price = pickUpProductViewModel.Price,
+                        Amount = pickUpProductViewModel.Price * pickUpProductViewModel.Quantity *
+                            (decimal)countInBaseUnits,
+                        UnitOfMeasureId = pickUpProductViewModel.UnitOfMeasureId,
+                        UnitOfMeasureName = pickUpProductViewModel.UnitOfMeasureName
+                    });
                 }
-                _orderViewModel.Amount = _orderItemViewModels.Sum(model => model.Quantity * model.Price);
+                _orderViewModel.Amount = _orderItemViewModels.Sum(model => model.Amount);
             }
         }
 

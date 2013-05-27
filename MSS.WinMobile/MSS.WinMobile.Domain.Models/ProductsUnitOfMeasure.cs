@@ -6,6 +6,10 @@
 
         public int UnitOfMeasureId { get; protected set; }
 
+        public string UnitOfMeasureName { get; protected set; }
+
+        public float CountInBaseUnit { get; protected set; }
+
         public bool Base { get; protected set; }
     }
 }

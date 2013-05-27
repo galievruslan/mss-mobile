@@ -31,8 +31,11 @@ namespace MSS.WinMobile.UI.Views.LookUps
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PickUpProductView));
             this.quantityPanel = new System.Windows.Forms.Panel();
+            this.unitOfMeasureViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._uomComboBox = new System.Windows.Forms.ComboBox();
             this.deleteButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.nilButton = new System.Windows.Forms.Button();
             this.nineButton = new System.Windows.Forms.Button();
@@ -53,12 +56,14 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._vericalLine = new MSS.WinMobile.UI.Controls.VericalLine();
             this._informationButton = new MSS.WinMobile.UI.Controls.Buttons.InformationButton();
             this.quantityPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.unitOfMeasureViewModelBindingSource)).BeginInit();
             this._filterHeaderPanel.SuspendLayout();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // quantityPanel
             // 
+            this.quantityPanel.Controls.Add(this._uomComboBox);
             this.quantityPanel.Controls.Add(this.deleteButton);
             this.quantityPanel.Controls.Add(this.nilButton);
             this.quantityPanel.Controls.Add(this.nineButton);
@@ -75,13 +80,28 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.quantityPanel.Name = "quantityPanel";
             this.quantityPanel.Size = new System.Drawing.Size(240, 30);
             // 
+            // unitOfMeasureViewModelBindingSource
+            // 
+            this.unitOfMeasureViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.UnitOfMeasureViewModel);
+            // 
+            // _uomComboBox
+            // 
+            this._uomComboBox.DataSource = this.unitOfMeasureViewModelBindingSource;
+            this._uomComboBox.DisplayMember = "Name";
+            this._uomComboBox.Location = new System.Drawing.Point(170, 4);
+            this._uomComboBox.Name = "_uomComboBox";
+            this._uomComboBox.Size = new System.Drawing.Size(67, 22);
+            this._uomComboBox.TabIndex = 11;
+            this._uomComboBox.ValueMember = "Id";
+            this._uomComboBox.SelectedValueChanged += new System.EventHandler(this._uomComboBox_SelectedValueChanged);
+            // 
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.deleteButton.BackColor = System.Drawing.Color.White;
             this.deleteButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("deleteButton.BackgroundImage")));
             this.deleteButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.deleteButton.Location = new System.Drawing.Point(162, 6);
+            this.deleteButton.Location = new System.Drawing.Point(152, 6);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.PressedImage = null;
             this.deleteButton.Size = new System.Drawing.Size(16, 18);
@@ -92,9 +112,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.nilButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nilButton.BackColor = System.Drawing.Color.White;
-            this.nilButton.Location = new System.Drawing.Point(146, 6);
+            this.nilButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.nilButton.Location = new System.Drawing.Point(137, 6);
             this.nilButton.Name = "nilButton";
-            this.nilButton.Size = new System.Drawing.Size(14, 18);
+            this.nilButton.Size = new System.Drawing.Size(13, 18);
             this.nilButton.TabIndex = 9;
             this.nilButton.Text = "0";
             this.nilButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -103,9 +124,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.nineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nineButton.BackColor = System.Drawing.Color.White;
-            this.nineButton.Location = new System.Drawing.Point(130, 6);
+            this.nineButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.nineButton.Location = new System.Drawing.Point(122, 6);
             this.nineButton.Name = "nineButton";
-            this.nineButton.Size = new System.Drawing.Size(14, 18);
+            this.nineButton.Size = new System.Drawing.Size(13, 18);
             this.nineButton.TabIndex = 8;
             this.nineButton.Text = "9";
             this.nineButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -114,9 +136,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.eightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.eightButton.BackColor = System.Drawing.Color.White;
-            this.eightButton.Location = new System.Drawing.Point(114, 6);
+            this.eightButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.eightButton.Location = new System.Drawing.Point(107, 6);
             this.eightButton.Name = "eightButton";
-            this.eightButton.Size = new System.Drawing.Size(14, 18);
+            this.eightButton.Size = new System.Drawing.Size(13, 18);
             this.eightButton.TabIndex = 7;
             this.eightButton.Text = "8";
             this.eightButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -125,9 +148,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.sevenButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.sevenButton.BackColor = System.Drawing.Color.White;
-            this.sevenButton.Location = new System.Drawing.Point(98, 6);
+            this.sevenButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.sevenButton.Location = new System.Drawing.Point(92, 6);
             this.sevenButton.Name = "sevenButton";
-            this.sevenButton.Size = new System.Drawing.Size(14, 18);
+            this.sevenButton.Size = new System.Drawing.Size(13, 18);
             this.sevenButton.TabIndex = 6;
             this.sevenButton.Text = "7";
             this.sevenButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -136,9 +160,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.sixButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.sixButton.BackColor = System.Drawing.Color.White;
-            this.sixButton.Location = new System.Drawing.Point(82, 6);
+            this.sixButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.sixButton.Location = new System.Drawing.Point(77, 6);
             this.sixButton.Name = "sixButton";
-            this.sixButton.Size = new System.Drawing.Size(14, 18);
+            this.sixButton.Size = new System.Drawing.Size(13, 18);
             this.sixButton.TabIndex = 5;
             this.sixButton.Text = "6";
             this.sixButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -147,9 +172,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.fiveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fiveButton.BackColor = System.Drawing.Color.White;
-            this.fiveButton.Location = new System.Drawing.Point(66, 6);
+            this.fiveButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.fiveButton.Location = new System.Drawing.Point(62, 6);
             this.fiveButton.Name = "fiveButton";
-            this.fiveButton.Size = new System.Drawing.Size(14, 18);
+            this.fiveButton.Size = new System.Drawing.Size(13, 18);
             this.fiveButton.TabIndex = 4;
             this.fiveButton.Text = "5";
             this.fiveButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -158,9 +184,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.fourButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fourButton.BackColor = System.Drawing.Color.White;
-            this.fourButton.Location = new System.Drawing.Point(50, 6);
+            this.fourButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.fourButton.Location = new System.Drawing.Point(47, 6);
             this.fourButton.Name = "fourButton";
-            this.fourButton.Size = new System.Drawing.Size(14, 18);
+            this.fourButton.Size = new System.Drawing.Size(13, 18);
             this.fourButton.TabIndex = 3;
             this.fourButton.Text = "4";
             this.fourButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -169,9 +196,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.threeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.threeButton.BackColor = System.Drawing.Color.White;
-            this.threeButton.Location = new System.Drawing.Point(34, 6);
+            this.threeButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.threeButton.Location = new System.Drawing.Point(32, 6);
             this.threeButton.Name = "threeButton";
-            this.threeButton.Size = new System.Drawing.Size(14, 18);
+            this.threeButton.Size = new System.Drawing.Size(13, 18);
             this.threeButton.TabIndex = 2;
             this.threeButton.Text = "3";
             this.threeButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -180,9 +208,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.twoButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.twoButton.BackColor = System.Drawing.Color.White;
-            this.twoButton.Location = new System.Drawing.Point(18, 6);
+            this.twoButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.twoButton.Location = new System.Drawing.Point(17, 6);
             this.twoButton.Name = "twoButton";
-            this.twoButton.Size = new System.Drawing.Size(14, 18);
+            this.twoButton.Size = new System.Drawing.Size(13, 18);
             this.twoButton.TabIndex = 1;
             this.twoButton.Text = "2";
             this.twoButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -191,9 +220,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // 
             this.oneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.oneButton.BackColor = System.Drawing.Color.White;
+            this.oneButton.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
             this.oneButton.Location = new System.Drawing.Point(2, 6);
             this.oneButton.Name = "oneButton";
-            this.oneButton.Size = new System.Drawing.Size(14, 18);
+            this.oneButton.Size = new System.Drawing.Size(13, 18);
             this.oneButton.TabIndex = 0;
             this.oneButton.Text = "1";
             this.oneButton.Click += new System.EventHandler(this.DigitButtonClick);
@@ -295,6 +325,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.Text = "CustomerLookUpView";
             this.Load += new System.EventHandler(this.ViewLoad);
             this.quantityPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.unitOfMeasureViewModelBindingSource)).EndInit();
             this._filterHeaderPanel.ResumeLayout(false);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -323,6 +354,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private SearchPanel searchPanel;
         private VericalLine _vericalLine;
         private InformationButton _informationButton;
+        private System.Windows.Forms.ComboBox _uomComboBox;
+        private System.Windows.Forms.BindingSource unitOfMeasureViewModelBindingSource;
 
     }
 }

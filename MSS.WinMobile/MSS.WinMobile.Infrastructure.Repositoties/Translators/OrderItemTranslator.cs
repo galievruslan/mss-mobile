@@ -14,7 +14,9 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                 UnitOfMeasureId = value.GetInt32(value.GetOrdinal("UnitOfMeasure_Id")),
                 ProductName = value.GetString(value.GetOrdinal("Product_Name")),
                 Quantity = value.GetInt32(value.GetOrdinal("Quantity")),
-                Price = value.GetDecimal(value.GetOrdinal("Price"))
+                Price = value.GetDecimal(value.GetOrdinal("Price")),
+                Amount = value.GetDecimal(value.GetOrdinal("Amount")),
+                UnitOfMeasureName = value.GetString(value.GetOrdinal("UnitOfMeasure_Name"))
             };
             return proxy;
         }

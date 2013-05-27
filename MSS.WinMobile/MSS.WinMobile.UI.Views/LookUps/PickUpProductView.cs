@@ -8,67 +8,70 @@ using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
-namespace MSS.WinMobile.UI.Views.LookUps
-{
-    public partial class PickUpProductView : LookUpView, IPickUpProductView
-    {
+namespace MSS.WinMobile.UI.Views.LookUps {
+    public partial class PickUpProductView : LookUpView, IPickUpProductView {
         private PickUpProductPresenter _presenter;
         private readonly IPresentersFactory _presentersFactory;
         private readonly PriceListViewModel _priceListViewModel;
-        private readonly IEnumerable<OrderItemViewModel> _orderItemViewModels; 
+        private readonly IEnumerable<OrderItemViewModel> _orderItemViewModels;
 
-        public PickUpProductView()
-        {
+        public PickUpProductView() {
             InitializeComponent();
         }
 
-        public PickUpProductView(IPresentersFactory presentersFactory, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels)
-            :this() {
+        public PickUpProductView(IPresentersFactory presentersFactory,
+                                 PriceListViewModel priceListViewModel,
+                                 IEnumerable<OrderItemViewModel> orderItemViewModels)
+            : this() {
             _presentersFactory = presentersFactory;
             _priceListViewModel = priceListViewModel;
             _orderItemViewModels = orderItemViewModels;
         }
 
-        private void ViewLoad(object sender, EventArgs e)
-        {
-            if (_presenter == null)
-            {
+        private void ViewLoad(object sender, EventArgs e) {
+            if (_presenter == null) {
                 _productPriceListBox.ItemDataNeeded += ItemDataNeeded;
                 _productPriceListBox.ItemSelected += ItemSelected;
-                _presenter = _presentersFactory.CreatePickUpProductPresenter(this, _priceListViewModel, _orderItemViewModels);
+                _presenter = _presentersFactory.CreatePickUpProductPresenter(this,
+                                                                             _priceListViewModel,
+                                                                             _orderItemViewModels);
                 _productPriceListBox.SetListSize(_presenter.InitializeListSize());
             }
         }
 
         private VirtualListBoxItem _selectedItem;
-        void ItemSelected(object sender, VirtualListBoxItem item) {
-
+        private void ItemSelected(object sender, VirtualListBoxItem item) {
             _selectedItem = item;
             _presenter.Select(item.Index);
+            var productsUoM = _presenter.GetProductsUntisOfMeasure();
+            _uomComboBox.SelectedValueChanged -= _uomComboBox_SelectedValueChanged;
+            _uomComboBox.DataSource = productsUoM;
+            foreach (var unitOfMeasureViewModel in productsUoM) {
+                if (unitOfMeasureViewModel.Id == _presenter.SelectedModel.UnitOfMeasureId) {
+                    _uomComboBox.SelectedItem = unitOfMeasureViewModel;
+                    break;
+                }
+            }
+            _uomComboBox.SelectedValueChanged += _uomComboBox_SelectedValueChanged;
         }
 
-        void ItemDataNeeded(object sender, VirtualListBoxItem item)
-        {
+        private void ItemDataNeeded(object sender, VirtualListBoxItem item) {
             var productPriceListBoxItem = item as ProductPriceListBoxItem;
-            if (productPriceListBoxItem != null)
-            {
+            if (productPriceListBoxItem != null) {
                 productPriceListBoxItem.ViewModel = _presenter.GetItem(item.Index);
             }
         }
 
-        private void DigitButtonClick(object sender, EventArgs e)
-        {
+        private void DigitButtonClick(object sender, EventArgs e) {
             var digitButton = sender as Button;
-            if (digitButton != null)
-            {
+            if (digitButton != null) {
                 _presenter.AddDigit(Int32.Parse(digitButton.Text));
                 if (_selectedItem != null)
                     _selectedItem.RefreshData();
             }
         }
 
-        private void DeleteDigitButtonClick(object sender, EventArgs e)
-        {
+        private void DeleteDigitButtonClick(object sender, EventArgs e) {
             _presenter.RemoveDigit();
             if (_selectedItem != null)
                 _selectedItem.RefreshData();
@@ -108,6 +111,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
 
         private void InformationButtonClick(object sender, EventArgs e) {
             _presenter.ShowDetails();
+        }
+
+        private void _uomComboBox_SelectedValueChanged(object sender, EventArgs e) {
+            _presenter.ChangeUnitOfMeasure((UnitOfMeasureViewModel)_uomComboBox.SelectedItem);
         }
     }
 }
