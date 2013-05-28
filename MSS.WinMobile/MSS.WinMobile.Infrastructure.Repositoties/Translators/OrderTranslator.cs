@@ -25,7 +25,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                 PriceListId = value.GetInt32(value.GetOrdinal("PriceList_Id")),
                 PriceListName = value.GetString(value.GetOrdinal("PriceList_Name")),
                 WarehouseId = value.GetInt32(value.GetOrdinal("Warehouse_Id")),
-                WarehouseAddress = value.GetString(value.GetOrdinal("Warehouse_Address")),
+                WarehouseName = value.GetString(value.GetOrdinal("Warehouse_Name")),
                 Amount = value.GetDecimal(value.GetOrdinal("Amount")),
                 OrderStatus = (OrderStatus) value.GetInt32(value.GetOrdinal("OrderStatus")),
                 Note = value.GetString(value.GetOrdinal("Note")),

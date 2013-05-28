@@ -91,12 +91,6 @@
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LookUpBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="LookUpBox.Designer.cs">
-      <DependentUpon>LookUpBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Buttons\OkButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,9 +156,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LookUpBox.resx">
-      <DependentUpon>LookUpBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>

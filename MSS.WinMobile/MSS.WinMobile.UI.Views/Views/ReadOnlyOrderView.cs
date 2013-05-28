@@ -58,7 +58,7 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _customerTextBox.Text = _viewModel.CustomerName;
                 _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
                 _priceListTextBox.Text = _viewModel.PriceListName;
-                _warehouseTextBox.Text = _viewModel.WarehouseAddress;
+                _warehouseTextBox.Text = _viewModel.WarehouseName;
                 _amountValueLable.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);
                 _notesTextBox.Text = _viewModel.Note;
 

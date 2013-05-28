@@ -56,7 +56,7 @@ namespace MSS.WinMobile.UI.Controls
             this._clearButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_clearButton.BackgroundImage")));
             this._clearButton.Location = new System.Drawing.Point(26, 2);
             this._clearButton.Name = "_clearButton";
-            this._clearButton.PressedImage = null;
+            this._clearButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_clearButton.PressedImage")));
             this._clearButton.Size = new System.Drawing.Size(20, 20);
             this._clearButton.TabIndex = 2;
             this._clearButton.Click += new System.EventHandler(this.ClearButtonClick);
@@ -67,7 +67,7 @@ namespace MSS.WinMobile.UI.Controls
             this._filterButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_filterButton.BackgroundImage")));
             this._filterButton.Location = new System.Drawing.Point(2, 2);
             this._filterButton.Name = "_filterButton";
-            this._filterButton.PressedImage = null;
+            this._filterButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_filterButton.PressedImage")));
             this._filterButton.Size = new System.Drawing.Size(20, 20);
             this._filterButton.TabIndex = 0;
             this._filterButton.Click += new System.EventHandler(this.FilterButtonClick);

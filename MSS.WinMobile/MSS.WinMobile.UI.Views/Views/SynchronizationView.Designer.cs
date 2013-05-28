@@ -107,6 +107,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this._statusPanel);
             this.Name = "SynchronizationView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.SynchronizationViewLoad);
             this._statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -26,7 +26,7 @@ namespace MSS.WinMobile.Domain.Models
         public string PriceListName { get; protected set; }
 
         public int WarehouseId { get; protected set; }
-        public string WarehouseAddress { get; protected set; }
+        public string WarehouseName { get; protected set; }
 
         public decimal Amount { get; set; }
 
@@ -62,7 +62,7 @@ namespace MSS.WinMobile.Domain.Models
 
         public void SetWarehouse(Warehouse warehouse) {
             WarehouseId = warehouse.Id;
-            WarehouseAddress = warehouse.Address;
+            WarehouseName = warehouse.Address;
         }
 
         public abstract OrderItem CreateItem();

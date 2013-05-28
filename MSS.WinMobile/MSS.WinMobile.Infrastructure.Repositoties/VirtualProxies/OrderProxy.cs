@@ -83,10 +83,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.WarehouseId = value; }
         }
 
-        new public string WarehouseAddress
+        new public string WarehouseName
         {
-            get { return base.WarehouseAddress; }
-            set { base.WarehouseAddress = value; }
+            get { return base.WarehouseName; }
+            set { base.WarehouseName = value; }
         }
 
         public new decimal Amount {

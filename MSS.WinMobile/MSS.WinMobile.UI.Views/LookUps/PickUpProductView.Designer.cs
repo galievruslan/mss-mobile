@@ -103,7 +103,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.deleteButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.deleteButton.Location = new System.Drawing.Point(152, 6);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.PressedImage = null;
+            this.deleteButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("deleteButton.PressedImage")));
             this.deleteButton.Size = new System.Drawing.Size(16, 18);
             this.deleteButton.TabIndex = 10;
             this.deleteButton.Click += new System.EventHandler(this.DeleteDigitButtonClick);
@@ -305,7 +305,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._informationButton.Dock = System.Windows.Forms.DockStyle.Left;
             this._informationButton.Location = new System.Drawing.Point(0, 0);
             this._informationButton.Name = "_informationButton";
-            this._informationButton.PressedImage = null;
+            this._informationButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_informationButton.PressedImage")));
             this._informationButton.Size = new System.Drawing.Size(24, 24);
             this._informationButton.TabIndex = 0;
             this._informationButton.Click += new System.EventHandler(this.InformationButtonClick);

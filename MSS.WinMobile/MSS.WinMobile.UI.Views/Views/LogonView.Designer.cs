@@ -110,6 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this._inputPanel);
             this.Name = "LogonView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.LogonViewLoad);
             this._inputPanel.ResumeLayout(false);
             this.ResumeLayout(false);

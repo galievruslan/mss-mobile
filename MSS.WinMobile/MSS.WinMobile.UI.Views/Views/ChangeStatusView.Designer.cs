@@ -46,6 +46,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this._statusesPanel);
             this.Name = "ChangeStatusView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.ChangeStatusViewLoad);
             this.ResumeLayout(false);
 

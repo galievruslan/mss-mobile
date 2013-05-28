@@ -10,7 +10,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             InitializeComponent();
         }
 
-        private System.Windows.Forms.LinkLabel _priceLabel;
+        private System.Windows.Forms.LinkLabel _amountLabel;
         private System.Windows.Forms.LinkLabel _quantityLabel;
         private System.Windows.Forms.LinkLabel _descriptionLabel;
         private System.Windows.Forms.LinkLabel _uomLabel;
@@ -22,7 +22,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             set {
                 _viewModel = value;
                 _descriptionLabel.Text = _viewModel.ProductName;
-                _priceLabel.Text = _viewModel.Amount.ToString("G");
+                _amountLabel.Text = _viewModel.Amount.ToString("G");
                 _uomLabel.Text = _viewModel.UnitOfMeasureName;
                 _quantityLabel.Text = _viewModel.Quantity.ToString(CultureInfo.InvariantCulture);
             }
@@ -30,7 +30,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e) {
             _descriptionLabel.BackColor =
-                _priceLabel.BackColor =
+                _amountLabel.BackColor =
                 _quantityLabel.BackColor =
                 _uomLabel.BackColor = IsSelected ? ColorSelected : ColorUnselected;
             base.OnPaint(e);
@@ -38,24 +38,24 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
         }
 
         private void InitializeComponent() {
-            this._priceLabel = new System.Windows.Forms.LinkLabel();
+            this._amountLabel = new System.Windows.Forms.LinkLabel();
             this._quantityLabel = new System.Windows.Forms.LinkLabel();
             this._descriptionLabel = new System.Windows.Forms.LinkLabel();
             this._uomLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
-            // _priceLabel
+            // _amountLabel
             // 
-            this._priceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._priceLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._priceLabel.ForeColor = System.Drawing.Color.Black;
-            this._priceLabel.Location = new System.Drawing.Point(153, 14);
-            this._priceLabel.Name = "_priceLabel";
-            this._priceLabel.Size = new System.Drawing.Size(44, 14);
-            this._priceLabel.TabIndex = 4;
-            this._priceLabel.Text = "150,15";
-            this._priceLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this._priceLabel.Click += new System.EventHandler(this.LabelClick);
+            this._amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._amountLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._amountLabel.ForeColor = System.Drawing.Color.Black;
+            this._amountLabel.Location = new System.Drawing.Point(153, 14);
+            this._amountLabel.Name = "_amountLabel";
+            this._amountLabel.Size = new System.Drawing.Size(44, 14);
+            this._amountLabel.TabIndex = 4;
+            this._amountLabel.Text = "150,15";
+            this._amountLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this._amountLabel.Click += new System.EventHandler(this.LabelClick);
             // 
             // _quantityLabel
             // 
@@ -103,7 +103,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._uomLabel);
-            this.Controls.Add(this._priceLabel);
+            this.Controls.Add(this._amountLabel);
             this.Controls.Add(this._quantityLabel);
             this.Controls.Add(this._descriptionLabel);
             this.Name = "OrderItemListBoxItem";

@@ -49,7 +49,7 @@
             this._customerResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_customerResetButton.BackgroundImage")));
             this._customerResetButton.Location = new System.Drawing.Point(2, 24);
             this._customerResetButton.Name = "_customerResetButton";
-            this._customerResetButton.PressedImage = null;
+            this._customerResetButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_customerResetButton.PressedImage")));
             this._customerResetButton.Size = new System.Drawing.Size(22, 24);
             this._customerResetButton.TabIndex = 1;
             this._customerResetButton.Click += new System.EventHandler(this.CustomerResetButtonClick);
@@ -61,7 +61,7 @@
             this._customerLookUpButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_customerLookUpButton.BackgroundImage")));
             this._customerLookUpButton.Location = new System.Drawing.Point(2, 0);
             this._customerLookUpButton.Name = "_customerLookUpButton";
-            this._customerLookUpButton.PressedImage = null;
+            this._customerLookUpButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_customerLookUpButton.PressedImage")));
             this._customerLookUpButton.Size = new System.Drawing.Size(24, 24);
             this._customerLookUpButton.TabIndex = 0;
             this._customerLookUpButton.Click += new System.EventHandler(this.CustomerLookUpButtonClick);
@@ -121,7 +121,7 @@
             this._shippingAddressResetButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_shippingAddressResetButton.BackgroundImage")));
             this._shippingAddressResetButton.Location = new System.Drawing.Point(2, 24);
             this._shippingAddressResetButton.Name = "_shippingAddressResetButton";
-            this._shippingAddressResetButton.PressedImage = null;
+            this._shippingAddressResetButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_shippingAddressResetButton.PressedImage")));
             this._shippingAddressResetButton.Size = new System.Drawing.Size(22, 24);
             this._shippingAddressResetButton.TabIndex = 1;
             this._shippingAddressResetButton.Click += new System.EventHandler(this.ShippingAddressResetButtonClick);
@@ -133,7 +133,7 @@
             this._shippingAddressLookUpButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_shippingAddressLookUpButton.BackgroundImage")));
             this._shippingAddressLookUpButton.Location = new System.Drawing.Point(2, 0);
             this._shippingAddressLookUpButton.Name = "_shippingAddressLookUpButton";
-            this._shippingAddressLookUpButton.PressedImage = null;
+            this._shippingAddressLookUpButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_shippingAddressLookUpButton.PressedImage")));
             this._shippingAddressLookUpButton.Size = new System.Drawing.Size(22, 24);
             this._shippingAddressLookUpButton.TabIndex = 0;
             this._shippingAddressLookUpButton.Click += new System.EventHandler(this.ShippingAddressLookUpButtonClick);
@@ -173,6 +173,7 @@
             this.Controls.Add(this._customerPanel);
             this.Controls.Add(this._shippingAddressLabel);
             this.Name = "NewRoutePointView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.NewRoutePointViewLoad);
             this._shippingAddressPanel.ResumeLayout(false);
             this._shippingAddressButtonPanel.ResumeLayout(false);

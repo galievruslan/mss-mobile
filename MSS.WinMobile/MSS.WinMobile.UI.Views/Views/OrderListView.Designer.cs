@@ -46,10 +46,9 @@
             // 
             this._editOrderButton.BackColor = System.Drawing.Color.White;
             this._editOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_editOrderButton.BackgroundImage")));
-            this._editOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._editOrderButton.Location = new System.Drawing.Point(2, 2);
             this._editOrderButton.Name = "_editOrderButton";
-            this._editOrderButton.PressedImage = null;
+            this._editOrderButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_editOrderButton.PressedImage")));
             this._editOrderButton.Size = new System.Drawing.Size(20, 20);
             this._editOrderButton.TabIndex = 1;
             this._editOrderButton.Click += new System.EventHandler(this.EditOrderClick);
@@ -90,6 +89,7 @@
             this.Controls.Add(this.panel);
             this.Controls.Add(this._actionPanel);
             this.Name = "OrderListView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderListViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.panel.ResumeLayout(false);

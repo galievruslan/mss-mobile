@@ -69,7 +69,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
             if (defaultWarehouse != null) {
                 _orderViewModel.WarehouseId = defaultWarehouse.Id;
-                _orderViewModel.WarehouseAddress = defaultWarehouse.Address;
+                _orderViewModel.WarehouseName = defaultWarehouse.Name;
             }
 
             _orderItemViewModels = new List<OrderItemViewModel>();
@@ -97,8 +97,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     ProductName = orderItem.ProductName,
                     Quantity = orderItem.Quantity,
                     Price = orderItem.Price,
+                    Amount = orderItem.Amount,
                     UnitOfMeasureId = orderItem.UnitOfMeasureId,
-                    Amount = orderItem.Amount
+                    UnitOfMeasureName = orderItem.UnitOfMeasureName
                 });
             }
         }
@@ -124,7 +125,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     ProductName = orderItem.ProductName,
                     Quantity = orderItem.Quantity,
                     Price = orderItem.Price,
-                    UnitOfMeasureId = orderItem.UnitOfMeasureId
+                    Amount = orderItem.Amount,
+                    UnitOfMeasureId = orderItem.UnitOfMeasureId,
+                    UnitOfMeasureName = orderItem.UnitOfMeasureName
                 });
             }
         }
@@ -317,13 +320,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             WarehouseViewModel selectedWarehouse = _lookUpService.LookUpWarehouse();
             if (selectedWarehouse != null) {
                 _orderViewModel.WarehouseId = selectedWarehouse.Id;
-                _orderViewModel.WarehouseAddress = selectedWarehouse.Address;
+                _orderViewModel.WarehouseName = selectedWarehouse.Name;
             }
         }
 
         public void ResetWarehouse() {
             _orderViewModel.WarehouseId = 0;
-            _orderViewModel.WarehouseAddress = string.Empty;
+            _orderViewModel.WarehouseName = string.Empty;
         }
     }
 }

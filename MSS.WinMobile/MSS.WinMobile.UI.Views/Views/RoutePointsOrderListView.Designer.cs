@@ -46,10 +46,9 @@
             // 
             this._deleteOrderButton.BackColor = System.Drawing.Color.White;
             this._deleteOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_deleteOrderButton.BackgroundImage")));
-            this._deleteOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._deleteOrderButton.Location = new System.Drawing.Point(24, 2);
             this._deleteOrderButton.Name = "_deleteOrderButton";
-            this._deleteOrderButton.PressedImage = null;
+            this._deleteOrderButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_deleteOrderButton.PressedImage")));
             this._deleteOrderButton.Size = new System.Drawing.Size(20, 20);
             this._deleteOrderButton.TabIndex = 7;
             this._deleteOrderButton.Click += new System.EventHandler(this.DeleteOrderButtonClick);
@@ -58,10 +57,9 @@
             // 
             this._editOrderButton.BackColor = System.Drawing.Color.White;
             this._editOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_editOrderButton.BackgroundImage")));
-            this._editOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._editOrderButton.Location = new System.Drawing.Point(46, 2);
             this._editOrderButton.Name = "_editOrderButton";
-            this._editOrderButton.PressedImage = null;
+            this._editOrderButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_editOrderButton.PressedImage")));
             this._editOrderButton.Size = new System.Drawing.Size(20, 20);
             this._editOrderButton.TabIndex = 1;
             this._editOrderButton.Click += new System.EventHandler(this.EditOrderClick);
@@ -70,10 +68,9 @@
             // 
             this._createOrderButton.BackColor = System.Drawing.Color.White;
             this._createOrderButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_createOrderButton.BackgroundImage")));
-            this._createOrderButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._createOrderButton.Location = new System.Drawing.Point(2, 2);
             this._createOrderButton.Name = "_createOrderButton";
-            this._createOrderButton.PressedImage = null;
+            this._createOrderButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_createOrderButton.PressedImage")));
             this._createOrderButton.Size = new System.Drawing.Size(20, 20);
             this._createOrderButton.TabIndex = 0;
             this._createOrderButton.Click += new System.EventHandler(this.CreateOrderClick);
@@ -94,6 +91,7 @@
             this.Controls.Add(this._orderListBox);
             this.Controls.Add(this._actionPanel);
             this.Name = "RoutePointsOrderListView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderListViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);

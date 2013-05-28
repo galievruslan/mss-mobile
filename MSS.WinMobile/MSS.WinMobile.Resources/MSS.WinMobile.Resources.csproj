@@ -50,6 +50,9 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -66,8 +69,8 @@
   </Target>
   -->
   <ItemGroup>
-    <None Include="Resources\Database\schema.sql">
-    </None>
+    <Compile Include="Localization.cs" />
+    <Compile Include="Localizator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\" />

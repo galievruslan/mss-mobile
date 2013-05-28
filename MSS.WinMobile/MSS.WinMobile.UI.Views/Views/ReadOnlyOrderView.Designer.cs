@@ -26,9 +26,6 @@ namespace MSS.WinMobile.UI.Views.Views {
         /// </summary>
         private void InitializeComponent() {
             this.itemsActionPanel = new System.Windows.Forms.Panel();
-            this.divisorLabel = new System.Windows.Forms.Label();
-            this._amountValueLable = new System.Windows.Forms.Label();
-            this._amountLabel = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
             this._shippingDateTextBox = new System.Windows.Forms.TextBox();
@@ -49,6 +46,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
+            this.vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
+            this._amountLabel = new System.Windows.Forms.Label();
+            this._amountValueLable = new System.Windows.Forms.Label();
             this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
@@ -60,35 +60,13 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // itemsActionPanel
             // 
-            this.itemsActionPanel.Controls.Add(this.divisorLabel);
-            this.itemsActionPanel.Controls.Add(this._amountValueLable);
+            this.itemsActionPanel.Controls.Add(this.vericalLine1);
             this.itemsActionPanel.Controls.Add(this._amountLabel);
+            this.itemsActionPanel.Controls.Add(this._amountValueLable);
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(232, 24);
-            // 
-            // divisorLabel
-            // 
-            this.divisorLabel.Location = new System.Drawing.Point(100, 3);
-            this.divisorLabel.Name = "divisorLabel";
-            this.divisorLabel.Size = new System.Drawing.Size(5, 20);
-            this.divisorLabel.Text = "|";
-            // 
-            // _amountValueLable
-            // 
-            this._amountValueLable.Location = new System.Drawing.Point(165, 3);
-            this._amountValueLable.Name = "_amountValueLable";
-            this._amountValueLable.Size = new System.Drawing.Size(72, 19);
-            this._amountValueLable.Text = "0";
-            this._amountValueLable.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // _amountLabel
-            // 
-            this._amountLabel.Location = new System.Drawing.Point(107, 3);
-            this._amountLabel.Name = "_amountLabel";
-            this._amountLabel.Size = new System.Drawing.Size(52, 19);
-            this._amountLabel.Text = "Amount";
+            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
             // 
             // tabControl
             // 
@@ -250,7 +228,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(232, 212);
+            this._detailsTab.Size = new System.Drawing.Size(240, 244);
             this._detailsTab.Text = "Details";
             // 
             // orderItemListBox
@@ -259,7 +237,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orderItemListBox.Location = new System.Drawing.Point(0, 24);
             this.orderItemListBox.Name = "orderItemListBox";
-            this.orderItemListBox.Size = new System.Drawing.Size(232, 188);
+            this.orderItemListBox.Size = new System.Drawing.Size(240, 220);
             this.orderItemListBox.TabIndex = 1;
             // 
             // _notesTab
@@ -267,7 +245,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(232, 212);
+            this._notesTab.Size = new System.Drawing.Size(232, 242);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox
@@ -280,12 +258,42 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTextBox.Size = new System.Drawing.Size(226, 204);
             this._notesTextBox.TabIndex = 0;
             // 
+            // vericalLine1
+            // 
+            this.vericalLine1.BackColor = System.Drawing.Color.White;
+            this.vericalLine1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vericalLine1.LineColor = System.Drawing.Color.DarkGray;
+            this.vericalLine1.Location = new System.Drawing.Point(111, 0);
+            this.vericalLine1.Name = "vericalLine1";
+            this.vericalLine1.Size = new System.Drawing.Size(5, 24);
+            this.vericalLine1.TabIndex = 6;
+            // 
+            // _amountLabel
+            // 
+            this._amountLabel.Dock = System.Windows.Forms.DockStyle.Right;
+            this._amountLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._amountLabel.Location = new System.Drawing.Point(116, 0);
+            this._amountLabel.Name = "_amountLabel";
+            this._amountLabel.Size = new System.Drawing.Size(52, 24);
+            this._amountLabel.Text = "Amount";
+            // 
+            // _amountValueLable
+            // 
+            this._amountValueLable.Dock = System.Windows.Forms.DockStyle.Right;
+            this._amountValueLable.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._amountValueLable.Location = new System.Drawing.Point(168, 0);
+            this._amountValueLable.Name = "_amountValueLable";
+            this._amountValueLable.Size = new System.Drawing.Size(72, 24);
+            this._amountValueLable.Text = "0";
+            this._amountValueLable.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // ReadOnlyOrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tabControl);
             this.Name = "ReadOnlyOrderView";
+            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderViewLoad);
             this.itemsActionPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
@@ -319,10 +327,10 @@ namespace MSS.WinMobile.UI.Views.Views {
         private System.Windows.Forms.TabPage _notesTab;
         private System.Windows.Forms.TextBox _notesTextBox;
         private OrderItemListBox orderItemListBox;
-        private System.Windows.Forms.Label _amountValueLable;
-        private System.Windows.Forms.Label _amountLabel;
-        private System.Windows.Forms.Label divisorLabel;
         private System.Windows.Forms.TextBox _shippingDateTextBox;
         private System.Windows.Forms.TextBox _orderDataTextBox;
+        private MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+        private System.Windows.Forms.Label _amountLabel;
+        private System.Windows.Forms.Label _amountValueLable;
     }
 }

@@ -23,7 +23,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public string PriceListName { get; set; }
 
         public int WarehouseId { get; set; }
-        public string WarehouseAddress { get; set; }
+        public string WarehouseName { get; set; }
 
         public decimal Amount { get; set; }
 
