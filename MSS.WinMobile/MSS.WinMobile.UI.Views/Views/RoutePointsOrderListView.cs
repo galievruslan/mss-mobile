@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -10,15 +11,22 @@ namespace MSS.WinMobile.UI.Views.Views {
         public RoutePointsOrderListView() {
             InitializeComponent();
         }
-        
+
         private readonly IPresentersFactory _presentersFactory;
+        private readonly ILocalizator _localizator;
 
         private RoutePointsOrderListPresenter _presenter;
         private readonly RoutePointViewModel _routePointViewModel;
-        public RoutePointsOrderListView(IPresentersFactory presentersFactory, RoutePointViewModel routePointViewModel) {
-            InitializeComponent();
+
+        public RoutePointsOrderListView(IPresentersFactory presentersFactory,
+                                        ILocalizator localizator,
+                                        RoutePointViewModel routePointViewModel)
+            : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
             _routePointViewModel = routePointViewModel;
+
+            _orderListBox.Localizator = _localizator;
         }
 
         private void OrderListViewLoad(object sender, EventArgs e) {

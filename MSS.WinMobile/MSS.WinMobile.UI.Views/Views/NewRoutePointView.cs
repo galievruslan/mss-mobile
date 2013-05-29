@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -10,15 +11,23 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
+        private readonly ILocalizator _localizator;
         private NewRoutePointPresenter _presenter;
         private readonly RouteViewModel _routeViewModel;
 
         private NewRoutePointViewModel _viewModel;
-        public NewRoutePointView(IPresentersFactory presentersFactory, RouteViewModel routeViewModel) {
-            InitializeComponent();
+        
 
+        public NewRoutePointView(IPresentersFactory presentersFactory, ILocalizator localizator,
+                                 RouteViewModel routeViewModel)
+            : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
             _routeViewModel = routeViewModel;
+
+            _customerLabel.Text = _localizator.Localization.GetLocalizedValue(_customerLabel.Text);
+            _shippingAddressLabel.Text =
+                _localizator.Localization.GetLocalizedValue(_shippingAddressLabel.Text);
         }
 
         private void NewRoutePointViewLoad(object sender, EventArgs e) {

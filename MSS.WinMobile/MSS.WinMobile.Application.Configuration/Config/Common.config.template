@@ -13,4 +13,7 @@
   <Section name="Synchronization">
     <Setting name="LastSyncDate">{LastSyncDate}</Setting>
   </Section>
+  <Section name="Localization">
+    <Setting name="Current">{LocalizationFilePath}</Setting>
+  </Section>
 </Sections>

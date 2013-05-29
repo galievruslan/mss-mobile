@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
@@ -6,6 +8,7 @@ using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
 using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Views;
 using MSS.WinMobile.UI.Views.Views;
 using log4net.Config;
@@ -32,17 +35,43 @@ namespace MSS.WinMobile.Application
                 XmlConfigurator.Configure(new System.IO.FileInfo(path));
             }
 
+            // Setup storage manager
             var configurationManager = new ConfigurationManager(Environments.AppPath);
             var databaseName =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("FileName").Value;
             var schemaScript =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("SchemaScript").Value;
-
             IStorageManager storageManager = new SqLiteStorageManager();
             storageManager.CreateOrOpenStorage(
                 string.Concat(Environments.AppPath, databaseName),
                 string.Concat(Environments.AppPath, schemaScript));
 
+            // Setup localization
+            ILocalizator localizator = new Localizator();
+            try {
+                var localization = configurationManager.GetConfig("Common")
+                                                       .GetSection("Localization")
+                                                       .GetSetting("Current")
+                                                       .Value;
+
+                List<ILocalization> localizations =
+                    localizator.GetAvailableLocalizations(Environments.AppPath);
+                ILocalization current = null;
+                if (!string.IsNullOrEmpty(localization)) {
+                    current =
+                        localizations.FirstOrDefault(l => l.Path.ToUpper() == localization.ToUpper());
+                }
+
+                if (current == null) {
+                    current = localizations.FirstOrDefault();
+                }
+                localizator.SetupLocalization(current);
+            }
+            catch (Exception exception) {
+                Log.Error(exception);
+            }
+
+            // Setup repositories
             var repositoryFactory = new RepositoryFactory(storageManager);
             repositoryFactory.RegisterSpecificationTranslator(new CustomerSpecTranslator())
                              .RegisterSpecificationTranslator(new ShippingAddressSpecTranslator())
@@ -65,19 +94,19 @@ namespace MSS.WinMobile.Application
 
             IModelsFactory modelsFactory = new ModelsFactory(repositoryFactory);
 
-            var main = new Main();
+            var main = new Main(localizator);
             var presentersFactory = new PresentersFactory(storageManager, repositoryFactory,
-                                                          modelsFactory, main);
+                                                          modelsFactory, main, localizator);
             
             string userName = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
             string password = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
 
             if (string.IsNullOrEmpty(userName) ||
                 string.IsNullOrEmpty(password)) {
-                main.SetView(new LogonView(presentersFactory));
+                main.SetView(new LogonView(presentersFactory, localizator));
             }
             else {
-                main.SetView(new MenuView(presentersFactory));
+                main.SetView(new MenuView(presentersFactory, localizator));
             }
 
             Log.Info("Application start");

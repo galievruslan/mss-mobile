@@ -22,9 +22,19 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             set {
                 _viewModel = value;
                 _descriptionLabel.Text = _viewModel.ProductName;
-                _amountLabel.Text = _viewModel.Amount.ToString("G");
                 _uomLabel.Text = _viewModel.UnitOfMeasureName;
-                _quantityLabel.Text = _viewModel.Quantity.ToString(CultureInfo.InvariantCulture);
+                if (Localizator != null) {
+                    _amountLabel.Text =
+                        _viewModel.Amount.ToString(
+                            Localizator.Localization.GetLocalizedValue("decimalfromat"));
+                    _quantityLabel.Text =
+                        _viewModel.Quantity.ToString(
+                            Localizator.Localization.GetLocalizedValue("intfromat"));
+                }
+                else {
+                    _amountLabel.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);
+                    _quantityLabel.Text = _viewModel.Quantity.ToString(CultureInfo.InvariantCulture);    
+                }
             }
         }
 

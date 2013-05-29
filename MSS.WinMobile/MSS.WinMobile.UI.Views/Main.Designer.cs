@@ -24,9 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             this._mainMenu = new System.Windows.Forms.MainMenu();
-            this._details = new Microsoft.WindowsCE.Forms.Notification();
             this._leftButton = new System.Windows.Forms.MenuItem();
             this._rightButton = new System.Windows.Forms.MenuItem();
+            this._details = new Microsoft.WindowsCE.Forms.Notification();
             this._inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.SuspendLayout();
             // 
@@ -34,10 +34,6 @@
             // 
             this._mainMenu.MenuItems.Add(this._leftButton);
             this._mainMenu.MenuItems.Add(this._rightButton);
-            // 
-            // _details
-            // 
-            this._details.Text = "notification1";
             // 
             // _leftButton
             // 
@@ -47,6 +43,10 @@
             // 
             this._rightButton.Text = "RightButton";
             // 
+            // _details
+            // 
+            this._details.Text = "notification1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -55,7 +55,7 @@
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.Menu = this._mainMenu;
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "MSS";
             this.ResumeLayout(false);
 
         }

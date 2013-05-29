@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -15,17 +16,20 @@ namespace MSS.WinMobile.UI.Views.LookUps {
         private readonly PriceListViewModel _priceListViewModel;
         private readonly IEnumerable<OrderItemViewModel> _orderItemViewModels;
 
-        public PickUpProductView() {
+        internal PickUpProductView() {
             InitializeComponent();
         }
 
         public PickUpProductView(IPresentersFactory presentersFactory,
+                                 ILocalizator localizator,
                                  PriceListViewModel priceListViewModel,
                                  IEnumerable<OrderItemViewModel> orderItemViewModels)
-            : this() {
+            : base(localizator) {
             _presentersFactory = presentersFactory;
             _priceListViewModel = priceListViewModel;
             _orderItemViewModels = orderItemViewModels;
+
+            _productPriceListBox.Localizator = Localizator;
         }
 
         private void ViewLoad(object sender, EventArgs e) {

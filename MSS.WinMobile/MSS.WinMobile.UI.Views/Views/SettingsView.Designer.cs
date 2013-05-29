@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this._systemTab = new System.Windows.Forms.TabPage();
+            this.localizationViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._languagesComboBox = new System.Windows.Forms.ComboBox();
+            this._languageLabel = new System.Windows.Forms.Label();
             this._logoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this._serverNameTextBox = new System.Windows.Forms.TextBox();
             this._serverAddress = new System.Windows.Forms.Label();
@@ -42,6 +46,7 @@
             this._batchSizeLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this._systemTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.localizationViewModelBindingSource)).BeginInit();
             this._synchronizationTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +63,8 @@
             // 
             // _systemTab
             // 
+            this._systemTab.Controls.Add(this._languagesComboBox);
+            this._systemTab.Controls.Add(this._languageLabel);
             this._systemTab.Controls.Add(this._logoutLinkLabel);
             this._systemTab.Controls.Add(this._serverNameTextBox);
             this._systemTab.Controls.Add(this._serverAddress);
@@ -70,11 +77,35 @@
             this._systemTab.Size = new System.Drawing.Size(240, 245);
             this._systemTab.Text = "System";
             // 
+            // localizationViewModelBindingSource
+            // 
+            this.localizationViewModelBindingSource.DataSource = typeof(MSS.WinMobile.UI.Presenters.ViewModels.LocalizationViewModel);
+            // 
+            // _languagesComboBox
+            // 
+            this._languagesComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._languagesComboBox.DataSource = this.localizationViewModelBindingSource;
+            this._languagesComboBox.DisplayMember = "Name";
+            this._languagesComboBox.Location = new System.Drawing.Point(78, 88);
+            this._languagesComboBox.Name = "_languagesComboBox";
+            this._languagesComboBox.Size = new System.Drawing.Size(155, 22);
+            this._languagesComboBox.TabIndex = 16;
+            this._languagesComboBox.ValueMember = "Path";
+            // 
+            // _languageLabel
+            // 
+            this._languageLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._languageLabel.Location = new System.Drawing.Point(8, 90);
+            this._languageLabel.Name = "_languageLabel";
+            this._languageLabel.Size = new System.Drawing.Size(64, 20);
+            this._languageLabel.Text = "Language";
+            // 
             // _logoutLinkLabel
             // 
             this._logoutLinkLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Underline);
             this._logoutLinkLabel.ForeColor = System.Drawing.Color.Black;
-            this._logoutLinkLabel.Location = new System.Drawing.Point(184, 85);
+            this._logoutLinkLabel.Location = new System.Drawing.Point(184, 113);
             this._logoutLinkLabel.Name = "_logoutLinkLabel";
             this._logoutLinkLabel.Size = new System.Drawing.Size(49, 20);
             this._logoutLinkLabel.TabIndex = 11;
@@ -145,7 +176,7 @@
             this._synchronizationTab.Controls.Add(this._batchSizeLabel);
             this._synchronizationTab.Location = new System.Drawing.Point(0, 0);
             this._synchronizationTab.Name = "_synchronizationTab";
-            this._synchronizationTab.Size = new System.Drawing.Size(240, 245);
+            this._synchronizationTab.Size = new System.Drawing.Size(232, 242);
             this._synchronizationTab.Text = "Synchronization";
             // 
             // _batchSizeTextBox
@@ -155,7 +186,7 @@
             this._batchSizeTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._batchSizeTextBox.Location = new System.Drawing.Point(78, 7);
             this._batchSizeTextBox.Name = "_batchSizeTextBox";
-            this._batchSizeTextBox.Size = new System.Drawing.Size(155, 21);
+            this._batchSizeTextBox.Size = new System.Drawing.Size(147, 21);
             this._batchSizeTextBox.TabIndex = 11;
             this._batchSizeTextBox.TextChanged += new System.EventHandler(this.BatchSizeTextBoxTextChanged);
             // 
@@ -177,6 +208,7 @@
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.SettingsViewLoad);
             this.tabControl.ResumeLayout(false);
             this._systemTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.localizationViewModelBindingSource)).EndInit();
             this._synchronizationTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -196,5 +228,8 @@
         private System.Windows.Forms.Label _passwordLabel;
         private System.Windows.Forms.TextBox _batchSizeTextBox;
         private System.Windows.Forms.Label _batchSizeLabel;
+        private System.Windows.Forms.ComboBox _languagesComboBox;
+        private System.Windows.Forms.Label _languageLabel;
+        private System.Windows.Forms.BindingSource localizationViewModelBindingSource;
     }
 }

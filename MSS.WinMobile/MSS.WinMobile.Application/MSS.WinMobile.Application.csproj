@@ -49,6 +49,10 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
@@ -105,6 +109,10 @@
       <Project>{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}</Project>
       <Name>MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+      <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
+      <Name>MSS.WinMobile.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
       <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
       <Name>MSS.WinMobile.UI.Presenters</Name>
@@ -137,6 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\Domain.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Localizations\English %28En-en%29.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Localizations\Russian %28Ru-ru%29.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Fonts\CALIBRI.TTF" />

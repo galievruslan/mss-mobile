@@ -1,11 +1,17 @@
 ﻿using System.Windows.Forms;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Views.Views;
 using View = MSS.WinMobile.UI.Views.Views.View;
 
 namespace MSS.WinMobile.UI.Views {
     public partial class Main : Form, IViewContainer {
-        public Main() {
+        internal Main() {
             InitializeComponent();
+        }
+
+        private readonly ILocalizator _localizator;
+        public Main(ILocalizator localizator) : this() {
+            _localizator = localizator;
         }
 
         public void SetView(View view) {
@@ -23,22 +29,25 @@ namespace MSS.WinMobile.UI.Views {
             Controls.Add(view);
         }
 
-        public void ShowInformation(string message)
-        {
-            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.None,
+        public void ShowInformation(string message) {
+            MessageBox.Show(_localizator.Localization.GetLocalizedValue(message),
+                            _localizator.Localization.GetLocalizedValue("Information"),
+                            MessageBoxButtons.OK, MessageBoxIcon.None,
                             MessageBoxDefaultButton.Button1);
         }
 
-        public void ShowError(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+        public void ShowError(string message) {
+            MessageBox.Show(_localizator.Localization.GetLocalizedValue(message),
+                            _localizator.Localization.GetLocalizedValue("error"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1);
         }
 
-        public bool ShowConfirmation(string message)
-        {
+        public bool ShowConfirmation(string message) {
             return DialogResult.Yes ==
-                   MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                   MessageBox.Show(_localizator.Localization.GetLocalizedValue(message),
+                                   _localizator.Localization.GetLocalizedValue("confirmation"),
+                                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                    MessageBoxDefaultButton.Button2);
         }
 
@@ -66,7 +75,9 @@ namespace MSS.WinMobile.UI.Views {
                 _mainMenu.MenuItems.Remove(_leftButton);
                 _leftButton.Dispose();
             }
-            _leftButton = new MenuItem {Text = viewAction.Caption};
+            _leftButton = new MenuItem {
+                Text = _localizator.Localization.GetLocalizedValue(viewAction.Caption)
+            };
             if (!(viewAction is StubAction)) {
                 _leftButton.Click += viewAction.Do;
             }
@@ -82,7 +93,9 @@ namespace MSS.WinMobile.UI.Views {
                 _mainMenu.MenuItems.Remove(_rightButton);
                 _rightButton.Dispose();
             }
-            _rightButton = new MenuItem {Text = viewAction.Caption};
+            _rightButton = new MenuItem {
+                Text = _localizator.Localization.GetLocalizedValue(viewAction.Caption)
+            };
             if (!(viewAction is StubAction)) {
                 _rightButton.Click += viewAction.Do;
             }

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Element name="dateformat">MM/dd/yyyy</Element>
+  <Element name="datetimeformat">MM/dd/yyyy HH:mm</Element>
+  <Element name="decimalformat">G</Element>
+  <Element name="intformat">G</Element>
+  <Element name="main menu">Main menu</Element>
+  <Element name="save">Save</Element>
+  <Element name="cancel">Cancel</Element>
+  <Element name="synchronize">Synchronize</Element>
+  <Element name="back">Back</Element>
+  <Element name="routes">Routes</Element>
+  <Element name="orders">Orders</Element>
+  <Element name="synchronization">Synchronization</Element>
+  <Element name="settings">Settings</Element>
+</Root>

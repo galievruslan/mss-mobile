@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -10,9 +11,14 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        public LogonView(IPresentersFactory presentersFactory) {
-            InitializeComponent();
+        private readonly ILocalizator _localizator;
+        public LogonView(IPresentersFactory presentersFactory, ILocalizator localizator) : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
+
+            _accountLabel.Text = _localizator.Localization.GetLocalizedValue(_accountLabel.Text);
+            _passwordLabel.Text = _localizator.Localization.GetLocalizedValue(_passwordLabel.Text);
+            _serverLabel.Text = _localizator.Localization.GetLocalizedValue(_serverLabel.Text);
         }
 
         private LogonPresenter _logonPresenter;

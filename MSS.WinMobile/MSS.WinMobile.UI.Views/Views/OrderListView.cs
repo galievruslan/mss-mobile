@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -11,14 +12,20 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
         
         private readonly IPresentersFactory _presentersFactory;
+        private readonly ILocalizator _localizator;
 
         private OrderListPresenter _presenter;
         private readonly DateTime _date;
-        public OrderListView(IPresentersFactory presentersFactory, DateTime date)
-        {
-            InitializeComponent();
+
+        public OrderListView(IPresentersFactory presentersFactory, ILocalizator localizator,
+                             DateTime date)
+            : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
             _date = date;
+
+            datePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("datefromat");
+            _orderListBox.Localizator = _localizator;
         }
 
         private void OrderListViewLoad(object sender, EventArgs e) {

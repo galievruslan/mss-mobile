@@ -41,7 +41,7 @@
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.Controls.Add(this._categoriesTreeView);
             this.Name = "CategoryLookUpView";
-            this.Text = "CategoryLookUpView";
+            this.Text = "Categories";
             this.Load += new System.EventHandler(this.CategoryLookUpViewLoad);
             this.ResumeLayout(false);
 

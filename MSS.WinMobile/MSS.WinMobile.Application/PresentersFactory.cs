@@ -2,6 +2,7 @@
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
@@ -18,17 +19,20 @@ namespace MSS.WinMobile.Application {
         private readonly IModelsFactory _modelsFactory;
         private readonly INavigator _navigator;
         private readonly ILookUpService _lookUpService;
+        private readonly ILocalizator _localizator;
 
         public PresentersFactory(IStorageManager storageManager,
                                  IRepositoryFactory repositoryFactory,
                                  IModelsFactory modelsFactory,
-                                 IViewContainer container) {
+                                 IViewContainer container,
+                                 ILocalizator localizator) {
             _storageManager = storageManager;
             _unitOfWorkFactory = new SqLiteUnitOfWorkFactory(_storageManager);
             _repositoryFactory = repositoryFactory;
             _modelsFactory = modelsFactory;
-            _navigator = new Navigator(container, this);
-            _lookUpService = new LookUpService(this);
+            _localizator = localizator;
+            _navigator = new Navigator(container, this, _localizator);
+            _lookUpService = new LookUpService(this, localizator);
         }
 
         public LogonPresenter CreateLogonPresenter(ILogonView logonView) {
@@ -120,7 +124,7 @@ namespace MSS.WinMobile.Application {
         }
 
         public SettingsPresenter CreateSettingsPresenter(ISettingsView settingsView) {
-            return new SettingsPresenter(settingsView, _storageManager, _repositoryFactory, _navigator);
+            return new SettingsPresenter(settingsView, _storageManager, _repositoryFactory, _navigator, _localizator);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -14,29 +15,47 @@ namespace MSS.WinMobile.UI.Views.Views {
         private readonly RoutePointViewModel _routePointViewModel;
         private readonly OrderViewModel _orderViewModel;
 
-        public OrderView() {
+        internal OrderView() {
             InitializeComponent();
         }
 
+        private readonly ILocalizator _localizator;
+        public OrderView(ILocalizator localizator) : this() {
+            _localizator = localizator;
+
+            _orderDateLabel.Text = _localizator.Localization.GetLocalizedValue(_orderDateLabel.Text);
+            _shippingDateLabel.Text = _localizator.Localization.GetLocalizedValue(_shippingDateLabel.Text);
+            _shippingDatePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("dateformat");
+            _customerLabel.Text = _localizator.Localization.GetLocalizedValue(_customerLabel.Text);
+            _addressLabel.Text = _localizator.Localization.GetLocalizedValue(_addressLabel.Text);
+            _priceLabel.Text = _localizator.Localization.GetLocalizedValue(_priceLabel.Text);
+            _warehouseLabel.Text = _localizator.Localization.GetLocalizedValue(_warehouseLabel.Text);
+            _amountLabel.Text = _localizator.Localization.GetLocalizedValue(_amountLabel.Text);
+            orderItemListBox.Localizator = localizator;
+        }
+
         public OrderView(IPresentersFactory presentersFactory,
+                         ILocalizator localizator,
                          RoutePointViewModel routePointViewModel)
-            : this() {
+            : this(localizator) {
             _presentersFactory = presentersFactory;
             _routePointViewModel = routePointViewModel;
         }
 
         public OrderView(IPresentersFactory presentersFactory, 
+                         ILocalizator localizator,
                          RoutePointViewModel routePointViewModel,
                          OrderViewModel orderViewModel)
-            : this() {
+            : this(localizator) {
             _presentersFactory = presentersFactory;
             _routePointViewModel = routePointViewModel;
             _orderViewModel = orderViewModel;
         }
 
         public OrderView(IPresentersFactory presentersFactory,
+                         ILocalizator localizator,
                          OrderViewModel orderViewModel)
-            : this()
+            : this(localizator)
         {
             _presentersFactory = presentersFactory;
             _orderViewModel = orderViewModel;
@@ -59,13 +78,13 @@ namespace MSS.WinMobile.UI.Views.Views {
 
                 _viewModel = _presenter.Initialize();
 
-                _orderDateTextBox.Text = _viewModel.OrderDate.ToString("dd.MM.yyyy");
+                _orderDateTextBox.Text = _viewModel.OrderDate.ToString(_localizator.Localization.GetLocalizedValue("dateformat"));
                 _shippingDatePicker.Value = _viewModel.ShippingDate;
                 _customerTextBox.Text = _viewModel.CustomerName;
                 _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
                 _priceListTextBox.Text = _viewModel.PriceListName;
                 _warehouseTextBox.Text = _viewModel.WarehouseName;
-                _amountValueLable.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);
+                _amountValueLable.Text = _viewModel.Amount.ToString(_localizator.Localization.GetLocalizedValue("decimalformat"));
                 _notesTextBox.Text = _viewModel.Note;
 
                 orderItemListBox.ItemDataNeeded += ItemDataNeeded;
@@ -92,7 +111,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.PickUpProducts();
             orderItemListBox.SetListSize(_presenter.InitializeListSize());
             orderItemListBox.Refresh();
-            _amountValueLable.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);
+            _amountValueLable.Text = _viewModel.Amount.ToString(_localizator.Localization.GetLocalizedValue("decimalformat"));
             _amountValueLable.Refresh();
         }
 

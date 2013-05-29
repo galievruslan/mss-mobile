@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
@@ -16,6 +17,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
         protected VirtualListBox() {
             SelectedIndex = -1;
         }
+
+        public ILocalizator Localizator { private get; set; }
 
         public event OnItemDataNeeded ItemDataNeeded;
         public event OnItemSelected ItemSelected;
@@ -58,6 +61,9 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 _items.Count < _itemCount)
             {
                 VirtualListBoxItem listBoxItem = NewItem();
+                if (Localizator != null)
+                    listBoxItem.Localizator = Localizator;
+
                 AddListBoxItem(listBoxItem);
 
                 itemsHeight += listBoxItem.Height;
@@ -181,7 +187,12 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                     FormatFlags = StringFormatFlags.NoClip
                 };
 
-                e.Graphics.DrawString(EmptyListMessage, Font, new SolidBrush(ForeColor),
+                string emptyStringMessage = EmptyListMessage;
+                if (Localizator != null)
+                    emptyStringMessage =
+                        Localizator.Localization.GetLocalizedValue(emptyStringMessage);
+
+                e.Graphics.DrawString(emptyStringMessage, Font, new SolidBrush(ForeColor),
                                       ClientRectangle, format);
             }
         }

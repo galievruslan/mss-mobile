@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -10,12 +11,22 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
+        private readonly ILocalizator _localizator;
         private readonly bool _autostart;
-        public SynchronizationView(IPresentersFactory presentersFactory, bool autostart)
-        {
+
+        public SynchronizationView(IPresentersFactory presentersFactory, ILocalizator localizator,
+                                   bool autostart)
+            : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
             _autostart = autostart;
-            InitializeComponent();
+
+            _synchronizeFullyCheckBox.Text =
+                _localizator.Localization.GetLocalizedValue(_synchronizeFullyCheckBox.Text);
+            synchronizationFullyWarningLabel.Text =
+                _localizator.Localization.GetLocalizedValue(synchronizationFullyWarningLabel.Text);
+            lastSynchronizationLabel.Text =
+                _localizator.Localization.GetLocalizedValue(lastSynchronizationLabel.Text);
         }
 
         public SynchronizationViewModel ViewModel { get; private set; }
@@ -29,9 +40,8 @@ namespace MSS.WinMobile.UI.Views.Views {
 
                 _synchronizeFullyCheckBox.Checked = ViewModel.SynchronizeFully;
                 _lastSyncDateLabel.Text = ViewModel.LastSynchronizationDate != DateTime.MinValue
-                                          ? ViewModel.LastSynchronizationDate.ToString(
-                                              "dd.MM.yyyy HH:mm")
-                                          : "never";
+                                          ? ViewModel.LastSynchronizationDate.ToString(_localizator.Localization.GetLocalizedValue("datetimeformat"))
+                                          : _localizator.Localization.GetLocalizedValue("never");
 
                 if (_autostart) {
                     _synchronizeFullyCheckBox.Checked = true;
@@ -53,7 +63,7 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _statusLabel.Invoke(new UpdateStatusDelegate(UpdateStatus), status);
             }
             else {
-                _statusLabel.Text = status;
+                _statusLabel.Text = _localizator.Localization.GetLocalizedValue(status);
             }
         }
 

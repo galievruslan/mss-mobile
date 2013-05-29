@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Element name="dateformat">dd.MM.yyyy</Element>
+  <Element name="datetimeformat">dd.MM.yyyy HH:mm</Element>
+  <Element name="decimalformat">G</Element>
+  <Element name="intformat">G</Element>
+  <Element name="main menu">Главное меню</Element>
+  <Element name="save">Сохранить</Element>
+  <Element name="cancel">Отмена</Element>
+  <Element name="synchronize">Синхронизировать</Element>
+  <Element name="back">Назад</Element>
+  <Element name="routes">Маршруты</Element>
+  <Element name="orders">Заказы</Element>
+  <Element name="synchronization">Синхронизация</Element>
+  <Element name="settings">Настройки</Element>
+</Root>

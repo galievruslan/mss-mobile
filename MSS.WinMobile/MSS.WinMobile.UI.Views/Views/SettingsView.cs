@@ -29,6 +29,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _passwordTextBox.Text = _settingsViewModel.Password;
                 _batchSizeTextBox.Text =
                     _settingsViewModel.SynchronizationBatchSize.ToString(CultureInfo.InvariantCulture);
+                _languagesComboBox.DataSource = _settingsPresenter.GetAvailableLanguages();
+                _languagesComboBox.SelectedItem = _settingsPresenter.GetSelectedLocalization();
+                _languagesComboBox.SelectedValueChanged += _languagesComboBox_SelectedValueChanged;
 
                 ViewContainer.RegisterLeftAction(new Save(_settingsPresenter));
                 ViewContainer.RegisterRightAction(new Cancel(_settingsPresenter));
@@ -87,6 +90,13 @@ namespace MSS.WinMobile.UI.Views.Views {
             public void Do(object sender, EventArgs e) {
                 _presenter.Cancel();
             }
+        }
+
+        private void _languagesComboBox_SelectedValueChanged(object sender, EventArgs e) {
+            var localizationViewModel = _languagesComboBox.SelectedItem as LocalizationViewModel;
+            if (localizationViewModel != null)
+                _settingsViewModel.Localization =
+                    localizationViewModel.Path;
         }
     }
 }

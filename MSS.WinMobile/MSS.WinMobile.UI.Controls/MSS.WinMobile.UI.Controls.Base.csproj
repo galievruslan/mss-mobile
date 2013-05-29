@@ -171,6 +171,12 @@
       <DependentUpon>VericalLine.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+      <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
+      <Name>MSS.WinMobile.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

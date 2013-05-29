@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Drawing;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views.Views {
     public partial class MenuView : View, IMenuView {
-        public MenuView() {
+        internal MenuView() {
             InitializeComponent();
         }
 
         private readonly IPresentersFactory _presentersFactory;
+        private readonly ILocalizator _localizator;
 
-        public MenuView(IPresentersFactory presentersFactory) {
-            InitializeComponent();
+        public MenuView(IPresentersFactory presentersFactory, ILocalizator localizator) : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
+
+            _routesLabel.Text = _localizator.Localization.GetLocalizedValue(_routesLabel.Text);
+            _ordersLabel.Text = _localizator.Localization.GetLocalizedValue(_ordersLabel.Text);
+            _synchronizationLabel.Text = _localizator.Localization.GetLocalizedValue(_synchronizationLabel.Text);
+            _settingsLabel.Text = _localizator.Localization.GetLocalizedValue(_settingsLabel.Text);
         }
 
         private MenuPresenter _menuPresenter;

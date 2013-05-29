@@ -19,9 +19,31 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             get { return _viewModel; }
             set {
                 _viewModel = value;
-                _descriptionLabel.Text = string.Format("Order from {0}", ViewModel.OrderDate.ToString("dd.MM.yyyy"));
-                _shippingLabel.Text = string.Format("Shipping at {0}", ViewModel.ShippingDate.ToString("dd.MM.yyyy"));
-                _ammountLabel.Text = string.Format("Ammount: {0}", ViewModel.Amount.ToString(CultureInfo.InvariantCulture));
+                if (Localizator != null) {
+                    _descriptionLabel.Text = string.Format("Order from {0}",
+                                                           ViewModel.OrderDate.ToString(
+                                                               Localizator.Localization
+                                                                          .GetLocalizedValue(
+                                                                              "datefromat")));
+                    _shippingLabel.Text = string.Format("Shipping at {0}",
+                                                        ViewModel.ShippingDate.ToString(
+                                                            Localizator.Localization
+                                                                       .GetLocalizedValue(
+                                                                           "datefromat")));
+                    _ammountLabel.Text = string.Format("Amount: {0}",
+                                                       ViewModel.Amount.ToString(
+                                                           Localizator.Localization
+                                                                      .GetLocalizedValue(
+                                                                          "decimalfromat")));
+                }
+                else {
+                    _descriptionLabel.Text = string.Format("Order from {0}",
+                                                           ViewModel.OrderDate.ToString(CultureInfo.InvariantCulture));
+                    _shippingLabel.Text = string.Format("Shipping at {0}",
+                                                        ViewModel.ShippingDate.ToString(CultureInfo.InvariantCulture));
+                    _ammountLabel.Text = string.Format("Amount: {0}",
+                                                       ViewModel.Amount.ToString(CultureInfo.InvariantCulture));
+                }
             }
         }
 

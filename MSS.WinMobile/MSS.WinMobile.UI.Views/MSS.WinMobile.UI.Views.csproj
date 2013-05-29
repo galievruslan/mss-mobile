@@ -263,6 +263,10 @@
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+      <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
+      <Name>MSS.WinMobile.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Controls.Concret\MSS.WinMobile.UI.Controls.Concret.csproj">
       <Project>{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}</Project>
       <Name>MSS.WinMobile.UI.Controls.Concret</Name>
@@ -277,6 +281,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.LocalizationViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.UnitOfMeasureViewModel.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

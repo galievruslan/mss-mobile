@@ -22,8 +22,6 @@ namespace MSS.WinMobile.Application.Configuration
 
             _xmlDocument = new XmlDocument();
             _xmlDocument.Load(_configPath);
-            _xmlRoot = _xmlDocument.FirstChild as XmlElement;
-
             XmlNodeList xmlNodeList = _xmlDocument.GetElementsByTagName(SectionTagName);
             for (int i = 0; i < xmlNodeList.Count; i++)
             {

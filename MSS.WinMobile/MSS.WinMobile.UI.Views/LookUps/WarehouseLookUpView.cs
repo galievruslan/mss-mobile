@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -16,9 +17,9 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             InitializeComponent();
         }
 
-        public WarehouseLookUpView(IPresentersFactory presentersFactory) {
-            InitializeComponent();
+        public WarehouseLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator) : base(localizator) {
             _presentersFactory = presentersFactory;
+            _warehouseListBox.Localizator = Localizator;
         }
 
         private void ViewLoad(object sender, EventArgs e) {

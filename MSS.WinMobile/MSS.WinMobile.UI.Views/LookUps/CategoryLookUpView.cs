@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -8,13 +9,15 @@ using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Views.LookUps {
     public partial class CategoryLookUpView : LookUpView, ICategoryLookUpView {
-        public CategoryLookUpView() {
+        internal CategoryLookUpView() {
             InitializeComponent();
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        public CategoryLookUpView(IPresentersFactory presentersFactory, CategoryViewModel categoryViewModel) {
-            InitializeComponent();
+
+        public CategoryLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator,
+                                  CategoryViewModel categoryViewModel)
+            : base(localizator) {
             _presentersFactory = presentersFactory;
             SelectedCategory = categoryViewModel;
         }

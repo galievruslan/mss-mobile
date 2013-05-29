@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using MSS.WinMobile.Resources;
 
 namespace MSS.WinMobile.UI.Presenters.ViewModels
 {
@@ -7,6 +8,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public string ServerAddress { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Localization { get; set; }
 
         public int SynchronizationBatchSize { get; set; }
 
@@ -24,6 +26,9 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
 
             if (SynchronizationBatchSize == 0)
                 ErrorList.Add("Batch size can't equal 0!");
+
+            if (string.IsNullOrEmpty(Localization))
+                ErrorList.Add("Localization must be selected!");
 
             return !ErrorList.Any();
         }

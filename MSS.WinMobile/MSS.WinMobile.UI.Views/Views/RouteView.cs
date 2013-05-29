@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -12,11 +13,18 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
+        private readonly ILocalizator _localizator;
         private readonly RouteViewModel _routeViewModel;
-        public RouteView(IPresentersFactory presentersFactory, RouteViewModel routeViewModel) {
-            InitializeComponent();
+
+        public RouteView(IPresentersFactory presentersFactory, ILocalizator localizator,
+                         RouteViewModel routeViewModel)
+            : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
             _routeViewModel = routeViewModel;
+
+            datePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("dateformat");
+            routePointListBox.Localizator = _localizator;
         }
 
         private RoutePresenter _routePresenter;

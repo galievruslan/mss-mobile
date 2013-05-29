@@ -67,11 +67,6 @@
     <Compile Include="SettingExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\Common.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Config\Common.config.template">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

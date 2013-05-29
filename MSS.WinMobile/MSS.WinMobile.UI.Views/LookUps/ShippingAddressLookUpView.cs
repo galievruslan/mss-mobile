@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -18,11 +19,11 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private ShippingAddressLookUpPresenter _presenter;
 
         private readonly CustomerViewModel _customerViewModel;
-        public ShippingAddressLookUpView(IPresentersFactory presentersFactory, CustomerViewModel customerViewModel) {
-            InitializeComponent();
-
+        public ShippingAddressLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator, CustomerViewModel customerViewModel) : base(localizator) {
             _presentersFactory = presentersFactory;
             _customerViewModel = customerViewModel;
+
+            shippingAddressListBox.Localizator = Localizator;
         }
 
         private void ShippingAddressLookUpViewLoad(object sender, EventArgs e)

@@ -1,31 +1,44 @@
 ﻿using System.Windows.Forms;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views.LookUps
 {
     public partial class LookUpView : Form, IView
     {
-        public LookUpView()
+        internal LookUpView()
         {
             InitializeComponent();
         }
 
-        public void ShowInformation(string message)
-        {
-            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.None,
+        protected readonly ILocalizator Localizator;
+        public LookUpView(ILocalizator localizator) : this() {
+            Localizator = localizator;
+
+            Text = Localizator.Localization.GetLocalizedValue(Text);
+            _okMenuItem.Text = Localizator.Localization.GetLocalizedValue(_okMenuItem.Text);
+            _cancelMenuItem.Text = Localizator.Localization.GetLocalizedValue(_cancelMenuItem.Text);
+        }
+
+        public void ShowInformation(string message) {
+            MessageBox.Show(Localizator.Localization.GetLocalizedValue(message),
+                            Localizator.Localization.GetLocalizedValue("Information"),
+                            MessageBoxButtons.OK, MessageBoxIcon.None,
                             MessageBoxDefaultButton.Button1);
         }
 
-        public void ShowError(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+        public void ShowError(string message) {
+            MessageBox.Show(Localizator.Localization.GetLocalizedValue(message),
+                            Localizator.Localization.GetLocalizedValue("Error"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1);
         }
 
-        public bool ShowConfirmation(string message)
-        {
+        public bool ShowConfirmation(string message) {
             return DialogResult.Yes ==
-                   MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                   MessageBox.Show(Localizator.Localization.GetLocalizedValue(message),
+                                   Localizator.Localization.GetLocalizedValue("Confirmation"),
+                                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                    MessageBoxDefaultButton.Button2);
         }
 

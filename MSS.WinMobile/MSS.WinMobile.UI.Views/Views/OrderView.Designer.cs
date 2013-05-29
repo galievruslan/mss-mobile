@@ -27,8 +27,9 @@ namespace MSS.WinMobile.UI.Views.Views {
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderView));
             this.itemsActionPanel = new System.Windows.Forms.Panel();
-            this._amountValueLable = new System.Windows.Forms.Label();
+            this.vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
             this._amountLabel = new System.Windows.Forms.Label();
+            this._amountValueLable = new System.Windows.Forms.Label();
             this.addButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
@@ -44,7 +45,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._priceListResetButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._priceListLookUpButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._shippingDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
+            this._shippingDateLabel = new System.Windows.Forms.Label();
             this._shippingAddressTextBox = new System.Windows.Forms.TextBox();
             this._customerTextBox = new System.Windows.Forms.TextBox();
             this._warehouseLabel = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
-            this.vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
             this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
@@ -79,15 +79,15 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.itemsActionPanel.Name = "itemsActionPanel";
             this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
             // 
-            // _amountValueLable
+            // vericalLine1
             // 
-            this._amountValueLable.Dock = System.Windows.Forms.DockStyle.Right;
-            this._amountValueLable.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._amountValueLable.Location = new System.Drawing.Point(168, 0);
-            this._amountValueLable.Name = "_amountValueLable";
-            this._amountValueLable.Size = new System.Drawing.Size(72, 24);
-            this._amountValueLable.Text = "0";
-            this._amountValueLable.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.vericalLine1.BackColor = System.Drawing.Color.White;
+            this.vericalLine1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vericalLine1.LineColor = System.Drawing.Color.DarkGray;
+            this.vericalLine1.Location = new System.Drawing.Point(111, 0);
+            this.vericalLine1.Name = "vericalLine1";
+            this.vericalLine1.Size = new System.Drawing.Size(5, 24);
+            this.vericalLine1.TabIndex = 3;
             // 
             // _amountLabel
             // 
@@ -97,6 +97,16 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._amountLabel.Name = "_amountLabel";
             this._amountLabel.Size = new System.Drawing.Size(52, 24);
             this._amountLabel.Text = "Amount";
+            // 
+            // _amountValueLable
+            // 
+            this._amountValueLable.Dock = System.Windows.Forms.DockStyle.Right;
+            this._amountValueLable.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._amountValueLable.Location = new System.Drawing.Point(168, 0);
+            this._amountValueLable.Name = "_amountValueLable";
+            this._amountValueLable.Size = new System.Drawing.Size(72, 24);
+            this._amountValueLable.Text = "0";
+            this._amountValueLable.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // addButton
             // 
@@ -128,7 +138,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._generalTab.Controls.Add(this.warehousePanel);
             this._generalTab.Controls.Add(this.pricePanel);
             this._generalTab.Controls.Add(this._shippingDatePicker);
-            this._generalTab.Controls.Add(this.label1);
+            this._generalTab.Controls.Add(this._shippingDateLabel);
             this._generalTab.Controls.Add(this._shippingAddressTextBox);
             this._generalTab.Controls.Add(this._customerTextBox);
             this._generalTab.Controls.Add(this._warehouseLabel);
@@ -266,13 +276,13 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._shippingDatePicker.TabIndex = 52;
             this._shippingDatePicker.ValueChanged += new System.EventHandler(this.ShippingDatePickerValueChanged);
             // 
-            // label1
+            // _shippingDateLabel
             // 
-            this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this.label1.Location = new System.Drawing.Point(7, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 20);
-            this.label1.Text = "Shipping Date";
+            this._shippingDateLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._shippingDateLabel.Location = new System.Drawing.Point(7, 31);
+            this._shippingDateLabel.Name = "_shippingDateLabel";
+            this._shippingDateLabel.Size = new System.Drawing.Size(94, 20);
+            this._shippingDateLabel.Text = "Shipping Date";
             // 
             // _shippingAddressTextBox
             // 
@@ -372,16 +382,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTextBox.TabIndex = 0;
             this._notesTextBox.TextChanged += new System.EventHandler(this.NotesTextBoxTextChanged);
             // 
-            // vericalLine1
-            // 
-            this.vericalLine1.BackColor = System.Drawing.Color.White;
-            this.vericalLine1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vericalLine1.LineColor = System.Drawing.Color.DarkGray;
-            this.vericalLine1.Location = new System.Drawing.Point(111, 0);
-            this.vericalLine1.Name = "vericalLine1";
-            this.vericalLine1.Size = new System.Drawing.Size(5, 24);
-            this.vericalLine1.TabIndex = 3;
-            // 
             // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -420,7 +420,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _priceListResetButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _priceListLookUpButton;
         private System.Windows.Forms.DateTimePicker _shippingDatePicker;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label _shippingDateLabel;
         private System.Windows.Forms.TextBox _shippingAddressTextBox;
         private System.Windows.Forms.TextBox _customerTextBox;
         private System.Windows.Forms.Label _warehouseLabel;
