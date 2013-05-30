@@ -34,7 +34,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         private SynchronizationPresenter _synchronizationPresenter;
         private void SynchronizationViewLoad(object sender, EventArgs e) {
             if (_synchronizationPresenter == null) {
-                _synchronizationPresenter = _presentersFactory.CreateSynchronizationPresenter(this);
+                _synchronizationPresenter = _presentersFactory.CreateSynchronizationPresenter(this, _autostart);
                 ViewModel = _synchronizationPresenter.InitializeView();
                 ViewModel = ViewModel;
 

@@ -28,12 +28,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly INavigator _navigator;
+        private readonly bool _exitOnError;
 
         public SynchronizationPresenter(ISynchronizationView view, 
             IStorageManager storageManager, 
             IUnitOfWorkFactory unitOfWorkFactory, 
             IRepositoryFactory repositoryFactory,
-            INavigator navigator) {
+            INavigator navigator,
+            bool exitOnError) {
             _configurationManager = new ConfigurationManager(Environments.AppPath);
             _view = view;
 
@@ -41,6 +43,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
             _navigator = navigator;
+
+            _exitOnError = exitOnError;
         }
 
         private Thread _thread;
@@ -51,6 +55,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _thread.Start();
         }
 
+        bool _failed = false;
         private void RunSynchronizationInBackground() {
             try {
                 var serverAddress =
@@ -539,6 +544,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             catch (Exception exception) {
                 Log.Error("Synchronization failed", exception);
                 _view.ShowError(new[] {"Synchronization failed!"});
+                _failed = true;
             }
             finally {
                 _view.MakeActive();
@@ -547,8 +553,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _view.ReturnToMenu();
         }
 
+
+        private bool _canceled;
         public void Cancel() {
             try {
+                _canceled = true;
                 if (_thread != null) {
                     _thread.Abort();
                     _thread.Join();
@@ -565,7 +574,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void ReturnToMenu() {
-            _navigator.GoToMenu();
+            if ((_failed || _canceled) && _exitOnError)
+                _navigator.GoToExit();
+            else
+                _navigator.GoToMenu();
         }
 
         #region IObserver

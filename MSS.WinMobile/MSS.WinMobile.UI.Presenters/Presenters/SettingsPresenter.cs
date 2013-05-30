@@ -139,6 +139,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _configurationManager.GetConfig("Common")
                                  .GetSection("Server")
                                  .GetSetting("Password").Value = string.Empty;
+            _configurationManager.GetConfig("Common")
+                                         .GetSection("Synchronization")
+                                         .GetSetting("LastSyncDate").Value = string.Empty;
             _configurationManager.GetConfig("Common").Save();
             _navigator.GoToExit();
         }

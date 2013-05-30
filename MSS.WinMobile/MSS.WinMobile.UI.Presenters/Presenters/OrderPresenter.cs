@@ -328,5 +328,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             _orderViewModel.WarehouseId = 0;
             _orderViewModel.WarehouseName = string.Empty;
         }
+
+        public void DeleteItem() {
+            if (SelectedModel != null) {
+                _orderItemViewModels.Remove(
+                    _orderItemViewModels.FirstOrDefault(model => model.ProductId == SelectedModel.ProductId));
+                _selectedOrderItemViewModel = null;
+                _orderViewModel.Amount = _orderItemViewModels.Sum(model => model.Amount);
+            }
+        }
     }
 }

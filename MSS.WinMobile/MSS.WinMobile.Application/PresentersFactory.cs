@@ -44,12 +44,13 @@ namespace MSS.WinMobile.Application {
         }
 
         public SynchronizationPresenter CreateSynchronizationPresenter(
-            ISynchronizationView synchronizationView) {
+            ISynchronizationView synchronizationView, bool exitOnError) {
             return new SynchronizationPresenter(synchronizationView, 
                                                 _storageManager,
                                                 _unitOfWorkFactory,
                                                 _repositoryFactory,
-                                                _navigator);
+                                                _navigator,
+                                                exitOnError);
         }
 
         public RoutePresenter CreateRoutePresenter(IRouteView routeView, RouteViewModel routeViewModel) {

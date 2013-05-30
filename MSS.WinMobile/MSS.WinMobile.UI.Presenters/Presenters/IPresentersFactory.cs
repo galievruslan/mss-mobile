@@ -12,7 +12,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         MenuPresenter CreateMenuPresenter(IMenuView logonView);
 
         SynchronizationPresenter CreateSynchronizationPresenter(
-            ISynchronizationView synchronizationView);
+            ISynchronizationView synchronizationView, bool exitOnError);
 
         RoutePresenter CreateRoutePresenter(IRouteView routeView, RouteViewModel routeViewModel);
 

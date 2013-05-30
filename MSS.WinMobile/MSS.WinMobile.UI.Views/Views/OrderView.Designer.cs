@@ -57,6 +57,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox = new MSS.WinMobile.UI.Controls.Concret.OrderItemListBox();
             this._notesTab = new System.Windows.Forms.TabPage();
             this._notesTextBox = new System.Windows.Forms.TextBox();
+            this._deleteButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.itemsActionPanel.SuspendLayout();
             this.tabControl.SuspendLayout();
             this._generalTab.SuspendLayout();
@@ -70,6 +71,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // itemsActionPanel
             // 
+            this.itemsActionPanel.Controls.Add(this._deleteButton);
             this.itemsActionPanel.Controls.Add(this.vericalLine1);
             this.itemsActionPanel.Controls.Add(this._amountLabel);
             this.itemsActionPanel.Controls.Add(this._amountValueLable);
@@ -77,14 +79,14 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(232, 24);
+            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
             // 
             // vericalLine1
             // 
             this.vericalLine1.BackColor = System.Drawing.Color.White;
             this.vericalLine1.Dock = System.Windows.Forms.DockStyle.Right;
             this.vericalLine1.LineColor = System.Drawing.Color.DarkGray;
-            this.vericalLine1.Location = new System.Drawing.Point(103, 0);
+            this.vericalLine1.Location = new System.Drawing.Point(111, 0);
             this.vericalLine1.Name = "vericalLine1";
             this.vericalLine1.Size = new System.Drawing.Size(5, 24);
             this.vericalLine1.TabIndex = 3;
@@ -93,7 +95,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             this._amountLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this._amountLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._amountLabel.Location = new System.Drawing.Point(108, 0);
+            this._amountLabel.Location = new System.Drawing.Point(116, 0);
             this._amountLabel.Name = "_amountLabel";
             this._amountLabel.Size = new System.Drawing.Size(52, 24);
             this._amountLabel.Text = "Amount";
@@ -102,7 +104,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             this._amountValueLable.Dock = System.Windows.Forms.DockStyle.Right;
             this._amountValueLable.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._amountValueLable.Location = new System.Drawing.Point(160, 0);
+            this._amountValueLable.Location = new System.Drawing.Point(168, 0);
             this._amountValueLable.Name = "_amountValueLable";
             this._amountValueLable.Size = new System.Drawing.Size(72, 24);
             this._amountValueLable.Text = "0";
@@ -352,7 +354,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(232, 242);
+            this._detailsTab.Size = new System.Drawing.Size(240, 244);
             this._detailsTab.Text = "Details";
             // 
             // orderItemListBox
@@ -361,7 +363,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orderItemListBox.Location = new System.Drawing.Point(0, 24);
             this.orderItemListBox.Name = "orderItemListBox";
-            this.orderItemListBox.Size = new System.Drawing.Size(232, 218);
+            this.orderItemListBox.Size = new System.Drawing.Size(240, 220);
             this.orderItemListBox.TabIndex = 1;
             // 
             // _notesTab
@@ -381,6 +383,17 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTextBox.Size = new System.Drawing.Size(226, 204);
             this._notesTextBox.TabIndex = 0;
             this._notesTextBox.TextChanged += new System.EventHandler(this.NotesTextBoxTextChanged);
+            // 
+            // _deleteButton
+            // 
+            this._deleteButton.BackColor = System.Drawing.Color.White;
+            this._deleteButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_deleteButton.BackgroundImage")));
+            this._deleteButton.Location = new System.Drawing.Point(24, 2);
+            this._deleteButton.Name = "_deleteButton";
+            this._deleteButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_deleteButton.PressedImage")));
+            this._deleteButton.Size = new System.Drawing.Size(20, 20);
+            this._deleteButton.TabIndex = 6;
+            this._deleteButton.Click += new System.EventHandler(this._deleteButton_Click);
             // 
             // OrderView
             // 
@@ -436,5 +449,6 @@ namespace MSS.WinMobile.UI.Views.Views {
         private System.Windows.Forms.Label _amountLabel;
         private System.Windows.Forms.TextBox _orderDateTextBox;
         private MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+        private MSS.WinMobile.UI.Controls.Buttons.PictureButton _deleteButton;
     }
 }

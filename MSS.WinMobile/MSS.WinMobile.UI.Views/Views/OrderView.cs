@@ -177,5 +177,12 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _presenter.Cancel();
             }
         }
+
+        private void _deleteButton_Click(object sender, EventArgs e) {
+            _presenter.DeleteItem();
+            orderItemListBox.SetListSize(_presenter.InitializeListSize());
+            _amountValueLable.Text = _viewModel.Amount.ToString(_localizator.Localization.GetLocalizedValue("decimalformat"));
+            _amountValueLable.Refresh();
+        }
     }
 }
