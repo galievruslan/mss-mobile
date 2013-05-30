@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Web;
@@ -10,6 +11,8 @@ using MSS.WinMobile.Synchronizer.Specifications;
 
 namespace MSS.WinMobile.Synchronizer {
     public class OrdersSynchronization : Command<Route, string> {
+
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(OrdersSynchronization));
 
         private readonly IWebServer _webServer;
         private readonly IStorageRepository<Order> _orderRepository;
@@ -32,12 +35,20 @@ namespace MSS.WinMobile.Synchronizer {
                                                                       "synchronization/orders.json",
                                                                       orderDictionary);
                 string result = webConnection.Post(httpWebRequest);
+                var regex = new Regex("\"code\":100|\"code\":101", RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase);
 
-                using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
-                    unitOfWork.BeginTransaction();
-                    order.Synchronized = true;
-                    _orderRepository.Save(order);
-                    unitOfWork.Commit();
+                if (regex.IsMatch(result)) {
+                    using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                        unitOfWork.BeginTransaction();
+                        order.Synchronized = true;
+                        _orderRepository.Save(order);
+                        unitOfWork.Commit();
+                    }
+                }
+                else {
+                    Log.ErrorFormat("Order with id {0} synchronizaton faled with response: {1}",
+                                    order.Id, result);
+                    throw new SystemException("Server rejected order");
                 }
             }
         }

@@ -14,7 +14,6 @@
         protected override void Dispose(bool disposing)
         {
             if (_details != null) {
-                _details.Visible = false;
                 _details.Dispose();
             }
             if (disposing && (components != null))

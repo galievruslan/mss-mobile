@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Web;
@@ -10,6 +11,8 @@ using MSS.WinMobile.Synchronizer.Specifications;
 
 namespace MSS.WinMobile.Synchronizer {
     public class RoutesSynchronization : Command<Route, string> {
+
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(RoutesSynchronization));
 
         private readonly IWebServer _webServer;
         private readonly IStorageRepository<Route> _routesRepository;
@@ -35,14 +38,22 @@ namespace MSS.WinMobile.Synchronizer {
                                                                       "synchronization/routes.json",
                                                                       routeDictionary);
                 string result = webConnection.Post(httpWebRequest);
+                var regex = new Regex("\"code\":100|\"code\":101", RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase);
 
-                using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
-                    unitOfWork.BeginTransaction();
-                    foreach (var point in route.Points) {
-                        point.Synchronized = true;
-                        _routePointsRepository.Save(point);
+                if (regex.IsMatch(result)) {
+                    using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
+                        unitOfWork.BeginTransaction();
+                        foreach (var point in route.Points) {
+                            point.Synchronized = true;
+                            _routePointsRepository.Save(point);
+                        }
+                        unitOfWork.Commit();
                     }
-                    unitOfWork.Commit();
+                }
+                else {
+                    Log.ErrorFormat("Route with id {0} synchronizaton faled with response: {1}",
+                                    route.Id, result);
+                    throw new SystemException("Server rejected route");
                 }
             }
         }
