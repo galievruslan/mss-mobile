@@ -26,10 +26,10 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
                 if (Localizator != null) {
                     _amountLabel.Text =
                         _viewModel.Amount.ToString(
-                            Localizator.Localization.GetLocalizedValue("decimalfromat"));
+                            Localizator.Localization.GetLocalizedValue("decimalformat"));
                     _quantityLabel.Text =
                         _viewModel.Quantity.ToString(
-                            Localizator.Localization.GetLocalizedValue("intfromat"));
+                            Localizator.Localization.GetLocalizedValue("intformat"));
                 }
                 else {
                     _amountLabel.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);

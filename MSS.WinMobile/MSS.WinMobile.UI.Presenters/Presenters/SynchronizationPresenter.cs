@@ -86,7 +86,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                          .Value;
 
                 using (IWebServer webServer = new WebServer(serverAddress, username, password)) {
-                    Notify(new TextNotification("Start synchronization."));
+                    Notify(new TextNotification("Start synchronization"));
                     _view.ShowProgressBar();
 
 
@@ -538,7 +538,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
             catch (Exception exception) {
                 Log.Error("Synchronization failed", exception);
-                _view.ShowError("Synchronization failed");
+                _view.ShowError(new[] {"Synchronization failed!"});
             }
             finally {
                 _view.MakeActive();

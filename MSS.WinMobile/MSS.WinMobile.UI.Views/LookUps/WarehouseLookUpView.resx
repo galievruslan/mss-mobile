@@ -121,20 +121,10 @@
   <data name="_informationButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAn0lEQVRIS2Ng
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAn0lEQVRIS2Ng
         GGnACujhCiDWpYXHPYCG/gPi/0D8BYhlqW3JJKjhIAtAOJzaFjgCDfwLNfwjLXwAcrABEOcDsRq1XU9T
         8zSBpn/FgmOoZas2WuTCIjmBWhYIAQ3KBuKDaBZRzQKYQ6eOWkAozkaDiFAIMQzdIFIF+u0BEH9Cywev
         gfxrBP1NhAJcRQWoyACVURQDUaAJDThwFcWmD3oDAEMrTIli9z+sAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="_informationButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAy0lEQVRIS2Ng
-        6DjDQFNMU8NBjifRAiug+gog1iVaH9EKO854ANX+A+L/QPwFiGWJ0kuUIkg8TYIaDrIAhMOJ0kuUIogF
-        jkD8F2r4R1r4AGSJARDnA7Ea0Q4jWiG5yZkICzSBar5iwTFE6CUqmWqjRS4skhOoZYEQ0KBsID6IZhHV
-        LIBlxqmjFhAql0aDiGDFM3SDSBWY/h8A8Se0fPAayL9GMDcTVNBxBldRASoyQGUU/tRHUEHHGVGgmgYc
-        uIqgfoIKCLmQkDytLQAAHoRJtiG1LbgAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">

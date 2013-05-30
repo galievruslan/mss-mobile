@@ -17,9 +17,15 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             InitializeComponent();
         }
 
-        public WarehouseLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator) : base(localizator) {
+        public WarehouseLookUpView(IPresentersFactory presentersFactory, 
+                                   ILocalizator localizator)
+            : base(localizator) {
+            InitializeComponent();
             _presentersFactory = presentersFactory;
+
+            Text = localizator.Localization.GetLocalizedValue(Text);
             _warehouseListBox.Localizator = Localizator;
+            searchPanel.Localizator = Localizator;
         }
 
         private void ViewLoad(object sender, EventArgs e) {

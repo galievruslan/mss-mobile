@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -72,12 +74,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         }
 
         public void ShowDetails() {
-            if (_selectedPriceList != null) {
-                var stringBuilder = new StringBuilder();
-                stringBuilder.Append(string.Format("<b>{0} </b>", "Price list name:"));
-                stringBuilder.Append(_selectedPriceList.Name);
-
-                _view.ShowDetails(stringBuilder.ToString());
+            if (SelectedModel != null) {
+                _view.ShowDetails(new Dictionary<string, string> {
+                    {"Price list name", SelectedModel.Name}
+                });
             }
         }
     }

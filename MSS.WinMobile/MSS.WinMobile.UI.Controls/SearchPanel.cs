@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MSS.WinMobile.Resources;
 
 namespace MSS.WinMobile.UI.Controls
 {
@@ -15,7 +16,19 @@ namespace MSS.WinMobile.UI.Controls
             InitializeComponent();
         }
 
-        private void _searchButton_Click(object sender, EventArgs e)
+        private ILocalizator _localizator;
+        public ILocalizator Localizator {
+            private get { return _localizator; }
+            set { 
+                _localizator = value;
+                if (_localizator != null) {
+                    _searchTextBox.TextPrompt =
+                        _localizator.Localization.GetLocalizedValue(_searchTextBox.TextPrompt);
+                }
+            }
+        }
+
+        private void SearchButtonClick(object sender, EventArgs e)
         {
             if (Search != null)
                 Search.Invoke(this, _searchTextBox.Text);
@@ -24,6 +37,7 @@ namespace MSS.WinMobile.UI.Controls
         private void _clearButton_Click(object sender, EventArgs e) {
             if (Clear != null)
                 Clear.Invoke(this);
+
             _searchTextBox.Text = string.Empty;
         }
     }

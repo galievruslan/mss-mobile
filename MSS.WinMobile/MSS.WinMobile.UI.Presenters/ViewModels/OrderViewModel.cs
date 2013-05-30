@@ -34,16 +34,16 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public override bool Validate() {
             base.Validate();
             if (CustomerId == 0)
-                ErrorList.Add("Customer must be selected.");
+                ErrorList.Add("Customer must be selected!");
 
             if (ShippingAddressId == 0)
-                ErrorList.Add("Shipping address must be selected.");
+                ErrorList.Add("Shipping address must be selected!");
 
             if (PriceListId == 0)
-                ErrorList.Add("Price list must be selected.");
+                ErrorList.Add("Price list must be selected!");
 
             if (WarehouseId == 0)
-                ErrorList.Add("Warehouse must be selected.");
+                ErrorList.Add("Warehouse must be selected!");
 
             return !ErrorList.Any();
         }

@@ -111,7 +111,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 var orderRepository = _repositoryFactory.CreateRepository<Order>();
                 var order = orderRepository.GetById(_selectedOrder.Id);
                 if (order.Synchronized) {
-                    _view.ShowError("You can't delete synchronized order");
+                    _view.ShowError(new[] {"You can't delete synchronized order!"});
                     return;
                 }
 

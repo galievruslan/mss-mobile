@@ -15,10 +15,14 @@ namespace MSS.WinMobile.UI.Views.LookUps {
 
         private readonly IPresentersFactory _presentersFactory;
 
-        public CategoryLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator,
+        public CategoryLookUpView(IPresentersFactory presentersFactory, 
+                                  ILocalizator localizator,
                                   CategoryViewModel categoryViewModel)
             : base(localizator) {
+            InitializeComponent();
+            
             _presentersFactory = presentersFactory;
+            Text = localizator.Localization.GetLocalizedValue(Text);
             SelectedCategory = categoryViewModel;
         }
 

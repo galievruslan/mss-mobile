@@ -73,7 +73,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     _viewModel.ShippingAddressName = selectedShippingAddress.Address;
                 }
             }
-            else { _view.ShowError("You must select customer first."); }
+            else { _view.ShowError(new[] {"You must select customer first!"}); }
         }
 
         public void ResetShippingAddress() {
@@ -114,7 +114,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                                                                                              shippingAddress))
                                                 .FirstOrDefault();
                         if (existingRoutePoint != null) {
-                            _view.ShowError("Route point with same shipping address already exist");
+                            _view.ShowError(new[] {"Route point with same shipping address already exist"});
                             return;
                         }
                     }

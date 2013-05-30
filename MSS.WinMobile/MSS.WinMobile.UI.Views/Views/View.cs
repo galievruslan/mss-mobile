@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MSS.WinMobile.UI.Presenters.Views;
 
@@ -27,15 +28,15 @@ namespace MSS.WinMobile.UI.Views.Views {
             ViewContainer.ShowInformation(message);
         }
 
-        public void ShowError(string message) {
-            ViewContainer.ShowError(message);
+        public void ShowError(IEnumerable<string> messages) {
+            ViewContainer.ShowError(messages);
         }
 
-        public bool ShowConfirmation(string message) {
-            return ViewContainer.ShowConfirmation(message);
+        public bool ShowConfirmation(string messages) {
+            return ViewContainer.ShowConfirmation(messages);
         }
 
-        public void ShowDetails(string details) {
+        public void ShowDetails(IEnumerable<KeyValuePair<string, string>> details) {
             ViewContainer.ShowDetails(details);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -11,10 +12,19 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-
-        public SettingsView(IPresentersFactory presentersFactory) {
-            InitializeComponent();
+        private readonly ILocalizator _localizator;
+        public SettingsView(IPresentersFactory presentersFactory, ILocalizator localizator) : this() {
             _presentersFactory = presentersFactory;
+            _localizator = localizator;
+
+            _accountLabel.Text = _localizator.Localization.GetLocalizedValue(_accountLabel.Text);
+            _passwordLabel.Text = _localizator.Localization.GetLocalizedValue(_passwordLabel.Text);
+            _serverLabel.Text = _localizator.Localization.GetLocalizedValue(_serverLabel.Text);
+            _logoutLinkLabel.Text = _localizator.Localization.GetLocalizedValue(_logoutLinkLabel.Text);
+            _languageLabel.Text = _localizator.Localization.GetLocalizedValue(_languageLabel.Text);
+            _batchSizeLabel.Text = _localizator.Localization.GetLocalizedValue(_batchSizeLabel.Text);
+            _systemTab.Text = _localizator.Localization.GetLocalizedValue(_systemTab.Text);
+            _synchronizationTab.Text = _localizator.Localization.GetLocalizedValue(_synchronizationTab.Text);
         }
 
         private SettingsPresenter _settingsPresenter;

@@ -77,14 +77,14 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.itemsActionPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.itemsActionPanel.Location = new System.Drawing.Point(0, 0);
             this.itemsActionPanel.Name = "itemsActionPanel";
-            this.itemsActionPanel.Size = new System.Drawing.Size(240, 24);
+            this.itemsActionPanel.Size = new System.Drawing.Size(232, 24);
             // 
             // vericalLine1
             // 
             this.vericalLine1.BackColor = System.Drawing.Color.White;
             this.vericalLine1.Dock = System.Windows.Forms.DockStyle.Right;
             this.vericalLine1.LineColor = System.Drawing.Color.DarkGray;
-            this.vericalLine1.Location = new System.Drawing.Point(111, 0);
+            this.vericalLine1.Location = new System.Drawing.Point(103, 0);
             this.vericalLine1.Name = "vericalLine1";
             this.vericalLine1.Size = new System.Drawing.Size(5, 24);
             this.vericalLine1.TabIndex = 3;
@@ -93,7 +93,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             this._amountLabel.Dock = System.Windows.Forms.DockStyle.Right;
             this._amountLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._amountLabel.Location = new System.Drawing.Point(116, 0);
+            this._amountLabel.Location = new System.Drawing.Point(108, 0);
             this._amountLabel.Name = "_amountLabel";
             this._amountLabel.Size = new System.Drawing.Size(52, 24);
             this._amountLabel.Text = "Amount";
@@ -102,7 +102,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             this._amountValueLable.Dock = System.Windows.Forms.DockStyle.Right;
             this._amountValueLable.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._amountValueLable.Location = new System.Drawing.Point(168, 0);
+            this._amountValueLable.Location = new System.Drawing.Point(160, 0);
             this._amountValueLable.Name = "_amountValueLable";
             this._amountValueLable.Size = new System.Drawing.Size(72, 24);
             this._amountValueLable.Text = "0";
@@ -320,7 +320,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._priceLabel.Location = new System.Drawing.Point(7, 110);
             this._priceLabel.Name = "_priceLabel";
             this._priceLabel.Size = new System.Drawing.Size(64, 20);
-            this._priceLabel.Text = "Price";
+            this._priceLabel.Text = "Price list";
             // 
             // _addressLabel
             // 
@@ -352,7 +352,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._detailsTab.Controls.Add(this.itemsActionPanel);
             this._detailsTab.Location = new System.Drawing.Point(0, 0);
             this._detailsTab.Name = "_detailsTab";
-            this._detailsTab.Size = new System.Drawing.Size(240, 244);
+            this._detailsTab.Size = new System.Drawing.Size(232, 242);
             this._detailsTab.Text = "Details";
             // 
             // orderItemListBox
@@ -361,7 +361,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.orderItemListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orderItemListBox.Location = new System.Drawing.Point(0, 24);
             this.orderItemListBox.Name = "orderItemListBox";
-            this.orderItemListBox.Size = new System.Drawing.Size(240, 220);
+            this.orderItemListBox.Size = new System.Drawing.Size(232, 218);
             this.orderItemListBox.TabIndex = 1;
             // 
             // _notesTab
@@ -369,7 +369,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(240, 244);
+            this._notesTab.Size = new System.Drawing.Size(232, 242);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox

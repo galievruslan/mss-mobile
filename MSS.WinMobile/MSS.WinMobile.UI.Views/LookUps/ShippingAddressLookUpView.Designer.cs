@@ -78,8 +78,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(211, 24);
             this.searchPanel.TabIndex = 0;
-            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
             this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.DoSearchClick);
+            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
             // 
             // _vericalLine
             // 
@@ -113,7 +113,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.Controls.Add(this._horizontalLine);
             this.Controls.Add(this._actionPanel);
             this.Name = "ShippingAddressLookUpView";
-            this.Text = "ShippingAddressLookUpView";
+            this.Text = "Shipping Addresses";
             this.Load += new System.EventHandler(this.ShippingAddressLookUpViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);

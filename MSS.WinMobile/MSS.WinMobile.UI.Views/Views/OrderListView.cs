@@ -24,7 +24,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             _localizator = localizator;
             _date = date;
 
-            datePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("datefromat");
+            datePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("dateformat");
             _orderListBox.Localizator = _localizator;
         }
 

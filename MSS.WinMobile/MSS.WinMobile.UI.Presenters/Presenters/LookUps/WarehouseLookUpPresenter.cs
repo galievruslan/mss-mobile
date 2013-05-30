@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -75,15 +76,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         }
 
         public void ShowDetails() {
-            if (_selectedWarehouse != null) {
-                var stringBuilder = new StringBuilder();
-                stringBuilder.Append(string.Format("<b>{0} </b>", "Warehouse name:"));
-                stringBuilder.Append(_selectedWarehouse.Name);
-                stringBuilder.Append("</br>");
-                stringBuilder.Append(string.Format("<b>{0} </b>", "Warehouse address:"));
-                stringBuilder.Append(_selectedWarehouse.Address);
-
-                _view.ShowDetails(stringBuilder.ToString());
+            if (SelectedModel != null) {
+                _view.ShowDetails(new Dictionary<string, string> {
+                    {"Warehouse name", SelectedModel.Name},
+                    {"Warehouse address", SelectedModel.Address}
+                });
             }
         }
     }

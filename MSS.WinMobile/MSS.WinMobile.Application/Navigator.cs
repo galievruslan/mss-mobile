@@ -27,7 +27,7 @@ namespace MSS.WinMobile.Application
         }
 
         public void GoToSettings() {
-            _container.SetView(new SettingsView(_presentersFactory));
+            _container.SetView(new SettingsView(_presentersFactory, _localizator));
         }
 
         public void GoToSynchronization(bool autostart)

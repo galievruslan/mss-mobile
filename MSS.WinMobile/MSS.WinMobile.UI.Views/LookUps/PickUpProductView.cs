@@ -25,11 +25,15 @@ namespace MSS.WinMobile.UI.Views.LookUps {
                                  PriceListViewModel priceListViewModel,
                                  IEnumerable<OrderItemViewModel> orderItemViewModels)
             : base(localizator) {
+
+            InitializeComponent();
             _presentersFactory = presentersFactory;
             _priceListViewModel = priceListViewModel;
             _orderItemViewModels = orderItemViewModels;
 
+            Text = localizator.Localization.GetLocalizedValue(Text);
             _productPriceListBox.Localizator = Localizator;
+            searchPanel.Localizator = Localizator;
         }
 
         private void ViewLoad(object sender, EventArgs e) {

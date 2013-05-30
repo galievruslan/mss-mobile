@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using MSS.WinMobile.Domain.Models;
@@ -62,7 +63,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                         ProductName = SelectedModel.ProductName,
                         Quantity = count,
                         Price = SelectedModel.Price,
-                        UnitOfMeasureId = SelectedModel.UnitOfMeasureId
+                        UnitOfMeasureId = SelectedModel.UnitOfMeasureId,
+                        UnitOfMeasureName = SelectedModel.UnitOfMeasureName
                     });
                 }
             }
@@ -192,14 +194,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public void ShowDetails() {
             if (SelectedModel != null) {
-                var stringBuilder = new StringBuilder();
-                stringBuilder.Append(string.Format("<b>{0} </b>", "Product name:"));
-                stringBuilder.Append(SelectedModel.ProductName);
-                stringBuilder.Append("</br>");
-                stringBuilder.Append(string.Format("<b>{0} </b>", "Product price for item:"));
-                stringBuilder.Append(SelectedModel.Price);
-
-                _view.ShowDetails(stringBuilder.ToString());
+                _view.ShowDetails(new Dictionary<string, string> {
+                    {"Product name", SelectedModel.ProductName},
+                    {"Product price for item", SelectedModel.Price.ToString(CultureInfo.InvariantCulture)}
+                });
             }
         }
 

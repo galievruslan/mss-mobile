@@ -70,7 +70,7 @@ namespace MSS.WinMobile.UI.Controls
             this._searchButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_searchButton.PressedImage")));
             this._searchButton.Size = new System.Drawing.Size(20, 20);
             this._searchButton.TabIndex = 0;
-            this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
+            this._searchButton.Click += new System.EventHandler(this.SearchButtonClick);
             // 
             // _inputPanel
             // 

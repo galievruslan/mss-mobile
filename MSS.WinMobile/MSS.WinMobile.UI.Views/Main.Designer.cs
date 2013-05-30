@@ -10,6 +10,9 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
+            if (_details != null) {
+                _details.Dispose();
+            }
             if (disposing && (components != null)) {
                 components.Dispose();
             }

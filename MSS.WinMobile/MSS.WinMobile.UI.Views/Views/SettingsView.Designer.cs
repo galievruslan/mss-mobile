@@ -36,7 +36,7 @@
             this._languageLabel = new System.Windows.Forms.Label();
             this._logoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this._serverNameTextBox = new System.Windows.Forms.TextBox();
-            this._serverAddress = new System.Windows.Forms.Label();
+            this._serverLabel = new System.Windows.Forms.Label();
             this._passwordTextBox = new System.Windows.Forms.TextBox();
             this._accountTextBox = new System.Windows.Forms.TextBox();
             this._accountLabel = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             this._systemTab.Controls.Add(this._languageLabel);
             this._systemTab.Controls.Add(this._logoutLinkLabel);
             this._systemTab.Controls.Add(this._serverNameTextBox);
-            this._systemTab.Controls.Add(this._serverAddress);
+            this._systemTab.Controls.Add(this._serverLabel);
             this._systemTab.Controls.Add(this._passwordTextBox);
             this._systemTab.Controls.Add(this._accountTextBox);
             this._systemTab.Controls.Add(this._accountLabel);
@@ -123,13 +123,13 @@
             this._serverNameTextBox.TabIndex = 9;
             this._serverNameTextBox.TextChanged += new System.EventHandler(this.ServerNameTextBoxTextChanged);
             // 
-            // _serverAddress
+            // _serverLabel
             // 
-            this._serverAddress.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
-            this._serverAddress.Location = new System.Drawing.Point(8, 8);
-            this._serverAddress.Name = "_serverAddress";
-            this._serverAddress.Size = new System.Drawing.Size(64, 20);
-            this._serverAddress.Text = "Server";
+            this._serverLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._serverLabel.Location = new System.Drawing.Point(8, 8);
+            this._serverLabel.Name = "_serverLabel";
+            this._serverLabel.Size = new System.Drawing.Size(64, 20);
+            this._serverLabel.Text = "Server";
             // 
             // _passwordTextBox
             // 
@@ -176,7 +176,7 @@
             this._synchronizationTab.Controls.Add(this._batchSizeLabel);
             this._synchronizationTab.Location = new System.Drawing.Point(0, 0);
             this._synchronizationTab.Name = "_synchronizationTab";
-            this._synchronizationTab.Size = new System.Drawing.Size(232, 242);
+            this._synchronizationTab.Size = new System.Drawing.Size(240, 245);
             this._synchronizationTab.Text = "Synchronization";
             // 
             // _batchSizeTextBox
@@ -186,7 +186,7 @@
             this._batchSizeTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._batchSizeTextBox.Location = new System.Drawing.Point(78, 7);
             this._batchSizeTextBox.Name = "_batchSizeTextBox";
-            this._batchSizeTextBox.Size = new System.Drawing.Size(147, 21);
+            this._batchSizeTextBox.Size = new System.Drawing.Size(155, 21);
             this._batchSizeTextBox.TabIndex = 11;
             this._batchSizeTextBox.TextChanged += new System.EventHandler(this.BatchSizeTextBoxTextChanged);
             // 
@@ -195,7 +195,7 @@
             this._batchSizeLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._batchSizeLabel.Location = new System.Drawing.Point(8, 8);
             this._batchSizeLabel.Name = "_batchSizeLabel";
-            this._batchSizeLabel.Size = new System.Drawing.Size(64, 20);
+            this._batchSizeLabel.Size = new System.Drawing.Size(64, 35);
             this._batchSizeLabel.Text = "Batch size";
             // 
             // SettingsView
@@ -221,7 +221,7 @@
         private System.Windows.Forms.TabPage _synchronizationTab;
         private System.Windows.Forms.LinkLabel _logoutLinkLabel;
         private System.Windows.Forms.TextBox _serverNameTextBox;
-        private System.Windows.Forms.Label _serverAddress;
+        private System.Windows.Forms.Label _serverLabel;
         private System.Windows.Forms.TextBox _passwordTextBox;
         private System.Windows.Forms.TextBox _accountTextBox;
         private System.Windows.Forms.Label _accountLabel;

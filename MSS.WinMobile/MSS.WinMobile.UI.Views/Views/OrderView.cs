@@ -31,6 +31,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             _priceLabel.Text = _localizator.Localization.GetLocalizedValue(_priceLabel.Text);
             _warehouseLabel.Text = _localizator.Localization.GetLocalizedValue(_warehouseLabel.Text);
             _amountLabel.Text = _localizator.Localization.GetLocalizedValue(_amountLabel.Text);
+            _generalTab.Text = _localizator.Localization.GetLocalizedValue(_generalTab.Text);
+            _detailsTab.Text = _localizator.Localization.GetLocalizedValue(_detailsTab.Text);
+            _notesTab.Text = _localizator.Localization.GetLocalizedValue(_notesTab.Text);
             orderItemListBox.Localizator = localizator;
         }
 

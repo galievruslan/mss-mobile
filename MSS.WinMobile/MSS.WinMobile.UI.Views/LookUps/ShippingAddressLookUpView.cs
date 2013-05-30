@@ -19,11 +19,18 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private ShippingAddressLookUpPresenter _presenter;
 
         private readonly CustomerViewModel _customerViewModel;
-        public ShippingAddressLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator, CustomerViewModel customerViewModel) : base(localizator) {
+
+        public ShippingAddressLookUpView(IPresentersFactory presentersFactory,
+                                         ILocalizator localizator,
+                                         CustomerViewModel customerViewModel)
+            : base(localizator) {
+            InitializeComponent();
             _presentersFactory = presentersFactory;
             _customerViewModel = customerViewModel;
 
+            Text = localizator.Localization.GetLocalizedValue(Text);
             shippingAddressListBox.Localizator = Localizator;
+            searchPanel.Localizator = Localizator;
         }
 
         private void ShippingAddressLookUpViewLoad(object sender, EventArgs e)

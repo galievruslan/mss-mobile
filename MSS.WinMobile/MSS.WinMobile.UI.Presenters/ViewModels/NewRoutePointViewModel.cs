@@ -14,11 +14,11 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels {
             base.Validate();
             if (CustomerId == 0 ||
                 string.IsNullOrEmpty(CustomerName))
-                ErrorList.Add("Customer must be selected.");
+                ErrorList.Add("Customer must be selected!");
 
             if (ShippingAddressId == 0 ||
                 string.IsNullOrEmpty(ShippingAddressName))
-                ErrorList.Add("Shipping address must be selected.");
+                ErrorList.Add("Shipping address must be selected!");
 
             return !ErrorList.Any();
         }

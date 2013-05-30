@@ -253,8 +253,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._filterPanel.Name = "_filterPanel";
             this._filterPanel.Size = new System.Drawing.Size(240, 24);
             this._filterPanel.TabIndex = 0;
-            this._filterPanel.Filter += new MSS.WinMobile.UI.Controls.FilterPanel.OnFilter(this.FilterClick);
             this._filterPanel.Clear += new MSS.WinMobile.UI.Controls.FilterPanel.OnClear(this.ClearFilterClick);
+            this._filterPanel.Filter += new MSS.WinMobile.UI.Controls.FilterPanel.OnFilter(this.FilterClick);
             // 
             // _horizontalLine
             // 
@@ -285,8 +285,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(211, 24);
             this.searchPanel.TabIndex = 0;
-            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
             this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.SearchClick);
+            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
             // 
             // _vericalLine
             // 
@@ -322,7 +322,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.Controls.Add(this._filterHeaderPanel);
             this.Controls.Add(this.quantityPanel);
             this.Name = "PickUpProductView";
-            this.Text = "CustomerLookUpView";
+            this.Text = "Products pickup";
             this.Load += new System.EventHandler(this.ViewLoad);
             this.quantityPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.unitOfMeasureViewModelBindingSource)).EndInit();

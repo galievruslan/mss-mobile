@@ -18,10 +18,15 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private readonly IPresentersFactory _presentersFactory;
         private CustomerLookUpPresenter _presenter;
 
-        public CustomerLookUpView(IPresentersFactory presentersFactory, ILocalizator localizator) : base(localizator) {
+        public CustomerLookUpView(IPresentersFactory presentersFactory, 
+                                  ILocalizator localizator)
+            : base(localizator) {
+            InitializeComponent();
+            
             _presentersFactory = presentersFactory;
-
+            Text = localizator.Localization.GetLocalizedValue(Text);
             customerListBox.Localizator = Localizator;
+            searchPanel.Localizator = Localizator;
         }
 
         private void ViewLoad(object sender, EventArgs e)
@@ -32,10 +37,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
                 customerListBox.ItemSelected += ItemSelected;
                 customerListBox.SetListSize(_presenter.InitializeListSize());
             }
-        }
-
-        private void CustomerListBoxItemInformationNeeded(object sender, VirtualListBoxItem item) {
-            
         }
 
         void ItemSelected(object sender, VirtualListBoxItem item) {

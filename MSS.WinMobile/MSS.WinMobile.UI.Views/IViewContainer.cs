@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MSS.WinMobile.UI.Views.Views;
 
 namespace MSS.WinMobile.UI.Views {
@@ -7,9 +8,9 @@ namespace MSS.WinMobile.UI.Views {
         void Close();
 
         void ShowInformation(string message);
-        void ShowError(string message);
+        void ShowError(IEnumerable<string> messages);
         bool ShowConfirmation(string message);
-        void ShowDetails(string details);
+        void ShowDetails(IEnumerable<KeyValuePair<string, string>> details);
 
         void RegisterLeftAction(IViewAction viewAction);
         void RegisterRightAction(IViewAction viewAction);

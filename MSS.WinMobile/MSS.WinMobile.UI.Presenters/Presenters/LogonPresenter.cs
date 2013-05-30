@@ -52,11 +52,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 }
                 catch (NeedLogonException exception) {
                     Log.Error(exception);
-                    _view.ShowError("Username or password is wrong!");
+                    _view.ShowError(new[] {"Username or password is wrong!"});
                 }
                 catch (Exception exception) {
                     Log.Error(exception);
-                    _view.ShowError("Can't connect to the server!");
+                    _view.ShowError(new[] {"Can't connect to the server!"});
                 }
             }
             else {

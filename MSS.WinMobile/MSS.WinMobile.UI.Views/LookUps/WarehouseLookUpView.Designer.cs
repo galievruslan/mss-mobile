@@ -78,8 +78,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(211, 24);
             this.searchPanel.TabIndex = 0;
-            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
             this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.DoSearchClick);
+            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
             // 
             // _vericalLine
             // 
@@ -98,7 +98,6 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this._informationButton.Dock = System.Windows.Forms.DockStyle.Left;
             this._informationButton.Location = new System.Drawing.Point(0, 0);
             this._informationButton.Name = "_informationButton";
-            this._informationButton.PressedImage = null;
             this._informationButton.Size = new System.Drawing.Size(24, 24);
             this._informationButton.TabIndex = 0;
             this._informationButton.Click += new System.EventHandler(this.InformationButtonClick);
@@ -113,7 +112,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.Controls.Add(this._horizontalLine);
             this.Controls.Add(this._actionPanel);
             this.Name = "WarehouseLookUpView";
-            this.Text = "WarehouseLookUpView";
+            this.Text = "Warehouses";
             this.Load += new System.EventHandler(this.ViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.ResumeLayout(false);

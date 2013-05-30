@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
 using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Views.Views;
 using View = MSS.WinMobile.UI.Views.Views.View;
@@ -36,9 +38,14 @@ namespace MSS.WinMobile.UI.Views {
                             MessageBoxDefaultButton.Button1);
         }
 
-        public void ShowError(string message) {
-            MessageBox.Show(_localizator.Localization.GetLocalizedValue(message),
-                            _localizator.Localization.GetLocalizedValue("error"),
+        public void ShowError(IEnumerable<string> messages) {
+            var stringBuilder = new StringBuilder();
+            foreach (var message in messages) {
+                stringBuilder.Append(_localizator.Localization.GetLocalizedValue(message));
+                stringBuilder.Append("\n\r");
+            }
+            MessageBox.Show(stringBuilder.ToString(),
+                            _localizator.Localization.GetLocalizedValue("Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
         }
@@ -51,9 +58,16 @@ namespace MSS.WinMobile.UI.Views {
                                    MessageBoxDefaultButton.Button2);
         }
 
-        public void ShowDetails(string details)
-        {
-            _details.Text = details;
+        public void ShowDetails(IEnumerable<KeyValuePair<string, string>> details) {
+            var stringBuilder = new StringBuilder();
+            foreach (var keyValuePair in details) {
+                stringBuilder.Append(string.Format("<b>{0}</b>: {1}",
+                                                   _localizator.Localization.GetLocalizedValue(
+                                                       keyValuePair.Key),
+                                                   keyValuePair.Value));
+                stringBuilder.Append("</br>");
+            }
+            _details.Text = stringBuilder.ToString();
             _details.Visible = true;
         }
 
