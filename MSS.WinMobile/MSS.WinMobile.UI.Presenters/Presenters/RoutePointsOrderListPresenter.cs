@@ -115,7 +115,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     return;
                 }
 
-                if (_view.ShowConfirmation("Are you shure, you want to delete the order?")) {
+                if (_view.ShowConfirmation("Are you sure, you want to delete the order?")) {
                     var orderItemRepository = _repositoryFactory.CreateRepository<OrderItem>();
                     using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                         try {

@@ -99,4 +99,6 @@
   <Element name="Managers settings synchronization">Синхронизация настроек профиля</Element>
   <Element name="Settings synchronization">Синхронизация настроек</Element>
   <Element name="Synchronization complete">Синхронизация успешно завершена</Element>
+  <Element name="you have not synchronized data, which will be missed. Are you shure, you want to logout?">У Вас есть не отправленные на сервер данные, вы действительно хотиты выйти?</Element>
+  <Element name="are you sure, you want to delete the order?">Вы действительно хотите удалить заказ?</Element>
 </Root>
