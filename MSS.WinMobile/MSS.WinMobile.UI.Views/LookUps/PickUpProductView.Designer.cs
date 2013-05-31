@@ -301,11 +301,9 @@ namespace MSS.WinMobile.UI.Views.LookUps
             // _informationButton
             // 
             this._informationButton.BackColor = System.Drawing.Color.Transparent;
-            this._informationButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_informationButton.BackgroundImage")));
             this._informationButton.Dock = System.Windows.Forms.DockStyle.Left;
             this._informationButton.Location = new System.Drawing.Point(0, 0);
             this._informationButton.Name = "_informationButton";
-            this._informationButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("_informationButton.PressedImage")));
             this._informationButton.Size = new System.Drawing.Size(24, 24);
             this._informationButton.TabIndex = 0;
             this._informationButton.Click += new System.EventHandler(this.InformationButtonClick);
@@ -317,10 +315,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
             this.Controls.Add(this._productPriceListBox);
+            this.Controls.Add(this.quantityPanel);
             this.Controls.Add(this._horizontalLine);
             this.Controls.Add(this._actionPanel);
             this.Controls.Add(this._filterHeaderPanel);
-            this.Controls.Add(this.quantityPanel);
             this.Name = "PickUpProductView";
             this.Text = "Products pickup";
             this.Load += new System.EventHandler(this.ViewLoad);

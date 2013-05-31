@@ -63,6 +63,7 @@ CREATE TABLE [ProductsPrices] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
 );
+CREATE INDEX 'fk_ProductsPrices_Product_Id' ON 'ProductsPrices' ('Product_Id' ASC);
 CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Base] BIT  NULL
 , [Product_Id] INTEGER  NULL
@@ -71,6 +72,7 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 , FOREIGN KEY(UnitOfMeasure_Id) REFERENCES UnitsOfMeasure(Id)
 );
+CREATE INDEX 'fk_ProductsUnitOfMeasures_UnitOfMeasure_Id' ON 'ProductsUnitOfMeasures' ('UnitOfMeasure_Id' ASC);
 CREATE TABLE [Routes] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Date] DATETIME  NULL
 );
