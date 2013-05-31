@@ -47,7 +47,7 @@
             this.synchronizationFullyWarningLabel.ForeColor = System.Drawing.Color.Gray;
             this.synchronizationFullyWarningLabel.Location = new System.Drawing.Point(14, 38);
             this.synchronizationFullyWarningLabel.Name = "synchronizationFullyWarningLabel";
-            this.synchronizationFullyWarningLabel.Size = new System.Drawing.Size(212, 31);
+            this.synchronizationFullyWarningLabel.Size = new System.Drawing.Size(212, 61);
             this.synchronizationFullyWarningLabel.Text = "(Use only then full synchronization is realy necessary)";
             // 
             // _synchronizeFullyCheckBox
