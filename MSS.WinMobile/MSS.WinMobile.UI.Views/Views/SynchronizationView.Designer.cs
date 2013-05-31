@@ -90,13 +90,14 @@
             // 
             // _statusPanel
             // 
+            this._statusPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._statusPanel.Controls.Add(this._lastSyncDateLabel);
             this._statusPanel.Controls.Add(this.synchronizationFullyWarningLabel);
             this._statusPanel.Controls.Add(this.lastSynchronizationLabel);
             this._statusPanel.Controls.Add(this._synchronizeFullyCheckBox);
             this._statusPanel.Controls.Add(this._progressBar);
             this._statusPanel.Controls.Add(this._statusLabel);
-            this._statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._statusPanel.Location = new System.Drawing.Point(0, 0);
             this._statusPanel.Name = "_statusPanel";
             this._statusPanel.Size = new System.Drawing.Size(240, 268);
@@ -105,6 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this._statusPanel);
             this.Name = "SynchronizationView";
             this.Size = new System.Drawing.Size(240, 268);

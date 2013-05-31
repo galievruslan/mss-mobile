@@ -87,6 +87,8 @@
             // 
             // _shippingAddressPanel
             // 
+            this._shippingAddressPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._shippingAddressPanel.Controls.Add(this._shippingAddressTextBox);
             this._shippingAddressPanel.Controls.Add(this._shippingAddressButtonPanel);
             this._shippingAddressPanel.Location = new System.Drawing.Point(82, 56);
@@ -140,6 +142,8 @@
             // 
             // _customerPanel
             // 
+            this._customerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._customerPanel.Controls.Add(this._customerTextBox);
             this._customerPanel.Controls.Add(this._customerButtonPanel);
             this._customerPanel.Location = new System.Drawing.Point(82, 2);
@@ -168,6 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this._customerLabel);
             this.Controls.Add(this._shippingAddressPanel);
             this.Controls.Add(this._customerPanel);

@@ -103,6 +103,7 @@
             // 
             // _logoutLinkLabel
             // 
+            this._logoutLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._logoutLinkLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Underline);
             this._logoutLinkLabel.ForeColor = System.Drawing.Color.Black;
             this._logoutLinkLabel.Location = new System.Drawing.Point(184, 113);
@@ -176,7 +177,7 @@
             this._synchronizationTab.Controls.Add(this._batchSizeLabel);
             this._synchronizationTab.Location = new System.Drawing.Point(0, 0);
             this._synchronizationTab.Name = "_synchronizationTab";
-            this._synchronizationTab.Size = new System.Drawing.Size(240, 245);
+            this._synchronizationTab.Size = new System.Drawing.Size(232, 242);
             this._synchronizationTab.Text = "Synchronization";
             // 
             // _batchSizeTextBox
@@ -186,7 +187,7 @@
             this._batchSizeTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._batchSizeTextBox.Location = new System.Drawing.Point(78, 7);
             this._batchSizeTextBox.Name = "_batchSizeTextBox";
-            this._batchSizeTextBox.Size = new System.Drawing.Size(155, 21);
+            this._batchSizeTextBox.Size = new System.Drawing.Size(147, 21);
             this._batchSizeTextBox.TabIndex = 11;
             this._batchSizeTextBox.TextChanged += new System.EventHandler(this.BatchSizeTextBoxTextChanged);
             // 
@@ -202,6 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this.tabControl);
             this.Name = "SettingsView";
             this.Size = new System.Drawing.Size(240, 268);

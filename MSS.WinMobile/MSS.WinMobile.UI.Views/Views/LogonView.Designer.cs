@@ -108,6 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this._inputPanel);
             this.Name = "LogonView";
             this.Size = new System.Drawing.Size(240, 268);

@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="vericalLine1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="_createOrderButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABcklEQVRIS82W
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABcklEQVRIS82W
         PUsDQRCGo2iMYGslpLBSguAngpB/IBIhIKj/wcJCsLeWFBYpRfAPWIiVoG2w8wMs7CzUxhSCRtTnhQkc
         4fZu9xKCCw+3mezOOzu7e3O5XJ/bEHpjnoxmiW2VSbeeXDNuNlRkmwlfcA4nDi6w/8I3PMB8iIgEmrCU
         MKnMfy2owxvcw4KviK+AVrkGFXiFO1j0EQkR0H4Nwjq8mEjqSkIFFHRbRCtRuqaSVuIr8IOTR2gYNzzf
@@ -134,7 +137,7 @@
   <data name="_createOrderButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABg0lEQVRIS82W
+        vwAADr8BOAVTJAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABg0lEQVRIS82W
         u0oFMRCGV/FyBFsrwcJKOQheEQTfQEThgKC+g4WFYC/YiYWFpQi+gIVYCdoe7LyAhZ2F2mgheEH9fpiD
         a9zsrtkVLD6ymU3yJ5NJJlG0Xo/+FGfwFuqdOenINTGn0RT1s5yc0G4wU8RpsEj9BQ5g18Mh9g94g0sY
         ThVJEHjENpbSaZJ/r7AN93ABI972gQJa5TTMwB2cw2iiSAEB7VczzMKtifxcSUEBhXhDRCuRu/q+jRko
@@ -147,7 +150,7 @@
   <data name="_createRoutePointButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAZElEQVRIS2Ng
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAZElEQVRIS2Ng
         GEmAF+hZeSgGsakOCoAm/odiEJvqYNQCgkE6GkQMoLQNCgZceD1SMgWx8anFmk9AmQiWzimlQWZhAJpb
         QPMgIpROR5MpoRACJ8vR0hRvMNE8iGheZRJMBQOiAACiT2BZqj4fXgAAAABJRU5ErkJggg==
 </value>
@@ -155,7 +158,7 @@
   <data name="_createRoutePointButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAe0lEQVRIS2Ng
+        vwAADr8BOAVTJAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAe0lEQVRIS2Ng
         6DjDQFNMU8NBjifBAl6gWnkoBrGJ00u0wo4zBUC1/6EYxB61ACMIRoOIYKqgOIhAaRtkCC68HimZgtj4
         1CLyCVJ6BmUiWDqnlAaZBckn9LSA5kFEKOtTHMmjFmAPAaKL3dHimoigonmVSSgZUxzJZFkAAH2oXYY6
         NlOQAAAAAElFTkSuQmCC
@@ -164,7 +167,7 @@
   <data name="_listOrdersButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABBUlEQVRIS2Ng
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABBUlEQVRIS2Ng
         QABuIFOMCMyFpIckZgNQ9X8i8F2gGlmSTIYqhlnQBeSD2NjwFKD4PyAmyxKYBaBgAoEkIN6KBb+F+vIp
         VA6kj5EYH6FbAPIJKMgeAvEDLPgzUnD2E2MJLgtAkY8NLAAK/gDiw1CLCFpCjgVfgYbzEmsJuRaAfEeU
         JZRYQJQl5FjwE2hyAhLOBbJhke+CHnHkWIAvY3pTaoES0AAzLLgAmqootgBH6mUAGQzy2agFuEJoJATR
@@ -175,7 +178,7 @@
   <data name="_listOrdersButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABDUlEQVRIS2Ng
+        vwAADr8BOAVTJAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABDUlEQVRIS2Ng
         6DjDAMXcQFqMCMyFpAemFzeNpLgByP5PBL4LVCNLtCVYLOgCioEsw4anAMX/ATHxlmCxABRMIC8nAfFW
         LPgt1JdPoXIghzDi9BEeC0A+AQXZQyB+gAV/RgrOfpyWEGEBKPKxReICoPgPID4MtQi7JRRa8BWonxev
         JVSwAOQ73JZQyQLcllBowU+g/gQknAtkwyLfBWw2hRbgy5jelFqgBDTADAsugKYqii3AVf6ADAb5bNQC
@@ -183,13 +186,10 @@
         ajAyGroFmkS6GJevIFUvUmFHEzYA9H+gWFNUBC4AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="vericalLine1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="_changeStatusButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAApklEQVRIS2Ng
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAApklEQVRIS2Ng
         GK6AG+ixMiBOoZUHg4EG/4diTqglTEAaZDE+ANJHFAhFskAIyG4C4tdQsZdAeh0QFwCxBRCrAXEAEO8B
         4ldEmQ5UhGyBKZJlMF/hokctgEf88A2izeSkIhOgpnlAbATEYkBsDsRFQLweiEFJ9hcQXwTiZCAG5RWi
         AHIyJZS5iDIQXdGoBQSDbTSIBlcQwSocgq4iRQHNq0xSHDOwagGStnsUqZUVdAAAAABJRU5ErkJggg==
@@ -198,7 +198,7 @@
   <data name="_changeStatusButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAuklEQVRIS2Ng
+        vwAADr8BOAVTJAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAAAuklEQVRIS2Ng
         6DjDQFNMU8NBjsdhATdQvAyIUyh2AA4DgoHi/6GYE6qGCUiDLMYXpCB9qPI4NIQiWSAEZDcB8Wuo2Esg
         vQ6IC4DYAojVgDgAiPcA8StyLDBFsgzmK1z0qAXwiB++QbSZnFRkAtQ0D4iNgFgMiM2BuAiI1wMxKMn+
         AuKLQJwMxKC8QnI+IJS58JdlRGS0UQuwFl7IZdFoEA18EMEqHPLqbhz5gOZVJnmuxVadEqhjKbYIAG4P
@@ -208,7 +208,7 @@
   <data name="_deleteRoutePointButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABOklEQVRIS2Ng
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABOklEQVRIS2Ng
         GEmADehZMSjmpIXHTwMN/Q/FZym1gBdogAIaTgPyF0BxFhZ5flIs3Y7kWpirCdE7SLFgOlDxKhIxSA9J
         oBuo+gCRuJckk6GKP0KD6RqQfgdl3wPSIAwKLpAYSA7Evk+OBSBNIM3cQDwVyjYF0iAMEu8CYlCyBbHP
         kWPBeahmUIqaTMCCPeRYsA9qKMiVINeCXIrsgwYgXwEqvoYcC9ZBNYsD6Q4CFswix4I5UENBrgS5Ft0H
@@ -220,7 +220,7 @@
   <data name="_deleteRoutePointButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABXElEQVRIS2Ng
+        vwAADr8BOAVTJAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABXElEQVRIS2Ng
         6DjDQFNMU8NBjifBAjagWjEo5iRaH9EKO86cBqr9D8VnidaHQyEvUFwBDacB+QugOAuLPD9Ws3BYsB3J
         tTBXE6J3kGLBdKDiVSRikB7MOMUTlt1AuQNE4l6c5uCx4CM0mK4B6XdQ9j0gDcKg4AKJgeRA7PvkWADS
         BNLMDcRToWxTIA3CIPEuIAYlWxD7HDkWnIdqBqWoyQQs2EOOBfughoJcCXItyKXIPmgA8kFJGSS+hhwL
@@ -232,7 +232,7 @@
   <data name="createRouteOnDateButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABS0lEQVRIS2Ng
+        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABS0lEQVRIS2Ng
         IB4wAZVyE6+cNJXGQOWPgfgvEPeRppU41VuAyhYAsQMQ/wdiReK0YapqAAptxYLfAsVuAvEuqAUHcagT
         J2QxyPDfQPwAil9DDQS5Gh3/RFL3DiqvQIwF95EULcVjwS+gHMzAUnIs0ABqAkUqNtfDxGZBHUOWBbLQ
         SAVFLC5sTYkFhIITWZ4sH5BigSdQ8QIgFiGkCZSKkCMZm/qpQEFcuAIoB8rxOAExFlwF6jbDgZ8BxWfi
@@ -244,7 +244,7 @@
   <data name="createRouteOnDateButton.PressedImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABYklEQVRIS2Ng
+        vwAADr8BOAVTJAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTAw9HKhAAABYklEQVRIS2Ng
         6DjDQCRmAqrjJlItwkwiNRgD1T0G4r9A3EekHoglRCreAlS3AIgdgPg/ECsSqQ/Dggagxq1Y8Fug2E0g
         3gW14CAOdeIYFqMJgAz/DcQPoPg11ECQq9HxTyR176DyCsRYcB9J0VI8FvwCysEMLCXHAg1opGJzPUxs
         FtQxZFkgC41UUMTiwtaUWEBsCgOpI8sHpFjgCU3GIqRGMjZLpgINwYUrgHKgHI8zJ4OSKXIqwmbBVaAa

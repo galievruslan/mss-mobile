@@ -73,11 +73,12 @@
             // datePicker
             // 
             this.datePicker.CustomFormat = "dd.MM.yyyy";
+            this.datePicker.Dock = System.Windows.Forms.DockStyle.Top;
             this.datePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePicker.Location = new System.Drawing.Point(2, 1);
+            this.datePicker.Location = new System.Drawing.Point(0, 0);
             this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(238, 22);
+            this.datePicker.Size = new System.Drawing.Size(240, 22);
             this.datePicker.TabIndex = 1;
             this.datePicker.ValueChanged += new System.EventHandler(this.DatePickerValueChanged);
             // 
@@ -85,6 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this._orderListBox);
             this.Controls.Add(this.panel);
             this.Controls.Add(this._actionPanel);

@@ -23,8 +23,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             this._createOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._createRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._listOrdersButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -39,6 +39,15 @@
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // vericalLine1
+            // 
+            vericalLine1.BackColor = System.Drawing.Color.White;
+            vericalLine1.LineColor = System.Drawing.Color.DarkGray;
+            vericalLine1.Location = new System.Drawing.Point(68, 0);
+            vericalLine1.Name = "vericalLine1";
+            vericalLine1.Size = new System.Drawing.Size(5, 24);
+            vericalLine1.TabIndex = 10;
             // 
             // _createOrderButton
             // 
@@ -110,6 +119,8 @@
             // 
             // datePicker
             // 
+            this.datePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.datePicker.CustomFormat = "dd.MM.yyyy";
             this.datePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -120,6 +131,7 @@
             // 
             // createRouteOnDateButton
             // 
+            this.createRouteOnDateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.createRouteOnDateButton.BackColor = System.Drawing.Color.White;
             this.createRouteOnDateButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createRouteOnDateButton.BackgroundImage")));
             this.createRouteOnDateButton.Location = new System.Drawing.Point(216, 2);
@@ -147,19 +159,11 @@
             this.routePointListBox.Size = new System.Drawing.Size(240, 220);
             this.routePointListBox.TabIndex = 6;
             // 
-            // vericalLine1
-            // 
-            vericalLine1.BackColor = System.Drawing.Color.White;
-            vericalLine1.LineColor = System.Drawing.Color.DarkGray;
-            vericalLine1.Location = new System.Drawing.Point(68, 0);
-            vericalLine1.Name = "vericalLine1";
-            vericalLine1.Size = new System.Drawing.Size(5, 24);
-            vericalLine1.TabIndex = 10;
-            // 
             // RouteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this.routePointListBox);
             this.Controls.Add(this.panel);
             this.Controls.Add(this._actionPanel);

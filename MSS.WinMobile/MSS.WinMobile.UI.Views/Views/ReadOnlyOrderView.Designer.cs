@@ -31,8 +31,8 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._amountValueLable = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this._generalTab = new System.Windows.Forms.TabPage();
-            this._shippingDateTextBox = new System.Windows.Forms.TextBox();
             this._orderDataTextBox = new System.Windows.Forms.TextBox();
+            this._shippingDateTextBox = new System.Windows.Forms.TextBox();
             this.warehousePanel = new System.Windows.Forms.Panel();
             this._warehouseTextBox = new System.Windows.Forms.TextBox();
             this.pricePanel = new System.Windows.Forms.Panel();
@@ -99,10 +99,12 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // tabControl
             // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this._generalTab);
             this.tabControl.Controls.Add(this._detailsTab);
             this.tabControl.Controls.Add(this._notesTab);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.None;
             this.tabControl.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -129,21 +131,25 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._generalTab.Size = new System.Drawing.Size(240, 244);
             this._generalTab.Text = "General";
             // 
-            // _shippingDateTextBox
-            // 
-            this._shippingDateTextBox.Location = new System.Drawing.Point(93, 29);
-            this._shippingDateTextBox.Name = "_shippingDateTextBox";
-            this._shippingDateTextBox.ReadOnly = true;
-            this._shippingDateTextBox.Size = new System.Drawing.Size(139, 21);
-            this._shippingDateTextBox.TabIndex = 60;
-            // 
             // _orderDataTextBox
             // 
+            this._orderDataTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._orderDataTextBox.Location = new System.Drawing.Point(93, 3);
             this._orderDataTextBox.Name = "_orderDataTextBox";
             this._orderDataTextBox.ReadOnly = true;
             this._orderDataTextBox.Size = new System.Drawing.Size(139, 21);
             this._orderDataTextBox.TabIndex = 59;
+            // 
+            // _shippingDateTextBox
+            // 
+            this._shippingDateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._shippingDateTextBox.Location = new System.Drawing.Point(93, 29);
+            this._shippingDateTextBox.Name = "_shippingDateTextBox";
+            this._shippingDateTextBox.ReadOnly = true;
+            this._shippingDateTextBox.Size = new System.Drawing.Size(139, 21);
+            this._shippingDateTextBox.TabIndex = 60;
             // 
             // warehousePanel
             // 
@@ -154,8 +160,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // _warehouseTextBox
             // 
+            this._warehouseTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._warehouseTextBox.BackColor = System.Drawing.Color.White;
-            this._warehouseTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._warehouseTextBox.Location = new System.Drawing.Point(0, 0);
             this._warehouseTextBox.Multiline = true;
             this._warehouseTextBox.Name = "_warehouseTextBox";
@@ -172,8 +179,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // _priceListTextBox
             // 
+            this._priceListTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._priceListTextBox.BackColor = System.Drawing.Color.White;
-            this._priceListTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._priceListTextBox.Location = new System.Drawing.Point(0, 0);
             this._priceListTextBox.Multiline = true;
             this._priceListTextBox.Name = "_priceListTextBox";
@@ -274,23 +282,27 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(232, 242);
+            this._notesTab.Size = new System.Drawing.Size(240, 244);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox
             // 
+            this._notesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._notesTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._notesTextBox.Location = new System.Drawing.Point(7, 7);
             this._notesTextBox.Multiline = true;
             this._notesTextBox.Name = "_notesTextBox";
             this._notesTextBox.ReadOnly = true;
-            this._notesTextBox.Size = new System.Drawing.Size(226, 204);
+            this._notesTextBox.Size = new System.Drawing.Size(226, 234);
             this._notesTextBox.TabIndex = 0;
             // 
             // ReadOnlyOrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.Controls.Add(this.tabControl);
             this.Name = "ReadOnlyOrderView";
             this.Size = new System.Drawing.Size(240, 268);

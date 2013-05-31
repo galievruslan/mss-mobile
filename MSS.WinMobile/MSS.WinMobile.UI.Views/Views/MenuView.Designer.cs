@@ -42,7 +42,6 @@
             this._settingsLabel.Name = "_settingsLabel";
             this._settingsLabel.Size = new System.Drawing.Size(161, 20);
             this._settingsLabel.TabIndex = 20;
-            this._settingsLabel.TabStop = false;
             this._settingsLabel.Text = "Settings";
             this._settingsLabel.Click += new System.EventHandler(this.SettingsLabelClick);
             // 
@@ -63,7 +62,6 @@
             this._synchronizationLabel.Name = "_synchronizationLabel";
             this._synchronizationLabel.Size = new System.Drawing.Size(161, 20);
             this._synchronizationLabel.TabIndex = 19;
-            this._synchronizationLabel.TabStop = false;
             this._synchronizationLabel.Text = "Synchronization";
             this._synchronizationLabel.Click += new System.EventHandler(this.SynchronizationLabelClick);
             // 
@@ -84,7 +82,6 @@
             this._routesLabel.Name = "_routesLabel";
             this._routesLabel.Size = new System.Drawing.Size(161, 20);
             this._routesLabel.TabIndex = 18;
-            this._routesLabel.TabStop = false;
             this._routesLabel.Text = "Routes";
             this._routesLabel.Click += new System.EventHandler(this.RouteClick);
             // 
@@ -105,7 +102,6 @@
             this._ordersLabel.Name = "_ordersLabel";
             this._ordersLabel.Size = new System.Drawing.Size(161, 20);
             this._ordersLabel.TabIndex = 25;
-            this._ordersLabel.TabStop = false;
             this._ordersLabel.Text = "Orders";
             this._ordersLabel.Click += new System.EventHandler(this.OrdersLabelClick);
             // 
@@ -122,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._ordersLabel);
             this.Controls.Add(this.pictureBox1);
