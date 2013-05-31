@@ -543,7 +543,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
             catch (Exception exception) {
                 Log.Error("Synchronization failed", exception);
-                _view.ShowError(new[] {"Synchronization failed!"});
+                _view.ShowError(new[] {"Synchronization failed! Please, try to synchronize later."});
                 _failed = true;
             }
             finally {
@@ -574,10 +574,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void ReturnToMenu() {
-            if ((_failed || _canceled) && _exitOnError)
-                _navigator.GoToExit();
-            else
-                _navigator.GoToMenu();
+            //if ((_failed || _canceled) && _exitOnError)
+            //    _navigator.GoToExit();
+            //else
+            
+            _navigator.GoToMenu();
         }
 
         #region IObserver

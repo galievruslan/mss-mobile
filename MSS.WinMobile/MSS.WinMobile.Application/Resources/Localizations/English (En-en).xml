@@ -100,4 +100,5 @@
   <Element name="synchronization complete">Synchronization complete</Element>
   <Element name="you have not synchronized data, which will be missed. Are you shure, you want to logout?">You have not synchronized data, which will be missed. Are you shure, you want to logout?</Element>
   <Element name="are you sure, you want to delete the order?">Are you sure, you want to delete the order?</Element>
+  <Element name="synchronization failed! Please, try to synchronize later.">Synchronization failed! Please, try to synchronize later.</Element>
 </Root>
