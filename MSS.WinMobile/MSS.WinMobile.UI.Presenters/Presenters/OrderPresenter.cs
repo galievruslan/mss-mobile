@@ -148,9 +148,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                                                           .GetSection("Statuses")
                                                           .GetSetting("DefaultRoutePointAttendedStatusId")
                                                           .As<int>();
+                if (attendedStatusId == 0 || defaultStatusId == 0) {
+                    _view.ShowError(new[] {"Configuration error, please, do full synchronization."});
+                    return;
+                }
+
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
                 var attendedStatus = statusRepository.GetById(attendedStatusId);
-
+                
                 Order order = _orderViewModel.OrderId != 0
                                   ? orderRepository.GetById(_orderViewModel.OrderId)
                                   : routePoint.CreateOrder();

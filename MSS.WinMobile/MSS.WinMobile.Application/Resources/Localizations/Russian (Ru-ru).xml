@@ -102,4 +102,5 @@
   <Element name="you have not synchronized data, which will be missed. Are you shure, you want to logout?">У Вас есть не отправленные на сервер данные, вы действительно хотиты выйти?</Element>
   <Element name="are you sure, you want to delete the order?">Вы действительно хотите удалить заказ?</Element>
   <Element name="synchronization failed! Please, try to synchronize later.">Ошибка при синхронизации! Пожалуйста, попробуйте позже.</Element>
+  <Element name="configuration error, please, do full synchronization.">Ошибка конфигурации, пожалуйста проведите полную синхронизацию.</Element>
 </Root>
