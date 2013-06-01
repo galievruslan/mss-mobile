@@ -40,6 +40,7 @@ CREATE TABLE [Orders] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Amount] numeric(8,2) NULL
 , [OrderStatus] INTEGER  NULL
 , [Note] VARCHAR(1024) NULL COLLATE NOCASE
+, [GUID] VARCHAR(36) NULL COLLATE NOCASE
 , [Synchronized] BIT  NULL
 , FOREIGN KEY(RoutePoint_Id) REFERENCES RoutePoints(Id)
 , FOREIGN KEY(ShippingAddress_Id) REFERENCES ShippingAddresses(Id)
@@ -63,7 +64,6 @@ CREATE TABLE [ProductsPrices] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
 );
-CREATE INDEX 'fk_ProductsPrices_Product_Id' ON 'ProductsPrices' ('Product_Id' ASC);
 CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Base] BIT  NULL
 , [Product_Id] INTEGER  NULL
@@ -72,7 +72,6 @@ CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 , FOREIGN KEY(UnitOfMeasure_Id) REFERENCES UnitsOfMeasure(Id)
 );
-CREATE INDEX 'fk_ProductsUnitOfMeasures_UnitOfMeasure_Id' ON 'ProductsUnitOfMeasures' ('UnitOfMeasure_Id' ASC);
 CREATE TABLE [Routes] ([Id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 , [Date] DATETIME  NULL
 );

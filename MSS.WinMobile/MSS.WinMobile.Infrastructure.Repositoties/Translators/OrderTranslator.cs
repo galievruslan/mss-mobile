@@ -29,7 +29,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                 Amount = value.GetDecimal(value.GetOrdinal("Amount")),
                 OrderStatus = (OrderStatus) value.GetInt32(value.GetOrdinal("OrderStatus")),
                 Note = value.GetString(value.GetOrdinal("Note")),
-                Synchronized = value.GetBoolean(value.GetOrdinal("Synchronized"))
+                Synchronized = value.GetBoolean(value.GetOrdinal("Synchronized")),
+                GUID = value.GetGuid(value.GetOrdinal("GUID"))
             };
             return proxy;
         }

@@ -35,7 +35,7 @@ namespace MSS.WinMobile.Synchronizer {
                                                                       "synchronization/orders.json",
                                                                       orderDictionary);
                 string result = webConnection.Post(httpWebRequest);
-                var regex = new Regex("\"code\":100|\"code\":101", RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase);
+                var regex = new Regex("\"code\":100|\"code\":101|\"code\":102", RegexOptions.IgnorePatternWhitespace | RegexOptions.IgnoreCase);
 
                 if (regex.IsMatch(result)) {
                     using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
@@ -63,6 +63,7 @@ namespace MSS.WinMobile.Synchronizer {
             orderAttributesDictionary.Add("warehouse_id", order.WarehouseId);
             orderAttributesDictionary.Add("price_list_id", order.PriceListId);
             orderAttributesDictionary.Add("comment", order.Note);
+            orderAttributesDictionary.Add("guid", order.GUID);
             var orderPointsAttributesDictionary = new Dictionary<string, object>();
             orderAttributesDictionary.Add("order_items_attributes", orderPointsAttributesDictionary);
             var orderItems = order.Items.ToArray();

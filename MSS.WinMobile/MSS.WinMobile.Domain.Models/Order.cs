@@ -5,9 +5,11 @@ namespace MSS.WinMobile.Domain.Models
 {
     public abstract class Order : Model
     {
-        protected Order() {}
+        protected Order() {
+            GUID = Guid.NewGuid();
+        }
 
-        protected Order(RoutePoint routePoint) {
+        protected Order(RoutePoint routePoint) : this() {
             RoutePointId = routePoint.Id;
         }
 
@@ -34,6 +36,8 @@ namespace MSS.WinMobile.Domain.Models
         public string Note { get; set; }
 
         public bool Synchronized { get; set; }
+
+        public Guid GUID { get; set; }
 
         public abstract IQueryObject<OrderItem> Items { get; }
 
