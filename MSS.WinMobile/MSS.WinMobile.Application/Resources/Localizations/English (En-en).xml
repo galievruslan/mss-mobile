@@ -102,4 +102,5 @@
   <Element name="are you sure, you want to delete the order?">Are you sure, you want to delete the order?</Element>
   <Element name="synchronization failed! Please, try to synchronize later.">Synchronization failed! Please, try to synchronize later.</Element>
   <Element name="configuration error, please, do full synchronization.">Configuration error, please, do full synchronization.</Element>
+  <Element name="all items will be deleted, are you sure?">All items will be deleted, are you sure?</Element>
 </Root>

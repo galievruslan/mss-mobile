@@ -309,16 +309,38 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void LookUpPriceList() {
-            PriceListViewModel selectedPriceList = _lookUpService.LookUpPriceList();
-            if (selectedPriceList != null) {
+
+            var selectedPriceList = _lookUpService.LookUpPriceList();
+            if (selectedPriceList == null) return;
+            if (_orderViewModel.PriceListId == selectedPriceList.Id) return;
+
+            if (_orderItemViewModels.Count > 0) {
+                if (_view.ShowConfirmation("All items will be deleted, are you sure?")) {
+                    _orderItemViewModels.Clear();
+                    _selectedOrderItemViewModel = null;
+                    _orderViewModel.PriceListId = selectedPriceList.Id;
+                    _orderViewModel.PriceListName = selectedPriceList.Name;
+                }
+            }
+            else {
                 _orderViewModel.PriceListId = selectedPriceList.Id;
                 _orderViewModel.PriceListName = selectedPriceList.Name;
             }
         }
 
         public void ResetPriceList() {
-            _orderViewModel.PriceListId = 0;
-            _orderViewModel.PriceListName = string.Empty;
+            if (_orderItemViewModels.Count > 0) {
+                if (_view.ShowConfirmation("All items will be deleted, are you sure?")) {
+                    _orderItemViewModels.Clear();
+                    _selectedOrderItemViewModel = null;
+                    _orderViewModel.PriceListId = 0;
+                    _orderViewModel.PriceListName = string.Empty;
+                }
+            }
+            else {
+                _orderViewModel.PriceListId = 0;
+                _orderViewModel.PriceListName = string.Empty;
+            }
         }
 
         public void LookUpWarehouse() {

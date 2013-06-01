@@ -122,6 +122,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.LookUpPriceList();
             _priceListTextBox.Text = _viewModel.PriceListName;
             _priceListTextBox.Refresh();
+            orderItemListBox.SetListSize(_presenter.InitializeListSize());
+            _amountValueLable.Text = _viewModel.Amount.ToString(_localizator.Localization.GetLocalizedValue("decimalformat"));
+            _amountValueLable.Refresh();
         }
 
         private void WarehouseLookUp(object sender, EventArgs e) {
@@ -134,6 +137,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             _presenter.ResetPriceList();
             _priceListTextBox.Text = _viewModel.PriceListName;
             _priceListTextBox.Refresh();
+            orderItemListBox.SetListSize(_presenter.InitializeListSize());
+            _amountValueLable.Text = _viewModel.Amount.ToString(_localizator.Localization.GetLocalizedValue("decimalformat"));
+            _amountValueLable.Refresh();
         }
 
         private void WarehouseReset(object sender, EventArgs e) {
