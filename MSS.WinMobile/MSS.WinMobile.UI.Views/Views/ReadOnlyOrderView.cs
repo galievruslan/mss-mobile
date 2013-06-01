@@ -70,8 +70,8 @@ namespace MSS.WinMobile.UI.Views.Views {
 
                 _viewModel = _presenter.Initialize();
 
-                _orderDataTextBox.Text = _viewModel.OrderDate.ToString(_localizator.Localization.GetLocalizedValue("datefromat"));
-                _shippingDateTextBox.Text = _viewModel.ShippingDate.ToString(_localizator.Localization.GetLocalizedValue("datefromat"));
+                _orderDataTextBox.Text = _viewModel.OrderDate.ToString(_localizator.Localization.GetLocalizedValue("dateformat"));
+                _shippingDateTextBox.Text = _viewModel.ShippingDate.ToString(_localizator.Localization.GetLocalizedValue("dateformat"));
                 _customerTextBox.Text = _viewModel.CustomerName;
                 _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
                 _priceListTextBox.Text = _viewModel.PriceListName;
