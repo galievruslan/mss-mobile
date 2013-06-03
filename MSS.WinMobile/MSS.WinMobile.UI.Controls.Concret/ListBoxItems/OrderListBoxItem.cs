@@ -19,15 +19,8 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             get { return _viewModel; }
             set {
                 _viewModel = value;
+                _descriptionLabel.Text = _viewModel.CustomerName;
                 if (Localizator != null) {
-                    _descriptionLabel.Text = string.Format("{0} {1}",
-                                                           Localizator.Localization
-                                                                          .GetLocalizedValue(
-                                                                              "Order from"),
-                                                           ViewModel.OrderDate.ToString(
-                                                               Localizator.Localization
-                                                                          .GetLocalizedValue(
-                                                                              "dateformat")));
                     _shippingLabel.Text = string.Format("{0} {1}",
                                                            Localizator.Localization
                                                                           .GetLocalizedValue(
@@ -46,8 +39,6 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
                                                                           "decimalformat")));
                 }
                 else {
-                    _descriptionLabel.Text = string.Format("order from {0}",
-                                                           ViewModel.OrderDate.ToString(CultureInfo.InvariantCulture));
                     _shippingLabel.Text = string.Format("shipping at {0}",
                                                         ViewModel.ShippingDate.ToString(CultureInfo.InvariantCulture));
                     _ammountLabel.Text = string.Format("amount: {0}",
