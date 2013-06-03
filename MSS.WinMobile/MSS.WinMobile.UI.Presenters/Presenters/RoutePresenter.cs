@@ -175,6 +175,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
                 unitOfWork.Commit();
             }
+
+            if (routeTemplate == null) {
+                _view.ShowInformation("Route template not found. Empty route created.");
+            }
         }
 
         public void GoToAddRoutePoint() {

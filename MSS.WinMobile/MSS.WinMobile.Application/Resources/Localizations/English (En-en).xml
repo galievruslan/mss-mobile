@@ -103,4 +103,5 @@
   <Element name="synchronization failed! Please, try to synchronize later.">Synchronization failed! Please, try to synchronize later.</Element>
   <Element name="configuration error, please, do full synchronization.">Configuration error, please, do full synchronization.</Element>
   <Element name="all items will be deleted, are you sure?">All items will be deleted, are you sure?</Element>
+  <Element name="route template not found. Empty route created.">Route template not found. Empty route created.</Element>
 </Root>

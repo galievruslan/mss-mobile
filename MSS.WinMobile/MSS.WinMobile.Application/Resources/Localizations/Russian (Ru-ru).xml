@@ -104,4 +104,5 @@
   <Element name="synchronization failed! Please, try to synchronize later.">Ошибка при синхронизации! Пожалуйста, попробуйте позже.</Element>
   <Element name="configuration error, please, do full synchronization.">Ошибка конфигурации, пожалуйста проведите полную синхронизацию.</Element>
   <Element name="all items will be deleted, are you sure?">Все строки заказа будут удалены, Вы уверены что хотите изменить прайс лист?</Element>
+  <Element name="route template not found. Empty route created.">Шаблон маршрута не найден. Пустой маршрут создан.</Element>
 </Root>
