@@ -1,17 +1,15 @@
 ﻿using System.Collections.Generic;
 using log4net;
 
-namespace MSS.WinMobile.Application.Cache
-{
-    public static class Cache
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Cache));
-        private static readonly IDictionary<string, object> CacheDictionary = new Dictionary<string, object>();
+namespace MSS.WinMobile.Application.Cache {
+    public static class Cache {
+        private static readonly ILog Log = LogManager.GetLogger(typeof (Cache));
 
-        public static void Add<T>(string key, T value)
-        {
-            lock (CacheDictionary)
-            {
+        private static readonly IDictionary<string, object> CacheDictionary =
+            new Dictionary<string, object>();
+
+        public static void Add<T>(string key, T value) {
+            lock (CacheDictionary) {
                 if (CacheDictionary.ContainsKey(key))
                     CacheDictionary[key] = value;
                 else
@@ -21,41 +19,37 @@ namespace MSS.WinMobile.Application.Cache
             Log.DebugFormat("Added to cache entry with key {0} and value {1}", key, value);
         }
 
-        public static void Remove(string key)
-        {
-            lock (CacheDictionary)
-            {
-                if (CacheDictionary.ContainsKey(key))
-                {
+        public static void Remove(string key) {
+            lock (CacheDictionary) {
+                if (CacheDictionary.ContainsKey(key)) {
                     CacheDictionary.Remove(key);
                     Log.DebugFormat("Removed from cache entry with key {0}", key);
                 }
             }
         }
 
-        public static bool Contains(string key)
-        {
+        public static bool Contains(string key) {
             return CacheDictionary.ContainsKey(key);
         }
 
-        public static T Get<T>(string key)
-        {
+        public static T Get<T>(string key) {
             object result = null;
-            lock (CacheDictionary)
-            {
-                if (CacheDictionary.ContainsKey(key))
-                {
-                     result = CacheDictionary[key];
+            lock (CacheDictionary) {
+                if (CacheDictionary.ContainsKey(key)) {
+                    result = CacheDictionary[key];
                 }
             }
 
-            if (result != null && result.GetType() == typeof (T))
-            {
+            if (result != null) {
                 Log.DebugFormat("Retrieved cache entry with key {0} and value {1}", key, result);
                 return (T) result;
             }
 
             return default(T);
+        }
+
+        public static void Clear() {
+            CacheDictionary.Clear();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace MSS.WinMobile.Infrastructure.Storage.QueryObjects
         IQueryObject<TModel> Where(ISpecification<TModel> specification);
         IQueryObject<TModel> OrderBy(string fieldName, OrderDirection orderDirection);
         IPagedQueryObject<TModel> Paged(int countToSkip, int countToTake);
-        int Count();
+        int GetCount();
     }
 
     public class ObjectEnumerator<T> : IEnumerator<T>

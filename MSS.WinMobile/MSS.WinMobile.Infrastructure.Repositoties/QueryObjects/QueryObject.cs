@@ -45,11 +45,12 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
                                                 countToSkip, countToTake);
         }
 
-        public int Count() {
+        public int GetCount() {
             var queryStringBuilder = new StringBuilder();
             queryStringBuilder.Append("SELECT COUNT(*)");
             queryStringBuilder.Append(string.Format(" FROM ({0}) AS [source]", AsQuery()));
             string commandText = queryStringBuilder.ToString();
+            Log.Debug(commandText);
 
             int count;
             IDbConnection connection = Storage.Connect();
@@ -69,7 +70,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
         protected virtual TModel[] Execute()
         {
             string commandText = AsQuery(); 
-
+            Log.Debug(commandText);
             try
             {
                 IDbConnection connection = Storage.Connect();
@@ -78,7 +79,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects
                     command.CommandText = commandText;
                     using (IDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult))
                     {
-                        return Translator.Translate(reader);
+                        Log.Debug("Executed");
+                        TModel[] result = Translator.Translate(reader);
+                        Log.Debug("Materialized");
+                        return result;
                     }
                 }
             }

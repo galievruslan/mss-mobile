@@ -14,7 +14,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
         public int Count
         {
             get {
-                return _route == null ? 0 : _route.Points.Count();
+                return _route == null ? 0 : _route.Points.GetCount();
             }
         }
 

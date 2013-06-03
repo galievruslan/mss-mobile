@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 {
@@ -46,6 +45,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         private ShippingAddress _selectedShippingAddress;
         public void Select(int index) {
             _selectedShippingAddress = _cache.RetrieveElement(index);
+
+            string shippingAddressCacheKey = string.Format("ShippingAddress Id={0}", _selectedShippingAddress.Id);
+            if (!AppCache.Contains(shippingAddressCacheKey))
+                AppCache.Add(shippingAddressCacheKey, _selectedShippingAddress);
         }
 
         public ShippingAddressViewModel SelectedModel {

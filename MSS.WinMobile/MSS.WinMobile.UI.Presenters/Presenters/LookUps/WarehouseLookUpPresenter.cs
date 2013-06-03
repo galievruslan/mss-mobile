@@ -21,7 +21,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public WarehouseLookUpPresenter(IWarehouseLookUpView view, IRepositoryFactory repositoryFactory) {
             _repositoryFactory = repositoryFactory;
             _warehouseRetriever = new WarehouseRetriever(_repositoryFactory.CreateRepository<Warehouse>());
-            _cache = new Cache<Warehouse>(_warehouseRetriever, 10);
+            _cache = new Cache<Warehouse>(_warehouseRetriever, 50);
             _view = view;
         }
 

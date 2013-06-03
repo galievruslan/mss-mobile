@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 {
@@ -21,7 +21,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public CustomerLookUpPresenter(ICustomerLookUpView view, IRepositoryFactory repositoryFactory) {
             _repositoryFactory = repositoryFactory;
             _customerRetriever = new CustomerRetriever(_repositoryFactory.CreateRepository<Customer>());
-            _cache = new Cache<Customer>(_customerRetriever, 100);
+            _cache = new Cache<Customer>(_customerRetriever, 50);
             _view = view;
         }
 
@@ -39,6 +39,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         private Customer _selectedCustomer;
         public void Select(int index) {
             _selectedCustomer = _cache.RetrieveElement(index);
+
+            string customerCacheKey = string.Format("Customer Id={0}", _selectedCustomer.Id);
+            if (!AppCache.Contains(customerCacheKey))
+                AppCache.Add(customerCacheKey, _selectedCustomer);
         }
 
         public CustomerViewModel SelectedModel {

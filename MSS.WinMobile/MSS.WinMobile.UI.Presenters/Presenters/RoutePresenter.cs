@@ -185,7 +185,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             if (_selectedRoutePoint != null) {
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
                 var routePoint = routePointRepository.GetById(_selectedRoutePoint.Id);
-                if (routePoint.Orders.Count() > 0 || routePoint.Synchronized) {
+                if (routePoint.Orders.GetCount() > 0 || routePoint.Synchronized) {
                     _view.ShowError(new[] {"You can't delete synchronized route point or point with orders!"});
                 }
                 else {

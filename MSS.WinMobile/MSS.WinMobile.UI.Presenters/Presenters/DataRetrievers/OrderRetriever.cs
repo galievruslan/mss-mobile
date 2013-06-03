@@ -19,7 +19,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
         public int Count
         {
             get {
-                return _orderRepository.Find().Where(_orderOnDateSpec).Count();
+                return _orderRepository.Find().Where(_orderOnDateSpec).GetCount();
             }
         }
 

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 {
@@ -24,7 +23,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
             _repositoryFactory = repositoryFactory;
 
             _priceListRetriever = new PriceListRetriever(_repositoryFactory.CreateRepository<PriceList>());
-            _cache = new Cache<PriceList>(_priceListRetriever, 10);
+            _cache = new Cache<PriceList>(_priceListRetriever, 50);
         }
 
         public int InitializeListSize() {
@@ -42,6 +41,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         private PriceList _selectedPriceList;
         public void Select(int index) {
             _selectedPriceList = _cache.RetrieveElement(index);
+
+            string priceListCacheKey = string.Format("PriceList Id={0}", _selectedPriceList.Id);
+            if (!AppCache.Contains(priceListCacheKey))
+                AppCache.Add(priceListCacheKey, _selectedPriceList);
         }
 
         public PriceListViewModel SelectedModel {

@@ -23,12 +23,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
         public int Count {
             get {
                 return string.IsNullOrEmpty(_searchCriteria)
-                           ? _customerStorageRepository.Find().Count()
+                           ? _customerStorageRepository.Find().GetCount()
                            : _customerStorageRepository.Find()
                                                        .Where(
                                                            new CustomerWithNameLikeSpec(
                                                                _searchCriteria))
-                                                       .Count();
+                                                       .GetCount();
             }
         }
 

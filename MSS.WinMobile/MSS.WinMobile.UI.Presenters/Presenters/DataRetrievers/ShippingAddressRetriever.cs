@@ -27,10 +27,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                     return 0;
 
                 return string.IsNullOrEmpty(_searchCriteria)
-                           ? _customer.ShippingAddresses.Count()
+                           ? _customer.ShippingAddresses.GetCount()
                            : _customer.ShippingAddresses.Where(
                                new ShippingAddressWithNameOrAddressLikeSpec(_searchCriteria))
-                                      .Count();
+                                      .GetCount();
             }
         }
 

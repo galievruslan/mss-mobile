@@ -74,7 +74,7 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
                 customerRepository.Save(customer);
                 unitOfWork.Commit();
                 const int expectedCount = 1;
-                int actualCount = customerRepository.Find().Count();
+                int actualCount = customerRepository.Find().GetCount();
                 Assert.AreEqual(expectedCount, actualCount);
 
                 const string expectedCustomerName = "ModyfiedName";
@@ -103,14 +103,14 @@ namespace MSS.WinMobile.Infrastructure.SqliteRepositories.Tests
                 customerRepository.Save(customer);
                 unitOfWork.Commit();
                 int expectedCount = 1;
-                int actualCount = customerRepository.Find().Count();
+                int actualCount = customerRepository.Find().GetCount();
                 Assert.AreEqual(expectedCount, actualCount);
 
                 unitOfWork.BeginTransaction();
                 customerRepository.Delete(customer);
                 unitOfWork.Commit();
                 expectedCount = 0;
-                actualCount = customerRepository.Find().Count();
+                actualCount = customerRepository.Find().GetCount();
                 Assert.AreEqual(expectedCount, actualCount);
             }
         }

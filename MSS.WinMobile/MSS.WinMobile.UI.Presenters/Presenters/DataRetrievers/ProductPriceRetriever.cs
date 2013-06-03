@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects;
 using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
+using System.Linq;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 {
@@ -34,6 +36,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                 if (_priceList == null)
                     return 0;
 
+                var cacheKeyBuilder = new StringBuilder();
+                cacheKeyBuilder.Append("ProductPrices ");
+                if (_category != null)
+                    cacheKeyBuilder.Append(string.Format("Category_Id = {0}", _category.Id));
+                if (!string.IsNullOrEmpty(_searchCriteria))
+                    cacheKeyBuilder.Append(string.Format("Search_Criteria = {0}", _searchCriteria));
+                string cacheKey = cacheKeyBuilder.ToString();
+
+                if (AppCache.Contains(cacheKey))
+                    return AppCache.Get<int>(cacheKey);
+
                 IQueryObject<ProductsPrice> queryObject = _priceList.Lines;
                 if (_category != null)
                     queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_category));
@@ -42,7 +55,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                     queryObject =
                         queryObject.Where(new ProductPriceWithNameLikeSpec(_searchCriteria));
 
-                return queryObject.Count();
+                int count = queryObject.GetCount();
+                AppCache.Add(cacheKey, count);
+                return count;
             }
         }
 

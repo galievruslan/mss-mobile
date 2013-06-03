@@ -15,6 +15,7 @@ using MSS.WinMobile.Synchronizer.FaultHandling;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
@@ -536,6 +537,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                          .GetSetting("LastSyncDate").Value =
                         synchronizationDate.ToString(DateTimeFormatInfo.InvariantInfo);
                     _configurationManager.GetConfig("Common").Save();
+
+                    AppCache.Clear();
                     _view.ShowInformation("Synchronization complete");
                 }
             }

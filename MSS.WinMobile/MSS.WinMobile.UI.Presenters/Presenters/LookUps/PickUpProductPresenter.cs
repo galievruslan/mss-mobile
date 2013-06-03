@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 {
@@ -25,13 +25,26 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         private readonly IList<PickUpProductViewModel> _pickUpProductViewModels;
 
         public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, ILookUpService lookUpService, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels) {
+            Log.Debug("1");
             _repositoryFactory = repositoryFactory;
             _lookUpService = lookUpService;
             _priceListViewModel = priceListViewModel;
-            var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-            _productsPriceRetriever = new ProductsPriceRetriever(priceListRepository.GetById(_priceListViewModel.Id));
-            _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
+
+            string priceListCacheKey = string.Format("PriceList Id={0}", _priceListViewModel.Id);
+
+            PriceList priceList;
+            if (AppCache.Contains(priceListCacheKey))
+                priceList = AppCache.Get<PriceList>(priceListCacheKey);
+            else {
+                var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+                priceList = priceListRepository.GetById(_priceListViewModel.Id);
+                AppCache.Add(priceListCacheKey, priceList);
+            }
+
+            _productsPriceRetriever = new ProductsPriceRetriever(priceList);
+            _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 50);
             _view = view;
+            Log.Debug("2");
 
             _pickUpProductViewModels = new List<PickUpProductViewModel>();
             foreach (var orderItemViewModel in orderItemViewModels) {
@@ -45,6 +58,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     UnitOfMeasureName = orderItemViewModel.UnitOfMeasureName
                 });
             }
+            Log.Debug("3");
         }
 
         private const int MaxValue = 10000;
@@ -86,7 +100,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         }
 
         public int InitializeListSize() {
-            return _productsPriceRetriever.Count;
+            int count = _productsPriceRetriever.Count;
+            Log.Debug("4");
+            return count;
         }
 
         public PickUpProductViewModel GetItem(int index) {

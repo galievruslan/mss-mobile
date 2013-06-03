@@ -16,6 +16,7 @@ CREATE TABLE [Products] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Name] VARCHAR(255) NULL COLLATE NOCASE
 , [Category_Id] INTEGER  NULL
 );
+CREATE INDEX 'fk_Products_Name' ON 'Products' ('Name' ASC);
 CREATE TABLE [UnitsOfMeasure] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Name] VARCHAR(255) NULL COLLATE NOCASE
 );
@@ -64,6 +65,7 @@ CREATE TABLE [ProductsPrices] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , FOREIGN KEY(Product_Id) REFERENCES Products(Id)
 , FOREIGN KEY(PriceList_Id) REFERENCES PriceLists(Id)
 );
+CREATE INDEX 'fk_ProductsPrices_Product_Id' ON 'ProductsPrices' ('Product_Id' ASC);
 CREATE TABLE [ProductsUnitOfMeasures] ([Id] INTEGER  NOT NULL PRIMARY KEY
 , [Base] BIT  NULL
 , [Product_Id] INTEGER  NULL

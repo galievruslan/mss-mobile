@@ -24,14 +24,26 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         public event OnLoad Load;
 
+        private delegate void ShowInformationDelegate(string message);
         public void ShowInformation(string message) {
-            ViewContainer.ShowInformation(message);
+            if (Parent.InvokeRequired) {
+                Parent.Invoke(new ShowInformationDelegate(ShowInformation), message);
+            }
+            else {
+                ViewContainer.ShowInformation(message);
+            }
         }
 
+        private delegate void ShowErrorDelegate(IEnumerable<string> messages);
         public void ShowError(IEnumerable<string> messages) {
-            ViewContainer.ShowError(messages);
+            if (Parent.InvokeRequired) {
+                Parent.Invoke(new ShowErrorDelegate(ShowError), messages);
+            }
+            else {
+                ViewContainer.ShowError(messages);
+            }
         }
-
+        
         public bool ShowConfirmation(string messages) {
             return ViewContainer.ShowConfirmation(messages);
         }

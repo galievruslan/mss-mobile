@@ -12,7 +12,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 
         public int Count
         {
-            get { return _routePoint.Orders.Count(); }
+            get { return _routePoint.Orders.GetCount(); }
         }
 
         public Order[] SupplyPageOfData(int lowerPageBoundary, int rowsPerPage) {

@@ -124,8 +124,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public void Logout() {
             var routeRepository = _repositoryFactory.CreateRepository<Route>();
             var orderRepository = _repositoryFactory.CreateRepository<Order>();
-            if (routeRepository.Find().Where(new RoutesToSyncSpec()).Count() > 0 ||
-                orderRepository.Find().Where(new OrdersToSyncSpec()).Count() > 0) {
+            if (routeRepository.Find().Where(new RoutesToSyncSpec()).GetCount() > 0 ||
+                orderRepository.Find().Where(new OrdersToSyncSpec()).GetCount() > 0) {
                 if (!_view.ShowConfirmation(
                         "You have not synchronized data, which will be missed. Are you shure, you want to logout?")) 
                     return;

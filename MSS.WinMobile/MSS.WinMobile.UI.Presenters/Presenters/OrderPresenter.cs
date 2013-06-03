@@ -9,6 +9,7 @@ using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 using log4net;
+using AppCache = MSS.WinMobile.Application.Cache.Cache;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters {
     public class OrderPresenter : IPresenter<OrderViewModel>, IListPresenter<OrderItemViewModel> {
@@ -43,18 +44,51 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         {
             var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var routePoint = routePointsRepository.GetById(routePointViewModel.Id);
-            var routeRepository = _repositoryFactory.CreateRepository<Route>();
-            var route = routeRepository.GetById(routePoint.RouteId);
 
-            var shippingAddressRepository = _repositoryFactory.CreateRepository<ShippingAddress>();
-            var shippingAddress = shippingAddressRepository.GetById(routePoint.ShippingAddressId);
+            string routeCacheKey = string.Format("Route Id={0}", routePoint.RouteId);
 
-            var customersRepository = _repositoryFactory.CreateRepository<Customer>();
-            var customer = customersRepository.GetById(shippingAddress.CustomerId);
+            Route route;
+            if (AppCache.Contains(routeCacheKey))
+                route = AppCache.Get<Route>(routeCacheKey);
+            else {
+                var routeRepository = _repositoryFactory.CreateRepository<Route>();
+                route = routeRepository.GetById(routePoint.RouteId);
+                AppCache.Add(routeCacheKey, route);
+            }
 
-            var warehouseRepository = _repositoryFactory.CreateRepository<Warehouse>();
-            var defaultWarehouse =
-                warehouseRepository.Find().Where(new DefaultWarehouseSpec()).FirstOrDefault();
+            string shippingAddressCacheKey = string.Format("ShippingAddress Id={0}", routePoint.ShippingAddressId);
+
+            ShippingAddress shippingAddress;
+            if (AppCache.Contains(shippingAddressCacheKey))
+                shippingAddress = AppCache.Get<ShippingAddress>(shippingAddressCacheKey);
+            else {
+                var shippingAddressRepository = _repositoryFactory.CreateRepository<ShippingAddress>();
+                shippingAddress = shippingAddressRepository.GetById(routePoint.ShippingAddressId);
+                AppCache.Add(shippingAddressCacheKey, shippingAddress);
+            }
+
+            string customerCacheKey = string.Format("Customer Id={0}", shippingAddress.CustomerId);
+
+            Customer customer;
+            if (AppCache.Contains(customerCacheKey))
+                customer = AppCache.Get<Customer>(customerCacheKey);
+            else {
+                var customersRepository = _repositoryFactory.CreateRepository<Customer>();
+                customer = customersRepository.GetById(shippingAddress.CustomerId);
+                AppCache.Add(customerCacheKey, customer);
+            }
+
+            const string warehouseCacheKey = "Default Warehouse";
+
+            Warehouse defaultWarehouse;
+            if (AppCache.Contains(warehouseCacheKey))
+                defaultWarehouse = AppCache.Get<Warehouse>(warehouseCacheKey);
+            else {
+                var warehouseRepository = _repositoryFactory.CreateRepository<Warehouse>();
+                defaultWarehouse =
+                    warehouseRepository.Find().Where(new DefaultWarehouseSpec()).FirstOrDefault();
+                AppCache.Add(warehouseCacheKey, defaultWarehouse);
+            }
 
             _routePointViewModel = routePointViewModel;
             _orderViewModel = new OrderViewModel {
