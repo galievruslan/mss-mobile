@@ -49,11 +49,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         private Thread _thread;
+        private bool _inProcess = false;
         public void Synchronize() {
-            _view.MakeInactive();
-
-            _thread = new Thread(RunSynchronizationInBackground);
-            _thread.Start();
+            if (!_inProcess) {
+                _inProcess = true;
+                _view.MakeInactive();
+                
+                _thread = new Thread(RunSynchronizationInBackground);
+                _thread.Start();
+            }
         }
 
         bool _failed = false;
@@ -95,7 +99,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     Notify(new TextNotification("Start synchronization"));
                     _view.ShowProgressBar();
 
-
+                    AppCache.Clear();
                     Notify(new TextNotification("Routes synchronization"));
                     var routesRepository = _repositoryFactory.CreateRepository<Route>();
                     var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
@@ -538,7 +542,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         synchronizationDate.ToString(DateTimeFormatInfo.InvariantInfo);
                     _configurationManager.GetConfig("Common").Save();
 
-                    AppCache.Clear();
                     _view.ShowInformation("Synchronization complete");
                 }
             }
@@ -551,6 +554,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
             finally {
                 _view.MakeActive();
+                _inProcess = false;
             }
 
             _view.ReturnToMenu();
@@ -560,16 +564,18 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private bool _canceled;
         public void Cancel() {
             try {
-                _canceled = true;
-                if (_thread != null) {
-                    _thread.Abort();
-                    _thread.Join();
+                if (_inProcess) {
+                    _canceled = true;
+                    if (_thread != null) {
+                        _thread.Abort();
+                    }
                 }
             }
             catch (ThreadAbortException) {
                 
             }
             finally {
+                _inProcess = false;
                 _view.MakeActive();
             }
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Data;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;

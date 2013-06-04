@@ -21,6 +21,8 @@
     </FormFactorID>
     <StartupObject>
     </StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Mss.WinMobile.Resources.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,6 +79,9 @@
     <Compile Include="ILocalizator.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="Localizator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mss.WinMobile.Resources.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Images\" />

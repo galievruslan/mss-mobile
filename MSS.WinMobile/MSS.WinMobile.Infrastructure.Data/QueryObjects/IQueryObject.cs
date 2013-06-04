@@ -33,8 +33,7 @@ namespace MSS.WinMobile.Infrastructure.Storage.QueryObjects
             _position = -1;
         }
 
-        object IEnumerator.Current
-        {
+        object IEnumerator.Current {
             get { return Current; }
         }
 

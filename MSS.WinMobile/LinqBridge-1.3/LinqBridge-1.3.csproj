@@ -4,29 +4,22 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</ProjectGuid>
+    <ProjectGuid>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Json</RootNamespace>
-    <AssemblyName>JsonSerializer</AssemblyName>
+    <RootNamespace>LinqBridge_1._3</RootNamespace>
+    <AssemblyName>LinqBridge-1.3</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
-    <OSVersion>5.02</OSVersion>
-    <DeployDirSuffix>JsonSerializer</DeployDirSuffix>
+    <OSVersion>5.2</OSVersion>
+    <DeployDirSuffix>LinqBridge_1._3</DeployDirSuffix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
-    <StartupObject>
-    </StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>JsonSerializer.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Linq-Bridge-1.3.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,22 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonDeserializer.cs" />
-    <Compile Include="JsonSerializer.cs" />
-    <Compile Include="JsonTypeJuggler.cs" />
+    <Compile Include="LinqBridge-1.3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LitJson\LitJson.csproj">
-      <Project>{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}</Project>
-      <Name>LitJson</Name>
-    </ProjectReference>
+    <None Include="Linq-Bridge-1.3.pfx" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="JsonSerializer.pfx" />
-  </ItemGroup>
-  <Import Condition="'$(TargetFrameworkVersion)' == 'v1.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.v1.targets" />
-  <Import Condition="'$(TargetFrameworkVersion)' == 'v2.0'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
@@ -90,5 +74,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Condition="'$(TargetFrameworkVersion)' == 'v3.5'" Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
 </Project>

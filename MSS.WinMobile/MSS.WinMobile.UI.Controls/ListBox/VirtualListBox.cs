@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;

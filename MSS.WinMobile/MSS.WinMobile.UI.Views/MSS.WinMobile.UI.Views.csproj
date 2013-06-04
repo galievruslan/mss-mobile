@@ -18,6 +18,8 @@
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MSS.WinMobile.UI.Views.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -269,6 +271,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="MSS.WinMobile.UI.Views.pfx" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.LocalizationViewModel.datasource" />
     <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.UnitOfMeasureViewModel.datasource" />
   </ItemGroup>

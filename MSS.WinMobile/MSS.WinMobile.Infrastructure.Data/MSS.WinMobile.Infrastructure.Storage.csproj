@@ -18,6 +18,8 @@
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>MSS.WinMobile.Infrastructure.Storage.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +65,15 @@
     <Compile Include="IStorage.cs" />
     <Compile Include="IStorageConnection.cs" />
     <Compile Include="IUnitOfWorkFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MSS.WinMobile.Infrastructure.Storage.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LinqBridge-1.3\LinqBridge-1.3.csproj">
+      <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
+      <Name>LinqBridge-1.3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

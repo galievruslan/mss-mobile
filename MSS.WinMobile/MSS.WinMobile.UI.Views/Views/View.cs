@@ -26,8 +26,8 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private delegate void ShowInformationDelegate(string message);
         public void ShowInformation(string message) {
-            if (Parent.InvokeRequired) {
-                Parent.Invoke(new ShowInformationDelegate(ShowInformation), message);
+            if (InvokeRequired) {
+                Invoke(new ShowInformationDelegate(ShowInformation), message);
             }
             else {
                 ViewContainer.ShowInformation(message);
@@ -36,8 +36,8 @@ namespace MSS.WinMobile.UI.Views.Views {
 
         private delegate void ShowErrorDelegate(IEnumerable<string> messages);
         public void ShowError(IEnumerable<string> messages) {
-            if (Parent.InvokeRequired) {
-                Parent.Invoke(new ShowErrorDelegate(ShowError), messages);
+            if (InvokeRequired) {
+                Invoke(new ShowErrorDelegate(ShowError), messages);
             }
             else {
                 ViewContainer.ShowError(messages);

@@ -25,7 +25,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         private readonly IList<PickUpProductViewModel> _pickUpProductViewModels;
 
         public PickUpProductPresenter(IPickUpProductView view, IRepositoryFactory repositoryFactory, ILookUpService lookUpService, PriceListViewModel priceListViewModel, IEnumerable<OrderItemViewModel> orderItemViewModels) {
-            Log.Debug("1");
             _repositoryFactory = repositoryFactory;
             _lookUpService = lookUpService;
             _priceListViewModel = priceListViewModel;
@@ -44,7 +43,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
             _productsPriceRetriever = new ProductsPriceRetriever(priceList);
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 50);
             _view = view;
-            Log.Debug("2");
 
             _pickUpProductViewModels = new List<PickUpProductViewModel>();
             foreach (var orderItemViewModel in orderItemViewModels) {
@@ -58,7 +56,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     UnitOfMeasureName = orderItemViewModel.UnitOfMeasureName
                 });
             }
-            Log.Debug("3");
         }
 
         private const int MaxValue = 10000;
@@ -101,7 +98,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public int InitializeListSize() {
             int count = _productsPriceRetriever.Count;
-            Log.Debug("4");
             return count;
         }
 

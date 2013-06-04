@@ -46,10 +46,6 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LinqBridge.CF20, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\LinqBridge.CF20.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
@@ -74,6 +70,10 @@
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LinqBridge-1.3\LinqBridge-1.3.csproj">
+      <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
+      <Name>LinqBridge-1.3</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj">
       <Project>{C7E02A98-65EF-4C2A-BA51-5E84B9397343}</Project>
       <Name>MSS.WinMobile.Application.Configuration</Name>

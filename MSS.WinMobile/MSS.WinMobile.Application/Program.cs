@@ -63,7 +63,8 @@ namespace MSS.WinMobile.Application
                 }
 
                 if (current == null) {
-                    current = localizations.FirstOrDefault();
+                    current =
+                        localizations.LastOrDefault();
                 }
                 localizator.SetupLocalization(current);
             }
