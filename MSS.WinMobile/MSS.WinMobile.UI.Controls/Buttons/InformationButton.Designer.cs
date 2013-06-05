@@ -38,6 +38,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Name = "InformationButton";
+            this.PressedImage = ((System.Drawing.Image)(resources.GetObject("$this.PressedImage")));
             this.Size = new System.Drawing.Size(28, 28);
             this.ResumeLayout(false);
 

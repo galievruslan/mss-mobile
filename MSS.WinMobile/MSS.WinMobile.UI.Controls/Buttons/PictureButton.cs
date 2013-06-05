@@ -63,7 +63,7 @@ namespace MSS.WinMobile.UI.Controls.Buttons
         protected override void OnPaint(PaintEventArgs e)
         {
             if (_pressed && _pressedImage != null)
-                e.Graphics.DrawImage(_pressedImage, 0, 0);
+                e.Graphics.DrawImage(_pressedImage, ClientRectangle, new Rectangle(0, 0, _backgroundImage.Width, _backgroundImage.Height), GraphicsUnit.Pixel);
             else if (_backgroundImage != null)
                 e.Graphics.DrawImage(_backgroundImage, ClientRectangle, new Rectangle(0, 0, _backgroundImage.Width, _backgroundImage.Height), GraphicsUnit.Pixel);
 

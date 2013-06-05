@@ -60,7 +60,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
             // 
             // VirtualListBoxItem
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "VirtualListBoxItem";

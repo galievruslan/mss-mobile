@@ -105,9 +105,14 @@ namespace MSS.WinMobile.Infrastructure.Web.Repositories
 
         public void Dispose()
         {
-            const string logoutPath = "users/sign_out";
-            RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, logoutPath));
-            State = ConnectionState.Closed;
+            try {
+                const string logoutPath = "users/sign_out";
+                RequestDispatcher.Dispatch(this, RequestFactory.CreateGetRequest(this, logoutPath));
+                State = ConnectionState.Closed;
+            }
+            catch (Exception exception) {
+                Log.Error(exception);
+            }
         }
     }
 }

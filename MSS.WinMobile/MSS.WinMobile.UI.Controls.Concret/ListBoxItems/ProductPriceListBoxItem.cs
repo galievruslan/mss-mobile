@@ -65,9 +65,9 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._priceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._priceLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._priceLabel.ForeColor = System.Drawing.Color.Black;
-            this._priceLabel.Location = new System.Drawing.Point(153, 14);
+            this._priceLabel.Location = new System.Drawing.Point(145, 14);
             this._priceLabel.Name = "_priceLabel";
-            this._priceLabel.Size = new System.Drawing.Size(44, 14);
+            this._priceLabel.Size = new System.Drawing.Size(52, 14);
             this._priceLabel.TabIndex = 1;
             this._priceLabel.TabStop = false;
             this._priceLabel.Text = "150,15";
@@ -80,9 +80,9 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._quantityLabel.BackColor = System.Drawing.Color.White;
             this._quantityLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._quantityLabel.ForeColor = System.Drawing.Color.Black;
-            this._quantityLabel.Location = new System.Drawing.Point(153, 0);
+            this._quantityLabel.Location = new System.Drawing.Point(145, 0);
             this._quantityLabel.Name = "_quantityLabel";
-            this._quantityLabel.Size = new System.Drawing.Size(44, 14);
+            this._quantityLabel.Size = new System.Drawing.Size(52, 14);
             this._quantityLabel.TabIndex = 2;
             this._quantityLabel.TabStop = false;
             this._quantityLabel.Text = "100000";
@@ -97,7 +97,7 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._descriptionLabel.ForeColor = System.Drawing.Color.Black;
             this._descriptionLabel.Location = new System.Drawing.Point(0, 0);
             this._descriptionLabel.Name = "_descriptionLabel";
-            this._descriptionLabel.Size = new System.Drawing.Size(153, 28);
+            this._descriptionLabel.Size = new System.Drawing.Size(147, 28);
             this._descriptionLabel.TabIndex = 0;
             this._descriptionLabel.TabStop = false;
             this._descriptionLabel.Text = "very long item description with something additional information";
@@ -105,7 +105,8 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             // 
             // ProductPriceListBoxItem
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._priceLabel);
             this.Controls.Add(this._quantityLabel);

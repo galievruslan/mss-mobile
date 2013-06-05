@@ -44,7 +44,8 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             // 
             // PriceListListBoxItem
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._nameLabel);
             this.Name = "PriceListListBoxItem";

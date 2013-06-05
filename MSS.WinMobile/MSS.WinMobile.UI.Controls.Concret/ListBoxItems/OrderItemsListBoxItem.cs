@@ -59,10 +59,11 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._amountLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._amountLabel.ForeColor = System.Drawing.Color.Black;
-            this._amountLabel.Location = new System.Drawing.Point(153, 14);
+            this._amountLabel.Location = new System.Drawing.Point(146, 14);
             this._amountLabel.Name = "_amountLabel";
-            this._amountLabel.Size = new System.Drawing.Size(44, 14);
+            this._amountLabel.Size = new System.Drawing.Size(51, 14);
             this._amountLabel.TabIndex = 4;
+            this._amountLabel.TabStop = false;
             this._amountLabel.Text = "150,15";
             this._amountLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this._amountLabel.Click += new System.EventHandler(this.LabelClick);
@@ -73,10 +74,11 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._quantityLabel.BackColor = System.Drawing.Color.White;
             this._quantityLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._quantityLabel.ForeColor = System.Drawing.Color.Black;
-            this._quantityLabel.Location = new System.Drawing.Point(153, 0);
+            this._quantityLabel.Location = new System.Drawing.Point(146, 0);
             this._quantityLabel.Name = "_quantityLabel";
-            this._quantityLabel.Size = new System.Drawing.Size(44, 14);
+            this._quantityLabel.Size = new System.Drawing.Size(51, 14);
             this._quantityLabel.TabIndex = 5;
+            this._quantityLabel.TabStop = false;
             this._quantityLabel.Text = "100000";
             this._quantityLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this._quantityLabel.Click += new System.EventHandler(this.LabelClick);
@@ -89,8 +91,9 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._descriptionLabel.ForeColor = System.Drawing.Color.Black;
             this._descriptionLabel.Location = new System.Drawing.Point(0, 0);
             this._descriptionLabel.Name = "_descriptionLabel";
-            this._descriptionLabel.Size = new System.Drawing.Size(157, 42);
+            this._descriptionLabel.Size = new System.Drawing.Size(147, 42);
             this._descriptionLabel.TabIndex = 3;
+            this._descriptionLabel.TabStop = false;
             this._descriptionLabel.Text = "very long item description with something additional information";
             this._descriptionLabel.Click += new System.EventHandler(this.LabelClick);
             // 
@@ -99,9 +102,9 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             this._uomLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._uomLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._uomLabel.ForeColor = System.Drawing.Color.Black;
-            this._uomLabel.Location = new System.Drawing.Point(153, 28);
+            this._uomLabel.Location = new System.Drawing.Point(146, 28);
             this._uomLabel.Name = "_uomLabel";
-            this._uomLabel.Size = new System.Drawing.Size(44, 14);
+            this._uomLabel.Size = new System.Drawing.Size(51, 14);
             this._uomLabel.TabIndex = 6;
             this._uomLabel.TabStop = false;
             this._uomLabel.Text = "упак";
@@ -110,7 +113,8 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             // 
             // OrderItemListBoxItem
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this._uomLabel);
             this.Controls.Add(this._amountLabel);

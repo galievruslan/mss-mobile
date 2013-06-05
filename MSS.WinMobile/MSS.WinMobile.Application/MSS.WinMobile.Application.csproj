@@ -156,10 +156,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Mss.WinMobile.Application.pfx" />
-    <None Include="Resources\Fonts\CALIBRI.TTF" />
-    <None Include="Resources\Fonts\CALIBRIB.TTF" />
-    <None Include="Resources\Fonts\CALIBRII.TTF" />
-    <None Include="Resources\Fonts\CALIBRIZ.TTF" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
