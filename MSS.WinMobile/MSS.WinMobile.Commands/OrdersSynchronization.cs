@@ -8,6 +8,7 @@ using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Web;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 using MSS.WinMobile.Synchronizer.Specifications;
+using MSS.WinMobile.Synchronizer.Utils;
 
 namespace MSS.WinMobile.Synchronizer {
     public class OrdersSynchronization : Command<Route, string> {
@@ -62,7 +63,7 @@ namespace MSS.WinMobile.Synchronizer {
             orderAttributesDictionary.Add("shipping_address_id", order.ShippingAddressId);
             orderAttributesDictionary.Add("warehouse_id", order.WarehouseId);
             orderAttributesDictionary.Add("price_list_id", order.PriceListId);
-            orderAttributesDictionary.Add("comment", order.Note);
+            orderAttributesDictionary.Add("comment", JavaScriptUtils.ToEscapedJavaScriptString(order.Note));
             orderAttributesDictionary.Add("guid", order.GUID);
             var orderPointsAttributesDictionary = new Dictionary<string, object>();
             orderAttributesDictionary.Add("order_items_attributes", orderPointsAttributesDictionary);

@@ -38,6 +38,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
 
                 var cacheKeyBuilder = new StringBuilder();
                 cacheKeyBuilder.Append("ProductPrices ");
+                cacheKeyBuilder.Append(string.Format("Price Id = {0}", _priceList.Id));
                 if (_category != null)
                     cacheKeyBuilder.Append(string.Format("Category_Id = {0}", _category.Id));
                 if (!string.IsNullOrEmpty(_searchCriteria))

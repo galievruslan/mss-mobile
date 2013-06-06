@@ -47,6 +47,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Clarius.UI.OrientationAware" />
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
@@ -59,6 +60,9 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="CategotiesSynchronization.cs" />
+    <Compile Include="Utils\JavaScriptUtils.cs" />
+    <Compile Include="Utils\MathUtils.cs" />
+    <Compile Include="Utils\MiscellaneousUtils.cs" />
     <Compile Include="SettingsSynchronization.cs" />
     <Compile Include="ManagerSynchronization.cs" />
     <Compile Include="OrdersSynchronization.cs" />
@@ -70,7 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutesSynchronization.cs" />
     <Compile Include="Specifications\RoutesToSyncSpec.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="SynchronizationCommand.cs" />
+    <Compile Include="Utils\ValidationUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LinqBridge-1.3\LinqBridge-1.3.csproj">
