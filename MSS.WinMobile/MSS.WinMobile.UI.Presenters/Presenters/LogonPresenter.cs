@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Net;
-using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Infrastructure.Web.Repositories;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
+using Environment = MSS.WinMobile.Application.Environment.Environment;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {

@@ -32,12 +32,6 @@ using System.Globalization;
 
 namespace MSS.WinMobile.Synchronizer.Utils {
     internal static class StringUtils {
-        public const string CarriageReturnLineFeed = "\r\n";
-        public const string Empty = "";
-        public const char CarriageReturn = '\r';
-        public const char LineFeed = '\n';
-        public const char Tab = '\t';
-
         //public static string FormatWith(this string format, params object[] args)
         //{
         //  return FormatWith(format, null, args);

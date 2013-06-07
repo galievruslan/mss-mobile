@@ -103,6 +103,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{031DAD
 	ProjectSection(SolutionItems) = preProject
 		Configuration\Debug\Common.config = Configuration\Debug\Common.config
 		Configuration\Debug\Domain.Config = Configuration\Debug\Domain.Config
+		Loader.config = Loader.config
 		Configuration\Debug\log4net.xml = Configuration\Debug\log4net.xml
 	EndProjectSection
 EndProject
@@ -179,10 +180,8 @@ Global
 		{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{090BAF8A-4CAB-4496-ABBF-3EB383208B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{090BAF8A-4CAB-4496-ABBF-3EB383208B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{090BAF8A-4CAB-4496-ABBF-3EB383208B72}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{090BAF8A-4CAB-4496-ABBF-3EB383208B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{090BAF8A-4CAB-4496-ABBF-3EB383208B72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{090BAF8A-4CAB-4496-ABBF-3EB383208B72}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C7E02A98-65EF-4C2A-BA51-5E84B9397343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7E02A98-65EF-4C2A-BA51-5E84B9397343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7E02A98-65EF-4C2A-BA51-5E84B9397343}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -249,13 +248,10 @@ Global
 		{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{1B54E854-A3BB-48B5-96CA-31DAA7919184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B54E854-A3BB-48B5-96CA-31DAA7919184}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B54E854-A3BB-48B5-96CA-31DAA7919184}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1B54E854-A3BB-48B5-96CA-31DAA7919184}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B54E854-A3BB-48B5-96CA-31DAA7919184}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B54E854-A3BB-48B5-96CA-31DAA7919184}.Release|Any CPU.Deploy.0 = Release|Any CPU

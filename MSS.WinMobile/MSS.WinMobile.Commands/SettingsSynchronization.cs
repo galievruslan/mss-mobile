@@ -4,10 +4,10 @@ using System.Globalization;
 using System.Net;
 using Json;
 using MSS.WinMobile.Application.Configuration;
-using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Infrastructure.Web;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
+using Environment = MSS.WinMobile.Application.Environment.Environment;
 
 namespace MSS.WinMobile.Synchronizer
 {

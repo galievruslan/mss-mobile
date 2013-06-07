@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Threading;
 using MSS.WinMobile.Application.Configuration;
-using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators;
@@ -16,6 +15,7 @@ using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
 using AppCache = MSS.WinMobile.Application.Cache.Cache;
+using Environment = MSS.WinMobile.Application.Environment.Environment;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {

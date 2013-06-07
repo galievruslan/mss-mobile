@@ -249,6 +249,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj">
+      <Project>{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}</Project>
+      <Name>MSS.WinMobile.Application.Environment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Common\MSS.WinMobile.Common.csproj">
       <Project>{EE8C2DBF-748F-44F3-BDF8-33F9627295FC}</Project>
       <Name>MSS.WinMobile.Common</Name>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Views.Views;
 using View = MSS.WinMobile.UI.Views.Views.View;
@@ -42,7 +43,7 @@ namespace MSS.WinMobile.UI.Views {
             var stringBuilder = new StringBuilder();
             foreach (var message in messages) {
                 stringBuilder.Append(_localizator.Localization.GetLocalizedValue(message));
-                stringBuilder.Append("\n\r");
+                stringBuilder.Append(Environment.ReturnWithNewLine);
             }
             MessageBox.Show(stringBuilder.ToString(),
                             _localizator.Localization.GetLocalizedValue("Error"),
