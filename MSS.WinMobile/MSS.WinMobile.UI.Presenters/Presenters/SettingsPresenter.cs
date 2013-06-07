@@ -18,7 +18,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly INavigator _navigator;
         private readonly ConfigurationManager _configurationManager;
-        private ILocalizator _localizator;
+        private readonly ILocalizator _localizator;
 
         public SettingsPresenter(ISettingsView view, IStorageManager storageManager, IRepositoryFactory repositoryFactory, INavigator navigator, ILocalizator localizator) {
             _view = view;
@@ -53,6 +53,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                     .GetSetting("Current")
                                                     .Value,
             };
+
+            if (string.IsNullOrEmpty(_viewModel.Localization)) {
+                List<ILocalization> localizations =
+                    _localizator.GetAvailableLocalizations(Environments.AppPath);
+                _viewModel.Localization =
+                        localizations.LastOrDefault().Path;
+            }
 
             return _viewModel;
         }
