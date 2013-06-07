@@ -175,9 +175,9 @@
       <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
       <Name>LinqBridge-1.3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Localization.csproj">
       <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
-      <Name>MSS.WinMobile.Resources</Name>
+      <Name>MSS.WinMobile.Localization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

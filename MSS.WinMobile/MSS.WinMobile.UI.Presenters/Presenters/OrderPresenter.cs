@@ -172,7 +172,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
                 var routePoint = routePointRepository.GetById(_orderViewModel.RoutePointId);
 
-                var configurationManager = new ConfigurationManager(Environments.AppPath);
+                var configurationManager = new ConfigurationManager(Environment.AppPath);
                 var defaultStatusId = configurationManager.GetConfig("Domain")
                                                           .GetSection("Statuses")
                                                           .GetSetting("DefaultRoutePointStatusId")

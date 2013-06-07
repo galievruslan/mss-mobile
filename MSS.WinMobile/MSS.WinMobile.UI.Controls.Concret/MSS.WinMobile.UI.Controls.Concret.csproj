@@ -107,9 +107,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Localization.csproj">
       <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
-      <Name>MSS.WinMobile.Resources</Name>
+      <Name>MSS.WinMobile.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Controls\MSS.WinMobile.UI.Controls.Base.csproj">
       <Project>{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1}</Project>

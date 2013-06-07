@@ -56,7 +56,7 @@ namespace MSS.WinMobile.Synchronizer
                 var settingsDto = JsonDeserializer.Deserialize<SettingsDto>(json);
 
                 if (settingsDto != null) {
-                    var configurationManager = new ConfigurationManager(Environments.AppPath);
+                    var configurationManager = new ConfigurationManager(Environment.AppPath);
                     configurationManager.GetConfig("Domain")
                                         .GetSection("Statuses")
                                         .GetSetting("DefaultRoutePointStatusId")

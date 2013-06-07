@@ -36,15 +36,15 @@ namespace MSS.WinMobile.Application
             }
 
             // Setup storage manager
-            var configurationManager = new ConfigurationManager(Environments.AppPath);
+            var configurationManager = new ConfigurationManager(Environment.AppPath);
             var databaseName =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("FileName").Value;
             var schemaScript =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("SchemaScript").Value;
             IStorageManager storageManager = new SqLiteStorageManager();
             storageManager.CreateOrOpenStorage(
-                string.Concat(Environments.AppPath, databaseName),
-                string.Concat(Environments.AppPath, schemaScript));
+                string.Concat(Environment.AppPath, databaseName),
+                string.Concat(Environment.AppPath, schemaScript));
 
             // Setup localization
             ILocalizator localizator = new Localizator();
@@ -55,7 +55,7 @@ namespace MSS.WinMobile.Application
                                                        .Value;
 
                 List<ILocalization> localizations =
-                    localizator.GetAvailableLocalizations(Environments.AppPath);
+                    localizator.GetAvailableLocalizations(Environment.AppPath);
                 ILocalization current = null;
                 if (!string.IsNullOrEmpty(localization)) {
                     current =

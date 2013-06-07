@@ -19,7 +19,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         public LogonPresenter(ILogonView view, INavigator navigator)
         {
-            _configurationManager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
+            _configurationManager = new Application.Configuration.ConfigurationManager(Environment.AppPath);
             _view = view;
             _navigator = navigator;
         }
@@ -71,7 +71,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private LogonViewModel _viewModel;
         public LogonViewModel Initialize() {
-            var manager = new Application.Configuration.ConfigurationManager(Environments.AppPath);
+            var manager = new Application.Configuration.ConfigurationManager(Environment.AppPath);
             string userName = manager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
             string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
 

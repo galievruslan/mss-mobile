@@ -193,9 +193,9 @@
       <Project>{E2DB17CF-A95C-499E-812E-686946F3DA5C}</Project>
       <Name>MSS.WinMobile.Infrastructure.Web.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Localization.csproj">
       <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
-      <Name>MSS.WinMobile.Resources</Name>
+      <Name>MSS.WinMobile.Localization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

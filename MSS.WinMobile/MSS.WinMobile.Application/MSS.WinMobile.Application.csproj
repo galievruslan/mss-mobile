@@ -19,7 +19,8 @@
     <FormFactorID>
     </FormFactorID>
     <DeployDirPrefix>%25CSIDL_PROGRAM_FILES%25</DeployDirPrefix>
-    <ApplicationIcon>mobile_checkmark.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <Win32Resource>
     </Win32Resource>
     <SignAssembly>true</SignAssembly>
@@ -111,9 +112,9 @@
       <Project>{D3FAC8EA-09DE-4CA9-80E8-7F1D32FBF170}</Project>
       <Name>MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Resources.csproj">
+    <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Localization.csproj">
       <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
-      <Name>MSS.WinMobile.Resources</Name>
+      <Name>MSS.WinMobile.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
       <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
@@ -125,34 +126,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="log4net.xml">
+    <Content Include="..\Configuration\Debug\Common.config">
+      <Link>Config\Common.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SQLite.Interop.084.dll">
+    <Content Include="..\Configuration\Debug\Domain.Config">
+      <Link>Config\Domain.Config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Config\Common.config">
+    <Content Include="..\Configuration\Debug\log4net.xml">
+      <Link>log4net.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="mobile_checkmark.ico" />
-    <Content Include="Resources\Database\schema.sql">
+    <Content Include="..\Libs\SQLite.Interop.084.dll">
+      <Link>SQLite.Interop.084.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Config\Domain.config">
+    <Content Include="..\Resources\Database\Schema.sql">
+      <Link>Resources\Database\Schema.sql</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Localizations\English %28En-en%29.xml">
+    <Content Include="..\Resources\Localizations\English %28En-en%29.xml">
+      <Link>Resources\Localizations\English %28En-en%29.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Localizations\Russian %28Ru-ru%29.xml">
+    <Content Include="..\Resources\Localizations\Russian %28Ru-ru%29.xml">
+      <Link>Resources\Localizations\Russian %28Ru-ru%29.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Mss.WinMobile.Application.pfx" />

@@ -37,7 +37,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             IRepositoryFactory repositoryFactory,
             INavigator navigator,
             bool exitOnError) {
-            _configurationManager = new ConfigurationManager(Environments.AppPath);
+            _configurationManager = new ConfigurationManager(Environment.AppPath);
             _view = view;
 
             _storageManager = storageManager;
@@ -120,8 +120,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         _storageManager.DeleteCurrentStorage();
 
                         // Initialization
-                        string databaseScriptFullPath = Environments.AppPath + schemaScript;
-                        string databaseFileFullPath = Environments.AppPath + databaseName;
+                        string databaseScriptFullPath = Environment.AppPath + schemaScript;
+                        string databaseFileFullPath = Environment.AppPath + databaseName;
                         _storageManager.CreateOrOpenStorage(databaseFileFullPath,
                                                             databaseScriptFullPath);
                     }

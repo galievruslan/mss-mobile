@@ -90,7 +90,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                                    .Where(new RouteOnDateSpec(_routeViewModel.Date))
                                    .FirstOrDefault();
 
-                var configurationManager = new ConfigurationManager(Environments.AppPath);
+                var configurationManager = new ConfigurationManager(Environment.AppPath);
                 var defaultStatusId = configurationManager.GetConfig("Domain")
                                                           .GetSection("Statuses")
                                                           .GetSetting("DefaultRoutePointStatusId")

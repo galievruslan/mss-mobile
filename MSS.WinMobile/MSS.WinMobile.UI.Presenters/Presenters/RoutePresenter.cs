@@ -45,7 +45,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _viewModel = routeViewModel;
 
             var statusRepository = _repositoryFactory.CreateRepository<Status>();
-            var configurationManager = new ConfigurationManager(Environments.AppPath);
+            var configurationManager = new ConfigurationManager(Environment.AppPath);
             foreach (var status in statusRepository.Find().ToArray()) {
                 try {
                     var colorName = configurationManager.GetConfig("Domain")
