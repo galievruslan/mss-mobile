@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MSS.WinMobile.Infrastructure.SqliteSpecificationsTranslators")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MICROSOFT")]
+[assembly: AssemblyCompany("2Gteam")]
 [assembly: AssemblyProduct("MSS.WinMobile.Infrastructure.SqliteSpecificationsTranslators")]
-[assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
+[assembly: AssemblyCopyright("Copyright © 2Gteam 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

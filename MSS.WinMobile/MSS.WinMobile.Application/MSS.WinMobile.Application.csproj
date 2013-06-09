@@ -154,6 +154,10 @@
       <Link>Resources\Localizations\Russian %28Ru-ru%29.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\Updater\bin\Release\Updater.exe">
+      <Link>Updater.exe</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Mss.WinMobile.Application.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

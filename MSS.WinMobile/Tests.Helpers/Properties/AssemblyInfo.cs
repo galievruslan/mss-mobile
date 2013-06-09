@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Tests.Helpers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MICROSOFT")]
+[assembly: AssemblyCompany("2Gteam")]
 [assembly: AssemblyProduct("Tests.Helpers")]
-[assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
+[assembly: AssemblyCopyright("Copyright © 2Gteam 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -9,8 +9,8 @@ namespace Updater {
         /// The main entry point for the application.
         /// </summary>
         [MTAThread]
-        static void Main() {
-            Application.Run(new Form1());
+        static void Main(string[] args) {
+            Application.Run(new Updater());
         }
     }
 }

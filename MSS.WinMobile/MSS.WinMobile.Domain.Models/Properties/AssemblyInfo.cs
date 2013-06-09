@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MSS.WinMobile.Domain.Models")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MICROSOFT")]
+[assembly: AssemblyCompany("2Gteam")]
 [assembly: AssemblyProduct("MSS.WinMobile.Domain.Models")]
-[assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
+[assembly: AssemblyCopyright("Copyright © 2Gteam 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

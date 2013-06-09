@@ -8,8 +8,8 @@
     <ProjectGuid>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSS.WinMobile.Resources</RootNamespace>
-    <AssemblyName>MSS.WinMobile.Resources</AssemblyName>
+    <RootNamespace>MSS.WinMobile.Localization</RootNamespace>
+    <AssemblyName>MSS.WinMobile.Localization</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
@@ -79,6 +79,7 @@
     <Compile Include="ILocalizator.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="Localizator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Mss.WinMobile.Resources.pfx" />

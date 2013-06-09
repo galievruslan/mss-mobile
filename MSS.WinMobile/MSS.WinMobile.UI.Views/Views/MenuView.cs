@@ -68,5 +68,20 @@ namespace MSS.WinMobile.UI.Views.Views {
             _ordersLabel.Refresh();
             _menuPresenter.ShowOrderListView();
         }
+
+        private void UpdatesLabelClick(object sender, EventArgs e)
+        {
+            _updatesLabel.ForeColor = _selectedMenuColor;
+            _updatesLabel.Font = new Font(_updatesLabel.Font.Name,
+                                         _updatesLabel.Font.Size,
+                                         FontStyle.Underline);
+            _updatesLabel.Refresh();
+            _menuPresenter.RunUpdater();
+
+            _updatesLabel.ForeColor = Color.Black;
+            _updatesLabel.Font = new Font(_updatesLabel.Font.Name,
+                                         _updatesLabel.Font.Size,
+                                         FontStyle.Regular);
+        }
     }
 }

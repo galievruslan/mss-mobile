@@ -1,10 +1,9 @@
 ﻿namespace Updater {
-    partial class Form1 {
+    partial class Updater {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.MainMenu mainMenu1;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -24,15 +23,24 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.mainMenu1 = new System.Windows.Forms.MainMenu();
-            this.Menu = this.mainMenu1;
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Updater
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Text = "Form1";
             this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.Name = "Updater";
+            this.Text = "Updater";
+            this.Load += new System.EventHandler(this.UpdaterLoad);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+
     }
 }
 

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("LinqBridge_1._3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MICROSOFT")]
+[assembly: AssemblyCompany("Joseph Albahari")]
 [assembly: AssemblyProduct("LinqBridge_1._3")]
-[assembly: AssemblyCopyright("Copyright © MICROSOFT 2013")]
+[assembly: AssemblyCopyright("Copyright (c) 2007 Atif Aziz, Joseph Albahari")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
