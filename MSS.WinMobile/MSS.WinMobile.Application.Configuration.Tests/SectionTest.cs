@@ -92,8 +92,8 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void GetSettingTest()
         {
             var config = new Config(_configPath);
-            Section target = config.GetSection("Section 2");
-            Setting actual = target.GetSetting("Setting 3");
+            ISection target = config.GetSection("Section 2");
+            ISetting actual = target.GetSetting("Setting 3");
             Assert.IsNotNull(actual);
         }
 
@@ -104,10 +104,10 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void AddSettingTest()
         {
             var config = new Config(_configPath);
-            Section target = config.GetSection("Section 2");
+            ISection target = config.GetSection("Section 2");
             target.AddSetting("New Setting");
 
-            Setting actual = target.GetSetting("New Setting");
+            ISetting actual = target.GetSetting("New Setting");
             Assert.IsNotNull(actual);
         }
     }

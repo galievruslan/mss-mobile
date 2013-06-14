@@ -17,16 +17,21 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         private readonly IStorageManager _storageManager;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly INavigator _navigator;
-        private readonly ConfigurationManager _configurationManager;
-        private readonly ILocalizator _localizator;
+        private readonly IConfigurationManager _configurationManager;
+        private readonly ILocalizationManager _localizationManager;
 
-        public SettingsPresenter(ISettingsView view, IStorageManager storageManager, IRepositoryFactory repositoryFactory, INavigator navigator, ILocalizator localizator) {
+        public SettingsPresenter(ISettingsView view, 
+                                 IStorageManager storageManager,
+                                 IRepositoryFactory repositoryFactory,
+                                 IConfigurationManager configurationManager, 
+                                 INavigator navigator,
+                                 ILocalizationManager localizationManager) {
             _view = view;
             _storageManager = storageManager;
             _repositoryFactory = repositoryFactory;
             _navigator = navigator;
-            _configurationManager = new ConfigurationManager(Environment.AppPath);
-            _localizator = localizator;
+            _configurationManager = configurationManager;
+            _localizationManager = localizationManager;
         }
 
         private SettingsViewModel _viewModel;
@@ -56,7 +61,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
             if (string.IsNullOrEmpty(_viewModel.Localization)) {
                 List<ILocalization> localizations =
-                    _localizator.GetAvailableLocalizations(Environment.AppPath);
+                    _localizationManager.GetAvailableLocalizations(Environment.AppPath);
                 _viewModel.Localization =
                         localizations.LastOrDefault().Path;
             }
@@ -68,7 +73,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public IEnumerable<LocalizationViewModel> GetAvailableLanguages() {
             if (_localizationViewModels == null) {
                 var localizations =
-                    _localizator.GetAvailableLocalizations(Environment.AppPath);
+                    _localizationManager.GetAvailableLocalizations(Environment.AppPath);
                 _localizationViewModels = localizations.Select(localization => new LocalizationViewModel {
                     Name = localization.Name,
                     Path = localization.Path
@@ -83,7 +88,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 GetAvailableLanguages().FirstOrDefault(
                     model => model.Path == _viewModel.Localization) ??
                 GetAvailableLanguages().FirstOrDefault(
-                        model => model.Path == _localizator.Localization.Path);
+                        model => model.Path == _localizationManager.Localization.Path);
 
             return selectedLocalizationViewModel;
         }
@@ -111,11 +116,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 _configurationManager.GetConfig("Common").Save();
 
                 List<ILocalization> localizations =
-                    _localizator.GetAvailableLocalizations(Environment.AppPath);
+                    _localizationManager.GetAvailableLocalizations(Environment.AppPath);
                 ILocalization current =
                     localizations.FirstOrDefault(
                         l => l.Path.ToUpper() == _viewModel.Localization.ToUpper());
-                _localizator.SetupLocalization(current);
+                _localizationManager.SetupLocalization(current);
 
                 _navigator.GoToMenu();
             }

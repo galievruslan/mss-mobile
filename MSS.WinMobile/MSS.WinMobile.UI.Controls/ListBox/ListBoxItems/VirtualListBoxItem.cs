@@ -11,7 +11,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
         protected readonly Color ColorSelected = Color.LightSkyBlue;
         protected readonly Color ColorUnselected = Color.White;
 
-        public ILocalizator Localizator { protected get; set; }
+        public ILocalizationManager LocalizationManager { protected get; set; }
 
         protected void DrawDivisor(Graphics graphics) {
             graphics.DrawLine(new Pen(Color.Gainsboro), 4, Height - 1, Width - 8, Height - 1);

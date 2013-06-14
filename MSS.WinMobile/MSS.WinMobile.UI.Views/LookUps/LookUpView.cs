@@ -14,17 +14,17 @@ namespace MSS.WinMobile.UI.Views.LookUps
             InitializeComponent();
         }
 
-        protected readonly ILocalizator Localizator;
-        public LookUpView(ILocalizator localizator) : this() {
-            Localizator = localizator;
+        protected readonly ILocalizationManager LocalizationManager;
+        public LookUpView(ILocalizationManager localizationManager) : this() {
+            LocalizationManager = localizationManager;
 
-            _okMenuItem.Text = Localizator.Localization.GetLocalizedValue(_okMenuItem.Text);
-            _cancelMenuItem.Text = Localizator.Localization.GetLocalizedValue(_cancelMenuItem.Text);
+            _okMenuItem.Text = LocalizationManager.Localization.GetLocalizedValue(_okMenuItem.Text);
+            _cancelMenuItem.Text = LocalizationManager.Localization.GetLocalizedValue(_cancelMenuItem.Text);
         }
 
         public void ShowInformation(string message) {
-            MessageBox.Show(Localizator.Localization.GetLocalizedValue(message),
-                            Localizator.Localization.GetLocalizedValue("Information"),
+            MessageBox.Show(LocalizationManager.Localization.GetLocalizedValue(message),
+                            LocalizationManager.Localization.GetLocalizedValue("Information"),
                             MessageBoxButtons.OK, MessageBoxIcon.None,
                             MessageBoxDefaultButton.Button1);
         }
@@ -32,19 +32,19 @@ namespace MSS.WinMobile.UI.Views.LookUps
         public void ShowError(IEnumerable<string> messages) {
             var stringBuilder = new StringBuilder();
             foreach (var message in messages) {
-                stringBuilder.Append(Localizator.Localization.GetLocalizedValue(message));
+                stringBuilder.Append(LocalizationManager.Localization.GetLocalizedValue(message));
                 stringBuilder.Append(Environment.ReturnWithNewLine);
             }
             MessageBox.Show(stringBuilder.ToString(),
-                            Localizator.Localization.GetLocalizedValue("Error"),
+                            LocalizationManager.Localization.GetLocalizedValue("Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
         }
 
         public bool ShowConfirmation(string messages) {
             return DialogResult.Yes ==
-                   MessageBox.Show(Localizator.Localization.GetLocalizedValue(messages),
-                                   Localizator.Localization.GetLocalizedValue("Confirmation"),
+                   MessageBox.Show(LocalizationManager.Localization.GetLocalizedValue(messages),
+                                   LocalizationManager.Localization.GetLocalizedValue("Confirmation"),
                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                    MessageBoxDefaultButton.Button2);
         }
@@ -53,7 +53,7 @@ namespace MSS.WinMobile.UI.Views.LookUps
             var stringBuilder = new StringBuilder();
             foreach (var keyValuePair in details) {
                 stringBuilder.Append(string.Format("<b>{0}</b>: {1}",
-                                                   Localizator.Localization.GetLocalizedValue(
+                                                   LocalizationManager.Localization.GetLocalizedValue(
                                                        keyValuePair.Key),
                                                    keyValuePair.Value));
                 stringBuilder.Append("</br>");

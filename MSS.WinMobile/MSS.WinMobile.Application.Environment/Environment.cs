@@ -1,14 +1,28 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace MSS.WinMobile.Application.Environment
 {
     public static class Environment
     {
+        [DllImport("coredll.dll", SetLastError = true)]
+        private static extern int GetModuleFileName(IntPtr hModule, StringBuilder lpFilename, int nSize);
+
         public static string AppPath {
             get {
                 return Path.GetDirectoryName(
                     Assembly.GetExecutingAssembly().GetName().CodeBase) + '/';
+            }
+        }
+
+        public static string AppExecutableName {
+            get {
+                var name = new StringBuilder(1024);
+                GetModuleFileName(IntPtr.Zero, name, 1024);
+                return name.ToString();
             }
         }
 

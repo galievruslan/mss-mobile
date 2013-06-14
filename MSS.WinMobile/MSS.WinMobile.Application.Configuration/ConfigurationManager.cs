@@ -6,18 +6,15 @@ using log4net;
 
 namespace MSS.WinMobile.Application.Configuration
 {
-    public class ConfigurationManager
-    {
+    public class ConfigurationManager : IConfigurationManager {
         private static readonly ILog Log = LogManager.GetLogger(typeof(ConfigurationManager));
-        private const string ConfigurationFolder = @"\Config";
-
-        private readonly string _configurationPath;
-        public ConfigurationManager(string applicationPath)
-        {
-            _configurationPath = applicationPath + ConfigurationFolder;
+        
+        private readonly string _configurationsPath;
+        public ConfigurationManager(string configurationsesPath) {
+            _configurationsPath = configurationsesPath;
             _configs = new Dictionary<string, Config>();
 
-            string[] configurationFiles = Directory.GetFiles(_configurationPath, "*.config");
+            string[] configurationFiles = Directory.GetFiles(_configurationsPath, "*.config");
             foreach (var configurationFile in configurationFiles)
             {
                 try
@@ -35,7 +32,7 @@ namespace MSS.WinMobile.Application.Configuration
 
         private readonly IDictionary<string, Config> _configs;
 
-        public Config GetConfig(string name)
+        public IConfig GetConfig(string name)
         {
             string nameInLowerCase = name.ToLower();
             lock (_configs)

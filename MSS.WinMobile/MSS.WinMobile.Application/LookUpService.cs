@@ -9,15 +9,15 @@ using MSS.WinMobile.UI.Views.LookUps;
 namespace MSS.WinMobile.Application {
     public class LookUpService : ILookUpService {
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
-        public LookUpService(IPresentersFactory presentersFactory, ILocalizator localizator) {
+        private readonly ILocalizationManager _localizationManager;
+        public LookUpService(IPresentersFactory presentersFactory, ILocalizationManager localizationManager) {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
         }
 
         public CategoryViewModel LookUpCategory(CategoryViewModel currentCategory) {
             CategoryViewModel selectedCategory = null;
-            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, _localizator, currentCategory)) {
+            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, _localizationManager, currentCategory)) {
                 if (categoryLookUpView.ShowDialog() == DialogResult.OK) {
                     selectedCategory = categoryLookUpView.SelectedCategory;
                 }
@@ -28,7 +28,7 @@ namespace MSS.WinMobile.Application {
 
         public CustomerViewModel LookUpCustomer() {
             CustomerViewModel selectedCustomer = null;
-            using (var customerLookUpView = new CustomerLookUpView(_presentersFactory, _localizator)) {
+            using (var customerLookUpView = new CustomerLookUpView(_presentersFactory, _localizationManager)) {
                 if (customerLookUpView.ShowDialog() == DialogResult.OK) {
                     selectedCustomer = customerLookUpView.SelectedCustomer;
                 }
@@ -39,7 +39,7 @@ namespace MSS.WinMobile.Application {
 
         public ShippingAddressViewModel LookUpCustomerShippingAddress(CustomerViewModel customerViewModel) {
             ShippingAddressViewModel selectedShippingAddress = null;
-            using (var shippingAddressLookUpView = new ShippingAddressLookUpView(_presentersFactory, _localizator, customerViewModel)) {
+            using (var shippingAddressLookUpView = new ShippingAddressLookUpView(_presentersFactory, _localizationManager, customerViewModel)) {
                 if (shippingAddressLookUpView.ShowDialog() == DialogResult.OK) {
                     selectedShippingAddress = shippingAddressLookUpView.SelectedShippingAddress;
                 }
@@ -50,7 +50,7 @@ namespace MSS.WinMobile.Application {
 
         public PriceListViewModel LookUpPriceList() {
             PriceListViewModel selectedPriceList = null;
-            using (var priceListLookUpView = new PriceListLookUpView(_presentersFactory, _localizator)) {
+            using (var priceListLookUpView = new PriceListLookUpView(_presentersFactory, _localizationManager)) {
                 if (priceListLookUpView.ShowDialog() == DialogResult.OK) {
                     selectedPriceList = priceListLookUpView.SelectedPriceList;
                 }
@@ -61,7 +61,7 @@ namespace MSS.WinMobile.Application {
 
         public WarehouseViewModel LookUpWarehouse() {
             WarehouseViewModel selectedWarehouse = null;
-            using (var warehouseLookUpView = new WarehouseLookUpView(_presentersFactory, _localizator)) {
+            using (var warehouseLookUpView = new WarehouseLookUpView(_presentersFactory, _localizationManager)) {
                 if (warehouseLookUpView.ShowDialog() == DialogResult.OK) {
                     selectedWarehouse = warehouseLookUpView.SelectedWarehouse;
                 }
@@ -73,7 +73,7 @@ namespace MSS.WinMobile.Application {
         public IEnumerable<PickUpProductViewModel> PickUpProducts(PriceListViewModel priceListViewModel,
                                                                   IEnumerable<OrderItemViewModel> orderItems) {
             IEnumerable<PickUpProductViewModel> pickedUpProducts = null;
-            using (var pickUpProductView = new PickUpProductView(_presentersFactory, _localizator, priceListViewModel, orderItems)) {
+            using (var pickUpProductView = new PickUpProductView(_presentersFactory, _localizationManager, priceListViewModel, orderItems)) {
                 if (pickUpProductView.ShowDialog() == DialogResult.OK) {
                     pickedUpProducts = pickUpProductView.PickedUpProducts;
                 }

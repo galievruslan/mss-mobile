@@ -11,23 +11,23 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
+        private readonly ILocalizationManager _localizationManager;
         private NewRoutePointPresenter _presenter;
         private readonly RouteViewModel _routeViewModel;
 
         private NewRoutePointViewModel _viewModel;
         
 
-        public NewRoutePointView(IPresentersFactory presentersFactory, ILocalizator localizator,
+        public NewRoutePointView(IPresentersFactory presentersFactory, ILocalizationManager localizationManager,
                                  RouteViewModel routeViewModel)
             : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
             _routeViewModel = routeViewModel;
 
-            _customerLabel.Text = _localizator.Localization.GetLocalizedValue(_customerLabel.Text);
+            _customerLabel.Text = _localizationManager.Localization.GetLocalizedValue(_customerLabel.Text);
             _shippingAddressLabel.Text =
-                _localizator.Localization.GetLocalizedValue(_shippingAddressLabel.Text);
+                _localizationManager.Localization.GetLocalizedValue(_shippingAddressLabel.Text);
         }
 
         private void NewRoutePointViewLoad(object sender, EventArgs e) {

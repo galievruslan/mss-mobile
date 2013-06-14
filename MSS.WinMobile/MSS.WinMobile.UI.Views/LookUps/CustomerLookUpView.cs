@@ -19,14 +19,14 @@ namespace MSS.WinMobile.UI.Views.LookUps
         private CustomerLookUpPresenter _presenter;
 
         public CustomerLookUpView(IPresentersFactory presentersFactory, 
-                                  ILocalizator localizator)
-            : base(localizator) {
+                                  ILocalizationManager localizationManager)
+            : base(localizationManager) {
             InitializeComponent();
             
             _presentersFactory = presentersFactory;
-            Text = localizator.Localization.GetLocalizedValue(Text);
-            customerListBox.Localizator = Localizator;
-            searchPanel.Localizator = Localizator;
+            Text = localizationManager.Localization.GetLocalizedValue(Text);
+            customerListBox.LocalizationManager = LocalizationManager;
+            searchPanel.LocalizationManager = LocalizationManager;
         }
 
         private void ViewLoad(object sender, EventArgs e)

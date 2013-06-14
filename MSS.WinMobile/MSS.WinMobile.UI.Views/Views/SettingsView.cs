@@ -12,19 +12,19 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
-        public SettingsView(IPresentersFactory presentersFactory, ILocalizator localizator) : this() {
+        private readonly ILocalizationManager _localizationManager;
+        public SettingsView(IPresentersFactory presentersFactory, ILocalizationManager localizationManager) : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
 
-            _accountLabel.Text = _localizator.Localization.GetLocalizedValue(_accountLabel.Text);
-            _passwordLabel.Text = _localizator.Localization.GetLocalizedValue(_passwordLabel.Text);
-            _serverLabel.Text = _localizator.Localization.GetLocalizedValue(_serverLabel.Text);
-            _logoutLinkLabel.Text = _localizator.Localization.GetLocalizedValue(_logoutLinkLabel.Text);
-            _languageLabel.Text = _localizator.Localization.GetLocalizedValue(_languageLabel.Text);
-            _batchSizeLabel.Text = _localizator.Localization.GetLocalizedValue(_batchSizeLabel.Text);
-            _systemTab.Text = _localizator.Localization.GetLocalizedValue(_systemTab.Text);
-            _synchronizationTab.Text = _localizator.Localization.GetLocalizedValue(_synchronizationTab.Text);
+            _accountLabel.Text = _localizationManager.Localization.GetLocalizedValue(_accountLabel.Text);
+            _passwordLabel.Text = _localizationManager.Localization.GetLocalizedValue(_passwordLabel.Text);
+            _serverLabel.Text = _localizationManager.Localization.GetLocalizedValue(_serverLabel.Text);
+            _logoutLinkLabel.Text = _localizationManager.Localization.GetLocalizedValue(_logoutLinkLabel.Text);
+            _languageLabel.Text = _localizationManager.Localization.GetLocalizedValue(_languageLabel.Text);
+            _batchSizeLabel.Text = _localizationManager.Localization.GetLocalizedValue(_batchSizeLabel.Text);
+            _systemTab.Text = _localizationManager.Localization.GetLocalizedValue(_systemTab.Text);
+            _synchronizationTab.Text = _localizationManager.Localization.GetLocalizedValue(_synchronizationTab.Text);
         }
 
         private SettingsPresenter _settingsPresenter;

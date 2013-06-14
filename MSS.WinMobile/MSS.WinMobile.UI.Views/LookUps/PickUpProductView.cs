@@ -21,19 +21,19 @@ namespace MSS.WinMobile.UI.Views.LookUps {
         }
 
         public PickUpProductView(IPresentersFactory presentersFactory,
-                                 ILocalizator localizator,
+                                 ILocalizationManager localizationManager,
                                  PriceListViewModel priceListViewModel,
                                  IEnumerable<OrderItemViewModel> orderItemViewModels)
-            : base(localizator) {
+            : base(localizationManager) {
 
             InitializeComponent();
             _presentersFactory = presentersFactory;
             _priceListViewModel = priceListViewModel;
             _orderItemViewModels = orderItemViewModels;
 
-            Text = localizator.Localization.GetLocalizedValue(Text);
-            _productPriceListBox.Localizator = Localizator;
-            searchPanel.Localizator = Localizator;
+            Text = localizationManager.Localization.GetLocalizedValue(Text);
+            _productPriceListBox.LocalizationManager = LocalizationManager;
+            searchPanel.LocalizationManager = LocalizationManager;
         }
 
         private void ViewLoad(object sender, EventArgs e) {

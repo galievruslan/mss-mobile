@@ -23,13 +23,13 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
                 _viewModel = value;
                 _descriptionLabel.Text = _viewModel.ProductName;
                 _uomLabel.Text = _viewModel.UnitOfMeasureName;
-                if (Localizator != null) {
+                if (LocalizationManager != null) {
                     _amountLabel.Text =
                         _viewModel.Amount.ToString(
-                            Localizator.Localization.GetLocalizedValue("decimalformat"));
+                            LocalizationManager.Localization.GetLocalizedValue("decimalformat"));
                     _quantityLabel.Text =
                         _viewModel.Quantity.ToString(
-                            Localizator.Localization.GetLocalizedValue("intformat"));
+                            LocalizationManager.Localization.GetLocalizedValue("intformat"));
                 }
                 else {
                     _amountLabel.Text = _viewModel.Amount.ToString(CultureInfo.InvariantCulture);

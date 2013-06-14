@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
-using System.Runtime.CompilerServices;
 
 namespace MSS.WinMobile.Application.Configuration
 {
     public static class SettingExtensions
     {
-        public static T As<T>(this Setting setting) {
+        public static T As<T>(this ISetting setting) {
             return To<T>(setting.Value);
         }
 
-        public static T[] AsArray<T>(this Setting setting) {
+        public static T[] AsArray<T>(this ISetting setting) {
             var xmlDocument = new XmlDocument();
             var xmlElement = xmlDocument.CreateElement("root");
             xmlElement.InnerXml = setting.Value;
@@ -27,7 +26,7 @@ namespace MSS.WinMobile.Application.Configuration
             return items.ToArray();
         }
 
-        public static Dictionary<TK, TV> AsDictionary<TK, TV>(this Setting setting)
+        public static Dictionary<TK, TV> AsDictionary<TK, TV>(this ISetting setting)
         {
             var xmlDocument = new XmlDocument();
             var xmlElement = xmlDocument.CreateElement("root");

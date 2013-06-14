@@ -20,14 +20,14 @@ namespace MSS.WinMobile.UI.Views.LookUps
         }
 
         public PriceListLookUpView(IPresentersFactory presentersFactory, 
-                                   ILocalizator localizator)
-            : base(localizator) {
+                                   ILocalizationManager localizationManager)
+            : base(localizationManager) {
             InitializeComponent();
             _presentersFactory = presentersFactory;
 
-            Text = localizator.Localization.GetLocalizedValue(Text);
-            _priceListListBox.Localizator = Localizator;
-            searchPanel.Localizator = Localizator;
+            Text = localizationManager.Localization.GetLocalizedValue(Text);
+            _priceListListBox.LocalizationManager = LocalizationManager;
+            searchPanel.LocalizationManager = LocalizationManager;
         }
 
         private void ViewLoad(object sender, EventArgs e)

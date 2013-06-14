@@ -78,6 +78,7 @@
     <Compile Include="Dtos\UrlAttribute.cs" />
     <Compile Include="Dtos\WarehouseDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilites\Downloader.cs" />
     <Compile Include="Utilites\RequestDispatcher.cs" />
     <Compile Include="Utilites\RequestFactory.cs" />
     <Compile Include="WebConnection.cs" />

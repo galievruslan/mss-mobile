@@ -114,8 +114,8 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void AsArrayTest()
         {
             var config = new Config(_configPath);
-            Section section = config.GetSection("Section 0");
-            Setting setting = section.GetSetting("Setting 0");
+            ISection section = config.GetSection("Section 0");
+            ISetting setting = section.GetSetting("Setting 0");
             string[] actual = setting.AsArray<string>();
             Assert.AreEqual(5, actual.Length);
         }
@@ -124,8 +124,8 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void AsDictionaryTest()
         {
             var config = new Config(_configPath);
-            Section section = config.GetSection("Section 0");
-            Setting setting = section.GetSetting("Setting 1");
+            ISection section = config.GetSection("Section 0");
+            ISetting setting = section.GetSetting("Setting 1");
             Dictionary<int, string> actual = setting.AsDictionary<int, string>();
             Assert.AreEqual(5, actual.Count);
         }

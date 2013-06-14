@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using MSS.WinMobile.Common;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Web;
@@ -10,7 +11,7 @@ using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 using MSS.WinMobile.Synchronizer.Specifications;
 
 namespace MSS.WinMobile.Synchronizer {
-    public class RoutesSynchronization : Command<Route, string> {
+    public class RoutesSynchronization : Command<bool> {
 
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(RoutesSynchronization));
 
@@ -28,7 +29,7 @@ namespace MSS.WinMobile.Synchronizer {
             _unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public override void Execute() {
+        public override bool Execute() {
             var routesToSync = _routesRepository.Find().Where(new RoutesToSyncSpec()).ToArray();
 
             foreach (var route in routesToSync) {
@@ -56,6 +57,8 @@ namespace MSS.WinMobile.Synchronizer {
                     throw new SystemException("Server rejected route");
                 }
             }
+
+            return true;
         }
 
         private IDictionary<string, object> RouteToDictionary(Route route) {

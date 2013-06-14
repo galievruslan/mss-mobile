@@ -47,12 +47,21 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
+    <Compile Include="FaultHandling\CommandException.cs" />
+    <Compile Include="FaultHandling\CommandExtensions.cs" />
+    <Compile Include="FaultHandling\IgnoreErrorCommand.cs" />
+    <Compile Include="FaultHandling\RepeatOnErrorCommand.cs" />
     <Compile Include="Observable\INotification.cs" />
     <Compile Include="Observable\IObservable.cs" />
     <Compile Include="Observable\IObserver.cs" />
@@ -62,6 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MSS.WinMobile.Common.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LinqBridge-1.3\LinqBridge-1.3.csproj">
+      <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
+      <Name>LinqBridge-1.3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

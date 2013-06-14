@@ -94,7 +94,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
             target.Save();
 
             target = new Config(_configPath);
-            Section actual = target.GetSection("New section");
+            ISection actual = target.GetSection("New section");
             Assert.IsNotNull(actual);
         }
 
@@ -105,7 +105,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void GetSectionTest()
         {
             var target = new Config(_configPath);
-            Section actual = target.GetSection("Section 1");
+            ISection actual = target.GetSection("Section 1");
             Assert.IsNotNull(actual);
         }
 
@@ -117,7 +117,7 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         {
             var target = new Config(_configPath);
             target.AddSection("New section");
-            Section actual = target.GetSection("New section");
+            ISection actual = target.GetSection("New section");
             Assert.IsNotNull(actual);
         }
     }

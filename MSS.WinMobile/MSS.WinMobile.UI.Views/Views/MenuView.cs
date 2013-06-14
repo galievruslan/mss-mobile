@@ -11,16 +11,17 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
+        private readonly ILocalizationManager _localizationManager;
 
-        public MenuView(IPresentersFactory presentersFactory, ILocalizator localizator) : this() {
+        public MenuView(IPresentersFactory presentersFactory, ILocalizationManager localizationManager) : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
 
-            _routesLabel.Text = _localizator.Localization.GetLocalizedValue(_routesLabel.Text);
-            _ordersLabel.Text = _localizator.Localization.GetLocalizedValue(_ordersLabel.Text);
-            _synchronizationLabel.Text = _localizator.Localization.GetLocalizedValue(_synchronizationLabel.Text);
-            _settingsLabel.Text = _localizator.Localization.GetLocalizedValue(_settingsLabel.Text);
+            _routesLabel.Text = _localizationManager.Localization.GetLocalizedValue(_routesLabel.Text);
+            _ordersLabel.Text = _localizationManager.Localization.GetLocalizedValue(_ordersLabel.Text);
+            _synchronizationLabel.Text = _localizationManager.Localization.GetLocalizedValue(_synchronizationLabel.Text);
+            _settingsLabel.Text = _localizationManager.Localization.GetLocalizedValue(_settingsLabel.Text);
+            _updatesLabel.Text = _localizationManager.Localization.GetLocalizedValue(_updatesLabel.Text);
         }
 
         private MenuPresenter _menuPresenter;

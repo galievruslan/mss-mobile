@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using Environment = MSS.WinMobile.Application.Environment.Environment;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
@@ -26,17 +27,18 @@ namespace MSS.WinMobile.Application
         static void Main()
         {
             // Load Config.xml to setup log4net
-            string path = System.IO.Path.GetDirectoryName(
+            string path = Path.GetDirectoryName(
                 System.Reflection.Assembly.GetExecutingAssembly()
                .GetModules()[0].FullyQualifiedName)
                + "\\log4net.xml";
-            if (System.IO.File.Exists(path))
+            if (File.Exists(path))
             {
-                XmlConfigurator.Configure(new System.IO.FileInfo(path));
+                XmlConfigurator.Configure(new FileInfo(path));
             }
 
             // Setup storage manager
-            var configurationManager = new ConfigurationManager(Environment.Environment.AppPath);
+            string configsPath = Path.Combine(Environment.Environment.AppPath, @"Config");
+            var configurationManager = new ConfigurationManager(configsPath);
             var databaseName =
                 configurationManager.GetConfig("Common").GetSection("Database").GetSetting("FileName").Value;
             var schemaScript =
@@ -47,7 +49,8 @@ namespace MSS.WinMobile.Application
                 string.Concat(Environment.Environment.AppPath, schemaScript));
 
             // Setup localization
-            ILocalizator localizator = new Localizator();
+            string localizationsPath = Path.Combine(Environment.Environment.AppPath, @"Resources\Localizations");
+            ILocalizationManager localizationManager = new LocalizationManager(localizationsPath);
             try {
                 var localization = configurationManager.GetConfig("Common")
                                                        .GetSection("Localization")
@@ -55,7 +58,7 @@ namespace MSS.WinMobile.Application
                                                        .Value;
 
                 List<ILocalization> localizations =
-                    localizator.GetAvailableLocalizations(Environment.Environment.AppPath);
+                    localizationManager.GetAvailableLocalizations(Environment.Environment.AppPath);
                 ILocalization current = null;
                 if (!string.IsNullOrEmpty(localization)) {
                     current =
@@ -66,7 +69,7 @@ namespace MSS.WinMobile.Application
                     current =
                         localizations.LastOrDefault();
                 }
-                localizator.SetupLocalization(current);
+                localizationManager.SetupLocalization(current);
             }
             catch (Exception exception) {
                 Log.Error(exception);
@@ -95,19 +98,19 @@ namespace MSS.WinMobile.Application
 
             IModelsFactory modelsFactory = new ModelsFactory(repositoryFactory);
 
-            var main = new Main(localizator);
+            var main = new Main(localizationManager);
             var presentersFactory = new PresentersFactory(storageManager, repositoryFactory,
-                                                          modelsFactory, main, localizator);
+                                                          modelsFactory, main, configurationManager, localizationManager);
             
             string userName = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
             string password = configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
 
             if (string.IsNullOrEmpty(userName) ||
                 string.IsNullOrEmpty(password)) {
-                main.SetView(new LogonView(presentersFactory, localizator));
+                main.SetView(new LogonView(presentersFactory, localizationManager));
             }
             else {
-                main.SetView(new MenuView(presentersFactory, localizator));
+                main.SetView(new MenuView(presentersFactory, localizationManager));
             }
 
             Log.Info("Application start");

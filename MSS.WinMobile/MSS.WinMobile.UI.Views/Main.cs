@@ -12,9 +12,9 @@ namespace MSS.WinMobile.UI.Views {
             InitializeComponent();
         }
 
-        private readonly ILocalizator _localizator;
-        public Main(ILocalizator localizator) : this() {
-            _localizator = localizator;
+        private readonly ILocalizationManager _localizationManager;
+        public Main(ILocalizationManager localizationManager) : this() {
+            _localizationManager = localizationManager;
         }
 
         public void SetView(View view) {
@@ -33,8 +33,8 @@ namespace MSS.WinMobile.UI.Views {
         }
 
         public void ShowInformation(string message) {
-            MessageBox.Show(_localizator.Localization.GetLocalizedValue(message),
-                            _localizator.Localization.GetLocalizedValue("Information"),
+            MessageBox.Show(_localizationManager.Localization.GetLocalizedValue(message),
+                            _localizationManager.Localization.GetLocalizedValue("Information"),
                             MessageBoxButtons.OK, MessageBoxIcon.None,
                             MessageBoxDefaultButton.Button1);
         }
@@ -42,19 +42,19 @@ namespace MSS.WinMobile.UI.Views {
         public void ShowError(IEnumerable<string> messages) {
             var stringBuilder = new StringBuilder();
             foreach (var message in messages) {
-                stringBuilder.Append(_localizator.Localization.GetLocalizedValue(message));
+                stringBuilder.Append(_localizationManager.Localization.GetLocalizedValue(message));
                 stringBuilder.Append(Environment.ReturnWithNewLine);
             }
             MessageBox.Show(stringBuilder.ToString(),
-                            _localizator.Localization.GetLocalizedValue("Error"),
+                            _localizationManager.Localization.GetLocalizedValue("Error"),
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                             MessageBoxDefaultButton.Button1);
         }
 
         public bool ShowConfirmation(string message) {
             return DialogResult.Yes ==
-                   MessageBox.Show(_localizator.Localization.GetLocalizedValue(message),
-                                   _localizator.Localization.GetLocalizedValue("confirmation"),
+                   MessageBox.Show(_localizationManager.Localization.GetLocalizedValue(message),
+                                   _localizationManager.Localization.GetLocalizedValue("confirmation"),
                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                    MessageBoxDefaultButton.Button2);
         }
@@ -63,7 +63,7 @@ namespace MSS.WinMobile.UI.Views {
             var stringBuilder = new StringBuilder();
             foreach (var keyValuePair in details) {
                 stringBuilder.Append(string.Format("<b>{0}</b>: {1}",
-                                                   _localizator.Localization.GetLocalizedValue(
+                                                   _localizationManager.Localization.GetLocalizedValue(
                                                        keyValuePair.Key),
                                                    keyValuePair.Value));
                 stringBuilder.Append("</br>");
@@ -91,7 +91,7 @@ namespace MSS.WinMobile.UI.Views {
                 _leftButton.Dispose();
             }
             _leftButton = new MenuItem {
-                Text = _localizator.Localization.GetLocalizedValue(viewAction.Caption)
+                Text = _localizationManager.Localization.GetLocalizedValue(viewAction.Caption)
             };
             if (!(viewAction is StubAction)) {
                 _leftButton.Click += viewAction.Do;
@@ -109,7 +109,7 @@ namespace MSS.WinMobile.UI.Views {
                 _rightButton.Dispose();
             }
             _rightButton = new MenuItem {
-                Text = _localizator.Localization.GetLocalizedValue(viewAction.Caption)
+                Text = _localizationManager.Localization.GetLocalizedValue(viewAction.Caption)
             };
             if (!(viewAction is StubAction)) {
                 _rightButton.Click += viewAction.Do;

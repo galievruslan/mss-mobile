@@ -11,14 +11,14 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
-        public LogonView(IPresentersFactory presentersFactory, ILocalizator localizator) : this() {
+        private readonly ILocalizationManager _localizationManager;
+        public LogonView(IPresentersFactory presentersFactory, ILocalizationManager localizationManager) : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
 
-            _accountLabel.Text = _localizator.Localization.GetLocalizedValue(_accountLabel.Text);
-            _passwordLabel.Text = _localizator.Localization.GetLocalizedValue(_passwordLabel.Text);
-            _serverLabel.Text = _localizator.Localization.GetLocalizedValue(_serverLabel.Text);
+            _accountLabel.Text = _localizationManager.Localization.GetLocalizedValue(_accountLabel.Text);
+            _passwordLabel.Text = _localizationManager.Localization.GetLocalizedValue(_passwordLabel.Text);
+            _serverLabel.Text = _localizationManager.Localization.GetLocalizedValue(_serverLabel.Text);
         }
 
         private LogonPresenter _logonPresenter;

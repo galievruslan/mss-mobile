@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using Json;
+using MSS.WinMobile.Common;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.Infrastructure.Web;
@@ -11,39 +11,35 @@ using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 
 namespace MSS.WinMobile.Synchronizer
 {
-    public class ManagerSynchronization : Command<ManagerDto, Warehouse>
+    public class ManagerSynchronization : Command<bool>
     {
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(ManagerSynchronization));
 
         private readonly IWebServer _webServer;
         private readonly IStorageRepository<Warehouse> _destinationStorageRepository;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
-        private readonly int _bathSize;
         private readonly DateTime _updatedAfter;
 
         public ManagerSynchronization(
             IWebServer webServer,
             IStorageRepository<Warehouse> destinationStorageRepository,
-            IUnitOfWorkFactory unitOfWorkFactory,
-            int bathSize) {
+            IUnitOfWorkFactory unitOfWorkFactory) {
             _webServer = webServer;
             _destinationStorageRepository = destinationStorageRepository;
             _unitOfWorkFactory = unitOfWorkFactory;
-            _bathSize = bathSize;
         }
 
         public ManagerSynchronization(
             IWebServer webServer,
             IStorageRepository<Warehouse> destinationStorageRepository,
             IUnitOfWorkFactory unitOfWorkFactory,
-            int bathSize,
             DateTime updatedAfter)
-            : this(webServer, destinationStorageRepository, unitOfWorkFactory, bathSize)
+            : this(webServer, destinationStorageRepository, unitOfWorkFactory)
         {
             _updatedAfter = updatedAfter;
         }
 
-        public override void Execute()
+        public override bool Execute()
         {
             using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
 
@@ -83,6 +79,8 @@ namespace MSS.WinMobile.Synchronizer
                     throw;
                 }
             }
+
+            return true;
         }
     }
 }

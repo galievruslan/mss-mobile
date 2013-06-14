@@ -4,8 +4,7 @@ using System.Xml;
 
 namespace MSS.WinMobile.Application.Configuration
 {
-    public class Section
-    {
+    public class Section : ISection {
         private const string SettingTagName = "Setting";
         private const string SettingNameAttribute = "name";
 
@@ -37,7 +36,7 @@ namespace MSS.WinMobile.Application.Configuration
 
         private readonly Dictionary<string, Setting> _settings;
 
-        public Setting GetSetting(string name)
+        public ISetting GetSetting(string name)
         {
             string nameInLowerCase = name.ToLower();
             lock (_settings)

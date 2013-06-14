@@ -16,14 +16,14 @@ namespace MSS.WinMobile.UI.Controls
             InitializeComponent();
         }
 
-        private ILocalizator _localizator;
-        public ILocalizator Localizator {
-            private get { return _localizator; }
+        private ILocalizationManager _localizationManager;
+        public ILocalizationManager LocalizationManager {
+            private get { return _localizationManager; }
             set { 
-                _localizator = value;
-                if (_localizator != null) {
+                _localizationManager = value;
+                if (_localizationManager != null) {
                     _searchTextBox.TextPrompt =
-                        _localizator.Localization.GetLocalizedValue(_searchTextBox.TextPrompt);
+                        _localizationManager.Localization.GetLocalizedValue(_searchTextBox.TextPrompt);
                 }
             }
         }

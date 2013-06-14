@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using MSS.WinMobile.Resources;
 using log4net;
 
-namespace MSS.WinMobile.Resources {
-    public class Localizator : ILocalizator {
-        private static readonly ILog Log = LogManager.GetLogger(typeof (Localizator));
+namespace MSS.WinMobile.Localization {
+    public class LocalizationManager : ILocalizationManager {
+        private static readonly ILog Log = LogManager.GetLogger(typeof (LocalizationManager));
+
+        private readonly string _localizationPaths;
+        public LocalizationManager(string localizationsPath) {
+            _localizationPaths = localizationsPath;
+        }
 
         public void SetupLocalization(ILocalization localization) {
             Localization = localization;
@@ -14,16 +20,13 @@ namespace MSS.WinMobile.Resources {
 
         public ILocalization Localization { get; private set; }
 
-        private const string LocalizationFolder = @"Resources\Localizations";
-
         public List<ILocalization> GetAvailableLocalizations(string applicationPath) {
             var localizations = new List<ILocalization>();
 
-            string fullPath = Path.Combine(applicationPath, LocalizationFolder);
-            string[] localizationFiles = Directory.GetFiles(fullPath, "*.xml");
+            string[] localizationFiles = Directory.GetFiles(_localizationPaths, "*.xml");
             foreach (var localizationFile in localizationFiles) {
                 try {
-                    localizations.Add(new Localization(localizationFile));
+                    localizations.Add(new Resources.Localization(localizationFile));
                 }
                 catch (Exception exception) {
                     Log.Error(exception);

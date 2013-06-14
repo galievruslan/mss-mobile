@@ -1,4 +1,5 @@
 ﻿using System;
+using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Infrastructure.Web.Repositories;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
 using MSS.WinMobile.UI.Presenters.ViewModels;
@@ -12,13 +13,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(LogonPresenter));
 
-        private readonly Application.Configuration.ConfigurationManager _configurationManager;
+        private readonly IConfigurationManager _configurationManager;
         private readonly ILogonView _view;
         private readonly INavigator _navigator;
 
-        public LogonPresenter(ILogonView view, INavigator navigator)
+        public LogonPresenter(ILogonView view, IConfigurationManager configurationManager, INavigator navigator)
         {
-            _configurationManager = new Application.Configuration.ConfigurationManager(Environment.AppPath);
+            _configurationManager = configurationManager;
             _view = view;
             _navigator = navigator;
         }
@@ -70,9 +71,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
         private LogonViewModel _viewModel;
         public LogonViewModel Initialize() {
-            var manager = new Application.Configuration.ConfigurationManager(Environment.AppPath);
-            string userName = manager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
-            string password = manager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
+            string userName = _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Username").Value;
+            string password = _configurationManager.GetConfig("Common").GetSection("Server").GetSetting("Password").Value;
 
             _viewModel = new LogonViewModel {
                 ServerAddress =

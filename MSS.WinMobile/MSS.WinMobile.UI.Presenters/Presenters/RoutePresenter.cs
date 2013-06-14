@@ -10,7 +10,6 @@ using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
-using Environment = MSS.WinMobile.Application.Environment.Environment;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
@@ -34,7 +33,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public RoutePresenter(IRouteView view, 
                               IUnitOfWorkFactory unitOfWorkFactory,
                               IRepositoryFactory repositoryFactory, 
-                              IModelsFactory modelsFactory, 
+                              IModelsFactory modelsFactory,
+                              IConfigurationManager configurationManager,
                               INavigator navigator,
                               RouteViewModel routeViewModel) {
             _repositoryFactory = repositoryFactory;
@@ -45,7 +45,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _viewModel = routeViewModel;
 
             var statusRepository = _repositoryFactory.CreateRepository<Status>();
-            var configurationManager = new ConfigurationManager(Environment.AppPath);
             foreach (var status in statusRepository.Find().ToArray()) {
                 try {
                     var colorName = configurationManager.GetConfig("Domain")
@@ -105,7 +104,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
         }
 
-        private RouteViewModel _viewModel;
+        private readonly RouteViewModel _viewModel;
         public RouteViewModel Initialize() {
             if (_viewModel.Id == 0) {
                 var routeRepository = _repositoryFactory.CreateRepository<Route>();

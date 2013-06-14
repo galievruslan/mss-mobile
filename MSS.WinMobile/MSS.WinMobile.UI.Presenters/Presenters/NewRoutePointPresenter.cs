@@ -15,20 +15,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IModelsFactory _modelsFactory;
+        private readonly IConfigurationManager _configurationManager;
         private readonly INavigator _navigator;
         private readonly ILookUpService _lookUpService;
         private readonly RouteViewModel _routeViewModel;
 
         public NewRoutePointPresenter(INewRoutePointView view, 
                                       IUnitOfWorkFactory unitOfWorkFactory,
-                                      IRepositoryFactory repositoryFactory, 
-                                      IModelsFactory modelsFactory,
+                                      IRepositoryFactory repositoryFactory,
+                                      IModelsFactory modelsFactory, 
+                                      IConfigurationManager configurationManager,
                                       INavigator navigator,
                                       ILookUpService lookUpService, 
                                       RouteViewModel routeViewModel) {
             _view = view;
             _repositoryFactory = repositoryFactory;
             _modelsFactory = modelsFactory;
+            _configurationManager = configurationManager;
             _navigator = navigator;
             _lookUpService = lookUpService;
             _unitOfWorkFactory = unitOfWorkFactory;
@@ -90,11 +93,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                                    .Where(new RouteOnDateSpec(_routeViewModel.Date))
                                    .FirstOrDefault();
 
-                var configurationManager = new ConfigurationManager(Environment.AppPath);
-                var defaultStatusId = configurationManager.GetConfig("Domain")
-                                                          .GetSection("Statuses")
-                                                          .GetSetting("DefaultRoutePointStatusId")
-                                                          .As<int>();
+                var defaultStatusId = _configurationManager.GetConfig("Domain")
+                                                           .GetSection("Statuses")
+                                                           .GetSetting("DefaultRoutePointStatusId")
+                                                           .As<int>();
 
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
                 var defaultStatus = statusRepository.GetById(defaultStatusId);

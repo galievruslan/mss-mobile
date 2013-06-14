@@ -20,21 +20,21 @@ namespace MSS.WinMobile.UI.Controls.Concret.ListBoxItems {
             set {
                 _viewModel = value;
                 _descriptionLabel.Text = _viewModel.CustomerName;
-                if (Localizator != null) {
+                if (LocalizationManager != null) {
                     _shippingLabel.Text = string.Format("{0} {1}",
-                                                           Localizator.Localization
+                                                           LocalizationManager.Localization
                                                                           .GetLocalizedValue(
                                                                               "shipping at"),
                                                         ViewModel.ShippingDate.ToString(
-                                                            Localizator.Localization
+                                                            LocalizationManager.Localization
                                                                        .GetLocalizedValue(
                                                                            "dateformat")));
                     _ammountLabel.Text = string.Format("{0} {1}",
-                                                           Localizator.Localization
+                                                           LocalizationManager.Localization
                                                                           .GetLocalizedValue(
                                                                               "amount"),
                                                        ViewModel.Amount.ToString(
-                                                           Localizator.Localization
+                                                           LocalizationManager.Localization
                                                                       .GetLocalizedValue(
                                                                           "decimalformat")));
                 }

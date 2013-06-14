@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Storage;
@@ -19,28 +20,31 @@ namespace MSS.WinMobile.Application {
         private readonly IModelsFactory _modelsFactory;
         private readonly INavigator _navigator;
         private readonly ILookUpService _lookUpService;
-        private readonly ILocalizator _localizator;
+        private readonly IConfigurationManager _configurationManager;
+        private readonly ILocalizationManager _localizationManager;
 
         public PresentersFactory(IStorageManager storageManager,
                                  IRepositoryFactory repositoryFactory,
                                  IModelsFactory modelsFactory,
                                  IViewContainer container,
-                                 ILocalizator localizator) {
+                                 IConfigurationManager configurationManager,
+                                 ILocalizationManager localizationManager) {
             _storageManager = storageManager;
             _unitOfWorkFactory = new SqLiteUnitOfWorkFactory(_storageManager);
             _repositoryFactory = repositoryFactory;
             _modelsFactory = modelsFactory;
-            _localizator = localizator;
-            _navigator = new Navigator(container, this, _localizator);
-            _lookUpService = new LookUpService(this, localizator);
+            _configurationManager = configurationManager;
+            _localizationManager = localizationManager;
+            _navigator = new Navigator(container, this, _localizationManager);
+            _lookUpService = new LookUpService(this, localizationManager);
         }
 
         public LogonPresenter CreateLogonPresenter(ILogonView logonView) {
-            return new LogonPresenter(logonView, _navigator);
+            return new LogonPresenter(logonView, _configurationManager, _navigator);
         }
 
         public MenuPresenter CreateMenuPresenter(IMenuView logonView) {
-            return new MenuPresenter(logonView, _navigator);
+            return new MenuPresenter(logonView, _configurationManager, _navigator);
         }
 
         public SynchronizationPresenter CreateSynchronizationPresenter(
@@ -48,16 +52,17 @@ namespace MSS.WinMobile.Application {
             return new SynchronizationPresenter(synchronizationView, 
                                                 _storageManager,
                                                 _unitOfWorkFactory,
-                                                _repositoryFactory,
-                                                _navigator,
-                                                exitOnError);
+                                                _repositoryFactory, 
+                                                _configurationManager,
+                                                _navigator);
         }
 
         public RoutePresenter CreateRoutePresenter(IRouteView routeView, RouteViewModel routeViewModel) {
             return new RoutePresenter(routeView,
                                       _unitOfWorkFactory,
                                       _repositoryFactory,
-                                      _modelsFactory,
+                                      _modelsFactory, 
+                                      _configurationManager,
                                       _navigator,
                                       routeViewModel);
         }
@@ -65,7 +70,7 @@ namespace MSS.WinMobile.Application {
         public NewRoutePointPresenter CreateNewRoutePointPresenter(
             INewRoutePointView newRoutePointView, RouteViewModel routeViewModel) {
             return new NewRoutePointPresenter(newRoutePointView, _unitOfWorkFactory,
-                                              _repositoryFactory, _modelsFactory, _navigator,
+                                              _repositoryFactory, _modelsFactory, _configurationManager, _navigator,
                                               _lookUpService, routeViewModel);
         }
 
@@ -93,16 +98,16 @@ namespace MSS.WinMobile.Application {
         }
 
         public OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel) {
-            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _navigator, _lookUpService, routePointViewModel);
+            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _configurationManager, _navigator, _lookUpService, routePointViewModel);
         }
 
         public OrderPresenter CreateOrderPresenter(IOrderView orderView, RoutePointViewModel routePointViewModel, OrderViewModel orderViewModel) {
-            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _navigator,
+            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _configurationManager, _navigator,
                                       _lookUpService, routePointViewModel, orderViewModel);
         }
 
         public OrderPresenter CreateOrderPresenter(IOrderView orderView, OrderViewModel orderViewModel) {
-            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _navigator, _lookUpService,
+            return new OrderPresenter(orderView, _unitOfWorkFactory, _repositoryFactory, _configurationManager, _navigator, _lookUpService,
                                       orderViewModel);
         }
 
@@ -125,7 +130,7 @@ namespace MSS.WinMobile.Application {
         }
 
         public SettingsPresenter CreateSettingsPresenter(ISettingsView settingsView) {
-            return new SettingsPresenter(settingsView, _storageManager, _repositoryFactory, _navigator, _localizator);
+            return new SettingsPresenter(settingsView, _storageManager, _repositoryFactory, _configurationManager, _navigator, _localizationManager);
         }
     }
 }

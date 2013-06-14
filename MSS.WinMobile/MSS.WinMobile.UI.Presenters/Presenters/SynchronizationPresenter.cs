@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Threading;
 using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Common;
+using MSS.WinMobile.Common.FaultHandling;
 using MSS.WinMobile.Common.Observable;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators;
@@ -10,7 +12,6 @@ using MSS.WinMobile.Infrastructure.Web;
 using MSS.WinMobile.Infrastructure.Web.Repositories;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 using MSS.WinMobile.Synchronizer;
-using MSS.WinMobile.Synchronizer.FaultHandling;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -23,33 +24,30 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(SynchronizationPresenter));
 
-        private readonly ConfigurationManager _configurationManager;
+        private readonly IConfigurationManager _configurationManager;
         private readonly ISynchronizationView _view;
         private readonly IStorageManager _storageManager;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly INavigator _navigator;
-        private readonly bool _exitOnError;
 
         public SynchronizationPresenter(ISynchronizationView view, 
             IStorageManager storageManager, 
             IUnitOfWorkFactory unitOfWorkFactory, 
             IRepositoryFactory repositoryFactory,
-            INavigator navigator,
-            bool exitOnError) {
-            _configurationManager = new ConfigurationManager(Environment.AppPath);
+            IConfigurationManager configurationManager,
+            INavigator navigator) {
+            _configurationManager = configurationManager;
             _view = view;
 
             _storageManager = storageManager;
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
             _navigator = navigator;
-
-            _exitOnError = exitOnError;
         }
 
         private Thread _thread;
-        private bool _inProcess = false;
+        private bool _inProcess;
         public void Synchronize() {
             if (!_inProcess) {
                 _inProcess = true;
@@ -60,7 +58,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             }
         }
 
-        bool _failed = false;
         private void RunSynchronizationInBackground() {
             try {
                 var serverAddress =
@@ -135,25 +132,25 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<Customer, CustomerDto> customerTranslator =
                         new CustomerTranslator(_repositoryFactory);
 
-                    Command<CustomerDto, Customer> customerSyncCmd = _viewModel.SynchronizeFully
-                                                                         ? new SynchronizationCommand
-                                                                               <CustomerDto,
-                                                                               Customer>(
-                                                                               customerDtoRepository,
-                                                                               customerRepository,
-                                                                               customerTranslator,
-                                                                               _unitOfWorkFactory,
-                                                                               bathSize)
-                                                                         : new SynchronizationCommand
-                                                                               <CustomerDto,
-                                                                               Customer>(
-                                                                               customerDtoRepository,
-                                                                               customerRepository,
-                                                                               customerTranslator,
-                                                                               _unitOfWorkFactory,
-                                                                               bathSize,
-                                                                               _viewModel
-                                                                                   .LastSynchronizationDate);
+                    Command<bool> customerSyncCmd = _viewModel.SynchronizeFully
+                                                  ? new SynchronizationCommand
+                                                        <CustomerDto,
+                                                        Customer>(
+                                                        customerDtoRepository,
+                                                        customerRepository,
+                                                        customerTranslator,
+                                                        _unitOfWorkFactory,
+                                                        bathSize)
+                                                  : new SynchronizationCommand
+                                                        <CustomerDto,
+                                                        Customer>(
+                                                        customerDtoRepository,
+                                                        customerRepository,
+                                                        customerTranslator,
+                                                        _unitOfWorkFactory,
+                                                        bathSize,
+                                                        _viewModel
+                                                            .LastSynchronizationDate);
 
                     customerSyncCmd = customerSyncCmd.RepeatOnError(3, 5000);
                     customerSyncCmd.Execute();
@@ -168,7 +165,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<ShippingAddress, ShippingAddressDto> shippingAddressdTranslator =
                         new ShippingAddressdTranslator();
 
-                    Command<ShippingAddressDto, ShippingAddress> shippingAddressSyncCmd =
+                    Command<bool> shippingAddressSyncCmd =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <ShippingAddressDto,
@@ -199,23 +196,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         _repositoryFactory.CreateRepository<Category>();
                     DtoTranslator<Category, CategoryDto> categoriesTranslator =
                         new CategoryTranslator();
-                    Command<CategoryDto, Category> categoriesSyncCmd = _viewModel.SynchronizeFully
-                                                                           ? new CategotiesSynchronization
-                                                                                 (
-                                                                                 categoriesDtoRepository,
-                                                                                 categorySqLiteRepository,
-                                                                                 categoriesTranslator,
-                                                                                 _unitOfWorkFactory,
-                                                                                 bathSize)
-                                                                           : new CategotiesSynchronization
-                                                                                 (
-                                                                                 categoriesDtoRepository,
-                                                                                 categorySqLiteRepository,
-                                                                                 categoriesTranslator,
-                                                                                 _unitOfWorkFactory,
-                                                                                 bathSize,
-                                                                                 _viewModel
-                                                                                     .LastSynchronizationDate);
+                    Command<bool> categoriesSyncCmd = _viewModel.SynchronizeFully
+                                                    ? new CategotiesSynchronization
+                                                          (
+                                                          categoriesDtoRepository,
+                                                          categorySqLiteRepository,
+                                                          categoriesTranslator,
+                                                          _unitOfWorkFactory,
+                                                          bathSize)
+                                                    : new CategotiesSynchronization
+                                                          (
+                                                          categoriesDtoRepository,
+                                                          categorySqLiteRepository,
+                                                          categoriesTranslator,
+                                                          _unitOfWorkFactory,
+                                                          bathSize,
+                                                          _viewModel
+                                                              .LastSynchronizationDate);
 
                     categoriesSyncCmd = categoriesSyncCmd.RepeatOnError(3, 5000);
                     categoriesSyncCmd.Execute();
@@ -228,23 +225,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         _repositoryFactory.CreateRepository<Status>();
                     DtoTranslator<Status, StatusDto> statusTranslator = new StatusTranslator();
 
-                    Command<StatusDto, Status> statusSyncCommand = _viewModel.SynchronizeFully
-                                                                       ? new SynchronizationCommand
-                                                                             <StatusDto, Status>(
-                                                                             statusDtoRepository,
-                                                                             statusSqLiteRepository,
-                                                                             statusTranslator,
-                                                                             _unitOfWorkFactory,
-                                                                             bathSize)
-                                                                       : new SynchronizationCommand
-                                                                             <StatusDto, Status>(
-                                                                             statusDtoRepository,
-                                                                             statusSqLiteRepository,
-                                                                             statusTranslator,
-                                                                             _unitOfWorkFactory,
-                                                                             bathSize,
-                                                                             _viewModel
-                                                                                 .LastSynchronizationDate);
+                    Command<bool> statusSyncCommand = _viewModel.SynchronizeFully
+                                                    ? new SynchronizationCommand
+                                                          <StatusDto, Status>(
+                                                          statusDtoRepository,
+                                                          statusSqLiteRepository,
+                                                          statusTranslator,
+                                                          _unitOfWorkFactory,
+                                                          bathSize)
+                                                    : new SynchronizationCommand
+                                                          <StatusDto, Status>(
+                                                          statusDtoRepository,
+                                                          statusSqLiteRepository,
+                                                          statusTranslator,
+                                                          _unitOfWorkFactory,
+                                                          bathSize,
+                                                          _viewModel
+                                                              .LastSynchronizationDate);
 
                     statusSyncCommand = statusSyncCommand.RepeatOnError(3, 5000);
                     statusSyncCommand.Execute();
@@ -258,7 +255,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<Warehouse, WarehouseDto> warehouseTranslator =
                         new WarehouseTranslator();
 
-                    Command<WarehouseDto, Warehouse> warehouseSyncCommand =
+                    Command<bool> warehouseSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <WarehouseDto, Warehouse>(
@@ -287,7 +284,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<PriceList, PriceListDto> priceListTranslator =
                         new PriceListTranslator(_repositoryFactory);
 
-                    Command<PriceListDto, PriceList> priceListSyncCommand =
+                    Command<bool> priceListSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <PriceListDto, PriceList>(
@@ -316,7 +313,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<UnitOfMeasure, UnitOfMeasureDto> unitOfMeasureTranslator =
                         new UnitOfMeasureTranslator();
 
-                    Command<UnitOfMeasureDto, UnitOfMeasure> unitOfMeasureSyncCommand =
+                    Command<bool> unitOfMeasureSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <UnitOfMeasureDto,
@@ -349,25 +346,25 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<Product, ProductDto> productTranslator =
                         new ProductTranslator(_repositoryFactory);
 
-                    Command<ProductDto, Product> productSyncCommand = _viewModel.SynchronizeFully
-                                                                          ? new SynchronizationCommand
-                                                                                <ProductDto, Product
-                                                                                >(
-                                                                                productDtoRepository,
-                                                                                productSqLiteRepository,
-                                                                                productTranslator,
-                                                                                _unitOfWorkFactory,
-                                                                                bathSize)
-                                                                          : new SynchronizationCommand
-                                                                                <ProductDto, Product
-                                                                                >(
-                                                                                productDtoRepository,
-                                                                                productSqLiteRepository,
-                                                                                productTranslator,
-                                                                                _unitOfWorkFactory,
-                                                                                bathSize,
-                                                                                _viewModel
-                                                                                    .LastSynchronizationDate);
+                    Command<bool> productSyncCommand = _viewModel.SynchronizeFully
+                                                     ? new SynchronizationCommand
+                                                           <ProductDto, Product
+                                                           >(
+                                                           productDtoRepository,
+                                                           productSqLiteRepository,
+                                                           productTranslator,
+                                                           _unitOfWorkFactory,
+                                                           bathSize)
+                                                     : new SynchronizationCommand
+                                                           <ProductDto, Product
+                                                           >(
+                                                           productDtoRepository,
+                                                           productSqLiteRepository,
+                                                           productTranslator,
+                                                           _unitOfWorkFactory,
+                                                           bathSize,
+                                                           _viewModel
+                                                               .LastSynchronizationDate);
                     productSyncCommand = productSyncCommand.RepeatOnError(3, 5000);
                     productSyncCommand.Execute();
                     Notify(new ProgressNotification(67));
@@ -380,7 +377,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<ProductsPrice, ProductPriceDto> productsPriceTranslator =
                         new ProductsPriceTranslator();
 
-                    Command<ProductPriceDto, ProductsPrice> productsPricesSyncCommand =
+                    Command<bool> productsPricesSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <ProductPriceDto,
@@ -415,7 +412,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         productsUnitOfMeasureTranslator =
                             new ProductsUnitOfMeasureTranslator();
 
-                    Command<ProductUnitOfMeasureDto, ProductsUnitOfMeasure> productsUomSyncCommand =
+                    Command<bool> productsUomSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <ProductUnitOfMeasureDto, ProductsUnitOfMeasure>(
@@ -441,7 +438,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     DtoTranslator<RouteTemplate, RouteTemplateDto> routeTemplateTranslator =
                         new RouteTemplateTranslator(_repositoryFactory);
 
-                    Command<RouteTemplateDto, RouteTemplate> routeTemplateSyncCommand =
+                    Command<bool> routeTemplateSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <RouteTemplateDto,
@@ -476,8 +473,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         routePointTemplateTranslator =
                             new RoutePointTemplateTranslator();
 
-                    Command<RoutePointTemplateDto, RoutePointTemplate> routePointTemplateSyncCommand
-                        =
+                    Command<bool> routePointTemplateSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SynchronizationCommand
                                   <RoutePointTemplateDto, RoutePointTemplate>(
@@ -503,18 +499,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     warehouseSqLiteRepository =
                         _repositoryFactory.CreateRepository<Warehouse>();
 
-                    Command<ManagerDto, Warehouse> managerSettingsSyncCommand =
+                    Command<bool> managerSettingsSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new ManagerSynchronization(
                                   webServer,
                                   warehouseSqLiteRepository,
-                                  _unitOfWorkFactory,
-                                  bathSize)
+                                  _unitOfWorkFactory)
                             : new ManagerSynchronization(
                                   webServer,
                                   warehouseSqLiteRepository,
                                   _unitOfWorkFactory,
-                                  bathSize,
                                   _viewModel
                                       .LastSynchronizationDate);
 
@@ -524,14 +518,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                     // Settings synchronization
                     Notify(new TextNotification("Settings synchronization"));
 
-                    Command<SettingsDto, SettingsDto> settingsSyncCommand =
+                    Command<bool> settingsSyncCommand =
                         _viewModel.SynchronizeFully
                             ? new SettingsSynchronization(
-                                  webServer)
+                                  webServer, _configurationManager)
                             : new SettingsSynchronization(
                                   webServer,
-                                  _viewModel
-                                      .LastSynchronizationDate);
+                                  _configurationManager,
+                                  _viewModel.LastSynchronizationDate);
 
                     settingsSyncCommand = settingsSyncCommand.RepeatOnError(3, 5000);
                     settingsSyncCommand.Execute();
@@ -550,7 +544,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             catch (Exception exception) {
                 Log.Error("Synchronization failed", exception);
                 _view.ShowError(new[] {"Synchronization failed! Please, try to synchronize later."});
-                _failed = true;
             }
             finally {
                 _view.MakeActive();
@@ -560,12 +553,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             _view.ReturnToMenu();
         }
 
-
-        private bool _canceled;
         public void Cancel() {
             try {
                 if (_inProcess) {
-                    _canceled = true;
                     if (_thread != null) {
                         _thread.Abort();
                     }

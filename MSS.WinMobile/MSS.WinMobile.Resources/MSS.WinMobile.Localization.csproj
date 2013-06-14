@@ -76,9 +76,9 @@
   -->
   <ItemGroup>
     <Compile Include="ILocalization.cs" />
-    <Compile Include="ILocalizator.cs" />
+    <Compile Include="ILocalizationManager.cs" />
     <Compile Include="Localization.cs" />
-    <Compile Include="Localizator.cs" />
+    <Compile Include="LocalizationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

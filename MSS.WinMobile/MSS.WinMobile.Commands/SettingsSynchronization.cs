@@ -4,34 +4,38 @@ using System.Globalization;
 using System.Net;
 using Json;
 using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Common;
 using MSS.WinMobile.Infrastructure.Web;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 using MSS.WinMobile.Infrastructure.Web.Repositories.Utilites;
-using Environment = MSS.WinMobile.Application.Environment.Environment;
 
 namespace MSS.WinMobile.Synchronizer
 {
-    public class SettingsSynchronization : Command<SettingsDto, SettingsDto>
+    public class SettingsSynchronization : Command<bool>
     {
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(ManagerSynchronization));
 
         private readonly IWebServer _webServer;
         private readonly DateTime _updatedAfter;
+        private readonly IConfigurationManager _configurationManager;
 
         public SettingsSynchronization(
-            IWebServer webServer) {
+            IWebServer webServer,
+            IConfigurationManager configurationManager) {
             _webServer = webServer;
+            _configurationManager = configurationManager;
         }
 
         public SettingsSynchronization(
             IWebServer webServer,
+            IConfigurationManager configurationManager,
             DateTime updatedAfter)
-            : this(webServer)
+            : this(webServer, configurationManager)
         {
             _updatedAfter = updatedAfter;
         }
 
-        public override void Execute()
+        public override bool Execute()
         {
             try {
                 string url;
@@ -56,27 +60,28 @@ namespace MSS.WinMobile.Synchronizer
                 var settingsDto = JsonDeserializer.Deserialize<SettingsDto>(json);
 
                 if (settingsDto != null) {
-                    var configurationManager = new ConfigurationManager(Environment.AppPath);
-                    configurationManager.GetConfig("Domain")
+                    _configurationManager.GetConfig("Domain")
                                         .GetSection("Statuses")
                                         .GetSetting("DefaultRoutePointStatusId")
                                         .Value =
                         settingsDto.DefaultRoutePointStatusId.ToString(CultureInfo.InvariantCulture);
 
-                    configurationManager.GetConfig("Domain")
+                    _configurationManager.GetConfig("Domain")
                                         .GetSection("Statuses")
                                         .GetSetting("DefaultRoutePointAttendedStatusId")
                                         .Value =
                         settingsDto.DefaultRoutePointAttendedStatusId.ToString(
                             CultureInfo.InvariantCulture);
 
-                    configurationManager.GetConfig("Domain").Save();
+                    _configurationManager.GetConfig("Domain").Save();
                 }
             }
             catch (Exception exception) {
                 Log.Error(exception);
                 throw;
             }
+
+            return true;
         }
     }
 }

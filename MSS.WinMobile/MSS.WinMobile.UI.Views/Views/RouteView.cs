@@ -13,18 +13,18 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
+        private readonly ILocalizationManager _localizationManager;
         private readonly RouteViewModel _routeViewModel;
 
-        public RouteView(IPresentersFactory presentersFactory, ILocalizator localizator,
+        public RouteView(IPresentersFactory presentersFactory, ILocalizationManager localizationManager,
                          RouteViewModel routeViewModel)
             : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
             _routeViewModel = routeViewModel;
 
-            datePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("dateformat");
-            routePointListBox.Localizator = _localizator;
+            datePicker.CustomFormat = _localizationManager.Localization.GetLocalizedValue("dateformat");
+            routePointListBox.LocalizationManager = _localizationManager;
         }
 
         private RoutePresenter _routePresenter;

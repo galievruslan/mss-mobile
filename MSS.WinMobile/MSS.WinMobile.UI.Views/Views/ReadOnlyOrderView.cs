@@ -19,34 +19,34 @@ namespace MSS.WinMobile.UI.Views.Views {
             InitializeComponent();
         }
 
-        private readonly ILocalizator _localizator;
-        public ReadOnlyOrderView(ILocalizator localizator) : this() {
-            _localizator = localizator;
+        private readonly ILocalizationManager _localizationManager;
+        public ReadOnlyOrderView(ILocalizationManager localizationManager) : this() {
+            _localizationManager = localizationManager;
 
-            _orderDateLabel.Text = _localizator.Localization.GetLocalizedValue(_orderDateLabel.Text);
-            _shippingDateLabel.Text = _localizator.Localization.GetLocalizedValue(_shippingDateLabel.Text);
-            _customerLabel.Text = _localizator.Localization.GetLocalizedValue(_customerLabel.Text);
-            _addressLabel.Text = _localizator.Localization.GetLocalizedValue(_addressLabel.Text);
-            _priceLabel.Text = _localizator.Localization.GetLocalizedValue(_priceLabel.Text);
-            _warehouseLabel.Text = _localizator.Localization.GetLocalizedValue(_warehouseLabel.Text);
-            _amountLabel.Text = _localizator.Localization.GetLocalizedValue(_amountLabel.Text);
-            orderItemListBox.Localizator = localizator;
+            _orderDateLabel.Text = _localizationManager.Localization.GetLocalizedValue(_orderDateLabel.Text);
+            _shippingDateLabel.Text = _localizationManager.Localization.GetLocalizedValue(_shippingDateLabel.Text);
+            _customerLabel.Text = _localizationManager.Localization.GetLocalizedValue(_customerLabel.Text);
+            _addressLabel.Text = _localizationManager.Localization.GetLocalizedValue(_addressLabel.Text);
+            _priceLabel.Text = _localizationManager.Localization.GetLocalizedValue(_priceLabel.Text);
+            _warehouseLabel.Text = _localizationManager.Localization.GetLocalizedValue(_warehouseLabel.Text);
+            _amountLabel.Text = _localizationManager.Localization.GetLocalizedValue(_amountLabel.Text);
+            orderItemListBox.LocalizationManager = localizationManager;
         }
 
         public ReadOnlyOrderView(IPresentersFactory presentersFactory, 
-                         ILocalizator localizator,
+                         ILocalizationManager localizationManager,
                          RoutePointViewModel routePointViewModel,
                          OrderViewModel orderViewModel)
-            : this(localizator) {
+            : this(localizationManager) {
             _presentersFactory = presentersFactory;
             _routePointViewModel = routePointViewModel;
             _orderViewModel = orderViewModel;
         }
 
         public ReadOnlyOrderView(IPresentersFactory presentersFactory,
-                                 ILocalizator localizator,
+                                 ILocalizationManager localizationManager,
                                  OrderViewModel orderViewModel)
-            : this(localizator)
+            : this(localizationManager)
         {
             _presentersFactory = presentersFactory;
             _orderViewModel = orderViewModel;
@@ -70,8 +70,8 @@ namespace MSS.WinMobile.UI.Views.Views {
 
                 _viewModel = _presenter.Initialize();
 
-                _orderDataTextBox.Text = _viewModel.OrderDate.ToString(_localizator.Localization.GetLocalizedValue("dateformat"));
-                _shippingDateTextBox.Text = _viewModel.ShippingDate.ToString(_localizator.Localization.GetLocalizedValue("dateformat"));
+                _orderDataTextBox.Text = _viewModel.OrderDate.ToString(_localizationManager.Localization.GetLocalizedValue("dateformat"));
+                _shippingDateTextBox.Text = _viewModel.ShippingDate.ToString(_localizationManager.Localization.GetLocalizedValue("dateformat"));
                 _customerTextBox.Text = _viewModel.CustomerName;
                 _shippingAddressTextBox.Text = _viewModel.ShippingAddressName;
                 _priceListTextBox.Text = _viewModel.PriceListName;

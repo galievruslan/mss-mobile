@@ -18,7 +18,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             SelectedIndex = -1;
         }
 
-        public ILocalizator Localizator { private get; set; }
+        public ILocalizationManager LocalizationManager { private get; set; }
 
         public event OnItemDataNeeded ItemDataNeeded;
         public event OnItemSelected ItemSelected;
@@ -61,8 +61,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 _items.Count < _itemCount)
             {
                 VirtualListBoxItem listBoxItem = NewItem();
-                if (Localizator != null)
-                    listBoxItem.Localizator = Localizator;
+                if (LocalizationManager != null)
+                    listBoxItem.LocalizationManager = LocalizationManager;
 
                 AddListBoxItem(listBoxItem);
 
@@ -188,9 +188,9 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 };
 
                 string emptyStringMessage = EmptyListMessage;
-                if (Localizator != null)
+                if (LocalizationManager != null)
                     emptyStringMessage =
-                        Localizator.Localization.GetLocalizedValue(emptyStringMessage);
+                        LocalizationManager.Localization.GetLocalizedValue(emptyStringMessage);
 
                 e.Graphics.DrawString(emptyStringMessage, Font, new SolidBrush(ForeColor),
                                       ClientRectangle, format);

@@ -5,8 +5,7 @@ using System.Xml;
 
 namespace MSS.WinMobile.Application.Configuration
 {
-    public class Config
-    {
+    public class Config : IConfig {
         private const string RootTagName = "Sections";
         private const string SectionTagName = "Section";
         private const string SectionNameAttribute = "name";
@@ -42,7 +41,7 @@ namespace MSS.WinMobile.Application.Configuration
 
         private readonly Dictionary<string, Section> _sections;
 
-        public Section GetSection(string name)
+        public ISection GetSection(string name)
         {
             string nameInLowerCase = name.ToLower();
             lock (_sections)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MSS.WinMobile.Common;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
@@ -8,7 +9,7 @@ using MSS.WinMobile.Infrastructure.Web.Repositories.Dtos;
 
 namespace MSS.WinMobile.Synchronizer
 {
-    public class CategotiesSynchronization : Command<CategoryDto, Category>
+    public class CategotiesSynchronization : Command<bool>
     {
         private readonly IWebRepository<CategoryDto> _sourceWebRepository;
         private readonly IStorageRepository<Category> _destinationStorageRepository;
@@ -43,7 +44,7 @@ namespace MSS.WinMobile.Synchronizer
             _updatedAfter = updatedAfter;
         }
 
-        public override void Execute()
+        public override bool Execute()
         {
             using (var unitOfWork = _unitOfWorkFactory.CreateUnitOfWork()) {
                 try {
@@ -57,6 +58,8 @@ namespace MSS.WinMobile.Synchronizer
                     throw;
                 }
             }
+
+            return true;
         }
 
         private void SyncronizeData() {

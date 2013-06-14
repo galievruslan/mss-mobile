@@ -2,18 +2,18 @@
 using System.Threading;
 using MSS.WinMobile.Common.Observable;
 
-namespace MSS.WinMobile.Synchronizer.FaultHandling
+namespace MSS.WinMobile.Common.FaultHandling
 {
-    public class RepeatOnErrorCommand<TS, TD> : Command<TS, TD>
+    public class RepeatOnErrorCommand<TReturn> : Command<TReturn>
     {
 
-        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(RepeatOnErrorCommand<TS, TD>));
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(RepeatOnErrorCommand<TReturn>));
 
-        private readonly Command<TS, TD> _command;
+        private readonly Command<TReturn> _command;
         private readonly int _repeatCount;
         private readonly int _repeatDelay;
 
-        public RepeatOnErrorCommand(Command<TS, TD> command, int repeatCount, int repeatDelay)
+        public RepeatOnErrorCommand(Command<TReturn> command, int repeatCount, int repeatDelay)
         {
             _command = command;
             _command.Subscribe(this);
@@ -21,20 +21,19 @@ namespace MSS.WinMobile.Synchronizer.FaultHandling
             _repeatDelay = repeatDelay;
         }
 
-        public override void Execute() {
+        public override TReturn Execute() {
             int tryNo = 1;
 
             while (true) {
 
                 try {
-                    _command.Execute();
-                    return;
+                    return _command.Execute();
                 }
                 catch (Exception exception) {
                     Log.Error(string.Format("Excecution try #{0} failed", tryNo), exception);
 
                     if (tryNo >= _repeatCount) {
-                        throw new CommandException<TS, TD>(_command, string.Empty, exception);
+                        throw new CommandException<TReturn>(_command, string.Empty, exception);
                     }
 
                     tryNo++;

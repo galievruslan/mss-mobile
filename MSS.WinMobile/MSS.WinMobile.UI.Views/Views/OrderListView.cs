@@ -12,20 +12,20 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
         
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
+        private readonly ILocalizationManager _localizationManager;
 
         private OrderListPresenter _presenter;
         private readonly DateTime _date;
 
-        public OrderListView(IPresentersFactory presentersFactory, ILocalizator localizator,
+        public OrderListView(IPresentersFactory presentersFactory, ILocalizationManager localizationManager,
                              DateTime date)
             : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
             _date = date;
 
-            datePicker.CustomFormat = _localizator.Localization.GetLocalizedValue("dateformat");
-            _orderListBox.Localizator = _localizator;
+            datePicker.CustomFormat = _localizationManager.Localization.GetLocalizedValue("dateformat");
+            _orderListBox.LocalizationManager = _localizationManager;
         }
 
         private void OrderListViewLoad(object sender, EventArgs e) {

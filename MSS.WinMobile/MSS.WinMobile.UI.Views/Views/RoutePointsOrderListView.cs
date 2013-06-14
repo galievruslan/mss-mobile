@@ -13,20 +13,20 @@ namespace MSS.WinMobile.UI.Views.Views {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly ILocalizator _localizator;
+        private readonly ILocalizationManager _localizationManager;
 
         private RoutePointsOrderListPresenter _presenter;
         private readonly RoutePointViewModel _routePointViewModel;
 
         public RoutePointsOrderListView(IPresentersFactory presentersFactory,
-                                        ILocalizator localizator,
+                                        ILocalizationManager localizationManager,
                                         RoutePointViewModel routePointViewModel)
             : this() {
             _presentersFactory = presentersFactory;
-            _localizator = localizator;
+            _localizationManager = localizationManager;
             _routePointViewModel = routePointViewModel;
 
-            _orderListBox.Localizator = _localizator;
+            _orderListBox.LocalizationManager = _localizationManager;
         }
 
         private void OrderListViewLoad(object sender, EventArgs e) {

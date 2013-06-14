@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}"
+	ProjectSection(SolutionItems) = preProject
+		Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\IOrderedDictionary.cs = Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\IOrderedDictionary.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}"
 EndProject
@@ -128,6 +131,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Icons", "Icons", "{DEA8B7EA
 		Resources\Icons\mobile_checkmark.ico = Resources\Icons\mobile_checkmark.ico
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zip", "Zip", "{5E6A852A-AFA5-483D-9F00-F9C6E222750E}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.Full", "MSS.Full\MSS.Full.vddproj", "{4814839C-346A-415C-BA34-CA9D444F98DF}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = MSS.WinMobile1.vsmdi
@@ -245,8 +252,12 @@ Global
 		{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4814839C-346A-415C-BA34-CA9D444F98DF}.Debug|Any CPU.ActiveCfg = Debug
+		{4814839C-346A-415C-BA34-CA9D444F98DF}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -274,6 +285,7 @@ Global
 		{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0} = {0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}
 		{E3AFEEA8-9603-491C-BA06-3562C3138C56} = {34DA7C00-A216-4BA9-8FBA-21F4D8B3DF90}
 		{542AB7ED-060B-4537-823F-C30DB6208798} = {34DA7C00-A216-4BA9-8FBA-21F4D8B3DF90}
+		{5E6A852A-AFA5-483D-9F00-F9C6E222750E} = {34DA7C00-A216-4BA9-8FBA-21F4D8B3DF90}
 		{2EE98FE1-FF08-409D-A161-DBA9286F961D} = {E3AFEEA8-9603-491C-BA06-3562C3138C56}
 		{5CBECDBA-23AE-4EFA-B023-B95A61C94D99} = {E3AFEEA8-9603-491C-BA06-3562C3138C56}
 		{FA224193-8859-46FE-B9A0-9179B99711D9} = {1A5CBA19-D94A-461B-A455-1F906204708F}

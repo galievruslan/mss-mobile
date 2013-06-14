@@ -2,8 +2,7 @@
 
 namespace MSS.WinMobile.Application.Configuration
 {
-    public class Setting
-    {
+    public class Setting : ISetting {
         private readonly XmlNode _xmlNode;
         public Setting(XmlNode xmlNode)
         {

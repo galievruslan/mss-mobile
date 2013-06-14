@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using MSS.WinMobile.Common.Observable;
 
-namespace MSS.WinMobile.Synchronizer
+namespace MSS.WinMobile.Common
 {
-    public abstract class Command<TS, TD> : IObservable, IObserver {
+    public abstract class Command<TReturn> : IObservable, IObserver {
 
-        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Command<TS, TD>));
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(Command<TReturn>));
 
-        public abstract void  Execute();
+        public abstract TReturn Execute();
 
         public void Dispose() {
             while (_observers.Count > 0) {

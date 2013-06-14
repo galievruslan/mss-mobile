@@ -91,8 +91,8 @@ namespace MSS.WinMobile.Application.Configuration.Tests
         public void ValueTest()
         {
             var config = new Config(_configPath);
-            Section section = config.GetSection("Section 2");
-            Setting setting = section.GetSetting("Setting 3");
+            ISection section = config.GetSection("Section 2");
+            ISetting setting = section.GetSetting("Setting 3");
             Assert.AreEqual("3", setting.Value);
         }
     }

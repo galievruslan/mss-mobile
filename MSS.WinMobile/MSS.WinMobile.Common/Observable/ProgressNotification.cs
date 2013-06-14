@@ -1,9 +1,6 @@
-﻿namespace MSS.WinMobile.Common.Observable
-{
-    public class ProgressNotification : INotification
-    {
-        public ProgressNotification(int progress)
-        {
+﻿namespace MSS.WinMobile.Common.Observable {
+    public class ProgressNotification : INotification {
+        public ProgressNotification(int progress) {
             Progress = progress;
         }
 

@@ -19,28 +19,34 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IRepositoryFactory _repositoryFactory;
+        private readonly IConfigurationManager _configurationManager;
         private readonly INavigator _navigator;
         private readonly ILookUpService _lookUpService;
         private readonly OrderViewModel _orderViewModel;
         private readonly RoutePointViewModel _routePointViewModel;
         private readonly IList<OrderItemViewModel> _orderItemViewModels;
 
-        private OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
-                               IRepositoryFactory repositoryFactory, INavigator navigator,
+        private OrderPresenter(IOrderView view, 
+                               IUnitOfWorkFactory unitOfWorkFactory,
+                               IRepositoryFactory repositoryFactory,
+                               IConfigurationManager configurationManager,
+                               INavigator navigator,
                                ILookUpService lookUpService) {
             _view = view;
             _unitOfWorkFactory = unitOfWorkFactory;
             _repositoryFactory = repositoryFactory;
+            _configurationManager = configurationManager;
             _navigator = navigator;
             _lookUpService = lookUpService;
         }
 
         public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
                               IRepositoryFactory repositoryFactory,
+                              IConfigurationManager configurationManager,
                               INavigator navigator,
                               ILookUpService lookUpService,
                               RoutePointViewModel routePointViewModel) 
-            :this(view, unitOfWorkFactory, repositoryFactory, navigator, lookUpService)
+            :this(view, unitOfWorkFactory, repositoryFactory, configurationManager, navigator, lookUpService)
         {
             var routePointsRepository = _repositoryFactory.CreateRepository<RoutePoint>();
             var routePoint = routePointsRepository.GetById(routePointViewModel.Id);
@@ -111,11 +117,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
                               IRepositoryFactory repositoryFactory,
+                              IConfigurationManager configurationManager,
                               INavigator navigator,
                               ILookUpService lookUpService,
                               RoutePointViewModel routePointViewModel,
                               OrderViewModel orderViewModel)
-            : this(view, unitOfWorkFactory, repositoryFactory, navigator, lookUpService) {
+            : this(view, unitOfWorkFactory, repositoryFactory, configurationManager, navigator, lookUpService) {
 
             _routePointViewModel = routePointViewModel;
             _orderViewModel = orderViewModel;
@@ -140,10 +147,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         public OrderPresenter(IOrderView view, IUnitOfWorkFactory unitOfWorkFactory,
                               IRepositoryFactory repositoryFactory,
+                              IConfigurationManager configurationManager,
                               INavigator navigator,
                               ILookUpService lookUpService,
                               OrderViewModel orderViewModel)
-            : this(view, unitOfWorkFactory, repositoryFactory, navigator, lookUpService)
+            : this(view, unitOfWorkFactory, repositoryFactory, configurationManager, navigator, lookUpService)
         {
 
             _orderViewModel = orderViewModel;
@@ -172,13 +180,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var routePointRepository = _repositoryFactory.CreateRepository<RoutePoint>();
                 var routePoint = routePointRepository.GetById(_orderViewModel.RoutePointId);
 
-                var configurationManager = new ConfigurationManager(Environment.AppPath);
-                var defaultStatusId = configurationManager.GetConfig("Domain")
+                var defaultStatusId = _configurationManager.GetConfig("Domain")
                                                           .GetSection("Statuses")
                                                           .GetSetting("DefaultRoutePointStatusId")
                                                           .As<int>();
 
-                var attendedStatusId = configurationManager.GetConfig("Domain")
+                var attendedStatusId = _configurationManager.GetConfig("Domain")
                                                           .GetSection("Statuses")
                                                           .GetSetting("DefaultRoutePointAttendedStatusId")
                                                           .As<int>();
