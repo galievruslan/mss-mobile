@@ -70,7 +70,7 @@
     <None Include="MSS.WinMobile.Infrastructure.Storage.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LinqBridge-1.3\LinqBridge-1.3.csproj">
+    <ProjectReference Include="..\Thirdparty\LinqBridge-1.3\LinqBridge-1.3.csproj">
       <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
       <Name>LinqBridge-1.3</Name>
     </ProjectReference>

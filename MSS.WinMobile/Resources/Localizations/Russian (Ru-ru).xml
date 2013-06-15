@@ -106,4 +106,19 @@
   <Element name="all items will be deleted, are you sure?">Все строки заказа будут удалены, Вы уверены что хотите изменить прайс лист?</Element>
   <Element name="route template not found. Empty route created.">Шаблон маршрута не найден. Пустой маршрут создан.</Element>
   <Element name="updates">Обновления</Element>
+  <Element name="can't run updater">Не удалось запустить программу обновления.</Element>
+  <Element name="current version...">Текущая версия...</Element>
+  <Element name="available version...">Доступная версия...</Element>
+  <Element name="new version is available.">Доступна новая версия.</Element>
+  <Element name="lastest version is installed.">Установлена последняя версия.</Element>
+  <Element name="connecting to the server...">Соединение с сервером...</Element>
+  <Element name="ok">ОК</Element>
+  <Element name="failed">неудачно</Element>
+  <Element name="extracting...">Извлечение...</Element>
+  <Element name="downloading...">Загрузка...</Element>
+  <Element name="get updates info...">Получение информации об обновлениях...</Element>
+  <Element name="installation...">Установка...</Element>
+  <Element name="close updatable application...">Закрытие обновляемого приложения...</Element>
+  <Element name="start updated application...">Запуск обновлённого приложения...</Element>
+  <Element name="Setting up connection to the server...">Конфигурирование соединения с сервером...</Element>
 </Root>

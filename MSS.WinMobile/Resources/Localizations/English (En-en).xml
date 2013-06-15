@@ -105,4 +105,19 @@
   <Element name="all items will be deleted, are you sure?">All items will be deleted, are you sure?</Element>
   <Element name="route template not found. Empty route created.">Route template not found. Empty route created.</Element>
   <Element name="updates">Updates</Element>
+  <Element name="can't run updater">Can't run updater</Element>
+  <Element name="current version...">Current version...</Element>
+  <Element name="available version...">Available version...</Element>
+  <Element name="new version is available.">New version is available.</Element>
+  <Element name="lastest version is installed.">Lastest version is installed.</Element>
+  <Element name="connecting to the server...">Connecting to the server...</Element>
+  <Element name="ok">OK</Element>
+  <Element name="failed">failed</Element>
+  <Element name="extracting...">Extracting...</Element>
+  <Element name="downloading...">Downloading...</Element>
+  <Element name="get updates info...">Get updates info...</Element>
+  <Element name="installation...">Installation...</Element>
+  <Element name="close updatable application...">Close updatable application...</Element>
+  <Element name="start updated application...">Start updated application...</Element>
+  <Element name="setting up connection to the server...">Setting up connection to the server...</Element>
 </Root>

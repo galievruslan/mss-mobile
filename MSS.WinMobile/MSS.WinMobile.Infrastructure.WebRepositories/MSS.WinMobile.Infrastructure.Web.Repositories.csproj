@@ -49,7 +49,7 @@
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Packages\log4net\net20-cf\log4net.dll</HintPath>
+      <HintPath>..\Libs\log4net\net20-cf\log4net.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
@@ -87,10 +87,6 @@
     <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LinqBridge-1.3\LinqBridge-1.3.csproj">
-      <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
-      <Name>LinqBridge-1.3</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MSS.WinMobile.Domain.Models\MSS.WinMobile.Domain.Models.csproj">
       <Project>{4CEEC8F0-27AE-49C2-8241-81297733DE20}</Project>
       <Name>MSS.WinMobile.Domain.Models</Name>
@@ -99,13 +95,17 @@
       <Project>{F6F297DA-4944-4695-952E-1F0F07197B67}</Project>
       <Name>MSS.WinMobile.Infrastructure.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
+    <ProjectReference Include="..\Thirdparty\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj">
       <Project>{2EE98FE1-FF08-409D-A161-DBA9286F961D}</Project>
       <Name>JsonSerializer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\LitJson.csproj">
+    <ProjectReference Include="..\Thirdparty\jsonnetcf-fullv1.1\LitJson\LitJson.csproj">
       <Project>{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}</Project>
       <Name>LitJson</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thirdparty\LinqBridge-1.3\LinqBridge-1.3.csproj">
+      <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
+      <Name>LinqBridge-1.3</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

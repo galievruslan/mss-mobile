@@ -2,9 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2A4CEEF6-9A8C-4BE7-BF9D-527229DB8FB0}"
-	ProjectSection(SolutionItems) = preProject
-		Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\IOrderedDictionary.cs = Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\IOrderedDictionary.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1FDA7A92-AD84-4D8D-A3D3-50093C68DC9D}"
 EndProject
@@ -22,11 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Views", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application", "MSS.WinMobile.Application\MSS.WinMobile.Application.csproj", "{13A9120E-F646-4A64-9303-5036B5C86613}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendor", "Vendor", "{34DA7C00-A216-4BA9-8FBA-21F4D8B3DF90}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Thirdparty", "Thirdparty", "{34DA7C00-A216-4BA9-8FBA-21F4D8B3DF90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitJson", "Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\LitJson\LitJson.csproj", "{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitJson", "Thirdparty\jsonnetcf-fullv1.1\LitJson\LitJson.csproj", "{5CBECDBA-23AE-4EFA-B023-B95A61C94D99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerializer", "Packages\jsonnetcf-fullv1.1\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj", "{2EE98FE1-FF08-409D-A161-DBA9286F961D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSerializer", "Thirdparty\jsonnetcf-fullv1.1\JsonSerializer\JsonSerializer.csproj", "{2EE98FE1-FF08-409D-A161-DBA9286F961D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{B99B4618-934F-4C64-B2EF-10F148DA5D73}"
 EndProject
@@ -47,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application.Configuration", "MSS.WinMobile.Application.Configuration\MSS.WinMobile.Application.Configuration.csproj", "{C7E02A98-65EF-4C2A-BA51-5E84B9397343}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application.Configuration.Tests", "MSS.WinMobile.Application.Configuration.Tests\MSS.WinMobile.Application.Configuration.Tests.csproj", "{239AAB74-FC1C-4CBB-ADF3-5C4998BC7C68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application.Configuration.Tests", "Tests\MSS.WinMobile.Application.Configuration.Tests\MSS.WinMobile.Application.Configuration.Tests.csproj", "{239AAB74-FC1C-4CBB-ADF3-5C4998BC7C68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Application.Environment", "MSS.WinMobile.Application.Environment\MSS.WinMobile.Application.Environment.csproj", "{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF}"
 EndProject
@@ -61,11 +58,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators", "MSS.WinMobile.Infrastructure.ModelTranslators\MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators.csproj", "{365ECB82-AE6D-4760-8EAB-CA5A9B3807E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.SqliteRepositories.Tests", "MSS.WinMobile.Infrastructure.SqliteRepositories.Tests\MSS.WinMobile.Infrastructure.SqliteRepositories.Tests.csproj", "{F02C3955-0F8F-4553-9EEE-4BC6175E0ADD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.SqliteRepositories.Tests", "Tests\MSS.WinMobile.Infrastructure.SqliteRepositories.Tests\MSS.WinMobile.Infrastructure.SqliteRepositories.Tests.csproj", "{F02C3955-0F8F-4553-9EEE-4BC6175E0ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Helpers", "Tests.Helpers\Tests.Helpers.csproj", "{293EF82F-E089-44D1-863B-46304DE208BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Helpers", "Tests\Tests.Helpers\Tests.Helpers.csproj", "{293EF82F-E089-44D1-863B-46304DE208BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Synchronizer.Tests", "MSS.WinMobile.Synchronizer.Tests\MSS.WinMobile.Synchronizer.Tests.csproj", "{CBBEDD95-B521-474C-8DF1-726AF910C41C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Synchronizer.Tests", "Tests\MSS.WinMobile.Synchronizer.Tests\MSS.WinMobile.Synchronizer.Tests.csproj", "{CBBEDD95-B521-474C-8DF1-726AF910C41C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.UI.Controls.Concret", "MSS.WinMobile.UI.Controls.Concret\MSS.WinMobile.UI.Controls.Concret.csproj", "{F1F9F6B2-42B9-48C9-A7B3-7E952F7D3AF0}"
 EndProject
@@ -73,17 +70,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Infrastructure.Web", "MSS.WinMobile.Infrastructure.RemoteData\MSS.WinMobile.Infrastructure.Web.csproj", "{F6F297DA-4944-4695-952E-1F0F07197B67}"
 EndProject
-Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.WinMobile.Cab", "MSS.WinMobile.Cab\MSS.WinMobile.Cab.vddproj", "{8126135D-DD07-4469-9256-FB3DC9B7F0D7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json", "Json", "{E3AFEEA8-9603-491C-BA06-3562C3138C56}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linq", "Linq", "{542AB7ED-060B-4537-823F-C30DB6208798}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqBridge-1.3", "LinqBridge-1.3\LinqBridge-1.3.csproj", "{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqBridge-1.3", "Thirdparty\LinqBridge-1.3\LinqBridge-1.3.csproj", "{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSS.WinMobile", "MSS.WinMobile", "{1E189A45-7596-40B9-A919-DDC9F9B043B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{AF403AC3-496A-4977-9A98-F48495A9F1E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSS.WinMobile.Updater", "MSS.WinMobile.Updater\MSS.WinMobile.Updater.csproj", "{AF403AC3-496A-4977-9A98-F48495A9F1E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{B7D9BFFE-EA17-41F0-8630-EEA44BCABB7B}"
 EndProject
@@ -133,7 +128,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Icons", "Icons", "{DEA8B7EA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zip", "Zip", "{5E6A852A-AFA5-483D-9F00-F9C6E222750E}"
 EndProject
-Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.Full", "MSS.Full\MSS.Full.vddproj", "{4814839C-346A-415C-BA34-CA9D444F98DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{B2478F85-D29E-4748-856A-CDEFA4538777}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS", "Deployment\MSS\MSS.vddproj", "{6C1CD7B5-997E-470B-8186-6015D97AFDC2}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Updater", "Deployment\Updater\Updater.vddproj", "{AA91BD31-C347-47DF-B254-7BFFB32991D8}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -242,10 +241,6 @@ Global
 		{F6F297DA-4944-4695-952E-1F0F07197B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F297DA-4944-4695-952E-1F0F07197B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F297DA-4944-4695-952E-1F0F07197B67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8126135D-DD07-4469-9256-FB3DC9B7F0D7}.Debug|Any CPU.ActiveCfg = Debug
-		{8126135D-DD07-4469-9256-FB3DC9B7F0D7}.Debug|Any CPU.Build.0 = Debug
-		{8126135D-DD07-4469-9256-FB3DC9B7F0D7}.Release|Any CPU.ActiveCfg = Release
-		{8126135D-DD07-4469-9256-FB3DC9B7F0D7}.Release|Any CPU.Build.0 = Release
 		{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -256,8 +251,10 @@ Global
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF403AC3-496A-4977-9A98-F48495A9F1E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{4814839C-346A-415C-BA34-CA9D444F98DF}.Debug|Any CPU.ActiveCfg = Debug
-		{4814839C-346A-415C-BA34-CA9D444F98DF}.Release|Any CPU.ActiveCfg = Release
+		{6C1CD7B5-997E-470B-8186-6015D97AFDC2}.Debug|Any CPU.ActiveCfg = Debug
+		{6C1CD7B5-997E-470B-8186-6015D97AFDC2}.Release|Any CPU.ActiveCfg = Release
+		{AA91BD31-C347-47DF-B254-7BFFB32991D8}.Debug|Any CPU.ActiveCfg = Debug
+		{AA91BD31-C347-47DF-B254-7BFFB32991D8}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -278,7 +275,6 @@ Global
 		{C7E02A98-65EF-4C2A-BA51-5E84B9397343} = {B99B4618-934F-4C64-B2EF-10F148DA5D73}
 		{883BFF4D-A51E-401B-AFF6-F4DF7CFBA6FF} = {B99B4618-934F-4C64-B2EF-10F148DA5D73}
 		{FB8FE25C-BECC-401F-A325-E562F2E10017} = {B99B4618-934F-4C64-B2EF-10F148DA5D73}
-		{8126135D-DD07-4469-9256-FB3DC9B7F0D7} = {69F1D575-9408-4C17-94BF-B6E4140411C6}
 		{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D} = {0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}
 		{59551DCE-C626-4BAA-8FAB-7E6977957B17} = {0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}
 		{F7E20E1B-7825-4F3B-8F95-379A56EF2CA1} = {0DE7B077-6E48-4EB7-B8D9-60A80ED1A414}
@@ -308,5 +304,7 @@ Global
 		{DEA8B7EA-93EE-4DC1-9F71-2974AF863517} = {969505AB-F130-491A-B53B-65EAAA8F4C38}
 		{B1EB3800-9EDD-4BCA-8A5F-5D332ACFE8A1} = {063C6A38-E54E-48C9-8670-EC5A6C20866C}
 		{031DAD20-69DA-4C99-AFE4-25E2BBAB74A5} = {A4EB3100-27E4-4D4D-B324-C3580EC42A52}
+		{6C1CD7B5-997E-470B-8186-6015D97AFDC2} = {B2478F85-D29E-4748-856A-CDEFA4538777}
+		{AA91BD31-C347-47DF-B254-7BFFB32991D8} = {B2478F85-D29E-4748-856A-CDEFA4538777}
 	EndGlobalSection
 EndGlobal
