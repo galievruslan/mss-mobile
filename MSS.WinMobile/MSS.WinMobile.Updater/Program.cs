@@ -36,13 +36,13 @@ namespace MSS.WinMobile.Updater {
                 }
 
                 // Setup storage manager
-                string configsPath = Path.Combine(Application.Environment.Environment.AppPath, @"..\Config");
+                string configsPath = Path.Combine(Application.Environment.Environment.AppPath, @"..\MSS.WinMobile.Application\Config");
                 var configurationManager = new ConfigurationManager(configsPath);
 
                 // Setup localization
                 string localizationsPath =
                     Path.Combine(Application.Environment.Environment.AppPath,
-                                 @"..\Resources\Localizations");
+                                 @"..\MSS.WinMobile.Application\Resources\Localizations");
                 ILocalizationManager localizationManager = new LocalizationManager(localizationsPath);
                 try {
                     var localization = configurationManager.GetConfig("Common")

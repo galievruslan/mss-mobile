@@ -13,7 +13,7 @@
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
     <OSVersion>5.2</OSVersion>
-    <DeployDirSuffix>MSS.WinMobile.Application\Updater</DeployDirSuffix>
+    <DeployDirSuffix>MSS.WinMobile.Updater</DeployDirSuffix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
     <FormFactorID>
@@ -84,6 +84,7 @@
     <Compile Include="Commands\GetUpdateInfo.cs" />
     <Compile Include="Commands\InstallNewVersion.cs" />
     <Compile Include="Commands\KillTargetProcess.cs" />
+    <Compile Include="Commands\RestoreCredentials.cs" />
     <Compile Include="Commands\RunApplication.cs" />
     <Compile Include="Commands\SetupUpdateServer.cs" />
     <Compile Include="ParametrizedThreadStartDelegate.cs" />

@@ -14,7 +14,7 @@ namespace MSS.WinMobile.Updater.Commands {
             try {
                 Notificate(new TextNotification("Installation..."));
                 var processStartInfo = new ProcessStartInfo(@"\Windows\wceload.exe",
-                                                            "/noui \"" + _distributive +
+                                                            "/delete 1 /noui \"" + _distributive +
                                                             "\"");
                 var process = new Process {StartInfo = processStartInfo};
                 process.Start();

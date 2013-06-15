@@ -18,19 +18,21 @@ namespace MSS.WinMobile.Updater.Commands {
             try {
                 Notificate(new TextNotification("Close updatable application..."));
 
-                // Send close message
-                Win32Window theWindow = Win32Window.FindWindow("#NETCF_AGL_BASE_", _targetConfig.TargetWindow);
-                if (theWindow != null)
-                    Win32Window.SendMessage(theWindow.Handle, (int) WM.CLOSE, 0, 0);
+                //// Send close message
+                //Win32Window theWindow = Win32Window.FindWindow("#NETCF_AGL_BASE_", _targetConfig.TargetWindow);
+                //if (theWindow != null)
+                //    Win32Window.SendMessage(theWindow.Handle, (int) WM.CLOSE, 0, 0);
 
-                // Sleep for 3 seconds
-                Thread.Sleep(3000);
+                //// Sleep for 3 seconds
+                //Thread.Sleep(3000);
 
                 // Kill all processes
+
+                var fileInfo = new FileInfo(_targetConfig.Target);
                 var processes = OpenNETCF.ToolHelp.ProcessEntry.GetProcesses();
                 foreach (OpenNETCF.ToolHelp.ProcessEntry process in processes)
                 {
-                    if (process.ExeFile == _targetConfig.Target)
+                    if (process.ExeFile == fileInfo.Name)
                         process.Kill();
                 }
 

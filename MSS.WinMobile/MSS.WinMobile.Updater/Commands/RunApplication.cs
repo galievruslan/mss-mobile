@@ -13,6 +13,8 @@ namespace MSS.WinMobile.Updater.Commands {
         public override bool Execute() {
             try {
                 Notificate(new TextNotification("Start updated application..."));
+
+                
                 var process = new Process {
                     StartInfo = new ProcessStartInfo {FileName = _targetConfig.Target, UseShellExecute = true}
                 };
