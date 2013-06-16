@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 
 namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
     public class VirtualListBoxItem : UserControl {

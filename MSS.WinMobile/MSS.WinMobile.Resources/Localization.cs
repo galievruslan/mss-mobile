@@ -4,19 +4,15 @@ using System.IO;
 using System.Xml;
 using log4net;
 
-namespace MSS.WinMobile.Resources {
+namespace MSS.WinMobile.Localization {
     public class Localization : ILocalization {
         private static readonly ILog Log = LogManager.GetLogger(typeof(Localization));
 
         public Localization(string localizationFile) {
-            Path = localizationFile;
-            var fileInfo = new FileInfo(Path);
-            Name = fileInfo.Name.Replace("." + fileInfo.Extension, string.Empty);
+            FileInfo = new FileInfo(localizationFile);
         }
 
-        public string Name { get; private set; }
-
-        public string Path { get; private set; }
+        public FileInfo FileInfo { get; private set; }
 
         readonly IDictionary<string, string> _values = new Dictionary<string, string>();
 
@@ -25,7 +21,7 @@ namespace MSS.WinMobile.Resources {
 
             try {
                 var xmlDocument = new XmlDocument();
-                xmlDocument.Load(Path);
+                xmlDocument.Load(FileInfo.FullName);
                 XmlNodeList xmlNodeList = xmlDocument.GetElementsByTagName("Root")[0].ChildNodes;
                 for (int i = 0; i < xmlNodeList.Count; i++) {
                     var xmlAttributeCollection = xmlNodeList[i].Attributes;

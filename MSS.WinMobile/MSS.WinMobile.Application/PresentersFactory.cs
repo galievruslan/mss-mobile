@@ -3,7 +3,7 @@ using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Storage;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using MSS.WinMobile.Resources;
 
 namespace MSS.WinMobile.UI.Presenters.ViewModels
 {

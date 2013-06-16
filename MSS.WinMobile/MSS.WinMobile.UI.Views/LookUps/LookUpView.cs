@@ -2,7 +2,7 @@
 using System.Text;
 using System.Windows.Forms;
 using MSS.WinMobile.Application.Environment;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views.LookUps

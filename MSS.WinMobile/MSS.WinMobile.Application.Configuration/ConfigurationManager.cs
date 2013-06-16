@@ -8,13 +8,13 @@ namespace MSS.WinMobile.Application.Configuration
 {
     public class ConfigurationManager : IConfigurationManager {
         private static readonly ILog Log = LogManager.GetLogger(typeof(ConfigurationManager));
-        
-        private readonly string _configurationsPath;
+
+        public string Path { get; private set; }
         public ConfigurationManager(string configurationsesPath) {
-            _configurationsPath = configurationsesPath;
+            Path = configurationsesPath;
             _configs = new Dictionary<string, Config>();
 
-            string[] configurationFiles = Directory.GetFiles(_configurationsPath, "*.config");
+            string[] configurationFiles = Directory.GetFiles(Path, "*.config");
             foreach (var configurationFile in configurationFiles)
             {
                 try

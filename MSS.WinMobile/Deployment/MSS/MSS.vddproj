@@ -183,7 +183,7 @@
         "Entry"
         {
         "MsmKey" = "8:_2BFDB14323E9A960ECF330B7F876BE8E"
-        "OwnerKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
+        "OwnerKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -321,54 +321,6 @@
         "Entry"
         {
         "MsmKey" = "8:_3D6FEABB0D2EC640D7A2E80755C8121B"
-        "OwnerKey" = "8:_EDE6B3E5F66747B483031153B5A5005F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_9B4D69CF2D530954F322D2E8574723CF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_B226FFE655021EB863CC5E75BE24DFAF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_3D6FEABB0D2EC640D7A2E80755C8121B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_76D46F41D4FCE15676444B7DE7990321"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_D2D9EDD71BC6A8D73FAB1122957DD6AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_DA5B5ED75C0A0F3C8FE0096CA750BA22"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
-        "OwnerKey" = "8:_A30AAAD8BAA062F363433437469E8EF4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
         "OwnerKey" = "8:_EDE6B3E5F66747B483031153B5A5005F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -531,7 +483,7 @@
         "Entry"
         {
         "MsmKey" = "8:_696F6004DCE9AE9F25E8A3F7A17E83A9"
-        "OwnerKey" = "8:_4056C1F536AE233AE2D2607F10C6883C"
+        "OwnerKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -890,6 +842,54 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_9B4D69CF2D530954F322D2E8574723CF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_EDE6B3E5F66747B483031153B5A5005F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_B226FFE655021EB863CC5E75BE24DFAF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_3D6FEABB0D2EC640D7A2E80755C8121B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_76D46F41D4FCE15676444B7DE7990321"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_D2D9EDD71BC6A8D73FAB1122957DD6AA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_DA5B5ED75C0A0F3C8FE0096CA750BA22"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D962C82EDA8BBED24DE6E70C92A4619F"
+        "OwnerKey" = "8:_A30AAAD8BAA062F363433437469E8EF4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DA5B5ED75C0A0F3C8FE0096CA750BA22"
         "OwnerKey" = "8:_EDE6B3E5F66747B483031153B5A5005F"
         "MsmSig" = "8:_UNDEFINED"
@@ -1031,9 +1031,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_0E2EB69020D858AFE86FA49AF185D62B"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Application.Cache, Version=1.0.4914.40783, Culture=neutral, PublicKeyToken=e63892ab625d8095"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Application.Cache, Version=1.0.4915.23949, Culture=neutral, PublicKeyToken=e63892ab625d8095"
                 "ScatterAssemblies"
                 {
+                    "_0E2EB69020D858AFE86FA49AF185D62B"
+                    {
+                    "Name" = "8:MSS.WinMobile.Application.Cache.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Application.Cache.dll"
             "TargetName" = "8:"
@@ -1054,9 +1059,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_1536AB0FF7F220668347D7967CD60BA9"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Views, Version=1.0.4914.40807, Culture=neutral, PublicKeyToken=c4486a6d14bd1a76"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Views, Version=1.0.4915.24156, Culture=neutral, PublicKeyToken=c4486a6d14bd1a76"
                 "ScatterAssemblies"
                 {
+                    "_1536AB0FF7F220668347D7967CD60BA9"
+                    {
+                    "Name" = "8:MSS.WinMobile.UI.Views.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.UI.Views.dll"
             "TargetName" = "8:"
@@ -1080,6 +1090,11 @@
             "AssemblyAsmDisplayName" = "8:System.Data.SQLite, Version=1.0.84.0, Culture=neutral, PublicKeyToken=1fdb50b1b62b4c84"
                 "ScatterAssemblies"
                 {
+                    "_16A58A1524FC78A57201C5DF4D92A433"
+                    {
+                    "Name" = "8:System.Data.SQLite.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:System.Data.SQLite.dll"
             "TargetName" = "8:"
@@ -1200,9 +1215,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_33EC421F1F03A260D1008E30C63F9570"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators, Version=1.0.4914.40771, Culture=neutral, PublicKeyToken=5ce86792747c4307"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators, Version=1.0.4915.23937, Culture=neutral, PublicKeyToken=5ce86792747c4307"
                 "ScatterAssemblies"
                 {
+                    "_33EC421F1F03A260D1008E30C63F9570"
+                    {
+                    "Name" = "8:MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators.dll"
             "TargetName" = "8:"
@@ -1251,9 +1271,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_3B0A8651A2C71E1E7EB7CB373D8087FD"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:LitJson, Version=1.0.4914.40752, Culture=neutral, PublicKeyToken=77af18c8d45f81c8"
+            "AssemblyAsmDisplayName" = "8:LitJson, Version=1.0.4915.23917, Culture=neutral, PublicKeyToken=77af18c8d45f81c8"
                 "ScatterAssemblies"
                 {
+                    "_3B0A8651A2C71E1E7EB7CB373D8087FD"
+                    {
+                    "Name" = "8:LitJson.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:LitJson.dll"
             "TargetName" = "8:"
@@ -1274,34 +1299,16 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_3D6FEABB0D2EC640D7A2E80755C8121B"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Presenters, Version=1.0.4914.40784, Culture=neutral, PublicKeyToken=66f49b37e6bb344e"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Presenters, Version=1.0.4915.24134, Culture=neutral, PublicKeyToken=66f49b37e6bb344e"
                 "ScatterAssemblies"
                 {
+                    "_3D6FEABB0D2EC640D7A2E80755C8121B"
+                    {
+                    "Name" = "8:MSS.WinMobile.UI.Presenters.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.UI.Presenters.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_5797CA1920A1488C9FC61D59892B109F"
-            "Condition" = "8:"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "Register" = "3:0"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_4056C1F536AE233AE2D2607F10C6883C"
-            {
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:LinqBridge-1.3, Version=1.0.4914.40750, Culture=neutral, PublicKeyToken=cf0dc7a012eef31c"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:LinqBridge-1.3.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5797CA1920A1488C9FC61D59892B109F"
@@ -1320,9 +1327,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_4D4845C9A585CA309DF0A26AF764BD23"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:JsonSerializer, Version=1.0.4914.40756, Culture=neutral, PublicKeyToken=79084b64d62c110e"
+            "AssemblyAsmDisplayName" = "8:JsonSerializer, Version=1.0.4915.23922, Culture=neutral, PublicKeyToken=79084b64d62c110e"
                 "ScatterAssemblies"
                 {
+                    "_4D4845C9A585CA309DF0A26AF764BD23"
+                    {
+                    "Name" = "8:JsonSerializer.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:JsonSerializer.dll"
             "TargetName" = "8:"
@@ -1473,9 +1485,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_6CC4FA410686E1DBDD79C6918BE7F2B4"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators, Version=1.0.4914.40803, Culture=neutral, PublicKeyToken=21eb48352a6bff47"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators, Version=1.0.4915.24152, Culture=neutral, PublicKeyToken=21eb48352a6bff47"
                 "ScatterAssemblies"
                 {
+                    "_6CC4FA410686E1DBDD79C6918BE7F2B4"
+                    {
+                    "Name" = "8:MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators.dll"
             "TargetName" = "8:"
@@ -1496,9 +1513,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_702A948C902BBA1AC636A3B8AA6BB367"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Web, Version=1.0.4914.40757, Culture=neutral, PublicKeyToken=577d6dae81ae6bd8"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Web, Version=1.0.4915.23923, Culture=neutral, PublicKeyToken=577d6dae81ae6bd8"
                 "ScatterAssemblies"
                 {
+                    "_702A948C902BBA1AC636A3B8AA6BB367"
+                    {
+                    "Name" = "8:MSS.WinMobile.Infrastructure.Web.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Infrastructure.Web.dll"
             "TargetName" = "8:"
@@ -1519,9 +1541,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_76D46F41D4FCE15676444B7DE7990321"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Synchronizer, Version=1.0.4914.40775, Culture=neutral, PublicKeyToken=70cc509a6320bd15"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Synchronizer, Version=1.0.4915.23940, Culture=neutral, PublicKeyToken=70cc509a6320bd15"
                 "ScatterAssemblies"
                 {
+                    "_76D46F41D4FCE15676444B7DE7990321"
+                    {
+                    "Name" = "8:MSS.WinMobile.Synchronizer.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Synchronizer.dll"
             "TargetName" = "8:"
@@ -1578,9 +1605,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_9B4D69CF2D530954F322D2E8574723CF"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Application.Configuration, Version=1.0.4914.40754, Culture=neutral, PublicKeyToken=da0d0074bc43b6fc"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Application.Configuration, Version=1.0.4915.24303, Culture=neutral, PublicKeyToken=da0d0074bc43b6fc"
                 "ScatterAssemblies"
                 {
+                    "_9B4D69CF2D530954F322D2E8574723CF"
+                    {
+                    "Name" = "8:MSS.WinMobile.Application.Configuration.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Application.Configuration.dll"
             "TargetName" = "8:"
@@ -1619,9 +1651,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_A30AAAD8BAA062F363433437469E8EF4"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Common, Version=1.0.4914.40769, Culture=neutral, PublicKeyToken=4061a69d912d5d18"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Common, Version=1.0.4915.24310, Culture=neutral, PublicKeyToken=4061a69d912d5d18"
                 "ScatterAssemblies"
                 {
+                    "_A30AAAD8BAA062F363433437469E8EF4"
+                    {
+                    "Name" = "8:MSS.WinMobile.Common.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Common.dll"
             "TargetName" = "8:"
@@ -1642,9 +1679,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_A3218899A94775225C9C00BF1493EC09"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Storage, Version=1.0.4914.40753, Culture=neutral, PublicKeyToken=5e3dc9bbce83897c"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Storage, Version=1.0.4915.24297, Culture=neutral, PublicKeyToken=5e3dc9bbce83897c"
                 "ScatterAssemblies"
                 {
+                    "_A3218899A94775225C9C00BF1493EC09"
+                    {
+                    "Name" = "8:MSS.WinMobile.Infrastructure.Storage.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Infrastructure.Storage.dll"
             "TargetName" = "8:"
@@ -1665,9 +1707,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_B226FFE655021EB863CC5E75BE24DFAF"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Controls, Version=1.0.4914.40795, Culture=neutral, PublicKeyToken=70fbd7b4d91e8234"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Controls, Version=1.0.4915.23951, Culture=neutral, PublicKeyToken=70fbd7b4d91e8234"
                 "ScatterAssemblies"
                 {
+                    "_B226FFE655021EB863CC5E75BE24DFAF"
+                    {
+                    "Name" = "8:MSS.WinMobile.UI.Controls.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.UI.Controls.dll"
             "TargetName" = "8:"
@@ -1706,9 +1753,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_BAE267749520B2BFEF64A2B5D68DEC0C"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Domain.Models, Version=1.0.4914.40758, Culture=neutral, PublicKeyToken=8af51bc22f2a2686"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Domain.Models, Version=1.0.4915.24300, Culture=neutral, PublicKeyToken=8af51bc22f2a2686"
                 "ScatterAssemblies"
                 {
+                    "_BAE267749520B2BFEF64A2B5D68DEC0C"
+                    {
+                    "Name" = "8:MSS.WinMobile.Domain.Models.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Domain.Models.dll"
             "TargetName" = "8:"
@@ -1729,9 +1781,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_C14F0AEB83ED0C4740EF7B42E1B1E05E"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Application.Environment, Version=1.0.4914.40756, Culture=neutral, PublicKeyToken=609f4a4549181abc"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Application.Environment, Version=1.0.4915.24305, Culture=neutral, PublicKeyToken=609f4a4549181abc"
                 "ScatterAssemblies"
                 {
+                    "_C14F0AEB83ED0C4740EF7B42E1B1E05E"
+                    {
+                    "Name" = "8:MSS.WinMobile.Application.Environment.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Application.Environment.dll"
             "TargetName" = "8:"
@@ -1770,9 +1827,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_D2D9EDD71BC6A8D73FAB1122957DD6AA"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Web.Repositories, Version=1.0.4914.40759, Culture=neutral, PublicKeyToken=cb7b8ceccaad8c66"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Web.Repositories, Version=1.0.4915.23925, Culture=neutral, PublicKeyToken=cb7b8ceccaad8c66"
                 "ScatterAssemblies"
                 {
+                    "_D2D9EDD71BC6A8D73FAB1122957DD6AA"
+                    {
+                    "Name" = "8:MSS.WinMobile.Infrastructure.Web.Repositories.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Infrastructure.Web.Repositories.dll"
             "TargetName" = "8:"
@@ -1793,9 +1855,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_D3FDC678163C85FC5EB3EE0109938DA5"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Localization, Version=1.0.4914.40774, Culture=neutral, PublicKeyToken=0d288d06376ef295"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Localization, Version=1.0.4915.24302, Culture=neutral, PublicKeyToken=0d288d06376ef295"
                 "ScatterAssemblies"
                 {
+                    "_D3FDC678163C85FC5EB3EE0109938DA5"
+                    {
+                    "Name" = "8:MSS.WinMobile.Localization.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Localization.dll"
             "TargetName" = "8:"
@@ -1831,12 +1898,45 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_D962C82EDA8BBED24DE6E70C92A4619F"
+            {
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:LinqBridge-1.3, Version=1.0.4915.24296, Culture=neutral, PublicKeyToken=cf0dc7a012eef31c"
+                "ScatterAssemblies"
+                {
+                    "_D962C82EDA8BBED24DE6E70C92A4619F"
+                    {
+                    "Name" = "8:LinqBridge-1.3.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:LinqBridge-1.3.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5797CA1920A1488C9FC61D59892B109F"
+            "Condition" = "8:"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "Register" = "3:0"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_DA5B5ED75C0A0F3C8FE0096CA750BA22"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Sqlite.Repositoties, Version=1.0.4914.40764, Culture=neutral, PublicKeyToken=7e399857668bd960"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.Infrastructure.Sqlite.Repositoties, Version=1.0.4915.23930, Culture=neutral, PublicKeyToken=7e399857668bd960"
                 "ScatterAssemblies"
                 {
+                    "_DA5B5ED75C0A0F3C8FE0096CA750BA22"
+                    {
+                    "Name" = "8:MSS.WinMobile.Infrastructure.Sqlite.Repositoties.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.Infrastructure.Sqlite.Repositoties.dll"
             "TargetName" = "8:"
@@ -1903,9 +2003,14 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_FB100AF7C06177E79C06ECF5B7367B33"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Controls.Concret, Version=1.0.4914.40798, Culture=neutral, PublicKeyToken=7c68f5dece1bcf67"
+            "AssemblyAsmDisplayName" = "8:MSS.WinMobile.UI.Controls.Concret, Version=1.0.4915.24148, Culture=neutral, PublicKeyToken=7c68f5dece1bcf67"
                 "ScatterAssemblies"
                 {
+                    "_FB100AF7C06177E79C06ECF5B7367B33"
+                    {
+                    "Name" = "8:MSS.WinMobile.UI.Controls.Concret.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MSS.WinMobile.UI.Controls.Concret.dll"
             "TargetName" = "8:"
@@ -2018,6 +2123,15 @@
                 {
                 }
             }
+            "{F6DFDB62-1DD1-498B-89B7-27BAC542EE5A}:_E00CCBE3991B4BDBA7709B0E30B689E4"
+            {
+            "Name" = "8:#1916"
+            "Condition" = "8:"
+            "Property" = "8:%CE11%"
+                "Folders"
+                {
+                }
+            }
         }
         "Product"
         {
@@ -2094,6 +2208,16 @@
         }
         "Shortcut"
         {
+            "{971D45E9-E38C-49AC-B36E-4C5BEA533350}:_8A7114621FA54BC49D8FEB9A297123AC"
+            {
+            "Name" = "8:MSS"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "Target" = "8:_EDE6B3E5F66747B483031153B5A5005F"
+            "Folder" = "8:_E00CCBE3991B4BDBA7709B0E30B689E4"
+            "WorkingFolder" = "8:_5797CA1920A1488C9FC61D59892B109F"
+            }
         }
     }
 }

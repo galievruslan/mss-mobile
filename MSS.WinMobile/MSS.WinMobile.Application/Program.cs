@@ -9,7 +9,6 @@ using MSS.WinMobile.Infrastructure.Sqlite.Repositoties;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies;
 using MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators;
 using MSS.WinMobile.Infrastructure.Storage;
-using MSS.WinMobile.Resources;
 using MSS.WinMobile.UI.Views;
 using MSS.WinMobile.UI.Views.Views;
 using log4net.Config;
@@ -58,11 +57,11 @@ namespace MSS.WinMobile.Application
                                                        .Value;
 
                 List<ILocalization> localizations =
-                    localizationManager.GetAvailableLocalizations(Environment.Environment.AppPath);
+                    localizationManager.GetAvailableLocalizations();
                 ILocalization current = null;
                 if (!string.IsNullOrEmpty(localization)) {
-                    current =
-                        localizations.FirstOrDefault(l => l.Path.ToUpper() == localization.ToUpper());
+                    current = localizations.FirstOrDefault(
+                                l => l.FileInfo.Name.ToUpper() == localization.ToUpper());
                 }
 
                 if (current == null) {

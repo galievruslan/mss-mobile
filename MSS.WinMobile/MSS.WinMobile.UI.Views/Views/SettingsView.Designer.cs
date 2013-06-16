@@ -86,12 +86,12 @@
             this._languagesComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._languagesComboBox.DataSource = this.localizationViewModelBindingSource;
-            this._languagesComboBox.DisplayMember = "Name";
+            this._languagesComboBox.DisplayMember = "Label";
             this._languagesComboBox.Location = new System.Drawing.Point(78, 88);
             this._languagesComboBox.Name = "_languagesComboBox";
             this._languagesComboBox.Size = new System.Drawing.Size(155, 22);
             this._languagesComboBox.TabIndex = 16;
-            this._languagesComboBox.ValueMember = "Path";
+            this._languagesComboBox.ValueMember = "Name";
             // 
             // _languageLabel
             // 
@@ -206,7 +206,6 @@
             this.AutoScroll = true;
             this.Controls.Add(this.tabControl);
             this.Name = "SettingsView";
-            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.SettingsViewLoad);
             this.tabControl.ResumeLayout(false);
             this._systemTab.ResumeLayout(false);

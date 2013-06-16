@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters.LookUps;
 using MSS.WinMobile.UI.Presenters.ViewModels;

@@ -72,6 +72,11 @@ namespace MSS.WinMobile.Updater {
                             installNewVersion.Execute();
                             installNewVersion.Dispose();
 
+                            var restoreCredentials = new RestoreCredentials(_configurationManager);
+                            restoreCredentials.Subscribe(this);
+                            restoreCredentials.Execute();
+                            restoreCredentials.Dispose();
+
                             var runApplication = new RunApplication(_targetConfig);
                             runApplication.Subscribe(this);
                             runApplication.Execute();

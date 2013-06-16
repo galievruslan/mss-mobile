@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Common.Observable;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.Updater.Commands;
 using Environment = MSS.WinMobile.Application.Environment.Environment;
 
@@ -82,6 +82,16 @@ namespace MSS.WinMobile.Updater {
             else if (notification is CommandResultNotification) {
                 var commandResultNotification = notification as CommandResultNotification;
                 UpdateActionResultStatus(commandResultNotification.Result);
+            }
+        }
+
+        private void UpdaterClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            try {
+                if (_worker != null)
+                    _worker.Abort();
+            }
+            catch (Exception exception) {
+                Log.Error(exception);
             }
         }
     }

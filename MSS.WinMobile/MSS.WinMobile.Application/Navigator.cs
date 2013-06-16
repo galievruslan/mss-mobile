@@ -1,5 +1,5 @@
 ﻿using System;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;

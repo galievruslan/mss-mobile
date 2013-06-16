@@ -130,9 +130,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zip", "Zip", "{5E6A852A-AFA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{B2478F85-D29E-4748-856A-CDEFA4538777}"
 EndProject
-Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS", "Deployment\MSS\MSS.vddproj", "{6C1CD7B5-997E-470B-8186-6015D97AFDC2}"
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.WinMobile.Application", "Deployment\MSS\MSS.vddproj", "{6C1CD7B5-997E-470B-8186-6015D97AFDC2}"
 EndProject
-Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Updater", "Deployment\Updater\Updater.vddproj", "{AA91BD31-C347-47DF-B254-7BFFB32991D8}"
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.WinMobile.Updater", "Deployment\Updater\Updater.vddproj", "{AA91BD31-C347-47DF-B254-7BFFB32991D8}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

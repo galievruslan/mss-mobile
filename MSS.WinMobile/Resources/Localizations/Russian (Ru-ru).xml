@@ -121,4 +121,5 @@
   <Element name="close updatable application...">Закрытие обновляемого приложения...</Element>
   <Element name="start updated application...">Запуск обновлённого приложения...</Element>
   <Element name="Setting up connection to the server...">Конфигурирование соединения с сервером...</Element>
+  <Element name="restore credentials...">Восстановление учётных данных...</Element>
 </Root>

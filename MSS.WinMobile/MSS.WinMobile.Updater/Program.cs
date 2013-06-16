@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MSS.WinMobile.Localization;
-using MSS.WinMobile.Resources;
 using MSS.WinMobile.Application.Configuration;
 using log4net.Config;
 
@@ -49,15 +48,14 @@ namespace MSS.WinMobile.Updater {
                                                            .GetSection("Localization")
                                                            .GetSetting("Current")
                                                            .Value;
-
+                    
                     List<ILocalization> localizations =
-                        localizationManager.GetAvailableLocalizations(
-                            Application.Environment.Environment.AppPath);
+                        localizationManager.GetAvailableLocalizations();
                     ILocalization current = null;
                     if (!string.IsNullOrEmpty(localization)) {
                         current =
                             localizations.FirstOrDefault(
-                                l => l.Path.ToUpper() == localization.ToUpper());
+                                l => l.FileInfo.Name.ToUpper() == localization.ToUpper());
                     }
 
                     if (current == null) {

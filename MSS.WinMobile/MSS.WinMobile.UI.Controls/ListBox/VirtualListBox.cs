@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.ListBox

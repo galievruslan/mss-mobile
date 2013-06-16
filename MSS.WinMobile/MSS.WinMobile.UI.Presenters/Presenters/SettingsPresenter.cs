@@ -5,7 +5,7 @@ using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.Synchronizer.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -61,9 +61,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
 
             if (string.IsNullOrEmpty(_viewModel.Localization)) {
                 List<ILocalization> localizations =
-                    _localizationManager.GetAvailableLocalizations(Environment.AppPath);
+                    _localizationManager.GetAvailableLocalizations();
                 _viewModel.Localization =
-                        localizations.LastOrDefault().Path;
+                        localizations.LastOrDefault().FileInfo.Name;
             }
 
             return _viewModel;
@@ -73,11 +73,14 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public IEnumerable<LocalizationViewModel> GetAvailableLanguages() {
             if (_localizationViewModels == null) {
                 var localizations =
-                    _localizationManager.GetAvailableLocalizations(Environment.AppPath);
-                _localizationViewModels = localizations.Select(localization => new LocalizationViewModel {
-                    Name = localization.Name,
-                    Path = localization.Path
-                }).ToList();
+                    _localizationManager.GetAvailableLocalizations();
+                _localizationViewModels =
+                    localizations.Select(localization => new LocalizationViewModel {
+                        Name = localization.FileInfo.Name,
+                        Label =
+                            localization.FileInfo.Name.Replace(
+                                '.' + localization.FileInfo.Extension, "")
+                    }).ToList();
             }
 
             return _localizationViewModels;
@@ -86,9 +89,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         public LocalizationViewModel GetSelectedLocalization() {
             var selectedLocalizationViewModel =
                 GetAvailableLanguages().FirstOrDefault(
-                    model => model.Path == _viewModel.Localization) ??
+                    model => model.Name == _viewModel.Localization) ??
                 GetAvailableLanguages().FirstOrDefault(
-                        model => model.Path == _localizationManager.Localization.Path);
+                        model => model.Name == _localizationManager.Localization.FileInfo.Name);
 
             return selectedLocalizationViewModel;
         }
@@ -116,10 +119,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                 _configurationManager.GetConfig("Common").Save();
 
                 List<ILocalization> localizations =
-                    _localizationManager.GetAvailableLocalizations(Environment.AppPath);
+                    _localizationManager.GetAvailableLocalizations();
                 ILocalization current =
                     localizations.FirstOrDefault(
-                        l => l.Path.ToUpper() == _viewModel.Localization.ToUpper());
+                        l => l.FileInfo.Name.ToUpper() == _viewModel.Localization.ToUpper());
                 _localizationManager.SetupLocalization(current);
 
                 _navigator.GoToMenu();

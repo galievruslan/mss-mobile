@@ -41,12 +41,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.ControlBox = false;
             this.Controls.Add(this._statusLabel);
             this.Name = "Updater";
             this.Text = "Updater";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.UpdaterLoad);
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.UpdaterClosing);
             this.ResumeLayout(false);
 
         }

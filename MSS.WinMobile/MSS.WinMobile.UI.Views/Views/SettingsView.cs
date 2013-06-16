@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using MSS.WinMobile.Resources;
+using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -106,7 +106,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             var localizationViewModel = _languagesComboBox.SelectedItem as LocalizationViewModel;
             if (localizationViewModel != null)
                 _settingsViewModel.Localization =
-                    localizationViewModel.Path;
+                    localizationViewModel.Name;
         }
     }
 }

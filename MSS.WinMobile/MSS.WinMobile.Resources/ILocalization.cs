@@ -1,7 +1,8 @@
-﻿namespace MSS.WinMobile.Resources {
+﻿using System.IO;
+
+namespace MSS.WinMobile.Localization {
     public interface ILocalization {
-        string Name { get; }
-        string Path { get; }
+        FileInfo FileInfo { get; }
         void Load();
         string GetLocalizedValue(string valueToLocalizate);
     }
