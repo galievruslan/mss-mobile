@@ -31,6 +31,9 @@ namespace MSS.WinMobile.Synchronizer {
             var ordersToSync = _orderRepository.Find().Where(new OrdersToSyncSpec()).ToArray();
 
             foreach (var order in ordersToSync) {
+                if (order.Items.GetCount() == 0)
+                    continue;
+
                 IDictionary<string, object> orderDictionary = OrderToDictionary(order);
                 IWebConnection webConnection = _webServer.Connect();
                 var httpWebRequest = RequestFactory.CreatePostRequest(webConnection,
