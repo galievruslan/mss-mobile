@@ -10,6 +10,7 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
         public string Localization { get; set; }
 
         public int SynchronizationBatchSize { get; set; }
+        public string Version { get; set; }
 
         public override bool Validate() {
             base.Validate();

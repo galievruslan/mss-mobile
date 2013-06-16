@@ -53,6 +53,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                                                                 .GetSection("Synchronization")
                                                                 .GetSetting("BathSize")
                                                                 .As<int>(),
+                Version = Environment.AppVersion,
                 Localization = _configurationManager.GetConfig("Common")
                                                     .GetSection("Localization")
                                                     .GetSetting("Current")

@@ -44,16 +44,21 @@
             this._synchronizationTab = new System.Windows.Forms.TabPage();
             this._batchSizeTextBox = new System.Windows.Forms.TextBox();
             this._batchSizeLabel = new System.Windows.Forms.Label();
+            this._infoTab = new System.Windows.Forms.TabPage();
+            this._versionLabel = new System.Windows.Forms.Label();
+            this._versionValueLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this._systemTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.localizationViewModelBindingSource)).BeginInit();
             this._synchronizationTab.SuspendLayout();
+            this._infoTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this._systemTab);
             this.tabControl.Controls.Add(this._synchronizationTab);
+            this.tabControl.Controls.Add(this._infoTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -177,7 +182,7 @@
             this._synchronizationTab.Controls.Add(this._batchSizeLabel);
             this._synchronizationTab.Location = new System.Drawing.Point(0, 0);
             this._synchronizationTab.Name = "_synchronizationTab";
-            this._synchronizationTab.Size = new System.Drawing.Size(232, 242);
+            this._synchronizationTab.Size = new System.Drawing.Size(240, 245);
             this._synchronizationTab.Text = "Synchronization";
             // 
             // _batchSizeTextBox
@@ -187,7 +192,7 @@
             this._batchSizeTextBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._batchSizeTextBox.Location = new System.Drawing.Point(78, 7);
             this._batchSizeTextBox.Name = "_batchSizeTextBox";
-            this._batchSizeTextBox.Size = new System.Drawing.Size(147, 21);
+            this._batchSizeTextBox.Size = new System.Drawing.Size(155, 21);
             this._batchSizeTextBox.TabIndex = 11;
             this._batchSizeTextBox.TextChanged += new System.EventHandler(this.BatchSizeTextBoxTextChanged);
             // 
@@ -198,6 +203,33 @@
             this._batchSizeLabel.Name = "_batchSizeLabel";
             this._batchSizeLabel.Size = new System.Drawing.Size(64, 35);
             this._batchSizeLabel.Text = "Batch size";
+            // 
+            // _infoTab
+            // 
+            this._infoTab.Controls.Add(this._versionValueLabel);
+            this._infoTab.Controls.Add(this._versionLabel);
+            this._infoTab.Location = new System.Drawing.Point(0, 0);
+            this._infoTab.Name = "_infoTab";
+            this._infoTab.Size = new System.Drawing.Size(240, 245);
+            this._infoTab.Text = "Information";
+            // 
+            // _versionLabel
+            // 
+            this._versionLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._versionLabel.Location = new System.Drawing.Point(8, 8);
+            this._versionLabel.Name = "_versionLabel";
+            this._versionLabel.Size = new System.Drawing.Size(100, 20);
+            this._versionLabel.Text = "Version";
+            // 
+            // _versionValueLabel
+            // 
+            this._versionValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._versionValueLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
+            this._versionValueLabel.Location = new System.Drawing.Point(114, 8);
+            this._versionValueLabel.Name = "_versionValueLabel";
+            this._versionValueLabel.Size = new System.Drawing.Size(119, 20);
+            this._versionValueLabel.Text = "1.0.4586.25486";
             // 
             // SettingsView
             // 
@@ -211,6 +243,7 @@
             this._systemTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.localizationViewModelBindingSource)).EndInit();
             this._synchronizationTab.ResumeLayout(false);
+            this._infoTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -232,5 +265,8 @@
         private System.Windows.Forms.ComboBox _languagesComboBox;
         private System.Windows.Forms.Label _languageLabel;
         private System.Windows.Forms.BindingSource localizationViewModelBindingSource;
+        private System.Windows.Forms.TabPage _infoTab;
+        private System.Windows.Forms.Label _versionLabel;
+        private System.Windows.Forms.Label _versionValueLabel;
     }
 }

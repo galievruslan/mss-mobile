@@ -121,4 +121,6 @@
   <Element name="start updated application...">Start updated application...</Element>
   <Element name="setting up connection to the server...">Setting up connection to the server...</Element>
   <Element name="restore credentials...">Restore credentials...</Element>
+  <Element name="information">Information</Element>
+  <Element name="version">Version</Element>
 </Root>

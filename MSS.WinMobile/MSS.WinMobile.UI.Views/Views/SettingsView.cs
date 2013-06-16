@@ -25,6 +25,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             _batchSizeLabel.Text = _localizationManager.Localization.GetLocalizedValue(_batchSizeLabel.Text);
             _systemTab.Text = _localizationManager.Localization.GetLocalizedValue(_systemTab.Text);
             _synchronizationTab.Text = _localizationManager.Localization.GetLocalizedValue(_synchronizationTab.Text);
+            _infoTab.Text = _localizationManager.Localization.GetLocalizedValue(_infoTab.Text);
+            _versionLabel.Text =
+                _localizationManager.Localization.GetLocalizedValue(_versionLabel.Text);
         }
 
         private SettingsPresenter _settingsPresenter;
@@ -39,6 +42,7 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _passwordTextBox.Text = _settingsViewModel.Password;
                 _batchSizeTextBox.Text =
                     _settingsViewModel.SynchronizationBatchSize.ToString(CultureInfo.InvariantCulture);
+                _versionValueLabel.Text = _settingsViewModel.Version;
                 _languagesComboBox.DataSource = _settingsPresenter.GetAvailableLanguages();
                 _languagesComboBox.SelectedItem = _settingsPresenter.GetSelectedLocalization();
                 _languagesComboBox.SelectedValueChanged += _languagesComboBox_SelectedValueChanged;
