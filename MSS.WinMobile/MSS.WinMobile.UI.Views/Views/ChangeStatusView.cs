@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using MSS.WinMobile.UI.Controls;
 using MSS.WinMobile.UI.Presenters.Presenters;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
@@ -31,20 +33,29 @@ namespace MSS.WinMobile.UI.Views.Views {
 
                 IEnumerable<StatusViewModel> statusViewModels = _changeStatusPresenter.GetStatuses();
                 foreach (var statusViewModel in statusViewModels) {
-                    var radioButton = new RadioButton {
+                    var radioButton = new CustomRadioButton {
                         Text = statusViewModel.Name,
                         Checked = statusViewModel.Id == _routePointViewModel.StatusId,
                         Dock = DockStyle.Top,
-                        Tag = statusViewModel
+                        Tag = statusViewModel,
                     };
-                    radioButton.CheckedChanged += RadioButtonCheckedChanged;
-                    _statusesPanel.Controls.Add(radioButton);
+
+                    radioButton.CheckedEvent += RadioButtonCheckedChanged;
+                    Controls.Add(radioButton);
                 }
             }
         }
 
-        void RadioButtonCheckedChanged(object sender, EventArgs e) {
-            var radioButton = sender as RadioButton;
+        void RadioButtonCheckedChanged(object sender) {
+            var radioButton = sender as CustomRadioButton;
+            foreach (var control in Controls) {
+                if (control is CustomRadioButton) {
+                    var customRadioButton = control as CustomRadioButton;
+                    if (customRadioButton != sender)
+                        customRadioButton.Checked = false;
+                }
+            }
+
             if (radioButton != null)
                 _changeStatusPresenter.SelectStatus(radioButton.Tag as StatusViewModel);
         }

@@ -74,6 +74,12 @@
     <Compile Include="Buttons\InformationButton.Designer.cs">
       <DependentUpon>InformationButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomRadioButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomRadioButton.Designer.cs">
+      <DependentUpon>CustomRadioButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="FilterPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Buttons\OkButton.resx">
       <DependentUpon>OkButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomRadioButton.resx">
+      <DependentUpon>CustomRadioButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilterPanel.resx">
       <DependentUpon>FilterPanel.cs</DependentUpon>
