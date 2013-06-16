@@ -68,7 +68,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     if (pickUpProductViewModel.Quantity * 10 + count < MaxValue)
                         pickUpProductViewModel.Quantity = pickUpProductViewModel.Quantity * 10 + count;
                 }
-                else {
+                else if (count != 0) {
                     _pickUpProductViewModels.Add(new PickUpProductViewModel {
                         ProductId = SelectedModel.ProductId,
                         ProductName = SelectedModel.ProductName,
