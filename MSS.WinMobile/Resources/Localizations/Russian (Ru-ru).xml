@@ -124,4 +124,5 @@
   <Element name="restore credentials...">Восстановление учётных данных...</Element>
   <Element name="information">Информация</Element>
   <Element name="version">Версия</Element>
+  <Element name="default status setting not found. please synchronize your device.">Настройка "Статус по умолчанию" не найдена. Пожалуйста синхронизируйте ваше устройство.</Element>
 </Root>

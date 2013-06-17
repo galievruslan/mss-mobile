@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MSS.WinMobile.Application.Configuration;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
@@ -7,9 +8,12 @@ using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
+using log4net;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters {
     public class NewRoutePointPresenter : IPresenter<NewRoutePointViewModel> {
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(NewRoutePointPresenter));
 
         private readonly INewRoutePointView _view;
         private readonly IRepositoryFactory _repositoryFactory;
@@ -85,6 +89,23 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         }
 
         public void Save() {
+            int defaultStatusId;
+            try {
+                defaultStatusId = _configurationManager.GetConfig("Domain")
+                                                       .GetSection("Statuses")
+                                                       .GetSetting("DefaultRoutePointStatusId")
+                                                       .As<int>();
+
+                if (defaultStatusId == 0)
+                    throw new ApplicationException("\"Default route point status\" setting not found.");
+            }
+            catch (Exception exception) {
+                Log.Error(exception);
+                _view.ShowError(new[]
+                {"Default status setting not found. Please synchronize your device."});
+                return;
+            }
+
             if (_viewModel.Validate()) {
 
                 var routeRepository = _repositoryFactory.CreateRepository<Route>();
@@ -92,11 +113,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     routeRepository.Find()
                                    .Where(new RouteOnDateSpec(_routeViewModel.Date))
                                    .FirstOrDefault();
-
-                var defaultStatusId = _configurationManager.GetConfig("Domain")
-                                                           .GetSection("Statuses")
-                                                           .GetSetting("DefaultRoutePointStatusId")
-                                                           .As<int>();
 
                 var statusRepository = _repositoryFactory.CreateRepository<Status>();
                 var defaultStatus = statusRepository.GetById(defaultStatusId);
