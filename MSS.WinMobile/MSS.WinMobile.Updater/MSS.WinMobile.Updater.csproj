@@ -78,6 +78,7 @@
     <Compile Include="Commands\ConnectToUpdateServer.cs" />
     <Compile Include="Commands\CreateDesktopShortcut.cs" />
     <Compile Include="Commands\CreateTemporaryFolder.cs" />
+    <Compile Include="Commands\DeleteDatabase.cs" />
     <Compile Include="Commands\DeleteTemporaryFolder.cs" />
     <Compile Include="Commands\DownloadDistributive.cs" />
     <Compile Include="Commands\ExtractDistributive.cs" />

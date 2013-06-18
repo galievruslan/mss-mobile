@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using MSS.WinMobile.Application.Configuration;
+using MSS.WinMobile.Domain.Models;
+using MSS.WinMobile.Infrastructure.Storage;
+using MSS.WinMobile.Synchronizer.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -12,11 +15,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
         private static readonly ILog Log = LogManager.GetLogger(typeof(MenuPresenter));
 
         private readonly IMenuView _view;
+        private readonly IRepositoryFactory _repositoryFactory;
         private readonly IConfigurationManager _configurationManager;
         private readonly INavigator _navigator;
 
-        public MenuPresenter(IMenuView view, IConfigurationManager configurationManager, INavigator navigator) {
+        public MenuPresenter(IMenuView view, IRepositoryFactory repositoryFactory, IConfigurationManager configurationManager, INavigator navigator) {
             _view = view;
+            _repositoryFactory = repositoryFactory;
             _navigator = navigator;
             _configurationManager = configurationManager;
         }
@@ -42,6 +47,22 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
         public void RunUpdater() {
             try {
+                IStorageRepository<Route> routeRepository =
+                    _repositoryFactory.CreateRepository<Route>();
+                int routesToSyncCount =
+                    routeRepository.Find().Where(new RoutesToSyncSpec()).GetCount();
+
+                IStorageRepository<Order> orderRepository =
+                    _repositoryFactory.CreateRepository<Order>();
+                int ordersToSyncCount =
+                    orderRepository.Find().Where(new OrdersToSyncSpec()).GetCount();
+
+                if (routesToSyncCount > 0 || ordersToSyncCount > 0) {
+                    _view.ShowInformation(
+                        "you must synchronize device before update.");
+                    return;
+                }
+
                 string updaterExecutable = _configurationManager.GetConfig("Common")
                                                                 .GetSection("Updates")
                                                                 .GetSetting("Updater")
@@ -51,10 +72,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 var updaterProcessStartInfo = new ProcessStartInfo
                     {
                         Arguments =
-                            string.Format("\"{0}\" \"{1}\" \"{2}\"",
+                            string.Format("\"{0}\" \"{1}\"",
                                           Environment.AppExecutableName,
-                                          Environment.AppVersion,
-                                          "MSS"),
+                                          Environment.AppVersion),
                         FileName = updaterPath,
                         UseShellExecute = true
                     };

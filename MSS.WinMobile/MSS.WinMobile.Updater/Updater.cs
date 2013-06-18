@@ -35,6 +35,8 @@ namespace MSS.WinMobile.Updater {
                 new ParametrizedThreadStartDelegate(_targetConfig, _configurationManager);
             parametrizedThreadStartDelegate.Subscribe(this);
             parametrizedThreadStartDelegate.UpdateComplete += UpdateCompleteHandler;
+            parametrizedThreadStartDelegate.UpdateNotNeeded += UpdateNotNeededHandler;
+            parametrizedThreadStartDelegate.UpdateFailed += UpdateFailedHandler;
 
             _worker = new Thread(parametrizedThreadStartDelegate.Worker);
             _worker.Start();
@@ -62,13 +64,41 @@ namespace MSS.WinMobile.Updater {
             }
         }
 
-        private delegate void UpdateCompleteHandlerDelegate();
-
+        private delegate void UpdateFinishedHandlerDelegate();
         private void UpdateCompleteHandler() {
             if (InvokeRequired) {
-                Invoke(new UpdateCompleteHandlerDelegate(UpdateCompleteHandler));
+                Invoke(new UpdateFinishedHandlerDelegate(UpdateCompleteHandler));
             }
             else {
+                MessageBox.Show(
+                    _localizationManager.Localization.GetLocalizedValue(
+                        "New version of the programm installed."));
+                Close();
+                Dispose();
+            }
+        }
+
+        private void UpdateNotNeededHandler() {
+            if (InvokeRequired) {
+                Invoke(new UpdateFinishedHandlerDelegate(UpdateNotNeededHandler));
+            }
+            else {
+                MessageBox.Show(
+                    _localizationManager.Localization.GetLocalizedValue(
+                        "Lastes updates already installed."));
+                Close();
+                Dispose();
+            }
+        }
+
+        private void UpdateFailedHandler() {
+            if (InvokeRequired) {
+                Invoke(new UpdateFinishedHandlerDelegate(UpdateFailedHandler));
+            }
+            else {
+                MessageBox.Show(
+                    _localizationManager.Localization.GetLocalizedValue(
+                        "Update failed, please try again later."));
                 Close();
                 Dispose();
             }

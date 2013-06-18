@@ -44,7 +44,8 @@ namespace MSS.WinMobile.Application {
         }
 
         public MenuPresenter CreateMenuPresenter(IMenuView logonView) {
-            return new MenuPresenter(logonView, _configurationManager, _navigator);
+            return new MenuPresenter(logonView, _repositoryFactory, _configurationManager,
+                                     _navigator);
         }
 
         public SynchronizationPresenter CreateSynchronizationPresenter(

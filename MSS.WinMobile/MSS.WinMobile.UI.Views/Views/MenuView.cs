@@ -78,7 +78,7 @@ namespace MSS.WinMobile.UI.Views.Views {
                                          FontStyle.Underline);
             _updatesLabel.Refresh();
             _menuPresenter.RunUpdater();
-
+            
             _updatesLabel.ForeColor = Color.Black;
             _updatesLabel.Font = new Font(_updatesLabel.Font.Name,
                                          _updatesLabel.Font.Size,

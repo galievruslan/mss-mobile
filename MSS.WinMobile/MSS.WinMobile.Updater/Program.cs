@@ -16,13 +16,12 @@ namespace MSS.WinMobile.Updater {
         [MTAThread]
         static void Main(string[] args) {
             try {
-                if (args.Length < 3)
+                if (args.Length < 2)
                     throw new ArgumentException("Two arguments are expected");
 
                 var updaterConfig = new TargetConfig {
                     Target = args[0],
-                    TargetVersion = args[1],
-                    TargetWindow = args[2]
+                    TargetVersion = args[1]
                 };
 
                 // Load Config.xml to setup log4net

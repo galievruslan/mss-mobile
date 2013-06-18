@@ -125,4 +125,9 @@
   <Element name="information">Информация</Element>
   <Element name="version">Версия</Element>
   <Element name="default status setting not found. please synchronize your device.">Настройка "Статус по умолчанию" не найдена. Пожалуйста синхронизируйте ваше устройство.</Element>
+  <Element name="you must synchronize device before update.">Вы должны синхронизировать данные до обновления.</Element>
+  <Element name="delete old database...">Удаление старой базы данных...</Element>
+  <Element name="new version of the programm installed.">Новая версия программы установлена.</Element>
+  <Element name="lastes updates already installed.">Последняя версия программы уже установлена.</Element>
+  <Element name="update failed, please try again later.">Не удалось обновить программу, попробуйте позже.</Element>
 </Root>

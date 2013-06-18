@@ -15,11 +15,25 @@ namespace MSS.WinMobile.Updater {
             _configurationManager = configurationManager;
         }
 
-        public delegate void OnUpdateComplete();
-        public event OnUpdateComplete UpdateComplete;
+        public delegate void OnUpdateFinished();
+        public event OnUpdateFinished UpdateComplete;
 
         private void InvokeUpdateComplete() {
-            OnUpdateComplete handler = UpdateComplete;
+            OnUpdateFinished handler = UpdateComplete;
+            if (handler != null) handler();
+        }
+
+        public event OnUpdateFinished UpdateNotNeeded;
+
+        private void InvokeUpdateNotNeeded() {
+            OnUpdateFinished handler = UpdateNotNeeded;
+            if (handler != null) handler();
+        }
+
+        public event OnUpdateFinished UpdateFailed;
+
+        private void InvokeUpdateFailed() {
+            OnUpdateFinished handler = UpdateFailed;
             if (handler != null) handler();
         }
 
@@ -72,10 +86,16 @@ namespace MSS.WinMobile.Updater {
                             installNewVersion.Execute();
                             installNewVersion.Dispose();
 
-                            var restoreCredentials = new RestoreCredentials(_configurationManager);
-                            restoreCredentials.Subscribe(this);
-                            restoreCredentials.Execute();
-                            restoreCredentials.Dispose();
+                            //var restoreCredentials = new RestoreCredentials(_configurationManager);
+                            //restoreCredentials.Subscribe(this);
+                            //restoreCredentials.Execute();
+                            //restoreCredentials.Dispose();
+
+                            var deleteDatabase = new DeleteDatabase(_targetConfig,
+                                                                    _configurationManager);
+                            deleteDatabase.Subscribe(this);
+                            deleteDatabase.Execute();
+                            deleteDatabase.Dispose();
 
                             var runApplication = new RunApplication(_targetConfig);
                             runApplication.Subscribe(this);
@@ -85,15 +105,18 @@ namespace MSS.WinMobile.Updater {
                             var deleteTemporaryFolder = new DeleteTemporaryFolder(temporaryFolder);
                             deleteTemporaryFolder.Execute();
                         }
+                        else {
+                            InvokeUpdateNotNeeded();
+                        }
                         checkIfUpdateAvailable.Dispose();
                     }
                 }
+                InvokeUpdateComplete();
             }
             catch (Exception exception) {
                 Log.Error(exception);
+                InvokeUpdateFailed();
             }
-
-            InvokeUpdateComplete();
         }
 
         #region IDisposable

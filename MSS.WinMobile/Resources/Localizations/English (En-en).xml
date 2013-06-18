@@ -124,4 +124,9 @@
   <Element name="information">Information</Element>
   <Element name="version">Version</Element>
   <Element name="default status setting not found. please synchronize your device.">"Default status" setting not found. Please synchronize your device.</Element>
+  <Element name="you must synchronize device before update.">You must synchronize device before update.</Element>
+  <Element name="delete old database...">Delete old database...</Element>
+  <Element name="new version of the programm installed.">New version of the programm installed.</Element>
+  <Element name="lastes updates already installed.">Lastes updates already installed.</Element>
+  <Element name="update failed, please try again later.">Update failed, please try again later.</Element>
 </Root>

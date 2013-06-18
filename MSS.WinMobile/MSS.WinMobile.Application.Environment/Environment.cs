@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using OpenNETCF.Diagnostics;
 
 namespace MSS.WinMobile.Application.Environment
 {
@@ -28,11 +29,13 @@ namespace MSS.WinMobile.Application.Environment
 
         public static string AppVersion {
             get {
+                Assembly assembly = Assembly.LoadFrom(AppExecutableName);
+                //assembly.
                 return string.Format("{0}.{1}.{2}.{3}",
-                                     Assembly.GetExecutingAssembly().GetName().Version.Major,
-                                     Assembly.GetExecutingAssembly().GetName().Version.Minor,
-                                     Assembly.GetExecutingAssembly().GetName().Version.Build,
-                                     Assembly.GetExecutingAssembly().GetName().Version.Revision);
+                                     assembly.GetName().Version.Major,
+                                     assembly.GetName().Version.Minor,
+                                     assembly.GetName().Version.Build,
+                                     assembly.GetName().Version.Revision);
             }
         }
 

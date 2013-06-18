@@ -18,7 +18,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
                                      (specification as RoutePointsOrdersSpec).RoutePoint.Id);
             }
             if (specification is OrdersToSyncSpec) {
-                return "Synchronized = 0";
+                return "Synchronized = 0 AND  Id IN (select distinct Order_Id from OrderItems)";
             }
             if (specification is OrdersOnDateSpec) {
                 return string.Format("[OrderDate] = '{0}'",
