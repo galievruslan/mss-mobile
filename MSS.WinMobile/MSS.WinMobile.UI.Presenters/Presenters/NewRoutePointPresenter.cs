@@ -55,8 +55,19 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
             if (selectedCustomer != null) {
                 _viewModel.CustomerId = selectedCustomer.Id;
                 _viewModel.CustomerName = selectedCustomer.Name;
-                _viewModel.ShippingAddressId = 0;
-                _viewModel.ShippingAddressName = string.Empty;
+
+                IStorageRepository<Customer> customersRepo =
+                    _repositoryFactory.CreateRepository<Customer>();
+                Customer customer = customersRepo.GetById(selectedCustomer.Id);
+                if (customer.ShippingAddresses.GetCount() == 1) {
+                    ShippingAddress shippingAddress = customer.ShippingAddresses.FirstOrDefault();
+                    _viewModel.ShippingAddressId = shippingAddress.Id;
+                    _viewModel.ShippingAddressName = shippingAddress.Name;
+                }
+                else {
+                    _viewModel.ShippingAddressId = 0;
+                    _viewModel.ShippingAddressName = string.Empty;
+                }
             }
         }
 
