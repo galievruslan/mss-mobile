@@ -2,7 +2,6 @@
 using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
-using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
@@ -24,22 +23,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps {
             return _categoryViewModel;
         }
 
-        public IEnumerable<CategoryViewModel> GetRootCategories() {
+        public IEnumerable<CategoryViewModel> GetCategories() {
             var categoryRepository = _repositoryFactory.CreateRepository<Category>();
-            IEnumerable<Category> categories =
-                categoryRepository.Find().Where(new RootCategoriesSpec());
-
-            return categories.Select(category => new CategoryViewModel {
-                Id = category.Id, Name = category.Name, ParentId = category.ParentId
-            }).ToList();
-        }
-
-        public IEnumerable<CategoryViewModel> GetChildCategories(
-            CategoryViewModel parentCategoryViewModel) {
-            var categoryRepository = _repositoryFactory.CreateRepository<Category>();
-            var parentCategory = categoryRepository.GetById(parentCategoryViewModel.Id);
-            IEnumerable<Category> categories =
-                categoryRepository.Find().Where(new ChildCategoriesSpec(parentCategory));
+            IEnumerable<Category> categories = categoryRepository.Find();
 
             return categories.Select(category => new CategoryViewModel {
                 Id = category.Id, Name = category.Name, ParentId = category.ParentId

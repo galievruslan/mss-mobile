@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -33,7 +34,7 @@ namespace MSS.WinMobile.UI.Views.LookUps {
                 _categoryLookUpPresenter = _presentersFactory.CreateCategoryLookUpPresenter(this,
                                                                                             SelectedCategory);
 
-                FillTreeView();
+                BuildTreeViewView();
                 if (_selectedTreeNode != null)
                     _categoriesTreeView.SelectedNode = _selectedTreeNode;
 
@@ -46,37 +47,46 @@ namespace MSS.WinMobile.UI.Views.LookUps {
         }
 
         private TreeNode _selectedTreeNode;
-        private void FillTreeView() {
+        private void BuildTreeViewView() {
             var categoryViewModels =
-                    _categoryLookUpPresenter.GetRootCategories();
+                    new List<CategoryViewModel>(_categoryLookUpPresenter.GetCategories());
+
             foreach (var categoryViewModel in categoryViewModels) {
-                var treeNode = new TreeNode(categoryViewModel.Name) {
-                    Tag = categoryViewModel
-                };
+                if (categoryViewModel.ParentId == 0) {
+                    var treeNode = new TreeNode(categoryViewModel.Name) {
+                        Tag = categoryViewModel
+                    };
 
-                if (categoryViewModel.Id == SelectedCategory.Id)
-                    _selectedTreeNode = treeNode;
+                    if (categoryViewModel.Id == SelectedCategory.Id)
+                        _selectedTreeNode = treeNode;
 
-                FillTreeViewNode(treeNode);
-                _categoriesTreeView.Nodes.Add(treeNode);
+                    FillTreeViewNode(treeNode, categoryViewModels);
+                    _categoriesTreeView.Nodes.Add(treeNode);
+                }
 
             }
         }
 
-        private void FillTreeViewNode(TreeNode parentTreeNode) {
-            IEnumerable<CategoryViewModel> categoryViewModels =
-                    _categoryLookUpPresenter.GetChildCategories(parentTreeNode.Tag as CategoryViewModel);
-            foreach (var categoryViewModel in categoryViewModels) {
-                var treeNode = new TreeNode(categoryViewModel.Name)
-                {
-                    Tag = categoryViewModel
-                };
+        private void FillTreeViewNode(TreeNode parentTreeNode, List<CategoryViewModel> categories) {
 
-                if (categoryViewModel.Id == SelectedCategory.Id)
-                    _selectedTreeNode = treeNode;
+            foreach (var categoryViewModel in categories) {
+                var viewModel = parentTreeNode.Tag as CategoryViewModel;
+                if (viewModel != null) {
+                    int parentId = viewModel.Id;
 
-                FillTreeViewNode(treeNode);
-                parentTreeNode.Nodes.Add(treeNode);
+                    if (parentId == categoryViewModel.ParentId) {
+                        var treeNode = new TreeNode(categoryViewModel.Name)
+                        {
+                            Tag = categoryViewModel
+                        };
+
+                        if (categoryViewModel.Id == SelectedCategory.Id)
+                            _selectedTreeNode = treeNode;
+
+                        FillTreeViewNode(treeNode, categories);
+                        parentTreeNode.Nodes.Add(treeNode);
+                    }
+                }
             }
         }
     }
