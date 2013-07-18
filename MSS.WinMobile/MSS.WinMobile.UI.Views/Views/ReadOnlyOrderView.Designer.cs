@@ -99,12 +99,10 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this._generalTab);
             this.tabControl.Controls.Add(this._detailsTab);
             this.tabControl.Controls.Add(this._notesTab);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.None;
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Regular);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -114,6 +112,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             // 
             // _generalTab
             // 
+            this._generalTab.AutoScroll = true;
             this._generalTab.Controls.Add(this._orderDataTextBox);
             this._generalTab.Controls.Add(this._shippingDateTextBox);
             this._generalTab.Controls.Add(this.warehousePanel);
@@ -282,7 +281,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTab.Controls.Add(this._notesTextBox);
             this._notesTab.Location = new System.Drawing.Point(0, 0);
             this._notesTab.Name = "_notesTab";
-            this._notesTab.Size = new System.Drawing.Size(240, 244);
+            this._notesTab.Size = new System.Drawing.Size(232, 242);
             this._notesTab.Text = "Notes";
             // 
             // _notesTextBox
@@ -295,7 +294,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             this._notesTextBox.Multiline = true;
             this._notesTextBox.Name = "_notesTextBox";
             this._notesTextBox.ReadOnly = true;
-            this._notesTextBox.Size = new System.Drawing.Size(226, 234);
+            this._notesTextBox.Size = new System.Drawing.Size(218, 232);
             this._notesTextBox.TabIndex = 0;
             // 
             // ReadOnlyOrderView
@@ -305,7 +304,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.AutoScroll = true;
             this.Controls.Add(this.tabControl);
             this.Name = "ReadOnlyOrderView";
-            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.OrderViewLoad);
             this.itemsActionPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
