@@ -48,6 +48,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsCE.Forms" />
+    <Reference Include="Microsoft.WindowsMobile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.WindowsMobile.Status, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -79,6 +81,9 @@
     </Compile>
     <Compile Include="CustomRadioButton.Designer.cs">
       <DependentUpon>CustomRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsWindow.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FilterPanel.cs">
       <SubType>UserControl</SubType>
@@ -155,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomRadioButton.resx">
       <DependentUpon>CustomRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsWindow.resx">
+      <DependentUpon>DetailsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilterPanel.resx">
       <DependentUpon>FilterPanel.cs</DependentUpon>

@@ -10,9 +10,6 @@
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
-            if (_details != null) {
-                _details.Dispose();
-            }
             if (disposing && (components != null)) {
                 components.Dispose();
             }
@@ -29,7 +26,6 @@
             this._mainMenu = new System.Windows.Forms.MainMenu();
             this._leftButton = new System.Windows.Forms.MenuItem();
             this._rightButton = new System.Windows.Forms.MenuItem();
-            this._details = new Microsoft.WindowsCE.Forms.Notification();
             this._inputPanel = new Microsoft.WindowsCE.Forms.InputPanel();
             this.SuspendLayout();
             // 
@@ -46,10 +42,6 @@
             // 
             this._rightButton.Text = "RightButton";
             // 
-            // _details
-            // 
-            this._details.Text = "notification1";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -65,7 +57,6 @@
         #endregion
 
         private System.Windows.Forms.MainMenu _mainMenu;
-        private Microsoft.WindowsCE.Forms.Notification _details;
         internal Microsoft.WindowsCE.Forms.InputPanel _inputPanel;
         internal System.Windows.Forms.MenuItem _leftButton;
         internal System.Windows.Forms.MenuItem _rightButton;

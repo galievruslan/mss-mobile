@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Localization;
+using MSS.WinMobile.UI.Controls;
 using MSS.WinMobile.UI.Presenters.Views;
 
 namespace MSS.WinMobile.UI.Views.LookUps
@@ -52,14 +53,16 @@ namespace MSS.WinMobile.UI.Views.LookUps
         public void ShowDetails(IEnumerable<KeyValuePair<string, string>> details) {
             var stringBuilder = new StringBuilder();
             foreach (var keyValuePair in details) {
-                stringBuilder.Append(string.Format("<b>{0}</b>: {1}",
+                stringBuilder.Append(string.Format("{0}: {1}",
                                                    LocalizationManager.Localization.GetLocalizedValue(
                                                        keyValuePair.Key),
                                                    keyValuePair.Value));
-                stringBuilder.Append("</br>");
+                stringBuilder.Append(Environment.NewLine);
             }
-            _details.Text = stringBuilder.ToString();
-            _details.Visible = true;
+
+            var detailsWindow = new DetailsWindow(stringBuilder.ToString());
+            detailsWindow.Text = LocalizationManager.Localization.GetLocalizedValue(detailsWindow.Text);
+            detailsWindow.ShowDialog();
         }
 
         private void OkMenuItemClick(object sender, System.EventArgs e)

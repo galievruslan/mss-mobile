@@ -130,4 +130,5 @@
   <Element name="new version of the programm installed.">Новая версия программы установлена.</Element>
   <Element name="lastes updates already installed.">Последняя версия программы уже установлена.</Element>
   <Element name="update failed, please try again later.">Не удалось обновить программу, попробуйте позже.</Element>
+  <Element name="details">Подробная информация</Element>
 </Root>

@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Localization;
+using MSS.WinMobile.UI.Controls;
 using MSS.WinMobile.UI.Views.Views;
 using View = MSS.WinMobile.UI.Views.Views.View;
 
@@ -62,14 +63,16 @@ namespace MSS.WinMobile.UI.Views {
         public void ShowDetails(IEnumerable<KeyValuePair<string, string>> details) {
             var stringBuilder = new StringBuilder();
             foreach (var keyValuePair in details) {
-                stringBuilder.Append(string.Format("<b>{0}</b>: {1}",
+                stringBuilder.Append(string.Format("{0}: {1}",
                                                    _localizationManager.Localization.GetLocalizedValue(
                                                        keyValuePair.Key),
                                                    keyValuePair.Value));
-                stringBuilder.Append("</br>");
+                stringBuilder.Append(Environment.NewLine);
             }
-            _details.Text = stringBuilder.ToString();
-            _details.Visible = true;
+
+            var detailsWindow = new DetailsWindow(stringBuilder.ToString());
+            detailsWindow.Text = _localizationManager.Localization.GetLocalizedValue(detailsWindow.Text);
+            detailsWindow.ShowDialog();
         }
 
         public void UnregisterActions() {
