@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
+using MSS.WinMobile.UI.Presenters.Presenters.Specifications;
 using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views;
 using log4net;
@@ -94,7 +96,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public void GetOrdersOnDate(DateTime date) {
-            _ordersRetriever = new OrderRetriever(_repositoryFactory.CreateRepository<Order>(), date);
+            IStorageRepository<Order> ordersRepo = _repositoryFactory.CreateRepository<Order>();
+            _view.SetAmount(ordersRepo.Find().Where(new OrdersOnDateSpec(date)).Sum(order => order.Amount));
+            _ordersRetriever = new OrderRetriever(ordersRepo, date);
             _cache = new Cache<Order>(_ordersRetriever, 10);
         }
 

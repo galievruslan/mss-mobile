@@ -19,8 +19,7 @@
     <FormFactorID>
     </FormFactorID>
     <DeployDirPrefix>%25CSIDL_PROGRAM_FILES%25</DeployDirPrefix>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>1374360857_17854.ico</ApplicationIcon>
     <Win32Resource>
     </Win32Resource>
     <SignAssembly>true</SignAssembly>
@@ -140,6 +139,7 @@
     </Content>
     <Content Include="..\Libs\Sqlite\SQLite.Interop.084.dll">
       <Link>SQLite.Interop.084.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\Resources\Database\Schema.sql">
       <Link>Resources\Database\Schema.sql</Link>
@@ -153,6 +153,7 @@
       <Link>Resources\Localizations\Russian %28Ru-ru%29.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="1374360857_17854.ico" />
     <None Include="Mss.WinMobile.Application.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

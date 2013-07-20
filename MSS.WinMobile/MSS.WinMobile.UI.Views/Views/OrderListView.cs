@@ -24,6 +24,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             _localizationManager = localizationManager;
             _date = date;
 
+            _amountLabel.Text = _localizationManager.Localization.GetLocalizedValue(_amountLabel.Text);
             datePicker.CustomFormat = _localizationManager.Localization.GetLocalizedValue("dateformat");
             _orderListBox.LocalizationManager = _localizationManager;
         }
@@ -73,6 +74,11 @@ namespace MSS.WinMobile.UI.Views.Views {
             public void Do(object sender, EventArgs e) {
                 _presenter.GoToMenuView();
             }
+        }
+
+        public void SetAmount(decimal amount) {
+            _amountValueLable.Text =
+                amount.ToString(_localizationManager.Localization.GetLocalizedValue("decimalformat"));
         }
     }
 }

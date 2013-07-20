@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MSS.WinMobile.UI.Presenters.Views
+﻿namespace MSS.WinMobile.UI.Presenters.Views
 {
-    public interface IOrderListView : IListView
-    {
+    public interface IOrderListView : IListView {
+        void SetAmount(decimal amount);
     }
 }
