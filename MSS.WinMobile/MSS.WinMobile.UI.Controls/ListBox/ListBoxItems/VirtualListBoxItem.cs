@@ -16,6 +16,10 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
         protected void DrawDivisor(Graphics graphics) {
             graphics.DrawLine(new Pen(Color.Gainsboro), 4, Height - 1, Width - 8, Height - 1);
         }
+        protected override void OnPaint(PaintEventArgs e) {
+            base.OnPaint(e);
+            e.Graphics.DrawLine(new Pen(Color.Gainsboro), 4, Height - 1, Width - 8, Height - 1);
+        }
 
         public delegate void OnDataNeeded(VirtualListBoxItem sender);
         public delegate void OnSelected(VirtualListBoxItem sender);
@@ -66,7 +70,6 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name = "VirtualListBoxItem";
             this.Size = new System.Drawing.Size(200, 28);
-            this.Click += new System.EventHandler(this.VirtualListBoxItemClick);
             this.ResumeLayout(false);
 
         }
@@ -74,6 +77,18 @@ namespace MSS.WinMobile.UI.Controls.ListBox.ListBoxItems {
         protected void VirtualListBoxItemClick(object sender, System.EventArgs e) {
             if (!IsSelected && Selected != null)
                 Selected.Invoke(this);
+        }
+
+        private void VirtualListBoxItem_MouseMove(object sender, MouseEventArgs e) {
+            
+        }
+
+        private void VirtualListBoxItem_MouseDown(object sender, MouseEventArgs e) {
+
+        }
+
+        private void VirtualListBoxItem_MouseUp(object sender, MouseEventArgs e) {
+
         }
     }
 }

@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListBoxItems\NewProductPriceListBoxItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ListBoxItems\ProductPriceListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,6 +124,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ListBoxItems\NewProductPriceListBoxItem.resx">
+      <DependentUpon>NewProductPriceListBoxItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListBoxItems\ProductPriceListBoxItem.resx">
       <DependentUpon>ProductPriceListBoxItem.cs</DependentUpon>
     </EmbeddedResource>

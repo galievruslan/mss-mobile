@@ -47,8 +47,8 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             }
         }
 
-        private VirtualListBoxItem _selectedItem;
-        private void ItemSelected(object sender, VirtualListBoxItem item) {
+        private NewVirtualListBoxItem _selectedItem;
+        private void ItemSelected(object sender, NewVirtualListBoxItem item) {
             _selectedItem = item;
             _presenter.Select(item.Index);
             var productsUoM = _presenter.GetProductsUntisOfMeasure();
@@ -63,8 +63,8 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             _uomComboBox.SelectedValueChanged += _uomComboBox_SelectedValueChanged;
         }
 
-        private void ItemDataNeeded(object sender, VirtualListBoxItem item) {
-            var productPriceListBoxItem = item as ProductPriceListBoxItem;
+        private void ItemDataNeeded(object sender, NewVirtualListBoxItem item) {
+            var productPriceListBoxItem = item as NewProductPriceListBoxItem;
             if (productPriceListBoxItem != null) {
                 productPriceListBoxItem.ViewModel = _presenter.GetItem(item.Index);
             }

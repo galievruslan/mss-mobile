@@ -19,7 +19,7 @@
     <FormFactorID>
     </FormFactorID>
     <DeployDirPrefix>%25CSIDL_PROGRAM_FILES%25</DeployDirPrefix>
-    <ApplicationIcon>1374360857_17854.ico</ApplicationIcon>
+    <ApplicationIcon>mss.ico</ApplicationIcon>
     <Win32Resource>
     </Win32Resource>
     <SignAssembly>true</SignAssembly>
@@ -153,7 +153,7 @@
       <Link>Resources\Localizations\Russian %28Ru-ru%29.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="1374360857_17854.ico" />
+    <Content Include="mss.ico" />
     <None Include="Mss.WinMobile.Application.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

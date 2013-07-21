@@ -8,13 +8,13 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.ListBox
 {
-    public partial class VirtualListBox : UserControl
+    public partial class NewVirtualListBox : UserControl
     {
-        public delegate void OnItemDataNeeded(object sender, VirtualListBoxItem item);
-        public delegate void OnItemSelected(object sender, VirtualListBoxItem item);
+        public delegate void OnItemDataNeeded(object sender, NewVirtualListBoxItem item);
+        public delegate void OnItemSelected(object sender, NewVirtualListBoxItem item);
 
         // Designer only
-        protected VirtualListBox() {
+        protected NewVirtualListBox() {
             SelectedIndex = -1;
         }
 
@@ -60,7 +60,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             while (_dataPanel.Height - itemsHeight - itemAvgHeight > 0 &&
                 _items.Count < _itemCount)
             {
-                VirtualListBoxItem listBoxItem = NewItem();
+                NewVirtualListBoxItem listBoxItem = NewItem();
                 if (LocalizationManager != null)
                     listBoxItem.LocalizationManager = LocalizationManager;
 
@@ -85,9 +85,9 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         #region Items Handling
 
-        private readonly List<VirtualListBoxItem> _items = new List<VirtualListBoxItem>();
+        private readonly List<NewVirtualListBoxItem> _items = new List<NewVirtualListBoxItem>();
 
-        protected virtual void AddListBoxItem(VirtualListBoxItem item)
+        protected virtual void AddListBoxItem(NewVirtualListBoxItem item)
         {
             if (_items.Any()) {
                 var lastListBoxItem = _items.Last();
@@ -100,37 +100,56 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             item.Left = 0;
             item.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
             item.DataNeeded += OnItemDataNeededHandler;
-            item.Selected += OnItemSelectedHandler;
+            item.MouseDown += item_MouseDown;
+            item.MouseUp += item_MouseUp;
+            item.MouseMove += item_MouseMove;
+            item.Click += ItemClick;
 
             _dataPanel.Controls.Add(item);
             _items.Add(item);
         }
 
-        void OnItemDataNeededHandler(VirtualListBoxItem sender)
-        {
-            if (ItemDataNeeded != null && sender.Index < _itemCount)
-                ItemDataNeeded.Invoke(this, sender);
+        private bool _sliding;
+        void item_MouseMove(object sender, MouseEventArgs e) {
+            if (_sliding) {
+                var item = sender as NewVirtualListBoxItem;
+                if (item != null) {
+                    
+                }
+            }
         }
 
-        void OnItemSelectedHandler(VirtualListBoxItem sender)
-        {
-            // return if listbox doesn't contains data
-            if (sender.Index >= _itemCount)
-                return;
+        void item_MouseUp(object sender, MouseEventArgs e) {
+            _sliding = false;
+        }
 
-            foreach (var item in _items)
-            {
-                if (item.IsSelected)
-                {
-                    item.IsSelected = false;
+        void item_MouseDown(object sender, MouseEventArgs e) {
+            _sliding = true;
+        }
+
+        void ItemClick(object sender, EventArgs e) {
+            foreach (NewVirtualListBoxItem each in _items) {
+                if (each.Index == SelectedIndex) {
+                    each.UnSelect();
+                    break;
                 }
             }
 
-            SelectedIndex = sender.Index;
-            sender.IsSelected = true;
+            var item = sender as NewVirtualListBoxItem;
+            if (item != null) {
+                item.Select();
+                SelectedIndex = item.Index;
 
-            if (ItemSelected != null)
-                ItemSelected.Invoke(this, sender);
+                if (ItemSelected != null) {
+                    ItemSelected.Invoke(this, item);
+                }
+            }
+        }
+
+        void OnItemDataNeededHandler(NewVirtualListBoxItem sender)
+        {
+            if (ItemDataNeeded != null && sender.Index < _itemCount)
+                ItemDataNeeded.Invoke(this, sender);
         }
 
         private void RemoveListBoxItem()
@@ -140,7 +159,7 @@ namespace MSS.WinMobile.UI.Controls.ListBox
                 _dataPanel.Controls.Remove(listBoxItem);
 
             listBoxItem.DataNeeded -= OnItemDataNeededHandler;
-            listBoxItem.Selected -= OnItemSelectedHandler;
+            listBoxItem.Click -= ItemClick;
             _items.Remove(listBoxItem);
         }
 
@@ -150,7 +169,9 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             {
                 var item = _items[i];
                 item.Index = _vScrollBar.Value + (-_vScrollBar.Minimum) + i;
-                item.IsSelected = item.Index == SelectedIndex;
+                if (item.Index == SelectedIndex) {
+                    item.Select();
+                }
             }
         }
 
@@ -165,15 +186,8 @@ namespace MSS.WinMobile.UI.Controls.ListBox
 
         #endregion
 
-        protected virtual VirtualListBoxItem NewItem() {
+        protected virtual NewVirtualListBoxItem NewItem() {
             return null;
-        }
-
-        private void VirtualListBoxResize(object sender, EventArgs e)
-        {
-            foreach (var virtualListBoxItem in _items) {
-                virtualListBoxItem.Width = _dataPanel.Width;
-            }
         }
 
         protected virtual string EmptyListMessage {
