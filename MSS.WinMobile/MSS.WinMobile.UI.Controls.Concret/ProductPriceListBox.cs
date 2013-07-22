@@ -4,16 +4,16 @@ using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
 
 namespace MSS.WinMobile.UI.Controls.Concret
 {
-    public class ProductPriceListBox : NewVirtualListBox
+    public class ProductPriceListBox : VirtualListBox
     {
         public ProductPriceListBox()
         {
             InitializeComponent();
         }
 
-        protected override NewVirtualListBoxItem NewItem()
+        protected override VirtualListBoxItem NewItem()
         {
-            return new NewProductPriceListBoxItem();
+            return new ProductPriceListBoxItem();
         }
 
         protected override string EmptyListMessage {

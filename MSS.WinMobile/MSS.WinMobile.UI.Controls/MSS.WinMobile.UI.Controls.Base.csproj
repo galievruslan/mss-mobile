@@ -97,15 +97,6 @@
     <Compile Include="HorizontalLine.Designer.cs">
       <DependentUpon>HorizontalLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListBox\ListBoxItems\NewVirtualListBoxItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\NewVirtualListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ListBox\NewVirtualListBox.Designer.cs">
-      <DependentUpon>NewVirtualListBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,12 +169,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HorizontalLine.resx">
       <DependentUpon>HorizontalLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListBox\ListBoxItems\NewVirtualListBoxItem.resx">
-      <DependentUpon>NewVirtualListBoxItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListBox\NewVirtualListBox.resx">
-      <DependentUpon>NewVirtualListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>

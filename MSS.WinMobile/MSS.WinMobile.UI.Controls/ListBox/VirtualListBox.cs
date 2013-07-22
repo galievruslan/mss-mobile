@@ -184,7 +184,6 @@ namespace MSS.WinMobile.UI.Controls.ListBox
             if (_itemCount == 0) {
                 var format = new StringFormat {
                     Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center,
                     FormatFlags = StringFormatFlags.NoClip
                 };
 
