@@ -13,15 +13,16 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
             _priceList = priceList;
         }
 
-        private readonly Category _category;
-        public ProductsPriceRetriever(PriceList priceList, Category category)
+        private readonly int[] _categoryIds = new int[0];
+        public ProductsPriceRetriever(PriceList priceList, int[] categoryIds)
             : this(priceList) {
-            _category = category;
+                _categoryIds = categoryIds;
         }
 
         private readonly string _searchCriteria;
-        public ProductsPriceRetriever(PriceList priceList, Category category, string searchCriteria)
-        :this(priceList, category) {
+        public ProductsPriceRetriever(PriceList priceList, int[] categoryIds, string searchCriteria)
+            : this(priceList, categoryIds)
+        {
             _searchCriteria = searchCriteria;
         }
 
@@ -39,8 +40,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                 var cacheKeyBuilder = new StringBuilder();
                 cacheKeyBuilder.Append("ProductPrices ");
                 cacheKeyBuilder.Append(string.Format("Price Id = {0}", _priceList.Id));
-                if (_category != null)
-                    cacheKeyBuilder.Append(string.Format("Category_Id = {0}", _category.Id));
+                if (_categoryIds.Length > 0) {
+                    var cacheCategoryKeyBuilder = new StringBuilder();
+                    foreach (var categoryId in _categoryIds) {
+                        cacheCategoryKeyBuilder.Append(categoryId);
+                        cacheCategoryKeyBuilder.Append(',');
+                    }
+
+                    cacheKeyBuilder.Append(string.Format("Category_Ids = {0}", cacheCategoryKeyBuilder));
+                }
                 if (!string.IsNullOrEmpty(_searchCriteria))
                     cacheKeyBuilder.Append(string.Format("Search_Criteria = {0}", _searchCriteria));
                 string cacheKey = cacheKeyBuilder.ToString();
@@ -49,8 +57,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                     return AppCache.Get<int>(cacheKey);
 
                 IQueryObject<ProductsPrice> queryObject = _priceList.Lines;
-                if (_category != null)
-                    queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_category));
+                if (_categoryIds.Length > 0)
+                {
+                    queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_categoryIds));
+                }
 
                 if (!string.IsNullOrEmpty(_searchCriteria))
                     queryObject =
@@ -67,8 +77,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers
                 return new ProductsPrice[0];
 
             IQueryObject<ProductsPrice> queryObject = _priceList.Lines;
-            if (_category != null)
-                queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_category));
+            if (_categoryIds.Length > 0)
+                queryObject = queryObject.Where(new PriceOfProductWithCategorySpec(_categoryIds));
 
             if (!string.IsNullOrEmpty(_searchCriteria))
                 queryObject =

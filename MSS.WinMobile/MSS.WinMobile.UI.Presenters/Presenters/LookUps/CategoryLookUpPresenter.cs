@@ -6,21 +6,21 @@ using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps {
-    public class CategoryLookUpPresenter : IPresenter<CategoryViewModel> {
+    public class CategoryLookUpPresenter : IPresenter<IEnumerable<CategoryViewModel>> {
         private ICategoryLookUpView _categoryLookUpView;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly CategoryViewModel _categoryViewModel;
+        private readonly IEnumerable<CategoryViewModel> _categoryViewModels;
 
         public CategoryLookUpPresenter(ICategoryLookUpView categoryLookUpView,
                                        IRepositoryFactory repositoryFactory,
-                                       CategoryViewModel categoryViewModel) {
+                                       IEnumerable<CategoryViewModel> categoryViewModels) {
             _categoryLookUpView = categoryLookUpView;
             _repositoryFactory = repositoryFactory;
-            _categoryViewModel = categoryViewModel;
+            _categoryViewModels = categoryViewModels;
         }
 
-        public CategoryViewModel Initialize() {
-            return _categoryViewModel;
+        public IEnumerable<CategoryViewModel> Initialize() {
+            return _categoryViewModels;
         }
 
         public IEnumerable<CategoryViewModel> GetCategories() {

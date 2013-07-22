@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -134,28 +135,35 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
             get { return _pickUpProductViewModels; }
         }
 
-        private CategoryViewModel _categoryFilterViewModel;
+        private IEnumerable<CategoryViewModel> _categoryFilterViewModel;
         public void ChangeCategoryFilter() {
             if (_categoryFilterViewModel == null) {
-                _categoryFilterViewModel = new CategoryViewModel {ParentId = 0};
+                _categoryFilterViewModel = new List<CategoryViewModel>();
             }
-            var lookedUpCategory = _lookUpService.LookUpCategory(_categoryFilterViewModel);
-            if (lookedUpCategory != null) {
+            var lookedUpCategories = _lookUpService.LookUpCategories(_categoryFilterViewModel);
+            var categoryFilterViewModel = lookedUpCategories as CategoryViewModel[] ?? lookedUpCategories.ToArray();
+            if (lookedUpCategories != null && categoryFilterViewModel.Count() != 0)
+            {
                 var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-                var categoryRepository = _repositoryFactory.CreateRepository<Category>();
 
-                _categoryFilterViewModel = lookedUpCategory;
+                _categoryFilterViewModel = categoryFilterViewModel;
                 _productsPriceRetriever = string.IsNullOrEmpty(_searchCriteria)
                                           ? new ProductsPriceRetriever(
                                                 priceListRepository.GetById(_priceListViewModel.Id),
-                                                categoryRepository.GetById(
-                                                    _categoryFilterViewModel.Id))
+                                                _categoryFilterViewModel.Select(model => model.Id).ToArray())
                                           : new ProductsPriceRetriever(
                                                 priceListRepository.GetById(_priceListViewModel.Id),
-                                                categoryRepository.GetById(
-                                                    _categoryFilterViewModel.Id), _searchCriteria);
+                                                _categoryFilterViewModel.Select(model => model.Id).ToArray(), 
+                                                _searchCriteria);
                 _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
-                _view.SetCategoryFilter(lookedUpCategory.Name);
+
+                var filterBuilder = new StringBuilder();
+                foreach (var categoryViewModel in categoryFilterViewModel) {
+                    filterBuilder.Append(categoryViewModel.Name);
+                    filterBuilder.Append(", ");
+                }
+
+                _view.SetCategoryFilter(filterBuilder.ToString());
             }
         }
 
@@ -175,7 +183,6 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public void Search(string criteria) {
             _searchCriteria = criteria;
             var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-            var categoryRepository = _repositoryFactory.CreateRepository<Category>();
 
             _productsPriceRetriever = _categoryFilterViewModel == null
                                           ? new ProductsPriceRetriever(
@@ -183,8 +190,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                                                 _searchCriteria)
                                           : new ProductsPriceRetriever(
                                                 priceListRepository.GetById(_priceListViewModel.Id),
-                                                categoryRepository.GetById(
-                                                    _categoryFilterViewModel.Id), _searchCriteria);
+                                                _categoryFilterViewModel.Select(model => model.Id).ToArray(),
+                                                _searchCriteria);
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
             SelectedModel = null;
         }
@@ -192,14 +199,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public void ClearSearch() {
             _searchCriteria = string.Empty;
             var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
-            var categoryRepository = _repositoryFactory.CreateRepository<Category>();
             _productsPriceRetriever = _categoryFilterViewModel == null
                                           ? new ProductsPriceRetriever(
                                                 priceListRepository.GetById(_priceListViewModel.Id))
                                           : new ProductsPriceRetriever(
                                                 priceListRepository.GetById(_priceListViewModel.Id),
-                                                categoryRepository.GetById(
-                                                    _categoryFilterViewModel.Id));
+                                                _categoryFilterViewModel.Select(model => model.Id).ToArray());
             _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
             SelectedModel = null;
         }

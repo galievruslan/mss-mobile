@@ -121,8 +121,8 @@ namespace MSS.WinMobile.Application {
         }
 
         public CategoryLookUpPresenter CreateCategoryLookUpPresenter(ICategoryLookUpView categoryLookUpView,
-                                                                     CategoryViewModel categoryViewModel) {
-            return new CategoryLookUpPresenter(categoryLookUpView, _repositoryFactory, categoryViewModel);
+                                                                     IEnumerable<CategoryViewModel> categoryViewModels) {
+            return new CategoryLookUpPresenter(categoryLookUpView, _repositoryFactory, categoryViewModels);
         }
 
         public PickUpProductPresenter CreatePickUpProductPresenter(IPickUpProductView pickUpProductView, PriceListViewModel priceListViewModel,

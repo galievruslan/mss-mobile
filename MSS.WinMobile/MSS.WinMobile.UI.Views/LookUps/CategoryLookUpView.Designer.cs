@@ -28,6 +28,7 @@
             // 
             // _categoriesTreeView
             // 
+            this._categoriesTreeView.CheckBoxes = true;
             this._categoriesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._categoriesTreeView.Location = new System.Drawing.Point(0, 0);
             this._categoriesTreeView.Name = "_categoriesTreeView";

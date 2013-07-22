@@ -15,15 +15,17 @@ namespace MSS.WinMobile.Application {
             _localizationManager = localizationManager;
         }
 
-        public CategoryViewModel LookUpCategory(CategoryViewModel currentCategory) {
-            CategoryViewModel selectedCategory = null;
-            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, _localizationManager, currentCategory)) {
-                if (categoryLookUpView.ShowDialog() == DialogResult.OK) {
-                    selectedCategory = categoryLookUpView.SelectedCategory;
+        public IEnumerable<CategoryViewModel> LookUpCategories(IEnumerable<CategoryViewModel> currentCategories) {
+            var selectedCategories = new List<CategoryViewModel>();
+            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, _localizationManager, currentCategories))
+            {
+                if (categoryLookUpView.ShowDialog() == DialogResult.OK)
+                {
+                    selectedCategories.AddRange(categoryLookUpView.SelectedCategories);
                 }
             }
 
-            return selectedCategory;
+            return selectedCategories;
         }
 
         public CustomerViewModel LookUpCustomer() {

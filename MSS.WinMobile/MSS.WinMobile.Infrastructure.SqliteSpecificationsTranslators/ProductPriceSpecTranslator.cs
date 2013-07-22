@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Text;
+using System.Linq;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Sqlite.Repositoties.QueryObjects.Specifications;
 using MSS.WinMobile.Infrastructure.Storage.QueryObjects.ISpecifications;
@@ -17,8 +18,20 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.SpecificationsTranslators {
                                      (specification as PricesLinesSpec).PriceList.Id);
             }
             if (specification is PriceOfProductWithCategorySpec) {
-                return string.Format("Product_Category_Id = {0}",
-                                     (specification as PriceOfProductWithCategorySpec).Category.Id);
+                var priceOfProductWithCategorySpec =
+                    specification as PriceOfProductWithCategorySpec;
+                int[] ids = priceOfProductWithCategorySpec.CategoryIds.ToArray();
+
+                var inBuilder = new StringBuilder();
+                for (int i = 0; i < ids.Count(); i++)
+                {
+                    inBuilder.Append(ids[i]);
+
+                    if (i < ids.Length - 1)
+                        inBuilder.Append(", ");
+                }
+
+                return string.Format("Product_Category_Id in ({0})", inBuilder);
             }
             if (specification is ProductPriceWithNameLikeSpec) {
                 string criteria = (specification as ProductPriceWithNameLikeSpec).Criteria;

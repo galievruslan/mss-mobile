@@ -2,7 +2,7 @@
 
 namespace MSS.WinMobile.UI.Presenters.Presenters
 {
-    public interface IPresenter<TViewModel> where TViewModel : ViewModel {
+    public interface IPresenter<TViewModel> {
         TViewModel Initialize();
     }
 }
