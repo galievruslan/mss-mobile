@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -158,9 +159,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                 _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
 
                 var filterBuilder = new StringBuilder();
-                foreach (var categoryViewModel in categoryFilterViewModel) {
-                    filterBuilder.Append(categoryViewModel.Name);
-                    filterBuilder.Append(", ");
+                for (int i = 0; i < categoryFilterViewModel.Length; i++) {
+                    filterBuilder.Append(categoryFilterViewModel[i].Name);
+                    if (i < categoryFilterViewModel.Length - 1)
+                        filterBuilder.Append(", ");
                 }
 
                 _view.SetCategoryFilter(filterBuilder.ToString());
@@ -210,11 +212,30 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         }
 
         public void ShowDetails() {
+            var productRepo = _repositoryFactory.CreateRepository<Product>();
+            Product product = productRepo.GetById(SelectedModel.ProductId);
+            var productUnitsOfMeasure = product.UnitsOfMeasures.ToArray().OrderBy(uom => uom.CountInBaseUnit);
+
+            IDictionary<string, string> details = new Dictionary<string, string> {
+                {"Product name", SelectedModel.ProductName}, {
+                    "Product price for item",
+                    SelectedModel.Price.ToString(CultureInfo.InvariantCulture)
+                }
+            };
+
+            ProductsUnitOfMeasure baseUnitOfMeasure =
+                productUnitsOfMeasure.FirstOrDefault(uom => uom.Base);
+            foreach (var productsUnitOfMeasure in productUnitsOfMeasure) {
+                if (!productsUnitOfMeasure.Base) {
+                    details.Add(productsUnitOfMeasure.UnitOfMeasureName,
+                                productsUnitOfMeasure.CountInBaseUnit.ToString(
+                                    CultureInfo.InvariantCulture) + " (" +
+                                    baseUnitOfMeasure.UnitOfMeasureName + ")");
+                }
+            }
+
             if (SelectedModel != null) {
-                _view.ShowDetails(new Dictionary<string, string> {
-                    {"Product name", SelectedModel.ProductName},
-                    {"Product price for item", SelectedModel.Price.ToString(CultureInfo.InvariantCulture)}
-                });
+                _view.ShowDetails(details);
             }
         }
 
