@@ -31,9 +31,11 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public CustomerViewModel GetItem(int index) {
             Customer item = _cache.RetrieveElement(index);
-            return new CustomerViewModel {
-                Name = item.Name
-            };
+            return new CustomerViewModel
+                {
+                    Name = item.Name,
+                    Address = item.Address
+                };
         }
 
         private Customer _selectedCustomer;
@@ -48,10 +50,12 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public CustomerViewModel SelectedModel {
             get {
                 return _selectedCustomer != null
-                           ? new CustomerViewModel {
-                               Id = _selectedCustomer.Id,
-                               Name = _selectedCustomer.Name
-                           }
+                           ? new CustomerViewModel
+                               {
+                                   Id = _selectedCustomer.Id,
+                                   Name = _selectedCustomer.Name,
+                                   Address = _selectedCustomer.Address
+                               }
                            : null;
             }
         }

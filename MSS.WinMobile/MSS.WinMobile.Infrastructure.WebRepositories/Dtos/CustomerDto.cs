@@ -4,5 +4,7 @@
     public class CustomerDto : Dto
     {
         public string Name { get; set; }
+
+        public string Address { get; set; }
     }
 }

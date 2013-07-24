@@ -35,22 +35,21 @@ namespace MSS.WinMobile.UI.Views.LookUps {
                                                                                             _categoryViewModels);
 
                 BuildTreeViewView();
-                _categoriesTreeView.AfterCheck += _categoriesTreeView_AfterCheck;
             }
         }
 
-        private void _categoriesTreeView_AfterCheck(object sender, TreeViewEventArgs e) {
-            if (e.Node.Checked) {
-                foreach (TreeNode childNode in e.Node.Nodes) {
-                    childNode.Checked = true;
-                }
-            }
-            else {
-                foreach (TreeNode childNode in e.Node.Nodes) {
-                    childNode.Checked = false;
-                }
-            }
-        }
+        //private void _categoriesTreeView_AfterCheck(object sender, TreeViewEventArgs e) {
+        //    if (e.Node.Checked) {
+        //        foreach (TreeNode childNode in e.Node.Nodes) {
+        //            childNode.Checked = true;
+        //        }
+        //    }
+        //    else {
+        //        foreach (TreeNode childNode in e.Node.Nodes) {
+        //            childNode.Checked = false;
+        //        }
+        //    }
+        //}
 
         private readonly List<TreeNode> _treeNoodes = new List<TreeNode>();
         private void BuildTreeViewView() {

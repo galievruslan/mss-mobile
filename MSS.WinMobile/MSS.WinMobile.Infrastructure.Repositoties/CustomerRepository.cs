@@ -21,10 +21,10 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
                                            new CustomerTranslator(_repositoryFactory));
         }
 
-        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Customers (Id, Name) VALUES ({0}, '{1}')";
+        private const string SaveQueryTemplate = "INSERT OR REPLACE INTO Customers (Id, Name, Address) VALUES ({0}, '{1}', '{2}')";
         protected override string GetSaveQueryFor(Customer model)
         {
-            return string.Format(SaveQueryTemplate, model.Id, model.Name.Replace("'", "''"));
+            return string.Format(SaveQueryTemplate, model.Id, model.Name.Replace("'", "''"), model.Address.Replace("'", "''"));
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM Customers WHERE Id = {0}";

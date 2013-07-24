@@ -23,6 +23,12 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.VirtualProxies
             set { base.Name = value; }
         }
 
+        new public string Address
+        {
+            get { return base.Address; }
+            set { base.Address = value; }
+        }
+
         public override IQueryObject<ShippingAddress> ShippingAddresses {
             get {
                 var customersShippingAddressesSpec = new CustomersShippingAddressesSpec(this);

@@ -5,6 +5,8 @@ namespace MSS.WinMobile.Domain.Models
     public abstract class Customer : Model
     {
         public string Name { get; protected set; }
+
+        public string Address { get; protected set; }
         
         public abstract IQueryObject<ShippingAddress> ShippingAddresses { get; }
     }

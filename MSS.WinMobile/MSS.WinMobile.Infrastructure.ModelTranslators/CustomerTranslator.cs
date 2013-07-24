@@ -15,7 +15,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.ModelTranslators
             return new CustomerProxy(_repositoryFactory.CreateRepository<ShippingAddress>())
                 {
                     Id = source.Id,
-                    Name = source.Name
+                    Name = source.Name,
+                    Address = source.Address
                 };
         }
     }
