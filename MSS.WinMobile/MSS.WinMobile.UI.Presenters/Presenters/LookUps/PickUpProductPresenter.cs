@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using MSS.WinMobile.Application.Environment;
 using MSS.WinMobile.Domain.Models;
 using MSS.WinMobile.Infrastructure.Storage;
 using MSS.WinMobile.UI.Presenters.Presenters.DataRetrievers;
@@ -55,9 +53,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     Quantity = orderItemViewModel.Quantity,
                     Price = orderItemViewModel.Price,
                     UnitOfMeasureId = orderItemViewModel.UnitOfMeasureId,
-                    UnitOfMeasureName = orderItemViewModel.UnitOfMeasureName
+                    UnitOfMeasureName = orderItemViewModel.UnitOfMeasureName,
+                    CountInUnitOfMeasure = orderItemViewModel.CountInUnitOfMeasure,
+                    Amount = orderItemViewModel.Amount
                 });
             }
+
+            _view.SetAmount(_pickUpProductViewModels.Sum(model => model.Amount));
         }
 
         private const int MaxValue = 10000;

@@ -17,6 +17,8 @@
         public int UnitOfMeasureId { get; protected set; }
         public string UnitOfMeasureName { get; protected set; }
 
+        public float CountInBaseUnitOfMeasure { get; set; }
+
         public int Quantity { get; set; }
 
         public decimal Price { get; set; }

@@ -3,5 +3,6 @@
     public class SettingsDto {
         public int DefaultRoutePointStatusId { get; set; }
         public int DefaultRoutePointAttendedStatusId { get; set; }
+        public int DefaultPriceListId { get; set; }
     }
 }

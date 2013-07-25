@@ -73,6 +73,13 @@ namespace MSS.WinMobile.Synchronizer
                         settingsDto.DefaultRoutePointAttendedStatusId.ToString(
                             CultureInfo.InvariantCulture);
 
+                    _configurationManager.GetConfig("Domain")
+                                        .GetSection("PriceLists")
+                                        .GetSetting("DefaultPriceListId")
+                                        .Value =
+                        settingsDto.DefaultPriceListId.ToString(
+                            CultureInfo.InvariantCulture);
+
                     _configurationManager.GetConfig("Domain").Save();
                 }
             }

@@ -16,7 +16,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
                 Quantity = value.GetInt32(value.GetOrdinal("Quantity")),
                 Price = value.GetDecimal(value.GetOrdinal("Price")),
                 Amount = value.GetDecimal(value.GetOrdinal("Amount")),
-                UnitOfMeasureName = value.GetString(value.GetOrdinal("UnitOfMeasure_Name"))
+                UnitOfMeasureName = value.GetString(value.GetOrdinal("UnitOfMeasure_Name")),
+                CountInBaseUnitOfMeasure = value.GetFloat(value.GetOrdinal("Count_In_Base_UnitOfMeasure"))
             };
             return proxy;
         }

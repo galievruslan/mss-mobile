@@ -20,7 +20,7 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
 
         private static readonly NumberFormatInfo DecimalFormat = NumberFormatInfo.InvariantInfo;
         private const string SaveQueryTemplate =
-            "INSERT OR REPLACE INTO OrderItems (Id, Order_Id, Product_Id, UnitOfMeasure_Id, Quantity, Price, Amount) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6})";
+            "INSERT OR REPLACE INTO OrderItems (Id, Order_Id, Product_Id, UnitOfMeasure_Id, Quantity, Price, Amount, [Count_In_Base_UnitOfMeasure]) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})";
         protected override string GetSaveQueryFor(OrderItem model)
         {
             return string.Format(SaveQueryTemplate,
@@ -30,7 +30,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties
                                  model.UnitOfMeasureId,
                                  model.Quantity,
                                  model.Price.ToString(DecimalFormat),
-                                 model.Amount.ToString(DecimalFormat));
+                                 model.Amount.ToString(DecimalFormat),
+                                 model.CountInBaseUnitOfMeasure);
         }
 
         private const string DeleteQueryTemplate = "DELETE FROM OrderItems WHERE Id = {0}";

@@ -112,6 +112,25 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                 _orderViewModel.WarehouseName = defaultWarehouse.Name;
             }
 
+            const string priceListCacheKey = "Default Price List";
+
+            PriceList defaultPriceList;
+            if (AppCache.Contains(priceListCacheKey))
+                defaultPriceList = AppCache.Get<PriceList>(priceListCacheKey);
+            else {
+                var defaultPriceListId = _configurationManager.GetConfig("Domain")
+                                                              .GetSection("PriceLists")
+                                                              .GetSetting("DefaultPriceListId")
+                                                              .As<int>();
+                var priceListRepository = _repositoryFactory.CreateRepository<PriceList>();
+                defaultPriceList = priceListRepository.GetById(defaultPriceListId);
+            }
+
+            if (defaultPriceList != null) {
+                _orderViewModel.PriceListId = defaultPriceList.Id;
+                _orderViewModel.PriceListName = defaultPriceList.Name;
+            }
+
             _orderItemViewModels = new List<OrderItemViewModel>();
         }
 
@@ -140,7 +159,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     Price = orderItem.Price,
                     Amount = orderItem.Amount,
                     UnitOfMeasureId = orderItem.UnitOfMeasureId,
-                    UnitOfMeasureName = orderItem.UnitOfMeasureName
+                    UnitOfMeasureName = orderItem.UnitOfMeasureName,
+                    CountInUnitOfMeasure = orderItem.CountInBaseUnitOfMeasure
                 });
             }
         }
@@ -169,7 +189,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                     Price = orderItem.Price,
                     Amount = orderItem.Amount,
                     UnitOfMeasureId = orderItem.UnitOfMeasureId,
-                    UnitOfMeasureName = orderItem.UnitOfMeasureName
+                    UnitOfMeasureName = orderItem.UnitOfMeasureName,
+                    CountInUnitOfMeasure = orderItem.CountInBaseUnitOfMeasure
                 });
             }
         }
@@ -253,6 +274,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
                         orderItem.SetUnitOfMeasure(unitOfMeasure);
                         orderItem.Quantity = orderItemViewModel.Quantity;
                         orderItem.Price = orderItemViewModel.Price;
+                        orderItem.CountInBaseUnitOfMeasure = orderItemViewModel.CountInUnitOfMeasure;
                         orderItem.Amount = orderItemViewModel.Amount;
                         orderItemRepository.Save(orderItem);
                     }
@@ -303,24 +325,17 @@ namespace MSS.WinMobile.UI.Presenters.Presenters {
 
             if (pickedUpProducts != null) {
                 _orderItemViewModels.Clear();
-                var productRepository = _repositoryFactory.CreateRepository<Product>();
                 foreach (var pickUpProductViewModel in pickedUpProducts) {
-                    var product = productRepository.GetById(pickUpProductViewModel.ProductId);
-                    PickUpProductViewModel model = pickUpProductViewModel;
-                    var countInBaseUnits =
-                        product.UnitsOfMeasures.FirstOrDefault(
-                            uom => uom.UnitOfMeasureId == model.UnitOfMeasureId).CountInBaseUnit;
-
                     _orderItemViewModels.Add(new OrderItemViewModel {
                         Id = pickUpProductViewModel.OrderItemId,
                         ProductId = pickUpProductViewModel.ProductId,
                         ProductName = pickUpProductViewModel.ProductName,
                         Quantity = pickUpProductViewModel.Quantity,
                         Price = pickUpProductViewModel.Price,
-                        Amount = pickUpProductViewModel.Price * pickUpProductViewModel.Quantity *
-                            (decimal)countInBaseUnits,
+                        Amount = pickUpProductViewModel.Amount,
                         UnitOfMeasureId = pickUpProductViewModel.UnitOfMeasureId,
-                        UnitOfMeasureName = pickUpProductViewModel.UnitOfMeasureName
+                        UnitOfMeasureName = pickUpProductViewModel.UnitOfMeasureName,
+                        CountInUnitOfMeasure = pickUpProductViewModel.CountInUnitOfMeasure
                     });
                 }
                 _orderViewModel.Amount = _orderItemViewModels.Sum(model => model.Amount);
