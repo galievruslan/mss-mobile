@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
@@ -34,6 +33,7 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             Text = localizationManager.Localization.GetLocalizedValue(Text);
             _productPriceListBox.LocalizationManager = LocalizationManager;
             searchPanel.LocalizationManager = LocalizationManager;
+            _productPickUpExtraPanel.LocalizationManager = LocalizationManager;
         }
 
         private void ViewLoad(object sender, EventArgs e) {
@@ -51,16 +51,8 @@ namespace MSS.WinMobile.UI.Views.LookUps {
         private void ItemSelected(object sender, VirtualListBoxItem item) {
             _selectedItem = item;
             _presenter.Select(item.Index);
-            var productsUoM = _presenter.GetProductsUntisOfMeasure();
-            _uomComboBox.SelectedValueChanged -= _uomComboBox_SelectedValueChanged;
-            _uomComboBox.DataSource = productsUoM;
-            foreach (var unitOfMeasureViewModel in productsUoM) {
-                if (unitOfMeasureViewModel.Id == _presenter.SelectedModel.UnitOfMeasureId) {
-                    _uomComboBox.SelectedItem = unitOfMeasureViewModel;
-                    break;
-                }
-            }
-            _uomComboBox.SelectedValueChanged += _uomComboBox_SelectedValueChanged;
+            _productPickUpExtraPanel.SetUnitsOfMeasures(_presenter.GetProductsUntisOfMeasure());
+            _productPickUpExtraPanel.SetSelectedUnitOfMeasure(_presenter.SelectedModel.UnitOfMeasureId);
         }
 
         private void ItemDataNeeded(object sender, VirtualListBoxItem item) {
@@ -70,23 +62,13 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             }
         }
 
-        private void DigitButtonClick(object sender, EventArgs e) {
-            var digitButton = sender as Button;
-            if (digitButton != null) {
-                _presenter.AddDigit(Int32.Parse(digitButton.Text));
-                if (_selectedItem != null)
-                    _selectedItem.RefreshData();
-            }
-        }
-
-        private void DeleteDigitButtonClick(object sender, EventArgs e) {
-            _presenter.RemoveDigit();
-            if (_selectedItem != null)
-                _selectedItem.RefreshData();
-        }
-
         public void SetCategoryFilter(string filter) {
             _filterPanel.SetFilterValue(filter);
+        }
+
+        public void SetAmount(decimal value) {
+            _productPickUpExtraPanel.SetAmount(value);
+            _productPickUpExtraPanel.Refresh();
         }
 
         public IList<PickUpProductViewModel> PickedUpProducts {
@@ -121,8 +103,20 @@ namespace MSS.WinMobile.UI.Views.LookUps {
             _presenter.ShowDetails();
         }
 
-        private void _uomComboBox_SelectedValueChanged(object sender, EventArgs e) {
-            _presenter.ChangeUnitOfMeasure((UnitOfMeasureViewModel)_uomComboBox.SelectedItem);
+        private void quantityPanel_DigitAdd(int value) {
+            _presenter.AddDigit(value);
+            if (_selectedItem != null)
+                _selectedItem.RefreshData();
+        }
+
+        private void quantityPanel_DigitRemove() {
+            _presenter.RemoveDigit();
+            if (_selectedItem != null)
+                _selectedItem.RefreshData();
+        }
+
+        private void productPickUpExtraPanel1_UnitOfMeasureChanged(UnitOfMeasureViewModel unitOfMeasureViewModel) {
+            _presenter.ChangeUnitOfMeasure(unitOfMeasureViewModel);
         }
     }
 }

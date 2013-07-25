@@ -71,15 +71,24 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                         pickUpProductViewModel.Quantity = pickUpProductViewModel.Quantity * 10 + count;
                 }
                 else if (count != 0) {
-                    _pickUpProductViewModels.Add(new PickUpProductViewModel {
+                    pickUpProductViewModel = new PickUpProductViewModel {
                         ProductId = SelectedModel.ProductId,
                         ProductName = SelectedModel.ProductName,
                         Quantity = count,
                         Price = SelectedModel.Price,
                         UnitOfMeasureId = SelectedModel.UnitOfMeasureId,
-                        UnitOfMeasureName = SelectedModel.UnitOfMeasureName
-                    });
+                        UnitOfMeasureName = SelectedModel.UnitOfMeasureName,
+                        CountInUnitOfMeasure = SelectedModel.CountInUnitOfMeasure
+                    };
+
+                    _pickUpProductViewModels.Add(pickUpProductViewModel);
                 }
+
+                if (pickUpProductViewModel != null)
+                    pickUpProductViewModel.Amount = pickUpProductViewModel.Price*
+                                                    pickUpProductViewModel.Quantity *
+                                                    (decimal)pickUpProductViewModel.CountInUnitOfMeasure;
+                _view.SetAmount(_pickUpProductViewModels.Sum(model => model.Amount));
             }
         }
 
@@ -94,7 +103,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     pickUpProductViewModel.Quantity = pickUpProductViewModel.Quantity / 10;
                     if (pickUpProductViewModel.Quantity == 0)
                         _pickUpProductViewModels.Remove(pickUpProductViewModel);
+
+                    pickUpProductViewModel.Amount = pickUpProductViewModel.Price *
+                                                    pickUpProductViewModel.Quantity *
+                                                    (decimal)pickUpProductViewModel.CountInUnitOfMeasure;
                 }
+
+                _view.SetAmount(_pickUpProductViewModels.Sum(model => model.Amount));
             }
         }
 
@@ -250,7 +265,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     productUnitsOfMeasure
                            .Select(unitOfMeasure => new UnitOfMeasureViewModel {
                                Id = unitOfMeasure.UnitOfMeasureId,
-                               Name = unitOfMeasure.UnitOfMeasureName
+                               Name = unitOfMeasure.UnitOfMeasureName,
                            }));
 
                 if (SelectedModel.UnitOfMeasureId == 0) {
@@ -258,6 +273,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                     if (baseUnitOfMeasure != null) {
                         SelectedModel.UnitOfMeasureId = baseUnitOfMeasure.UnitOfMeasureId;
                         SelectedModel.UnitOfMeasureName = baseUnitOfMeasure.UnitOfMeasureName;
+                        SelectedModel.CountInUnitOfMeasure = baseUnitOfMeasure.CountInBaseUnit;
                     }
                 }
             }
@@ -267,15 +283,27 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
 
         public void ChangeUnitOfMeasure(UnitOfMeasureViewModel unitOfMeasureViewModel) {
             if (SelectedModel != null) {
+                var productRepository = _repositoryFactory.CreateRepository<Product>();
+                var product = productRepository.GetById(SelectedModel.ProductId);
+                var productUnitsOfMeasure = product.UnitsOfMeasures.ToArray();
+                var productUnitOfMeasure = productUnitsOfMeasure.FirstOrDefault(uom => uom.UnitOfMeasureId == unitOfMeasureViewModel.Id);
+
                 PickUpProductViewModel pickUpProductViewModel =
                     _pickUpProductViewModels.FirstOrDefault(model => model.ProductId == SelectedModel.ProductId);
                 if (pickUpProductViewModel != null) {
                     pickUpProductViewModel.UnitOfMeasureId = unitOfMeasureViewModel.Id;
                     pickUpProductViewModel.UnitOfMeasureName = unitOfMeasureViewModel.Name;
+                    pickUpProductViewModel.CountInUnitOfMeasure = productUnitOfMeasure.CountInBaseUnit;
+
+                    pickUpProductViewModel.Amount = pickUpProductViewModel.Price *
+                                                    pickUpProductViewModel.Quantity *
+                                                    (decimal)pickUpProductViewModel.CountInUnitOfMeasure;
+                    _view.SetAmount(_pickUpProductViewModels.Sum(model => model.Amount));
                 }
                 else {
                     SelectedModel.UnitOfMeasureId = unitOfMeasureViewModel.Id;
                     SelectedModel.UnitOfMeasureName = unitOfMeasureViewModel.Name;
+                    SelectedModel.CountInUnitOfMeasure = productUnitOfMeasure.CountInBaseUnit;              
                 }
             }
         }

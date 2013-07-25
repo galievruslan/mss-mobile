@@ -1,4 +1,5 @@
 ﻿using MSS.WinMobile.UI.Controls.Concret;
+using MSS.WinMobile.UI.Controls.Lines;
 
 namespace MSS.WinMobile.UI.Views.Views {
     partial class OrderView {
@@ -28,7 +29,7 @@ namespace MSS.WinMobile.UI.Views.Views {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderView));
             this.itemsActionPanel = new System.Windows.Forms.Panel();
             this._deleteButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
-            this.vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
+            this.vericalLine1 = new VericalLine();
             this._amountLabel = new System.Windows.Forms.Label();
             this._amountValueLable = new System.Windows.Forms.Label();
             this.addButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -460,7 +461,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         private System.Windows.Forms.Label _amountValueLable;
         private System.Windows.Forms.Label _amountLabel;
         private System.Windows.Forms.TextBox _orderDateTextBox;
-        private MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+        private VericalLine vericalLine1;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _deleteButton;
     }
 }

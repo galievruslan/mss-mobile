@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MSS.WinMobile.Localization;
 
-namespace MSS.WinMobile.UI.Controls
+namespace MSS.WinMobile.UI.Controls.Panels
 {
     public partial class SearchPanel : UserControl
     {

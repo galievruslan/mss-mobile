@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 
-namespace MSS.WinMobile.UI.Controls
+namespace MSS.WinMobile.UI.Controls.Panels
 {
     public partial class FilterPanel : UserControl
     {

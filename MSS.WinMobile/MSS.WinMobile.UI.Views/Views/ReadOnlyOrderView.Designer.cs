@@ -1,4 +1,5 @@
 ﻿using MSS.WinMobile.UI.Controls.Concret;
+using MSS.WinMobile.UI.Controls.Lines;
 
 namespace MSS.WinMobile.UI.Views.Views {
     partial class ReadOnlyOrderView {
@@ -26,7 +27,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         /// </summary>
         private void InitializeComponent() {
             this.itemsActionPanel = new System.Windows.Forms.Panel();
-            this.vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
+            this.vericalLine1 = new VericalLine();
             this._amountLabel = new System.Windows.Forms.Label();
             this._amountValueLable = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -339,7 +340,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         private OrderItemListBox orderItemListBox;
         private System.Windows.Forms.TextBox _shippingDateTextBox;
         private System.Windows.Forms.TextBox _orderDataTextBox;
-        private MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+        private VericalLine vericalLine1;
         private System.Windows.Forms.Label _amountLabel;
         private System.Windows.Forms.Label _amountValueLable;
     }

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace MSS.WinMobile.UI.Controls {
+namespace MSS.WinMobile.UI.Controls.Lines {
     public partial class HorizontalLine : UserControl {
         public HorizontalLine() {
             InitializeComponent();

@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views.Views {
+﻿using MSS.WinMobile.UI.Controls.Lines;
+
+namespace MSS.WinMobile.UI.Views.Views {
     partial class RouteView {
         /// <summary> 
         /// Required designer variable.
@@ -23,7 +25,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+            VericalLine vericalLine1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             this._createOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._createRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -35,7 +37,7 @@
             this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.panel = new System.Windows.Forms.Panel();
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
-            vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
+            vericalLine1 = new VericalLine();
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();

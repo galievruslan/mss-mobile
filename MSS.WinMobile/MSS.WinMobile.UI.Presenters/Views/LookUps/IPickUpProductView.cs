@@ -5,6 +5,7 @@ namespace MSS.WinMobile.UI.Presenters.Views.LookUps
 {
     public interface IPickUpProductView : IListView {
         void SetCategoryFilter(string filter);
+        void SetAmount(decimal value);
         IList<PickUpProductViewModel> PickedUpProducts { get; }
     }
 }

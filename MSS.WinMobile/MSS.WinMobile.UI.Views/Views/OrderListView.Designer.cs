@@ -1,4 +1,6 @@
-﻿namespace MSS.WinMobile.UI.Views.Views {
+﻿using MSS.WinMobile.UI.Controls.Lines;
+
+namespace MSS.WinMobile.UI.Views.Views {
     partial class OrderListView
     {
         /// <summary> 
@@ -30,7 +32,7 @@
             this._orderListBox = new MSS.WinMobile.UI.Controls.Concret.OrderListBox();
             this.panel = new System.Windows.Forms.Panel();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
-            this.vericalLine1 = new MSS.WinMobile.UI.Controls.VericalLine();
+            this.vericalLine1 = new VericalLine();
             this._amountLabel = new System.Windows.Forms.Label();
             this._amountValueLable = new System.Windows.Forms.Label();
             this._actionPanel.SuspendLayout();
@@ -140,7 +142,7 @@
         private MSS.WinMobile.UI.Controls.Concret.OrderListBox _orderListBox;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.DateTimePicker datePicker;
-        private MSS.WinMobile.UI.Controls.VericalLine vericalLine1;
+        private VericalLine vericalLine1;
         private System.Windows.Forms.Label _amountLabel;
         private System.Windows.Forms.Label _amountValueLable;
     }

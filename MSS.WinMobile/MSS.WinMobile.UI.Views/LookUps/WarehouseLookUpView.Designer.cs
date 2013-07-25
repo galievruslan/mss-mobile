@@ -1,4 +1,6 @@
 ﻿using MSS.WinMobile.UI.Controls;
+using MSS.WinMobile.UI.Controls.Lines;
+using MSS.WinMobile.UI.Controls.Panels;
 
 namespace MSS.WinMobile.UI.Views.LookUps
 {
@@ -32,10 +34,10 @@ namespace MSS.WinMobile.UI.Views.LookUps
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarehouseLookUpView));
             this._warehouseListBox = new MSS.WinMobile.UI.Controls.Concret.WarehouseListBox();
-            this._horizontalLine = new MSS.WinMobile.UI.Controls.HorizontalLine();
+            this._horizontalLine = new HorizontalLine();
             this._actionPanel = new System.Windows.Forms.Panel();
-            this.searchPanel = new MSS.WinMobile.UI.Controls.SearchPanel();
-            this._vericalLine = new MSS.WinMobile.UI.Controls.VericalLine();
+            this.searchPanel = new SearchPanel();
+            this._vericalLine = new VericalLine();
             this._informationButton = new MSS.WinMobile.UI.Controls.Buttons.InformationButton();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
@@ -78,8 +80,8 @@ namespace MSS.WinMobile.UI.Views.LookUps
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.Size = new System.Drawing.Size(211, 24);
             this.searchPanel.TabIndex = 0;
-            this.searchPanel.Search += new MSS.WinMobile.UI.Controls.SearchPanel.OnSearch(this.DoSearchClick);
-            this.searchPanel.Clear += new MSS.WinMobile.UI.Controls.SearchPanel.OnClear(this.ClearSearchClick);
+            this.searchPanel.Search += new SearchPanel.OnSearch(this.DoSearchClick);
+            this.searchPanel.Clear += new SearchPanel.OnClear(this.ClearSearchClick);
             // 
             // _vericalLine
             // 

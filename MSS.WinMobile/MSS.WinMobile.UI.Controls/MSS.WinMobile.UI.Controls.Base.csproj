@@ -85,16 +85,16 @@
     <Compile Include="DetailsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FilterPanel.cs">
+    <Compile Include="Panels\FilterPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FilterPanel.Designer.cs">
+    <Compile Include="Panels\FilterPanel.Designer.cs">
       <DependentUpon>FilterPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="HorizontalLine.cs">
+    <Compile Include="Lines\HorizontalLine.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HorizontalLine.Designer.cs">
+    <Compile Include="Lines\HorizontalLine.Designer.cs">
       <DependentUpon>HorizontalLine.cs</DependentUpon>
     </Compile>
     <Compile Include="ListBox\ListBoxItems\VirtualListBoxItem.cs">
@@ -106,10 +106,16 @@
     <Compile Include="Buttons\OkButton.Designer.cs">
       <DependentUpon>OkButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchPanel.cs">
+    <Compile Include="Panels\ProductPickUpExtraPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SearchPanel.Designer.cs">
+    <Compile Include="Panels\QuantityPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\SearchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\SearchPanel.Designer.cs">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Buttons\PictureButton.cs">
@@ -133,10 +139,10 @@
     <Compile Include="TextBoxWithPromt.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="VericalLine.cs">
+    <Compile Include="Lines\VericalLine.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VericalLine.Designer.cs">
+    <Compile Include="Lines\VericalLine.Designer.cs">
       <DependentUpon>VericalLine.cs</DependentUpon>
     </Compile>
     <Compile Include="WndProcHooker.cs" />
@@ -144,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MSS.WinMobile.UI.Controls.pfx" />
+    <None Include="Properties\DataSources\MSS.WinMobile.UI.Presenters.ViewModels.UnitOfMeasureViewModel.datasource" />
     <None Include="Resources\appbar.home.png" />
   </ItemGroup>
   <ItemGroup>
@@ -165,16 +172,22 @@
     <EmbeddedResource Include="DetailsWindow.resx">
       <DependentUpon>DetailsWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FilterPanel.resx">
+    <EmbeddedResource Include="Panels\FilterPanel.resx">
       <DependentUpon>FilterPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HorizontalLine.resx">
+    <EmbeddedResource Include="Lines\HorizontalLine.resx">
       <DependentUpon>HorizontalLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListBox\ListBoxItems\VirtualListBoxItem.resx">
       <DependentUpon>VirtualListBoxItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchPanel.resx">
+    <EmbeddedResource Include="Panels\ProductPickUpExtraPanel.resx">
+      <DependentUpon>ProductPickUpExtraPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\QuantityPanel.resx">
+      <DependentUpon>QuantityPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
@@ -184,7 +197,7 @@
     <EmbeddedResource Include="ListBox\VirtualListBox.resx">
       <DependentUpon>VirtualListBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VericalLine.resx">
+    <EmbeddedResource Include="Lines\VericalLine.resx">
       <DependentUpon>VericalLine.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -192,6 +205,10 @@
     <ProjectReference Include="..\MSS.WinMobile.Resources\MSS.WinMobile.Localization.csproj">
       <Project>{090BAF8A-4CAB-4496-ABBF-3EB383208B72}</Project>
       <Name>MSS.WinMobile.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSS.WinMobile.UI.Presenters\MSS.WinMobile.UI.Presenters.csproj">
+      <Project>{7A140F0C-7A4C-4ACD-A2F7-E09B23701A9D}</Project>
+      <Name>MSS.WinMobile.UI.Presenters</Name>
     </ProjectReference>
     <ProjectReference Include="..\Thirdparty\LinqBridge-1.3\LinqBridge-1.3.csproj">
       <Project>{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A}</Project>
