@@ -121,6 +121,10 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
                         string databaseFileFullPath = Environment.AppPath + databaseName;
                         _storageManager.CreateOrOpenStorage(databaseFileFullPath,
                                                             databaseScriptFullPath);
+
+                        Notify(new TextNotification("Greetings"));
+                        var greetings = new Greetings(webServer);
+                        greetings.Execute();
                     }
 
                     DateTime synchronizationDate = webServer.Connect().ServerTime();

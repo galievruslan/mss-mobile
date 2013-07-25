@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategotiesSynchronization.cs" />
+    <Compile Include="Greetings.cs" />
     <Compile Include="Utils\JavaScriptUtils.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\MiscellaneousUtils.cs" />
