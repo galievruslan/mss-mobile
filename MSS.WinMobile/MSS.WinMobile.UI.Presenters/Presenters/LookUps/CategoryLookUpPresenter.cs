@@ -6,26 +6,26 @@ using MSS.WinMobile.UI.Presenters.ViewModels;
 using MSS.WinMobile.UI.Presenters.Views.LookUps;
 
 namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps {
-    public class CategoryLookUpPresenter : IPresenter<IEnumerable<CategoryViewModel>> {
+    public class CategoryLookUpPresenter : IPresenter<CategoryViewModel> {
         private ICategoryLookUpView _categoryLookUpView;
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly IEnumerable<CategoryViewModel> _categoryViewModels;
+        private readonly CategoryViewModel _selectedCategoryViewModel;
 
         public CategoryLookUpPresenter(ICategoryLookUpView categoryLookUpView,
                                        IRepositoryFactory repositoryFactory,
-                                       IEnumerable<CategoryViewModel> categoryViewModels) {
+                                       CategoryViewModel selectedCategoryViewModel) {
             _categoryLookUpView = categoryLookUpView;
             _repositoryFactory = repositoryFactory;
-            _categoryViewModels = categoryViewModels;
+            _selectedCategoryViewModel = selectedCategoryViewModel;
         }
 
-        public IEnumerable<CategoryViewModel> Initialize() {
-            return _categoryViewModels;
+        public CategoryViewModel Initialize() {
+            return _selectedCategoryViewModel;
         }
 
         public IEnumerable<CategoryViewModel> GetCategories() {
             var categoryRepository = _repositoryFactory.CreateRepository<Category>();
-            IEnumerable<Category> categories = categoryRepository.Find();
+            IEnumerable<Category> categories = categoryRepository.Find().OrderBy(category => category.Name);
 
             return categories.Select(category => new CategoryViewModel {
                 Id = category.Id, Name = category.Name, ParentId = category.ParentId

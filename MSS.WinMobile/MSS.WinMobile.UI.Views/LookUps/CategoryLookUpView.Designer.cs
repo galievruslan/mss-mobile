@@ -28,12 +28,12 @@
             // 
             // _categoriesTreeView
             // 
-            this._categoriesTreeView.CheckBoxes = true;
             this._categoriesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._categoriesTreeView.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this._categoriesTreeView.Location = new System.Drawing.Point(0, 0);
             this._categoriesTreeView.Name = "_categoriesTreeView";
             this._categoriesTreeView.Size = new System.Drawing.Size(240, 268);
-            this._categoriesTreeView.TabIndex = 2;
+            this._categoriesTreeView.TabIndex = 0;
             // 
             // CategoryLookUpView
             // 
@@ -51,5 +51,6 @@
         #endregion
 
         private System.Windows.Forms.TreeView _categoriesTreeView;
+
     }
 }

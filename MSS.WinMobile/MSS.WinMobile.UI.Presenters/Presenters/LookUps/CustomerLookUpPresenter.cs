@@ -81,7 +81,8 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
         public void ShowDetails() {
             if (_selectedCustomer != null) {
                 _view.ShowDetails(new Dictionary<string, string> {
-                    {"Customer name", _selectedCustomer.Name}
+                    {"Customer name", _selectedCustomer.Name},
+                    {"Address", _selectedCustomer.Address}
                 });
             }
         }

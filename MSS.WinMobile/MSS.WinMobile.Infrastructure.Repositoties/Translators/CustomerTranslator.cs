@@ -16,7 +16,8 @@ namespace MSS.WinMobile.Infrastructure.Sqlite.Repositoties.Translators
             var proxy = new CustomerProxy(_repositoryFactory.CreateRepository<ShippingAddress>())
                 {
                     Id = value.GetInt32(value.GetOrdinal("Id")),
-                    Name = value.GetString(value.GetOrdinal("Name"))
+                    Name = value.GetString(value.GetOrdinal("Name")),
+                    Address = value.GetString(value.GetOrdinal("Address"))
                 };
             return proxy;
         }

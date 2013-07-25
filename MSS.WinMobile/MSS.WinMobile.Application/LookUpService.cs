@@ -15,9 +15,9 @@ namespace MSS.WinMobile.Application {
             _localizationManager = localizationManager;
         }
 
-        public IEnumerable<CategoryViewModel> LookUpCategories(IEnumerable<CategoryViewModel> currentCategories) {
+        public IEnumerable<CategoryViewModel> LookUpCategories(CategoryViewModel selectedCategoryViewModel) {
             var selectedCategories = new List<CategoryViewModel>();
-            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, _localizationManager, currentCategories))
+            using (var categoryLookUpView = new CategoryLookUpView(_presentersFactory, _localizationManager, selectedCategoryViewModel))
             {
                 if (categoryLookUpView.ShowDialog() == DialogResult.OK)
                 {

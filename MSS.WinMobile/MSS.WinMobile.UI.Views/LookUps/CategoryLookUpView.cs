@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Presenters.Presenters;
@@ -15,43 +14,30 @@ namespace MSS.WinMobile.UI.Views.LookUps {
         }
 
         private readonly IPresentersFactory _presentersFactory;
-        private readonly IEnumerable<CategoryViewModel> _categoryViewModels;
+        private readonly CategoryViewModel _selectedViewModel;
+        private TreeNode _selectedTreeNode;
 
         public CategoryLookUpView(IPresentersFactory presentersFactory, 
                                   ILocalizationManager localizationManager,
-                                  IEnumerable<CategoryViewModel> categoryViewModels)
+                                  CategoryViewModel selectedViewModel)
             : base(localizationManager) {
             InitializeComponent();
             
             _presentersFactory = presentersFactory;
             Text = localizationManager.Localization.GetLocalizedValue(Text);
-            _categoryViewModels = categoryViewModels;
+            _selectedViewModel = selectedViewModel;
         }
 
         private CategoryLookUpPresenter _categoryLookUpPresenter;
         private void CategoryLookUpViewLoad(object sender, EventArgs e) {
             if (_categoryLookUpPresenter == null) {
                 _categoryLookUpPresenter = _presentersFactory.CreateCategoryLookUpPresenter(this,
-                                                                                            _categoryViewModels);
+                                                                                            _selectedViewModel);
 
                 BuildTreeViewView();
             }
         }
 
-        //private void _categoriesTreeView_AfterCheck(object sender, TreeViewEventArgs e) {
-        //    if (e.Node.Checked) {
-        //        foreach (TreeNode childNode in e.Node.Nodes) {
-        //            childNode.Checked = true;
-        //        }
-        //    }
-        //    else {
-        //        foreach (TreeNode childNode in e.Node.Nodes) {
-        //            childNode.Checked = false;
-        //        }
-        //    }
-        //}
-
-        private readonly List<TreeNode> _treeNoodes = new List<TreeNode>();
         private void BuildTreeViewView() {
             var categoryViewModels =
                     new List<CategoryViewModel>(_categoryLookUpPresenter.GetCategories());
@@ -62,19 +48,14 @@ namespace MSS.WinMobile.UI.Views.LookUps {
                         Tag = categoryViewModel
                     };
 
+                    if (_selectedViewModel != null && categoryViewModel.Id == _selectedViewModel.Id)
+                        _selectedTreeNode = treeNode;
+
                     FillTreeViewNode(treeNode, categoryViewModels);
                     _categoriesTreeView.Nodes.Add(treeNode);
-                    _treeNoodes.Add(treeNode);
-                }
-            }
 
-            foreach (var viewModel in _categoryViewModels)
-            {
-                foreach (var treeNoode in _treeNoodes)
-                {
-                    var model = treeNoode.Tag as CategoryViewModel;
-                    if (model != null && model.Id == viewModel.Id)
-                        treeNoode.Checked = true;
+                    if (_selectedTreeNode != null)
+                        _categoriesTreeView.SelectedNode = _selectedTreeNode;
                 }
             }
         }
@@ -92,24 +73,31 @@ namespace MSS.WinMobile.UI.Views.LookUps {
                             Tag = categoryViewModel
                         };
 
+                        if (_selectedViewModel != null && categoryViewModel.Id == _selectedViewModel.Id)
+                            _selectedTreeNode = treeNode;
+
                         FillTreeViewNode(treeNode, categories);
                         parentTreeNode.Nodes.Add(treeNode);
-                        _treeNoodes.Add(treeNode);
                     }
                 }
             }
         }
-        
+
+        readonly List<CategoryViewModel> _selectedCategoryViewModels = new List<CategoryViewModel>();
         public IEnumerable<CategoryViewModel> SelectedCategories {
             get {
-                var selectedCategoryViewModels = new List<CategoryViewModel>(); 
-                foreach (var treeNoode in _treeNoodes) {
-                    if (treeNoode.Checked) {
-                        selectedCategoryViewModels.Add(treeNoode.Tag as CategoryViewModel);
-                    }
-                }
+                TreeNode node = _categoriesTreeView.SelectedNode;
+                if (node != null)
+                    CollectChildNoodes(node);
 
-                return selectedCategoryViewModels;
+                return _selectedCategoryViewModels;
+            }
+        }
+
+        private void CollectChildNoodes(TreeNode node) {
+            _selectedCategoryViewModels.Add(node.Tag as CategoryViewModel);
+            foreach (TreeNode childNoode in node.Nodes) {
+                CollectChildNoodes(childNoode);
             }
         }
     }

@@ -3,7 +3,7 @@ using MSS.WinMobile.UI.Presenters.ViewModels;
 
 namespace MSS.WinMobile.UI.Presenters.Views.LookUps {
     public interface ILookUpService {
-        IEnumerable<CategoryViewModel> LookUpCategories(IEnumerable<CategoryViewModel> currentCategories);
+        IEnumerable<CategoryViewModel> LookUpCategories(CategoryViewModel selectedCategoryViewModel);
         CustomerViewModel LookUpCustomer();
         ShippingAddressViewModel LookUpCustomerShippingAddress(CustomerViewModel customerViewModel);
         PriceListViewModel LookUpPriceList();

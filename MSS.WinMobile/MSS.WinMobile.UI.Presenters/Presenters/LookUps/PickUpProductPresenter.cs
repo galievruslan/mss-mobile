@@ -141,7 +141,7 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
             if (_categoryFilterViewModel == null) {
                 _categoryFilterViewModel = new List<CategoryViewModel>();
             }
-            var lookedUpCategories = _lookUpService.LookUpCategories(_categoryFilterViewModel);
+            var lookedUpCategories = _lookUpService.LookUpCategories(_categoryFilterViewModel.FirstOrDefault());
             var categoryFilterViewModel = lookedUpCategories as CategoryViewModel[] ?? lookedUpCategories.ToArray();
             if (lookedUpCategories != null && categoryFilterViewModel.Count() != 0)
             {
@@ -158,14 +158,13 @@ namespace MSS.WinMobile.UI.Presenters.Presenters.LookUps
                                                 _searchCriteria);
                 _cache = new Cache<ProductsPrice>(_productsPriceRetriever, 100);
 
-                var filterBuilder = new StringBuilder();
-                for (int i = 0; i < categoryFilterViewModel.Length; i++) {
-                    filterBuilder.Append(categoryFilterViewModel[i].Name);
-                    if (i < categoryFilterViewModel.Length - 1)
-                        filterBuilder.Append(", ");
-                }
 
-                _view.SetCategoryFilter(filterBuilder.ToString());
+                string categoryFilter = string.Empty;
+                CategoryViewModel topCategoryViewModel = categoryFilterViewModel.FirstOrDefault();
+                if (topCategoryViewModel != null)
+                    categoryFilter = topCategoryViewModel.Name;
+
+                _view.SetCategoryFilter(categoryFilter);
             }
         }
 
