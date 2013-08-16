@@ -132,4 +132,6 @@
   <Element name="update failed, please try again later.">Update failed, please try again later.</Element>
   <Element name="greetings">Greetings</Element>
   <Element name="order date must be earlier than shipping date!">Order date must be earlier than shipping date!</Element>
+  <Element name="name">Name</Element>
+  <Element name="status">Status</Element>
 </Root>

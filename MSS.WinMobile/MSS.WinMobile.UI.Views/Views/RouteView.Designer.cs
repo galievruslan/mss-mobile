@@ -25,7 +25,7 @@ namespace MSS.WinMobile.UI.Views.Views {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            VericalLine vericalLine1;
+            MSS.WinMobile.UI.Controls.Lines.VericalLine vericalLine1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RouteView));
             this._createOrderButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this._createRoutePointButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
@@ -37,7 +37,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.createRouteOnDateButton = new MSS.WinMobile.UI.Controls.Buttons.PictureButton();
             this.panel = new System.Windows.Forms.Panel();
             this.routePointListBox = new MSS.WinMobile.UI.Controls.Concret.RoutePointListBox();
-            vericalLine1 = new VericalLine();
+            this._informationButton = new MSS.WinMobile.UI.Controls.Buttons.InformationButton();
+            this.informationButton1 = new MSS.WinMobile.UI.Controls.Buttons.InformationButton();
+            vericalLine1 = new MSS.WinMobile.UI.Controls.Lines.VericalLine();
             this._actionPanel.SuspendLayout();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -126,9 +128,9 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.datePicker.CustomFormat = "dd.MM.yyyy";
             this.datePicker.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular);
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePicker.Location = new System.Drawing.Point(2, 1);
+            this.datePicker.Location = new System.Drawing.Point(28, 3);
             this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(208, 22);
+            this.datePicker.Size = new System.Drawing.Size(184, 22);
             this.datePicker.TabIndex = 1;
             // 
             // createRouteOnDateButton
@@ -136,30 +138,46 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.createRouteOnDateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.createRouteOnDateButton.BackColor = System.Drawing.Color.White;
             this.createRouteOnDateButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createRouteOnDateButton.BackgroundImage")));
-            this.createRouteOnDateButton.Location = new System.Drawing.Point(216, 2);
+            this.createRouteOnDateButton.Location = new System.Drawing.Point(214, 2);
             this.createRouteOnDateButton.Name = "createRouteOnDateButton";
             this.createRouteOnDateButton.PressedImage = ((System.Drawing.Image)(resources.GetObject("createRouteOnDateButton.PressedImage")));
-            this.createRouteOnDateButton.Size = new System.Drawing.Size(20, 20);
+            this.createRouteOnDateButton.Size = new System.Drawing.Size(24, 24);
             this.createRouteOnDateButton.TabIndex = 3;
             this.createRouteOnDateButton.Click += new System.EventHandler(this.CreateRouteOnDateButtonClick);
             // 
             // panel
             // 
+            this.panel.Controls.Add(this._informationButton);
             this.panel.Controls.Add(this.createRouteOnDateButton);
             this.panel.Controls.Add(this.datePicker);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 24);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(240, 24);
+            this.panel.Size = new System.Drawing.Size(240, 28);
             // 
             // routePointListBox
             // 
             this.routePointListBox.BackColor = System.Drawing.Color.White;
             this.routePointListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.routePointListBox.Location = new System.Drawing.Point(0, 48);
+            this.routePointListBox.Location = new System.Drawing.Point(0, 52);
             this.routePointListBox.Name = "routePointListBox";
-            this.routePointListBox.Size = new System.Drawing.Size(240, 220);
+            this.routePointListBox.Size = new System.Drawing.Size(240, 216);
             this.routePointListBox.TabIndex = 6;
+            // 
+            // _informationButton
+            // 
+            this._informationButton.Location = new System.Drawing.Point(2, 2);
+            this._informationButton.Name = "_informationButton";
+            this._informationButton.Size = new System.Drawing.Size(24, 24);
+            this._informationButton.TabIndex = 4;
+            this._informationButton.Click += new System.EventHandler(this.informationButton1_Click);
+            // 
+            // informationButton1
+            // 
+            this.informationButton1.Location = new System.Drawing.Point(2, 2);
+            this.informationButton1.Name = "informationButton1";
+            this.informationButton1.Size = new System.Drawing.Size(24, 24);
+            this.informationButton1.TabIndex = 4;
             // 
             // RouteView
             // 
@@ -170,7 +188,6 @@ namespace MSS.WinMobile.UI.Views.Views {
             this.Controls.Add(this.panel);
             this.Controls.Add(this._actionPanel);
             this.Name = "RouteView";
-            this.Size = new System.Drawing.Size(240, 268);
             this.Load += new MSS.WinMobile.UI.Views.Views.View.OnLoad(this.RouteViewLoad);
             this._actionPanel.ResumeLayout(false);
             this.panel.ResumeLayout(false);
@@ -190,6 +207,8 @@ namespace MSS.WinMobile.UI.Views.Views {
         private MSS.WinMobile.UI.Controls.Concret.RoutePointListBox routePointListBox;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _deleteRoutePointButton;
         private MSS.WinMobile.UI.Controls.Buttons.PictureButton _changeStatusButton;
+        private MSS.WinMobile.UI.Controls.Buttons.InformationButton _informationButton;
+        private MSS.WinMobile.UI.Controls.Buttons.InformationButton informationButton1;
 
     }
 }

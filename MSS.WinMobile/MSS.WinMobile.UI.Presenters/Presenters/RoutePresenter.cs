@@ -226,5 +226,15 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
             if (SelectedModel != null)
                 _navigator.GoToChangeStatus(SelectedModel);
         }
+
+        public void ShowDetails() {
+            if (_selectedRoutePoint != null) {
+                _view.ShowDetails(new Dictionary<string, string> {
+                    {"Name", _selectedRoutePoint.ShippingAddressName},
+                    {"Address", _selectedRoutePoint.ShippingAddressAddress},
+                    {"Status", _selectedRoutePoint.StatusName}
+                });
+            }
+        }
     }
 }

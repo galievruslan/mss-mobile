@@ -7,6 +7,7 @@
     <Setting name="DefaultRoutePointStatusId"></Setting>
     <Setting name="DefaultRoutePointAttendedStatusId"></Setting>    
     <Setting name="Посетил">LightGreen</Setting>
+    <Setting name="Не посетил">White</Setting>
     <Setting name="Учет">LightGray</Setting>
     <Setting name="Отказ">Tomato</Setting>
   </Section>

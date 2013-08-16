@@ -105,5 +105,9 @@ namespace MSS.WinMobile.UI.Views.Views {
                 _routePresenter.GoToMenuView();
             }
         }
+
+        private void informationButton1_Click(object sender, EventArgs e) {
+            _routePresenter.ShowDetails();
+        }
     }
 }
