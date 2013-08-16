@@ -136,8 +136,8 @@ Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.WinMobile.Updater", "De
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{80D302EC-EBD9-4801-9C4E-4C422A3790B7}"
 	ProjectSection(SolutionItems) = preProject
-		Configuration\Templates\Common.config = Configuration\Templates\Common.config
-		Configuration\Templates\Domain.Config = Configuration\Templates\Domain.Config
+		Configuration\Templates\Common.template = Configuration\Templates\Common.template
+		Configuration\Templates\Domain.template = Configuration\Templates\Domain.template
 		Configuration\Templates\log4net.xml = Configuration\Templates\log4net.xml
 	EndProjectSection
 EndProject

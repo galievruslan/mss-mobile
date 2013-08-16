@@ -131,4 +131,5 @@
   <Element name="lastes updates already installed.">Последняя версия программы уже установлена.</Element>
   <Element name="update failed, please try again later.">Не удалось обновить программу, попробуйте позже.</Element>
   <Element name="greetings">Приветствие</Element>
+  <Element name="order date must be earlier than shipping date!">Дата заказа должна быть раньше даты отгрузки!</Element>
 </Root>

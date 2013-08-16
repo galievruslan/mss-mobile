@@ -45,6 +45,9 @@ namespace MSS.WinMobile.UI.Presenters.ViewModels
             if (WarehouseId == 0)
                 ErrorList.Add("Warehouse must be selected!");
 
+            if (OrderDate > ShippingDate)
+                ErrorList.Add("Order date must be earlier than shipping date!");
+
             return !ErrorList.Any();
         }
     }
