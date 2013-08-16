@@ -30,7 +30,9 @@ namespace MSS.WinMobile.UI.Presenters.Presenters
         }
 
         public int InitializeListSize() {
-            return _ordersRetriever.Count;
+            int count = _ordersRetriever.Count;
+            _view.SetCount(count);
+            return count;
         }
 
         public OrderViewModel GetItem(int index) {

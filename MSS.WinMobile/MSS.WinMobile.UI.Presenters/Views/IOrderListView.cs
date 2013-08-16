@@ -2,5 +2,6 @@
 {
     public interface IOrderListView : IListView {
         void SetAmount(decimal amount);
+        void SetCount(int count);
     }
 }

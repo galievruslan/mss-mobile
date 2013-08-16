@@ -20,6 +20,7 @@
   <Element name="price list">Price list</Element>
   <Element name="warehouse">Warehouse</Element>
   <Element name="amount">Amount</Element>
+  <Element name="count">Count</Element>
   <Element name="server">Server</Element>
   <Element name="account">Account</Element>
   <Element name="password">Password</Element>

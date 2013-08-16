@@ -21,6 +21,7 @@
   <Element name="price list">Прайс лист</Element>
   <Element name="warehouse">Склад</Element>
   <Element name="amount">Сумма</Element>
+  <Element name="count">Количество</Element>
   <Element name="server">Сервер</Element>
   <Element name="account">Логин</Element>
   <Element name="password">Пароль</Element>

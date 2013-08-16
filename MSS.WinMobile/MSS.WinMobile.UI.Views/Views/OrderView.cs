@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using MSS.WinMobile.Localization;
 using MSS.WinMobile.UI.Controls.Concret.ListBoxItems;
 using MSS.WinMobile.UI.Controls.ListBox.ListBoxItems;
