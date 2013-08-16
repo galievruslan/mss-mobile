@@ -134,6 +134,13 @@ Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.WinMobile.Application",
 EndProject
 Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "MSS.WinMobile.Updater", "Deployment\Updater\Updater.vddproj", "{AA91BD31-C347-47DF-B254-7BFFB32991D8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{80D302EC-EBD9-4801-9C4E-4C422A3790B7}"
+	ProjectSection(SolutionItems) = preProject
+		Configuration\Templates\Common.config = Configuration\Templates\Common.config
+		Configuration\Templates\Domain.Config = Configuration\Templates\Domain.Config
+		Configuration\Templates\log4net.xml = Configuration\Templates\log4net.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = MSS.WinMobile1.vsmdi
@@ -298,6 +305,7 @@ Global
 		{E31FB299-CE5A-4A99-8F77-4AA4754E1A7A} = {542AB7ED-060B-4537-823F-C30DB6208798}
 		{063C6A38-E54E-48C9-8670-EC5A6C20866C} = {B7D9BFFE-EA17-41F0-8630-EEA44BCABB7B}
 		{A4EB3100-27E4-4D4D-B324-C3580EC42A52} = {B7D9BFFE-EA17-41F0-8630-EEA44BCABB7B}
+		{80D302EC-EBD9-4801-9C4E-4C422A3790B7} = {B7D9BFFE-EA17-41F0-8630-EEA44BCABB7B}
 		{C415AD6C-33D7-41F6-8504-3DB6EDDE45BD} = {969505AB-F130-491A-B53B-65EAAA8F4C38}
 		{4E224567-50A4-4F7C-AAD2-876699E88FFF} = {969505AB-F130-491A-B53B-65EAAA8F4C38}
 		{44646ED3-7AB9-4971-B834-86155F7C02C4} = {969505AB-F130-491A-B53B-65EAAA8F4C38}

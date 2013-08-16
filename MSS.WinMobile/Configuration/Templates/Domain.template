@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sections>
+  <Section name="PriceLists">
+    <Setting name="DefaultPriceListId"></Setting>
+  </Section>
+  <Section name="Statuses">
+    <Setting name="DefaultRoutePointStatusId"></Setting>
+    <Setting name="DefaultRoutePointAttendedStatusId"></Setting>    
+    <Setting name="Посетил">LightGreen</Setting>
+    <Setting name="Учет">LightGray</Setting>
+    <Setting name="Отказ">Tomato</Setting>
+  </Section>
+</Sections>

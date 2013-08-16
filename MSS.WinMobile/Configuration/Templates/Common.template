@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sections>
+  <Section name="Database">
+    <Setting name="FileName">storage.sqlite</Setting>
+    <Setting name="SchemaScript">Resources\Database\schema.sql</Setting>
+  </Section>
+  <Section name="Server">
+    <Setting name="Address">http://address.org/</Setting>
+    <Setting name="Username"></Setting>
+    <Setting name="Password"></Setting>
+  </Section>
+  <Section name="Synchronization">
+    <Setting name="BathSize">100</Setting>
+    <Setting name="LastSyncDate"/>
+  </Section>
+  <Section name="Localization">
+    <Setting name="Current"></Setting>
+  </Section>
+  <Section name="Updates">
+    <Setting name="Source">synchronization/mobile_client.json?client_type=winmobile</Setting>
+    <Setting name="Updater">..\MSS.WinMobile.Updater\MSS.WinMobile.Updater.exe</Setting>
+  </Section>
+</Sections>
